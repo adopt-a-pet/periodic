@@ -1,13 +1,11 @@
 {
-  "name": "vue-design-system",
-  "version": "3.5.5",
-  "description": "Vue Design System is an open-source tool for building Design Systems with Vue.js",
-  "author": "viljamis <me@viljamis.com>",
+  "name": "design-system",
+  "version": "1.0.0",
+  "description": "A design system for AAP's Vue components",
   "main": "dist/system/system.js",
   "files": [
     "dist/system"
   ],
-  "homepage": "https://vueds.com",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -34,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/viljamis/vue-design-system.git"
+    "url": "git+https://github.com:adopt-a-pet/design-system.git"
   },
   "keywords": [
     "vue design system",
@@ -186,15 +184,5 @@
   "engines": {
     "node": ">= 8.6.0",
     "npm": ">= 3.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not Explorer > 0",
-    "IE 11",
-    "not ExplorerMobile > 0",
-    "not BlackBerry > 0",
-    "not OperaMini all",
-    "not OperaMobile > 0"
-  ]
+  }
 }
