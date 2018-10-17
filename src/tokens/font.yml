@@ -4,6 +4,11 @@
 #
 
 props:
+  helvetica:
+    value: "'Helvetica Neue', Helvetica, Arial, Roboto, 'Lucida Grande', sans-serif"
+  font_museo:
+    value: "Museo, $helvetica"
+
   font_heading:
     value: "'Fira Sans', Helvetica, Arial, sans-serif"
   font_text:

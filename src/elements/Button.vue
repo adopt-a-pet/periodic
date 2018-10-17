@@ -13,12 +13,12 @@
 <script>
 /**
  * Buttons are generally used for interface actions. Suitable for all-purpose use.
- * Defaults to appearance that has white background with grey border. Primary style should be used only once per view for main call-to-action.
+ * Defaults to green/large.
  */
 export default {
   name: "Button",
   status: "prototype",
-  release: "3.5.0",
+  release: "1.0.0",
   props: {
     /**
      * The html element used for the button.
@@ -50,13 +50,14 @@ export default {
       default: null,
     },
     /**
-     * Set the button’s type to “submit”.
+     * Set the type to “button” to prevent button clicks from submiting a form.
+     * `button, submit`
      */
     type: {
       type: String,
-      default: null,
+      default: "submit",
       validator: value => {
-        return value.match(/(null|submit)/)
+        return value.match(/(button|submit)/)
       },
     },
     /**
@@ -78,7 +79,7 @@ export default {
       type: String,
       default: "green",
       validator: value => {
-        return value.match(/(green)/)
+        return value.match(/(green|blue|orange)/)
       },
     },
     /**
@@ -100,20 +101,20 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .button {
   display: block;
   background-color: color(awhite, base);
   @include border(2px solid color(agray, light));
   border-radius: $border-radius;
   color: color(agray, light);
-  // font-family: $museo700;
-  font-weight: 700;
+  font-family: $font_museo;
+  font-weight: $weight_bold;
   @include rem-fallback("font-size", 20px);
   cursor: pointer;
   line-height: 2.7;
   width: 100%;
-  transition: background 0.2s ease;
+  transition: background $duration_medium ease;
   margin: 0 auto;
   padding: 0;
 
@@ -164,14 +165,16 @@ export default {
     line-height: 2.9;
     color: color(awhite, base);
 
-    &:hover {
+    &:hover,
+    &.hover {
       background-color: color(aorange, dark);
       border: 0;
       box-shadow: $btn-shade-hover;
       color: color(awhite, base);
     }
 
-    &:active {
+    &:active,
+    &.active {
       background-color: color(aorange, base);
       box-shadow: $btn-shade-active;
     }
@@ -183,14 +186,16 @@ export default {
     line-height: 2.9;
     color: color(awhite, base);
 
-    &:hover {
+    &:hover,
+    &.hover {
       box-shadow: $btn-shade-hover;
       border: 0;
       background-color: color(ablue, dark);
       color: color(awhite, base);
     }
 
-    &:active {
+    &:active,
+    &.active {
       box-shadow: $btn-shade-active;
       background-color: color(ablue, base);
     }
@@ -234,7 +239,7 @@ export default {
 <docs>
   ```jsx
   <div>
-    <Button>Default Button</Button>
+    <Button>Default</Button>
     <br />
     <Button state="hover">:hover</Button>
     <br />
@@ -245,6 +250,15 @@ export default {
     <Button :disabled="true">Disabled</Button>
     <br />
     <Button :disabled="true" size="small">Small Disabled</Button>
+    <br />
+    <Button color="blue" >Blue</Button>
+    <br />
+    <Button color="blue" size="small">Small Blue</Button>
+    <br />
+    <Button color="orange">Orange</Button>
+    <br />
+    <Button color="orange" size="small">Small Orange</Button>
+    <br />
   </div>
   ```
 </docs>
