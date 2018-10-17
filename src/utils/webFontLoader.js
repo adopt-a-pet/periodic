@@ -8,4 +8,8 @@ WebFont.load({
   google: {
     families: ["Fira+Sans:300,400,400i,600,700"],
   },
+  custom: {
+    families: ["Museo:300,500,700"],
+    urls: ["/assets/fonts/fonts.css", "/fonts/fonts.css"],
+  },
 })

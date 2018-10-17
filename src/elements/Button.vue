@@ -1,9 +1,11 @@
 <template>
   <component
-    :is="type"
+    :is="tag"
     :href="href"
-    :type="submit"
-    :class="['button', size, state, variation]">
+    :type="type"
+    :class="['button', `button--${color}`, `button--${size}`, state]"
+    :disabled="disabled"
+    @click="click">
       <slot/>
   </component>
 </template>
@@ -11,18 +13,18 @@
 <script>
 /**
  * Buttons are generally used for interface actions. Suitable for all-purpose use.
- * Defaults to appearance that has white background with grey border. Primary style should be used only once per view for main call-to-action.
+ * Defaults to green/large.
  */
 export default {
   name: "Button",
   status: "prototype",
-  release: "3.5.0",
+  release: "1.0.0",
   props: {
     /**
      * The html element used for the button.
      * `button, a`
      */
-    type: {
+    tag: {
       type: String,
       default: "button",
       validator: value => {
@@ -30,14 +32,14 @@ export default {
       },
     },
     /**
-     * The size of the button. Defaults to medium.
-     * `small, medium, large`
+     * The size of the button. Defaults to large.
+     * `small, large`
      */
     size: {
       type: String,
-      default: "medium",
+      default: "large",
       validator: value => {
-        return value.match(/(small|medium|large)/)
+        return value.match(/(small|large)/)
       },
     },
     /**
@@ -48,13 +50,14 @@ export default {
       default: null,
     },
     /**
-     * Set the button’s type to “submit”.
+     * Set the type to “button” to prevent button clicks from submiting a form.
+     * `button, submit`
      */
-    submit: {
+    type: {
       type: String,
-      default: null,
+      default: "submit",
       validator: value => {
-        return value.match(/(null|submit)/)
+        return value.match(/(button|submit)/)
       },
     },
     /**
@@ -69,123 +72,193 @@ export default {
       },
     },
     /**
-     * Style variation to give additional meaning.
-     * `primary, secondary`
+     * Color allows us to easily change the color.
+     * `color`
      */
-    variation: {
+    color: {
       type: String,
-      default: null,
+      default: "green",
       validator: value => {
-        return value.match(/(primary|secondary)/)
+        return value.match(/(green|blue|orange)/)
       },
+    },
+    /**
+     * Is the button disabled?
+     */
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  methods: {
+    click() {
+      if (this.disabled) return
+
+      this.$emit("click")
     },
   },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .button {
-  @include reset;
-  @include stack-space($space-m);
-  @include inline-space($space-xs);
-  will-change: transform;
-  transition: all 0.2s ease;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: $weight-semi-bold;
-  font-size: $size-m;
-  font-family: $font-text;
-  line-height: $line-height-m;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  box-shadow: inset 0 0 0 2px $color-bleu-de-france;
-  border-radius: $radius-default;
-  background: transparent;
-  color: $color-bleu-de-france;
+  display: block;
+  background-color: color(awhite, base);
+  @include border(2px solid color(agray, light));
+  border-radius: $border-radius;
+  color: color(agray, light);
+  font-family: $font_museo;
+  font-weight: $weight_bold;
+  @include rem-fallback("font-size", 20px);
   cursor: pointer;
-  &:hover,
-  &.hover {
-    color: $color-white;
-    background: $color-bleu-de-france;
-    transform: translateZ(0) scale(1.03);
-  }
-  &:active,
-  &.active {
-    transition: none;
-    background: $color-bleu-de-france-dark;
-    box-shadow: none;
-    color: $color-white;
-    transform: translateZ(0) scale(1);
-  }
+  line-height: 2.7;
+  width: 100%;
+  transition: background $duration_medium ease;
+  margin: 0 auto;
+  padding: 0;
 
-  &:focus,
-  &.focus {
-    background: $color-bleu-de-france-darker;
-    box-shadow: none;
-    color: $color-white;
-    transform: translateZ(0) scale(1);
+  &:focus {
     outline: 0;
   }
 
-  // For icons inside buttons
-  .icon {
-    float: right;
-    margin: -#{$space-xs} -#{$space-xs} -#{$space-s} $space-xs/2;
-    color: $color-bleu-de-france;
+  &:hover {
+    background-color: $color_forty_per_lighter_grey;
+    @include border(2px solid color(agray, light));
+    color: color(agray, light);
   }
 
-  // Various button sizes
-  &.large {
-    @include inset-squish-space($space-s);
-    font-size: $size-l;
-  }
-  &.medium {
-    @include inset-squish-space($space-s);
-    font-size: $size-m;
-  }
-  &.small {
-    @include inset-squish-space($space-xs);
-    font-size: $size-s;
+  &:active {
+    background-color: color(agray, light);
+    color: color(awhite, base);
   }
 
-  // Primary button
-  &.primary {
-    background: $color-bleu-de-france;
-    color: $color-white;
-    box-shadow: none;
+  @include modifier("small") {
+    line-height: 2.5;
+    @include rem-fallback("font-size", 16px);
+  }
+
+  @include modifier("green") {
+    background-color: color(agreen, base);
+    border: 0;
+    line-height: 2.9;
+    color: color(awhite, base);
+
     &:hover,
     &.hover {
-      background-color: shade($color-bleu-de-france, 12%);
+      background-color: color(agreen, dark);
+      border: 0;
+      box-shadow: $btn-shade-hover;
+      color: color(awhite, base);
     }
+
     &:active,
     &.active {
-      background-color: shade($color-bleu-de-france, 20%);
-      transition: none;
-    }
-    &:focus {
-      outline: 0;
-    }
-    .user-is-tabbing &:focus,
-    &.focus {
+      background-color: color(agreen, base);
+      box-shadow: $btn-shade-active;
     }
   }
+
+  @include modifier("orange") {
+    background-color: color(aorange, base);
+    border: 0;
+    line-height: 2.9;
+    color: color(awhite, base);
+
+    &:hover,
+    &.hover {
+      background-color: color(aorange, dark);
+      border: 0;
+      box-shadow: $btn-shade-hover;
+      color: color(awhite, base);
+    }
+
+    &:active,
+    &.active {
+      background-color: color(aorange, base);
+      box-shadow: $btn-shade-active;
+    }
+  }
+
+  @include modifier("blue") {
+    background-color: color(ablue, base);
+    border: 0;
+    line-height: 2.9;
+    color: color(awhite, base);
+
+    &:hover,
+    &.hover {
+      box-shadow: $btn-shade-hover;
+      border: 0;
+      background-color: color(ablue, dark);
+      color: color(awhite, base);
+    }
+
+    &:active,
+    &.active {
+      box-shadow: $btn-shade-active;
+      background-color: color(ablue, base);
+    }
+  }
+
+  &[disabled] {
+    background-color: color(agray, lighter);
+    border: 0;
+    line-height: 2.9;
+    cursor: not-allowed;
+    pointer-events: none;
+    color: color(awhite);
+  }
+
+  @include element("image") {
+    float: left;
+    @include rem-fallback("width", 58px);
+    @include rem-fallback("height", 58px);
+    display: flex;
+  }
+
+  @include element("icon") {
+    fill: color(awhite);
+    @include rem-fallback("width", 24px);
+    @include rem-fallback("height", 23px);
+    display: inline-flex;
+    vertical-align: middle;
+    @include rem-fallback("margin-right", 5px);
+  }
+
+  // @include element ('ask-about-me') {
+  //     font-family: $museo700;
+  //     color: color(awhite);
+  //     @include font-size(20);
+  //     @include rem-fallback('line-height', 26px);
+  //     @include rem-fallback('letter-spacing', -.25px);
+  // }
 }
 </style>
 
 <docs>
   ```jsx
   <div>
-    <Button variation="primary" size="large">Primary Button</Button>
-    <Button variation="primary" size="medium">Medium</Button>
-    <Button variation="primary" size="small">Small</Button>
+    <Button>Default</Button>
     <br />
-    <Button>Default Button</Button>
     <Button state="hover">:hover</Button>
+    <br />
     <Button state="active">:active</Button>
-    <Button state="focus">:focus</Button>
+    <br />
+    <Button size="small">Small</Button>
+    <br />
+    <Button :disabled="true">Disabled</Button>
+    <br />
+    <Button :disabled="true" size="small">Small Disabled</Button>
+    <br />
+    <Button color="blue" >Blue</Button>
+    <br />
+    <Button color="blue" size="small">Small Blue</Button>
+    <br />
+    <Button color="orange">Orange</Button>
+    <br />
+    <Button color="orange" size="small">Small Orange</Button>
+    <br />
   </div>
   ```
 </docs>

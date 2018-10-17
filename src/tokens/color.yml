@@ -84,6 +84,10 @@ props:
   color_cloud:
     value: "#E9F3FD"
     category: color_group_4
+
+  color_forty_per_lighter_grey:
+    value: "rgba(color(agray, lighter), .4)"
+    category: color_group_5
 global:
   type: color
   category: color
