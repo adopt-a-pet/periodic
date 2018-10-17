@@ -6,6 +6,12 @@
 props:
   shadow_s:
     value: "0 0 0 1px rgba(92,106,196,.1)"
+
+  $btn-shade-hover:
+    value: "inset 0 -3px 0 0 rgba(0, 0, 0, 0.4)"
+  $btn-shade-active:
+    value: "inset 0 3px 4px 0 rgba(0, 0, 0, 0.4)"
+
 global:
   type: ...
   category: box-shadow

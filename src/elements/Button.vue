@@ -1,9 +1,11 @@
 <template>
   <component
-    :is="type"
+    :is="tag"
     :href="href"
-    :type="submit"
-    :class="['button', `button--${color}`, `button--${size}`, state, variation]">
+    :type="type"
+    :class="['button', `button--${color}`, `button--${size}`, state]"
+    :disabled="disabled"
+    @click="click">
       <slot/>
   </component>
 </template>
@@ -22,7 +24,7 @@ export default {
      * The html element used for the button.
      * `button, a`
      */
-    type: {
+    tag: {
       type: String,
       default: "button",
       validator: value => {
@@ -30,8 +32,8 @@ export default {
       },
     },
     /**
-     * The size of the button. Defaults to medium.
-     * `small, medium, large`
+     * The size of the button. Defaults to large.
+     * `small, large`
      */
     size: {
       type: String,
@@ -50,7 +52,7 @@ export default {
     /**
      * Set the button’s type to “submit”.
      */
-    submit: {
+    type: {
       type: String,
       default: null,
       validator: value => {
@@ -69,17 +71,6 @@ export default {
       },
     },
     /**
-     * Style variation to give additional meaning.
-     * `primary, secondary`
-     */
-    variation: {
-      type: String,
-      default: null,
-      validator: value => {
-        return value.match(/(primary|secondary)/)
-      },
-    },
-    /**
      * Color allows us to easily change the color.
      * `color`
      */
@@ -90,14 +81,26 @@ export default {
         return value.match(/(green)/)
       },
     },
+    /**
+     * Is the button disabled?
+     */
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  methods: {
+    click() {
+      if (this.disabled) return
+
+      this.$emit("click")
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-$btn-shade-hover: inset 0 -3px 0 0 rgba(0, 0, 0, 0.4);
-$btn-shade-active: inset 0 3px 4px 0 rgba(0, 0, 0, 0.4);
-
 .button {
   display: block;
   background-color: color(awhite, base);
@@ -129,27 +132,9 @@ $btn-shade-active: inset 0 3px 4px 0 rgba(0, 0, 0, 0.4);
     color: color(awhite, base);
   }
 
-  @include modifier("disabled") {
-    background-color: color(agray, lighter);
-    border: 0;
-    line-height: 2.9;
-    cursor: not-allowed;
-    pointer-events: none;
-    color: color(awhite);
-  }
-
   @include modifier("small") {
     line-height: 2.5;
     @include rem-fallback("font-size", 16px);
-  }
-
-  @include modifier("small-disabled") {
-    border: 0;
-    line-height: 2.2;
-    background-color: color(agray, lighter);
-    cursor: not-allowed;
-    pointer-events: none;
-    color: color(awhite);
   }
 
   @include modifier("green") {
@@ -158,23 +143,19 @@ $btn-shade-active: inset 0 3px 4px 0 rgba(0, 0, 0, 0.4);
     line-height: 2.9;
     color: color(awhite, base);
 
-    &:hover {
+    &:hover,
+    &.hover {
       background-color: color(agreen, dark);
       border: 0;
       box-shadow: $btn-shade-hover;
       color: color(awhite, base);
     }
 
-    &:active {
+    &:active,
+    &.active {
       background-color: color(agreen, base);
       box-shadow: $btn-shade-active;
     }
-  }
-
-  @include modifier("green-small") {
-    @extend .button--green;
-    @extend .button--small;
-    line-height: 2.75;
   }
 
   @include modifier("orange") {
@@ -196,12 +177,6 @@ $btn-shade-active: inset 0 3px 4px 0 rgba(0, 0, 0, 0.4);
     }
   }
 
-  @include modifier("orange-small") {
-    @extend .button--orange;
-    @extend .button--small;
-    line-height: 2.75;
-  }
-
   @include modifier("blue") {
     background-color: color(ablue, base);
     border: 0;
@@ -221,15 +196,10 @@ $btn-shade-active: inset 0 3px 4px 0 rgba(0, 0, 0, 0.4);
     }
   }
 
-  @include modifier("blue-small") {
-    @extend .button--blue;
-    @extend .button--small;
-    line-height: 2.75;
-  }
-
-  &.is-disabled {
-    border: 0;
+  &[disabled] {
     background-color: color(agray, lighter);
+    border: 0;
+    line-height: 2.9;
     cursor: not-allowed;
     pointer-events: none;
     color: color(awhite);
@@ -264,19 +234,17 @@ $btn-shade-active: inset 0 3px 4px 0 rgba(0, 0, 0, 0.4);
 <docs>
   ```jsx
   <div>
-    <Button variation="primary" size="large">Primary Button</Button>
-    <br />
-    <Button variation="primary" size="medium">Medium</Button>
-    <br />
-    <Button variation="primary" size="small">Small</Button>
-    <br />
     <Button>Default Button</Button>
     <br />
     <Button state="hover">:hover</Button>
     <br />
     <Button state="active">:active</Button>
     <br />
-    <Button state="focus">:focus</Button>
+    <Button size="small">Small</Button>
+    <br />
+    <Button :disabled="true">Disabled</Button>
+    <br />
+    <Button :disabled="true" size="small">Small Disabled</Button>
   </div>
   ```
 </docs>
