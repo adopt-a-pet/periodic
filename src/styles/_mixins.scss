@@ -72,3 +72,9 @@
   min-width: 0;
   max-width: 100%;
 }
+
+@mixin component-prefix($name) {
+  &.#{$prefix-component}#{$name} {
+    @content;
+  }
+}

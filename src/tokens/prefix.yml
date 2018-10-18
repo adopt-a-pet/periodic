@@ -1,0 +1,10 @@
+#
+# PREFIX TOKENS
+#
+
+props:
+  prefix_component:
+    value: "ui-"
+global:
+  type: global
+  category: prefix
