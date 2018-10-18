@@ -3,7 +3,7 @@
     :is="tag"
     :href="href"
     :type="type"
-    :class="[componentClassWithPrefix, withModifier(color), withModifier(size), state]"
+    :class="[componentClass, withModifier(color), withModifier(size), state]"
     :disabled="disabled"
     @click="click">
       <slot/>

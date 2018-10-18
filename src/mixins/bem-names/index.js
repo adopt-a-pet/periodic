@@ -13,14 +13,14 @@ export default {
      * other projects, we can have a globally-applied prefix to all of our
      * component class names.
      */
-    componentClassWithPrefix() {
+    componentClass() {
       return prefix.value + this.$options.componentBaseClass
     },
   },
 
   methods: {
     withModifier(modifier, withPrefix = true) {
-      const componentClass = withPrefix ? this.componentClassWithPrefix : this.componentBaseClass
+      const componentClass = withPrefix ? this.componentClass : this.componentBaseClass
 
       return `${componentClass}--${modifier}`
     },
