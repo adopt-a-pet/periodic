@@ -1,12 +1,11 @@
 {
-  "name": "design-system",
+  "name": "@aap/design-system",
   "version": "1.0.0",
   "description": "A design system for AAP's Vue components",
   "main": "dist/system/system.js",
   "files": [
     "dist/system"
   ],
-  "private": true,
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --inline --config ./build/webpack.dev.conf.js",
