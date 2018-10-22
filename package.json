@@ -26,6 +26,11 @@
     "test": "npm-run-all theo unit",
     "hook:pre-commit": "pretty-quick --staged && npm run lint"
   },
+  "browserslist": [
+    "last 2 versions",
+    "> 5%",
+    "Firefox ESR"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "npm run hook:pre-commit"
