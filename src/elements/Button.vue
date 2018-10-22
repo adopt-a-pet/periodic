@@ -3,7 +3,7 @@
     :is="tag"
     :href="href"
     :type="type"
-    :class="['button', `button--${color}`, `button--${size}`, state]"
+    :class="[componentClass, withModifier(color), withModifier(size), state]"
     :disabled="disabled"
     @click="click">
       <slot/>
@@ -11,14 +11,18 @@
 </template>
 
 <script>
+import bemNames from "@/mixins/bem-names"
+
 /**
  * Buttons are generally used for interface actions. Suitable for all-purpose use.
  * Defaults to green/large.
  */
 export default {
   name: "Button",
+  componentBaseClass: "button",
   status: "prototype",
   release: "1.0.0",
+  mixins: [bemNames],
   props: {
     /**
      * The html element used for the button.
@@ -101,8 +105,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.button {
+<style lang="scss" scoped>
+@include component-prefix("button") {
   display: block;
   background-color: color(awhite, base);
   @include border(2px solid color(agray, light));

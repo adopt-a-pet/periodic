@@ -3,11 +3,15 @@
 # Use these tokens to set font-weight and font-family.
 #
 
-props:
+aliases:
   helvetica:
     value: "'Helvetica Neue', Helvetica, Arial, Roboto, 'Lucida Grande', sans-serif"
+
+props:
+  helvetica:
+    value: "{!helvetica}"
   font_museo:
-    value: "Museo, $helvetica"
+    value: "Museo, {!helvetica}"
 
   font_heading:
     value: "'Fira Sans', Helvetica, Arial, sans-serif"

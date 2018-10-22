@@ -17,6 +17,9 @@
     },
     "white": {
       "value": "#fff"
+    },
+    "helvetica": {
+      "value": "'Helvetica Neue', Helvetica, Arial, Roboto, 'Lucida Grande', sans-serif"
     }
   },
   "props": {
@@ -75,6 +78,13 @@
       "value": "rgb(127, 136, 145)",
       "originalValue": "#7F8891",
       "name": "color_silver"
+    },
+    "color_forty_per_lighter_grey": {
+      "type": "color",
+      "category": "color_group_5",
+      "value": "rgb(0, 0, 0)",
+      "originalValue": "rgba(color(agray, lighter), .4)",
+      "name": "color_forty_per_lighter_grey"
     },
     "color_white": {
       "type": "color",
@@ -209,6 +219,20 @@
       "originalValue": "11px",
       "name": "size_xs"
     },
+    "helvetica": {
+      "type": "...",
+      "category": "font",
+      "value": "'Helvetica Neue', Helvetica, Arial, Roboto, 'Lucida Grande', sans-serif",
+      "originalValue": "{!helvetica}",
+      "name": "helvetica"
+    },
+    "font_museo": {
+      "type": "...",
+      "category": "font",
+      "value": "Museo, 'Helvetica Neue', Helvetica, Arial, Roboto, 'Lucida Grande', sans-serif",
+      "originalValue": "Museo, {!helvetica}",
+      "name": "font_museo"
+    },
     "font_heading": {
       "type": "...",
       "category": "font",
@@ -279,6 +303,13 @@
       "originalValue": "0.08s",
       "name": "duration_quickly"
     },
+    "duration_medium": {
+      "type": "number",
+      "category": "time",
+      "value": "0.2s",
+      "originalValue": "0.2s",
+      "name": "duration_medium"
+    },
     "duration_slowly": {
       "type": "number",
       "category": "time",
@@ -320,6 +351,20 @@
       "value": "0 0 0 1px rgba(92,106,196,.1)",
       "originalValue": "0 0 0 1px rgba(92,106,196,.1)",
       "name": "shadow_s"
+    },
+    "btn_shade_hover": {
+      "type": "...",
+      "category": "box-shadow",
+      "value": "inset 0 -3px 0 0 rgba(0, 0, 0, 0.4)",
+      "originalValue": "inset 0 -3px 0 0 rgba(0, 0, 0, 0.4)",
+      "name": "btn_shade_hover"
+    },
+    "btn_shade_active": {
+      "type": "...",
+      "category": "box-shadow",
+      "value": "inset 0 3px 4px 0 rgba(0, 0, 0, 0.4)",
+      "originalValue": "inset 0 3px 4px 0 rgba(0, 0, 0, 0.4)",
+      "name": "btn_shade_active"
     },
     "spacing_xl": {
       "type": "number",
@@ -439,6 +484,13 @@
       "value": "1",
       "originalValue": "1",
       "name": "line_height_xs"
+    },
+    "prefix_component": {
+      "type": "global",
+      "category": "prefix",
+      "value": "ui-",
+      "originalValue": "ui-",
+      "name": "prefix_component"
     }
   }
 }

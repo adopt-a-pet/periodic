@@ -1,12 +1,11 @@
 {
-  "name": "design-system",
-  "version": "1.0.0",
+  "name": "@aap/design-system",
+  "version": "0.0.1",
   "description": "A design system for AAP's Vue components",
   "main": "dist/system/system.js",
   "files": [
     "dist/system"
   ],
-  "private": true,
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --inline --config ./build/webpack.dev.conf.js",
@@ -19,6 +18,7 @@
     "lint": "eslint '**/*.{js,vue}' --cache",
     "node:build": "node ./build/build.js",
     "node:build:system": "node ./build/build-system.js",
+    "prepare": "npm run build:system",
     "styleguide": "vue-styleguidist server --open --config ./config/docs.config.js",
     "styleguide:build": "vue-styleguidist build --config ./config/docs.config.js",
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
