@@ -1,5 +1,5 @@
 {
-  "name": "@aap/design-system",
+  "name": "@aap/periodic",
   "version": "0.0.1",
   "description": "A design system for AAP's Vue components",
   "main": "dist/system/system.js",
