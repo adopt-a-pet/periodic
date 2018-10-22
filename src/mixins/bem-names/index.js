@@ -19,7 +19,9 @@ export default {
   },
 
   methods: {
-    withModifier(modifier, withPrefix = true) {
+    withModifier(modifier = null, withPrefix = true) {
+      if (!modifier) return null
+
       const componentClass = withPrefix ? this.componentClass : this.componentBaseClass
 
       return `${componentClass}--${modifier}`

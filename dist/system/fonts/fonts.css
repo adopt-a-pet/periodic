@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Museo";
+  font-style: normal;
+  font-weight: 300;
+  src: url("./museo-regular-300.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Museo";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./museo-regular-500.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Museo";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./museo-regular-700.ttf") format("truetype");
+}
