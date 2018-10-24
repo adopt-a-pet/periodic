@@ -1,0 +1,891 @@
+.npa {
+  @include breakpoint(tiny) {
+    @include rem-fallback("padding", 20px 0 40px);
+  }
+
+  @include breakpoint(tablet-plus) {
+    @include rem-fallback("padding", 40px 0);
+  }
+
+  @include element("column") {
+    @include modifier("one") {
+      @include breakpoint(tiny) {
+        display: none;
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include column(1/12, $gutter);
+        display: inline-block;
+      }
+    }
+
+    @include modifier("third") {
+      @include breakpoint(tiny) {
+        display: none;
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include column(4/12, $gutter);
+        display: inline-block;
+        @include rem-fallback("padding", 0 25px 25px);
+      }
+    }
+
+    @include modifier("half") {
+      @include breakpoint(tiny) {
+        width: 100%;
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include column(6/12, $gutter);
+      }
+    }
+  }
+
+  @include element("title") {
+    text-align: center;
+    width: 100%;
+
+    & .h4__heading {
+      @include breakpoint(tiny) {
+        margin: 0;
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("margin", 0 0 10px);
+      }
+    }
+  }
+
+  @include element("heading") {
+    @include breakpoint(tiny) {
+      @include heading($h-heading: h2__heading-h2--museo);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h1__heading-h1--museo);
+    }
+  }
+
+  @include element("form") {
+    position: relative;
+
+    @include modifier("link") {
+      @include rem-fallback("margin", 0 0 0 5px);
+    }
+
+    @include modifier("fields") {
+      .text-field-container {
+        @include rem-fallback("padding", 15px 0 0);
+
+        @include breakpoint(tiny) {
+          @include column(1, 0);
+        }
+
+        @include breakpoint(tablet-plus) {
+          @include column(1/2, $gutter);
+          justify-content: space-between;
+        }
+      }
+    }
+
+    @include modifier("button-section") {
+      width: 100%;
+    }
+
+    @include modifier("button") {
+      display: flex;
+      width: 100%;
+    }
+
+    @include modifier("button-skip") {
+      align-items: center;
+      text-decoration: underline;
+
+      @include breakpoint(tiny) {
+        width: 30%;
+      }
+
+      @include breakpoint(tablet-plus) {
+        width: 19%;
+      }
+    }
+
+    @include modifier("button-save") {
+      width: 81%;
+    }
+
+    @include modifier("newsletter") {
+      .checkbox__label {
+        display: block;
+      }
+    }
+    @include modifier("newsletter-mobile") {
+      width: 100%;
+
+      @include breakpoint(tiny) {
+        border-bottom: 1px dashed color(agray, light);
+        @include rem-fallback("margin", 0 0 20px);
+        @include rem-fallback("padding", 0 0 20px);
+      }
+
+      @include breakpoint(tablet-plus) {
+        display: none;
+      }
+    }
+
+    @include modifier("loggedin") {
+      .text-field-container {
+        width: 100%;
+      }
+    }
+
+    @include modifier("privacy") {
+      & .h6__heading {
+        font-weight: 200;
+        @include font-size(12);
+        @include rem-fallback("line-height", 17px);
+      }
+    }
+  }
+
+  @include element("divider") {
+    border-top: 1px dashed color(agray, light);
+  }
+
+  @include element("no-optin") {
+    .npa__column--one {
+      display: none;
+    }
+
+    .npa__column--half {
+      width: 100%;
+
+      @include breakpoint(tablet-plus) {
+        @include column(6/12, $gutter);
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+.npa-modal {
+  .e-modal__closer {
+    @include breakpoint(tiny) {
+      @include rem-fallback("padding", 10px 20px 0 0);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 20px 20px 0 0);
+    }
+  }
+
+  .sticky-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include rem-fallback("padding", 10px 0 0 20px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 20px 0 0 20px);
+    }
+  }
+}
+
+.wnpa {
+  & .npa__title {
+    text-align: left;
+
+    @include breakpoint(phone-plus) {
+      text-align: center;
+    }
+  }
+  @include element("list") {
+    border-top: 1px solid color(agray, light);
+    border-bottom: 1px solid color(agray, light);
+
+    h2 {
+      @include rem-fallback("margin", 0 0 40px);
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("margin", 0 0 20px);
+      }
+    }
+
+    ol {
+      @include rem-fallback("padding", 0 0 0 22px);
+      display: flex;
+      flex-wrap: wrap;
+
+      @include breakpoint(tablet-plus) {
+        flex-wrap: inherit;
+      }
+
+      li {
+        &:last-child {
+          padding: 0;
+        }
+      }
+    }
+
+    @include modifier("left") {
+      width: 100%;
+      @include rem-fallback("margin", 0 0 20px);
+
+      @include breakpoint(tablet-plus) {
+        width: 50%;
+        @include rem-fallback("margin", 0 25px 0 0);
+      }
+    }
+
+    @include modifier("right") {
+      width: 100%;
+      margin: 0;
+
+      @include breakpoint(tablet-plus) {
+        width: 50%;
+        @include rem-fallback("margin", 0 0 0 25px);
+      }
+    }
+  }
+
+  &.wnpa-modal {
+    width: 100%;
+    margin: 0;
+
+    @include breakpoint(tablet-plus) {
+      @include column(10/12, $gutter);
+      margin: 0 auto;
+    }
+  }
+
+  &.wnpa-slide {
+    @include breakpoint(normal) {
+      @include rem-fallback("padding", 0 0 35px);
+    }
+
+    @include breakpoint(wide) {
+      padding: 0;
+    }
+
+    ol {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .wnpa__list--left {
+      width: 100%;
+      margin: 0;
+    }
+
+    .wnpa__list--right {
+      width: 100%;
+      margin: 20px 0 0;
+    }
+
+    .wnpa__list {
+      h2 {
+        @include rem-fallback("margin", 0 0 40px);
+
+        @include breakpoint(phone-plus) {
+          @include rem-fallback("margin", 0 0 20px);
+        }
+      }
+    }
+
+    .wnpa__content {
+      @include rem-fallback("padding-bottom", 25px);
+
+      @include breakpoint(normal) {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+$trigger-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+$trigger-background: rgba(225, 245, 252, 1);
+
+.slide-out-npa {
+  position: fixed;
+  background: color(awhite);
+  top: 100vh;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  transition: top 0.3s ease-in-out;
+  width: 100%;
+  height: 100vh;
+
+  @include breakpoint(normal) {
+    top: 0;
+    right: -416px;
+    left: auto;
+    bottom: auto;
+    width: 416px;
+    transition: right 0.3s ease-in-out;
+    box-shadow: 0 -2px 4px 0 color(agray, light);
+  }
+
+  @media screen and (min-width: $normal) and (max-height: 825px) {
+    top: 0;
+  }
+
+  &.is-open {
+    top: 0;
+    width: 100%;
+    //overflow-y: auto;
+
+    @include breakpoint(normal) {
+      right: 0;
+      top: 0;
+      width: 416px;
+      //overflow-y: initial;
+
+      .slide-out-npa__trigger {
+        &::after {
+          content: "";
+          background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 49.656 49.656" id="aap-icon-next" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path fill="%23fff" d="M14.535 48.242l-2.828-2.828 20.585-20.586L11.707 4.242l2.828-2.828 23.414 23.414z"></path><path  fill="%23fff" d="M14.535 49.656l-4.242-4.242 20.585-20.586L10.293 4.242 14.535 0l24.829 24.828-24.829 24.828zm-1.414-4.242l1.414 1.414 22-22-22-22-1.414 1.414 20.585 20.586-20.585 20.586z"></path></svg>')
+            no-repeat;
+          position: absolute;
+          top: calc(50% - 20px);
+          left: 25%;
+          width: 42px;
+          height: 68px;
+        }
+
+        h3 {
+          display: none;
+        }
+      }
+    }
+
+    @media screen and (min-width: $normal) and (max-height: 825px) {
+      top: 0;
+    }
+  }
+  &__container {
+    position: relative;
+    background: color(awhite);
+    height: 100%;
+  }
+
+  &__trigger {
+    background: color(ablue);
+    color: color(awhite);
+    cursor: pointer;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 58px;
+    text-align: center;
+    z-index: 1;
+    box-shadow: $trigger-box-shadow;
+
+    h3 {
+      line-height: 58px;
+      margin: 0;
+      padding: 0;
+    }
+
+    @include breakpoint(normal) {
+      position: absolute;
+      z-index: -2;
+      left: -86px;
+      top: 50%;
+      bottom: 0;
+      transform: translateY(-50%);
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      box-shadow: $trigger-box-shadow;
+
+      h3 {
+        margin: 36px 50px 36px 25px;
+        line-height: 1.2;
+      }
+    }
+    @include modifier("save") {
+      background: color(agreen);
+    }
+    @include modifier("back") {
+      background: color(agreen);
+    }
+  }
+  &__form {
+    height: calc(100% - 60px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    @include breakpoint(normal) {
+      height: 100%;
+    }
+  }
+  &__form-wnpa {
+    height: 100%;
+  }
+}
+
+.pet-npa {
+  @include breakpoint(tiny) {
+    width: 100%;
+  }
+
+  @include breakpoint(tablet-plus) {
+    @include column(9/12, $gutter);
+  }
+
+  @include element("form") {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include element("title") {
+    text-align: center;
+
+    @include breakpoint(phone-plus) {
+      text-align: left;
+    }
+
+    & .h5__heading {
+      display: block;
+
+      @include breakpoint(phone-plus) {
+        @include rem-fallback("margin", 0 10px 0 0);
+        display: inline;
+        vertical-align: text-top;
+        @include rem-fallback("line-height", 22px);
+      }
+    }
+
+    & .h3__heading {
+      @include breakpoint(phone-plus) {
+        @include rem-fallback("line-height", 25px);
+      }
+    }
+  }
+
+  & .checkbox__label {
+    display: block;
+    @include rem-fallback("line-height", 17px);
+    @include rem-fallback("padding", 0 0 0 25px);
+  }
+
+  @include element("content") {
+    @include rem-fallback("padding", 21px 25px 25px);
+
+    @include modifier("privacy") {
+      @include rem-fallback("padding", 0 0 0 30px);
+
+      & .h6__heading {
+        font-weight: 200;
+        @include font-size(12);
+        @include rem-fallback("line-height", 17px);
+      }
+    }
+
+    @include modifier("right") {
+      .link-blue {
+        font-weight: 400;
+      }
+    }
+  }
+
+  @include element("content-column") {
+    @include column(6/12, $gutter);
+
+    .column-half {
+      p {
+        &.h5__heading {
+          @include breakpoint(phone-plus) {
+            @include rem-fallback("margin-top", 7px);
+          }
+        }
+      }
+    }
+  }
+
+  & .text-field-container {
+    @include rem-fallback("margin", 10px 0 0);
+
+    &.text-field-two {
+      margin: 0;
+    }
+  }
+
+  @include element("button-save") {
+    width: 100%;
+  }
+
+  & .npa__slide-button {
+    display: none;
+  }
+
+  @include element("loggedin") {
+    .pet-npa__content-column {
+      width: 100%;
+    }
+
+    p {
+      &.h5__heading {
+        @include rem-fallback("margin", 0 0 20px);
+      }
+    }
+
+    .pet-npa__optin {
+      margin: 40px 0;
+    }
+  }
+}
+
+.npa-slide {
+  width: 100%;
+  height: 100%;
+
+  @include breakpoint(normal) {
+    @include rem-fallback("width", 416px);
+    overflow-y: auto;
+  }
+
+  & .npa__title {
+    text-align: left;
+
+    & .npa__heading {
+      @include heading($h-heading: h2__heading-h2--museo);
+    }
+  }
+
+  & .pet-npa__content {
+    @include rem-fallback("padding", 20px 0 75px);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("padding", 25px 25px 65px);
+    }
+
+    @include breakpoint(wide) {
+      @include rem-fallback("padding", 25px);
+    }
+  }
+
+  & .form__card-top-blue-bg,
+  .npa__normal-button {
+    display: none;
+  }
+
+  & .npa__slide-button {
+    display: none;
+
+    @include breakpoint(phone-plus) {
+      display: block;
+      @include rem-fallback("margin-top", 40px);
+    }
+  }
+
+  & .form__card {
+    background: none;
+    border: 0;
+    border-radius: 0;
+  }
+
+  & .pet-npa {
+    &__content-column {
+      width: 100%;
+    }
+
+    &__optin {
+      @include rem-fallback("margin", 30px 0 0);
+      border-top: 1px dashed color(agray, light);
+      @include rem-fallback("padding", 40px 0 0);
+
+      @include breakpoint(phone-plus) {
+        border: 0;
+        padding: 0;
+      }
+    }
+
+    &__content--privacy {
+      padding: 0;
+      @include rem-fallback("margin-top", 20px);
+    }
+  }
+
+  &.pet-npa__no-optin {
+    .npa__slide-button {
+      @include rem-fallback("margin-top", 10px);
+    }
+  }
+
+  & .npa__form--link {
+    margin: 0;
+  }
+
+  & .npa-messages__message--button {
+    width: 100%;
+  }
+}
+
+.npa-success {
+  width: 100%;
+
+  @include breakpoint(tablet-plus) {
+    @include column(7/12, $gutter);
+  }
+
+  @include breakpoint(wide) {
+    @include column(8/12, $gutter);
+  }
+
+  &__poll {
+    width: 100%;
+    text-align: left;
+    @include rem-fallback("padding-top", 40px);
+
+    @include breakpoint(tablet-plus) {
+      @include column(5/12, $gutter);
+      background-color: #ffffff;
+      @include rem-fallback("padding-top", 80px);
+    }
+
+    @include breakpoint(wide) {
+      @include column(4/12, $gutter);
+    }
+  }
+
+  .shelter-page__title {
+    text-align: left;
+  }
+
+  h3,
+  p {
+    width: 100%;
+  }
+}
+
+$share-line-background: rgba(255, 255, 255, 0.25);
+
+.npa-messages {
+  &__message {
+    @include rem-fallback("padding", 23px 0 0);
+
+    @include breakpoint(phone-plus) {
+      padding: 0;
+    }
+
+    .form__card--border-gray {
+      min-height: 325px;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      fill: color(awhite);
+      margin-bottom: -5px;
+    }
+    &--share {
+      background: social-color(facebook);
+      color: color(awhite);
+      border-radius: 4px;
+      @include rem-fallback("padding", 10px);
+    }
+    &--line {
+      @include rem-fallback("width", 4px);
+      @include rem-fallback("height", 28px);
+      border-right: 1px solid $share-line-background;
+      display: inline-block;
+      vertical-align: middle;
+      margin-top: -4px;
+      @include rem-fallback("margin-right", 5px);
+    }
+    &--button {
+      width: 100%;
+      margin: 20px auto 0;
+
+      @include breakpoint(phone-plus) {
+        width: 50%;
+      }
+    }
+    .pet-npa__form {
+      @include breakpoint(phone-plus) {
+        @include rem-fallback("padding", 21px 25px 25px);
+      }
+    }
+    .link-blue {
+      font-weight: 400;
+    }
+  }
+  &__post-to-fb {
+    @include rem-fallback("margin-bottom", 5px);
+  }
+}
+
+.sticky-close {
+  height: 43px;
+  z-index: 9999;
+  border-bottom: 1px solid color(agray, light);
+  //position: fixed;
+  position: sticky;
+  width: 100%;
+  background: color(awhite);
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.warning {
+  color: color(aorange);
+}
+
+.offfer-section {
+  @include element("image") {
+    display: block;
+    @include rem-fallback("width", 256px);
+    @include rem-fallback("height", 105px);
+    @include rem-fallback("margin", 20px 0);
+  }
+
+  @include element("arrow") {
+    @include rem-fallback("width", 11px);
+    @include rem-fallback("height", 11px);
+    line-height: 25px;
+    fill: color(ablue);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    top: 2px;
+  }
+}
+.npa {
+  .white-bg {
+    &:last-child {
+      @include rem-fallback("margin", 0 0 20px 0);
+    }
+  }
+}
+.checkbox-container {
+  display: flex;
+
+  .checkbox-column {
+    display: flex;
+    line-height: 0;
+  }
+
+  .link--top {
+    @include rem-fallback("line-height", 14px);
+    @include rem-fallback("font-size", 12px);
+  }
+
+  .accordion-link-up {
+    transform: rotate(90deg);
+  }
+
+  .accordion-link-down {
+    transform: rotate(270deg);
+  }
+
+  .link-blue {
+    font-weight: 700;
+    @include rem-fallback("margin", 0 7px 0 0);
+  }
+}
+
+.checkbox-column {
+  .checkbox__label {
+    @include rem-fallback("padding", 0 0 0 25px);
+    @include rem-fallback("line-height", 14px);
+    font-weight: 400;
+
+    &::after {
+      border-radius: 4px;
+    }
+  }
+}
+
+.terms-bg {
+  background: $forty-per-lighter-grey;
+  @include rem-fallback("padding", 20px);
+
+  .white-bg {
+    &:last-child {
+      @include rem-fallback("margin", 0 0 20px 0);
+    }
+  }
+
+  .checkbox__label {
+    @include rem-fallback("padding", 0 0 0 25px);
+  }
+}
+.offfer-section-search {
+  @include rem-fallback("padding", 30px 25px 0 25px);
+
+  @include element("image") {
+    display: block;
+    @include rem-fallback("width", 256px);
+    @include rem-fallback("height", 97px);
+    @include rem-fallback("margin", 10px 0);
+  }
+
+  .white-bg {
+    &:last-child {
+      @include rem-fallback("margin", 0 0 20px 0);
+    }
+  }
+}
+.slide-out-npa {
+  .offfer-section-search {
+    @include rem-fallback("padding", 0px);
+    @include rem-fallback("margin", 40px 0);
+
+    @include element("image") {
+      margin: 10px auto;
+
+      @include breakpoint(tablet-plus) {
+        margin: 20px auto;
+      }
+    }
+  }
+  .search-form__bg {
+    background: $forty-per-lighter-grey;
+    @include rem-fallback("padding", 20px);
+
+    .white-bg {
+      &:last-child {
+        @include rem-fallback("margin", 0 0 20px 0);
+      }
+    }
+  }
+}
+.signup__form {
+  .offfer-section {
+    @include element("image") {
+      margin: 10px auto;
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("margin", 20px 0);
+      }
+    }
+  }
+}
+.ask-about-me {
+  .offfer-section {
+    @include element("image") {
+      margin: 10px auto;
+
+      @include breakpoint(tablet-plus) {
+        margin: 20px auto;
+      }
+    }
+  }
+}
+.pet-inquiry-form {
+  .offfer-section {
+    @include element("image") {
+      margin: 10px auto;
+
+      @include breakpoint(tablet-plus) {
+        margin: 20px 0;
+      }
+    }
+  }
+}

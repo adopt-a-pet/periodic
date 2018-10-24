@@ -1,0 +1,93 @@
+$shadow: rgba(0, 0, 0, 0.4) 0 1px 3px;
+
+.autocomplete {
+  position: relative;
+  margin: 0;
+
+  @include element("label") {
+    @include labeltext($labeltext: label-field);
+    @include rem-fallback("top", 18px);
+  }
+
+  &:focus {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &:focus ~ label {
+    @include rem-fallback("top", 7px);
+    @include rem-fallback("left", 17px);
+  }
+
+  &:valid ~ label {
+    @include rem-fallback("top", 7px);
+    @include rem-fallback("left", 17px);
+  }
+
+  &input {
+    &:focus {
+      & ~ span {
+        font-size: 0.75rem;
+        @include rem-fallback("bottom", 48px);
+        @include rem-fallback("left", 20.8px);
+      }
+    }
+  }
+
+  &__section {
+    position: absolute;
+    padding: 0;
+    @include rem-fallback("margin-top", 8px);
+    min-width: 100%;
+    background-color: color(awhite);
+    list-style: none;
+    border-radius: $border-radius;
+    z-index: z-index(dropdown);
+  }
+
+  &__dropdown {
+    box-shadow: $shadow;
+    @include border(1px solid color(agray, light));
+    border-radius: 0 0 $border-radius $border-radius;
+    background-color: color(awhite);
+    width: 100%;
+    max-height: 230px;
+    //@include rem-fallback('padding', 3px 0);
+
+    &--small {
+      position: absolute;
+      @include rem-fallback("top", 39px);
+      z-index: z-index(dropdown);
+      max-height: 202px;
+      overflow-y: auto;
+    }
+  }
+
+  &__menu {
+    @include rem-fallback("padding", 10px 32px 10px 16px);
+    cursor: pointer;
+
+    &:hover {
+      background-color: $forty-per-lighter-grey;
+      font-weight: 400;
+      color: color(agray, dark);
+    }
+
+    &.active {
+      // use this for showing active state with js
+      background-repeat: no-repeat;
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAALCAYAAACksgdhAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjE5MzZCMjcxMEVGNzExRTdBRjVEQUZBODZCN0JGQ0M1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjE5MzZCMjcyMEVGNzExRTdBRjVEQUZBODZCN0JGQ0M1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MTkzNkIyNkYwRUY3MTFFN0FGNURBRkE4NkI3QkZDQzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MTkzNkIyNzAwRUY3MTFFN0FGNURBRkE4NkI3QkZDQzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7DIjORAAAAnElEQVR42mJk6N7BQCwQ4+EIevXlxzomYjWIcHGkATWsBTL/MhGr4c23HzNBbGEujkImEjXkv/32YxILsRqA7HQgexaIDbPpL0gBPhtgGsCaQCECokEKYBqxOQnZQEZQkAMl8oASE0ECrMzMD3///SuP7iRkAHYeyCSQAhCbkAZkPzGAFICcQkgD3HnIQFmQm+3u+6+/8IUqQIABAMVGWqX9j7cDAAAAAElFTkSuQmCC");
+      background-position: right 10px center;
+      color: color(ablue);
+      font-weight: 400;
+    }
+  }
+
+  &__active {
+    color: color(ablue);
+  }
+
+  &__scroller {
+    overflow-y: auto;
+  }
+}

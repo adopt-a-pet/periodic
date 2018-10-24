@@ -1,0 +1,158 @@
+.account-type {
+  width: 100%;
+  @include rem-fallback("padding", 40px 0 80px);
+
+  @include element("title") {
+    @include heading($h-heading: h2__heading-h2--museo);
+
+    @include breakpoint(normal) {
+      @include heading($h-heading: h1__heading-h1--museo);
+    }
+  }
+
+  .form__card {
+    width: 100%;
+    @include rem-fallback("margin", 0 0 30px);
+
+    @include breakpoint(tablet-plus) {
+      @include column(4/12, $gutter);
+      margin: 0;
+    }
+
+    .form__card-top-blue-bg {
+      @include rem-fallback("height", 7px);
+    }
+  }
+
+  .h2__heading {
+    @include heading($h-heading: h3__heading-h3--museo-h3--x-compact);
+
+    @include breakpoint(normal) {
+      @include heading($h-heading: h2-museo);
+    }
+  }
+
+  @include element("volunteer") {
+    &.form__card {
+      margin: 0;
+    }
+  }
+
+  @include element("row") {
+    display: flex;
+    @include rem-fallback("margin", 25px 0 0);
+  }
+
+  @include element("box") {
+    @include rem-fallback("padding", 20px 20px 0);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("padding", 20px 25px 0);
+    }
+  }
+
+  @include element("row") {
+    display: flex;
+    @include rem-fallback("margin", 25px 0 0);
+  }
+
+  @include element("info") {
+    @include heading($h-heading: h5__heading-h5--light-h5--compact);
+
+    @include breakpoint(normal) {
+      @include heading($h-heading: h4__heading-h4--light-h4--compact);
+      @include rem-fallback("line-height", 44px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      min-height: 78px;
+      @include rem-fallback("line-height", 26px);
+    }
+
+    @include breakpoint(wide) {
+      min-height: 52px;
+    }
+  }
+
+  @include element("icon") {
+    display: flex;
+    @include rem-fallback("margin", 0 25px 0 0);
+    justify-content: center;
+    flex: 0 0 15%;
+
+    @include breakpoint(normal) {
+      flex: 0 0 6%;
+    }
+
+    @include breakpoint(tablet-plus) {
+      flex: 0 0 13%;
+    }
+  }
+
+  .bookmark-icon {
+    svg {
+      @include rem-fallback("width", 32px);
+      @include rem-fallback("height", 44px);
+    }
+  }
+
+  .mail-icon {
+    svg {
+      @include rem-fallback("width", 44px);
+      @include rem-fallback("height", 43px);
+    }
+  }
+
+  .petsearch-icon {
+    svg {
+      @include rem-fallback("width", 40px);
+      @include rem-fallback("height", 40px);
+    }
+  }
+
+  .rabbit-icon {
+    svg {
+      @include rem-fallback("width", 45px);
+      @include rem-fallback("height", 44px);
+    }
+  }
+
+  .shelterbuilding-icon {
+    svg {
+      @include rem-fallback("width", 41px);
+      @include rem-fallback("height", 41px);
+    }
+  }
+
+  .sponge-icon,
+  .automate-icon,
+  .free-icon {
+    svg {
+      @include rem-fallback("width", 44px);
+      @include rem-fallback("height", 44px);
+    }
+  }
+
+  .usersgroup-icon {
+    svg {
+      @include rem-fallback("width", 45px);
+      @include rem-fallback("height", 39px);
+    }
+  }
+
+  @include element("button") {
+    @include rem-fallback("margin", 30px 0);
+  }
+
+  @include element("rehome") {
+    @include heading($h-heading: h5__heading-h5--light-h5--compact);
+
+    @include breakpoint(normal) {
+      @include heading($h-heading: h4__heading-h4--light-h4--compact);
+    }
+
+    .link-blue {
+      font-weight: 700;
+    }
+  }
+}

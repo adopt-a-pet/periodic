@@ -8,8 +8,9 @@
 
 @import "~@aap/flexed/flexed/flexed";
 
-@import "../styles/functions";
-@import "../styles/mixins";
-@import "../styles/spacing";
+@import "./functions";
+@import "./mixins";
+@import "./spacing";
+@import "./fe/style";
 
 // @include reset;

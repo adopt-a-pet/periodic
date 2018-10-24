@@ -1,0 +1,508 @@
+.search-form {
+  display: flex;
+  flex-direction: column;
+  @include border-radius(8px);
+  flex-flow: column;
+  position: relative;
+  //overflow: hidden;
+
+  @include element("tab-section") {
+    display: flex;
+    justify-content: space-between;
+    @include rem-fallback("height", 38px);
+  }
+
+  @include element("tab") {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    @include border(1px solid color(agray, light), right);
+    background-color: color(agray, lighter);
+    @include heading($h-heading: h6__heading-h6--museo-h6--compact);
+    color: color(agray);
+    cursor: pointer;
+
+    @include breakpoint(normal) {
+      @include heading($h-heading: h5__heading-h5--museo);
+      color: color(agray);
+    }
+
+    &:hover,
+    &.is-active {
+      background: color(ablue);
+      color: color(awhite);
+      border-right: 0;
+    }
+
+    &:first-child {
+      @include rem-fallback("padding-left", 10px);
+      @include border-radius(8px 0 0 0);
+
+      @include breakpoint(phone-plus) {
+        padding-left: 0;
+      }
+    }
+
+    &:last-child {
+      justify-content: flex-start;
+      @include rem-fallback("padding-left", 10px);
+      border-right: 0;
+      @include border-radius(0 8px 0 0);
+
+      @include breakpoint(phone-plus) {
+        @include rem-fallback("padding", 0 30px);
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("padding", 0 75px 0 30px);
+      }
+
+      @include breakpoint(wide) {
+        @include rem-fallback("padding", 0 30px);
+      }
+    }
+  }
+
+  @include element("field-section") {
+    width: 100%;
+    @include rem-fallback("padding", 15px 20px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 15px 0 15px 20px);
+      display: flex;
+    }
+
+    & .form__input {
+      margin: 0;
+      top: 0;
+      border: 0;
+      @include rem-fallback("height", 44px);
+      @include rem-fallback("padding", 10px 0 5px 15px);
+      padding-right: 14%;
+      @include font-size(16);
+
+      &:focus ~ label {
+        @include rem-fallback("top", 2px);
+        @include rem-fallback("left", 17px);
+        @include rem-fallback("font-size", 11px);
+        font-weight: 700;
+      }
+
+      &:valid ~ label {
+        @include rem-fallback("top", 2px);
+        @include rem-fallback("left", 17px);
+        @include rem-fallback("font-size", 11px);
+        font-weight: 700;
+      }
+
+      @include breakpoint(normal) {
+        @include rem-fallback("height", 58px);
+        @include rem-fallback("padding", 17px);
+        padding-right: 14%;
+        @include font-size(20);
+
+        &:focus ~ label {
+          @include rem-fallback("bottom", 32px);
+          @include rem-fallback("left", 17px);
+          @include rem-fallback("font-size", 14px);
+          font-weight: 700;
+        }
+
+        &:focus {
+          @include rem-fallback("padding-bottom", 4px);
+        }
+
+        &:valid {
+          @include rem-fallback("padding-bottom", 4px);
+        }
+
+        &:valid ~ label {
+          @include rem-fallback("bottom", 32px);
+          @include rem-fallback("left", 17px);
+          @include rem-fallback("font-size", 14px);
+          font-weight: 700;
+        }
+      }
+
+      &.is-error {
+        @include border(1px solid color(aorange));
+      }
+
+      &.is-success {
+        @include border(1px solid color(agreen));
+      }
+    }
+
+    & .form__label {
+      @include font-size(16);
+      transition: 0.2s ease;
+      @include rem-fallback("top", 11px);
+
+      @include breakpoint(normal) {
+        @include rem-fallback("top", 14px);
+        @include font-size(20);
+      }
+    }
+
+    & .form__error-msg {
+      @include rem-fallback("top", 4px);
+
+      @include breakpoint(normal) {
+        @include rem-fallback("top", 8px);
+      }
+    }
+
+    .accordion-link {
+      svg {
+        fill: color(awhite);
+      }
+    }
+  }
+
+  @include element("field-wrapper") {
+    @include breakpoint(tablet-plus) {
+      width: 55.5%;
+      z-index: z-index(bump);
+    }
+
+    @include breakpoint(wide) {
+      width: 62.5%;
+    }
+
+    .form__error-msg--bottom {
+      color: color(awhite);
+    }
+  }
+
+  @include element("parent") {
+    position: relative;
+  }
+
+  @include element("img-section") {
+    display: none;
+
+    @include breakpoint(tablet-plus) {
+      display: flex;
+      justify-content: right;
+      position: relative;
+      @include rem-fallback("width", 318px);
+      flex-shrink: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      overflow: hidden;
+      pointer-events: none;
+      height: 100%;
+      @include border-radius(0 8px 8px 0);
+    }
+
+    @include modifier("pet") {
+      background: url("../../images/other-search2.png");
+      background-repeat: no-repeat;
+      width: 100%;
+      @include rem-fallback("height", 630px);
+    }
+  }
+
+  @include element("pet-image") {
+    width: 100%;
+    @include rem-fallback("height", 641px);
+    position: absolute;
+    pointer-events: none;
+
+    &.is-dog {
+      background: url($dog-image);
+      background-repeat: no-repeat;
+    }
+
+    &.is-cat {
+      background: url($cat-image);
+      background-repeat: no-repeat;
+    }
+
+    &.is-other {
+      background: url($other-image);
+      background-repeat: no-repeat;
+    }
+
+    &.is-shelter {
+      background: url($shelter-image);
+      background-repeat: no-repeat;
+    }
+  }
+
+  @include element("container") {
+    display: flex;
+    justify-content: space-between;
+    background-color: color(ablue);
+    @include rem-fallback("min-height", 336px);
+    @include border-radius(0 0 8px 8px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("min-height", 400px);
+    }
+  }
+
+  @include element("fields") {
+    @include rem-fallback("margin-top", 10px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin-top", 15px);
+    }
+
+    & [data-distance="distance"] {
+      & .f-letter-caps {
+        text-transform: none;
+      }
+    }
+
+    & [data-size="size"] {
+      & .f-letter-caps {
+        text-transform: none;
+      }
+    }
+  }
+
+  @include element("section") {
+    align-self: flex-start;
+    width: calc(50% - 3px);
+
+    @include breakpoint(normal) {
+      width: calc(50% - 12px);
+    }
+
+    & .checkbox__label {
+      @include heading($h-heading: h6__heading);
+      color: color(awhite);
+      display: inline-block;
+
+      @include breakpoint(tablet-plus) {
+        @include heading($h-heading: h5__heading);
+        color: color(awhite);
+      }
+    }
+  }
+
+  @include element("divider") {
+    @include rem-fallback("margin", 15px 0);
+    border-bottom: 1px dashed color(agray, lighter);
+  }
+
+  & .accordion-link {
+    @include heading($h-heading: h6__heading-h6--bold-h6--compact);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h5__heading-h5--bold);
+    }
+  }
+
+  @include element("tab-wide") {
+    display: none;
+
+    @include breakpoint(normal) {
+      display: block;
+    }
+  }
+
+  @include element("tab-mobile") {
+    display: block;
+
+    @include breakpoint(normal) {
+      display: none;
+    }
+  }
+
+  .form__select {
+    @include rem-fallback("padding-bottom", 5px);
+    @include rem-fallback("padding-right", 33px);
+    margin: 0;
+
+    & ~ label {
+      @include rem-fallback("top", 5px);
+      @include rem-fallback("left", 18px);
+      font-weight: 700;
+      @include font-size(14);
+      transition: 0.2s ease;
+    }
+
+    &:valid ~ label {
+      @include rem-fallback("top", 2px);
+      @include rem-fallback("left", 16px);
+      @include font-size(11);
+
+      @include breakpoint(normal) {
+        @include rem-fallback("top", 5px);
+        @include rem-fallback("left", 18px);
+        font-weight: 700;
+        @include font-size(14);
+      }
+    }
+
+    &:focus ~ label {
+      @include rem-fallback("top", 2px);
+
+      @include breakpoint(normal) {
+        @include rem-fallback("top", 5px);
+        @include rem-fallback("left", 18px);
+      }
+    }
+  }
+
+  .select-box {
+    &__dropdown {
+      @include rem-fallback("top", 40px);
+
+      @include breakpoint(normal) {
+        @include rem-fallback("top", 54px);
+      }
+
+      ul {
+        margin: 0;
+      }
+
+      &--breed {
+        width: 285px;
+        right: 0;
+        left: inherit;
+        @include breakpoint(normal) {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .social-pop__dropdown {
+    display: none;
+  }
+
+  .pet-category {
+    & .search-form__section {
+      width: 100%;
+    }
+  }
+}
+
+.reptiles-tab {
+  & .select-box {
+    &.search-form__section {
+      width: 100%;
+    }
+  }
+}
+
+.shelter-tab {
+  & .select-box {
+    &.search-form__section {
+      width: 100%;
+    }
+  }
+}
+
+.other-tab {
+  & .farm-section {
+    & .select-box__dropdown--breed {
+      right: unset;
+      left: 0;
+    }
+
+    & .farm-section__fields {
+      & .search-form__section {
+        width: 100%;
+
+        @include breakpoint(wide) {
+          width: calc(50% - 12px);
+        }
+
+        & .form__location {
+          width: 100%;
+          @include rem-fallback("margin-bottom", 10px);
+
+          @include breakpoint(tablet-plus) {
+            @include rem-fallback("margin-bottom", 15px);
+          }
+
+          @include breakpoint(wide) {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    & .select-box {
+      @include breakpoint(normal) {
+        display: block;
+      }
+
+      @include breakpoint(tablet-plus) {
+        display: flex;
+      }
+    }
+
+    & .form__label {
+      @include modifier("location-error") {
+        @include breakpoint(wide) {
+          @include rem-fallback("line-height", 22px);
+          top: 8px;
+          width: 45%;
+        }
+      }
+    }
+  }
+}
+
+.breed {
+  .info-icon {
+    background: url('data:image/svg+xml;utf8,<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><desc>Created with Sketch.</desc><defs></defs><g id="FInal" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Home-Desktop-Copy-2" transform="translate(-653.000000, -457.000000)"><g id="Group-7" transform="translate(654.000000, 458.000000)"><path d="M8.19320456,13.14 L8.19320456,14.88825 L9.94145456,14.88825 L9.94145456,13.14 L8.19320456,13.14 Z M5.62595456,7.155 L6.96470456,7.155 C6.96470456,6.78749816 7.00670414,6.44625157 7.09070456,6.13125 C7.17470498,5.81624842 7.30857864,5.54325115 7.49232956,5.31225 C7.67608048,5.08124884 7.9044532,4.89750068 8.17745456,4.761 C8.45045593,4.62449932 8.77595267,4.55625 9.15395456,4.55625 C9.7209574,4.55625 10.1698279,4.71899837 10.5005796,5.0445 C10.8313312,5.37000163 11.0177044,5.82149711 11.0597046,6.399 C11.0807047,6.78750194 11.0334551,7.11824863 10.9179546,7.39125 C10.802454,7.66425136 10.6475805,7.91362387 10.4533296,8.139375 C10.2590786,8.36512613 10.0490807,8.58037398 9.82332956,8.785125 C9.59757843,8.98987602 9.38233059,9.21299879 9.17757956,9.4545 C8.97282854,9.69600121 8.79958027,9.97162345 8.65782956,10.281375 C8.51607885,10.5911265 8.43470467,10.9664978 8.41370456,11.4075 L8.41370456,12.14775 L9.75245456,12.14775 L9.75245456,11.5335 C9.75245456,11.2604986 9.79182917,11.0163761 9.87057956,10.801125 C9.94932996,10.5858739 10.0543289,10.3863759 10.1855796,10.202625 C10.3168302,10.0188741 10.4638287,9.84562581 10.6265796,9.682875 C10.7893304,9.52012419 10.9547037,9.36000079 11.1227046,9.2025 C11.2907054,9.03449916 11.4560787,8.86125089 11.6188296,8.68275 C11.7815804,8.50424911 11.9259539,8.31000105 12.0519546,8.1 C12.1779552,7.88999895 12.2803292,7.65637629 12.3590796,7.399125 C12.43783,7.14187371 12.4772046,6.85050163 12.4772046,6.525 C12.4772046,6.02099748 12.3958304,5.57475194 12.2330796,5.18625 C12.0703287,4.79774806 11.841956,4.46962634 11.5479546,4.201875 C11.2539531,3.93412366 10.9048316,3.72937571 10.5005796,3.587625 C10.0963275,3.44587429 9.64745703,3.375 9.15395456,3.375 C8.60795183,3.375 8.11445677,3.46949905 7.67345456,3.6585 C7.23245236,3.84750095 6.85970608,4.11262329 6.55520456,4.453875 C6.25070304,4.79512671 6.01708038,5.19674769 5.85432956,5.65875 C5.69157875,6.12075231 5.61545451,6.61949732 5.62595456,7.155 Z" id="?" fill="#B3B3B3"></path><circle id="Oval-3" stroke="#B3B3B3" cx="9" cy="9" r="9"></circle></g></g></g></svg>');
+    background-repeat: no-repeat;
+    @include rem-fallback("width", 20px);
+    @include rem-fallback("height", 20px);
+    top: 40%;
+    right: 0;
+    position: absolute;
+    @include rem-fallback("padding-right", 30px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("right", 14px);
+      padding-right: 0;
+    }
+  }
+
+  .social-pop__dropdown {
+    display: block;
+    left: unset;
+    right: 0;
+    @include rem-fallback("bottom", 55px);
+    @include rem-fallback("width", 185px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("right", -131px);
+    }
+
+    &::after {
+      @include rem-fallback("margin-left", 152px);
+
+      @include breakpoint(tablet-plus) {
+        margin-left: 1em;
+      }
+    }
+  }
+
+  .social-pop__content {
+    @include rem-fallback("padding", 20px);
+  }
+
+  .form__error-msg {
+    @include rem-fallback("right", 3px);
+    width: 100%;
+    top: 2px;
+    @include rem-fallback("font-size", 11px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("right", 17px);
+      width: 60%;
+      top: 5px;
+      @include rem-fallback("font-size", 14px);
+    }
+  }
+}

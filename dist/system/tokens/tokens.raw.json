@@ -488,8 +488,8 @@
     "prefix_component": {
       "type": "global",
       "category": "prefix",
-      "value": "ui-",
-      "originalValue": "ui-",
+      "value": "_",
+      "originalValue": "_",
       "name": "prefix_component"
     }
   }

@@ -1,0 +1,411 @@
+.contact {
+  .blockquote-container {
+    @include breakpoint(tablet-plus) {
+      @include border(2px solid color(agray, lighter), top);
+    }
+  }
+
+  .blockquote {
+    @include rem-fallback("padding", 30px 0);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 60px 0);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include column(8/12, $gutter);
+    }
+  }
+
+  @include element("hero") {
+    width: 100%;
+    height: auto;
+
+    @include breakpoint(tablet-plus) {
+      @include container($tablet-plus);
+    }
+
+    @include breakpoint(wide) {
+      @include container($wide);
+    }
+
+    &.static-page__img-holder {
+      height: auto;
+
+      @include breakpoint(tablet-plus) {
+        display: block;
+      }
+    }
+  }
+
+  @include element("info-section") {
+    @include rem-fallback("padding", 30px 0 60px);
+    @include rem-fallback("margin-top", 10px);
+    @include border(2px solid color(agray, lighter), top);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 60px 0 80px);
+      @include rem-fallback("margin-top", 60px);
+    }
+  }
+
+  @include element("info-container") {
+    @include rem-fallback("padding", 0 0 30px);
+
+    @include breakpoint(tablet-plus) {
+      padding: 0;
+    }
+
+    .phone-content {
+      @include rem-fallback("padding", 0 10px);
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("padding", 0 20px);
+      }
+    }
+  }
+
+  @include element("button") {
+    @include rem-fallback("padding", 0 0 60px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 0 0 80px);
+    }
+  }
+
+  @include element("info-title") {
+    text-align: center;
+    @include rem-fallback("padding", 5px 0);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 10px 0);
+    }
+  }
+
+  .static-section--left {
+    padding-bottom: 0;
+
+    .content {
+      @include rem-fallback("padding-bottom", 30px);
+
+      @include breakpoint(tablet-plus) {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+.static-page {
+  @include element("sticky-list") {
+    color: color(agray, darker);
+    cursor: pointer;
+
+    &:hover {
+      color: color(ablue);
+      font-weight: 400;
+    }
+
+    &:active {
+      color: color(ablue, dark);
+      font-weight: 400;
+    }
+
+    &.is-active {
+      color: color(ablue);
+      font-weight: 400;
+    }
+  }
+
+  .link-blue {
+    font-weight: 400;
+    @include rem-fallback("letter-spacing", -0.25px);
+  }
+
+  .accordion-link {
+    & .link-blue {
+      font-weight: 700;
+    }
+  }
+
+  .sticky {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+  }
+
+  @include element("title") {
+    @include heading($h-heading: h2__heading-h2--museo);
+    @include rem-fallback("padding", 30px 0 0);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h1__heading-h1--museo);
+      @include rem-fallback("padding", 60px 0 0);
+    }
+  }
+
+  @include element("img-holder") {
+    position: relative;
+    @include rem-fallback("padding", 15px 0 0);
+    @include rem-fallback("height", 350px);
+
+    @include breakpoint(normal) {
+      height: auto;
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 20px 0 60px);
+      height: auto;
+    }
+  }
+
+  @include element("img-bubble") {
+    @include rem-fallback("height", 167px);
+    background: color(ablue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include breakpoint(normal) {
+      position: absolute;
+      @include rem-fallback("top", -20px);
+      @include rem-fallback("right", 50px);
+      @include rem-fallback("width", 300px);
+      @include rem-fallback("height", 300px);
+      background: $eighty-per-blue-base;
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("top", -60px);
+      @include rem-fallback("width", 420px);
+      @include rem-fallback("height", 420px);
+    }
+
+    @include breakpoint(wide) {
+      @include rem-fallback("right", 85px);
+    }
+
+    &.image--circle {
+      border-radius: 0;
+
+      @include breakpoint(normal) {
+        border-radius: 100%;
+      }
+    }
+  }
+
+  @include element("img-caption") {
+    @include rem-fallback("width", 185px);
+    @include heading($h-heading: h3__heading-h3--museo);
+    color: color(awhite);
+    text-align: center;
+
+    @include breakpoint(normal) {
+      @include heading($h-heading: h2__heading-h2--museo);
+      color: color(awhite);
+      @include rem-fallback("width", 230px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h1__heading-h1--museo);
+      color: color(awhite);
+      @include rem-fallback("width", 315px);
+    }
+  }
+
+  @include element("content-head") {
+    @include rem-fallback("padding", 30px 0 15px);
+    width: 100%;
+    @include border(2px solid color(agray, lighter), top);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 60px 0 40px);
+      @include border(2px solid color(agray, lighter), top);
+    }
+  }
+
+  @include element("content-title") {
+    @include heading($h-heading: h3__heading-h3--museo);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h2__heading-h2--museo);
+    }
+
+    @include modifier("small") {
+      display: none;
+      @include heading($h-heading: h6__heading-h6--light-h6--compact);
+      @include rem-fallback("padding", 15px 0);
+
+      @include breakpoint(tablet-plus) {
+        @include heading($h-heading: h2__heading-h2--museo);
+      }
+    }
+
+    @include modifier("block") {
+      display: block;
+
+      @include breakpoint(tablet-plus) {
+        display: none;
+      }
+    }
+  }
+
+  @include element("head") {
+    @include heading($h-heading: h3__heading-h3--museo);
+    @include rem-fallback("padding-bottom", 15px);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h2__heading-h2--museo);
+    }
+
+    @include modifier("b-space-15") {
+      @include rem-fallback("padding-bottom", 10px);
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("padding-bottom", 15px);
+      }
+    }
+  }
+
+  @include element("subhead") {
+    @include heading($h-heading: h4__heading-h4--bold);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h3__heading-h3--bold);
+    }
+  }
+
+  @include element("content") {
+    @include rem-fallback("padding-bottom", 30px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding-bottom", 40px);
+    }
+
+    @include modifier("regular") {
+      font-weight: 400;
+      color: color(agray, dark);
+      @include rem-fallback("letter-spacing", -0.25px);
+    }
+
+    &.list {
+      padding-bottom: 0;
+
+      ul {
+        @include rem-fallback("padding-top", 20px);
+      }
+    }
+  }
+
+  @include element("list") {
+    @include rem-fallback("padding-bottom", 30px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding-bottom", 20px);
+    }
+
+    .accordion-list {
+      position: relative;
+      list-style-type: none;
+      @include rem-fallback("padding-left", 15px);
+      cursor: pointer;
+
+      &::before {
+        background-image: url('data:image/svg+xml;utf8,<svg width="10px" height="8px" viewBox="0 0 13 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><desc>Created with Sketch.</desc><defs></defs><g id="Contact-Us" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Contact-Us-Desktop-1" transform="translate(-600.000000, -1877.000000)" fill="#4D4D4D"><polygon id="Shape-Copy-2" transform="translate(606.500000, 1881.000000) rotate(-270.000000) translate(-606.500000, -1881.000000) " points="603 1876.4 604.324324 1875 610 1881 604.324324 1887 603 1885.6 607.351351 1881"></polygon></g></g></svg>');
+        @include rem-fallback("padding-left", 2px);
+        content: " ";
+        @include rem-fallback("width", 10px);
+        @include rem-fallback("height", 8px);
+        background-repeat: no-repeat;
+        position: absolute;
+        @include rem-fallback("top", 12px);
+        @include rem-fallback("left", -17px);
+        transition: all 0.3s ease-in-out;
+      }
+
+      @include element("content") {
+        @include rem-fallback("padding-left", 15px);
+      }
+
+      &.is-active {
+        font-weight: 400;
+        @include rem-fallback("letter-spacing", -0.25px);
+
+        &::before {
+          transform: rotate(180deg);
+        }
+      }
+
+      @include breakpoint(tablet-plus) {
+        &:hover {
+          color: color(ablue);
+          font-weight: 400;
+          @include rem-fallback("letter-spacing", -0.25px);
+        }
+      }
+    }
+  }
+
+  address {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .border-line {
+    @include modifier("left") {
+      @include breakpoint(tablet-plus) {
+        @include border(1px solid color(agray, lighter), left);
+      }
+    }
+  }
+}
+
+.sticky-close-link {
+  height: auto;
+  z-index: 2;
+  position: sticky;
+  width: 100%;
+  background: color(awhite);
+}
+
+.con-icon {
+  @include rem-fallback("width", 110px);
+  @include rem-fallback("height", 110px);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background: color(agreen);
+  margin: 0 auto;
+
+  svg {
+    width: 48%;
+    height: 34%;
+    fill: color(awhite);
+  }
+}
+
+.exclamation-before {
+  &::before {
+    background: url('data:image/svg+xml;utf8,<svg width="4px" height="17px" viewBox="0 0 4 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Final-Version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Artboard" fill="%23FF8F43"><g id="Group-14-Copy"><rect id="Rectangle-10" x="0.5" y="0.328351736" width="3" height="10"></rect><circle id="Oval-4" cx="2" cy="14.2020556" r="2"></circle></g></g></g></svg>');
+    background-repeat: no-repeat;
+    @include rem-fallback("width", 4px);
+    @include rem-fallback("height", 17px);
+    content: " ";
+    position: absolute;
+    @include rem-fallback("margin-top", 2px);
+    @include rem-fallback("margin-left", -10px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin-left", -20px);
+    }
+  }
+}
+
+.contact-us-page {
+  & [data-content="content"] {
+    &.container {
+      max-width: 100%;
+      display: block;
+    }
+  }
+}

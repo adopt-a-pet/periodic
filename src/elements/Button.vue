@@ -20,7 +20,7 @@ import bemNames from "@/mixins/bem-names"
 export default {
   name: "Button",
   componentBaseClass: "button",
-  status: "prototype",
+  status: "under-review",
   release: "1.0.0",
   mixins: [bemNames],
   props: {

@@ -1,0 +1,78 @@
+.pet-card-l {
+  .pet-card,
+  .pet-card-act {
+    @include rem-fallback("padding", 8px);
+    width: 100%;
+    height: auto;
+    display: flex;
+
+    @include breakpoint(normal) {
+      @include rem-fallback("padding", 10px);
+      @include rem-fallback("width", 220px);
+      @include rem-fallback("height", 323px);
+      display: block;
+    }
+
+    @include element("container") {
+      margin: 0;
+      @include rem-fallback("width", 124px);
+      @include rem-fallback("height", 124px);
+
+      @include breakpoint(normal) {
+        @include rem-fallback("margin", 0 0 10px);
+        @include rem-fallback("width", 200px);
+        @include rem-fallback("height", 200px);
+      }
+    }
+
+    @include element("content") {
+      display: block;
+      flex-wrap: wrap;
+      @include rem-fallback("padding", 5px 0 5px 15px);
+      @include rem-fallback("max-width", 180px);
+      flex-direction: column;
+
+      @include breakpoint(normal) {
+        display: block;
+        padding: 0;
+        max-width: 100%;
+      }
+
+      @include modifier("comma") {
+        &:not(:empty) {
+          &:not(:last-of-type) {
+            &::after {
+              content: ", ";
+            }
+          }
+        }
+      }
+    }
+
+    @include element("details") {
+      @include breakpoint(normal) {
+        display: flex;
+      }
+      @include breakpoint(wide) {
+        display: block;
+      }
+    }
+
+    @include element("heading") {
+      @include rem-fallback("margin", 0 0 10px);
+      align-self: baseline;
+    }
+
+    @include element("caption") {
+      @include heading($h-heading: h6__heading-h6--museo-h6--compact);
+      @include rem-fallback("min-height", 22px);
+      color: color(awhite);
+      align-items: center;
+
+      @include breakpoint(normal) {
+        @include heading($h-heading: h5__heading-h5--museo-h5--x-compact);
+        color: color(awhite);
+      }
+    }
+  }
+}

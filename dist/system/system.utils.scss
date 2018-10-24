@@ -65,7 +65,7 @@ $space-xxs: 4px;
 $line-height-m: 1.6;
 $line-height-s: 1.3;
 $line-height-xs: 1;
-$prefix-component: ui-;
+$prefix-component: _;
 
 /* VUE DESIGN SYSTEM SPACING HELPERS
 --------------------------------------------- */
@@ -192,6 +192,26 @@ $spacing-ratio: 1.7;
   &.#{$prefix-component}#{$name} {
     @content;
   }
+}
+  
+@mixin labeltext($labeltext) {
+    color: color(agray, light);
+    position: absolute;
+    @include rem-fallback('left', 17px);
+    pointer-events: none;
+    transition: .2s ease;
+    @if $labeltext == 'label-field' {
+        @include font-size(20px);
+        @include rem-fallback('bottom', 14px);
+    } @else if $labeltext == 'label-textarea' {
+        @include font-size(20px);
+        @include rem-fallback('top', 53px);
+        @include rem-fallback('left', 20px);
+    } @else if $labeltext == 'label-field-small' {
+        @include font-size(16px);
+        @include rem-fallback('top', 14px);
+        @include rem-fallback('left', 16px);
+    }
 }
 
 /* GLOBAL FUNCTIONS

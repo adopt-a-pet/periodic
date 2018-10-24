@@ -1,0 +1,67 @@
+.video-mvp {
+  @include rem-fallback("padding", 0 0 80px);
+
+  .container {
+    @include breakpoint(tablet-plus) {
+      @include container($normal);
+    }
+  }
+
+  &__title {
+    @include heading($h-heading: h2__heading-h2--museo);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h1__heading-h1--museo);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &__video {
+    @include container($thin);
+
+    @include breakpoint(phone-plus) {
+      @include container($phone-plus);
+    }
+
+    @include breakpoint(normal) {
+      @include container($normal);
+    }
+
+    iframe {
+      width: 326px;
+      height: 195px;
+      margin: 0 auto;
+
+      @include breakpoint(normal) {
+        width: 750px;
+        height: 422px;
+      }
+    }
+  }
+
+  &__heading {
+    @include heading($h-heading: h3__heading-h3--museo);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h2__heading-h2--museo);
+    }
+  }
+
+  .smcx-embed {
+    z-index: 0;
+    max-width: 100%;
+
+    .smcx-iframe-container {
+      max-width: 100%;
+
+      iframe {
+        max-width: 100%;
+      }
+    }
+  }
+
+  .button--video-mvp {
+    width: 300px;
+  }
+}

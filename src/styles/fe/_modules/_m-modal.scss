@@ -1,0 +1,316 @@
+//$modal-bg: rgba(color(awhite), .9);
+
+.modal {
+  background: color(awhite);
+
+  &--suggestions {
+    position: fixed;
+    top: 101%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: top 0.3s ease-in-out;
+    overflow-y: auto;
+    box-shadow: 0 -2px 4px 0 color(agray, light);
+    border: 1px solid color(agray, lighter);
+
+    &.is-open {
+      top: 0;
+      z-index: 100000;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @include breakpoint(wide) {
+      &.is-open {
+        top: 14%;
+      }
+    }
+  }
+
+  &__closer {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+
+    @include breakpoint(tiny) {
+      line-height: 0;
+      @include rem-fallback("top", 13px);
+    }
+
+    @include breakpoint(normal) {
+      top: 0;
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("top", 13px);
+    }
+
+    img {
+      @include rem-fallback("width", 22px);
+      @include rem-fallback("height", 22px);
+    }
+  }
+
+  &__form {
+    width: 100%;
+    position: relative;
+
+    @include breakpoint(tiny) {
+      @include rem-fallback("padding", 20px 0 20px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 50px 0 60px);
+    }
+
+    &--heading {
+      @include breakpoint(tiny) {
+        @include heading($h-heading: h3__heading-h3--museo);
+        @include rem-fallback("line-height", 31px);
+        position: initial;
+      }
+
+      @include breakpoint(normal) {
+        @include heading($h-heading: h2-museo);
+        @include rem-fallback("line-height", 39px);
+        position: relative;
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include heading($h-heading: h1__heading-h1--museo);
+        @include rem-fallback("line-height", 62px);
+      }
+    }
+
+    &--content {
+      @include breakpoint(tiny) {
+        @include rem-fallback("margin-bottom", 15px);
+        width: 100%;
+        @include rem-fallback("line-height", 26px);
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("margin-bottom", 30px);
+        @include column(9/12, $gutter);
+        @include rem-fallback("line-height", 32px);
+      }
+    }
+
+    &--content-desktop {
+      @include breakpoint(tiny) {
+        display: none;
+      }
+
+      @include breakpoint(normal) {
+        display: inline;
+      }
+    }
+  }
+
+  &__fields {
+    @include column(1, 0);
+
+    @include breakpoint(tablet-plus) {
+      @include column(1/2, $gutter);
+    }
+  }
+
+  &__textarea {
+    @include column(1, 0);
+
+    @include breakpoint(tablet-plus) {
+      @include column(1/2, $gutter);
+    }
+  }
+
+  .text-area-container,
+  .text-area {
+    width: 100%;
+
+    @include breakpoint(tiny) {
+      @include rem-fallback("height", 130px);
+    }
+
+    @include breakpoint(normal) {
+      @include rem-fallback("height", 400px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("height", 165px);
+    }
+
+    & .text-area__error-msg {
+      @include rem-fallback("top", 8px);
+    }
+  }
+
+  .text-area {
+    margin: 0;
+
+    &__label--model {
+      @include rem-fallback("top", 17px);
+    }
+  }
+
+  .text-area-container {
+    margin: 0;
+  }
+
+  .form {
+    &__input {
+      margin: 0;
+    }
+  }
+
+  .text-field-container {
+    @include breakpoint(tiny) {
+      @include rem-fallback("margin-bottom", 10px);
+    }
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin-bottom", 20px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin-bottom", 24px);
+    }
+  }
+
+  &__captcha {
+    @include rem-fallback("height", 78px);
+    position: relative;
+
+    @include breakpoint(tiny) {
+      width: 100%;
+      @include rem-fallback("margin", 10px 0 16px);
+    }
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin", 15px 0 40px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include column(1/3, (1 - 1/3) * $gutter);
+      margin: 0;
+    }
+
+    &--error {
+      border: 1px solid $modal-border;
+      width: 304px;
+      height: 78px;
+      border-radius: 3px;
+    }
+
+    &--error-msg {
+      @include breakpoint(tiny) {
+        width: 92%;
+        bottom: initial;
+        text-align: right;
+      }
+
+      @include breakpoint(phone-plus) {
+        width: 86%;
+        top: 0;
+      }
+
+      @include breakpoint(normal) {
+        width: 60%;
+        left: 0;
+      }
+
+      @include breakpoint(tablet-plus) {
+        width: 95%;
+        top: initial;
+      }
+
+      @include breakpoint(wide) {
+        width: 80%;
+        top: initial;
+      }
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-self: flex-end;
+    @include rem-fallback("height", 58px);
+
+    @include breakpoint(tiny) {
+      width: 100%;
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include column(2/3, (1 - 2/3) * $gutter);
+    }
+
+    &--cancel {
+      display: flex;
+      align-items: center;
+      color: color(agray, light);
+      text-decoration: underline;
+      @include rem-fallback("padding", 0 24px 0 0);
+
+      @include breakpoint(tiny) {
+        justify-content: flex-start;
+        width: auto;
+      }
+
+      @include breakpoint(tablet-plus) {
+        justify-content: flex-end;
+        width: 27%;
+      }
+
+      @include breakpoint(wide) {
+        justify-content: flex-end;
+        width: 26.6%;
+      }
+    }
+
+    &--send {
+      display: flex;
+
+      @include breakpoint(tiny) {
+        width: 100%;
+      }
+
+      @include breakpoint(tablet-plus) {
+        width: 75%;
+      }
+    }
+
+    &--close {
+      @include breakpoint(tiny) {
+        width: 100%;
+        margin-top: 70%;
+      }
+
+      @include breakpoint(thin) {
+        margin-top: 90%;
+      }
+
+      @include breakpoint(tablet-plus) {
+        width: 50%;
+        margin-left: 50%;
+        @include rem-fallback("margin-top", 215px);
+      }
+    }
+  }
+}
+
+.feedback-error,
+.feedback-success {
+  display: none;
+}
+
+.feedback-error {
+  .h5__heading {
+    color: color(aorange, dark);
+  }
+}
+
+.sticky-close {
+  .modal__closer {
+    right: 20px;
+    top: 10px;
+  }
+}
