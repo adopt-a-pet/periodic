@@ -139,8 +139,8 @@ export default {
 <docs>
   ```jsx
   <div>
-    <Email label="Email" />
-    <Email required />
+    <Email />
+    <Email label="Required" required />
     <Email label="Disabled" disabled />
   </div>
   ```
