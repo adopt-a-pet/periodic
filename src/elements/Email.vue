@@ -15,13 +15,15 @@
     />
     <span v-if="success" class="valid-tick"></span>
     <label :for="name" :class="'form__label'">{{label}}</label>
-    <div v-if="error" :class="'form__error-msg'">Enter Email</div>
+    <div v-if="error && !$v.email.required" :class="'form__error-msg'">Enter Email</div>
+    <div v-else-if="error" :class="'form__error-msg'">Invalid Email</div>
   </component>
 </template>
 
 <script>
 import { validationMixin } from "vuelidate"
 import { email } from "vuelidate/lib/validators"
+import { required } from "@/validators/input"
 import bemNames from "@/mixins/bem-names"
 console.log(validationMixin)
 
@@ -93,7 +95,7 @@ export default {
       type: String,
       default: null,
       validator: value => {
-        return value.match(/(hover|active|focus|error)/)
+        return value.match(/(hover|active|focus)/)
       },
     },
     /**
@@ -111,7 +113,6 @@ export default {
   },
   methods: {
     onInput(value) {
-      console.log(this.$v.email)
       this.$emit("change", value)
     },
     onFocus(value) {
@@ -129,6 +130,7 @@ export default {
   validations: {
     email: {
       email,
+      required,
     },
   },
 }
@@ -138,6 +140,8 @@ export default {
   ```jsx
   <div>
     <Email label="Email" />
+    <Email required />
+    <Email label="Disabled" disabled />
   </div>
   ```
 </docs>
