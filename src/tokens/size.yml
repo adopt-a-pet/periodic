@@ -10,6 +10,8 @@ props:
     value: "44px"
   height_input:
     value: "58px"
+  height_input_small:
+    value: "44px"
 global:
   type: number
   category: size

@@ -173,15 +173,22 @@
       }
     }
   }
+
   @include element("input-small") {
     @include border(1px solid color(agray, lighter));
     border-radius: $border-radius;
     width: 100%;
     background-color: color(awhite);
-    @include rem-fallback("height", 44px);
+    @include rem-fallback("height", $height-input-small);
     outline: none;
-    @include rem-fallback("padding", 10px 0 5px 15px);
-    padding-right: 15%;
+    @include rem-fallback("padding", $space-xs);
+    @include rem-fallback("padding-bottom", $space-xxxs);
+    @include rem-fallback("font-size", $font-size-s);
+    // padding-right: 15%;
+
+    & ~ label {
+      @include rem-fallback("top", $space-xxs);
+    }
 
     &:focus,
     &.not-empty {
@@ -189,8 +196,8 @@
 
       & ~ label {
         @include rem-fallback("top", 2px);
-        @include rem-fallback("left", 16px);
-        @include rem-fallback("font-size", 11px);
+        @include rem-fallback("left", $space-xs);
+        @include rem-fallback("font-size", $font-size-xxs);
         font-weight: 700;
       }
     }
@@ -225,8 +232,8 @@
       background: url('data:image/svg+xml;utf8,<svg width="14px" height="11px" viewBox="0 0 14 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch --><title>Artboard 3</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Artboard-3"><g id="Cell-Elements/Cell-Check-Copy-7"><rect id="Cell-Frame" x="0" y="0" width="14" height="11"></rect><polygon id="Check" fill="%2370cf36" points="1.61538462 5 0 6.5 4.30769231 10.5 14 2 12.3846154 0.5 4.30769231 7.5"></polygon></g></g></g></svg>');
       background-repeat: no-repeat;
       background-color: color(awhite);
-      top: 19px;
-      right: 17px;
+      top: $space-xs;
+      right: $space-xs;
       position: absolute;
       width: 14px;
       height: 11px;

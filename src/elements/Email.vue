@@ -2,7 +2,7 @@
   <component :is="wrapper" :class="['text-field-container']">
     <input
       v-model.lazy.trim="$v.email.$model"
-      :class="['form__input', state, {
+      :class="[inputClass, state, {
         'is-error': error,
         'is-success': success,
         'not-empty': email
@@ -14,9 +14,9 @@
       @focus="onFocus($event.target.value)"
     />
     <span v-if="success" class="valid-tick"></span>
-    <label :for="name" :class="'form__label'">{{label}}</label>
-    <div v-if="error && !$v.email.required" :class="'form__error-msg'">Enter Email</div>
-    <div v-else-if="error" :class="'form__error-msg'">Invalid Email</div>
+    <label :for="name" :class="labelClass">{{label}}</label>
+    <div v-if="error && !$v.email.required" class="form__error-msg">Enter Email</div>
+    <div v-else-if="error" class="form__error-msg">Invalid Email</div>
   </component>
 </template>
 
@@ -36,6 +36,17 @@ export default {
   release: "1.0.0",
   mixins: [bemNames, validationMixin],
   props: {
+    /**
+     * The size of the field. Defaults to large.
+     * `small, large`
+     */
+    size: {
+      type: String,
+      default: "large",
+      validator: value => {
+        return value.match(/(small|large)/)
+      },
+    },
     /**
      * Name input field in the form.
      */
@@ -119,6 +130,14 @@ export default {
     },
   },
   computed: {
+    inputClass() {
+      const addSize = this.size === "large" ? "" : `-${this.size}`
+      return "form__input" + addSize
+    },
+    labelClass() {
+      const addSize = this.size === "large" ? "" : `-${this.size}`
+      return "form__label" + addSize
+    },
     error() {
       return this.$v.email.$dirty && this.$v.email.$error
     },
@@ -143,6 +162,8 @@ export default {
     <Email label="Required" required />
     <br>
     <Email label="Disabled" disabled />
+    <br>
+    <Email label="Small" size="small" />
   </div>
   ```
 </docs>
