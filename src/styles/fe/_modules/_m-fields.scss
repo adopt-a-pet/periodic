@@ -1,4 +1,19 @@
-// Text Area
+.text-field-container {
+  position: relative;
+  width: 100%;
+
+  & .suggestion-text {
+    top: 50%;
+    @include rem-fallback("right", 17px);
+    color: color(agray, light);
+    pointer-events: none;
+  }
+
+  & .suggestion-text--form-select {
+    top: 35%;
+    @include rem-fallback("right", 47px);
+  }
+}
 
 .select-field-container {
   position: relative;
@@ -86,10 +101,11 @@
     border-radius: $border-radius;
     background-color: color(awhite);
     width: 100%;
-    @include rem-fallback("height", 58px);
     outline: none;
-    @include rem-fallback("padding", 17px);
-    @include rem-fallback("margin", 25px 0 0);
+    margin: 0;
+    @include rem-fallback("height", $height-input);
+    @include rem-fallback("padding", $space-xs);
+    @include rem-fallback("font-size", $font-size-m);
 
     &:focus {
       @include border(1px solid color(ablue));
@@ -97,13 +113,14 @@
 
     &:focus,
     &.not-empty {
-      @include rem-fallback("padding-bottom", 4px);
+      @include rem-fallback("padding-bottom", $space-xxxxs);
 
       & ~ label {
-        @include rem-fallback("bottom", 32px);
-        @include rem-fallback("left", 17px);
-        @include rem-fallback("font-size", 14px);
-        font-weight: 700;
+        @include rem-fallback("top", $space-xxxxs);
+        @include rem-fallback("left", $space-xs);
+        @include rem-fallback("font-size", $font-size-xs);
+        @include rem-fallback("line-height", $line-height-xxs);
+        font-weight: $weight-bold;
       }
     }
 
@@ -115,11 +132,8 @@
 
     &.is-success {
       @include border(1px solid color(agreen));
-      //background: url('data:image/svg+xml;utf8,<svg width="14px" height="11px" viewBox="0 0 14 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch --><title>Artboard 3</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Artboard-3"><g id="Cell-Elements/Cell-Check-Copy-7"><rect id="Cell-Frame" x="0" y="0" width="14" height="11"></rect><polygon id="Check" fill="%2370cf36" points="1.61538462 5 0 6.5 4.30769231 10.5 14 2 12.3846154 0.5 4.30769231 7.5"></polygon></g></g></g></svg>');
-      background-repeat: no-repeat;
-      background-position: right 17px center;
       background-color: color(awhite);
-      @include rem-fallback("padding-right", 40px);
+      @include rem-fallback("padding-right", $space-xl);
 
       &:focus {
         @include border(1px solid color(agreen));
@@ -137,10 +151,10 @@
     & + .valid-tick {
       background: url('data:image/svg+xml;utf8,<svg width="14px" height="11px" viewBox="0 0 14 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch --><title>Artboard 3</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Artboard-3"><g id="Cell-Elements/Cell-Check-Copy-7"><rect id="Cell-Frame" x="0" y="0" width="14" height="11"></rect><polygon id="Check" fill="%2370cf36" points="1.61538462 5 0 6.5 4.30769231 10.5 14 2 12.3846154 0.5 4.30769231 7.5"></polygon></g></g></g></svg>');
       background-repeat: no-repeat;
-      background-position: right 17px center;
+      background-position: right $space-xs center;
       background-color: color(awhite);
-      @include rem-fallback("padding-right", 40px);
-      bottom: 23px;
+      @include rem-fallback("padding-right", $space-xl);
+      bottom: $space-m;
       right: 1px;
       position: absolute;
       width: 14px;
@@ -238,12 +252,12 @@
 
   @include element("error-msg") {
     position: absolute;
-    @include rem-fallback("right", 17px);
+    @include rem-fallback("right", $space-xs);
     width: 60%;
     text-align: right;
-    @include rem-fallback("font-size", 14px);
-    @include rem-fallback("line-height", 17px);
-    @include rem-fallback("bottom", 35px);
+    @include rem-fallback("font-size", $font-size-xs);
+    @include rem-fallback("line-height", $line-height-xxs);
+    @include rem-fallback("top", $space-xxxxs);
     color: color(aorange);
     pointer-events: none;
 
@@ -446,21 +460,5 @@ input {
       margin: 0;
       display: none;
     }
-  }
-}
-.text-field-container {
-  position: relative;
-  width: 100%;
-
-  & .suggestion-text {
-    top: 50%;
-    @include rem-fallback("right", 17px);
-    color: color(agray, light);
-    pointer-events: none;
-  }
-
-  & .suggestion-text--form-select {
-    top: 35%;
-    @include rem-fallback("right", 47px);
   }
 }

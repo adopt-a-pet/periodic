@@ -25,7 +25,6 @@ import { validationMixin } from "vuelidate"
 import { email } from "vuelidate/lib/validators"
 import { required } from "@/validators/input"
 import bemNames from "@/mixins/bem-names"
-console.log(validationMixin)
 
 /**
  *
@@ -140,7 +139,9 @@ export default {
   ```jsx
   <div>
     <Email />
+    <br>
     <Email label="Required" required />
+    <br>
     <Email label="Disabled" disabled />
   </div>
   ```
