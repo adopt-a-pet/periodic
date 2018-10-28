@@ -1,0 +1,254 @@
+$gutter: em(24);
+$logo-height: em(106);
+
+.header {
+  @include column;
+  background-color: color(awhite, base);
+
+  @include breakpoint(tablet-plus) {
+    @include rem-fallback("padding", 20px 0 0);
+    background-image: url("/images/bubbles_all.svg");
+    background-position: right -333px;
+    background-repeat: no-repeat;
+  }
+
+  &__content {
+    @include breakpoint(tablet-plus) {
+      @include container($tablet-plus);
+    }
+    @include breakpoint(wide) {
+      @include container($wide);
+    }
+  }
+
+  &__sponsors,
+  &__logo {
+    @include column(4/4, $gutter);
+
+    @include breakpoint(normal) {
+      @include column(12/12, $gutter);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include column(1/3, $gutter);
+      width: 37%;
+    }
+  }
+
+  &__sponsors {
+    background-color: $twenty-percent-lighter-grey;
+    box-shadow: 0 2px 4px color(agray, lighter);
+    border-bottom: 1px solid color(agray, lighter);
+
+    @include breakpoint(normal) {
+      justify-content: flex-end;
+    }
+
+    @include breakpoint(tablet-plus) {
+      width: 42%;
+      order: 2;
+      background-color: transparent;
+      box-shadow: none;
+      border-bottom: 0;
+      text-align: right;
+    }
+
+    .container {
+      @include rem-fallback("height", 80px);
+      justify-content: flex-start;
+      align-items: center;
+
+      @include breakpoint(phone-plus) {
+        @include rem-fallback("width", 372px);
+      }
+
+      @include breakpoint(normal) {
+        @include rem-fallback("margin-right", 9px);
+        justify-content: flex-end;
+      }
+
+      @include breakpoint(tablet-plus) {
+        width: auto;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  &__purina-logo,
+  &__petco-logo,
+  &__bayer-logo,
+  &__petco-corp-logo {
+    display: block;
+    @include rem-fallback("margin-left", 10px);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin-left", 25px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin-bottom", 15px);
+    }
+  }
+
+  &__purina-logo {
+    @include rem-fallback("width", 153px);
+    @include rem-fallback("height", 26px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("width", 191px);
+      @include rem-fallback("height", 32px);
+    }
+  }
+
+  &__petco-logo {
+    margin-left: 0;
+    @include rem-fallback("width", 101px);
+    @include rem-fallback("height", 31.5px);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin-left", 25px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      margin-left: 0;
+      @include rem-fallback("width", 125px);
+      @include rem-fallback("height", 39px);
+    }
+  }
+
+  &__petco-corp-logo {
+    @include rem-fallback("width", 90px);
+    @include rem-fallback("height", 20px);
+    @include rem-fallback("margin-left", 10px);
+    margin-top: 0;
+
+    @include breakpoint(thin) {
+      @include rem-fallback("margin-left", 15px);
+    }
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin-left", 34px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("width", 108px);
+      @include rem-fallback("height", 24px);
+      @include rem-fallback("margin-left", 24px);
+      @include rem-fallback("margin-top", 10px);
+    }
+  }
+
+  &__bayer-logo {
+    @include rem-fallback("width", 83px);
+    @include rem-fallback("height", 28px);
+    @include rem-fallback("margin-left", 10px);
+    @include rem-fallback("margin-right", 5px);
+
+    @include breakpoint(thin) {
+      @include rem-fallback("margin-left", 15px);
+    }
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin-left", 34px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("width", 107px);
+      @include rem-fallback("height", 36px);
+      @include rem-fallback("margin-left", 24px);
+    }
+  }
+
+  &__sponsors-text {
+    &--mobile {
+      display: block;
+    }
+
+    &--desktop {
+      display: none;
+    }
+
+    @include breakpoint(normal) {
+      &--mobile {
+        display: none;
+      }
+
+      &--desktop {
+        display: block;
+      }
+    }
+  }
+
+  &__logo {
+    @include rem-fallback("padding", 5px 0 0);
+
+    @include breakpoint(tablet-plus) {
+      position: relative;
+      height: auto;
+      order: 1;
+      padding: 0;
+      text-align: left;
+    }
+
+    .container {
+      position: relative;
+    }
+  }
+
+  &__logo-img {
+    @include rem-fallback("width", 200px);
+    @include rem-fallback("height", 57px);
+    @include rem-fallback("margin", 10px 0);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("height", 57px);
+      @include rem-fallback("margin", 15px 0);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("width", 318px);
+      @include rem-fallback("height", 79px);
+      margin: 0;
+    }
+  }
+
+  &__logo-text {
+    display: none;
+
+    @include breakpoint(tablet-plus) {
+      display: block;
+    }
+  }
+}
+
+.scroll-up {
+  top: -$logo-height; // same as header height. use variables
+  position: fixed;
+  transition: top 0.2s ease-in-out;
+  background-color: color(awhite, base);
+  z-index: 99;
+
+  @include breakpoint(tablet-plus) {
+    top: 0;
+    position: relative;
+  }
+}
+
+.scroll-start,
+.scroll-show {
+  position: fixed;
+  top: 0;
+  transition: top 0.2s ease-in-out;
+  background-color: color(awhite, base);
+  z-index: 99;
+
+  @include breakpoint(tablet-plus) {
+    height: auto;
+    position: relative;
+  }
+}
+
+.scroll-start {
+  display: none;
+  transition: top 0.2s ease-in-out;
+}

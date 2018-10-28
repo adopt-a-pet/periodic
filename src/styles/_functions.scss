@@ -71,36 +71,36 @@
 /// Returns the value in rem for a given pixel value.
 /// @param {Number} $value - The pixel value to be converted.
 /// @return {Number} The converted value in rem.
-@function rem($value) {
-  $unit: unit($value);
-
-  @if $unit == "rem" {
-    @return $value;
-  } @else if $unit == "px" {
-    @return $value / $size-m * 1rem;
-  } @else if $unit == "em" {
-    @return $unit / 1em * 1rem;
-  } @else {
-    @error "Value must be in px, em, or rem.";
-  }
-}
+// @function rem($value) {
+//   $unit: unit($value);
+//
+//   @if $unit == "rem" {
+//     @return $value;
+//   } @else if $unit == "px" {
+//     @return $value / $size-m * 1rem;
+//   } @else if $unit == "em" {
+//     @return $unit / 1em * 1rem;
+//   } @else {
+//     @error "Value must be in px, em, or rem.";
+//   }
+// }
 
 /// Returns the value in pixels for a given rem value.
 /// @param {Number} $value - The rem value to be converted.
 /// @return {Number} The converted value in pixels.
-@function px($value) {
-  $unit: unit($value);
-
-  @if $unit == "px" {
-    @return $value;
-  } @else if $unit == "em" {
-    @return ($value / 1em) * $size-m;
-  } @else if $unit == "rem" {
-    @return ($value / 1rem) * $size-m;
-  } @else {
-    @error "Value must be in rem, em, or px.";
-  }
-}
+// @function px($value) {
+//   $unit: unit($value);
+//
+//   @if $unit == "px" {
+//     @return $value;
+//   } @else if $unit == "em" {
+//     @return ($value / 1em) * $size-m;
+//   } @else if $unit == "rem" {
+//     @return ($value / 1rem) * $size-m;
+//   } @else {
+//     @error "Value must be in rem, em, or px.";
+//   }
+// }
 
 /// Returns the list of available names in a given map.
 /// @param {Map} $map - The map of data to list the names from.

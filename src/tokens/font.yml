@@ -24,7 +24,7 @@ props:
   weight_normal:
     value: "400"
   weight_light:
-    value: "300"
+    value: "200"
 global:
   type: ...
   category: font

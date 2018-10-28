@@ -1,0 +1,471 @@
+.text-field-container {
+  position: relative;
+  width: 100%;
+
+  & .suggestion-text {
+    top: 50%;
+    @include rem-fallback("right", 17px);
+    color: color(agray, light);
+    pointer-events: none;
+  }
+
+  & .suggestion-text--form-select {
+    top: 35%;
+    @include rem-fallback("right", 47px);
+  }
+}
+
+.select-field-container {
+  position: relative;
+  width: 100%;
+}
+.text-area-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  @include rem-fallback("height", 240px);
+
+  .text-limit {
+    align-self: flex-end;
+
+    &.is-error {
+      color: color(aorange, dark);
+    }
+  }
+}
+.text-area {
+  display: flex;
+  box-shadow: $text-field-shade;
+  @include border(1px solid color(agray, light));
+  @include rem-fallback("border-radius", 6px);
+  @include rem-fallback("padding", 30px 20px 20px);
+  @include rem-fallback("margin", 25px 0 0);
+  @include rem-fallback("height", 240px);
+  line-height: 1.5;
+  outline: none;
+  resize: none;
+  width: 100%;
+
+  @include element("label") {
+    @include labeltext($labeltext: label-textarea);
+    @include rem-fallback("top", 43px);
+
+    @include modifier("model") {
+      @include rem-fallback("top", 27px);
+    }
+  }
+
+  @include element("v2") {
+    @include rem-fallback("padding", 20px);
+  }
+
+  &:focus {
+    @include border(1px solid color(ablue));
+  }
+
+  &:focus ~ .label-remove {
+    display: none;
+  }
+
+  &:valid ~ .label-remove {
+    display: none;
+  }
+
+  &:focus ~ label {
+    @include rem-fallback("top", 43px);
+    @include rem-fallback("left", 21px);
+    @include rem-fallback("font-size", 12px);
+    font-weight: 700;
+  }
+
+  &:valid ~ label {
+    @include rem-fallback("top", 43px);
+    @include rem-fallback("left", 21px);
+    @include rem-fallback("font-size", 12px);
+    font-weight: 700;
+  }
+
+  &.is-error {
+    @include border(1px solid color(aorange));
+  }
+
+  @include element("error-msg") {
+    top: 33px;
+  }
+}
+
+.form {
+  @include element("input") {
+    @include border(1px solid color(agray, light));
+    border-radius: $border-radius;
+    background-color: color(awhite);
+    width: 100%;
+    outline: none;
+    margin: 0;
+    @include rem-fallback("height", $height-input);
+    @include rem-fallback("padding", $space-xs);
+    @include rem-fallback("font-size", $font-size-m);
+
+    &:focus {
+      @include border(1px solid color(ablue));
+    }
+
+    &:focus,
+    &.not-empty {
+      @include rem-fallback("padding-bottom", $space-xxxxs);
+
+      & ~ label {
+        @include rem-fallback("top", $space-xxxxs);
+        @include rem-fallback("left", $space-xs);
+        @include rem-fallback("font-size", $font-size-xs);
+        @include rem-fallback("line-height", $line-height-xxs);
+        font-weight: $weight-bold;
+      }
+    }
+
+    &[disabled] {
+      @include border(1px solid color(agray, lighter));
+      pointer-events: none;
+      color: color(agray, lighter);
+    }
+
+    &.is-success {
+      @include border(1px solid color(agreen));
+      background-color: color(awhite);
+      @include rem-fallback("padding-right", $space-xl);
+
+      &:focus {
+        @include border(1px solid color(agreen));
+      }
+    }
+
+    &.is-error {
+      @include border(1px solid color(aorange));
+
+      &:focus {
+        @include border(1px solid color(aorange));
+      }
+    }
+
+    & + .valid-tick {
+      background: url('data:image/svg+xml;utf8,<svg width="14px" height="11px" viewBox="0 0 14 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch --><title>Artboard 3</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Artboard-3"><g id="Cell-Elements/Cell-Check-Copy-7"><rect id="Cell-Frame" x="0" y="0" width="14" height="11"></rect><polygon id="Check" fill="%2370cf36" points="1.61538462 5 0 6.5 4.30769231 10.5 14 2 12.3846154 0.5 4.30769231 7.5"></polygon></g></g></g></svg>');
+      background-repeat: no-repeat;
+      background-position: right $space-xs center;
+      background-color: color(awhite);
+      @include rem-fallback("padding-right", $space-xl);
+      bottom: $space-m;
+      right: 1px;
+      position: absolute;
+      width: 14px;
+      height: 11px;
+      pointer-events: none;
+    }
+
+    &.is-success-model-box {
+      @include border(1px solid color(agreen));
+      background-repeat: no-repeat;
+      background-position: right 17px center;
+      background-color: color(awhite);
+
+      &:focus {
+        @include border(1px solid color(agreen));
+      }
+    }
+  }
+
+  @include element("input-small") {
+    @include border(1px solid color(agray, lighter));
+    border-radius: $border-radius;
+    width: 100%;
+    background-color: color(awhite);
+    @include rem-fallback("height", $height-input-small);
+    outline: none;
+    @include rem-fallback("padding", $space-xs);
+    @include rem-fallback("padding-bottom", $space-xxxs);
+    @include rem-fallback("font-size", $font-size-s);
+    // padding-right: 15%;
+
+    & ~ label {
+      @include rem-fallback("top", $space-xxs);
+    }
+
+    &:focus,
+    &.not-empty {
+      @include border(1px solid color(ablue));
+
+      & ~ label {
+        @include rem-fallback("top", 2px);
+        @include rem-fallback("left", $space-xs);
+        @include rem-fallback("font-size", $font-size-xxs);
+        font-weight: 700;
+      }
+    }
+
+    &[disabled] {
+      @include border(1px solid color(agray, lighter));
+      pointer-events: none;
+      color: color(agray, lighter);
+    }
+
+    &.is-success {
+      @include border(1px solid color(agreen));
+      //background: url('data:image/svg+xml;utf8,<svg width="14px" height="11px" viewBox="0 0 14 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch --><title>Artboard 3</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Artboard-3"><g id="Cell-Elements/Cell-Check-Copy-7"><rect id="Cell-Frame" x="0" y="0" width="14" height="11"></rect><polygon id="Check" fill="%2370cf36" points="1.61538462 5 0 6.5 4.30769231 10.5 14 2 12.3846154 0.5 4.30769231 7.5"></polygon></g></g></g></svg>');
+      background-repeat: no-repeat;
+      background-position: 96% center;
+      background-color: color(awhite);
+
+      &:focus {
+        @include border(1px solid color(agreen));
+      }
+    }
+
+    &.is-error {
+      @include border(1px solid color(aorange));
+
+      &:focus {
+        @include border(1px solid color(aorange));
+      }
+    }
+
+    & + .valid-tick {
+      background: url('data:image/svg+xml;utf8,<svg width="14px" height="11px" viewBox="0 0 14 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch --><title>Artboard 3</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Artboard-3"><g id="Cell-Elements/Cell-Check-Copy-7"><rect id="Cell-Frame" x="0" y="0" width="14" height="11"></rect><polygon id="Check" fill="%2370cf36" points="1.61538462 5 0 6.5 4.30769231 10.5 14 2 12.3846154 0.5 4.30769231 7.5"></polygon></g></g></g></svg>');
+      background-repeat: no-repeat;
+      background-color: color(awhite);
+      top: $space-xs;
+      right: $space-xs;
+      position: absolute;
+      width: 14px;
+      height: 11px;
+      pointer-events: none;
+    }
+  }
+
+  @include element("select") {
+    appearance: none;
+
+    & ~ label {
+      @include rem-fallback("top", 2px);
+      @include rem-fallback("left", 16px);
+      @include rem-fallback("font-size", 11px);
+    }
+
+    &.is-focus {
+      & + .form__arrow {
+        transform: rotate(0.5turn);
+      }
+    }
+  }
+
+  @include element("error-msg") {
+    position: absolute;
+    @include rem-fallback("right", $space-xs);
+    width: 60%;
+    text-align: right;
+    @include rem-fallback("font-size", $font-size-xs);
+    @include rem-fallback("line-height", $line-height-xxs);
+    @include rem-fallback("top", $space-xxxxs);
+    color: color(aorange);
+    pointer-events: none;
+
+    @include modifier("bottom") {
+      color: color(aorange);
+      @include rem-fallback("font-size", 14px);
+      @include rem-fallback("line-height", 22px);
+      display: inline-block;
+      @include rem-fallback("padding-bottom", 5px);
+
+      &.p-b-zero {
+        padding-bottom: 0;
+      }
+    }
+
+    @include modifier("newsletter") {
+      @include rem-fallback("bottom", 45px);
+    }
+
+    @include modifier("footer") {
+      @include rem-fallback("bottom", 39px);
+      @include rem-fallback("right", 6px);
+    }
+  }
+
+  @include element("label") {
+    @include labeltext($labeltext: label-field);
+    @include rem-fallback("letter-spacing", -0.25px);
+
+    @include modifier("focused") {
+      display: none;
+    }
+
+    &.is-disabled {
+      color: color(agray, lighter);
+    }
+  }
+
+  @include element("label-small") {
+    @include labeltext($labeltext: label-field-small);
+  }
+
+  @include element("card") {
+    border-radius: $border-radius;
+    background: $sixty-per-lighter-grey;
+    color: color(agray);
+
+    @include modifier("sub-head") {
+      display: flex;
+    }
+
+    & .select-box {
+      &__list {
+        @include rem-fallback("padding", 10px 32px 10px 16px);
+        word-wrap: break-word;
+      }
+
+      &__dropdown {
+        @include rem-fallback("top", 39px);
+
+        ul {
+          margin: 0;
+          @include rem-fallback("max-height", 225px);
+        }
+      }
+    }
+
+    & .form__error-msg--bottom {
+      position: relative;
+      bottom: 6px;
+    }
+  }
+
+  @include element("card-container") {
+    @include rem-fallback("padding", 21px 25px 25px);
+  }
+
+  @include element("card-title") {
+    color: color(agray, dark);
+  }
+
+  @include element("card--border-gray") {
+    border: 1px solid color(agray, lighter);
+    border-top: 0;
+  }
+
+  @include element("card-top-green-bg") {
+    @include rem-fallback("border-radius", 6px 6px 0 0);
+    background: color(agreen);
+    @include rem-fallback("height", 10px);
+  }
+
+  @include element("card-top-blue-bg") {
+    @include rem-fallback("border-radius", 6px 6px 0 0);
+    background: color(ablue);
+    @include rem-fallback("height", 10px);
+  }
+
+  @include element("card-top-orange-bg") {
+    @include rem-fallback("border-radius", 6px 6px 0 0);
+    background: color(aorange);
+    @include rem-fallback("height", 10px);
+  }
+  @include element("arrow") {
+    @include rem-fallback("width", 13px);
+    @include rem-fallback("height", 7px);
+    top: 45%;
+    @include rem-fallback("right", 17px);
+    position: absolute;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2213px%22%20height%3D%227px%22%20viewBox%3D%220%200%2010%205%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2041%20(35326)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3EArtboard%204%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard-4%22%20fill%3D%22%234D4D4D%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolygon%20id%3D%22Shape%22%20points%3D%220%200%205%205%2010%200%22%3E%3C%2Fpolygon%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: 94% center;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+    pointer-events: none;
+
+    @include modifier("small") {
+      top: 37%;
+    }
+  }
+}
+
+.is-valid {
+  @include rem-fallback("bottom", 32px);
+  @include rem-fallback("left", 17px);
+  @include rem-fallback("font-size", 14px);
+  font-weight: 700;
+}
+.is-valid-small {
+  @include rem-fallback("top", 2px);
+  @include rem-fallback("left", 16px);
+  @include rem-fallback("font-size", 11px);
+  font-weight: 700;
+}
+
+.input-isvalid {
+  @include rem-fallback("padding-bottom", 4px);
+}
+
+// Form variations
+
+.card-link {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  color: color(agray, light);
+  cursor: pointer;
+
+  &.is-active {
+    color: color(ablue, dark);
+
+    &::after {
+      transform: scale(1);
+    }
+  }
+
+  &::after {
+    border-radius: $border-radius;
+    content: "";
+    background: color(ablue, dark);
+    @include rem-fallback("height", 2px);
+    width: 80%;
+    position: absolute;
+    @include rem-fallback("bottom", 7px);
+    right: 9%;
+    display: flex;
+    transform: scale(0);
+    transition: all 250ms ease 0s;
+  }
+
+  &:hover {
+    color: color(ablue);
+
+    &::after {
+      transform: scale(1);
+      background: color(ablue);
+    }
+  }
+
+  &:active {
+    color: color(ablue, dark);
+
+    &::after {
+      transform: scale(1);
+      background: color(ablue, dark);
+    }
+  }
+}
+.card-label {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+}
+
+input {
+  &[type="number"] {
+    -moz-appearance: textfield;
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+      display: none;
+    }
+  }
+}

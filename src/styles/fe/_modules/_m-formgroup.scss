@@ -1,0 +1,191 @@
+.shelterinfo {
+  background-color: $twenthy-percent-grey;
+  @include rem-fallback("margin", 80px 0 30px);
+
+  @include breakpoint(tablet-plus) {
+    @include rem-fallback("margin", 80px 0);
+  }
+
+  &__container {
+    @include rem-fallback("padding", 20px 0);
+
+    @include breakpoint(thin) {
+      @include rem-fallback("padding", 20px 0);
+    }
+
+    @include breakpoint(normal) {
+      @include rem-fallback("padding", 40px 0);
+    }
+  }
+  &__section {
+    @include rem-fallback("padding", 0 15px 15px);
+
+    @include breakpoint(thin) {
+      @include rem-fallback("padding", 0 20px 20px);
+    }
+
+    @include breakpoint(normal) {
+      @include rem-fallback("padding", 0 40px);
+    }
+  }
+  &__header {
+    @include heading($h-heading: h2__heading-h2--museo);
+
+    @include breakpoint(thin) {
+      @include rem-fallback("margin-bottom", 10px);
+    }
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin-bottom", 20px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h1__heading-h1--museo);
+      @include rem-fallback("margin-bottom", 30px);
+    }
+  }
+
+  &__label {
+    @include heading($h-heading: h6__heading-h6--light-h6--compact);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h5__heading-h5--light-h5--compact);
+    }
+  }
+}
+
+.formgroup {
+  background-color: color(awhite);
+  @include rem-fallback("padding", 20px);
+  @include rem-fallback("border-radius", 6px);
+
+  @include breakpoint(tiny) {
+    @include rem-fallback("padding", 10px 15px 15px);
+  }
+
+  @include breakpoint(normal) {
+    @include rem-fallback("padding", 20px);
+  }
+
+  @include breakpoint(tablet-plus) {
+    @include rem-fallback("padding", 30px);
+  }
+
+  &__column {
+    display: flex;
+    vertical-align: top;
+    width: 100%;
+    flex-wrap: wrap;
+
+    @include breakpoint(normal) {
+      width: 50%;
+      flex-wrap: wrap;
+      display: flex;
+    }
+  }
+
+  &--border-gray {
+    border: 1px solid color(agray, lighter);
+    @include rem-fallback("border-radius", 6px);
+  }
+
+  &__label--pad-left {
+    margin-left: 1rem;
+  }
+
+  &__label--pad-right {
+    margin-right: 1rem;
+  }
+
+  &__label {
+    min-width: 95%;
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("min-width", 85px);
+    }
+  }
+
+  &__value {
+    @include rem-fallback("min-height", 24px);
+    white-space: pre-wrap;
+    @include rem-fallback("min-width", 200px);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("max-width", 285px);
+    }
+
+    &.ellipsis {
+      white-space: nowrap;
+    }
+  }
+
+  &__title {
+    @include heading($h-heading: h3__heading-h3--museo);
+
+    @include breakpoint(tiny) {
+      @include rem-fallback("margin-bottom", 10px);
+    }
+
+    @include breakpoint(normal) {
+      margin-bottom: 0;
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h2__heading-h2--museo);
+    }
+  }
+
+  &__content-section {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include breakpoint(normal) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__head-section {
+    @include rem-fallback("margin", 0 0 30px 0);
+    display: flex;
+    flex-wrap: wrap;
+
+    @include breakpoint(normal) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__list {
+    @include rem-fallback("margin", 0 0 15px 0);
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+
+    @include breakpoint(tablet-plus) {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: baseline;
+      @include rem-fallback("margin", 0 0 20px 0);
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &--mob {
+      &:last-of-type {
+        @include rem-fallback("margin-bottom", 15px);
+        @include breakpoint(normal) {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__other-pets {
+    @include rem-fallback("margin", 0 10px 10px);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin", 40px 40px 10px);
+    }
+  }
+}

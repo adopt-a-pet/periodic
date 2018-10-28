@@ -1,0 +1,141 @@
+.shelter-page {
+  box-sizing: border-box;
+  width: 100%;
+
+  @include breakpoint(thin) {
+    @include container($normal, $center: true);
+    display: block;
+  }
+
+  @include breakpoint(phone-plus) {
+    @include container($phone-plus, $center: true);
+    display: block;
+  }
+
+  @include breakpoint(normal) {
+    @include container($normal, $center: true);
+    display: block;
+  }
+
+  @include breakpoint(tablet-plus) {
+    @include container($tablet-plus, $center: true);
+    display: block;
+  }
+
+  @include breakpoint(wide) {
+    @include container($normal, $center: true);
+    display: block;
+  }
+
+  @include element("title") {
+    @include breakpoint(thin) {
+      @include heading($h-heading: h2-museo);
+    }
+
+    @include breakpoint(normal) {
+      @include heading($h-heading: h1-museo);
+      text-align: left;
+    }
+  }
+
+  .pagination {
+    display: table;
+    margin: 0 auto;
+    @include element("result") {
+      @include breakpoint(thin) {
+        @include container($normal, $center: true);
+      }
+
+      @include breakpoint(normal) {
+        @include container($normal, $center: true);
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include container($tablet-plus, $center: true);
+      }
+
+      @include breakpoint(wide) {
+        @include container($normal, $center: true);
+      }
+    }
+  }
+
+  .shelter-result {
+    @include element("info") {
+      padding: 0;
+    }
+
+    .link-gray-darker {
+      padding: 0;
+    }
+  }
+}
+
+.pet-adt {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  @include rem-fallback("height", 400px);
+  margin: 0 auto;
+  clear: both;
+  overflow: hidden;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 16px solid color(agray, lighter);
+  border-radius: 50%;
+  border-top: 16px solid color(ablue);
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  clear: both;
+  margin: 0 auto;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.shelter-search {
+  width: 100%;
+  overflow: hidden;
+
+  @include element("content") {
+    width: 100%;
+  }
+
+  & .breadcrumbs {
+    display: none;
+
+    @include breakpoint(tablet-plus) {
+      display: block;
+    }
+  }
+}

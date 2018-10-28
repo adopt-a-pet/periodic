@@ -1,0 +1,1030 @@
+.pet-inquiry-form {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @include element("left") {
+    background: $twenty-percent-lighter-grey;
+    box-shadow: $pet-card-shade;
+
+    @include breakpoint(tiny) {
+      width: 100%;
+      display: flex;
+      @include rem-fallback("padding", 10px 25px);
+      padding-bottom: 0;
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include column(3/12, $gutter);
+      display: block;
+      @include rem-fallback("padding", 30px);
+    }
+
+    @include modifier("details") {
+      @include rem-fallback("margin-left", -85px);
+
+      @include breakpoint(tablet-plus) {
+        margin-top: 0;
+      }
+    }
+
+    @include modifier("info") {
+      @include rem-fallback("margin-left", -85px);
+      @include rem-fallback("margin-top", 20px);
+
+      @include breakpoint(tablet-plus) {
+        margin-top: 0;
+      }
+    }
+
+    .myinfo {
+      @include element("label") {
+        width: 100%;
+        display: block;
+        padding-right: 0;
+        @include rem-fallback("margin-top", 15px);
+
+        @include breakpoint(normal) {
+          width: calc(50% - 12px);
+        }
+
+        @include breakpoint(tablet-plus) {
+          width: 100%;
+        }
+      }
+
+      @include element("icon") {
+        display: block;
+        @include rem-fallback("width", 16px);
+        @include rem-fallback("height", 12px);
+
+        @include modifier("tick") {
+          float: left;
+          @include rem-fallback("margin-top", 5px);
+          background: url("data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2216px%22%20height%3D%2212px%22%20viewBox%3D%220%200%2016%2012%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2047.1%20(45422)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3ECheck%20Copy%2010%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Final-Version%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22PDP-Desktop-Anchor-link%22%20transform%3D%22translate(-440.000000%2C%20-1187.000000)%22%20fill%3D%22%2370CF36%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolygon%20id%3D%22Check-Copy-10%22%20points%3D%22441.8%201192.4%20440%201194.2%20444.8%201199%20455.6%201188.8%20453.8%201187%20444.8%201195.4%22%3E%3C%2Fpolygon%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+          background-repeat: no-repeat;
+          background-position: 96% center;
+        }
+
+        @include modifier("exclamation") {
+          float: left;
+          @include rem-fallback("margin-top", 4px);
+          background: url("data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%224px%22%20height%3D%2217px%22%20viewBox%3D%220%200%204%2017%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2047.1%20(45422)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3EGroup%2014%20Copy%203%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22PDP-Desktop-No-inquiry-%22%20transform%3D%22translate(-446.000000%2C%20-1126.000000)%22%20fill%3D%22%23FF8F43%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Group-14-Copy-3%22%20transform%3D%22translate(446.000000%2C%201126.500000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle-10%22%20x%3D%220.5%22%20y%3D%220.328351736%22%20width%3D%223%22%20height%3D%2210%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Ccircle%20id%3D%22Oval-4%22%20cx%3D%222%22%20cy%3D%2214.2020556%22%20r%3D%222%22%3E%3C%2Fcircle%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+          background-repeat: no-repeat;
+          background-position: center;
+          @include rem-fallback("height", 17px);
+        }
+
+        @include element("text") {
+          display: block;
+          @include rem-fallback("margin-left", 26px);
+        }
+      }
+    }
+
+    .pet-facts {
+      &__content {
+        &--full-width {
+          flex-wrap: wrap;
+        }
+
+        @include modifier("section") {
+          word-break: break-word;
+        }
+      }
+      &__label {
+        @include rem-fallback("flex", 0 0 82px);
+
+        &--full-width {
+          flex: 0 0 100%;
+          @include rem-fallback("margin-bottom", 5px);
+        }
+
+        @include breakpoint(tablet-plus) {
+          flex: 0 0 35%;
+          font-size: 18px;
+        }
+
+        @include breakpoint(wide) {
+          font-size: 20px;
+        }
+      }
+
+      &__text {
+        &--full-width {
+          flex: 0 0 100%;
+        }
+
+        @include breakpoint(tablet-plus) {
+          font-size: 18px;
+        }
+
+        @include breakpoint(wide) {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  @include element("photo") {
+    @include modifier("fig") {
+      @include breakpoint(tiny) {
+        @include rem-fallback("width", 60px);
+        @include rem-fallback("height", 60px);
+        @include rem-fallback("margin", 0 25px 0 0);
+        @include rem-fallback("margin-bottom", 10px);
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("width", 145px);
+        @include rem-fallback("height", 145px);
+        @include rem-fallback("margin", 0 auto 20px);
+      }
+    }
+  }
+
+  @include element("desc") {
+    & .h4__heading {
+      @include breakpoint(tiny) {
+        @include rem-fallback("line-height", 24px);
+      }
+    }
+
+    & .h2__heading {
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("padding", 30px 0 0);
+        @include rem-fallback("line-height", 48px);
+      }
+    }
+
+    &-close {
+      @include rem-fallback("margin-left", -85px);
+    }
+  }
+
+  @include element("list") {
+    ul {
+      @include rem-fallback("font-size", 16px);
+      @include rem-fallback("line-height", 25px);
+      margin: 0;
+
+      li {
+        @include rem-fallback("padding-bottom", 10px);
+      }
+    }
+  }
+
+  @include element("right") {
+    @include breakpoint(tiny) {
+      width: 100%;
+      @include rem-fallback("padding", 0 25px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include column(9/12, $gutter);
+      @include rem-fallback("padding", 0 0 80px);
+      @include rem-fallback("padding-right", 30px);
+    }
+  }
+
+  @include element("close") {
+    @include column(1/12, $gutter);
+  }
+
+  @include element("fields") {
+    @include rem-fallback("margin-top", 15px);
+
+    @include breakpoint(tablet-plus) {
+      margin-top: 0;
+    }
+
+    @include modifier("left") {
+      @include column(1/1, $gutter);
+
+      @include breakpoint(tablet-plus) {
+        @include column(1/2, 30px);
+      }
+
+      .column--half {
+        width: 100%;
+
+        @include breakpoint(normal) {
+          @include column(1/2, (1 - 1/2) * $gutter);
+        }
+      }
+    }
+
+    @include modifier("right") {
+      @include column(1/1, $gutter);
+
+      @include breakpoint(tablet-plus) {
+        @include column(1/2, 30px);
+      }
+    }
+
+    @include modifier("full-width") {
+      @include breakpoint(normal) {
+        width: 100%;
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("margin-top", 40px);
+      }
+    }
+
+    .text-field-container {
+      @include column(1, 0);
+      @include rem-fallback("margin-top", 15px);
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("margin-top", 20px);
+      }
+    }
+
+    .suggestion-text {
+      top: 30%;
+    }
+
+    .form__input {
+      margin: 0;
+
+      &:focus ~ .suggestion-text.suggestion-text--small {
+        display: none;
+      }
+    }
+
+    .select-box {
+      @include rem-fallback("margin-top", 15px);
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("margin-top", 20px);
+      }
+
+      .form__select-label {
+        top: initial;
+        color: color(agray, light);
+      }
+
+      .form__select {
+        top: 0;
+      }
+
+      @include element("dropdown") {
+        top: 56px;
+      }
+
+      .suggestion-text {
+        @include breakpoint(normal) {
+          right: 10%;
+        }
+
+        @include breakpoint(tablet-plus) {
+          right: 20%;
+        }
+      }
+    }
+
+    .text-area-container {
+      @include column(1, 0);
+      @include rem-fallback("margin-top", 15px);
+      @include rem-fallback("height", 410px);
+      border-top: 1px solid color(agray, light);
+
+      @include breakpoint(phone-plus) {
+        @include rem-fallback("height", 280px);
+      }
+
+      @include breakpoint(normal) {
+        @include rem-fallback("height", 240px);
+      }
+
+      @include breakpoint(tablet-plus) {
+        border-top: 0;
+        @include rem-fallback("margin-top", 20px);
+      }
+
+      .text-limit {
+        @include rem-fallback("font-size", 14px);
+        @include rem-fallback("line-height", 22px);
+      }
+    }
+
+    .text-area {
+      @include rem-fallback("padding-top", 35px);
+      @include rem-fallback("margin-top", 30px);
+      height: 100%;
+
+      @include breakpoint(tablet-plus) {
+        margin-top: 0;
+        @include rem-fallback("padding-top", 20px);
+      }
+
+      &:focus ~ label {
+        @include breakpoint(tablet-plus) {
+          @include rem-fallback("top", 10px);
+        }
+      }
+
+      &:valid ~ label {
+        @include breakpoint(tablet-plus) {
+          @include rem-fallback("top", 10px);
+        }
+      }
+    }
+
+    .text-area__label {
+      @include rem-fallback("right", 20px);
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("top", 16px);
+      }
+    }
+
+    .text-area__error-msg {
+      @include breakpoint(tiny) {
+        width: 100%;
+        @include rem-fallback("top", 33px);
+      }
+
+      @include breakpoint(thin) {
+        width: 60%;
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("top", 6px);
+      }
+    }
+  }
+
+  @include element("textarea") {
+    @include modifier("tip") {
+      @include rem-fallback("font-size", 16px);
+      font-weight: 700;
+      @include rem-fallback("line-height", 25px);
+    }
+
+    @include modifier("label-top") {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  @include element("checkbox") {
+    @include rem-fallback("margin-top", 30px);
+    @include rem-fallback("padding-top", 60px);
+    border-top: 1px solid color(agray, light);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin-top", 60px);
+
+      .white-bg.m-space--x-small {
+        @include rem-fallback("margin-bottom", 40px);
+      }
+    }
+
+    .checkbox__label {
+      display: block;
+    }
+  }
+
+  @include element("button") {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include modifier("green") {
+      @include breakpoint(tiny) {
+        @include rem-fallback("margin", 15px 0 60px);
+        width: 100%;
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("margin", 20px 0 0);
+      }
+    }
+  }
+
+  @include element("privacy") {
+    @include breakpoint(tiny) {
+      @include rem-fallback("margin", 0 0 80px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin", 30px 0 0);
+    }
+
+    .h6__heading {
+      color: color(agray, light);
+      font-weight: 200;
+      @include font-size(12);
+      @include rem-fallback("line-height", 17px);
+    }
+  }
+
+  @include element("foster") {
+    @include rem-fallback("margin", 15px 0 0);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin", 30px 0 0);
+      @include rem-fallback("margin-right", 60px);
+    }
+
+    @include modifier("left") {
+      @include rem-fallback("margin-bottom", 20px);
+      width: 100%;
+
+      @include breakpoint(tablet-plus) {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+        width: 60%;
+      }
+    }
+
+    @include modifier("right") {
+      width: 100%;
+
+      @include breakpoint(tablet-plus) {
+        width: 40%;
+      }
+
+      ul {
+        @include breakpoint(tablet-plus) {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+
+      .radio {
+        margin-top: 0;
+
+        &:first-child {
+          @include rem-fallback("margin-bottom", 10px);
+
+          @include breakpoint(tablet-plus) {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @include element("adopter-information") {
+    @include rem-fallback("margin-top", 60px);
+    @include rem-fallback("padding-top", 60px);
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      flex-wrap: wrap;
+
+      @include breakpoint(tablet-plus) {
+        justify-content: flex-start;
+        flex-direction: row;
+      }
+    }
+
+    li {
+      @include rem-fallback("margin-top", 15px);
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      @include breakpoint(tablet-plus) {
+        margin-top: 0;
+        flex-basis: 33%;
+      }
+
+      &.yes {
+        order: 1;
+        flex-basis: 25%;
+      }
+
+      &.no {
+        order: 3;
+
+        @include breakpoint(tablet-plus) {
+          order: 2;
+          flex-basis: 75%;
+        }
+      }
+    }
+
+    div {
+      &.question {
+        order: 2;
+        @include rem-fallback("margin-top", 15px);
+
+        @include breakpoint(tablet-plus) {
+          order: 3;
+          flex-basis: 100%;
+          @include rem-fallback("margin-top", 30px);
+        }
+
+        select[name="numberOfChildren"],
+        select[name="numberOfDogs"],
+        select[name="numberOfCats"],
+        select[name="numberOfRabbits"],
+        select[name="numberOfBirds"],
+        select[name="numberOfSmallAnimals"],
+        select[name="numberOfHorses"],
+        select[name="numberOfReptiles"],
+        select[name="numberOfFarmTypeAnimals"],
+        .select-field-container {
+          @include rem-fallback("max-width", 417px);
+        }
+      }
+    }
+
+    &--title {
+      @include breakpoint(normal) {
+        @include heading($h-heading: h2__heading-h2--museo);
+      }
+    }
+
+    &__sub-heading {
+      @include breakpoint(tablet-plus) {
+        &.m-space-t--x-small {
+          @include rem-fallback("margin-top", 10px);
+        }
+      }
+    }
+
+    &__break {
+      display: block;
+
+      @include breakpoint(tablet-plus) {
+        display: none;
+      }
+    }
+
+    .select-box {
+      justify-content: flex-start;
+
+      .form__select:valid ~ label {
+        top: inherit;
+        @include rem-fallback("right", 35px);
+        @include rem-fallback("bottom", 13px);
+        font-weight: 400;
+        @include rem-fallback("font-size", 20px);
+        pointer-events: none;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .form__select:valid ~ label.form__select-label--small {
+        @include rem-fallback("font-size", 14px);
+        pointer-events: none;
+
+        @include breakpoint(tablet-plus) {
+          @include rem-fallback("font-size", 20px);
+          pointer-events: none;
+        }
+      }
+
+      .form__select:valid ~ label.form__select-label--top {
+        @include rem-fallback("top", 8px);
+        @include rem-fallback("font-size", 14px);
+        font-weight: 700;
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("margin-top", 30px);
+      }
+
+      @include modifier("m-t-tiny") {
+        @include breakpoint(tablet-plus) {
+          @include rem-fallback("margin-top", 10px);
+        }
+      }
+    }
+  }
+
+  @include element("adopter-question") {
+    &:last-child {
+      margin: 0;
+    }
+
+    @include breakpoint(tablet-plus) {
+      h4 {
+        @include heading($h-heading: h3__heading-h3--bold);
+      }
+
+      .p-space-b--tiny {
+        @include rem-fallback("padding", 0 0 20px);
+      }
+
+      &.m-space-t--sm-medium {
+        @include rem-fallback("margin-top", 40px);
+      }
+
+      .m-space-b--x-small {
+        margin-bottom: 0;
+      }
+    }
+
+    &--kid-count {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      width: 100%;
+      justify-content: flex-start;
+
+      .select-box {
+        flex-basis: 46%;
+        @include rem-fallback("margin-right", 20px);
+
+        @include breakpoint(tablet-plus) {
+          flex-basis: 30%;
+          @include rem-fallback("margin-right", 27px);
+        }
+
+        @include breakpoint(wide) {
+          flex-basis: 31%;
+        }
+
+        &:nth-child(2n + 2) {
+          margin-right: 0;
+
+          @include breakpoint(tablet-plus) {
+            @include rem-fallback("margin-right", 27px);
+          }
+        }
+
+        &:nth-child(3n + 3) {
+          @include breakpoint(tablet-plus) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    &--pet-types {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+
+      .type {
+        flex-basis: 99%;
+
+        @include breakpoint(normal) {
+          flex-basis: 49%;
+          @include rem-fallback("margin-top", 20px);
+        }
+      }
+
+      .checkbox__label {
+        display: block;
+        line-height: 1;
+      }
+    }
+  }
+
+  .uso-signup {
+    position: relative;
+    margin: 0 -9600rem;
+    margin-top: 20px;
+    padding: 20px 9600rem;
+    /* add back section padding value */
+    z-index: 0;
+    background-color: transparent;
+
+    @include breakpoint(tablet-plus) {
+      margin-left: 0;
+      margin-right: 0;
+      padding: 20px 20px;
+      background-color: rgba(233, 233, 233, 0.3);
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      left: 9500.5rem;
+      right: 9500.5rem;
+      background-color: rgba(233, 233, 233, 0.3);
+    }
+
+    .list ul {
+      margin-left: 0;
+
+      li {
+        padding-bottom: 0;
+      }
+    }
+
+    .text-field-container {
+      margin-top: 15px;
+      width: 100%;
+
+      .valid-tick {
+        @include rem-fallback("right", 30px);
+      }
+    }
+
+    .password-form__error-msg.h5__heading {
+      color: #ff8f43 !important;
+      line-height: 20px;
+      margin-top: 20px;
+    }
+
+    .signup__password-error .text-field-container {
+      margin: 0;
+    }
+
+    .pet-inquiry-form__button--green {
+      @include rem-fallback("margin", 10px 0 0);
+    }
+  }
+
+  @include element("thanks") {
+    width: 100%;
+    @include rem-fallback("padding", 60px 30px 80px 30px);
+
+    @include breakpoint(tablet-plus) {
+      @include container($tablet-plus);
+      @include rem-fallback("padding", 60px 90px 80px 90px);
+    }
+
+    @include breakpoint(wide) {
+      @include container($wide);
+      @include rem-fallback("padding", 60px 180px 80px 180px);
+    }
+
+    .uso-signup {
+      @include rem-fallback("padding-top", 30px);
+      @include rem-fallback("margin-top", 60px);
+      @include rem-fallback("margin-bottom", 60px);
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("margin-top", 20px);
+        margin-bottom: 0;
+      }
+
+      .white-puppy {
+        position: absolute;
+        @include rem-fallback("margin-left", 172px);
+        @include rem-fallback("top", -14px);
+
+        @include breakpoint(tablet-plus) {
+          @include rem-fallback("right", 20px);
+        }
+      }
+
+      .mixed-breed-puppy {
+        position: absolute;
+        @include rem-fallback("margin-left", -27px);
+        @include rem-fallback("top", 14px);
+
+        @include breakpoint(tablet-plus) {
+          @include rem-fallback("right", 5px);
+        }
+      }
+
+      .holdon {
+        @include rem-fallback("margin-left", -22px);
+        @include rem-fallback("margin-top", -44px);
+        @include rem-fallback("margin-bottom", 15px);
+
+        @include breakpoint(tablet-plus) {
+          @include rem-fallback("margin-left", -34px);
+          @include rem-fallback("margin-top", -44px);
+        }
+      }
+
+      .signup__column {
+        @include rem-fallback("margin-top", 5px);
+      }
+
+      .form__input {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.thanks-pet-inquiry {
+  max-width: 100%;
+
+  @include breakpoint(tablet-plus) {
+    @include column(6/12, $gutter);
+    @include rem-fallback("padding-right", 27px);
+
+    hr {
+      display: none;
+    }
+
+    p {
+      margin-top: 0;
+    }
+  }
+
+  &__text {
+  }
+
+  h2 {
+    @include breakpoint(tiny) {
+      @include rem-fallback("font-size", 26px);
+      @include rem-fallback("line-height", 39px);
+      @include rem-fallback("letter-spacing", -0.5px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("font-size", 45px);
+      @include rem-fallback("line-height", 54px);
+      @include rem-fallback("margin", 0 0 30px);
+    }
+
+    .h2--bold {
+      color: color(agray, dark);
+    }
+  }
+
+  &.foster-modal {
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("max-width", 750px);
+    }
+  }
+
+  .foster-modal__button {
+    width: 100%;
+
+    @include breakpoint(normal) {
+      @include rem-fallback("width", 320px);
+    }
+  }
+
+  &.foster-resources {
+    @include rem-fallback("margin", 20px 0 80px);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin", 20px 25px 80px 25px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include column(8/12, $gutter);
+      max-width: none;
+    }
+  }
+}
+
+.petcoach__container {
+  width: 100%;
+
+  @include breakpoint(tablet-plus) {
+    @include column(6/12, $gutter);
+    position: relative;
+  }
+
+  .petcoach__widget {
+    h4 {
+      @include rem-fallback("margin-top", 20px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      h4 {
+        margin-top: 40px;
+      }
+    }
+  }
+}
+
+.pet-inquiry-shelter {
+  width: 100%;
+  // display: none;
+
+  //  @include breakpoint(normal) {
+  //     display: block;
+  //  }
+}
+
+.pet-inquiry-ask {
+  .e-modal__closer {
+    @include breakpoint(tiny) {
+      @include rem-fallback("padding", 10px 25px 0 20px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 20px 20px 0 20px);
+    }
+  }
+
+  .modal-popup__close--thanku {
+    @include breakpoint(tiny) {
+      @include rem-fallback("padding", 10px 25px 0 0);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 20px 20px 0 0);
+    }
+  }
+
+  .sticky-close {
+    background: $sticky-close-grey;
+  }
+}
+
+.favoritepet-shelter-popup {
+  .e-modal__closer {
+    @include breakpoint(tiny) {
+      @include rem-fallback("padding", 10px 15px 0 0);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 20px 20px 0 0);
+    }
+  }
+}
+
+.fav-pet-shelterinfo {
+  .shelterinfo__container {
+    @include breakpoint(tiny) {
+      @include rem-fallback("padding", 20px 15px 20px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 40px);
+    }
+  }
+
+  .formgroup {
+    border: 1px solid color(agray, light);
+
+    @include breakpoint(tiny) {
+      @include rem-fallback("padding", 20px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 20px 50px 30px);
+    }
+
+    @include element("title") {
+      margin: 0;
+    }
+
+    @include element("head-section") {
+      @include rem-fallback("margin", 0 0 15px);
+    }
+  }
+}
+
+.grecaptcha-badge {
+  display: none;
+}
+
+.pet-inquiry__no--optin {
+  .pet-inquiry-form__button--green {
+    @include rem-fallback("margin", 40px 0 80px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin", 60px 0 40px);
+    }
+  }
+}
+
+.pet-detail .modal-popup__dialog {
+  @include breakpoint(tablet-plus) {
+    width: 98%;
+  }
+}
+
+.error-pet-inquiry {
+  margin: 30px auto 0;
+  width: 100%;
+
+  @include breakpoint(tablet-plus) {
+    @include column(9/12, $gutter);
+    padding: 0;
+  }
+
+  @include element("text") {
+    width: 100%;
+
+    @include breakpoint(tablet-plus) {
+      width: 85%;
+      margin: 0 auto 80px;
+    }
+  }
+
+  h3 {
+    font-family: $helvetica;
+    color: color(agray, darker);
+    font-weight: 200;
+    @include font-size(20);
+    @include rem-fallback("line-height", 32px);
+    letter-spacing: 0;
+
+    @include breakpoint(tablet-plus) {
+      @include font-size(26);
+      @include rem-fallback("line-height", 39px);
+    }
+  }
+}

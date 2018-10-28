@@ -1,0 +1,537 @@
+.login-popup {
+  @include rem-fallback("padding", 0 20px 0);
+
+  @include breakpoint(tablet-plus) {
+    @include rem-fallback("padding", 40px 0 0);
+  }
+
+  h1 {
+    text-align: left;
+    @include rem-fallback("padding", 20px 0 0);
+
+    @include breakpoint(tablet-plus) {
+      text-align: center;
+      padding: 0;
+    }
+  }
+
+  @include element("section") {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+    margin: 0 0 30px;
+
+    @include breakpoint(tablet-plus) {
+      margin: 0 auto 40px;
+      @include column(8/12, $gutter);
+    }
+
+    .link-blue {
+      font-weight: 700;
+    }
+  }
+
+  @include element("column") {
+    width: 100%;
+  }
+
+  @include element("left") {
+    display: flex;
+
+    @include breakpoint(tablet-plus) {
+      padding-bottom: 0;
+    }
+  }
+
+  @include element("right") {
+    .text-field-container {
+      width: 100%;
+
+      @include breakpoint(normal) {
+        @include column(6/12, $gutter);
+
+        &.fullwidth {
+          width: 100%;
+        }
+      }
+
+      .link-blue {
+        font-weight: 400;
+      }
+    }
+
+    .form__input {
+      margin: 0;
+    }
+
+    .password-field {
+      @include rem-fallback("margin-top", 20px);
+
+      @include breakpoint(normal) {
+        margin-top: 0;
+      }
+
+      .form__input {
+        @include rem-fallback("padding", 17px 35px 4px 17px);
+      }
+
+      .valid-tick {
+        @include rem-fallback("right", 30px);
+      }
+    }
+
+    @include modifier("signin") {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button {
+      width: 100%;
+      margin: 40px auto 0;
+    }
+  }
+
+  @include element("middle") {
+    width: 100%;
+    @include rem-fallback("margin", 30px 0);
+  }
+
+  @include element("signin") {
+    position: relative;
+    top: 50%;
+    margin-top: -25px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+
+    @include breakpoint(normal) {
+      min-width: 40%;
+      width: min-content;
+    }
+
+    @include breakpoint(tablet-plus) {
+      min-width: 30%;
+    }
+
+    @include modifier("icon") {
+      @include rem-fallback("margin", 9px 10px 0 10px);
+      vertical-align: top;
+    }
+
+    @include modifier("text") {
+      @include heading($h-heading: h4__heading-h4--museo-h4--compact);
+      display: inline-block;
+      float: none;
+    }
+
+    @include modifier("button-adoptapet") {
+      background: url("data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2236px%22%20height%3D%2232px%22%20viewBox%3D%220%200%2036%2032%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20fill%3D%22%23ff8f43%22%20stroke-width%3D%221%22%3E%20%3Cg%20id%3D%22Artboard-Copy%22%3E%20%3Cg%20id%3D%22Group%22%3E%20%3Cg%20id%3D%22Group-2-Copy-3%22%3E%20%3Cg%20id%3D%22Group-Copy-2%22%3E%20%3Cpath%20d%3D%22M6.22845955%2C25.0727471%20C7.50228696%2C29.1741901%2011.4288822%2C32.1267925%2015.7037757%2C31.9958083%20C19.9457101%2C31.8711914%2023.8910119%2C28.8385431%2025.3055838%2C24.7971345%20C26.7076848%2C20.7730085%2025.2868773%2C16.2249456%2021.9704721%2C13.6243633%20C19.5813776%2C11.7496518%2016.5197379%2C11.4831353%2013.5988427%2C11.8724495%20C7.81228132%2C12.6447106%204.56179446%2C19.7851692%206.22845955%2C25.0727471%22%3E%3C%2Fpath%3E%20%3Cpath%20d%3D%22M0.102867292%2C7.80789665%20C0.607347476%2C10.1662336%202.80677431%2C12.0144834%205.10407208%2C12.1590237%20C10.522563%2C12.4900674%2012.9675569%2C4.50212185%207.99215441%2C1.85563698%20C4.52841304%2C0.00365707573%20-0.807332406%2C3.54722386%200.102867292%2C7.80789665%22%20id%3D%22Fill-12%22%3E%3C%2Fpath%3E%20%3Cpath%20d%3D%22M14.0695311%2C2.45452919%20C13.6086282%2C3.80238375%2013.7192815%2C5.44842097%2014.8020375%2C6.50067828%20C17.6899967%2C9.31014495%2023.1696203%2C8.42249137%2023.1696203%2C4.03162244%20C23.1696203%2C-0.213602352%2015.4979644%2C-1.67779986%2014.0695311%2C2.45452919%22%3E%3C%2Fpath%3E%20%3Cpath%20d%3D%22M25.7439242%2C12.9200074%20C29.1504009%2C13.960178%2031.8308491%2C9.35474527%2029.299512%2C6.81422374%20C28.5539569%2C6.06631744%2027.4755647%2C5.77405308%2026.4459886%2C5.88024851%20C25.309017%2C5.99370517%2024.2288497%2C6.58731042%2023.6687958%2C7.58209841%20C22.5007595%2C9.66516269%2023.4593303%2C12.2283756%2025.7439242%2C12.9200074%22%3E%3C%2Fpath%3E%20%3Cpath%20d%3D%22M28.3039729%2C20.4710954%20C28.5382672%2C21.119938%2028.944496%2C21.6929418%2029.5511666%2C22.0515374%20C31.5751837%2C23.2818103%2034.5470681%2C22.0515374%2035.0878156%2C19.6443595%20C35.8503855%2C16.3570778%2032.5702661%2C14.436766%2029.94136%2C15.7316423%20C28.3039729%2C16.5396525%2027.6910663%2C18.7782998%2028.3039729%2C20.4710954%22%3E%3C%2Fpath%3E%20%3C%2Fg%3E%20%3C%2Fg%3E%20%3C%2Fg%3E%20%3C%2Fg%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      display: inline-block;
+      @include rem-fallback("width", 36px);
+      @include rem-fallback("height", 32px);
+    }
+
+    @include modifier("text-adoptapet") {
+      color: color(agray, dark);
+    }
+  }
+
+  .vertical-divider {
+    position: relative;
+    outline: 0;
+    border: 0;
+    margin: 0;
+    text-align: center;
+    height: 1.5em;
+    color: color(agray, darker);
+    font-weight: 200;
+    @include font-size(16);
+    @include rem-fallback("line-height", 20px);
+    @include rem-fallback("letter-spacing", -0.25px);
+
+    @include breakpoint(tablet-plus) {
+      @include font-size(20);
+      @include rem-fallback("line-height", 24px);
+    }
+
+    &::after {
+      content: attr(data-content);
+      position: relative;
+      display: inline-block;
+      padding: 0 0.6em;
+      line-height: 1.5em;
+      background-color: color(awhite);
+    }
+
+    &::before {
+      content: "";
+      border-top: 1px solid color(agray, light);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+    }
+  }
+
+  @include element("error-msg") {
+    color: color(aorange);
+    @include font-size(12);
+    @include rem-fallback("margin", 5px 0 0);
+  }
+
+  &.forgot-popup {
+    @include rem-fallback("padding", 0 20px 30px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 50px 100px);
+    }
+
+    h1 {
+      @include rem-fallback("margin", 0 0 30px);
+
+      @include breakpoint(tablet-plus) {
+        text-align: center;
+      }
+    }
+
+    .forgot-heading__desktop {
+      display: none;
+
+      @include breakpoint(tablet-plus) {
+        display: block;
+      }
+    }
+
+    .forgot-heading__mobile {
+      display: block;
+
+      @include breakpoint(tablet-plus) {
+        display: none;
+      }
+    }
+
+    .p__body-copy {
+      @include rem-fallback("line-height", 20px);
+      @include font-size(16);
+
+      @include breakpoint(normal) {
+        @include rem-fallback("line-height", 24px);
+        @include font-size(20);
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("line-height", 26px);
+      }
+    }
+
+    .text-field-container {
+      .form__input {
+        margin: 0;
+      }
+    }
+  }
+
+  @include element("forgot-pwd") {
+    width: 100%;
+
+    &.login-popup__forgot-status {
+      display: flex;
+      height: 200px;
+      justify-content: left;
+      flex-direction: column;
+
+      @include breakpoint(tablet-plus) {
+        align-items: center;
+        justify-content: center;
+      }
+
+      .static-page__title {
+        @include rem-fallback("padding", 30px 0 0);
+
+        @include breakpoint(tablet-plus) {
+          @include rem-fallback("padding", 40px 0 0);
+        }
+      }
+    }
+  }
+
+  @include element("forgot-loader") {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+  }
+
+  @include element("account") {
+    @include heading($h-heading: h5__heading-h5--light-h5--compact);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h4__heading-h4--light-h4--compact);
+      @include rem-fallback("line-height", 32px);
+    }
+  }
+
+  @include element("forgot-rehome") {
+    @include heading($h-heading: h6__heading-h6--light-h6--compact);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h5__heading-h5--light-h5--compact);
+    }
+  }
+
+  &.unconfirm-user {
+    .login-confirm {
+      h1 {
+        @include rem-fallback("padding", 20px 0 0);
+        @include heading($h-heading: h2__heading-h2--museo);
+
+        @include breakpoint(normal) {
+          @include rem-fallback("padding", 60px 0 0);
+        }
+
+        @include breakpoint(tablet-plus) {
+          @include rem-fallback("padding", 40px 0 0);
+          @include heading($h-heading: h1__heading-h1--museo);
+        }
+
+        span {
+          @include breakpoint(tablet-plus) {
+            display: block;
+          }
+        }
+      }
+
+      .h3__heading {
+        font-family: $helvetica;
+        color: color(agray, darker);
+        font-weight: 200;
+        @include font-size(20);
+        @include rem-fallback("line-height", 26px);
+        @include rem-fallback("letter-spacing", -0.25px);
+
+        @include breakpoint(tablet-plus) {
+          @include font-size(26);
+          @include rem-fallback("line-height", 39px);
+        }
+      }
+
+      .login-popup__button {
+        @include breakpoint(tablet-plus) {
+          @include rem-fallback("margin", 0 0 80px);
+        }
+      }
+
+      .login-confirm__right {
+        align-self: flex-end;
+        @include rem-fallback("margin-top", 30px);
+
+        @include breakpoint(tablet-plus) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+.login-back {
+  @include rem-fallback("padding-left", 20px);
+  position: fixed;
+  top: 0;
+  z-index: 30000;
+
+  @include breakpoint(tablet-plus) {
+    position: absolute;
+    @include rem-fallback("padding-left", 50px);
+    @include rem-fallback("padding-top", 20px);
+  }
+}
+
+.change-password {
+  @include element("form") {
+    @include rem-fallback("padding", 30px 0 80px);
+    width: 100%;
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 40px 0 80px);
+      @include column(8/12, $gutter);
+    }
+  }
+
+  .static-page__title {
+    @include rem-fallback("margin", 0 0 30px);
+    padding: 0;
+  }
+
+  .p__body-copy {
+    @include rem-fallback("line-height", 20px);
+    @include font-size(16);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("line-height", 24px);
+      @include font-size(20);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("line-height", 26px);
+    }
+  }
+
+  .text-field-container {
+    .form__input {
+      margin: 0;
+      @include rem-fallback("padding", 17px 35px 4px 17px);
+    }
+  }
+
+  .valid-tick {
+    @include rem-fallback("right", 30px);
+  }
+}
+
+.eye-icon {
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2226px%22%20height%3D%2215px%22%20viewBox%3D%220%200%2026%2015%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.596863678%22%3E%20%3Cpath%20d%3D%22M12.6569293%2C0%20C7.8272192%2C0%203.41870471%2C2.61111111%200.189538043%2C6.88888889%20C-0.0631793478%2C7.25%20-0.0631793478%2C7.72222222%200.189538043%2C8.08333333%20C3.41870471%2C12.3333333%207.8272192%2C14.9444444%2012.6569293%2C14.9444444%20C17.4866395%2C14.9444444%2021.895154%2C12.3333333%2025.1243207%2C8.05555556%20C25.377038%2C7.69444444%2025.377038%2C7.22222222%2025.1243207%2C6.86111111%20C21.895154%2C2.61111111%2017.4866395%2C0%2012.6569293%2C0%20Z%20M12.9938859%2C12.7222222%20C9.79279891%2C12.9166667%207.12522645%2C10.3055556%207.32178442%2C7.11111111%20C7.49026268%2C4.5%209.65240036%2C2.36111111%2012.2918931%2C2.19444444%20C15.4929801%2C2%2018.1605525%2C4.61111111%2017.9639946%2C7.80555556%20C17.7955163%2C10.4444444%2015.6614583%2C12.5555556%2012.9938859%2C12.7222222%20Z%20M12.8534873%2C10.3055556%20C11.1125453%2C10.4166667%209.70855978%2C9%209.79279891%2C7.27777778%20C9.87703804%2C5.86111111%2011.0283062%2C4.72222222%2012.4603714%2C4.63888889%20C14.2013134%2C4.52777778%2015.6052989%2C5.94444444%2015.5210598%2C7.66666667%20C15.4368207%2C9.05555556%2014.2574728%2C10.2222222%2012.8534873%2C10.3055556%20Z%22%20id%3D%22Shape%22%20fill%3D%22%23B3B3B3%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  @include rem-fallback("width", 26px);
+  @include rem-fallback("height", 15px);
+  @include rem-fallback("right", 11px);
+  position: absolute;
+  top: 40%;
+
+  @include element("active") {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2226px%22%20height%3D%2215px%22%20viewBox%3D%220%200%2026%2015%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%20%3Cpath%20d%3D%22M12.6569293%2C0%20C7.8272192%2C0%203.41870471%2C2.61111111%200.189538043%2C6.88888889%20C-0.0631793478%2C7.25%20-0.0631793478%2C7.72222222%200.189538043%2C8.08333333%20C3.41870471%2C12.3333333%207.8272192%2C14.9444444%2012.6569293%2C14.9444444%20C17.4866395%2C14.9444444%2021.895154%2C12.3333333%2025.1243207%2C8.05555556%20C25.377038%2C7.69444444%2025.377038%2C7.22222222%2025.1243207%2C6.86111111%20C21.895154%2C2.61111111%2017.4866395%2C0%2012.6569293%2C0%20Z%20M12.9938859%2C12.7222222%20C9.79279891%2C12.9166667%207.12522645%2C10.3055556%207.32178442%2C7.11111111%20C7.49026268%2C4.5%209.65240036%2C2.36111111%2012.2918931%2C2.19444444%20C15.4929801%2C2%2018.1605525%2C4.61111111%2017.9639946%2C7.80555556%20C17.7955163%2C10.4444444%2015.6614583%2C12.5555556%2012.9938859%2C12.7222222%20Z%20M12.8534873%2C10.3055556%20C11.1125453%2C10.4166667%209.70855978%2C9%209.79279891%2C7.27777778%20C9.87703804%2C5.86111111%2011.0283062%2C4.72222222%2012.4603714%2C4.63888889%20C14.2013134%2C4.52777778%2015.6052989%2C5.94444444%2015.5210598%2C7.66666667%20C15.4368207%2C9.05555556%2014.2574728%2C10.2222222%2012.8534873%2C10.3055556%20Z%22%20id%3D%22Shape%22%20fill%3D%22%234D4D4D%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.forgot-password {
+  @include element("left") {
+    width: 100%;
+
+    @include breakpoint(tablet-plus) {
+      @include column(7/12, $gutter);
+    }
+  }
+
+  @include element("middle") {
+    width: 100%;
+    @include rem-fallback("margin", 30px 0);
+
+    @include breakpoint(tablet-plus) {
+      @include column(1/12, $gutter);
+      display: flex;
+      margin: 0;
+    }
+
+    .divider {
+      border-bottom: 1px solid color(agray, light);
+
+      @include breakpoint(tablet-plus) {
+        border-right: 1px solid color(agray, light);
+        height: 100%;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  @include element("right") {
+    width: 100%;
+
+    @include breakpoint(tablet-plus) {
+      @include column(4/12, $gutter);
+    }
+
+    h3 {
+      @include heading($h-heading: h4__heading-h4--museo);
+      @include rem-fallback("line-height", 26px);
+
+      @include breakpoint(tablet-plus) {
+        @include heading($h-heading: h3__heading-h3--museo-h3--x-compact);
+      }
+    }
+  }
+
+  .text-field-container {
+    .form__input {
+      margin: 0;
+    }
+  }
+}
+
+.login-modal__close {
+  &.e-modal__closer {
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 20px 20px 0 0);
+    }
+  }
+}
+
+.login-popup-adoptapet__container {
+  @include breakpoint(normal) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.login-confirm {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 100%;
+  height: calc(100vh - 87px);
+
+  @include breakpoint(tablet-plus) {
+    @include column(8/12, $gutter);
+    align-items: center;
+    height: auto;
+  }
+
+  h1 {
+    text-align: left;
+    @include rem-fallback("padding", 20px 0 0 0);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("padding", 60px 0 0 0);
+    }
+
+    @include breakpoint(tablet-plus) {
+      padding: 0;
+    }
+  }
+
+  @include element("column") {
+    width: 100%;
+
+    @include breakpoint(tablet-plus) {
+      @include column(6/12, $gutter);
+    }
+  }
+
+  @include element("right") {
+    flex-shrink: 0;
+    display: flex;
+
+    @include breakpoint(tablet-plus) {
+      height: 365px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      align-self: flex-end;
+
+      @include breakpoint(tablet-plus) {
+        width: auto;
+        height: 365px;
+      }
+    }
+  }
+}

@@ -1,0 +1,1224 @@
+.seo {
+  @include element("heading") {
+    @include heading($h-heading: h2__heading-h2--museo);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h1__heading-h1--museo);
+    }
+  }
+
+  h2 {
+    @include heading($h-heading: h3__heading-h3--museo);
+
+    @include breakpoint(normal) {
+      @include heading($h-heading: h2__heading-h2--museo);
+    }
+  }
+
+  .p__body-copy {
+    @include font-size(16);
+    @include rem-fallback("line-height", 25px);
+
+    @include breakpoint(normal) {
+      @include font-size(20);
+      @include rem-fallback("line-height", 32px);
+    }
+  }
+
+  .text-break {
+    white-space: nowrap;
+  }
+
+  @include element("top-content") {
+    @include rem-fallback("margin", 30px 0 60px);
+    width: 100%;
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin", 10px 0 40px);
+    }
+
+    @include modifier("section") {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    @include modifier("left") {
+      width: 100%;
+      @include rem-fallback("margin", 0 0 30px);
+
+      @include breakpoint(normal) {
+        @include column(6/12, $gutter);
+        margin: 0;
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("margin", 60px 0);
+      }
+    }
+
+    @include modifier("text") {
+      @include font-size(16);
+      @include rem-fallback("line-height", 32px);
+      letter-spacing: 0;
+      max-width: 525px;
+
+      @include breakpoint(normal) {
+        @include font-size(20);
+        @include rem-fallback("line-height", 32px);
+        @include rem-fallback("letter-spacing", -0.25px);
+      }
+
+      @include breakpoint(tablet-plus) {
+        @include font-size(26);
+        @include rem-fallback("line-height", 39px);
+        letter-spacing: 0;
+      }
+    }
+
+    @include modifier("text-breed") {
+      max-width: 560px;
+    }
+
+    @include modifier("right") {
+      width: 100%;
+
+      @include breakpoint(normal) {
+        @include column(6/12, $gutter);
+        align-self: flex-end;
+      }
+
+      @include breakpoint(tablet-plus) {
+        display: flex;
+        justify-content: center;
+      }
+
+      img {
+        @include breakpoint(normal) {
+          @include rem-fallback("height", 265px);
+        }
+
+        @include breakpoint(tablet-plus) {
+          @include rem-fallback("height", 385px);
+        }
+      }
+
+      &.breed-image {
+        display: flex;
+        justify-content: center;
+
+        img {
+          width: 100%;
+          height: 100%;
+
+          @include breakpoint(wide) {
+            width: auto;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+
+  @include element("jumpto") {
+    background: $twenty-percent-lighter-grey;
+    @include rem-fallback("padding", 40px 0 20px);
+    @include rem-fallback("margin", 0 0 80px);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("padding", 40px 0);
+    }
+
+    @include modifier("container") {
+      @include breakpoint(normal) {
+        column-count: 2;
+      }
+    }
+
+    h3 {
+      width: 100%;
+      @include heading($h-heading: h4__heading-h4--bold);
+
+      @include breakpoint(normal) {
+        @include heading($h-heading: h3__heading-h3--bold);
+      }
+    }
+
+    @include modifier("content") {
+      width: 100%;
+    }
+
+    @include modifier("text") {
+      width: 100%;
+      @include heading($h-heading: h6__heading-h6--light-h6--compact);
+      @include rem-fallback("margin", 0 0 20px);
+      cursor: pointer;
+
+      @include breakpoint(tablet-plus) {
+        @include heading($h-heading: h5__heading-h5--light);
+      }
+
+      &:hover {
+        @include breakpoint(tablet-plus) {
+          color: color(ablue);
+        }
+      }
+
+      &:active {
+        color: color(ablue, dark);
+      }
+    }
+  }
+
+  @include element("search-form") {
+    @include rem-fallback("padding", 0 0 60px);
+
+    .search-form {
+      .select-box__dropdown--breed {
+        width: 100%;
+      }
+    }
+
+    .search-form__container {
+      min-height: auto;
+
+      @include breakpoint(tablet-plus) {
+        border-radius: 8px;
+      }
+    }
+
+    .search-form__section {
+      &.breed {
+        width: 100%;
+      }
+    }
+
+    .search-form__field-section {
+      @include rem-fallback("padding", 20px 0);
+
+      @include breakpoint(tablet-plus) {
+        @include rem-fallback("padding", 20px);
+      }
+    }
+
+    .search-form__pet-image {
+      &.is-cat {
+        @include breakpoint(tablet-plus) {
+          top: -110px;
+        }
+      }
+    }
+
+    @include modifier("mobile") {
+      max-width: 100%;
+
+      .search-form__parent {
+        background-color: color(ablue);
+      }
+    }
+
+    .form__input {
+      & + .valid-tick {
+        bottom: 15px;
+
+        @include breakpoint(normal) {
+          bottom: 23px;
+        }
+      }
+    }
+  }
+
+  @include element("adopt-content") {
+    @include rem-fallback("padding", 0 0 80px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin", 0 0 80px);
+      border-bottom: 1px solid color(agray, light);
+    }
+
+    .petcard__content {
+      width: 100%;
+
+      &:nth-child(4),
+      &:nth-child(5),
+      &:nth-child(6) {
+        display: none;
+      }
+
+      @include breakpoint(normal) {
+        width: calc(100% / 3);
+
+        &:nth-child(4),
+        &:nth-child(5),
+        &:nth-child(6) {
+          display: block;
+        }
+      }
+
+      &:nth-child(3n + 1) {
+        &:nth-last-child(-n + 3) {
+          padding-bottom: 0;
+        }
+      }
+
+      &:nth-child(3n + 1) {
+        &:nth-last-child(-n + 3) ~ .petcard__content {
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    @include modifier("button") {
+      width: 100%;
+      margin: 30px auto 0;
+
+      @include breakpoint(tablet-plus) {
+        width: auto;
+        max-width: fit-content;
+        min-width: 268px;
+      }
+
+      .button {
+        padding: 0 15px;
+      }
+    }
+
+    .content {
+      @include rem-fallback("padding", 0 0 80px);
+      border-bottom: 1px solid color(agray, light);
+    }
+
+    .search-link {
+      text-decoration: underline;
+    }
+  }
+
+  @include element("nearby-cities") {
+    @include rem-fallback("padding", 0 0 80px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin", 0 0 80px);
+      border-bottom: 1px solid color(agray, light);
+    }
+
+    @include modifier("content") {
+      @include breakpoint(normal) {
+        column-count: 3;
+        @include rem-fallback("margin-bottom", 20px);
+      }
+    }
+
+    @include modifier("list") {
+      @include breakpoint(normal) {
+        width: auto;
+      }
+
+      .link-blue {
+        display: block;
+        color: color(ablue);
+        font-family: $helvetica;
+        font-weight: 400;
+        @include font-size(16);
+        @include rem-fallback("line-height", 25px);
+        letter-spacing: 0;
+        @include rem-fallback("margin", 0 0 10px);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        @include breakpoint(tablet-plus) {
+          @include font-size(20);
+          @include rem-fallback("line-height", 32px);
+          margin-bottom: 0;
+        }
+
+        &.strong {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .h5__heading {
+      @include font-size(16);
+
+      @include breakpoint(tablet-plus) {
+        @include font-size(20);
+      }
+    }
+
+    @include modifier("mobile") {
+      max-width: 100%;
+    }
+
+    @include modifier("breed") {
+      .seo__nearby-cities--content {
+        @include breakpoint(normal) {
+          column-count: 2;
+        }
+      }
+    }
+  }
+
+  @include element("newsletter") {
+    @include rem-fallback("margin-bottom", 80px);
+
+    .form__card {
+      width: 100%;
+    }
+
+    @include breakpoint(tablet-plus) {
+      display: none;
+    }
+  }
+
+  @include element("petcard") {
+    .pet-card {
+      position: relative;
+    }
+
+    .pet-card__link {
+      &.petcard-grey {
+        visibility: hidden;
+      }
+    }
+
+    .petcard__section {
+      position: relative;
+    }
+
+    .petcard {
+      .pet-card__content {
+        width: 100%;
+
+        @include breakpoint(normal) {
+          position: relative;
+        }
+      }
+    }
+
+    .pet-card-act__act-heading,
+    .pet-card__act-heading {
+      @include rem-fallback("max-width", 130px);
+
+      @include breakpoint(thin) {
+        @include rem-fallback("max-width", 150px);
+      }
+
+      @include breakpoint(normal) {
+        @include rem-fallback("max-width", 185px);
+      }
+
+      @include breakpoint(wide) {
+        @include rem-fallback("max-width", 230px);
+      }
+    }
+
+    .information-icon {
+      background: url("data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2220px%22%20height%3D%2220px%22%20viewBox%3D%220%200%2020%2020%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%20%3Cg%20id%3D%22information%22%20fill%3D%22%23B3B3B3%22%20fill-rule%3D%22nonzero%22%3E%20%3Cpath%20d%3D%22M8.85844749%2C6.52054795%20C8.89497717%2C6.59360731%208.93150685%2C6.66666667%208.96803653%2C6.72146119%20C9.00456621%2C6.77625571%209.05936073%2C6.83105023%209.09589041%2C6.88584475%20C9.15068493%2C6.94063927%209.20547945%2C6.99543379%209.27853881%2C7.05022831%20C9.33333333%2C7.08675799%209.40639269%2C7.14155251%209.49771689%2C7.15981735%20C9.57077626%2C7.19634703%209.64383562%2C7.21461187%209.73515982%2C7.23287671%20C9.82648402%2C7.25114155%209.89954338%2C7.25114155%209.97260274%2C7.25114155%20C10.0456621%2C7.25114155%2010.1369863%2C7.25114155%2010.2100457%2C7.23287671%20C10.283105%2C7.21461187%2010.3561644%2C7.19634703%2010.4109589%2C7.15981735%20L10.4292237%2C7.15981735%20C10.5022831%2C7.12328767%2010.5753425%2C7.08675799%2010.6484018%2C7.03196347%20C10.7031963%2C6.99543379%2010.7579909%2C6.94063927%2010.8127854%2C6.88584475%20L10.8310502%2C6.86757991%20C10.8858447%2C6.81278539%2010.9223744%2C6.75799087%2010.9589041%2C6.70319635%20C10.9954338%2C6.64840183%2011.0319635%2C6.59360731%2011.0502283%2C6.52054795%20C11.0502283%2C6.50228311%2011.0502283%2C6.50228311%2011.0684932%2C6.48401826%20C11.1050228%2C6.4109589%2011.1232877%2C6.3196347%2011.1415525%2C6.24657534%20C11.1598174%2C6.17351598%2011.1598174%2C6.08219178%2011.1598174%2C6.00913242%20C11.1598174%2C5.93607306%2011.1598174%2C5.84474886%2011.1415525%2C5.7716895%20C11.1232877%2C5.69863014%2011.1050228%2C5.62557078%2011.0684932%2C5.53424658%20C11.0136986%2C5.40639269%2010.9406393%2C5.29680365%2010.8493151%2C5.20547945%20C10.8310502%2C5.18721461%2010.8310502%2C5.18721461%2010.8127854%2C5.16894977%20C10.7579909%2C5.11415525%2010.7031963%2C5.07762557%2010.630137%2C5.02283105%20C10.5570776%2C4.98630137%2010.5022831%2C4.94977169%2010.4292237%2C4.91324201%20C10.3561644%2C4.87671233%2010.283105%2C4.85844749%2010.2100457%2C4.84018265%20C10.1187215%2C4.82191781%2010.0456621%2C4.82191781%209.97260274%2C4.82191781%20C9.89954338%2C4.82191781%209.80821918%2C4.82191781%209.73515982%2C4.84018265%20C9.66210046%2C4.85844749%209.5890411%2C4.87671233%209.51598174%2C4.91324201%20L9.49771689%2C4.91324201%20C9.42465753%2C4.94977169%209.35159817%2C4.98630137%209.29680365%2C5.02283105%20C9.22374429%2C5.07762557%209.16894977%2C5.11415525%209.11415525%2C5.16894977%20C9.05936073%2C5.22374429%209.00456621%2C5.27853881%208.96803653%2C5.33333333%20C8.93150685%2C5.38812785%208.89497717%2C5.46118721%208.85844749%2C5.53424658%20C8.82191781%2C5.60730594%208.80365297%2C5.6803653%208.78538813%2C5.75342466%20C8.76712329%2C5.84474886%208.76712329%2C5.91780822%208.76712329%2C5.99086758%20C8.76712329%2C6.06392694%208.76712329%2C6.15525114%208.78538813%2C6.2283105%20C8.80365297%2C6.37442922%208.84018265%2C6.44748858%208.85844749%2C6.52054795%20Z%22%20id%3D%22Shape%22%3E%3C%2Fpath%3E%20%3Cpath%20d%3D%22M11.3972603%2C13.2054795%20L10.9771689%2C13.2054795%20L10.9771689%2C8.73059361%20C10.9771689%2C8.47488584%2010.7762557%2C8.25570776%2010.5022831%2C8.25570776%20L8.58447489%2C8.25570776%20C8.32876712%2C8.25570776%208.10958904%2C8.456621%208.10958904%2C8.73059361%20L8.10958904%2C9.71689498%20C8.10958904%2C9.97260274%208.31050228%2C10.1917808%208.58447489%2C10.1917808%20L8.96803653%2C10.1917808%20L8.96803653%2C13.2237443%20L8.58447489%2C13.2237443%20C8.32876712%2C13.2237443%208.10958904%2C13.4246575%208.10958904%2C13.6986301%20L8.10958904%2C14.6849315%20C8.10958904%2C14.9406393%208.31050228%2C15.1598174%208.58447489%2C15.1598174%20L11.3972603%2C15.1598174%20C11.652968%2C15.1598174%2011.8721461%2C14.9589041%2011.8721461%2C14.6849315%20L11.8721461%2C13.6986301%20C11.8721461%2C13.4246575%2011.652968%2C13.2054795%2011.3972603%2C13.2054795%20Z%22%20id%3D%22Shape%22%3E%3C%2Fpath%3E%20%3Cpath%20d%3D%22M9.99086758%2C0%20C4.47488584%2C0%200%2C4.47488584%200%2C9.99086758%20C0%2C15.5068493%204.47488584%2C19.9817352%209.99086758%2C19.9817352%20C15.5068493%2C19.9817352%2019.9817352%2C15.5068493%2019.9817352%2C9.99086758%20C19.9817352%2C4.47488584%2015.5068493%2C0%209.99086758%2C0%20Z%20M9.99086758%2C18.6666667%20C5.20547945%2C18.6666667%201.31506849%2C14.7762557%201.31506849%2C9.99086758%20C1.31506849%2C5.20547945%205.20547945%2C1.31506849%209.99086758%2C1.31506849%20C14.7762557%2C1.31506849%2018.6666667%2C5.20547945%2018.6666667%2C9.99086758%20C18.6666667%2C14.7762557%2014.7762557%2C18.6666667%209.99086758%2C18.6666667%20Z%22%20id%3D%22Shape%22%3E%3C%2Fpath%3E%20%3C%2Fg%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      @include rem-fallback("width", 20px);
+      @include rem-fallback("height", 20px);
+      right: 0;
+      position: absolute;
+
+      @include breakpoint(tablet-plus) {
+        top: 0;
+      }
+
+      &:hover {
+        background: url("data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2220px%22%20height%3D%2220px%22%20viewBox%3D%220%200%2020%2020%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%20%3Cg%20id%3D%22information%22%20fill-rule%3D%22nonzero%22%3E%20%3Cpath%20d%3D%22M9.99086758%2C0%20C4.47488584%2C0%200%2C4.47488584%200%2C9.99086758%20C0%2C15.5068493%204.47488584%2C19.9817352%209.99086758%2C19.9817352%20C15.5068493%2C19.9817352%2019.9817352%2C15.5068493%2019.9817352%2C9.99086758%20C19.9817352%2C4.47488584%2015.5068493%2C0%209.99086758%2C0%20Z%22%20id%3D%22Shape%22%20fill%3D%22%2300A8DE%22%3E%3C%2Fpath%3E%20%3Cpath%20d%3D%22M8.85844749%2C6.52054795%20C8.89497717%2C6.59360731%208.93150685%2C6.66666667%208.96803653%2C6.72146119%20C9.00456621%2C6.77625571%209.05936073%2C6.83105023%209.09589041%2C6.88584475%20C9.15068493%2C6.94063927%209.20547945%2C6.99543379%209.27853881%2C7.05022831%20C9.33333333%2C7.08675799%209.40639269%2C7.14155251%209.49771689%2C7.15981735%20C9.57077626%2C7.19634703%209.64383562%2C7.21461187%209.73515982%2C7.23287671%20C9.82648402%2C7.25114155%209.89954338%2C7.25114155%209.97260274%2C7.25114155%20C10.0456621%2C7.25114155%2010.1369863%2C7.25114155%2010.2100457%2C7.23287671%20C10.283105%2C7.21461187%2010.3561644%2C7.19634703%2010.4109589%2C7.15981735%20L10.4292237%2C7.15981735%20C10.5022831%2C7.12328767%2010.5753425%2C7.08675799%2010.6484018%2C7.03196347%20C10.7031963%2C6.99543379%2010.7579909%2C6.94063927%2010.8127854%2C6.88584475%20L10.8310502%2C6.86757991%20C10.8858447%2C6.81278539%2010.9223744%2C6.75799087%2010.9589041%2C6.70319635%20C10.9954338%2C6.64840183%2011.0319635%2C6.59360731%2011.0502283%2C6.52054795%20C11.0502283%2C6.50228311%2011.0502283%2C6.50228311%2011.0684932%2C6.48401826%20C11.1050228%2C6.4109589%2011.1232877%2C6.3196347%2011.1415525%2C6.24657534%20C11.1598174%2C6.17351598%2011.1598174%2C6.08219178%2011.1598174%2C6.00913242%20C11.1598174%2C5.93607306%2011.1598174%2C5.84474886%2011.1415525%2C5.7716895%20C11.1232877%2C5.69863014%2011.1050228%2C5.62557078%2011.0684932%2C5.53424658%20C11.0136986%2C5.40639269%2010.9406393%2C5.29680365%2010.8493151%2C5.20547945%20C10.8310502%2C5.18721461%2010.8310502%2C5.18721461%2010.8127854%2C5.16894977%20C10.7579909%2C5.11415525%2010.7031963%2C5.07762557%2010.630137%2C5.02283105%20C10.5570776%2C4.98630137%2010.5022831%2C4.94977169%2010.4292237%2C4.91324201%20C10.3561644%2C4.87671233%2010.283105%2C4.85844749%2010.2100457%2C4.84018265%20C10.1187215%2C4.82191781%2010.0456621%2C4.82191781%209.97260274%2C4.82191781%20C9.89954338%2C4.82191781%209.80821918%2C4.82191781%209.73515982%2C4.84018265%20C9.66210046%2C4.85844749%209.5890411%2C4.87671233%209.51598174%2C4.91324201%20L9.49771689%2C4.91324201%20C9.42465753%2C4.94977169%209.35159817%2C4.98630137%209.29680365%2C5.02283105%20C9.22374429%2C5.07762557%209.16894977%2C5.11415525%209.11415525%2C5.16894977%20C9.05936073%2C5.22374429%209.00456621%2C5.27853881%208.96803653%2C5.33333333%20C8.93150685%2C5.38812785%208.89497717%2C5.46118721%208.85844749%2C5.53424658%20C8.82191781%2C5.60730594%208.80365297%2C5.6803653%208.78538813%2C5.75342466%20C8.76712329%2C5.84474886%208.76712329%2C5.91780822%208.76712329%2C5.99086758%20C8.76712329%2C6.06392694%208.76712329%2C6.15525114%208.78538813%2C6.2283105%20C8.80365297%2C6.37442922%208.84018265%2C6.44748858%208.85844749%2C6.52054795%20Z%22%20id%3D%22Shape%22%20fill%3D%22%23FFFFFF%22%3E%3C%2Fpath%3E%20%3Cpath%20d%3D%22M11.3972603%2C13.2054795%20L10.9771689%2C13.2054795%20L10.9771689%2C8.73059361%20C10.9771689%2C8.47488584%2010.7762557%2C8.25570776%2010.5022831%2C8.25570776%20L8.58447489%2C8.25570776%20C8.32876712%2C8.25570776%208.10958904%2C8.456621%208.10958904%2C8.73059361%20L8.10958904%2C9.71689498%20C8.10958904%2C9.97260274%208.31050228%2C10.1917808%208.58447489%2C10.1917808%20L8.96803653%2C10.1917808%20L8.96803653%2C13.2237443%20L8.58447489%2C13.2237443%20C8.32876712%2C13.2237443%208.10958904%2C13.4246575%208.10958904%2C13.6986301%20L8.10958904%2C14.6849315%20C8.10958904%2C14.9406393%208.31050228%2C15.1598174%208.58447489%2C15.1598174%20L11.3972603%2C15.1598174%20C11.652968%2C15.1598174%2011.8721461%2C14.9589041%2011.8721461%2C14.6849315%20L11.8721461%2C13.6986301%20C11.8721461%2C13.4246575%2011.652968%2C13.2054795%2011.3972603%2C13.2054795%20Z%22%20id%3D%22Shape%22%20fill%3D%22%23FFFFFF%22%3E%3C%2Fpath%3E%20%3C%2Fg%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E");
+      }
+
+      span {
+        width: 18px;
+        height: 18px;
+        display: block;
+      }
+    }
+
+    @include modifier("close") {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+
+      svg {
+        fill: color(awhite);
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .petcard-blue {
+      position: absolute;
+      top: 0;
+      background: color(ablue);
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      padding: 15px;
+
+      @include breakpoint(normal) {
+        padding: 25px 10px;
+      }
+
+      @include breakpoint(tablet-plus) {
+        padding: 25px 20px;
+      }
+
+      @include element("content") {
+        color: color(awhite);
+        height: auto;
+        overflow: hidden;
+
+        @include breakpoint(normal) {
+          height: 270px;
+        }
+
+        @include breakpoint(tablet-plus) {
+          height: 288px;
+        }
+
+        @include modifier("section") {
+          display: flex;
+          flex: 0 0 100%;
+          margin: 0 0 5px;
+
+          @include breakpoint(normal) {
+            margin: 0 0 10px;
+            flex-wrap: wrap;
+          }
+
+          &:nth-of-type(4) {
+            margin-bottom: 0;
+          }
+        }
+
+        @include modifier("desktop") {
+          display: none;
+
+          @include breakpoint(normal) {
+            display: block;
+          }
+        }
+
+        @include modifier("mobile") {
+          display: block;
+
+          @include breakpoint(normal) {
+            display: none;
+          }
+        }
+      }
+
+      @include element("label") {
+        flex: 0 0 60px;
+        margin: 0 15px 0 0;
+        color: color(awhite);
+
+        @include breakpoint(normal) {
+          flex: 0 0 100%;
+          @include rem-fallback("margin", 0 0 5px);
+        }
+      }
+
+      @include element("text") {
+        color: color(awhite);
+        max-width: 200px;
+
+        @include breakpoint(normal) {
+          max-width: 100%;
+          word-wrap: break-word;
+        }
+
+        span {
+          display: block;
+        }
+
+        @include modifier("color") {
+          max-width: 70%;
+
+          @include breakpoint(normal) {
+            max-width: 100%;
+          }
+        }
+
+        @include modifier("story") {
+          height: 17px;
+
+          @include breakpoint(tablet-plus) {
+            height: auto;
+          }
+        }
+      }
+
+      @include element("learn-more") {
+        padding: 10px 0 0;
+
+        @include breakpoint(normal) {
+          border-top: 1px solid color(awhite);
+          margin: 10px 0 0;
+          padding: 10px 0 0;
+        }
+
+        .page-link {
+          .pl-arrow {
+            fill: color(awhite);
+            position: relative;
+            top: 1px;
+          }
+        }
+      }
+
+      .link-blue {
+        color: color(awhite);
+      }
+    }
+  }
+
+  @include element("specific-breed") {
+    @include rem-fallback("margin-bottom", 80px);
+    @include rem-fallback("padding-top", 80px);
+    @include rem-fallback("border-top", 1px solid color(agray, lighter));
+    @include rem-fallback("border-bottom", 1px solid color(agray, lighter));
+
+    @include breakpoint(tablet-plus) {
+      margin-bottom: 0;
+      border: 0;
+      padding-top: 0;
+    }
+
+    h3 {
+      width: 100%;
+      @include heading($h-heading: h4__heading-h4--bold-h4--compact);
+
+      @include breakpoint(normal) {
+        @include heading($h-heading: h3__heading-h3--bold);
+      }
+    }
+  }
+
+  @include element("shelters-rescues") {
+    @include breakpoint(tablet-plus) {
+      border-bottom: 1px solid color(agray, light);
+      @include rem-fallback("margin", 0 0 80px);
+      @include rem-fallback("padding", 0 0 80px);
+    }
+
+    @include modifier("mobile") {
+      max-width: 100%;
+    }
+  }
+
+  @include element("breed-content") {
+    @include rem-fallback("margin", 0 0 80px);
+    @include rem-fallback("padding", 80px 0);
+    border-bottom: 1px solid color(agray, light);
+    border-top: 1px solid color(agray, light);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin", 0 0 80px);
+      border: 0;
+      padding: 0;
+    }
+
+    h3 {
+      width: 100%;
+      @include heading($h-heading: h4__heading-h4--bold);
+
+      @include breakpoint(normal) {
+        @include heading($h-heading: h3__heading-h3--bold);
+      }
+    }
+
+    @include modifier("section") {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+
+      @include breakpoint(normal) {
+        flex-wrap: nowrap;
+      }
+
+      &:last-child {
+        .seo__breed-content--right {
+          margin-bottom: 0;
+          padding-bottom: 0;
+          border: 0;
+        }
+      }
+    }
+
+    @include modifier("left") {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      @include rem-fallback("margin", 0 0 30px);
+
+      @include breakpoint(normal) {
+        flex: 0 0 35%;
+        display: block;
+        margin-bottom: 0;
+      }
+    }
+
+    @include modifier("right") {
+      @include rem-fallback("margin", 0 0 40px);
+
+      @include breakpoint(normal) {
+        border-bottom: 1px dashed color(agray, lighter);
+        @include rem-fallback("padding", 0 0 40px);
+      }
+
+      p {
+        @include rem-fallback("margin", 0 0 10px);
+
+        @include breakpoint(normal) {
+          @include rem-fallback("margin", 0 0 20px);
+        }
+      }
+    }
+  }
+
+  .search-form__field-section {
+    .form__location {
+      .form__input {
+        &:focus ~ label {
+          @include rem-fallback("top", 2px);
+          @include rem-fallback("left", 17px);
+          @include rem-fallback("font-size", 11px);
+          font-weight: 700;
+        }
+
+        &:valid ~ label {
+          @include rem-fallback("top", 2px);
+          @include rem-fallback("left", 17px);
+          @include rem-fallback("font-size", 11px);
+          font-weight: 700;
+        }
+
+        @include breakpoint(normal) {
+          &:focus ~ label {
+            @include rem-fallback("bottom", 32px);
+            @include rem-fallback("left", 17px);
+            @include rem-fallback("font-size", 14px);
+            font-weight: 700;
+          }
+
+          &:focus {
+            @include rem-fallback("padding-bottom", 4px);
+          }
+
+          &:valid {
+            @include rem-fallback("padding-bottom", 4px);
+          }
+
+          &:valid ~ label {
+            @include rem-fallback("bottom", 32px);
+            @include rem-fallback("left", 17px);
+            @include rem-fallback("font-size", 14px);
+            font-weight: 700;
+          }
+        }
+      }
+
+      .form__label {
+        font-size: 12px;
+        top: 15px;
+
+        @include breakpoint(normal) {
+          font-size: 20px;
+          top: 14px;
+        }
+      }
+    }
+  }
+
+  @include element("breed-facts") {
+    display: flex;
+    background: color(ablue);
+    flex-wrap: wrap;
+    @include rem-fallback("padding", 25px);
+
+    @include breakpoint(normal) {
+      flex-wrap: nowrap;
+      @include rem-fallback("padding", 35px 25px);
+    }
+
+    @include modifier("left") {
+      width: 100%;
+      @include rem-fallback("margin", 0 0 10px);
+
+      @include breakpoint(normal) {
+        flex: 0 0 30%;
+        align-self: center;
+        margin: 0;
+      }
+
+      h3 {
+        color: color(awhite);
+      }
+    }
+
+    @include modifier("right") {
+      p {
+        color: color(awhite);
+      }
+    }
+  }
+
+  @include element("pet-carousel") {
+    .pet-carousel {
+      justify-content: left;
+    }
+
+    .slider {
+      &.slick-dotted {
+        width: 100%;
+      }
+    }
+
+    .pet-carousel__arrow--left {
+      margin-right: 65px;
+    }
+
+    .pet-carousel__arrow--right {
+      margin-left: 65px;
+    }
+
+    .pet-carousel__container {
+      .pet-card__green {
+        padding: 5px;
+      }
+    }
+
+    .pet-carousel__viewall-card {
+      padding: 25px;
+    }
+  }
+}
+
+.seo-page {
+  & [data-content="content"] {
+    &.container {
+      max-width: 100%;
+      display: block;
+    }
+  }
+}
+
+.content-section {
+  width: 100%;
+}
+
+.seo__advt {
+  @include rem-fallback("padding", 80px 0);
+  @include rem-fallback("margin", 0 0 80px);
+  border-top: 1px solid color(agray, light);
+  border-bottom: 1px solid color(agray, light);
+  width: 100%;
+
+  &--bottom {
+    @include rem-fallback("padding", 80px 0);
+    border-top: 1px solid color(agray, light);
+    width: 100%;
+  }
+}
+
+.data-chart {
+  width: 100%;
+
+  &__section {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    justify-content: center;
+    position: relative;
+  }
+
+  &__column {
+    background: color(agray, lighter);
+    padding-top: 8.333%;
+    width: 8.333%;
+    position: relative;
+    @include rem-fallback("margin", 0 2px 0 0);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin", 0 5px 0 0);
+    }
+
+    &--active {
+      background: color(ablue);
+    }
+
+    &--text {
+      position: absolute;
+      font-family: $helvetica;
+      color: color(agray, darker);
+      font-weight: 700;
+      @include font-size(14);
+      @include rem-fallback("line-height", 22px);
+      letter-spacing: 0;
+      bottom: -25px;
+
+      @include breakpoint(normal) {
+        @include font-size(16);
+        @include rem-fallback("line-height", 25px);
+        bottom: -30px;
+      }
+    }
+
+    &--text-max {
+      right: 0;
+    }
+
+    &--text-min {
+      left: 0;
+    }
+  }
+}
+
+.all-results {
+  &__breadcrumb {
+    @include rem-fallback("margin", 0 0 20px);
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("margin", 0 0 40px);
+    }
+  }
+}
+
+.seo-map {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+
+  &__column {
+    width: 100%;
+
+    @include breakpoint(tablet-plus) {
+      width: 50%;
+    }
+  }
+
+  &__left {
+    height: 100%;
+    order: 2;
+
+    @include breakpoint(tablet-plus) {
+      order: 1;
+      border: 1px solid color(agray, light);
+      overflow-y: scroll;
+      height: 526px;
+    }
+  }
+
+  &__right {
+    order: 1;
+    height: 325px;
+
+    @include breakpoint(normal) {
+      height: 595px;
+    }
+
+    @include breakpoint(tablet-plus) {
+      order: 2;
+      height: auto;
+    }
+
+    &.map-section {
+      height: calc(100vh - 262px);
+    }
+  }
+
+  &__address-section {
+    &.seo-map__address-popup {
+      .seo-map__address {
+        @include rem-fallback("padding", 5px);
+
+        .shelter-name {
+          max-width: 220px;
+        }
+      }
+    }
+  }
+
+  .shelter-name {
+    @include heading($h-heading: h5__heading-h5--bold);
+    position: relative;
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h4__heading-h4--bold-h4--compact);
+    }
+
+    .ellipsis {
+      display: inline-block;
+      max-width: 240px;
+
+      @include breakpoint(normal) {
+        max-width: 100%;
+      }
+
+      @include breakpoint(tablet-plus) {
+        max-width: 300px;
+      }
+    }
+  }
+
+  .shelter-distance {
+    position: absolute;
+    right: 0;
+  }
+
+  &__address {
+    @include rem-fallback("padding", 32px 0);
+    position: relative;
+
+    @include breakpoint(tablet-plus) {
+      @include rem-fallback("padding", 20px 25px);
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__title {
+    background: color(agray, dark);
+    color: color(awhite);
+    width: 100%;
+    text-align: center;
+    @include rem-fallback("padding", 9px 0);
+
+    @include breakpoint(tablet-plus) {
+      display: none;
+    }
+  }
+
+  .controls {
+    li {
+      border-bottom: 1px solid color(agray, light);
+      pointer-events: none;
+
+      @include breakpoint(tablet-plus) {
+        pointer-events: visible;
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      @include breakpoint(tablet-plus) {
+        border-right: 1px solid color(agray, light);
+
+        &:first-child {
+          border: 0;
+        }
+      }
+
+      &.active {
+        .seo-map__address {
+          background: $twentyfive-percent-lighter-grey;
+          @include rem-fallback("padding-left", 25px);
+          @include rem-fallback("padding-right", 25px);
+
+          .green-bar {
+            position: absolute;
+            height: 100%;
+            width: 5px;
+            left: 0;
+            top: 0;
+            background: color(agreen);
+          }
+
+          .shelter-name {
+            color: color(ablue);
+
+            .ellipsis {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .read-more {
+    color: color(ablue);
+    position: relative;
+
+    &__list {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      color: color(ablue);
+      pointer-events: visible;
+    }
+
+    &::after {
+      content: "";
+      background: url("data:image/svg+xml;charset=utf8,%3Csvg%20viewBox%3D%220%200%2049.656%2049.656%22%20id%3D%22aap-icon-next%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Cpath%20fill%3D%22%2300A8DE%22%20d%3D%22M14.535%2048.242l-2.828-2.828%2020.585-20.586L11.707%204.242l2.828-2.828%2023.414%2023.414z%22%3E%3C%2Fpath%3E%3Cpath%20%20fill%3D%22%2300A8DE%22%20d%3D%22M14.535%2049.656l-4.242-4.242%2020.585-20.586L10.293%204.242%2014.535%200l24.829%2024.828-24.829%2024.828zm-1.414-4.242l1.414%201.414%2022-22-22-22-1.414%201.414%2020.585%2020.586-20.585%2020.586z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: left center;
+      width: 11px;
+      height: 11px;
+      position: absolute;
+      top: 6px;
+      right: -20px;
+      pointer-events: visible;
+    }
+
+    &__map {
+      &::after {
+        top: 3px;
+      }
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .shelter-type {
+    position: relative;
+  }
+
+  .more-section {
+    position: relative;
+
+    .map-icon--blue {
+      background: url("data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2230px%22%20height%3D%2230px%22%20viewBox%3D%220%200%2030%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%20%3Cg%20id%3D%22Group-32%22%3E%20%3Ccircle%20id%3D%22Oval-3%22%20fill%3D%22%2300A8DE%22%20cx%3D%2215%22%20cy%3D%2215%22%20r%3D%2215%22%3E%3C%2Fcircle%3E%20%3Cpath%20d%3D%22M14.6024265%2C23.6617939%20C14.6024265%2C23.6617939%2020.6334244%2C16.1208732%2020.6334244%2C12.8249465%20C20.6334244%2C9.52901973%2018.6382087%2C6.85714209%2014.6024265%2C6.85714286%20C10.5666443%2C6.85714362%208.57142857%2C9.52901973%208.57142857%2C12.8249465%20C8.57142857%2C16.1208732%2014.6024265%2C23.6617939%2014.6024265%2C23.6617939%20L14.6024265%2C23.6617939%20L14.6024265%2C23.6617939%20Z%22%20id%3D%22map-location-pin-map-marker-glyph%22%20fill%3D%22%23FFFFFF%22%3E%3C%2Fpath%3E%20%3Ccircle%20id%3D%22Oval-5%22%20fill%3D%22%2300A8DE%22%20cx%3D%2214.5857143%22%20cy%3D%2212.1857143%22%20r%3D%223.21428571%22%3E%3C%2Fcircle%3E%20%3C%2Fg%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      @include rem-fallback("width", 30px);
+      @include rem-fallback("height", 30px);
+      right: 0;
+      position: absolute;
+      top: -3px;
+      pointer-events: visible;
+    }
+  }
+
+  .overlay-screen {
+    .gm-style-pbc + div {
+      transition: opacity ease-in-out;
+      background-color: $seventy-percent-darker-grey;
+      text-align: center;
+
+      &::before {
+        font-family: $helvetica;
+        font-weight: 700;
+        @include font-size(16);
+        @include rem-fallback("line-height", 25px);
+        content: 'This shelter does not have a physical location, but click "More" for their direct email address or phone number.';
+        color: color(awhite);
+        position: absolute;
+        top: 35%;
+        left: 15%;
+        right: 15%;
+
+        @include breakpoint(normal) {
+          top: 50%;
+        }
+
+        @include breakpoint(tablet-plus) {
+          top: 45%;
+        }
+      }
+    }
+
+    .gmnoprint,
+    .gm-control-active,
+    .gm-style-cc {
+      display: none;
+    }
+  }
+
+  .gm-svpc,
+  .gm-style-mtc,
+  .gm-control-active,
+  .gm-style-cc {
+    display: none;
+  }
+
+  &__load-more {
+    order: 3;
+    width: 100%;
+    justify-content: left;
+    border-top: 1px solid color(agray, light);
+    @include rem-fallback("padding-bottom", 80px);
+
+    @include modifier("breed") {
+      padding-bottom: 0;
+    }
+  }
+
+  .map-close {
+    .e-modal__closer {
+      @include rem-fallback("padding", 15px 15px 0 0);
+    }
+  }
+
+  .map-modal {
+    li {
+      display: none;
+
+      &.active {
+        display: block;
+
+        .seo-map__address {
+          background: color(awhite);
+        }
+
+        button {
+          &.h6__heading {
+            &.h6--bold {
+              overflow: visible;
+            }
+          }
+
+          .shelter-name {
+            overflow: visible;
+          }
+        }
+
+        .h6__heading {
+          &.h6--bold {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+
+        .shelter-name {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .map-icon--blue {
+          display: none;
+        }
+      }
+    }
+
+    .controls-container {
+      max-width: 100%;
+    }
+  }
+
+  &__single-result {
+    overflow: unset;
+
+    .seo-map__address {
+      border-bottom: 1px solid color(agray, light);
+    }
+  }
+}
+
+.related-breeds {
+  @include rem-fallback("margin", 40px 0 0);
+
+  @include breakpoint(normal) {
+    @include rem-fallback("margin", 60px 0 0);
+  }
+}

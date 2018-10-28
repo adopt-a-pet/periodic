@@ -1,0 +1,116 @@
+.shelter-result,
+.shelter {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  @include border(1px solid color(agray, light), top);
+  @include margin-space($m-space: t-medium);
+  @include padding-space($p-space: t-medium);
+
+  & a {
+    text-decoration: none;
+  }
+
+  @include element("info") {
+    display: flex;
+    justify-content: space-between;
+    @include padding-space($p-space: small);
+  }
+
+  @include element("type") {
+    @include modifier("color") {
+      color: color(agray, light);
+    }
+  }
+
+  &:nth-last-of-type(1) {
+    @include border(1px solid color(agray, light), bottom);
+    @include padding-space($p-space: tb-medium);
+    @include margin-space($m-space: tb-medium);
+  }
+
+  .link-gray-darker {
+    color: color(agray, dark);
+    &:hover {
+      color: color(ablue);
+    }
+  }
+  @include element("content") {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include modifier("section") {
+      flex-wrap: wrap;
+      width: 100%;
+
+      @include breakpoint(tiny) {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        &:nth-last-of-type(1) {
+          order: 3;
+        }
+        &:nth-last-of-type(2) {
+          order: 1;
+        }
+        &:nth-last-of-type(3) {
+          order: 2;
+          @include rem-fallback("margin-bottom", 20px);
+        }
+        &:nth-last-of-type(4) {
+          order: 0;
+        }
+      }
+
+      @include breakpoint(normal) {
+        width: 50%;
+        &:nth-last-of-type(3) {
+          order: 2;
+          margin-bottom: 0;
+        }
+      }
+
+      @include breakpoint(wide) {
+        width: 50%;
+        display: table;
+      }
+    }
+  }
+  @include element("w20") {
+    width: 75px;
+    display: table-cell;
+    align-self: flex-start;
+    @include breakpoint(tiny) {
+      width: 75px;
+    }
+
+    @include breakpoint(tablet-plus) {
+      width: 25%;
+    }
+  }
+  @include element("w80") {
+    width: 60%;
+    display: flex;
+    align-self: flex-start;
+    @include rem-fallback("padding-left", 15px);
+
+    @include breakpoint(tiny) {
+      width: 55%;
+    }
+
+    @include breakpoint(thin) {
+      width: 70%;
+    }
+
+    @include breakpoint(tablet-plus) {
+      width: 75%;
+    }
+
+    @include breakpoint(wide) {
+      width: 80%;
+    }
+  }
+  & .pet-type {
+    text-transform: capitalize;
+  }
+}

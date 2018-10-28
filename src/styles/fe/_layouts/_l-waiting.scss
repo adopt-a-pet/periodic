@@ -1,0 +1,86 @@
+.waiting-page {
+  @include element(content) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @include element(title) {
+    @include heading($h-heading: h3__heading-h3--museo-h3--x-compact);
+    @include rem-fallback("margin", 40px 0 20px);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin", 60px 0 40px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h2__heading-h2--museo);
+    }
+  }
+
+  @include element(dfp) {
+    @include rem-fallback("margin-bottom", 20px);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin-bottom", 40px);
+    }
+  }
+
+  @include element(info) {
+    @include heading($h-heading: h5__heading-h5--light);
+  }
+
+  & .nav-bar,
+  .footer,
+  .footer__copyright,
+  .nav-head {
+    display: none;
+  }
+
+  & .header__content {
+    @include breakpoint(tablet-plus) {
+      padding-bottom: 15px;
+    }
+  }
+
+  .container {
+    &[data-content="content"] {
+      max-width: 100%;
+    }
+  }
+
+  .progress-bar {
+    box-shadow: $progress-bar-shade;
+    @include rem-fallback("height", 3px);
+    width: 100%;
+    margin: auto;
+    position: relative;
+    top: 0;
+
+    & .bar-animate {
+      background: color(ablue);
+      @include rem-fallback("height", 3px);
+      width: 0%;
+      position: absolute;
+      -webkit-animation: progress 6s infinite linear;
+      animation: progress 6s infinite linear;
+    }
+  }
+}
+
+@-webkit-keyframes progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}

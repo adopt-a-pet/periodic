@@ -1,0 +1,100 @@
+$gutter: em(24);
+
+.cft {
+  &__container {
+    width: 100%;
+    margin: 0;
+    @include rem-fallback("margin-top", 20px);
+
+    @include breakpoint(normal) {
+      @include rem-fallback("margin-top", 60px);
+    }
+
+    .h1__heading {
+      @include rem-fallback("font-size", 32px);
+
+      @include breakpoint(normal) {
+        @include rem-fallback("font-size", 45px);
+      }
+    }
+
+    .h2__heading {
+      @include rem-fallback("font-size", 26px);
+      @include rem-fallback("line-height", 39px);
+
+      @include breakpoint(normal) {
+        @include rem-fallback("font-size", 32px);
+        @include rem-fallback("line-height", 48px);
+      }
+    }
+
+    .rail {
+      @include rem-fallback("margin-top", -47px);
+      position: relative;
+
+      @include breakpoint(normal) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &__image {
+    display: block;
+    position: relative;
+    z-index: 30000;
+
+    &--dog {
+      @include rem-fallback("height", 355px);
+      background-image: url(/images/cft-dog-sm.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 375px;
+
+      @include breakpoint(normal) {
+        @include rem-fallback("height", 505px);
+        background-image: url(/images/cft-dog.png);
+        background-size: 759px;
+        background-position: -39px;
+      }
+
+      @include breakpoint(wide) {
+        background-size: 814px;
+      }
+    }
+
+    &--girl {
+      @include rem-fallback("height", 358px);
+      background-image: url(/images/cft-girl-sm.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 375px;
+
+      @include breakpoint(normal) {
+        @include rem-fallback("height", 487px);
+        background-image: url(/images/cft-girl.png);
+        background-size: 759px;
+        background-position: -39px;
+      }
+
+      @include breakpoint(wide) {
+        background-size: 814px;
+      }
+    }
+  }
+}
+
+.mobile-cft {
+  display: block;
+
+  @include breakpoint(normal) {
+    display: none;
+  }
+}
+
+.desktop-cft {
+  display: none;
+
+  @include breakpoint(normal) {
+    display: block;
+  }
+}

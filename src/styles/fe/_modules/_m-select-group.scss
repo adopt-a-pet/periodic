@@ -1,0 +1,185 @@
+.select-section {
+  display: block;
+}
+
+.select-group {
+  display: block;
+  position: relative;
+
+  @include breakpoint(thin) {
+    display: block;
+  }
+
+  @include breakpoint(normal) {
+    display: flex;
+  }
+
+  @include breakpoint(wide) {
+    display: flex;
+  }
+
+  .form__select {
+    margin: 0;
+    @include rem-fallback("padding-bottom", 4px);
+    & ~ label {
+      @include rem-fallback("bottom", 36px);
+      @include rem-fallback("top", 7px);
+      @include rem-fallback("left", 18px);
+      @include rem-fallback("font-size", 14px);
+      @include breakpoint(wide) {
+        @include rem-fallback("top", 5px);
+      }
+    }
+    &:focus ~ label {
+      @include rem-fallback("bottom", 36px);
+      @include rem-fallback("left", 18px);
+      @include rem-fallback("font-size", 14px);
+    }
+  }
+
+  .select-field-container {
+    &:nth-of-type(1) {
+      width: 100%;
+      @include rem-fallback("margin", 0 0 10px);
+      .form__select {
+        border-radius: $border-radius;
+
+        @include breakpoint(normal) {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        &.is-focus {
+          @include breakpoint(normal) {
+            border-bottom-left-radius: 0;
+          }
+        }
+
+        &.drop-two-focus {
+          @include breakpoint(normal) {
+            @include border(1px solid color(ablue), right);
+          }
+        }
+      }
+    }
+
+    &:nth-of-type(2) {
+      width: 100%;
+      @include rem-fallback("margin", 0 0 10px);
+
+      @include breakpoint(thin) {
+        width: 100%;
+        @include rem-fallback("margin", 0 0 10px);
+      }
+
+      @include breakpoint(normal) {
+        width: 70%;
+      }
+
+      .form__select {
+        border-radius: $border-radius;
+
+        @include breakpoint(thin) {
+          width: 100%;
+        }
+
+        @include breakpoint(normal) {
+          border-radius: 0;
+          border-right: 0;
+          border-left: 0;
+        }
+
+        &.select-group-age {
+          &:focus {
+            @include border(1px solid color(ablue), left);
+            @include border(1px solid color(ablue), right);
+          }
+        }
+      }
+    }
+
+    &:nth-of-type(3) {
+      width: 100%;
+
+      @include breakpoint(thin) {
+        width: 100%;
+        @include rem-fallback("margin", 0 0 10px);
+      }
+
+      @include breakpoint(normal) {
+        width: 70%;
+      }
+
+      .form__select {
+        border-radius: $border-radius;
+
+        @include breakpoint(normal) {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        &.is-focus {
+          @include breakpoint(normal) {
+            border-bottom-right-radius: 0;
+          }
+        }
+
+        &.drop-two-focus {
+          @include breakpoint(normal) {
+            @include border(1px solid color(ablue), left);
+          }
+        }
+      }
+    }
+  }
+
+  &__dropdown {
+    @include rem-fallback("max-height", 230px);
+    border-radius: 0 0 $border-radius $border-radius;
+    width: 100%;
+    height: auto;
+    @include rem-fallback("top", 54px);
+    left: 0;
+    bottom: auto;
+
+    ul {
+      @include rem-fallback("max-height", 230px);
+      margin: 0;
+
+      li {
+        @include rem-fallback("padding-top", 10px);
+        @include rem-fallback("padding-bottom", 10px);
+      }
+    }
+
+    &::before {
+      content: initial;
+    }
+    &::after {
+      content: initial;
+      display: none;
+    }
+  }
+
+  &__list {
+    @include rem-fallback("padding-left", 20px);
+    @include rem-fallback("padding-right", 32px);
+
+    &.active {
+      background-position: right 10px center;
+      color: color(ablue);
+    }
+
+    &:hover {
+      color: color(agray, dark);
+      font-weight: 400;
+    }
+
+    &:active {
+      color: color(ablue, dark);
+    }
+  }
+}
+.dropdown-field__pager {
+  position: relative;
+}

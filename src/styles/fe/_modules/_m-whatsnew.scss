@@ -1,0 +1,73 @@
+$gutter: em(24);
+
+.whatsnew {
+  clear: both;
+  @include rem-fallback("padding", 80px 0 80px);
+
+  &__title {
+    @include heading($h-heading: h3__heading-h3--museo-h3--x-compact);
+
+    @include breakpoint(tablet-plus) {
+      @include heading($h-heading: h2__heading-h2--museo);
+    }
+  }
+
+  &__box {
+    @include rem-fallback("padding-bottom", 40px);
+    @include rem-fallback("margin-bottom", 40px);
+    @include rem-fallback("border-bottom", 1px dashed color(agray, lighter));
+
+    &:last-of-type {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+
+  &__image {
+    @include column(12/12, $gutter);
+
+    @include breakpoint(normal) {
+      @include column(4/12, $gutter);
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+  }
+
+  &__text {
+    @include column(12/12, $gutter);
+
+    @include breakpoint(normal) {
+      @include column(8/12, $gutter);
+    }
+  }
+
+  @include breakpoint(normal) {
+    @include rem-fallback("padding", 80px 0 40px);
+
+    .p-space-b--small {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.sub-title {
+  &__image {
+    display: block;
+
+    @include breakpoint(normal) {
+      display: none;
+    }
+  }
+
+  &__text {
+    display: none;
+
+    @include breakpoint(normal) {
+      display: block;
+    }
+  }
+}

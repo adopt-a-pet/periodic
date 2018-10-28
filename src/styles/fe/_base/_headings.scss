@@ -1,0 +1,147 @@
+// headings
+
+.h1 {
+  &__heading {
+    @include font-size(45);
+    @include rem-fallback("line-height", 62px);
+    @include rem-fallback("letter-spacing", -1px);
+  }
+}
+
+.h2 {
+  &__heading {
+    @include font-size(32);
+    @include rem-fallback("line-height", 48px);
+    @include rem-fallback("letter-spacing", -0.5px);
+  }
+}
+
+.h3 {
+  &__heading {
+    @include font-size(26);
+    @include rem-fallback("line-height", 39px);
+    @include rem-fallback("letter-spacing", -0.5px);
+  }
+
+  &--compact {
+    @include rem-fallback("line-height", 31px);
+  }
+
+  &--x-compact {
+    @include rem-fallback("line-height", 30px);
+  }
+}
+
+.h4,
+.p {
+  &__heading,
+  &__body-copy {
+    @include font-size(20);
+    @include rem-fallback("line-height", 32px);
+    @include rem-fallback("letter-spacing", -0.25px);
+  }
+
+  &--compact {
+    @include rem-fallback("line-height", 26px);
+  }
+
+  &--x-compact {
+    @include rem-fallback("line-height", 24px);
+  }
+
+  &--x-x-compact {
+    @include rem-fallback("line-height", 23px);
+  }
+}
+
+.h5,
+.small {
+  &__heading {
+    @include font-size(16);
+    @include rem-fallback("line-height", 25px);
+  }
+
+  &--compact {
+    @include rem-fallback("line-height", 20px);
+  }
+
+  &--x-compact {
+    @include rem-fallback("line-height", 18px);
+  }
+}
+
+.h6,
+.tiny {
+  &__heading {
+    @include font-size(14);
+    @include rem-fallback("line-height", 22px);
+  }
+
+  &--compact {
+    @include rem-fallback("line-height", 17px);
+  }
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.p {
+  &__heading {
+    font-family: $helvetica;
+    color: color(agray, dark);
+    font-weight: normal;
+  }
+
+  &--museo {
+    font-family: $museo700;
+  }
+
+  &--light {
+    color: color(agray, darker);
+    font-weight: 200;
+    letter-spacing: 0;
+  }
+
+  &--bold {
+    font-weight: bold;
+  }
+}
+
+.p {
+  &--adopted {
+    color: color(agray);
+
+    a {
+      color: color(agray, light);
+    }
+  }
+}
+
+.h1 {
+  &__heading {
+    font-weight: 700;
+  }
+}
+
+.h3 {
+  &--adopted {
+    color: color(agray, light);
+  }
+
+  &--adopted-light {
+    color: color(agray);
+  }
+}
+
+.h4 {
+  &--adopted {
+    color: color(agray, light);
+  }
+
+  &--adopted-light {
+    color: color(agray);
+  }
+}

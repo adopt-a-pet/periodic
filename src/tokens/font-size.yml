@@ -4,19 +4,19 @@
 #
 
 props:
-  size_xxxl:
-    value: "64px"
-  size_xxl:
-    value: "48px"
-  size_xl:
-    value: "36px"
-  size_l:
-    value: "24px"
-  size_m:
+  font_size_xxl:
+    value: "45px"
+  font_size_xl:
+    value: "32px"
+  font_size_l:
+    value: "26px"
+  font_size_m:
+    value: "20px"
+  font_size_s:
     value: "16px"
-  size_s:
-    value: "13px"
-  size_xs:
+  font_size_xs:
+    value: "14px"
+  font_size_xxs:
     value: "11px"
 global:
   type: number

@@ -1,0 +1,171 @@
+/**
+ * Material Modal CSS
+ */
+
+.modal-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-overflow-scrolling: touch;
+
+  &--active {
+    visibility: visible;
+    opacity: 10;
+  }
+
+  &--align-top {
+    align-items: flex-start;
+  }
+
+  &__bg {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  &__dialog {
+    max-width: 90%;
+    width: 90%;
+    padding: 50px 0;
+  }
+
+  &__content {
+    position: relative;
+    background-clip: padding-box;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    @include border-radius(6px);
+    background: #ffffff;
+    box-shadow: 0px 0px 0px 6px color(ablue);
+    width: 100%;
+
+    &--active {
+      opacity: 1;
+    }
+  }
+
+  &__close {
+    z-index: 1100;
+    cursor: pointer;
+  }
+
+  &__trigger {
+    position: relative;
+    display: inline-block;
+    padding: (2.4rem / 2) 2.4rem;
+    color: rgba(black, 0.7);
+    line-height: 1;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    user-select: none;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  &--active {
+    z-index: 100000;
+  }
+
+  &__close-svg {
+    pointer-events: none;
+  }
+}
+
+#modal__temp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: none;
+  opacity: 1;
+  transition: opacity 0.1s ease-out, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.modal-close-position {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px 20px 0 0;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media screen and (max-width: 977px) {
+  .modal-popup__dialog {
+    padding: 0;
+    max-width: 100% !important;
+    width: 100%;
+  }
+
+  .modal-popup__content {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .modal-popup__bg {
+    background: #ffffff;
+  }
+}
+
+.pet-inquiry-form__textarea .text-area-container {
+  width: 100% !important;
+}
+
+#ullist_a_all {
+  display: none !important;
+}
+
+ul.ullist.controls li a {
+  padding: 0 !important;
+}
+
+.seo__pet-carousel .slider .slick-track {
+  width: 2025px !important;
+}
+
+.seo__fun-facts .slider .slick-track {
+  width: 1758px !important;
+}
+
+@media screen and (min-width: 1024px) {
+  .seo__pet-carousel .slider .slick-track .pet-carousel__container {
+    width: 161px !important;
+  }
+}
+
+@media screen and (min-width: 1170px) {
+  .seo__pet-carousel .slider .slick-track .pet-carousel__container {
+    width: 201px !important;
+  }
+}
+
+.ellipsis-clamp {
+  white-space: nowrap\9;
+  display: -webkit-box;
+  display: -moz-box;
+}
+
+_:-ms-fullscreen,
+:root .ellipsis-clamp {
+  white-space: nowrap;
+}
+
+_::-moz-progress-bar,
+body:last-child .ellipsis-clamp {
+  white-space: nowrap;
+}
+
+.wrap_controls {
+  width: 100%;
+}
+
+#sm-link {
+  display: none;
+}

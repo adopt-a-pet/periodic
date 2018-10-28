@@ -1,0 +1,44 @@
+$gutter: em(24);
+
+.maddie {
+  @include rem-fallback("padding", 80px 0);
+  border-top: 0;
+
+  @include breakpoint(tablet-plus) {
+    @include rem-fallback("padding", 40px 0);
+    @include rem-fallback("border-top", 2px solid color(agray, lighter));
+  }
+
+  &__image {
+    @include column(12/12, $gutter);
+    @include rem-fallback("margin", 20px 0);
+    text-align: center;
+
+    img {
+      @include rem-fallback("width", 154px);
+    }
+
+    @include breakpoint(normal) {
+      @include column(4/12, $gutter);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include column(12/12, $gutter);
+    }
+  }
+
+  &__text {
+    color: color(agray, base);
+    @include column(12/12, $gutter);
+
+    @include breakpoint(normal) {
+      @include column(8/12, $gutter);
+      @include rem-fallback("margin-top", 20px);
+    }
+
+    @include breakpoint(tablet-plus) {
+      @include column(12/12, $gutter);
+      margin-top: 0;
+    }
+  }
+}
