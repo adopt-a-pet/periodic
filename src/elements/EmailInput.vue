@@ -30,7 +30,7 @@ import bemNames from "@/mixins/bem-names"
  *
  */
 export default {
-  name: "Email",
+  name: "EmailInput",
   componentBaseClass: "form",
   status: "under-review",
   release: "1.0.0",
@@ -157,13 +157,13 @@ export default {
 <docs>
   ```jsx
   <div>
-    <Email />
+    <EmailInput />
     <br>
-    <Email label="Required" required />
+    <EmailInput label="Required" required />
     <br>
-    <Email label="Disabled" disabled />
+    <EmailInput label="Disabled" disabled />
     <br>
-    <Email label="Small" size="small" />
+    <EmailInput label="Small" size="small" />
   </div>
   ```
 </docs>
