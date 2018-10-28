@@ -2,40 +2,37 @@
   <component :is="wrapper" :class="['text-field-container']">
     <input
       :class="[inputClass, state, {
-        'is-error': error,
+        'is-error': errorState,
         'is-success': success,
-        'not-empty': email
+        'not-empty': password
       }]"
       :disabled="disabled"
       :name="name"
       :required="required"
-      type="email"
-      v-model.lazy.trim="$v.email.$model"
+      type="password"
+      v-model.lazy.trim="password"
+      v-validate="validations"
       @input="onInput($event.target.value)"
       @focus="onFocus($event.target.value)"
     />
     <span v-if="success" class="valid-tick"></span>
     <label :for="name" :class="labelClass">{{label}}</label>
-    <div v-if="error && !$v.email.required" class="form__error-msg">Enter Email</div>
-    <div v-else-if="error" class="form__error-msg">Invalid Email</div>
+    <div v-if="errorState" class="form__error-msg">{{errorMessage}}</div>
   </component>
 </template>
 
 <script>
-import { validationMixin } from "vuelidate"
-import { email } from "vuelidate/lib/validators"
-import { required } from "@/validators/input"
-import bemNames from "@/mixins/bem-names"
+import { mixin as veeValidateMixin, directive as veeValidateDirective } from "vee-validate"
 
 /**
  *
  */
 export default {
-  name: "EmailInput",
-  componentBaseClass: "form",
+  name: "PasswordInput",
   status: "under-review",
   release: "1.0.0",
-  mixins: [bemNames, validationMixin],
+  mixins: [veeValidateMixin],
+  directives: { validate: veeValidateDirective },
   props: {
     /**
      * The size of the field. Defaults to large.
@@ -53,7 +50,7 @@ export default {
      */
     name: {
       type: String,
-      default: "email",
+      default: "password",
     },
     /**
      * Text value of the form input field.
@@ -67,7 +64,7 @@ export default {
      */
     label: {
       type: String,
-      default: "Email",
+      default: "Password",
     },
     /**
      * The html element name used for the wrapper.
@@ -119,7 +116,7 @@ export default {
   },
   data() {
     return {
-      email: this.value,
+      password: this.value,
     }
   },
   methods: {
@@ -128,6 +125,18 @@ export default {
     },
     onFocus(value) {
       this.$emit("focus", value)
+    },
+    setErrorMessages() {
+      let messages = {}
+
+      messages[this.name] = {
+        min: "Invalid Password",
+        required: "Password Required",
+      }
+
+      this.$validator.localize("en", {
+        custom: messages,
+      })
     },
   },
   computed: {
@@ -139,18 +148,23 @@ export default {
       const addSize = this.size === "large" ? "" : `-${this.size}`
       return "form__label" + addSize
     },
-    error() {
-      return this.$v.email.$dirty && this.$v.email.$error
+    errorState() {
+      return this.errors.has(this.name)
+    },
+    errorMessage() {
+      return this.errors.first(this.name)
     },
     success() {
-      return this.email && !this.$v.email.$error
+      return false
+    },
+    validations() {
+      const required = this.required && "required"
+
+      return [required, "min:8"].filter(v => !!v).join("|")
     },
   },
-  validations: {
-    email: {
-      email,
-      required,
-    },
+  created() {
+    this.setErrorMessages()
   },
 }
 </script>
@@ -158,13 +172,13 @@ export default {
 <docs>
   ```jsx
   <div>
-    <EmailInput />
+    <PasswordInput />
     <br>
-    <EmailInput label="Required" required />
+    <PasswordInput label="Required" required />
     <br>
-    <EmailInput label="Disabled" disabled />
+    <PasswordInput label="Disabled" disabled />
     <br>
-    <EmailInput label="Small" size="small" />
+    <PasswordInput label="Small" size="small" />
   </div>
   ```
 </docs>

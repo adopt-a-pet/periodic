@@ -181,7 +181,7 @@
     "vue-jest": "^2.6.0",
     "vue-loader": "^15.4.2",
     "vue-style-loader": "^4.1.2",
-    "vue-styleguidist": "^1.8.9",
+    "vue-styleguidist": "^1.8.10",
     "vue-template-compiler": "^2.5.17",
     "webpack": "^4.20.2",
     "webpack-bundle-analyzer": "^3.0.2",
