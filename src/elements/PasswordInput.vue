@@ -3,7 +3,7 @@
     <input
       :class="[inputClass, state, {
         'is-error': errorState,
-        'is-success': success,
+        'is-success': successState,
         'not-empty': password
       }]"
       :disabled="disabled"
@@ -15,7 +15,7 @@
       @input="onInput($event.target.value)"
       @focus="onFocus($event.target.value)"
     />
-    <span v-if="success" class="valid-tick"></span>
+    <span v-if="successState" class="valid-tick"></span>
     <label :for="name" :class="labelClass">{{label}}</label>
     <div v-if="errorState" class="form__error-msg">{{errorMessage}}</div>
   </component>
@@ -154,8 +154,8 @@ export default {
     errorMessage() {
       return this.errors.first(this.name)
     },
-    success() {
-      return false
+    successState() {
+      return this.password && !this.errorState
     },
     validations() {
       const required = this.required && "required"
