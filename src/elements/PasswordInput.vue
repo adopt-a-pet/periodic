@@ -10,7 +10,7 @@
       :name="name"
       :required="required"
       :type="showPassword ? 'text' : 'password'"
-      v-model.lazy.trim="password"
+      v-model.lazy="password"
       v-validate="validations"
       @input="onInput($event.target.value)"
       @focus="onFocus($event.target.value)"
@@ -122,6 +122,9 @@ export default {
       const required = this.required && "required"
 
       return [required, "min:8"].filter(v => !!v).join("|")
+    },
+    successState() {
+      return this.password && !this.errorState
     },
   },
   errorMessages: {

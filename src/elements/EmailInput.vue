@@ -1,41 +1,38 @@
 <template>
-  <component :is="wrapper" :class="['text-field-container']">
+  <div :class="['text-field-container']">
     <input
       :class="[inputClass, state, {
-        'is-error': error,
-        'is-success': success,
+        'is-error': errorState,
+        'is-success': successState,
         'not-empty': email
       }]"
       :disabled="disabled"
       :name="name"
       :required="required"
       type="email"
-      v-model.lazy.trim="$v.email.$model"
+      v-model.lazy.trim="email"
+      v-validate="validations"
       @input="onInput($event.target.value)"
       @focus="onFocus($event.target.value)"
     />
-    <span v-if="success" class="valid-tick"></span>
+
+    <span v-if="successState" class="valid-tick"></span>
     <label :for="name" :class="labelClass">{{label}}</label>
-    <div v-if="error && !$v.email.required" class="form__error-msg">Enter Email</div>
-    <div v-else-if="error" class="form__error-msg">Invalid Email</div>
-  </component>
+    <div v-if="errorState" class="form__error-msg">{{errorMessage}}</div>
+  </div>
 </template>
 
 <script>
-import { validationMixin } from "vuelidate"
-import { email } from "vuelidate/lib/validators"
-import { required } from "@/validators/input"
-import bemNames from "@/mixins/bem-names"
+import validatedInput from "@/mixins/validated-input"
 
 /**
  *
  */
 export default {
   name: "EmailInput",
-  componentBaseClass: "form",
   status: "under-review",
   release: "1.0.0",
-  mixins: [bemNames, validationMixin],
+  mixins: [validatedInput],
   props: {
     /**
      * The size of the field. Defaults to large.
@@ -68,17 +65,6 @@ export default {
     label: {
       type: String,
       default: "Email",
-    },
-    /**
-     * The html element name used for the wrapper.
-     * `div, section`
-     */
-    wrapper: {
-      type: String,
-      default: "div",
-      validator: value => {
-        return value.match(/(div|section)/)
-      },
     },
     /**
      * The width of the form input field.
@@ -139,18 +125,18 @@ export default {
       const addSize = this.size === "large" ? "" : `-${this.size}`
       return "form__label" + addSize
     },
-    error() {
-      return this.$v.email.$dirty && this.$v.email.$error
+    validations() {
+      const required = this.required && "required"
+
+      return [required, "email"].filter(v => !!v).join("|")
     },
-    success() {
-      return this.email && !this.$v.email.$error
+    successState() {
+      return this.email && !this.errorState
     },
   },
-  validations: {
-    email: {
-      email,
-      required,
-    },
+  errorMessages: {
+    email: "Invalid Email",
+    required: "Email Required",
   },
 }
 </script>

@@ -13,8 +13,6 @@ export default {
     },
     setErrorMessages() {
       if (!this.name) throw new Error("This mixin can only be used by components that have a name prop")
-      if (!this.$options.errorMessages)
-        throw new Error("This mixin can only be used by components that have errorMessages in the component options")
 
       let messages = {}
 
@@ -34,7 +32,7 @@ export default {
       return this.errors.first(this.name)
     },
     successState() {
-      return this.password && !this.errorState
+      return !this.errorState
     },
   },
 
