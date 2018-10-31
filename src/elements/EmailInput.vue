@@ -1,5 +1,5 @@
 <template>
-  <div :class="['text-field-container']">
+  <div class="text-field-container">
     <input
       :class="[inputClass, state, {
         'is-error': errorState,
@@ -10,12 +10,11 @@
       :name="name"
       :required="required"
       type="email"
-      v-model.lazy.trim="email"
-      v-validate="validations"
+      v-model.lazy.trim="$v.email.$model"
+      @blur="$v.email.$touch"
       @input="onInput($event.target.value)"
       @focus="onFocus($event.target.value)"
     />
-
     <span v-if="successState" class="valid-tick"></span>
     <label :for="name" :class="labelClass">{{label}}</label>
     <div v-if="errorState" class="form__error-msg">{{errorMessage}}</div>
@@ -23,16 +22,18 @@
 </template>
 
 <script>
-import validatedInput from "@/mixins/validated-input"
+import { validationMixin } from "vuelidate"
+import { email, required } from "vuelidate/lib/validators"
 
 /**
  *
  */
 export default {
   name: "EmailInput",
+  componentBaseClass: "form",
   status: "under-review",
   release: "1.0.0",
-  mixins: [validatedInput],
+  mixins: [validationMixin],
   props: {
     /**
      * The size of the field. Defaults to large.
@@ -65,6 +66,17 @@ export default {
     label: {
       type: String,
       default: "Email",
+    },
+    /**
+     * The html element name used for the wrapper.
+     * `div, section`
+     */
+    wrapper: {
+      type: String,
+      default: "div",
+      validator: value => {
+        return value.match(/(div|section)/)
+      },
     },
     /**
      * The width of the form input field.
@@ -125,18 +137,26 @@ export default {
       const addSize = this.size === "large" ? "" : `-${this.size}`
       return "form__label" + addSize
     },
-    validations() {
-      const required = this.required && "required"
-
-      return [required, "email"].filter(v => !!v).join("|")
+    errorState() {
+      return this.$v.email.$error
     },
     successState() {
-      return this.email && !this.errorState
+      return this.email && !this.$v.email.$error
+    },
+    errorMessage() {
+      if (this.$v.email.required === false) {
+        return "Enter Email"
+      } else {
+        return "Invalid Email"
+      }
     },
   },
-  errorMessages: {
-    email: "Invalid Email",
-    required: "Email Required",
+  validations() {
+    const validations = { email: { email } }
+
+    if (this.required) validations.email.required = required
+
+    return validations
   },
 }
 </script>
