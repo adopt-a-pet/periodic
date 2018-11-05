@@ -73,7 +73,7 @@
   max-width: 100%;
 }
 
-@mixin component-prefix($name) {
+@mixin namespace($name) {
   &.#{$prefix-component}#{$name} {
     @content;
   }

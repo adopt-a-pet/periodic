@@ -1,11 +1,16 @@
 <template>
   <div class="text-field-container">
     <input
-      :class="[inputClass, state, {
-        'is-error': errorState,
-        'is-success': successState,
-        'not-empty': email
-      }]"
+      :class="[
+        inputClass,
+        state,
+        b.state({
+          error: errorState,
+          success: successState,
+        })
+        .has({ content: email })
+        .toString()
+      ]"
       :disabled="disabled"
       :name="name"
       :required="required"
@@ -22,6 +27,7 @@
 </template>
 
 <script>
+import bemNames from "@/mixins/bem-names"
 import { validationMixin } from "vuelidate"
 import { email, required } from "vuelidate/lib/validators"
 
@@ -30,10 +36,10 @@ import { email, required } from "vuelidate/lib/validators"
  */
 export default {
   name: "EmailInput",
-  componentBaseClass: "form",
   status: "under-review",
   release: "1.0.0",
-  mixins: [validationMixin],
+  blockName: "form",
+  mixins: [bemNames, validationMixin],
   props: {
     /**
      * The size of the field. Defaults to large.
@@ -131,11 +137,11 @@ export default {
   computed: {
     inputClass() {
       const addSize = this.size === "large" ? "" : `-${this.size}`
-      return "form__input" + addSize
+      return this.b("input") + addSize
     },
     labelClass() {
       const addSize = this.size === "large" ? "" : `-${this.size}`
-      return "form__label" + addSize
+      return this.b("label") + addSize
     },
     errorState() {
       return this.$v.email.$error

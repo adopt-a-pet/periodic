@@ -5,6 +5,7 @@ import App from "@/App"
 import router from "@/router"
 import WebFontLoader from "@/utils/webFontLoader" // eslint-disable-line no-unused-vars
 import Meta from "vue-meta"
+import Vuex from "vuex"
 
 // Vue Design System: Auto importing components globally
 import DesignSystem from "@/system"
@@ -14,10 +15,15 @@ Vue.use(Meta)
 
 Vue.config.productionTip = false
 
+const store = new Vuex.Store({
+  strict: true,
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
   router,
+  store,
   template: "<App/>",
   components: { App },
 })

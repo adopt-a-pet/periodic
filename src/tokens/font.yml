@@ -10,6 +10,8 @@ aliases:
 props:
   helvetica:
     value: "{!helvetica}"
+  font_helvetica:
+    value: "{!helvetica}"
   font_museo:
     value: "Museo, {!helvetica}"
 

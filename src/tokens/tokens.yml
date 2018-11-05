@@ -16,7 +16,7 @@ imports:
   - ./border-radius.yml
   - ./spacing.yml
   - ./line-height.yml
-  - ./prefix.yml
+  - ./compatibility.yml
 global:
   type: global
   category: all
