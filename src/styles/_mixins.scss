@@ -73,8 +73,14 @@
   max-width: 100%;
 }
 
-@mixin component-prefix($name) {
+@mixin block($name) {
   &.#{$prefix-component}#{$name} {
+    @content;
+  }
+}
+
+@mixin b($name) {
+  @include block($name) {
     @content;
   }
 }

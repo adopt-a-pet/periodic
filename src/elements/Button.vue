@@ -3,7 +3,7 @@
     :is="tag"
     :href="href"
     :type="type"
-    :class="[componentClass, withModifier(color), withModifier(size), state]"
+    :class="[b(), b({ color, size }).toString(), state]"
     :disabled="disabled"
     @click="click">
       <slot/>
@@ -19,7 +19,7 @@ import bemNames from "@/mixins/bem-names"
  */
 export default {
   name: "Button",
-  componentBaseClass: "button",
+  blockName: "button",
   status: "under-review",
   release: "1.0.0",
   mixins: [bemNames],
@@ -106,7 +106,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@include component-prefix("button") {
+@include b("button") {
   display: block;
   background-color: color(awhite, base);
   @include border(2px solid color(agray, light));
@@ -137,71 +137,75 @@ export default {
     color: color(awhite, base);
   }
 
-  @include modifier("small") {
-    line-height: 2.5;
-    @include rem-fallback("font-size", 16px);
+  @include modifier("size") {
+    &-small {
+      line-height: 2.5;
+      @include rem-fallback("font-size", 16px);
+    }
   }
 
-  @include modifier("green") {
-    background-color: color(agreen, base);
-    border: 0;
-    line-height: 2.9;
-    color: color(awhite, base);
-
-    &:hover,
-    &.hover {
-      background-color: color(agreen, dark);
-      border: 0;
-      box-shadow: $btn-shade-hover;
-      color: color(awhite, base);
-    }
-
-    &:active,
-    &.active {
+  @include modifier("color") {
+    &-green {
       background-color: color(agreen, base);
-      box-shadow: $btn-shade-active;
-    }
-  }
-
-  @include modifier("orange") {
-    background-color: color(aorange, base);
-    border: 0;
-    line-height: 2.9;
-    color: color(awhite, base);
-
-    &:hover,
-    &.hover {
-      background-color: color(aorange, dark);
       border: 0;
-      box-shadow: $btn-shade-hover;
+      line-height: 2.9;
       color: color(awhite, base);
+
+      &:hover,
+      &.hover {
+        background-color: color(agreen, dark);
+        border: 0;
+        box-shadow: $btn-shade-hover;
+        color: color(awhite, base);
+      }
+
+      &:active,
+      &.active {
+        background-color: color(agreen, base);
+        box-shadow: $btn-shade-active;
+      }
     }
 
-    &:active,
-    &.active {
+    &-orange {
       background-color: color(aorange, base);
-      box-shadow: $btn-shade-active;
-    }
-  }
-
-  @include modifier("blue") {
-    background-color: color(ablue, base);
-    border: 0;
-    line-height: 2.9;
-    color: color(awhite, base);
-
-    &:hover,
-    &.hover {
-      box-shadow: $btn-shade-hover;
       border: 0;
-      background-color: color(ablue, dark);
+      line-height: 2.9;
       color: color(awhite, base);
+
+      &:hover,
+      &.hover {
+        background-color: color(aorange, dark);
+        border: 0;
+        box-shadow: $btn-shade-hover;
+        color: color(awhite, base);
+      }
+
+      &:active,
+      &.active {
+        background-color: color(aorange, base);
+        box-shadow: $btn-shade-active;
+      }
     }
 
-    &:active,
-    &.active {
-      box-shadow: $btn-shade-active;
+    &-blue {
       background-color: color(ablue, base);
+      border: 0;
+      line-height: 2.9;
+      color: color(awhite, base);
+
+      &:hover,
+      &.hover {
+        box-shadow: $btn-shade-hover;
+        border: 0;
+        background-color: color(ablue, dark);
+        color: color(awhite, base);
+      }
+
+      &:active,
+      &.active {
+        box-shadow: $btn-shade-active;
+        background-color: color(ablue, base);
+      }
     }
   }
 

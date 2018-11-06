@@ -1,8 +1,0 @@
-.home__newsletter {
-  @include rem-fallback("padding", 80px 0);
-  @include rem-fallback("border-top", 2px solid color(agray, lighter));
-
-  @include breakpoint(tablet-plus) {
-    @include rem-fallback("padding", 40px 0);
-  }
-}

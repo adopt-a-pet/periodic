@@ -141,3 +141,5 @@ They are, but you need to add the following to the Webpack configuration for bui
 </code></pre>
 
 For more detailed instructions, please see: [vue-loader.vuejs.org/guide/css-modules.html](https://vue-loader.vuejs.org/guide/css-modules.html).
+
+## Why won't my styles behave?
