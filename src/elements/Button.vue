@@ -106,7 +106,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@include namespace("button") {
+@include b("button") {
   display: block;
   background-color: color(awhite, base);
   @include border(2px solid color(agray, light));

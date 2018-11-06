@@ -1,4 +1,4 @@
-@include namespace("form") {
+@include b("form") {
   @include element("input") {
     @include border(1px solid color(agray, light));
     border-radius: $border-radius;

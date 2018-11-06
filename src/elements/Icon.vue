@@ -2,12 +2,13 @@
   <component
     :is="type"
     :aria-label="ariaLabel"
-    :class="['icon', size]"
+    :class="[b(), size]"
     v-html="svg"
   />
 </template>
 
 <script>
+import bemNames from "@/mixins/bem-names"
 const req = require.context("@/assets/icons/", true, /^\.\/.*\.svg$/)
 
 /**
@@ -17,8 +18,10 @@ const req = require.context("@/assets/icons/", true, /^\.\/.*\.svg$/)
  */
 export default {
   name: "Icon",
+  blockName: "icon",
   status: "review",
   release: "1.0.0",
+  mixins: [bemNames],
   props: {
     /**
      * The name of the icon to display.
@@ -75,7 +78,7 @@ export default {
 
 // We don’t want to use scoped since these styles need to cascade down to SVGs.
 // We also want to be able to style .icon inside buttons etc.
-.icon {
+@include b("icon") {
   @include reset;
   &.large svg {
     width: $space-l;

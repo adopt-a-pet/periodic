@@ -2,11 +2,15 @@
     <keep-alive>
       <component
         :is="showStep"
+        @login:forgotPassword="forgotPassword"
+        @login:success="loginSuccess"
       ></component>
     </keep-alive>
 </template>
 
 <script>
+import layoutMixin from "@/mixins/layout"
+
 export default {
   name: "Login",
   status: "under-review",
@@ -14,23 +18,13 @@ export default {
 
   props: [],
 
-  mixins: [
-    // require('../../../js/shared/mixins/layout'), // Layout switcher
-  ],
+  mixins: [layoutMixin],
 
   data() {
     return {
       showStep: "LoginForm", // null,
       email: "",
     }
-  },
-
-  components: {
-    // 'ConfirmAccount': require('./subcomponents/steps/confirm-account.vue'),
-    // 'confirm-account-success': require('./subcomponents/steps/confirm-account-success.vue'),
-    // 'forgot-password': require('./subcomponents/steps/forgot-password.vue'),
-    // 'forgot-password-submitting': require('./subcomponents/steps/forgot-password-submitting.vue'),
-    // 'forgot-password-success': require('./subcomponents/steps/forgot-password-success.vue')
   },
 }
 </script>
