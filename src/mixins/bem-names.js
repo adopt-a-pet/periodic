@@ -14,13 +14,16 @@ const block = setup({
 export default {
   computed: {
     /**
-     * To prevent namespace collisions when these components are included in
+     * To prevent CSS namespace collisions when these components are included in
      * other projects, we can have a globally-applied prefix to all of our
      * component class names.
      */
     b() {
-      const b = block(prefix.value + this.$options.blockName)
-      return b
+      return block(prefix.value + this.$options.blockName)
     },
+  },
+
+  created() {
+    if (!this.$options.blockName) throw new Error("To use this mixin your component must have a blockName property")
   },
 }
