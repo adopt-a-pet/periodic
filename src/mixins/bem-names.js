@@ -7,8 +7,8 @@ import { props } from "@/assets/tokens/tokens.raw.json"
 
 const prefix = props.prefix_component
 const block = setup({
-    mod: "--",
-    modValue: "-",
+  mod: "--",
+  modValue: "-",
 })
 
 export default {
