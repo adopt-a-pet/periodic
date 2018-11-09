@@ -3,9 +3,13 @@
 ## Side effects
 
 - HTTP requests
-- Setting a cookie
-- Setting localStorage
-- Making in analytics request
+- Setting a cookie/localStorage
+- Calling an analytics library
+
+By keeping side effects out of our components and isolating them in one place we gain two things:
+
+1. **Simplicity in component code.** We know that our components are concerned with only one thing: user interaction. State management, HTTP requests, cookies, etc. are all done _outside_ of the component, which keeps our component code small and manageable.
+2. **_Significantly_ easier debugging.** No more asking "What part of the code set that cookie?" or "Where did that HTTP request come from?" No spending hours to track down a data race because two components were both modifying the same object, but you don't know _where_ they are.
 
 Now, in the strictest sense it would also be considered a side effect to modify `this.` values inside of a component. Vue does have a way to prevent state mutation in components: [functional components](https://vuejs.org/v2/guide/render-function.html#Functional-Components), however we are not going to be that strict in this system because maintaining internal state (specifically in elements) can be quite useful--we don't need to use Vuex for simple things like button state.
 
@@ -57,3 +61,8 @@ Each pattern and template in Periodic may have its own Vuex module (if needed) u
 
 - Elements don't use Vuex. They communicate using custom events. This will help force our elements to stay small.
 - Patterns and templates only use Vuex.
+
+Mixin for two reasons
+
+1. Allow multiple instances like login
+2. Won't conflict with the app
