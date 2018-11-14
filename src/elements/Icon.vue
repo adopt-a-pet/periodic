@@ -1,15 +1,11 @@
 <template>
-  <component
-    :is="type"
-    :aria-label="ariaLabel"
-    :class="[b(), size]"
-    v-html="svg"
-  />
+  <component :is="type" :aria-label="ariaLabel" :class="[b(), size]" v-html="svg" />
 </template>
 
 <script>
-import bemNames from "@/mixins/bem-names"
-const req = require.context("@/assets/icons/", true, /^\.\/.*\.svg$/)
+import bemNames from '@/mixins/bem-names';
+
+const req = require.context('@/assets/icons/', true, /^\.\/.*\.svg$/);
 
 /**
  * Icons are used to visually communicate core parts of the product and
@@ -17,10 +13,10 @@ const req = require.context("@/assets/icons/", true, /^\.\/.*\.svg$/)
  * easily understand where they are in the product.
  */
 export default {
-  name: "Icon",
-  blockName: "icon",
-  status: "review",
-  release: "1.0.0",
+  name: 'Icon',
+  blockName: 'icon',
+  status: 'review',
+  release: '1.0.0',
   mixins: [bemNames],
   props: {
     /**
@@ -28,28 +24,28 @@ export default {
      */
     name: {
       required: true,
-      default: "settings",
+      default: 'settings',
     },
     /**
      * The fill color of the SVG icon.
      */
     fill: {
       type: String,
-      default: "currentColor",
+      default: 'currentColor',
     },
     /**
      * Descriptive text to be read to screenreaders.
      */
     ariaLabel: {
       type: String,
-      default: "icon",
+      default: 'icon',
     },
     /**
      * The html element name used for the icon.
      */
     type: {
       type: String,
-      default: "span",
+      default: 'span',
     },
     /**
      * The size of the icon. Defaults to medium.
@@ -57,28 +53,26 @@ export default {
      */
     size: {
       type: String,
-      default: "medium",
-      validator: value => {
-        return value.match(/(small|medium|large)/)
-      },
+      default: 'medium',
+      validator: value => value.match(/(small|medium|large)/),
     },
   },
   data() {
     return {
-      svg: req("./" + this.name + ".svg").replace(/^<svg /, `<svg style="fill: ${this.fill}" `),
-    }
+      svg: req(`./${this.name}.svg`).replace(/^<svg /, `<svg style="fill: ${this.fill}" `),
+    };
   },
-}
+};
 </script>
 
 <style lang="scss">
 // This is here just to provide defaults if the original tokens are removed.
 // Can be removed once you’re ready to start defining your own sizes.
-@import "../../docs/docs.tokens.scss";
+@import '../../docs/docs.tokens.scss';
 
 // We don’t want to use scoped since these styles need to cascade down to SVGs.
 // We also want to be able to style .icon inside buttons etc.
-@include b("icon") {
+@include b('icon') {
   @include reset;
   &.large svg {
     width: $space-l;

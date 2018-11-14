@@ -4,12 +4,13 @@
       :class="[
         inputClass,
         state,
-        b.state({
-          error: errorState,
-          success: successState,
-        })
-        .has({ content: email })
-        .toString()
+        b
+          .state({
+            error: errorState,
+            success: successState,
+          })
+          .has({ content: email })
+          .toString(),
       ]"
       :disabled="disabled"
       :name="name"
@@ -17,28 +18,27 @@
       type="email"
       v-model.lazy.trim="$v.email.$model"
       @blur="$v.email.$touch"
-      @input="onInput($event.target.value)"
-      @focus="onFocus($event.target.value)"
+      @input="onInput($event.target.value);"
+      @focus="onFocus($event.target.value);"
     />
-    <span v-if="successState" class="valid-tick"></span>
-    <label :for="name" :class="labelClass">{{label}}</label>
-    <div v-if="errorState" class="form__error-msg">{{errorMessage}}</div>
+    <span v-if="successState" class="valid-tick"></span> <label :for="name" :class="labelClass">{{ label }}</label>
+    <div v-if="errorState" class="form__error-msg">{{ errorMessage }}</div>
   </div>
 </template>
 
 <script>
-import bemNames from "@/mixins/bem-names"
-import { validationMixin } from "vuelidate"
-import { email, required } from "vuelidate/lib/validators"
+import bemNames from '@/mixins/bem-names';
+import { validationMixin } from 'vuelidate';
+import { email, required } from 'vuelidate/lib/validators';
 
 /**
  *
  */
 export default {
-  name: "EmailInput",
-  status: "under-review",
-  release: "1.0.0",
-  blockName: "form",
+  name: 'EmailInput',
+  status: 'under-review',
+  release: '1.0.0',
+  blockName: 'form',
   mixins: [bemNames, validationMixin],
   props: {
     /**
@@ -47,31 +47,29 @@ export default {
      */
     size: {
       type: String,
-      default: "large",
-      validator: value => {
-        return value.match(/(small|large)/)
-      },
+      default: 'large',
+      validator: value => value.match(/(small|large)/),
     },
     /**
      * Name input field in the form.
      */
     name: {
       type: String,
-      default: "email",
+      default: 'email',
     },
     /**
      * Text value of the form input field.
      */
     value: {
       type: String,
-      default: "",
+      default: '',
     },
     /**
      * The label of the form input field.
      */
     label: {
       type: String,
-      default: "Email",
+      default: 'Email',
     },
     /**
      * The html element name used for the wrapper.
@@ -79,10 +77,8 @@ export default {
      */
     wrapper: {
       type: String,
-      default: "div",
-      validator: value => {
-        return value.match(/(div|section)/)
-      },
+      default: 'div',
+      validator: value => value.match(/(div|section)/),
     },
     /**
      * The width of the form input field.
@@ -90,10 +86,8 @@ export default {
      */
     width: {
       type: String,
-      default: "expand",
-      validator: value => {
-        return value.match(/(auto|expand)/)
-      },
+      default: 'expand',
+      validator: value => value.match(/(auto|expand)/),
     },
     /**
      * Whether the form input field is disabled or not.
@@ -109,9 +103,7 @@ export default {
     state: {
       type: String,
       default: null,
-      validator: value => {
-        return value.match(/(hover|active|focus)/)
-      },
+      validator: value => value.match(/(hover|active|focus)/),
     },
     /**
      * Whether the form field is required or not.
@@ -124,58 +116,57 @@ export default {
   data() {
     return {
       email: this.value,
-    }
+    };
   },
   methods: {
     onInput(value) {
-      this.$emit("change", value)
+      this.$emit('change', value);
     },
     onFocus(value) {
-      this.$emit("focus", value)
+      this.$emit('focus', value);
     },
   },
   computed: {
     inputClass() {
-      const addSize = this.size === "large" ? "" : `-${this.size}`
-      return this.b("input") + addSize
+      const addSize = this.size === 'large' ? '' : `-${this.size}`;
+      return this.b('input') + addSize;
     },
     labelClass() {
-      const addSize = this.size === "large" ? "" : `-${this.size}`
-      return this.b("label") + addSize
+      const addSize = this.size === 'large' ? '' : `-${this.size}`;
+      return this.b('label') + addSize;
     },
     errorState() {
-      return this.$v.email.$error
+      return this.$v.email.$error;
     },
     successState() {
-      return this.email && !this.$v.email.$error
+      return this.email && !this.$v.email.$error;
     },
     errorMessage() {
       if (this.$v.email.required === false) {
-        return "Enter Email"
-      } else {
-        return "Invalid Email"
+        return 'Enter Email';
       }
+      return 'Invalid Email';
     },
   },
   validations() {
-    const validations = { email: { email } }
+    const validations = { email: { email } };
 
-    if (this.required) validations.email.required = required
+    if (this.required) validations.email.required = required;
 
-    return validations
+    return validations;
   },
-}
+};
 </script>
 
 <docs>
   ```jsx
   <div>
     <EmailInput />
-    <br>
+    <br />
     <EmailInput label="Required" required />
-    <br>
+    <br />
     <EmailInput label="Disabled" disabled />
-    <br>
+    <br />
     <EmailInput label="Small" size="small" />
   </div>
   ```

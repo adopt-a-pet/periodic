@@ -11,19 +11,25 @@
       <tbody>
         <tr v-for="(token, index) in tokens" :key="index" class="token">
           <td v-if="token.name">
-            <code class="name">${{token.name.replace(/_/g, "-")}}</code>
+            <code class="name">${{ token.name.replace(/_/g, '-') }}</code>
           </td>
           <td v-else>N/A</td>
           <td v-if="token.value">
             <div v-if="token.type === 'color'" class="example color" :style="{ backgroundColor: token.value }" />
-            <div v-if="token.category === 'border-radius'" class="example border-radius" :style="{ borderRadius: token.value }" />
-            <div v-if="token.category === 'box-shadow'" class="example box-shadow" :style="{ boxShadow: token.value }" />
-            <code class="type">
-              {{token.value}}
-            </code>
+            <div
+              v-if="token.category === 'border-radius'"
+              class="example border-radius"
+              :style="{ borderRadius: token.value }"
+            />
+            <div
+              v-if="token.category === 'box-shadow'"
+              class="example box-shadow"
+              :style="{ boxShadow: token.value }"
+            />
+            <code class="type"> {{ token.value }} </code>
           </td>
           <td v-else>N/A</td>
-          <td v-if="token.category">{{token.category}}</td>
+          <td v-if="token.category">{{ token.category }}</td>
           <td v-else>N/A</td>
         </tr>
       </tbody>
@@ -32,8 +38,8 @@
 </template>
 
 <script>
-import designTokens from "@/assets/tokens/tokens.raw.json"
-import orderBy from "lodash/orderBy"
+import designTokens from '@/assets/tokens/tokens.raw.json';
+import orderBy from 'lodash/orderBy';
 
 /**
  * A list of available tokens in Vue Design System. Use these tokens in place
@@ -42,24 +48,24 @@ import orderBy from "lodash/orderBy"
  * [/src/tokens/](https://github.com/viljamis/vue-design-system/blob/master/src/tokens).
  */
 export default {
-  name: "All",
+  name: 'All',
   methods: {
-    orderData: function(data) {
-      let byName = orderBy(data, "name", "asc")
-      let byCategoryAndName = orderBy(byName, "category")
-      return byCategoryAndName
+    orderData(data) {
+      const byName = orderBy(data, 'name', 'asc');
+      const byCategoryAndName = orderBy(byName, 'category');
+      return byCategoryAndName;
     },
   },
   data() {
     return {
       tokens: this.orderData(designTokens.props),
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import "../../docs.tokens.scss";
+@import '../../docs.tokens.scss';
 
 /* STYLES
 --------------------------------------------- */
@@ -138,8 +144,4 @@ export default {
 }
 </style>
 
-<docs>
-  ```jsx
-  <all/>
-  ```
-</docs>
+<docs> ```jsx <all /> ``` </docs>

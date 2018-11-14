@@ -1,29 +1,24 @@
 |<template>
-  <component
-    :is="tag"
-    :style="{ lineHeight: height, height: height, width: '100%' }"
-  >
-    <slot/>
-  </component>
+  <component :is="tag" :style="{ lineHeight: height, height: height, width: '100%' }"> <slot /> </component>
 </template>
 
 <script>
-import designTokens from "@/assets/tokens/tokens.raw.json"
+import designTokens from '@/assets/tokens/tokens.raw.json';
 
 /**
  * Adds a standard amount of verticals space between elements
  */
 export default {
-  name: "VSpacer",
-  status: "under-review",
-  release: "1.0.0",
+  name: 'VSpacer',
+  status: 'under-review',
+  release: '1.0.0',
   props: {
     /**
      * The html element used for the spacer.
      */
     tag: {
       type: String,
-      default: "div",
+      default: 'div',
     },
     /**
      * The size of the button. Defaults to large.
@@ -31,19 +26,17 @@ export default {
      */
     size: {
       type: String,
-      default: "m",
-      validator: value => {
-        return value.match(/(xxxxs|xxxs|xxs|xs|s|m|l|xl|xxl|xxxl|xxxxl)/)
-      },
+      default: 'm',
+      validator: value => value.match(/(xxxxs|xxxs|xxs|xs|s|m|l|xl|xxl|xxxl|xxxxl)/),
     },
   },
 
   computed: {
     height() {
-      return designTokens.props["space_" + this.size].value
+      return designTokens.props[`space_${this.size}`].value;
     },
   },
-}
+};
 </script>
 
 <docs>
