@@ -5,8 +5,7 @@
     :type="type"
     :class="[b(), b({ color, size }).toString(), state]"
     :disabled="disabled"
-    @click="click"
-  >
+    @click="click">
     <slot />
   </component>
 </template>

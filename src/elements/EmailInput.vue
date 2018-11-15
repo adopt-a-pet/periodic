@@ -19,13 +19,14 @@
       type="email"
       @blur="$v.email.$touch"
       @input="onInput($event.target.value);"
-      @focus="onFocus($event.target.value);"
-    >
+      @focus="onFocus($event.target.value);">
+
     <span
       v-if="successState"
-      class="valid-tick" /> <label
-        :for="name"
-        :class="labelClass">{{ label }}</label>
+      class="valid-tick" />
+    <label
+      :for="name"
+      :class="labelClass">{{ label }}</label>
     <div
       v-if="errorState"
       class="form__error-msg">{{ errorMessage }}</div>

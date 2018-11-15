@@ -19,8 +19,7 @@
       :type="showPassword ? 'text' : 'password'"
       v-model.lazy="password"
       @input="onInput($event.target.value);"
-      @focus="onFocus($event.target.value);"
-    >
+      @focus="onFocus($event.target.value);">
     <!-- <span v-if="successState" class="valid-tick"></span> -->
     <label
       :for="name"
