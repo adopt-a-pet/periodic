@@ -80,9 +80,6 @@
       "browser": true,
       "node": true
     },
-    "rules": {
-      "import/no-extraneous-dependencies": "off"
-    },
     "settings": {
       "import/resolver": {
         "webpack": {
