@@ -24,12 +24,12 @@ const TestVuexModule = {
 };
 
 const TestComponent = Vue.extend({
-  template: '<div></div>',
   mixins: [vuexModule],
-  vuexModule: TestVuexModule,
   created() {
     this.registerVuexModule();
   },
+  template: '<div></div>',
+  vuexModule: TestVuexModule,
   store,
 });
 

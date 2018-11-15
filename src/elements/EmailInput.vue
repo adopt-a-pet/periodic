@@ -1,5 +1,5 @@
 <template>
-  <div class="text-field-container">
+  <div :class="b('text-field-container').toString()">
     <input
       :class="[
         inputClass,
@@ -15,14 +15,20 @@
       :disabled="disabled"
       :name="name"
       :required="required"
-      type="email"
       v-model.lazy.trim="$v.email.$model"
+      type="email"
       @blur="$v.email.$touch"
       @input="onInput($event.target.value);"
       @focus="onFocus($event.target.value);"
-    />
-    <span v-if="successState" class="valid-tick"></span> <label :for="name" :class="labelClass">{{ label }}</label>
-    <div v-if="errorState" class="form__error-msg">{{ errorMessage }}</div>
+    >
+    <span
+      v-if="successState"
+      class="valid-tick" /> <label
+        :for="name"
+        :class="labelClass">{{ label }}</label>
+    <div
+      v-if="errorState"
+      class="form__error-msg">{{ errorMessage }}</div>
   </div>
 </template>
 
@@ -118,14 +124,6 @@ export default {
       email: this.value,
     };
   },
-  methods: {
-    onInput(value) {
-      this.$emit('change', value);
-    },
-    onFocus(value) {
-      this.$emit('focus', value);
-    },
-  },
   computed: {
     inputClass() {
       const addSize = this.size === 'large' ? '' : `-${this.size}`;
@@ -146,6 +144,14 @@ export default {
         return 'Enter Email';
       }
       return 'Invalid Email';
+    },
+  },
+  methods: {
+    onInput(value) {
+      this.$emit('change', value);
+    },
+    onFocus(value) {
+      this.$emit('focus', value);
     },
   },
   validations() {

@@ -1,4 +1,8 @@
 @include b('form') {
+  @include element('text-field-container') {
+    position: relative;
+    width: 100%;
+  }
   @include element('input') {
     @include border(1px solid color(agray, light));
     border-radius: $border-radius;

@@ -1,13 +1,14 @@
 <template>
-  <component :is="type" class="nav">
+  <component
+    :is="type"
+    class="nav">
     <a
       v-for="(item, index) in navItems"
       :key="index"
       :href="item.href"
       :class="{ active: localActive === item.component }"
       v-html="item.name"
-    >
-    </a>
+    />
   </component>
 </template>
 

@@ -1,5 +1,7 @@
 |<template>
-  <component :is="tag" :style="{ lineHeight: height, height: height, width: '100%' }"> <slot /> </component>
+  <component
+    :is="tag"
+    :style="{ lineHeight: height, height: height, width: '100%' }"> <slot /> </component>
 </template>
 
 <script>

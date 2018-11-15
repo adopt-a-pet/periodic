@@ -1,6 +1,7 @@
 <template>
-  <div :class="['text-field-container']">
+  <div :class="b('text-field-container').toString()">
     <input
+      v-validate="validations"
       :class="[
         inputClass,
         state,
@@ -17,14 +18,20 @@
       :required="required"
       :type="showPassword ? 'text' : 'password'"
       v-model.lazy="password"
-      v-validate="validations"
       @input="onInput($event.target.value);"
       @focus="onFocus($event.target.value);"
-    />
+    >
     <!-- <span v-if="successState" class="valid-tick"></span> -->
-    <label :for="name" :class="labelClass">{{ label }}</label>
-    <span class="eye-icon" :class="{ 'eye-icon__active': showPassword }" @click="showPassword = !showPassword;"></span>
-    <div v-if="errorState" class="form__error-msg">{{ errorMessage }}</div>
+    <label
+      :for="name"
+      :class="labelClass">{{ label }}</label>
+    <span
+      :class="{ 'eye-icon__active': showPassword }"
+      class="eye-icon"
+      @click="showPassword = !showPassword;" />
+    <div
+      v-if="errorState"
+      class="form__error-msg">{{ errorMessage }}</div>
   </div>
 </template>
 
