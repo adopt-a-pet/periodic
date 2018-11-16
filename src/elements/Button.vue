@@ -237,16 +237,16 @@ export default {
 <docs>
   ```jsx
   <div>
-    <button>Default</button> <br />
-    <button state="hover">:hover</button> <br />
-    <button state="active">:active</button> <br />
-    <button size="small">Small</button> <br />
-    <button :disabled="true">Disabled</button> <br />
-    <button :disabled="true" size="small">Small Disabled</button> <br />
-    <button color="blue">Blue</button> <br />
-    <button color="blue" size="small">Small Blue</button> <br />
-    <button color="orange">Orange</button> <br />
-    <button color="orange" size="small">Small Orange</button> <br />
+    <Button>Default</Button> <br />
+    <Button state="hover">:hover</Button> <br />
+    <Button state="active">:active</Button> <br />
+    <Button size="small">Small</Button> <br />
+    <Button :disabled="true">Disabled</Button> <br />
+    <Button :disabled="true" size="small">Small Disabled</Button> <br />
+    <Button color="blue">Blue</Button> <br />
+    <Button color="blue" size="small">Small Blue</Button> <br />
+    <Button color="orange">Orange</Button> <br />
+    <Button color="orange" size="small">Small Orange</Button> <br />
   </div>
   ```
 </docs>
