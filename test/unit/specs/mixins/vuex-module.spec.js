@@ -33,7 +33,7 @@ const TestComponent = Vue.extend({
   store,
 });
 
-describe('vuex-module', () => {
+describe('mixins/vuex-module', () => {
   it('should correctly namespace actions using component name', done => {
     const TestComponent1 = TestComponent.extend({
       name: 'TestComponent1',
