@@ -11,7 +11,7 @@
       </li>
       <li>
         <Icon name="deprecated" :fill="tokens.color_vermilion.value" size="small" />
-      <p>Deprecated</p>
+        <p>Deprecated</p>
       </li>
       <li>
         <Icon name="prototype" :fill="tokens.color_bleu_de_france.value" size="small" />
@@ -36,22 +36,13 @@
       <tbody>
         <tr v-for="(component, index) in components" :key="index" class="component">
           <td v-if="component.name">
-            <code class="name">
-              {{component.name}}
-            </code>
+            <code class="name"> {{ component.name }} </code>
           </td>
           <td v-else>N/A</td>
-          <td v-if="component.release">
-            {{component.release}}
-          </td>
+          <td v-if="component.release">{{ component.release }}</td>
           <td v-else>N/A</td>
           <td v-if="component.status">
-            <Icon
-              v-if="component.status === 'ready'"
-              name="ready"
-              fill="#7cb518"
-              size="small"
-            />
+            <Icon v-if="component.status === 'ready'" name="ready" fill="#7cb518" size="small" />
             <Icon
               v-if="component.status === 'under-review' || component.status === 'review'"
               name="review"
@@ -81,60 +72,58 @@
 <script>
 // If you want to use your own tokens here, change the following line to:
 // import designTokens from "@/assets/tokens/tokens.raw.json"
-import designTokens from "../../docs.tokens.json"
-import orderBy from "lodash/orderBy"
+import orderBy from 'lodash/orderBy';
+import designTokens from '../../docs.tokens.json';
 
 export default {
-  name: "Components",
+  name: 'Components',
   props: {
     show: {
       type: String,
-      default: "all",
-      validator: value => {
-        return value.match(/(all|patterns|templates|elements)/)
-      },
+      default: 'all',
+      validator: value => value.match(/(all|patterns|templates|elements)/),
     },
   },
   methods: {
-    getComponents: function() {
-      let contexts
+    getComponents() {
+      let contexts;
 
-      if (this.show === "all") {
+      if (this.show === 'all') {
         contexts = [
-          require.context("@/elements/", true, /\.vue$/),
-          require.context("@/patterns/", true, /\.vue$/),
-          require.context("@/templates/", true, /\.vue$/),
-        ]
-      } else if (this.show === "elements") {
-        contexts = [require.context("@/elements/", true, /\.vue$/)]
-      } else if (this.show === "patterns") {
-        contexts = [require.context("@/patterns/", true, /\.vue$/)]
-      } else if (this.show === "templates") {
-        contexts = [require.context("@/templates/", true, /\.vue$/)]
+          require.context('@/elements/', true, /\.vue$/),
+          require.context('@/patterns/', true, /\.vue$/),
+          require.context('@/templates/', true, /\.vue$/),
+        ];
+      } else if (this.show === 'elements') {
+        contexts = [require.context('@/elements/', true, /\.vue$/)];
+      } else if (this.show === 'patterns') {
+        contexts = [require.context('@/patterns/', true, /\.vue$/)];
+      } else if (this.show === 'templates') {
+        contexts = [require.context('@/templates/', true, /\.vue$/)];
       }
 
-      const components = []
+      const components = [];
       contexts.forEach(context => {
-        context.keys().forEach(key => components.push(context(key).default))
-      })
+        context.keys().forEach(key => components.push(context(key).default));
+      });
 
-      return components
+      return components;
     },
-    orderData: function(data) {
-      return orderBy(data, "name", "asc")
+    orderData(data) {
+      return orderBy(data, 'name', 'asc');
     },
   },
   data() {
     return {
       components: this.orderData(this.getComponents()),
       tokens: designTokens.props,
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import "../../docs.tokens.scss";
+@import '../../docs.tokens.scss';
 
 /* STYLES
 --------------------------------------------- */
@@ -230,8 +219,4 @@ export default {
 }
 </style>
 
-<docs>
-  ```jsx
-  <components />
-  ```
-</docs>
+<docs> ```jsx <components /> ``` </docs>

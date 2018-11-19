@@ -6,55 +6,55 @@
 export default {
   methods: {
     showLinks() {
-      const links = document.querySelectorAll("div[class^='rsg--sidebar'] ul ul[class^='rsg--list']")
+      const links = document.querySelectorAll("div[class^='rsg--sidebar'] ul ul[class^='rsg--list']");
       if (links) {
-        ;[].forEach.call(links, function(element) {
-          element.classList.add("vueds-visible")
-        })
+        [].forEach.call(links, element => {
+          element.classList.add('vueds-visible');
+        });
       }
     },
     hideLinks() {
-      const activeLinks = document.querySelectorAll(".vueds-visible")
+      const activeLinks = document.querySelectorAll('.vueds-visible');
       if (activeLinks) {
-        ;[].forEach.call(activeLinks, function(element) {
-          element.classList.remove("vueds-visible")
-        })
+        [].forEach.call(activeLinks, element => {
+          element.classList.remove('vueds-visible');
+        });
       }
     },
     init() {
-      const search = document.querySelector("div[class^='rsg--search'] input")
-      let writing = false
+      const search = document.querySelector("div[class^='rsg--search'] input");
+      let writing = false;
       if (search) {
-        search.addEventListener("keydown", () => {
+        search.addEventListener('keydown', () => {
           if (!writing || search.value) {
-            writing = true
+            writing = true;
             if (this.showLinks) {
-              this.showLinks()
+              this.showLinks();
             } else {
-              this.methods.showLinks()
+              this.methods.showLinks();
             }
           } else {
             if (this.hideLinks) {
-              this.hideLinks()
+              this.hideLinks();
             } else {
-              this.methods.hideLinks()
+              this.methods.hideLinks();
             }
-            writing = false
+            writing = false;
           }
-        })
-        search.addEventListener("blur", event => {
-          if (event.target && event.target.value === "") {
+        });
+        search.addEventListener('blur', event => {
+          if (event.target && event.target.value === '') {
             if (this.hideLinks) {
-              this.hideLinks()
+              this.hideLinks();
             } else {
-              this.methods.hideLinks()
+              this.methods.hideLinks();
             }
           }
-        })
+        });
       }
     },
   },
   mounted() {
-    this.init()
+    this.init();
   },
-}
+};

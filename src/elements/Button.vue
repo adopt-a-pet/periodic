@@ -6,22 +6,22 @@
     :class="[b(), b({ color, size }).toString(), state]"
     :disabled="disabled"
     @click="click">
-      <slot/>
+    <slot />
   </component>
 </template>
 
 <script>
-import bemNames from "@/mixins/bem-names"
+import bemNames from '@/mixins/bem-names';
 
 /**
  * Buttons are generally used for interface actions. Suitable for all-purpose use.
  * Defaults to green/large.
  */
 export default {
-  name: "Button",
-  blockName: "button",
-  status: "under-review",
-  release: "1.0.0",
+  name: 'Button',
+  blockName: 'button',
+  status: 'under-review',
+  release: '1.0.0',
   mixins: [bemNames],
   props: {
     /**
@@ -30,10 +30,8 @@ export default {
      */
     tag: {
       type: String,
-      default: "button",
-      validator: value => {
-        return value.match(/(button|a)/)
-      },
+      default: 'button',
+      validator: value => value.match(/(button|a)/),
     },
     /**
      * The size of the button. Defaults to large.
@@ -41,10 +39,8 @@ export default {
      */
     size: {
       type: String,
-      default: "large",
-      validator: value => {
-        return value.match(/(small|large)/)
-      },
+      default: 'large',
+      validator: value => value.match(/(small|large)/),
     },
     /**
      * When setting the button’s type to a link, use this option to give a href.
@@ -59,10 +55,8 @@ export default {
      */
     type: {
       type: String,
-      default: "submit",
-      validator: value => {
-        return value.match(/(button|submit)/)
-      },
+      default: 'submit',
+      validator: value => value.match(/(button|submit)/),
     },
     /**
      * Manually trigger various states of the button.
@@ -71,9 +65,7 @@ export default {
     state: {
       type: String,
       default: null,
-      validator: value => {
-        return value.match(/(hover|active|focus)/)
-      },
+      validator: value => value.match(/(hover|active|focus)/),
     },
     /**
      * Color allows us to easily change the color.
@@ -81,10 +73,8 @@ export default {
      */
     color: {
       type: String,
-      default: "green",
-      validator: value => {
-        return value.match(/(green|blue|orange)/)
-      },
+      default: 'green',
+      validator: value => value.match(/(green|blue|orange)/),
     },
     /**
      * Is the button disabled?
@@ -97,16 +87,16 @@ export default {
 
   methods: {
     click() {
-      if (this.disabled) return
+      if (this.disabled) return;
 
-      this.$emit("click")
+      this.$emit('click');
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@include b("button") {
+@include b('button') {
   display: block;
   background-color: color(awhite, base);
   @include border(2px solid color(agray, light));
@@ -114,7 +104,7 @@ export default {
   color: color(agray, light);
   font-family: $font_museo;
   font-weight: $weight_bold;
-  @include rem-fallback("font-size", 20px);
+  @include rem-fallback('font-size', 20px);
   cursor: pointer;
   line-height: 2.7;
   width: 100%;
@@ -137,14 +127,14 @@ export default {
     color: color(awhite, base);
   }
 
-  @include modifier("size") {
+  @include modifier('size') {
     &-small {
       line-height: 2.5;
-      @include rem-fallback("font-size", 16px);
+      @include rem-fallback('font-size', 16px);
     }
   }
 
-  @include modifier("color") {
+  @include modifier('color') {
     &-green {
       background-color: color(agreen, base);
       border: 0;
@@ -218,20 +208,20 @@ export default {
     color: color(awhite);
   }
 
-  @include element("image") {
+  @include element('image') {
     float: left;
-    @include rem-fallback("width", 58px);
-    @include rem-fallback("height", 58px);
+    @include rem-fallback('width', 58px);
+    @include rem-fallback('height', 58px);
     display: flex;
   }
 
-  @include element("icon") {
+  @include element('icon') {
     fill: color(awhite);
-    @include rem-fallback("width", 24px);
-    @include rem-fallback("height", 23px);
+    @include rem-fallback('width', 24px);
+    @include rem-fallback('height', 23px);
     display: inline-flex;
     vertical-align: middle;
-    @include rem-fallback("margin-right", 5px);
+    @include rem-fallback('margin-right', 5px);
   }
 
   // @include element ('ask-about-me') {
@@ -247,26 +237,16 @@ export default {
 <docs>
   ```jsx
   <div>
-    <Button>Default</Button>
-    <br />
-    <Button state="hover">:hover</Button>
-    <br />
-    <Button state="active">:active</Button>
-    <br />
-    <Button size="small">Small</Button>
-    <br />
-    <Button :disabled="true">Disabled</Button>
-    <br />
-    <Button :disabled="true" size="small">Small Disabled</Button>
-    <br />
-    <Button color="blue" >Blue</Button>
-    <br />
-    <Button color="blue" size="small">Small Blue</Button>
-    <br />
-    <Button color="orange">Orange</Button>
-    <br />
-    <Button color="orange" size="small">Small Orange</Button>
-    <br />
+    <Button>Default</Button> <br />
+    <Button state="hover">:hover</Button> <br />
+    <Button state="active">:active</Button> <br />
+    <Button size="small">Small</Button> <br />
+    <Button :disabled="true">Disabled</Button> <br />
+    <Button :disabled="true" size="small">Small Disabled</Button> <br />
+    <Button color="blue">Blue</Button> <br />
+    <Button color="blue" size="small">Small Blue</Button> <br />
+    <Button color="orange">Orange</Button> <br />
+    <Button color="orange" size="small">Small Orange</Button> <br />
   </div>
   ```
 </docs>

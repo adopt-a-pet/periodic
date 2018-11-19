@@ -1,12 +1,13 @@
 <template>
-  <component :is="type" class="nav">
+  <component
+    :is="type"
+    class="nav">
     <a
       v-for="(item, index) in navItems"
       :key="index"
       :href="item.href"
-      :class="{active: localActive === item.component}"
-      v-html="item.name">
-    </a>
+      :class="{ active: localActive === item.component }"
+      v-html="item.name" />
   </component>
 </template>
 
@@ -15,11 +16,11 @@
  * Used as main page navigation in templates.
  */
 export default {
-  name: "NavBar",
-  status: "ready",
-  release: "1.0.0",
+  name: 'NavBar',
+  status: 'ready',
+  release: '1.0.0',
   model: {
-    prop: "active",
+    prop: 'active',
   },
   props: {
     /**
@@ -27,7 +28,7 @@ export default {
      */
     type: {
       type: String,
-      default: "nav",
+      default: 'nav',
     },
     /**
      * State which tab is active when initiated (using name of the component).
@@ -47,19 +48,18 @@ export default {
   computed: {
     localActive: {
       get() {
-        return this.active
+        return this.active;
       },
       set(val) {
-        this.$emit("input", val)
+        this.$emit('input', val);
       },
     },
   },
-}
+};
 </script>
 
 <docs>
   ```jsx
-  <NavBar active="Dashboard" :navItems="[
-  ]"/>
+  <NavBar active="Dashboard" :navItems="[]" />
   ```
 </docs>
