@@ -1,22 +1,16 @@
 <template>
   <div class="colors">
-    <div
-      v-for="(prop, index) in tokens"
-      :key="index"
-      class="color"
-      :class="prop.category"
-      v-if="prop.type === 'color'">
-        <div class="swatch" :style="{ backgroundColor: prop.value }" />
-        <h3>{{prop.name.replace(/_/g, " ").replace(/color/g, "")}}</h3>
-        <span><em>RGB: </em>{{prop.value}}</span>
-        <span><em>SCSS: </em>${{prop.name.replace(/_/g, "-")}}</span>
+    <div v-for="(prop, index) in tokens" :key="index" class="color" :class="prop.category" v-if="prop.type === 'color'">
+      <div class="swatch" :style="{ backgroundColor: prop.value }" />
+      <h3>{{ prop.name.replace(/_/g, ' ').replace(/color/g, '') }}</h3>
+      <span><em>RGB: </em>{{ prop.value }}</span> <span><em>SCSS: </em>${{ prop.name.replace(/_/g, '-') }}</span>
     </div>
   </div>
 </template>
 
 <script>
-import designTokens from "@/assets/tokens/tokens.raw.json"
-import orderBy from "lodash/orderBy"
+import designTokens from '@/assets/tokens/tokens.raw.json';
+import orderBy from 'lodash/orderBy';
 
 /**
  * The color palette comes with 5 different weights for each hue. These hues
@@ -26,25 +20,25 @@ import orderBy from "lodash/orderBy"
  * [/src/tokens/color.yml](https://github.com/viljamis/vue-design-system/blob/master/src/tokens/color.yml).
  */
 export default {
-  name: "Color",
+  name: 'Color',
   methods: {
-    orderData: function(data) {
+    orderData(data) {
       // let byValue = orderBy(data, "value", "asc")
-      let byName = orderBy(data, "name", "asc")
-      let byCategoryAndName = orderBy(byName, "category")
-      return byCategoryAndName
+      const byName = orderBy(data, 'name', 'asc');
+      const byCategoryAndName = orderBy(byName, 'category');
+      return byCategoryAndName;
     },
   },
   data() {
     return {
       tokens: this.orderData(designTokens.props),
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import "../../docs.tokens.scss";
+@import '../../docs.tokens.scss';
 
 /* STYLES
 --------------------------------------------- */
@@ -138,8 +132,4 @@ h3 {
 }
 </style>
 
-<docs>
-  ```jsx
-  <color/>
-  ```
-</docs>
+<docs> ```jsx <color /> ``` </docs>

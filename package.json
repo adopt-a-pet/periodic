@@ -24,7 +24,7 @@
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
     "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo",
     "test": "npm-run-all theo unit",
-    "hook:pre-commit": "pretty-quick --staged && npm run lint"
+    "hook:pre-commit": "lint-staged"
   },
   "browserslist": [
     "last 2 versions",
@@ -35,6 +35,12 @@
     "hooks": {
       "pre-commit": "npm run hook:pre-commit"
     }
+  },
+  "lint-staged": {
+    "**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -73,33 +79,19 @@
   },
   "eslintConfig": {
     "extends": [
-      "eslint:recommended",
-      "plugin:vue/essential"
+      "plugin:adoptapet/base",
+      "plugin:adoptapet/vue"
     ],
     "env": {
       "browser": true,
       "node": true
     },
-    "rules": {
-      "indent": [
-        "error",
-        2
-      ],
-      "vue/no-unused-vars": "error",
-      "quotes": [
-        "error",
-        "double"
-      ],
-      "no-extra-semi": "off",
-      "semi": [
-        "error",
-        "never"
-      ],
-      "semi-style": [
-        "error",
-        "last"
-      ],
-      "no-console": "off"
+    "settings": {
+      "import/resolver": {
+        "webpack": {
+          "config": "build/webpack.base.conf.js"
+        }
+      }
     },
     "parserOptions": {
       "sourceType": "module",
@@ -149,10 +141,9 @@
     "copy-webpack-plugin": "^4.5.3",
     "css-loader": "^1.0.0",
     "eslint": "^5.6.1",
+    "eslint-import-resolver-webpack": "^0.10.1",
+    "eslint-plugin-adoptapet": "^0.4.0",
     "eslint-plugin-compat": "^2.6.2",
-    "eslint-plugin-es5": "^1.3.1",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-vue": "^4.7.1",
     "file-loader": "^2.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-loader": "^0.5.5",
@@ -161,6 +152,7 @@
     "husky": "^1.1.1",
     "jest": "^23.6.0",
     "jest-serializer-vue": "^2.0.2",
+    "lint-staged": "^8.0.4",
     "node-notifier": "^5.2.1",
     "node-sass": "^4.9.3",
     "npm-run-all": "^4.1.3",
@@ -168,8 +160,6 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "ora": "^3.0.0",
     "portfinder": "^1.0.17",
-    "prettier": "^1.14.3",
-    "pretty-quick": "^1.7.0",
     "rimraf": "^2.6.0",
     "sass-loader": "^7.1.0",
     "sass-resources-loader": "^1.3.3",

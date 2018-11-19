@@ -1,21 +1,20 @@
-"use strict"
-const utils = require("./utils")
-const webpack = require("webpack")
-const path = require("path")
-const config = require("../config")
-const merge = require("webpack-merge")
-const baseWebpackConfig = require("./webpack.base.conf")
-const MergeWebpackPlugin = require("webpack-merge-and-include-globally")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin")
-const CopyWebpackPlugin = require("copy-webpack-plugin")
-const SafeParser = require("postcss-safe-parser")
+const webpack = require('webpack');
+const path = require('path');
+const merge = require('webpack-merge');
+const MergeWebpackPlugin = require('webpack-merge-and-include-globally');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const SafeParser = require('postcss-safe-parser');
+const baseWebpackConfig = require('./webpack.base.conf');
+const config = require('../config');
+const utils = require('./utils');
 
-const env = require("../config/prod.env")
+const env = require('../config/prod.env');
 
 baseWebpackConfig.entry = {
-  system: ["./src/system.js"],
-}
+  system: ['./src/system.js'],
+};
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -28,8 +27,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? config.system.devtool : false,
   output: {
     path: config.system.assetsRoot,
-    filename: utils.assetsSystemPath("[name].js"),
-    library: "[name]",
+    filename: utils.assetsSystemPath('[name].js'),
+    library: '[name]',
     libraryTarget: config.system.libraryTarget,
   },
   performance: {
@@ -38,11 +37,11 @@ const webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      "process.env": env,
+      'process.env': env,
     }),
     // extract css into its own file
     new MiniCssExtractPlugin({
-      filename: utils.assetsSystemPath("[name].css"),
+      filename: utils.assetsSystemPath('[name].css'),
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
@@ -56,42 +55,42 @@ const webpackConfig = merge(baseWebpackConfig, {
     // Copy and merge Sass tokens and system utilities as well
     new MergeWebpackPlugin({
       files: {
-        [utils.assetsSystemPath("system.utils.scss")]: [
-          "./src/assets/tokens/tokens.scss",
-          "./src/styles/_spacing.scss",
-          "./src/styles/_mixins.scss",
-          "./src/styles/_functions.scss",
+        [utils.assetsSystemPath('system.utils.scss')]: [
+          './src/assets/tokens/tokens.scss',
+          './src/styles/_spacing.scss',
+          './src/styles/_mixins.scss',
+          './src/styles/_functions.scss',
         ],
       },
     }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, "../src/assets"),
+        from: path.resolve(__dirname, '../src/assets'),
         to: config.system.assetsSubDirectory,
-        ignore: [".*"],
+        ignore: ['.*'],
       },
     ]),
   ],
-})
+});
 
 if (config.system.productionGzip) {
-  const CompressionWebpackPlugin = require("compression-webpack-plugin")
+  const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
-      asset: "[path].gz[query]",
-      algorithm: "gzip",
-      test: new RegExp("\\.(" + config.system.productionGzipExtensions.join("|") + ")$"),
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: new RegExp(`\\.(${config.system.productionGzipExtensions.join('|')})$`),
       threshold: 10240,
       minRatio: 0.8,
     })
-  )
+  );
 }
 
 if (config.system.bundleAnalyzerReport) {
-  const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
-  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin());
 }
 
-module.exports = webpackConfig
+module.exports = webpackConfig;

@@ -2,14 +2,14 @@
  * This is the Vue equivalent of the sass utilities we have for BEM.
  */
 
-import { setup } from "bem-cn"
-import { props } from "@/assets/tokens/tokens.raw.json"
+import { setup } from 'bem-cn';
+import { props } from '@/assets/tokens/tokens.raw.json';
 
-const prefix = props.prefix_component
+const prefix = props.prefix_component;
 const block = setup({
-  mod: "--",
-  modValue: "-",
-})
+  mod: '--',
+  modValue: '-',
+});
 
 export default {
   computed: {
@@ -19,11 +19,11 @@ export default {
      * component class names.
      */
     b() {
-      return block(prefix.value + this.$options.blockName)
+      return block(prefix.value + this.$options.blockName);
     },
   },
 
   created() {
-    if (!this.$options.blockName) throw new Error("To use this mixin your component must have a blockName property")
+    if (!this.$options.blockName) throw new Error('To use this mixin your component must have a blockName property');
   },
-}
+};

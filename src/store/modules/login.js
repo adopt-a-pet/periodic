@@ -1,12 +1,12 @@
 // import Vuex from "vuex"
 
-const state = () => ({})
+const state = () => ({});
 
-const actions = {}
+const actions = {};
 
 export default () => ({
   namespaced: true,
   state,
   actions,
   // mutations,
-})
+});

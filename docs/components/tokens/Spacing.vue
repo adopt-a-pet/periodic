@@ -5,15 +5,16 @@
       :key="index"
       class="space"
       v-if="prop.category === 'space'"
-      :style="{ lineHeight: prop.value, height: prop.value }">
-        ${{prop.name.replace(/_/g, "-")}}<span> ({{prop.value}})</span>
+      :style="{ lineHeight: prop.value, height: prop.value }"
+    >
+      ${{ prop.name.replace(/_/g, '-') }}<span> ({{ prop.value }})</span>
     </div>
   </div>
 </template>
 
 <script>
-import designTokens from "@/assets/tokens/tokens.raw.json"
-import orderBy from "lodash/orderBy"
+import designTokens from '@/assets/tokens/tokens.raw.json';
+import orderBy from 'lodash/orderBy';
 
 /**
  * A framework for creating a predictable and harmonious spacing system. These
@@ -23,23 +24,23 @@ import orderBy from "lodash/orderBy"
  * [/src/tokens/spacing.yml](https://github.com/viljamis/vue-design-system/blob/master/src/tokens/spacing.yml).
  */
 export default {
-  name: "Spacing",
+  name: 'Spacing',
   methods: {
-    orderData: function(data) {
-      let order = orderBy(data, "category", "asc")
-      return order
+    orderData(data) {
+      const order = orderBy(data, 'category', 'asc');
+      return order;
     },
   },
   data() {
     return {
       tokens: this.orderData(designTokens.props),
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss">
-@import "../../docs.tokens.scss";
+@import '../../docs.tokens.scss';
 
 /* STYLES
 --------------------------------------------- */
@@ -73,8 +74,4 @@ export default {
 }
 </style>
 
-<docs>
-  ```jsx
-  <spacing/>
-  ```
-</docs>
+<docs> ```jsx <spacing /> ``` </docs>
