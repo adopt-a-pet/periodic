@@ -1,33 +1,52 @@
 <template>
-  <TextInput
-    :disabled="disabled"
-    :name="name"
-    :required="required"
-    :type="type"
-    :label="label"
-    :error-state="errorState"
-    :error-message="errorMessage"
-    :success-state="successState"
-    v-model="inputContent"
-    @change="onChange"
-    @blur="$v.email.$touch"
-    @input="onInput"
-    @focus="onFocus" />
+  <div :class="b('text-field-container').toString()">
+    <input
+      :class="[
+        inputClass,
+        state,
+        b
+          .state({
+            error: errorState,
+            success: successState,
+          })
+          .has({ content: hasContent })
+          .toString(),
+      ]"
+      :disabled="disabled"
+      :name="name"
+      :required="required"
+      :type="type"
+      :value="value"
+      @blur="$emit('blur')"
+      @change="$emit('change', value)"
+      @input="onInput($event.target.value)"
+      @focus="$emit('focus')">
+
+    <span
+      v-if="successState"
+      class="valid-tick" />
+    <label
+      :for="name"
+      :class="labelClass">{{ label }}</label>
+    <div
+      v-if="errorState"
+      class="form__error-msg">{{ errorMessage }}</div>
+  </div>
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate';
-import { email, required } from 'vuelidate/lib/validators';
-
 /**
  *
  */
-export default ({
-  name: 'EmailInput',
+export default {
+  name: 'TextInput',
   status: 'under-review',
   release: '1.0.0',
   blockName: 'form',
-  mixins: [validationMixin],
+  model: {
+    prop: 'value',
+    event: 'input',
+  },
   props: {
     /**
      * The size of the field. Defaults to large.
@@ -57,7 +76,7 @@ export default ({
      */
     label: {
       type: String,
-      default: 'Email',
+      default: 'Text',
     },
     /**
      * The html element name used for the wrapper.
@@ -107,11 +126,22 @@ export default ({
       type: String,
       default: 'text',
     },
+    errorState: {
+      type: Boolean,
+      default: false,
+    },
+    successState: {
+      type: Boolean,
+      default: false,
+    },
+    errorMessage: {
+      type: String,
+      default: 'Invalid Input',
+    },
   },
   data() {
     return {
-      inputContent: this.value,
-      email: this.value,
+      hasContent: false,
     };
   },
   computed: {
@@ -123,52 +153,26 @@ export default ({
       const addSize = this.size === 'large' ? '' : `-${this.size}`;
       return this.b('label') + addSize;
     },
-    errorState() {
-      return this.$v.email.$error;
-    },
-    successState() {
-      return !!(this.email && !this.errorState);
-    },
-    errorMessage() {
-      if (this.$v.email.required === false) {
-        return 'Enter Email';
-      }
-
-      return 'Invalid Email';
-    },
   },
   methods: {
     onInput(value) {
-      this.$emit('change', value);
+      this.hasContent = value.length;
       this.$emit('input', value);
     },
-    onFocus(value) {
-      this.$emit('focus', value);
-    },
-    onChange(value) {
-      this.$v.email.$model = value;
-    },
   },
-  validations() {
-    const validations = { email: { email } };
-
-    if (this.required) validations.email.required = required;
-
-    return validations;
-  },
-});
+};
 </script>
 
 <docs>
   ```jsx
   <div>
-    <EmailInput />
+    <TextInput />
     <br />
-    <EmailInput label="Required" required />
+    <TextInput label="Required" required />
     <br />
-    <EmailInput label="Disabled" disabled />
+    <TextInput label="Disabled" disabled />
     <br />
-    <EmailInput label="Small" size="small" />
+    <TextInput label="Small" size="small" />
   </div>
   ```
 </docs>
