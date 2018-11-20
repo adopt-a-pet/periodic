@@ -131,6 +131,7 @@ Yes you can. See the official example on GitHub: [github.com/viljamis/vue-design
 
 They are, but you need to add the following to the Webpack configuration for build:
 
+```
 <pre class="rsg--pre-42"><code>
   options: {
     // enable CSS Modules
@@ -139,7 +140,17 @@ They are, but you need to add the following to the Webpack configuration for bui
     localIdentName: "[local]_[hash:base64:8]"
   }
 </code></pre>
+```
 
 For more detailed instructions, please see: [vue-loader.vuejs.org/guide/css-modules.html](https://vue-loader.vuejs.org/guide/css-modules.html).
 
-## Why won't my styles behave?
+## Can I install plugins/global mixins?
+
+Yes, if you want a mixin to be shared across all components so you don't need to require it in for every component you'll need to change two files:
+
+1. [src/system.js](https://github.com/adopt-a-pet/periodic/blob/master/src/system.js) This is the file which is the root of the bundled design system that gets imported into other codebases.
+1. [docs/docs.helper.js](https://github.com/adopt-a-pet/periodic/blob/master/docs/docs.helper.js) This sets up the the Vue environment for the docs.
+
+Look for usage of `Vue.mixin` in these files to see how it's been done already. Generally you want to make the exact same changes in because you want the docs environment to be as similar to the actual bundled design system as possible so that there are no surprises when using it in another codebase.
+
+##### * Warning: When using Periodic in other codebases, it's important to remember that Vue.mixin (when used in src/system.js) will apply those mixins to not only Periodic components but to _every_ component in that codebase! So...use it wisely.

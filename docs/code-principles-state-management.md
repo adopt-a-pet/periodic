@@ -2,6 +2,11 @@
 
 ## Side effects
 
+Components can be thought of like functions: They take some data in (in the form of props) and then they output a result (in the form of HTML). Think of it as a box with only one door: You know that nothing can get in or out any other way. Unfortunately in JS and Vue there _are_ other ways to mess with the world outside of that box. Those are called side effects.
+
+##### Some examples of side effects:
+
+- Modifying a global
 - HTTP requests
 - Setting a cookie/localStorage
 - Calling an analytics library
@@ -11,7 +16,30 @@ By keeping side effects out of our components and isolating them in one place we
 1. **Simplicity in component code.** We know that our components are concerned with only one thing: user interaction. State management, HTTP requests, cookies, etc. are all done _outside_ of the component, which keeps our component code small and manageable.
 2. **_Significantly_ easier debugging.** No more asking "What part of the code set that cookie?" or "Where did that HTTP request come from?" No spending hours to track down a data race because two components were both modifying the same object, but you don't know _where_ they are.
 
-Now, in the strictest sense it would also be considered a side effect to modify `this.` values inside of a component. Vue does have a way to prevent state mutation in components: [functional components](https://vuejs.org/v2/guide/render-function.html#Functional-Components), however we are not going to be that strict in this system because maintaining internal state (specifically in elements) can be quite useful--we don't need to use Vuex for simple things like button state.
+#### Managing state without side effects
+
+Now, you may look at that list of side effects and think: "Hey, those are all useful things that need to be done! If my component can do those things who will?"
+
+The answer generally is: Vuex. Vuex is a library built solely for managing state. It also has `actions` which can make asynchronous modifications to the state (HTTP requests, cookies, analytics, etc).
+
+#### Module communication without side effects
+
+The idea of side effects--of a component reaching outside of its little box and modifying the outside world--is tempting, especially when needing to communicate with other components. But beware! This will lead to complicated entanglements of code later down the road.
+
+##### Events
+
+Use events whenever possible. Events are great: They're stateless, and they assume nothing about their parent environment which makes them perfect for use in other codebases.
+
+It's as simple as...
+
+1. Defining components which emit events: `this.$emit('example')`
+1. Using handlers in the foreign codebase that uses Periodic: `@example="handler"`
+
+##### The event bus anti-pattern
+
+The idea of an event bus makes sense: Two-way communication between deeply nested child components and (grand)parent components. The problem comes when modules are meant to be composed together like building blocks. Now you have elements or patterns which make assumptions about what their parent components will be. This is unacceptable if you want your components to be completely independent and interchangeable.
+
+So what do you do instead? Usually relaying the events upward works just fine in practice. If more complex messaging is needed use Vuex.
 
 ## Vuex
 
@@ -19,15 +47,7 @@ Now, in the strictest sense it would also be considered a side effect to modify 
 
 Use it!
 
-#### No methods!
-
-...except as event handlers (like @click). All business logic should take place inside of actions and mutations. Even when you have a method as an event handler it should do nothing more than call an action or mutation.
-
-##### this.$state or getters?
-
-Getters when necessary (derived state)
-
-mapState and mapGetters
+Put your modules in `src/store/modules` and then require them in
 
 #### Keep mutations out of components. Always use Actions.
 

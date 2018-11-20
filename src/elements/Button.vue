@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import bemNames from '@/mixins/bem-names';
-
 /**
  * Buttons are generally used for interface actions. Suitable for all-purpose use.
  * Defaults to green/large.
@@ -22,7 +20,6 @@ export default {
   blockName: 'button',
   status: 'under-review',
   release: '1.0.0',
-  mixins: [bemNames],
   props: {
     /**
      * The html element used for the button.

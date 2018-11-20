@@ -19,11 +19,9 @@ export default {
      * component class names.
      */
     b() {
+      if (!this.$options.blockName) throw new Error('To use this mixin your component must have a blockName property');
+
       return block(prefix.value + this.$options.blockName);
     },
-  },
-
-  created() {
-    if (!this.$options.blockName) throw new Error('To use this mixin your component must have a blockName property');
   },
 };
