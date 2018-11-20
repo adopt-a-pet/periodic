@@ -8,11 +8,15 @@ import WebFontLoader from '../src/utils/webFontLoader'; // eslint-disable-line n
 import statusLabels from './utils/statusLabels';
 import activeNav from './utils/activeNav';
 import filterSearch from './utils/filterSearch';
+import bemNames from '../src/mixins/bem-names';
+import vuexModule from '../src/mixins/vuex-module';
 import 'codemirror/mode/jsx/jsx';
 
 Vue.config.productionTip = false;
 Vue.use(Vuex);
+Vue.mixin(bemNames);
 Vue.mixin(statusLabels);
+Vue.mixin(vuexModule);
 
 document.addEventListener('DOMContentLoaded', () => {
   filterSearch.methods.init();

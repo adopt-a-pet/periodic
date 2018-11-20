@@ -5,6 +5,9 @@
  * You should & can add your own dependencies here if needed.
  */
 
+import bemNames from '@/mixins/bem-names';
+import vuexModule from '@/mixins/vuex-module';
+
 // Define contexts to require
 const contexts = [
   require.context('@/elements/', true, /\.vue$/),
@@ -21,6 +24,9 @@ contexts.forEach(context => {
 // Install the above defined components
 const System = {
   install(Vue) {
+    Vue.mixin(bemNames);
+    Vue.mixin(vuexModule);
+
     components.forEach(component => Vue.component(component.name, component));
   },
 };

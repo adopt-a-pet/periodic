@@ -63,11 +63,31 @@ module.exports = {
       usageMode: 'hide',
     },
     {
-      name: 'Code Principles',
-      content: '../docs/code-principles.md',
-      sectionDepth: 1,
-      exampleMode: 'hide',
-      usageMode: 'hide',
+      name: "Code Principles",
+      content: "../docs/code-principles.md",
+      sectionDepth: 2,
+      exampleMode: "hide",
+      usageMode: "hide",
+      sections: [
+        {
+          name: "Conventions",
+          content: "../docs/code-principles-conventions.md",
+          exampleMode: "hide",
+          usageMode: "hide",
+        },
+        {
+          name: "State Management",
+          content: "../docs/code-principles-state-management.md",
+          exampleMode: "hide",
+          usageMode: "hide",
+        },
+        {
+          name: "CSS",
+          content: "../docs/code-principles-css.md",
+          exampleMode: "hide",
+          usageMode: "hide",
+        },
+      ],
     },
     {
       name: 'Voice & Tone',
