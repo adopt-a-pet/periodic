@@ -1,6 +1,0 @@
-package.json
-package-lock.json
-src/assets/tokens/*
-dist/*
-**/*.json
-**/*.js
