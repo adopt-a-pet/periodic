@@ -3,7 +3,6 @@
     <input
       :class="[
         inputClass,
-        state,
         b
           .state({
             error: errorState,
@@ -29,6 +28,7 @@
     <label
       :for="name"
       :class="labelClass">{{ label }}</label>
+    <slot name="right" />
     <div
       v-if="errorState"
       class="form__error-msg">{{ errorMessage }}</div>
@@ -126,11 +126,18 @@ export default {
       default: false,
     },
     /**
-     * If `errorState` is true, what error message to show
+     * If `errorState` is true what error message to show
      */
     errorMessage: {
       type: String,
       default: 'Invalid Input',
+    },
+    /**
+     * If `successState` is true should it also show the green tick on the right?
+     */
+    showValidTick: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {
