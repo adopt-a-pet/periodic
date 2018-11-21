@@ -17,6 +17,7 @@
       :required="required"
       :type="type"
       :value="value"
+      v-model="inputContent"
       @blur="$emit('blur')"
       @change="$emit('change', value)"
       @input="onInput($event.target.value)"
@@ -88,29 +89,11 @@ export default {
       validator: value => value.match(/(div|section)/),
     },
     /**
-     * The width of the form input field.
-     * `auto, expand`
-     */
-    width: {
-      type: String,
-      default: 'expand',
-      validator: value => value.match(/(auto|expand)/),
-    },
-    /**
      * Whether the form input field is disabled or not.
      */
     disabled: {
       type: Boolean,
       default: false,
-    },
-    /**
-     * Manually trigger various states of the input.
-     * `hover, active, focus`
-     */
-    state: {
-      type: String,
-      default: null,
-      validator: value => value.match(/(hover|active|focus)/),
     },
     /**
      * Whether the form field is required or not.
@@ -126,14 +109,25 @@ export default {
       type: String,
       default: 'text',
     },
+    /**
+     * Does the field have validation errors? This is mainly used when extended
+     * by other components.
+     */
     errorState: {
       type: Boolean,
       default: false,
     },
+    /**
+     * Did the field pass validation? This is mainly used when extended by other
+     * components.
+     */
     successState: {
       type: Boolean,
       default: false,
     },
+    /**
+     * If `errorState` is true, what error message to show
+     */
     errorMessage: {
       type: String,
       default: 'Invalid Input',
@@ -141,7 +135,7 @@ export default {
   },
   data() {
     return {
-      hasContent: false,
+      inputContent: this.value,
     };
   },
   computed: {
@@ -153,10 +147,12 @@ export default {
       const addSize = this.size === 'large' ? '' : `-${this.size}`;
       return this.b('label') + addSize;
     },
+    hasContent() {
+      return this.inputContent.length;
+    },
   },
   methods: {
     onInput(value) {
-      this.hasContent = value.length;
       this.$emit('input', value);
     },
   },

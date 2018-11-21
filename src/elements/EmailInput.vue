@@ -3,8 +3,10 @@
     :disabled="disabled"
     :name="name"
     :required="required"
+    :size="size"
     :type="type"
     :label="label"
+    :wrapper="wrapper"
     :error-state="errorState"
     :error-message="errorMessage"
     :success-state="successState"
@@ -28,6 +30,10 @@ export default ({
   release: '1.0.0',
   blockName: 'form',
   mixins: [validationMixin],
+  model: {
+    prop: 'value',
+    event: 'input',
+  },
   props: {
     /**
      * The size of the field. Defaults to large.
@@ -69,15 +75,6 @@ export default ({
       validator: value => value.match(/(div|section)/),
     },
     /**
-     * The width of the form input field.
-     * `auto, expand`
-     */
-    width: {
-      type: String,
-      default: 'expand',
-      validator: value => value.match(/(auto|expand)/),
-    },
-    /**
      * Whether the form input field is disabled or not.
      */
     disabled: {
@@ -85,27 +82,11 @@ export default ({
       default: false,
     },
     /**
-     * Manually trigger various states of the input.
-     * `hover, active, focus`
-     */
-    state: {
-      type: String,
-      default: null,
-      validator: value => value.match(/(hover|active|focus)/),
-    },
-    /**
      * Whether the form field is required or not.
      */
     required: {
       type: Boolean,
       default: false,
-    },
-    /**
-     * Field type (text, email, password, etc.)
-     */
-    type: {
-      type: String,
-      default: 'text',
     },
   },
   data() {
@@ -139,7 +120,6 @@ export default ({
   },
   methods: {
     onInput(value) {
-      this.$emit('change', value);
       this.$emit('input', value);
     },
     onFocus(value) {
@@ -147,6 +127,7 @@ export default ({
     },
     onChange(value) {
       this.$v.email.$model = value;
+      this.$emit('change', value);
     },
   },
   validations() {
