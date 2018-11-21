@@ -4,7 +4,7 @@
     :name="name"
     :required="required"
     :size="size"
-    :type="!showPassword && 'password'"
+    :type="showPassword ? 'text' : 'password'"
     :label="label"
     :wrapper="wrapper"
     :error-state="errorState"
