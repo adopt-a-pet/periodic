@@ -31,7 +31,7 @@
     <slot name="right" />
     <div
       v-if="errorState"
-      class="form__error-msg">{{ errorMessage }}</div>
+      :class="b('error-msg').toString()">{{ errorMessage }}</div>
   </div>
 </template>
 

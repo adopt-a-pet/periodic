@@ -102,6 +102,7 @@
     }
   },
   "dependencies": {
+    "bem-cn": "^3.0.1",
     "lodash": "^4.17.11",
     "mini-css-extract-plugin": "^0.4.3",
     "postcss-import": "^12.0.0",
@@ -132,7 +133,6 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
-    "bem-cn": "^3.0.1",
     "chalk": "^2.4.1",
     "codemirror": "^5.40.2",
     "compression-webpack-plugin": "^2.0.0",
