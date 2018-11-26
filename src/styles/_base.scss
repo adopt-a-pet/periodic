@@ -1,4 +1,6 @@
 
+// Styles here will be applied to every periodic component. Treat this like you
+// would with the main `body {...}` style in a normal app.
 .#{$periodic-component-class} {
     margin: 0;
     color: $preset-body-color;
