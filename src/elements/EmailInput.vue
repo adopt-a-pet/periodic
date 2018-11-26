@@ -88,6 +88,14 @@ export default ({
       type: Boolean,
       default: false,
     },
+    /**
+     * Add validations to the field in the form of a Vuelidate object.
+     * `{ maxLength: maxLength(20) }`
+     */
+    validations: {
+      type: Object,
+      default() { return {}; },
+    },
   },
   data() {
     return {
@@ -131,7 +139,12 @@ export default ({
     },
   },
   validations() {
-    const validations = { email: { email } };
+    const validations = {
+      email: {
+        email,
+        ...this.validations,
+      },
+    };
 
     if (this.required) validations.email.required = required;
 
