@@ -2,13 +2,11 @@
   <component
     :is="type"
     :aria-label="ariaLabel"
-    :class="[b(), size]"
+    :class="[b().toString(), size]"
     v-html="svg" />
 </template>
 
 <script>
-import bemNames from '@/mixins/bem-names';
-
 const req = require.context('@/assets/icons/', true, /^\.\/.*\.svg$/);
 
 /**
@@ -21,7 +19,6 @@ export default {
   blockName: 'icon',
   status: 'review',
   release: '1.0.0',
-  mixins: [bemNames],
   props: {
     /**
      * The name of the icon to display.

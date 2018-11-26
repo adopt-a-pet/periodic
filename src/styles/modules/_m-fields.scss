@@ -238,11 +238,6 @@
         }
       }
     }
-
-    & .form__error-msg--bottom {
-      position: relative;
-      bottom: 6px;
-    }
   }
 
   @include element('card-container') {

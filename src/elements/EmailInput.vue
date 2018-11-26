@@ -1,52 +1,39 @@
 <template>
-  <div :class="b('text-field-container').toString()">
-    <input
-      :class="[
-        inputClass,
-        state,
-        b
-          .state({
-            error: errorState,
-            success: successState,
-          })
-          .has({ content: email })
-          .toString(),
-      ]"
-      :disabled="disabled"
-      :name="name"
-      :required="required"
-      v-model.lazy.trim="$v.email.$model"
-      type="email"
-      @blur="$v.email.$touch"
-      @input="onInput($event.target.value);"
-      @focus="onFocus($event.target.value);">
-
-    <span
-      v-if="successState"
-      class="valid-tick" />
-    <label
-      :for="name"
-      :class="labelClass">{{ label }}</label>
-    <div
-      v-if="errorState"
-      class="form__error-msg">{{ errorMessage }}</div>
-  </div>
+  <TextInput
+    :disabled="disabled"
+    :name="name"
+    :required="required"
+    :size="size"
+    :label="label"
+    :wrapper="wrapper"
+    :error-state="errorState"
+    :error-message="errorMessage"
+    :success-state="successState"
+    v-model="inputContent"
+    type="email"
+    @change="onChange"
+    @blur="$v.email.$touch"
+    @input="onInput"
+    @focus="onFocus" />
 </template>
 
 <script>
-import bemNames from '@/mixins/bem-names';
 import { validationMixin } from 'vuelidate';
 import { email, required } from 'vuelidate/lib/validators';
 
 /**
  *
  */
-export default {
+export default ({
   name: 'EmailInput',
   status: 'under-review',
   release: '1.0.0',
   blockName: 'form',
-  mixins: [bemNames, validationMixin],
+  mixins: [validationMixin],
+  model: {
+    prop: 'value',
+    event: 'input',
+  },
   props: {
     /**
      * The size of the field. Defaults to large.
@@ -62,7 +49,7 @@ export default {
      */
     name: {
       type: String,
-      default: 'email',
+      default: 'text',
     },
     /**
      * Text value of the form input field.
@@ -88,29 +75,11 @@ export default {
       validator: value => value.match(/(div|section)/),
     },
     /**
-     * The width of the form input field.
-     * `auto, expand`
-     */
-    width: {
-      type: String,
-      default: 'expand',
-      validator: value => value.match(/(auto|expand)/),
-    },
-    /**
      * Whether the form input field is disabled or not.
      */
     disabled: {
       type: Boolean,
       default: false,
-    },
-    /**
-     * Manually trigger various states of the input.
-     * `hover, active, focus`
-     */
-    state: {
-      type: String,
-      default: null,
-      validator: value => value.match(/(hover|active|focus)/),
     },
     /**
      * Whether the form field is required or not.
@@ -119,9 +88,18 @@ export default {
       type: Boolean,
       default: false,
     },
+    /**
+     * Add validations to the field in the form of a Vuelidate object.
+     * `{ maxLength: maxLength(20) }`
+     */
+    validations: {
+      type: Object,
+      default() { return {}; },
+    },
   },
   data() {
     return {
+      inputContent: this.value,
       email: this.value,
     };
   },
@@ -138,31 +116,41 @@ export default {
       return this.$v.email.$error;
     },
     successState() {
-      return this.email && !this.$v.email.$error;
+      return !!(this.email && !this.errorState);
     },
     errorMessage() {
       if (this.$v.email.required === false) {
         return 'Enter Email';
       }
+
       return 'Invalid Email';
     },
   },
   methods: {
     onInput(value) {
-      this.$emit('change', value);
+      this.$emit('input', value);
     },
     onFocus(value) {
       this.$emit('focus', value);
     },
+    onChange(value) {
+      this.$v.email.$model = value;
+      this.$emit('change', value);
+    },
   },
   validations() {
-    const validations = { email: { email } };
+    const validations = {
+      email: {
+        email,
+        ...this.validations,
+      },
+    };
 
     if (this.required) validations.email.required = required;
 
     return validations;
   },
-};
+});
 </script>
 
 <docs>

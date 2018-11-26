@@ -5,6 +5,8 @@
 props:
   prefix_component:
     value: "ui-"
+  periodic_component_class:
+    value: "periodic-component"
 global:
   type: global
   category: compatibility

@@ -3,7 +3,7 @@
     :is="tag"
     :href="href"
     :type="type"
-    :class="[b(), b({ color, size }).toString(), state]"
+    :class="[b({ color, size }).toString(), state]"
     :disabled="disabled"
     @click="click">
     <slot />

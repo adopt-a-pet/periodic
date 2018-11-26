@@ -8,7 +8,7 @@ aliases:
     value: "'Helvetica Neue', Helvetica, Arial, Roboto, 'Lucida Grande', sans-serif"
 
 props:
-  helvetica:
+  helvetica: # This one is just for legacy compatibility. It should eventually be removed.
     value: "{!helvetica}"
   font_helvetica:
     value: "{!helvetica}"

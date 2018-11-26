@@ -178,11 +178,11 @@ module.exports = {
         },
       ],
       links: [
-        {
-          rel: 'stylesheet',
-          href: 'https://images-ra.adoptapet.com/css/style.css',
-          media: 'all',
-        },
+        // {
+        //   rel: 'stylesheet',
+        //   href: 'https://images-ra.adoptapet.com/css/style.css',
+        //   media: 'all',
+        // },
       ],
     },
   },

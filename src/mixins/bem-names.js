@@ -6,6 +6,7 @@ import { setup } from 'bem-cn';
 import { props } from '@/assets/tokens/tokens.raw.json';
 
 const prefix = props.prefix_component;
+const componentClass = props.periodic_component_class;
 const block = setup({
   mod: '--',
   modValue: '-',
@@ -21,7 +22,15 @@ export default {
     b() {
       if (!this.$options.blockName) throw new Error('To use this mixin your component must have a blockName property');
 
-      return block(prefix.value + this.$options.blockName);
+      const b = block(prefix.value + this.$options.blockName);
+      const bWithComponentClass = name => b(name).mix(componentClass.value);
+
+      Object.assign(bWithComponentClass, b);
+
+      // .mix adds a generic Periodic class which will allow us to set up global
+      // styles for every component without polluting other codebases where
+      // periodic is used
+      return bWithComponentClass;
     },
   },
 };

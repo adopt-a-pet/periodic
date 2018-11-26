@@ -6,7 +6,7 @@ const Vue = createLocalVue();
 Vue.use(Periodic);
 
 const TestComponent = Vue.extend({
-  template: '<Button></Button>',
+  template: '<Button @click="$emit(\'click\')"></Button>',
 });
 
 describe('elements/Button', () => {

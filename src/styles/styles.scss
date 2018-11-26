@@ -8,11 +8,13 @@
 
 @import "~@aap/flexed/flexed/flexed";
 
+@import "legacy/index";
+
+@import "./base";
 @import "./functions";
 @import "./mixins";
 @import "./spacing";
 
-@import "legacy/index";
 @import "modules/index";
 
 // @include reset;

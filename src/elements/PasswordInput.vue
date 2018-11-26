@@ -1,42 +1,34 @@
 <template>
-  <div :class="b('text-field-container').toString()">
-    <input
-      v-validate="validations"
-      :class="[
-        inputClass,
-        state,
-        b
-          .state({
-            error: errorState,
-            success: successState,
-          })
-          .has({ content: password })
-          .toString(),
-      ]"
-      :disabled="disabled"
-      :name="name"
-      :required="required"
-      :type="showPassword ? 'text' : 'password'"
-      v-model.lazy="password"
-      @input="onInput($event.target.value);"
-      @focus="onFocus($event.target.value);">
-    <!-- <span v-if="successState" class="valid-tick"></span> -->
-    <label
-      :for="name"
-      :class="labelClass">{{ label }}</label>
-    <span
-      :class="{ 'eye-icon__active': showPassword }"
-      class="eye-icon"
-      @click="showPassword = !showPassword;" />
-    <div
-      v-if="errorState"
-      class="form__error-msg">{{ errorMessage }}</div>
-  </div>
+  <TextInput
+    :disabled="disabled"
+    :name="name"
+    :required="required"
+    :size="size"
+    :type="showPassword ? 'text' : 'password'"
+    :label="label"
+    :wrapper="wrapper"
+    :error-state="errorState"
+    :error-message="errorMessage"
+    :show-valid-tick="false"
+    :success-state="successState"
+    v-model="inputContent"
+    @change="onChange"
+    @blur="$v.password.$touch"
+    @input="onInput"
+    @focus="onFocus">
+
+    <template slot="right">
+      <span
+        :class="{ 'eye-icon__active': showPassword }"
+        class="eye-icon"
+        @click="showPassword = !showPassword;" />
+    </template>
+  </TextInput>
 </template>
 
 <script>
-import bemNames from '@/mixins/bem-names';
-import validatedInput from '@/mixins/validated-input';
+import { validationMixin } from 'vuelidate';
+import { minLength, required } from 'vuelidate/lib/validators';
 
 /**
  *
@@ -46,7 +38,7 @@ export default {
   status: 'under-review',
   release: '1.0.0',
   blockName: 'form',
-  mixins: [bemNames, validatedInput],
+  mixins: [validationMixin],
   props: {
     /**
      * The size of the field. Defaults to large.
@@ -62,7 +54,7 @@ export default {
      */
     name: {
       type: String,
-      default: 'password',
+      default: 'text',
     },
     /**
      * Text value of the form input field.
@@ -79,13 +71,13 @@ export default {
       default: 'Password',
     },
     /**
-     * The width of the form input field.
-     * `auto, expand`
+     * The html element name used for the wrapper.
+     * `div, section`
      */
-    width: {
+    wrapper: {
       type: String,
-      default: 'expand',
-      validator: value => value.match(/(auto|expand)/),
+      default: 'div',
+      validator: value => value.match(/(div|section)/),
     },
     /**
      * Whether the form input field is disabled or not.
@@ -95,24 +87,24 @@ export default {
       default: false,
     },
     /**
-     * Manually trigger various states of the input.
-     * `hover, active, focus`
-     */
-    state: {
-      type: String,
-      default: null,
-      validator: value => value.match(/(hover|active|focus)/),
-    },
-    /**
      * Whether the form field is required or not.
      */
     required: {
       type: Boolean,
       default: false,
     },
+    /**
+     * Add validations to the field in the form of a Vuelidate object.
+     * `{ maxLength: maxLength(20) }`
+     */
+    validations: {
+      type: Object,
+      default() { return {}; },
+    },
   },
   data() {
     return {
+      inputContent: this.value,
       password: this.value,
       showPassword: false,
     };
@@ -126,18 +118,43 @@ export default {
       const addSize = this.size === 'large' ? '' : `-${this.size}`;
       return this.b('label') + addSize;
     },
-    validations() {
-      const required = this.required && 'required';
-
-      return [required, 'min:8'].filter(v => !!v).join('|');
+    errorState() {
+      return this.$v.password.$error;
     },
     successState() {
-      return this.password && !this.errorState;
+      return !!(this.password && !this.errorState);
+    },
+    errorMessage() {
+      if (this.$v.password.required === false) {
+        return 'Enter Password';
+      }
+
+      return 'Invalid Password';
     },
   },
-  errorMessages: {
-    min: 'Invalid Password',
-    required: 'Password Required',
+  methods: {
+    onInput(value) {
+      this.$emit('input', value);
+    },
+    onFocus(value) {
+      this.$emit('focus', value);
+    },
+    onChange(value) {
+      this.$v.password.$model = value;
+      this.$emit('change', value);
+    },
+  },
+  validations() {
+    const validations = {
+      password: {
+        minLength: minLength(8),
+        ...this.validations,
+      },
+    };
+
+    if (this.required) validations.password.required = required;
+
+    return validations;
   },
 };
 </script>
