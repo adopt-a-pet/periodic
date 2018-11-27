@@ -35,6 +35,9 @@ export default {
   status: 'under-review',
   release: '1.0.0',
   blockName: 'radio',
+  model: {
+    event: 'change',
+  },
   props: {
     /**
      * Name of the radio group in the form.
