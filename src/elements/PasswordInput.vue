@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate';
 import { minLength, required } from 'vuelidate/lib/validators';
 
 /**
@@ -38,7 +37,6 @@ export default {
   status: 'under-review',
   release: '1.0.0',
   blockName: 'form',
-  mixins: [validationMixin],
   props: {
     /**
      * The size of the field. Defaults to large.

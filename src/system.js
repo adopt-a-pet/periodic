@@ -7,6 +7,7 @@
 
 import bemNames from '@/mixins/bem-names';
 import vuexModule from '@/mixins/vuex-module';
+import { validationMixin } from 'vuelidate';
 
 // Define contexts to require
 const contexts = [
@@ -21,13 +22,22 @@ contexts.forEach(context => {
   context.keys().forEach(key => components.push(context(key).default));
 });
 
+const mixins = [bemNames, validationMixin, vuexModule];
+
 // Install the above defined components
 const System = {
   install(Vue) {
-    Vue.mixin(bemNames);
-    Vue.mixin(vuexModule);
+    components.forEach(component => {
+      const componentMixins = component.mixins || [];
 
-    components.forEach(component => Vue.component(component.name, component));
+      // Add our mixins to each component
+      const componentWithMixins = Object.assign(
+        component,
+        { mixins: [...mixins, ...componentMixins] }, // Combine mixins
+      );
+
+      return Vue.component(component.name, componentWithMixins);
+    });
   },
 };
 

@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate';
 import { email, required } from 'vuelidate/lib/validators';
 
 /**
@@ -29,7 +28,6 @@ export default ({
   status: 'under-review',
   release: '1.0.0',
   blockName: 'form',
-  mixins: [validationMixin],
   model: {
     prop: 'value',
     event: 'input',

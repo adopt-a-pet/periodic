@@ -11,12 +11,12 @@ import filterSearch from './utils/filterSearch';
 import bemNames from '../src/mixins/bem-names';
 import vuexModule from '../src/mixins/vuex-module';
 import 'codemirror/mode/jsx/jsx';
+import Periodic from '../src/system';
 
 Vue.config.productionTip = false;
 Vue.use(Vuex);
-Vue.mixin(bemNames);
+Vue.use(Periodic);
 Vue.mixin(statusLabels);
-Vue.mixin(vuexModule);
 
 document.addEventListener('DOMContentLoaded', () => {
   filterSearch.methods.init();
