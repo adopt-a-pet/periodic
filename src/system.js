@@ -31,10 +31,10 @@ const System = {
       const componentMixins = component.mixins || [];
 
       // Add our mixins to each component
-      const componentWithMixins = Object.assign(
-        component,
-        { mixins: [...mixins, ...componentMixins] }, // Combine mixins
-      );
+      const componentWithMixins = {
+        ...component,
+        ...{ mixins: [...mixins, ...componentMixins] }, // Combine mixins
+      };
 
       return Vue.component(component.name, componentWithMixins);
     });
