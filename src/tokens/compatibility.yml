@@ -4,9 +4,9 @@
 
 props:
   prefix_component:
-    value: "ui-"
+    value: "periodic-"
   periodic_component_class:
-    value: "periodic-component"
+    value: "periodic-base"
 global:
   type: global
   category: compatibility

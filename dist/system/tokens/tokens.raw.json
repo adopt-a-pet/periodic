@@ -219,12 +219,12 @@
       "originalValue": "11px",
       "name": "font_size_xxs"
     },
-    "helvetica": {
+    "font_helvetica": {
       "type": "...",
       "category": "font",
       "value": "'Helvetica Neue', Helvetica, Arial, Roboto, 'Lucida Grande', sans-serif",
       "originalValue": "{!helvetica}",
-      "name": "helvetica"
+      "name": "font_helvetica"
     },
     "font_museo": {
       "type": "...",
@@ -233,33 +233,12 @@
       "originalValue": "Museo, {!helvetica}",
       "name": "font_museo"
     },
-    "font_heading": {
-      "type": "...",
-      "category": "font",
-      "value": "'Fira Sans', Helvetica, Arial, sans-serif",
-      "originalValue": "'Fira Sans', Helvetica, Arial, sans-serif",
-      "name": "font_heading"
-    },
-    "font_text": {
-      "type": "...",
-      "category": "font",
-      "value": "'Fira Sans', Helvetica, Arial, sans-serif",
-      "originalValue": "'Fira Sans', Helvetica, Arial, sans-serif",
-      "name": "font_text"
-    },
     "weight_bold": {
       "type": "...",
       "category": "font",
       "value": "700",
       "originalValue": "700",
       "name": "weight_bold"
-    },
-    "weight_semi_bold": {
-      "type": "...",
-      "category": "font",
-      "value": "600",
-      "originalValue": "600",
-      "name": "weight_semi_bold"
     },
     "weight_normal": {
       "type": "...",
@@ -274,6 +253,34 @@
       "value": "200",
       "originalValue": "200",
       "name": "weight_light"
+    },
+    "weight_semi_bold": {
+      "type": "...",
+      "category": "font",
+      "value": "600",
+      "originalValue": "600",
+      "name": "weight_semi_bold"
+    },
+    "helvetica": {
+      "type": "...",
+      "category": "font",
+      "value": "'Helvetica Neue', Helvetica, Arial, Roboto, 'Lucida Grande', sans-serif",
+      "originalValue": "{!helvetica}",
+      "name": "helvetica"
+    },
+    "font_heading": {
+      "type": "...",
+      "category": "font",
+      "value": "'Fira Sans', Helvetica, Arial, sans-serif",
+      "originalValue": "'Fira Sans', Helvetica, Arial, sans-serif",
+      "name": "font_heading"
+    },
+    "font_text": {
+      "type": "...",
+      "category": "font",
+      "value": "'Fira Sans', Helvetica, Arial, sans-serif",
+      "originalValue": "'Fira Sans', Helvetica, Arial, sans-serif",
+      "name": "font_text"
     },
     "opacity_disabled": {
       "type": "number",
@@ -557,10 +564,17 @@
     },
     "prefix_component": {
       "type": "global",
-      "category": "prefix",
-      "value": "ui-",
-      "originalValue": "ui-",
+      "category": "compatibility",
+      "value": "periodic-",
+      "originalValue": "periodic-",
       "name": "prefix_component"
+    },
+    "periodic_component_class": {
+      "type": "global",
+      "category": "compatibility",
+      "value": "periodic-base",
+      "originalValue": "periodic-base",
+      "name": "periodic_component_class"
     }
   }
 }
