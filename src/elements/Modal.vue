@@ -1,28 +1,21 @@
 <template>
   <div
     :class="[
-      b({'align': 'top'}).toString(),
-      'periodic-modal-popup__trigger--active periodic-modal-popup--active'
+      b({'align': 'top'}).is({ active: true }).toString(),
     ]"
     role="dialog"
     aria-hidden="true">
 
-    <div class="modal-popup__dialog container">
-      <div class="modal-popup__content modal-popup__content--active">
+    <div :class="b('dialog').toString()">
+      <div :class="b('content').toString()">
         <header>
-          <div
-            class="sticky-close">
+          <span
+            :class="b('close').toString()">
 
-            <slot name="header" />
-
-            <a
-              href="javascript:;"
-              class="modal-popup__close modal-close-position e-modal__closer gtm-close">
-              <img
-                src="https://images-ra.adoptapet.com/images/close.svg"
-                class="modal-popup__close-svg">
-            </a>
-          </div>
+            <img
+              :class="b('close-svg').toString()"
+              src="https://images-ra.adoptapet.com/images/close.svg">
+          </span>
         </header>
 
         <main>
