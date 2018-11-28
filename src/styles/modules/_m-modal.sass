@@ -12,6 +12,7 @@
   right: 0
   top: 0
   transition: all .5s cubic-bezier(0.23, 1, 0.32, 1)
+  visibility: hidden
   z-index: 1000
   -webkit-overflow-scrolling: touch
 
@@ -29,20 +30,24 @@
     width: 90%
 
   +e('content')
-    @include border-radius(6px)
+    @include border-radius($radius-xl)
     background-clip: padding-box
     background: #fff
-    box-shadow: 0px 0px 0px 6px color(ablue)
+    border: 6px solid color(ablue)
     position: relative
     width: 100%
+
+    header
+      margin-bottom: $space-s
+      height: $space-xxxl
 
   +e('close')
     cursor: pointer
     z-index: 1100
     position: absolute
-    top: 0
-    right: 0
-    padding: 20px 20px 0 0
+    top: $space-xxs
+    right: $space-xxs
+    padding: $space-xxs
     transition: all .5s cubic-bezier(.23,1,.32,1)
 
   +e('close-svg')
@@ -62,9 +67,15 @@
       padding: 0
       width: 100%
 
+    +e('close')
+      padding: $space-xxs
+      right: $space-l
+      top: 0
+
     +e('content')
       border-radius: 0
-      box-shadow: none
+      border: none
 
-    +e('sticky-close')
-      background: $sticky-close-grey
+      header
+        border-bottom: 1px solid color(agray, light)
+        height: $space-xl
