@@ -429,6 +429,13 @@
       "originalValue": "3px",
       "name": "radius_default"
     },
+    "radius_xl": {
+      "type": "number",
+      "category": "border-radius",
+      "value": "12px",
+      "originalValue": "12px",
+      "name": "radius_xl"
+    },
     "radius_circle": {
       "type": "number",
       "category": "border-radius",
