@@ -15,8 +15,8 @@ Vue.config.productionTip = false;
 Vue.use(Vuex);
 Vue.mixin(statusLabels);
 
-// We have to add these mixins manually because all of the components added with
-// Vue.use(Periodic) get overwritten by vue-styleguidist when generating docs.
+// We have to add these mixins manually instead of an easy Vue.use(Periodic)
+// because all of the components added will get overwritten by vue-styleguidist.
 mixins.forEach(mixin => Vue.mixin(mixin));
 
 document.addEventListener('DOMContentLoaded', () => {
