@@ -1,3 +1,9 @@
+/**
+ * This is a set of convenience functions to work with namespaced Vuex modules
+ */
+
+import tokens from '@/assets/tokens/tokens.json';
+
 const props = {
   /**
    * The namespace of the Vuex module. Defaults to component name.
@@ -5,7 +11,7 @@ const props = {
   vuexNamespace: {
     type: String,
     default() {
-      return this.$options.name;
+      return tokens.prefix_vuex_module + this.$options.name;
     },
   },
 };

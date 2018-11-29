@@ -576,6 +576,13 @@
       "originalValue": "periodic-",
       "name": "prefix_component"
     },
+    "prefix_vuex_module": {
+      "type": "global",
+      "category": "compatibility",
+      "value": "Periodic",
+      "originalValue": "Periodic",
+      "name": "prefix_vuex_module"
+    },
     "periodic_component_class": {
       "type": "global",
       "category": "compatibility",

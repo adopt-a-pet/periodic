@@ -1,4 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils';
+import tokens from '@/assets/tokens/tokens.json';
 import vuexModule from '@/mixins/vuex-module';
 import Vuex from 'vuex';
 
@@ -41,13 +42,13 @@ describe('mixins/vuex-module', () => {
 
     const wrapper = mount(TestComponent1);
 
-    expect(wrapper.vm.vuexNamespace).toBe('TestComponent1');
+    expect(wrapper.vm.vuexNamespace).toBe(`${tokens.prefix_vuex_module}TestComponent1`);
     expect(wrapper.vm.$mystore.a).toBe(1);
 
     const unsubscribe = wrapper.vm.$store.subscribeAction(action => {
       unsubscribe();
 
-      expect(action.type).toBe('TestComponent1/test');
+      expect(action.type).toBe(`${tokens.prefix_vuex_module}TestComponent1/test`);
       expect(action.payload).toBe(5);
 
       done();
@@ -63,15 +64,15 @@ describe('mixins/vuex-module', () => {
 
     const wrapper = mount(TestComponent2);
 
-    expect(wrapper.vm.vuexNamespace).toBe('TestComponent2');
+    expect(wrapper.vm.vuexNamespace).toBe(`${tokens.prefix_vuex_module}TestComponent2`);
     expect(wrapper.vm.$mystore.a).toBe(1);
 
     const unsubscribe = wrapper.vm.$store.subscribe((mutation, state) => {
       unsubscribe();
 
-      expect(mutation.type).toBe('TestComponent2/TEST');
+      expect(mutation.type).toBe(`${tokens.prefix_vuex_module}TestComponent2/TEST`);
       expect(mutation.payload).toBe(5);
-      expect(state.TestComponent2.a).toBe(6);
+      expect(state[`${tokens.prefix_vuex_module}TestComponent2`].a).toBe(6);
 
       done();
     });
@@ -79,7 +80,7 @@ describe('mixins/vuex-module', () => {
     wrapper.vm.$dispatch('test', 5);
   });
 
-  it('should correctly namespace Vuex module using props', done => {
+  it('should correctly override Vuex namespace using props', done => {
     const TestComponent2 = TestComponent.extend({
       name: 'TestComponent3',
     });
