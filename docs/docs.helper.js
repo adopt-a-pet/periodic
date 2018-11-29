@@ -8,15 +8,16 @@ import WebFontLoader from '../src/utils/webFontLoader'; // eslint-disable-line n
 import statusLabels from './utils/statusLabels';
 import activeNav from './utils/activeNav';
 import filterSearch from './utils/filterSearch';
-import bemNames from '../src/mixins/bem-names';
-import vuexModule from '../src/mixins/vuex-module';
 import 'codemirror/mode/jsx/jsx';
-import Periodic from '../src/system';
+import { mixins } from '../src/system';
 
 Vue.config.productionTip = false;
 Vue.use(Vuex);
-Vue.use(Periodic);
 Vue.mixin(statusLabels);
+
+// We have to add these mixins manually because all of the components added with
+// Vue.use(Periodic) get overwritten by vue-styleguidist when generating docs.
+mixins.forEach(mixin => Vue.mixin(mixin));
 
 document.addEventListener('DOMContentLoaded', () => {
   filterSearch.methods.init();

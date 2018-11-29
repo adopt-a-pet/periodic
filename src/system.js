@@ -22,22 +22,16 @@ contexts.forEach(context => {
   context.keys().forEach(key => components.push(context(key).default));
 });
 
-const mixins = [bemNames, validationMixin, vuexModule];
+export const mixins = [bemNames, validationMixin, vuexModule];
 
 // Install the above defined components
 const System = {
   install(Vue) {
-    components.forEach(component => {
-      const componentMixins = component.mixins || [];
-
-      // Add our mixins to each component
-      const componentWithMixins = {
-        ...component,
-        ...{ mixins: [...mixins, ...componentMixins] }, // Combine mixins
-      };
-
-      return Vue.component(component.name, componentWithMixins);
-    });
+    components.forEach(component => Vue.component(
+      component.name,
+      Vue.extend(component).extend({ mixins }),
+      // Vue.extend({ mixins }).extend(component),
+    ));
   },
 };
 
