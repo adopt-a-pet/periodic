@@ -23,7 +23,7 @@
       @focus="$emit('focus')">
 
     <span
-      v-if="successState"
+      v-if="successState && showValidTick"
       class="valid-tick" />
     <label
       :for="name"

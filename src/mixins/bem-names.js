@@ -3,7 +3,7 @@
  */
 
 import { setup } from 'bem-cn';
-import { props as tokens } from '@/assets/tokens/tokens.raw.json';
+import tokens from '@/assets/tokens/tokens.json';
 
 const prefix = tokens.prefix_component;
 const componentClass = tokens.periodic_component_class;
@@ -22,8 +22,8 @@ export default {
     b() {
       if (!this.$options.blockName) throw new Error('To use this mixin your component must have a blockName property');
 
-      const b = block(prefix.value + this.$options.blockName);
-      const bWithComponentClass = (name, opts) => b(name, opts).mix(componentClass.value);
+      const b = block(prefix + this.$options.blockName);
+      const bWithComponentClass = (name, opts) => b(name, opts).mix(componentClass);
 
       Object.assign(bWithComponentClass, b);
 

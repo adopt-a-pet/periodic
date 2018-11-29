@@ -429,6 +429,13 @@
       "originalValue": "3px",
       "name": "radius_default"
     },
+    "radius_xl": {
+      "type": "number",
+      "category": "border-radius",
+      "value": "12px",
+      "originalValue": "12px",
+      "name": "radius_xl"
+    },
     "radius_circle": {
       "type": "number",
       "category": "border-radius",
@@ -568,6 +575,13 @@
       "value": "periodic-",
       "originalValue": "periodic-",
       "name": "prefix_component"
+    },
+    "prefix_vuex_module": {
+      "type": "global",
+      "category": "compatibility",
+      "value": "Periodic",
+      "originalValue": "Periodic",
+      "name": "prefix_vuex_module"
     },
     "periodic_component_class": {
       "type": "global",

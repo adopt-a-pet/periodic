@@ -5,6 +5,8 @@
 props:
   prefix_component:
     value: "periodic-"
+  prefix_vuex_module:
+    value: "Periodic"
   periodic_component_class:
     value: "periodic-base"
 global:

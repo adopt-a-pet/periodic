@@ -84,3 +84,15 @@
     @content;
   }
 }
+
+@mixin is($state) {
+  &.is-#{$state} {
+    @content;
+  }
+}
+
+@mixin state($state) {
+  @include is($state) {
+    @content;
+  }
+}

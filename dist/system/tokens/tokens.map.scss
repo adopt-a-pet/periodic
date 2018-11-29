@@ -58,6 +58,7 @@ $tokens-map: (
   'letter-spacing-s': (-0.5px),
   'letter-spacing-xs': (-1px),
   'radius-default': (3px),
+  'radius-xl': (12px),
   'radius-circle': (50%),
   'space-xl': (40px),
   'space-xxxl': (60px),
@@ -78,5 +79,6 @@ $tokens-map: (
   'line-height-xs': (22px),
   'line-height-xxs': (17px),
   'prefix-component': (periodic-),
+  'prefix-vuex-module': (Periodic),
   'periodic-component-class': (periodic-base),
 );
