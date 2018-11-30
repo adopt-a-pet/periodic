@@ -1,0 +1,74 @@
++b(textarea)
+  +reset
+  +border(1px solid color(agray, light))
+  +rem-fallback('border-radius', $radius-m)
+  +rem-fallback('font-size', $font-size-m)
+  +rem-fallback('height', 240px)
+  +rem-fallback('padding', $space-s)
+  +rem-fallback('padding-top', $space-m)
+  box-shadow: $text-field-shade
+  display: flex
+  height: 100%
+  line-height: 1.5
+  outline: none
+  resize: none
+  width: 100%
+
+  &:focus
+    +border(1px solid color(ablue))
+
+  +is(error)
+    +border(1px solid color(aorange))
+
+  +e(label)
+    +labeltext($labeltext: label-textarea)
+    +rem-fallback('top', $space-xl)
+    line-height: 1
+
+  &:focus, &.has-content
+    ~ label
+      +rem-fallback('left', $space-s)
+      +rem-fallback('font-size', $font-size-xxs)
+      +rem-fallback('top', $space-l)
+      font-weight: 700
+
+  +e(error-msg)
+    top: 33px
+
+    +breakpoint(tiny)
+      width: 100%
+      +rem-fallback('top', 33px)
+
+    +breakpoint(thin)
+      width: 60%
+
+    +breakpoint(tablet-plus)
+      +rem-fallback('top', 6px)
+
+  +e(text-limit)
+    +rem-fallback('font-size', $font-size-xs)
+    +rem-fallback('line-height', $line-height-xs)
+    font-weight: 200
+    letter-spacing: 0
+    text-align: right
+
+  +e(container)
+    +column(1, 0)
+    +rem-fallback('height', 240px)
+    +rem-fallback('margin-top', $space-xs)
+    +rem-fallback('padding-top', $space-s)
+    border-top: 1px solid color(agray, light)
+    display: flex
+    flex-direction: column
+    position: relative
+    width: 100%
+
+    +breakpoint(phone-plus)
+      +rem-fallback('height', 280px)
+
+    +breakpoint(normal)
+      +rem-fallback('height', 240px)
+
+    +breakpoint(tablet-plus)
+      border-top: 0
+      +rem-fallback('margin-top', $space-s)
