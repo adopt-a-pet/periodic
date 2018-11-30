@@ -1,7 +1,7 @@
 
 // Styles here will be applied to every periodic component. Treat this like you
 // would with the main `body {...}` style in a normal app.
-.#{$periodic-component-class} {
+.#{$prefix-component}#{$periodic-component-class} {
     margin: 0;
     color: $preset-body-color;
     font-family: $font-helvetica;

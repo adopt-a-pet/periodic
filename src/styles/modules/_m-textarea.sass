@@ -33,17 +33,13 @@
       font-weight: 700
 
   +e(error-msg)
-    top: 33px
-
-    +breakpoint(tiny)
-      width: 100%
-      +rem-fallback('top', 33px)
-
-    +breakpoint(thin)
-      width: 60%
-
-    +breakpoint(tablet-plus)
-      +rem-fallback('top', 6px)
+    @include rem-fallback('font-size', $font-size-xs)
+    @include rem-fallback('line-height', $line-height-xxs)
+    @include rem-fallback('right', $space-xs)
+    @include rem-fallback('top', $space-m)
+    color: color(aorange)
+    position: absolute
+    text-align: right
 
   +e(text-limit)
     +rem-fallback('font-size', $font-size-xs)
