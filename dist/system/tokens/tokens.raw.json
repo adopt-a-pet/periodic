@@ -600,8 +600,8 @@
     "periodic_component_class": {
       "type": "global",
       "category": "compatibility",
-      "value": "periodic-base",
-      "originalValue": "periodic-base",
+      "value": "base",
+      "originalValue": "base",
       "name": "periodic_component_class"
     }
   }

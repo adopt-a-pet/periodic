@@ -5,12 +5,13 @@
       :maxlength="max"
       :required="required"
       :class="b().is({ 'error': errorState }).has({ content: hasContent }).toString()"
+      :disabled="disabled"
       v-model="inputContent"
       @focus="focused = true"
       @blur="onBlur" />
 
     <label :class="b('label').toString()">
-      <span v-if="hasContent || focused">{{ shortLabel }}</span>
+      <span v-if="hasContent || focused">{{ shortLabel || placeholder }}</span>
       <span v-if="!(hasContent || focused)">{{ placeholder }}</span>
     </label>
 
@@ -61,7 +62,8 @@ export default {
       default: null,
     },
     /**
-     * The small label at the top when field is focused
+     * The small label at the top when field is focused. Falls back to
+     * placeholder if not defined.
      */
     shortLabel: {
       type: String,
@@ -150,10 +152,13 @@ export default {
 <docs>
   ```jsx
   <div>
-    <Textarea />
+    <Textarea
+      placeholder="Characters remaining will show at the bottom if `max` is passed"
+      shortLabel="This is shortened"
+      :max="30" />
+
     <br />
-    <Textarea placeholder="This can be a very long message" shortLabel="This is shortened" :max="30" />
-    <br />
+
     <Textarea
       :min="10"
       :errorMessages="{
@@ -163,10 +168,10 @@ export default {
       placeholder="This textarea is required and must be have more than 10 characters"
       shortLabel="Required and at least 10 characters"
       required />
-    <br />
-    <Textarea label="Disabled" disabled />
-    <br />
-    <Textarea label="Small" size="small" />
+
+    <br/>
+
+    <Textarea placeholder="Disabled" disabled />
   </div>
   ```
 </docs>
