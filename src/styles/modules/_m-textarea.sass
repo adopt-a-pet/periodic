@@ -24,6 +24,7 @@
     +labeltext($labeltext: label-textarea)
     +rem-fallback('top', $space-xl)
     line-height: 1
+    max-width: 50%
 
   &:focus, &.has-content
     ~ label
@@ -40,6 +41,7 @@
     color: color(aorange)
     position: absolute
     text-align: right
+    max-width: 50%
 
   +e(text-limit)
     +rem-fallback('font-size', $font-size-xs)
