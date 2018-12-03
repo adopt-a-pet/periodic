@@ -1,3 +1,10 @@
+%has-content-label
+  +rem-fallback('left', $space-s)
+  +rem-fallback('font-size', $font-size-xxs)
+  +rem-fallback('top', $space-l)
+  font-weight: 700
+  max-width: 50%
+
 +b(textarea)
   +reset
   +border(1px solid color(agray, light))
@@ -24,14 +31,14 @@
     +labeltext($labeltext: label-textarea)
     +rem-fallback('top', $space-xl)
     line-height: 1
-    max-width: 50%
 
-  &:focus, &.has-content
+  &:focus
     ~ label
-      +rem-fallback('left', $space-s)
-      +rem-fallback('font-size', $font-size-xxs)
-      +rem-fallback('top', $space-l)
-      font-weight: 700
+      @extend %has-content-label
+
+  +has(content)
+    ~ label
+      @extend %has-content-label
 
   +e(error-msg)
     @include rem-fallback('font-size', $font-size-xs)

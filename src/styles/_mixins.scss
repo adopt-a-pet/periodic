@@ -92,7 +92,7 @@
 }
 
 @mixin has($name) {
-  &.has#{$name} {
+  &.has-#{$name} {
     @content;
   }
 }
