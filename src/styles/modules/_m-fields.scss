@@ -18,8 +18,7 @@
       @include border(1px solid color(ablue));
     }
 
-    &:focus,
-    &.has-content {
+    &:focus, &.#{_has(content)} {
       @include rem-fallback('padding-bottom', $space-xxxxs);
 
       & ~ label {
@@ -37,7 +36,7 @@
       color: color(agray, lighter);
     }
 
-    &.is-success {
+    @include is(success) {
       @include border(1px solid color(agreen));
       background-color: color(awhite);
       @include rem-fallback('padding-right', $space-xl);
@@ -47,7 +46,7 @@
       }
     }
 
-    &.is-error {
+    @include is(error) {
       @include border(1px solid color(aorange));
 
       &:focus {
@@ -97,8 +96,7 @@
       @include rem-fallback('top', $space-xxs);
     }
 
-    &:focus,
-    &.has-content {
+    &:focus, &.#{_has(content)} {
       @include border(1px solid color(ablue));
 
       & ~ label {
@@ -115,7 +113,7 @@
       color: color(agray, lighter);
     }
 
-    &.is-success {
+    @include is(success) {
       @include border(1px solid color(agreen));
       //background: url('data:image/svg+xml;utf8,<svg width="14px" height="11px" viewBox="0 0 14 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch --><title>Artboard 3</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Artboard-3"><g id="Cell-Elements/Cell-Check-Copy-7"><rect id="Cell-Frame" x="0" y="0" width="14" height="11"></rect><polygon id="Check" fill="%2370cf36" points="1.61538462 5 0 6.5 4.30769231 10.5 14 2 12.3846154 0.5 4.30769231 7.5"></polygon></g></g></g></svg>');
       background-repeat: no-repeat;
@@ -127,7 +125,7 @@
       }
     }
 
-    &.is-error {
+    @include is(error) {
       @include border(1px solid color(aorange));
 
       &:focus {
@@ -157,7 +155,7 @@
       @include rem-fallback('font-size', 11px);
     }
 
-    &.is-focus {
+    @include is(focus) {
       & + .form__arrow {
         transform: rotate(0.5turn);
       }
@@ -205,7 +203,7 @@
       display: none;
     }
 
-    &.is-disabled {
+    @include is(disabled) {
       color: color(agray, lighter);
     }
   }
