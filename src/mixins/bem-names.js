@@ -23,7 +23,7 @@ export default {
       if (!this.$options.blockName) throw new Error('To use this mixin your component must have a blockName property');
 
       const b = block(prefix + this.$options.blockName);
-      const bWithComponentClass = (name, opts) => b(name, opts).mix(componentClass);
+      const bWithComponentClass = (name, opts) => b(name, opts).mix(prefix + componentClass);
 
       Object.assign(bWithComponentClass, b);
 

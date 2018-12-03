@@ -6,6 +6,7 @@
  */
 
 import bemNames from '@/mixins/bem-names';
+import errorMessages from '@/mixins/error-messages';
 import layout from '@/mixins/layout';
 import vuexModule from '@/mixins/vuex-module';
 import { validationMixin } from 'vuelidate';
@@ -23,7 +24,7 @@ contexts.forEach(context => {
   context.keys().forEach(key => components.push(context(key).default));
 });
 
-export const mixins = [bemNames, layout, validationMixin, vuexModule];
+export const mixins = [bemNames, errorMessages, layout, validationMixin, vuexModule];
 
 // Install the above defined components
 const System = {

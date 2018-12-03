@@ -80,15 +80,6 @@ export default {
       default: 'Text',
     },
     /**
-     * The html element name used for the wrapper.
-     * `div, section`
-     */
-    wrapper: {
-      type: String,
-      default: 'div',
-      validator: value => value.match(/(div|section)/),
-    },
-    /**
      * Whether the form input field is disabled or not.
      */
     disabled: {

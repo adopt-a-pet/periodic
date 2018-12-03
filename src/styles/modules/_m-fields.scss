@@ -104,7 +104,7 @@
       & ~ label {
         @include rem-fallback('top', 2px);
         @include rem-fallback('left', $space-xs);
-        @include rem-fallback('font-size', $font-size-xxs);
+        @include rem-fallback('font-size', $font-size-xxxs);
         font-weight: 700;
       }
     }

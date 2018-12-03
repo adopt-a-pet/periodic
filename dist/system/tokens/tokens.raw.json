@@ -215,9 +215,16 @@
     "font_size_xxs": {
       "type": "number",
       "category": "font-size",
+      "value": "12px",
+      "originalValue": "12px",
+      "name": "font_size_xxs"
+    },
+    "font_size_xxxs": {
+      "type": "number",
+      "category": "font-size",
       "value": "11px",
       "originalValue": "11px",
-      "name": "font_size_xxs"
+      "name": "font_size_xxxs"
     },
     "font_helvetica": {
       "type": "...",
@@ -429,6 +436,13 @@
       "originalValue": "3px",
       "name": "radius_default"
     },
+    "radius_m": {
+      "type": "number",
+      "category": "border-radius",
+      "value": "6px",
+      "originalValue": "6px",
+      "name": "radius_m"
+    },
     "radius_xl": {
       "type": "number",
       "category": "border-radius",
@@ -586,8 +600,8 @@
     "periodic_component_class": {
       "type": "global",
       "category": "compatibility",
-      "value": "periodic-base",
-      "originalValue": "periodic-base",
+      "value": "base",
+      "originalValue": "base",
       "name": "periodic_component_class"
     }
   }

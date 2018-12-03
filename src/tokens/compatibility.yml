@@ -8,7 +8,7 @@ props:
   prefix_vuex_module:
     value: "Periodic"
   periodic_component_class:
-    value: "periodic-base"
+    value: "base"
 global:
   type: global
   category: compatibility
