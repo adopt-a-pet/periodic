@@ -74,7 +74,7 @@
 }
 
 @mixin block($name) {
-  &.#{$prefix-component}#{$name} {
+  &.#{_b($name)} {
     @content;
   }
 }
@@ -86,13 +86,13 @@
 }
 
 @mixin is($state) {
-  &.is-#{$state} {
+  &.#{_is($state)} {
     @content;
   }
 }
 
 @mixin has($name) {
-  &.has-#{$name} {
+  &.#{_has($name)} {
     @content;
   }
 }
