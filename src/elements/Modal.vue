@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      b({'align': 'top'}).is({ active: true }).toString(),
+      b({'align': 'top'}).is({ active: open }).toString(),
     ]"
     role="dialog"
     aria-hidden="true">
@@ -39,9 +39,19 @@ export default {
   blockName: 'modal-popup',
   status: 'under-review',
   release: '1.0.0',
+  props: {
+    /**
+     * Should the modal be open or closed.
+     */
+    open: {
+      type: Boolean,
+      default: true,
+    },
+  },
   methods: {
     close() {
       this.$emit('close');
+      this.$emit('update:open', false);
     },
   },
 };
@@ -49,7 +59,8 @@ export default {
 
 <docs>
   ```jsx
-  <Modal v-if="false">
+  <Modal
+    :open="false">
     <template slot="header">
       <span>This is in the header</span>
     </template>

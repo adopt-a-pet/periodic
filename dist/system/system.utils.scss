@@ -223,7 +223,7 @@ $spacing-ratio: 1.7;
 }
 
 @mixin has($name) {
-  &.has#{$name} {
+  &.has-#{$name} {
     @content;
   }
 }
