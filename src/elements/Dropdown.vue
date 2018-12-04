@@ -1,12 +1,17 @@
 <template>
   <div
     v-if="native"
-    :class="b().toString()">
+    :class="b({ native: true }).toString()">
+
+    <TextInput
+      :focus-border="false"
+      :label="label"
+      value=" "
+      readonly />
 
     <select
-      v-model="selectedNative"
-      :class="b().is({ 'is-error': hasErrors }).toString()"
-      @change="onSelectNative">
+      :class="b('select').toString()"
+      v-model.number="selectedIndex">
 
       <option
         v-for="option in choices"
@@ -14,7 +19,7 @@
         :value="option.index">{{ option.display | capitalize }}</option>
     </select>
 
-    <span class="form__arrow" />
+    <span :class="b('arrow').toString()" />
   </div>
 
   <div
@@ -22,7 +27,6 @@
     :class="b().is({ full: full }).toString()">
 
     <TextInput
-      ref="input"
       :focus-border="false"
       :label="label"
       :readonly="readonly"
@@ -46,8 +50,24 @@
           v-for="option in choices"
           :key="option.display"
           :class="b('list-item').is({ selected: (selectedIndex === option.index) }).toString()"
-          @mousedown="e => onSelect(e, option)">{{ option.display | capitalize }}</li>
+          @mousedown="e => onSelect(option.index)">{{ option.display | capitalize }}</li>
       </ul>
+    </div>
+
+    <span
+      v-if="infoBubble"
+      :class="b('info-icon').toString()"
+      @mouseleave="showInfoBubble = false"
+      @mouseover="showInfoBubble = true">
+
+      <Icon name="info" />
+    </span>
+
+    <div
+      v-if="showInfoBubble"
+      :class="block('info-bubble').toString()">
+
+      <div :class="block('info-bubble')('content').toString()">{{ infoBubble }}</div>
     </div>
   </div>
 </template>
@@ -86,6 +106,14 @@ export default {
         return [];
       },
     },
+    /**
+     * Special choices always appear at the top of the list and are never
+     * filtered out in searchable dropdowns.
+     */
+    specialChoices: {
+      type: Array,
+      default: () => [],
+    },
     search: {
       type: Boolean,
       default: false,
@@ -94,19 +122,15 @@ export default {
       type: Number,
       default: 0,
     },
-    allowChoiceOfAny: {
-      type: Boolean,
-      default: true,
-    },
     parentErrors: {
       type: Array,
       default() {
         return [];
       },
     },
-    showErrorMessages: {
-      type: Boolean,
-      default: true,
+    infoBubble: {
+      type: String,
+      default: null,
     },
   },
 
@@ -116,27 +140,21 @@ export default {
       // focused is only used when search=true. It should stay false otherwise.
       focused: false,
       filter: '',
-      // Some sequencing issue with the computed this.choices, so using `addIndexes` directly
-      selected: this.initialSelection(),
-      selectedNative: this.initialSelection().index,
+      selectedIndex: this.initialSelection().index,
       showBreedpopup: false,
+      showInfoBubble: false,
     };
   },
 
   computed: {
     selectedValue() {
-      const selectedItem = this.selected;
+      const selectedItem = this.allChoices[this.selectedIndex];
       return selectedItem.value;
     },
 
     selectedDisplay() {
-      const selectedItem = this.selected;
+      const selectedItem = this.allChoices[this.selectedIndex];
       return selectedItem.display;
-    },
-
-    selectedIndex() {
-      const selectedItem = this.selected;
-      return selectedItem.index;
     },
 
     filterOrselectedDisplay() {
@@ -153,9 +171,14 @@ export default {
       return (
         (this.search && this.filter !== '')
           ? this.filterSearch(this.filter)
-          : this.makeChoices(this.items)
+          : this.allChoices
       );
     },
+
+    allChoices() {
+      return this.makeChoices(this.items);
+    },
+
     // This method can be extended for any kind of errors.
     // Right now the only errors are parentErrors
     hasErrors() {
@@ -177,6 +200,12 @@ export default {
 
   },
 
+  watch: {
+    selectedIndex() {
+      this.$emit('change', this.selectedValue);
+    },
+  },
+
   mounted() {
     this.$emit('change', this.selectedValue);
   },
@@ -187,20 +216,8 @@ export default {
     // guaranteed. So we use `specialChoicesBeginning` to add items to the
     // list *after* the Fuse filtering happens.
     makeChoices(items) {
-      const withSpecialChoices = this.specialChoicesBeginning().concat(items);
+      const withSpecialChoices = this.specialChoices.concat(items);
       return this.addIndexes(withSpecialChoices);
-    },
-
-    // Add custom options to always appear at the beginning of the list.
-    // It would be possible to make this more configurable in the future,
-    // but there is not a need currently.
-    specialChoicesBeginning() {
-      // Extend this list to add choices
-      const choices = [];
-
-      if (this.allowChoiceOfAny) choices.push({ display: 'Any', value: null });
-
-      return choices;
     },
 
     initialSelection() {
@@ -208,16 +225,9 @@ export default {
       return withSpecialChoices[this.startingIndex];
     },
 
-    onSelectNative({ target: { value } }) {
-      const selected = this.choices[value].value;
-
-      this.$emit('change', selected);
-    },
-
-    onSelect(e, option) {
-      this.selected = option;
+    onSelect(index) {
+      this.selectedIndex = index;
       this.hide();
-      this.$emit('change', this.selectedValue);
     },
 
     onBlur() {
@@ -237,16 +247,16 @@ export default {
       this.filter = value.trim();
     },
 
-    // This is a little ugly but it's the only way I could make it work...
+    // This is a little ugly but...
     //
     // 1. `makeChoices(this.items)` to add indexes to everything, including
-    //    the special ones at the beginning ("Any").
+    //    the special ones at the beginning
     // 2. Split the list into special and normal
     // 3. Search through all the normal ones
     // 4. Add special items back to the beginning and return the whole list
     filterSearch(filter) {
       const list = this.makeChoices(this.items);
-      const specialChoicesBeginningSize = this.specialChoicesBeginning().length;
+      const specialChoicesBeginningSize = this.specialChoices.length;
       const specialChoicesBeginning = list.slice(0, specialChoicesBeginningSize);
       const filterChoices = list.slice(specialChoicesBeginningSize);
       const fuse = new Fuse(filterChoices, fuseOptions);
@@ -284,14 +294,6 @@ export default {
     hideBreedpopup() {
       this.showBreedpopup = false;
     },
-
-    resetSelection() {
-      this.selected = this.initialSelection();
-      this.selectedNative = this.initialSelection().index;
-
-      this.$emit('change', this.selectedValue);
-    },
-
   },
 
 };
@@ -316,7 +318,8 @@ export default {
         { display: 'Two', value: 2 },
       ]"
       :search="true"
-      :allowChoiceOfAny="true" />
+      :specialChoices="[{ display: 'Any', value: null }]"
+      infoBubble="This is an info bubble" />
   </div>
   ```
 </docs>

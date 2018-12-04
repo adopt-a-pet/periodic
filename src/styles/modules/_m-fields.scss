@@ -5,7 +5,7 @@
   }
   @include element('input') {
     @include border(1px solid color(agray, light));
-    border-radius: $border-radius;
+    border-radius: $radius-l;
     background-color: color(awhite);
     width: 100%;
     outline: none;
