@@ -181,6 +181,8 @@ export default {
     <TextInput label="Disabled" disabled />
     <br />
     <TextInput label="Small" size="small" />
+    <br />
+    <TextInput label="Error State" :error-state="true" />
   </div>
   ```
 </docs>

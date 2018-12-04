@@ -4,6 +4,8 @@
     :class="b({ native: true }).toString()">
 
     <TextInput
+      :error-state="errorState"
+      :error-message="errorMessage"
       :focus-border="false"
       :label="label"
       value=" "
@@ -27,6 +29,8 @@
     :class="b().is({ full: full }).toString()">
 
     <TextInput
+      :error-state="errorState"
+      :error-message="errorMessage"
       :focus-border="false"
       :label="label"
       :readonly="readonly"
@@ -96,10 +100,18 @@ export default {
     event: 'change',
   },
   props: {
+    /**
+     * The label of the form input field.
+     */
     label: {
       type: String,
       default: '',
     },
+    /**
+     * A list of items to render. Each item must have a `display` and a `value`.
+     *
+     * `[{ display: 'One', value: 1 }]`
+     */
     items: {
       type: Array,
       default() {
@@ -114,23 +126,40 @@ export default {
       type: Array,
       default: () => [],
     },
+    /**
+     * Is this dropdown searchable?
+     */
     search: {
       type: Boolean,
       default: false,
     },
+    /**
+     * Which option is selected initially
+     */
     startingIndex: {
       type: Number,
       default: 0,
     },
-    parentErrors: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
+    /**
+     * If a value is passed, show the info bubble
+     */
     infoBubble: {
       type: String,
       default: null,
+    },
+    /**
+     * Does the field have any validation errors?
+     */
+    errorState: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * If `errorState` is `true` what error message to show
+     */
+    errorMessage: {
+      type: String,
+      default: '',
     },
   },
 
@@ -195,7 +224,7 @@ export default {
 
     native() {
       // Native dropdowns on non-desktop
-      return this.layout !== 'desktop';
+      return (!this.search) && (this.layout !== 'desktop');
     },
 
   },
@@ -320,6 +349,17 @@ export default {
       :search="true"
       :specialChoices="[{ display: 'Any', value: null }]"
       infoBubble="This is an info bubble" />
+
+    <br />
+
+    <Dropdown
+      label="Error State"
+      :error-state="true"
+      error-message="Nope!"
+      :items="[
+        { display: 'One', value: 1 },
+        { display: 'Two', value: 2 },
+      ]" />
   </div>
   ```
 </docs>
