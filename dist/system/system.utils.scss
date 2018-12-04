@@ -205,7 +205,7 @@ $spacing-ratio: 1.7;
 }
 
 @mixin block($name) {
-  &.#{$prefix-component}#{$name} {
+  &.#{_b($name)} {
     @content;
   }
 }
@@ -217,13 +217,13 @@ $spacing-ratio: 1.7;
 }
 
 @mixin is($state) {
-  &.is-#{$state} {
+  &.#{_is($state)} {
     @content;
   }
 }
 
 @mixin has($name) {
-  &.has-#{$name} {
+  &.#{_has($name)} {
     @content;
   }
 }
@@ -362,4 +362,44 @@ $spacing-ratio: 1.7;
   }
 
   @return $output;
+}
+
+// Returns a (prefixed) BEM block name
+//
+// @param  {String} $name of the block
+// @return {String}
+@function _b($name) {
+  @return $prefix-component + $name;
+}
+
+// Returns a BEM element name
+//
+// @param  {String} $name of the element
+// @return {String}
+@function _e($name) {
+  @return '__' + $name;
+}
+
+// Returns a BEM module name
+//
+// @param  {String} $name of the module
+// @return {String}
+@function _m($name) {
+  @return '--' + $name;
+}
+
+// Returns a BEM state (is-x) name
+//
+// @param  {String} $state name
+// @return {String}
+@function _is($state) {
+  @return 'is-' + $state;
+}
+
+// Returns a BEM has (has-x) name
+//
+// @param  {String} $name of the property
+// @return {String}
+@function _has($name) {
+  @return 'has-' + $name;
 }

@@ -14,8 +14,10 @@
     @include rem-fallback('padding', $space-xs);
     @include rem-fallback('font-size', $font-size-m);
 
-    &:focus {
-      @include border(1px solid color(ablue));
+    @include has('focus-border') {
+      &:focus {
+        @include border(1px solid color(ablue));
+      }
     }
 
     &:focus, &.#{_has(content)} {
@@ -146,22 +148,6 @@
     }
   }
 
-  @include element('select') {
-    appearance: none;
-
-    & ~ label {
-      @include rem-fallback('top', 2px);
-      @include rem-fallback('left', 16px);
-      @include rem-fallback('font-size', 11px);
-    }
-
-    @include is(focus) {
-      & + .form__arrow {
-        transform: rotate(0.5turn);
-      }
-    }
-  }
-
   @include element('error-msg') {
     position: absolute;
     @include rem-fallback('right', $space-xs);
@@ -267,23 +253,6 @@
     @include rem-fallback('border-radius', 6px 6px 0 0);
     background: color(aorange);
     @include rem-fallback('height', 10px);
-  }
-  @include element('arrow') {
-    @include rem-fallback('width', 13px);
-    @include rem-fallback('height', 7px);
-    top: 45%;
-    @include rem-fallback('right', 17px);
-    position: absolute;
-    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2213px%22%20height%3D%227px%22%20viewBox%3D%220%200%2010%205%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2041%20(35326)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3EArtboard%204%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard-4%22%20fill%3D%22%234D4D4D%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolygon%20id%3D%22Shape%22%20points%3D%220%200%205%205%2010%200%22%3E%3C%2Fpolygon%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position: 94% center;
-    cursor: pointer;
-    transition: all 300ms ease-in-out;
-    pointer-events: none;
-
-    @include modifier('small') {
-      top: 37%;
-    }
   }
 }
 
