@@ -33,4 +33,10 @@ export default {
       return bWithComponentClass;
     },
   },
+
+  methods: {
+    block(blockName) {
+      return block(prefix + blockName);
+    },
+  },
 };

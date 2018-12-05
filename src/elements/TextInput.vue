@@ -1,6 +1,7 @@
 <template>
   <div :class="b('text-field-container').toString()">
     <input
+      ref="input"
       :class="[
         inputClass,
         b
@@ -8,19 +9,23 @@
             error: errorState,
             success: successState,
           })
-          .has({ content: hasContent })
+          .has({
+            content: hasContent,
+            'focus-border': focusBorder
+          })
           .toString(),
       ]"
       :disabled="disabled"
       :name="name"
+      :readonly="readonly"
       :required="required"
       :type="type"
       :value="value"
-      v-model="inputContent"
       @blur="$emit('blur')"
       @change="$emit('change', value)"
       @input="onInput($event.target.value)"
-      @focus="$emit('focus')">
+      @focus="$emit('focus')"
+      @click="$emit('click')">
 
     <span
       v-if="successState && showValidTick"
@@ -130,11 +135,20 @@ export default {
       type: Boolean,
       default: true,
     },
-  },
-  data() {
-    return {
-      inputContent: this.value,
-    };
+    /**
+     * Change border color on focus
+     */
+    focusBorder: {
+      type: Boolean,
+      default: true,
+    },
+    /**
+     * Set the field to readonly
+     */
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     inputClass() {
@@ -146,7 +160,7 @@ export default {
       return this.b('label') + addSize;
     },
     hasContent() {
-      return this.inputContent.length;
+      return this.value && this.value.length;
     },
   },
   methods: {
@@ -167,6 +181,8 @@ export default {
     <TextInput label="Disabled" disabled />
     <br />
     <TextInput label="Small" size="small" />
+    <br />
+    <TextInput label="Error State" :error-state="true" />
   </div>
   ```
 </docs>

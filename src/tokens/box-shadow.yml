@@ -6,6 +6,8 @@
 props:
   shadow_s:
     value: "0 0 0 1px rgba(92,106,196,.1)"
+  shadow_callout:
+    value: "-1px 1px 2px 0 rgba(0, 0, 0, .19)"
 
   btn_shade_hover:
     value: "inset 0 -3px 0 0 rgba(0, 0, 0, 0.4)"

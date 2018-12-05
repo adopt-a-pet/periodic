@@ -380,6 +380,13 @@
       "originalValue": "0 0 0 1px rgba(92,106,196,.1)",
       "name": "shadow_s"
     },
+    "shadow_callout": {
+      "type": "...",
+      "category": "box-shadow",
+      "value": "-1px 1px 2px 0 rgba(0, 0, 0, .19)",
+      "originalValue": "-1px 1px 2px 0 rgba(0, 0, 0, .19)",
+      "name": "shadow_callout"
+    },
     "btn_shade_hover": {
       "type": "...",
       "category": "box-shadow",
@@ -442,6 +449,13 @@
       "value": "6px",
       "originalValue": "6px",
       "name": "radius_m"
+    },
+    "radius_l": {
+      "type": "number",
+      "category": "border-radius",
+      "value": "9px",
+      "originalValue": "9px",
+      "name": "radius_l"
     },
     "radius_xl": {
       "type": "number",
