@@ -21,11 +21,11 @@
       :required="required"
       :type="type"
       :value="value"
-      @blur="$emit('blur')"
-      @change="$emit('change', value)"
+      @blur="onBlur"
+      @change="onChange($event.target.value)"
       @input="onInput($event.target.value)"
-      @focus="$emit('focus')"
-      @click="$emit('click')">
+      @focus="onFocus"
+      @click="onClick">
 
     <span
       v-if="successState && showValidTick"
@@ -165,24 +165,102 @@ export default {
   },
   methods: {
     onInput(value) {
+      /**
+       * Input event
+       *
+       * @event input
+       * @type String
+       */
       this.$emit('input', value);
+    },
+    onBlur() {
+      /**
+       * Blur event
+       *
+       * @event blur
+       * @type none
+       */
+      this.$emit('blur');
+    },
+    onClick() {
+      /**
+       * Click event
+       *
+       * @event click
+       * @type none
+       */
+      this.$emit('click');
+    },
+    onFocus() {
+      /**
+       * Focus event
+       *
+       * @event focus
+       * @type none
+       */
+      this.$emit('focus');
+    },
+    onChange(value) {
+      /**
+       * Change event
+       *
+       * @event change
+       * @type String
+       */
+      this.$emit('change', value);
     },
   },
 };
 </script>
 
 <docs>
-  ```jsx
+```vue
+<template>
   <div>
-    <TextInput />
+    <TextInput
+      v-model="textInput1" />
+
     <br />
-    <TextInput label="Required" required />
+
+    <TextInput
+      v-model="textInput2"
+      label="Required"
+      required />
+
     <br />
-    <TextInput label="Disabled" disabled />
+
+    <TextInput
+      v-model="textInput3"
+      label="Disabled"
+      disabled />
+
     <br />
-    <TextInput label="Small" size="small" />
+
+    <TextInput
+      v-model="textInput4"
+      label="Small"
+      size="small" />
+
     <br />
-    <TextInput label="Error State" :error-state="true" />
+
+    <TextInput
+      v-model="textInput5"
+      label="Error State"
+      :error-state="true" />
   </div>
-  ```
+</template>
+<script>
+export default {
+  data() {
+    return {
+      textInput1: '',
+      textInput2: '',
+      textInput3: '',
+      textInput4: '',
+      textInput5: '',
+    }
+  }
+};
+</script>
+```
 </docs>

@@ -6,7 +6,7 @@
       :required="required"
       :class="b().is({ 'error': errorState }).has({ content: hasContent }).toString()"
       :disabled="disabled"
-      v-model="inputContent"
+      @input="onInput($event.target.value)"
       @focus="focused = true"
       @blur="onBlur" />
 
@@ -109,40 +109,52 @@ export default {
   },
   data() {
     return {
-      inputContent: this.value,
       focused: false,
     };
   },
   computed: {
     remaining() {
-      return this.max - this.inputContent.length;
+      return this.max - this.value.length;
     },
     hasContent() {
-      return this.inputContent.length;
+      return this.value.length;
     },
     errorState() {
-      return this.$v.inputContent.$error;
+      return this.$v.value.$error;
     },
     errorMessage() {
-      return this.getErrorMessages(this.$v.inputContent, this.errorMessages)[0];
+      return this.getErrorMessages(this.$v.value, this.errorMessages)[0];
     },
   },
   methods: {
     onInput(value) {
+      /**
+       * Input event
+       *
+       * @event input
+       * @type String
+       */
       this.$emit('input', value);
     },
     onBlur() {
       this.focused = false;
-      this.$v.inputContent.$touch();
+      this.$v.value.$touch();
+      /**
+       * Blur event
+       *
+       * @event blur
+       * @type none
+       */
+      this.$emit('blur');
     },
   },
   validations() {
     const validations = {
-      inputContent: {},
+      value: {},
     };
 
-    if (this.required) validations.inputContent.required = required;
-    if (this.min) validations.inputContent.min = minLength(this.min);
+    if (this.required) validations.value.required = required;
+    if (this.min) validations.value.min = minLength(this.min);
 
     return validations;
   },
@@ -150,9 +162,11 @@ export default {
 </script>
 
 <docs>
-  ```jsx
+```vue
+<template>
   <div>
     <Textarea
+      v-model="textArea1"
       placeholder="Characters remaining will show at the bottom if `max` is passed"
       shortLabel="This is shortened"
       :max="30" />
@@ -160,6 +174,7 @@ export default {
     <br />
 
     <Textarea
+      v-model="textArea2"
       :min="10"
       :errorMessages="{
         required: 'Come on! Put something here!',
@@ -171,7 +186,22 @@ export default {
 
     <br/>
 
-    <Textarea placeholder="Disabled" disabled />
+    <Textarea
+      v-model="textArea3"
+      placeholder="Disabled"
+      disabled />
   </div>
-  ```
+</template>
+<script>
+export default {
+  data() {
+    return {
+      textArea1: '',
+      textArea2: '',
+      textArea3: '',
+    }
+  }
+};
+</script>
+```
 </docs>
