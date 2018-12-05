@@ -99,7 +99,7 @@ export default {
     <br />
     <Checkbox size="small" v-model="checkbox1">Small, same v-model as the first</Checkbox>
     <br />
-    <Checkbox size="small" disabled>Small, same v-model as the first</Checkbox>
+    <Checkbox disabled>Disabled</Checkbox>
     <br />
   </div>
 </template>
