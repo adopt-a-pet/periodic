@@ -31,8 +31,7 @@
 
 <script>
 /**
- * Example component is used to visually communicate core parts of the product
- * and available actions.
+ * An empty modal component to be used for anything!
  */
 export default {
   name: 'Modal',
@@ -50,7 +49,20 @@ export default {
   },
   methods: {
     close() {
+      /**
+       * Modal closed
+       *
+       * @event close
+       * @type none
+       */
       this.$emit('close');
+
+      /**
+       * Same as @close but allows components to use open.sync
+       *
+       * @event update:open
+       * @type none
+       */
       this.$emit('update:open', false);
     },
   },
@@ -58,18 +70,32 @@ export default {
 </script>
 
 <docs>
-  ```jsx
-  <Modal
-    :open="false">
-    <template slot="header">
-      <span>This is in the header</span>
-    </template>
+```vue
+<template>
+  <div>
+    <Modal
+      :open.sync="modal">
+      <template slot="header">
+        <span>This is in the header</span>
+      </template>
 
-    <h1>Something</h1>
+      <h1>Something</h1>
 
-    <RadioGroup
-      name="example"
-      :items="[ { display: 'Green', value: 'a' }, { display: 'Blue', value: 'b' } ]" />
-  </Modal>
-  ```
+      <RadioGroup
+        name="example"
+        :items="[ { display: 'Green', value: 'a' }, { display: 'Blue', value: 'b' } ]" />
+    </Modal>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      modal: false, // Change this to true to open the modal
+    }
+  }
+};
+</script>
+```
 </docs>
