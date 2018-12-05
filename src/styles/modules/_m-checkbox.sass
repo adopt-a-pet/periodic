@@ -1,0 +1,34 @@
++b(checkbox)
+  vertical-align: middle
+
+  +e(box)
+    +reset
+    background-color: #fff
+    border-radius: 4px
+    border: 2px solid #b3b3b3
+    display: inline-block
+    height: $font-size-m
+    overflow: hidden
+    width: $font-size-m
+
+    +m(size-small)
+      height: $font-size-s
+      width: $font-size-s
+
+    +is(checked)
+      background-color: #00a8de
+      border: 2px solid #00a8de
+
+  +e(label)
+    +rem-fallback('line-height', $line-height-s)
+    vertical-align: text-bottom
+
+    +m(size-small)
+      +rem-fallback('line-height', $line-height-xs)
+
+  +e(check)
+    svg
+      +reset
+      height: 100%
+      width: 100%
+      margin-bottom: $space-xxxs

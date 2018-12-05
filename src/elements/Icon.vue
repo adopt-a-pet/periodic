@@ -2,7 +2,7 @@
   <component
     :is="type"
     :aria-label="ariaLabel"
-    :class="[b().toString(), size]"
+    :class="[b().toString()]"
     v-html="svg" />
 </template>
 
@@ -49,15 +49,6 @@ export default {
       type: String,
       default: 'span',
     },
-    /**
-     * The size of the icon. Defaults to medium.
-     * `small, medium, large`
-     */
-    size: {
-      type: String,
-      default: 'medium',
-      validator: value => value.match(/(small|medium|large)/),
-    },
   },
   data() {
     return {
@@ -66,30 +57,6 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-// This is here just to provide defaults if the original tokens are removed.
-// Can be removed once you’re ready to start defining your own sizes.
-@import '../../docs/docs.tokens.scss';
-
-// We don’t want to use scoped since these styles need to cascade down to SVGs.
-// We also want to be able to style .icon inside buttons etc.
-@include b('icon') {
-  @include reset;
-  &.large svg {
-    width: $space-l;
-    height: $space-l;
-  }
-  &.medium svg {
-    width: $space-m;
-    height: $space-m;
-  }
-  &.small svg {
-    width: $space-s;
-    height: $space-s;
-  }
-}
-</style>
 
 <docs>
   ```jsx

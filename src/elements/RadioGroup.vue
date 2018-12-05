@@ -24,7 +24,7 @@
   </ul>
 </template>
 <script>
-import { props as tokens } from '@/assets/tokens/tokens.raw.json';
+import tokens from '@/assets/tokens/tokens.json';
 
 /**
  * Example component is used to visually communicate core parts of the product
@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     radioId(item) {
-      return `${tokens.prefix_component.value}radio-${this.name}-item-${item.value}`;
+      return `${tokens.prefix_component}radio-${this.name}-item-${item.value}`;
     },
   },
 };
