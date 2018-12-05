@@ -15,9 +15,16 @@
       height: $font-size-s
       width: $font-size-s
 
+    &:hover
+      border: 2px solid #00a8de
+
     +is(checked)
       background-color: #00a8de
       border: 2px solid #00a8de
+
+    +is(disabled)
+      background-color: color(agray, lighter)
+      border: 2px solid #b3b3b3
 
   +e(label)
     +rem-fallback('line-height', $line-height-s)

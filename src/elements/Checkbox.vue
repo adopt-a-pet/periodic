@@ -1,10 +1,10 @@
 <template>
   <div
     :class="b().toString()"
-    @click="onChange(!checked)">
+    @click="onClick">
 
     <span
-      :class="b('box', { size }).is({ checked }).toString()">
+      :class="b('box', { size }).is({ checked, disabled }).toString()">
 
       <Icon
         v-if="checked"
@@ -21,10 +21,8 @@
 </template>
 
 <script>
-import tokens from '@/assets/tokens/tokens.json';
-
 /**
- *
+ * A standard checkbox element
  */
 export default {
   name: 'Checkbox',
@@ -75,20 +73,17 @@ export default {
       default: false,
     },
   },
-  computed: {
-    checkboxId() {
-      return `${tokens.prefix_component.value}checkbox-${this.name}`;
-    },
-  },
   methods: {
-    onChange(value) {
+    onClick() {
+      if (this.disabled) return;
+
       /**
        * Change event
        *
        * @event change
        * @type Boolean
        */
-      this.$emit('change', value);
+      this.$emit('change', !this.checked);
     },
   },
 };
@@ -103,6 +98,8 @@ export default {
     <Checkbox v-model="checkbox2">Starts checked</Checkbox>
     <br />
     <Checkbox size="small" v-model="checkbox1">Small, same v-model as the first</Checkbox>
+    <br />
+    <Checkbox size="small" disabled>Small, same v-model as the first</Checkbox>
     <br />
   </div>
 </template>
