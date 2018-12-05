@@ -3,9 +3,9 @@
 
   +e(box)
     +reset
-    background-color: #fff
+    background-color: color(awhite, base)
     border-radius: 4px
-    border: 2px solid #b3b3b3
+    border: 2px solid color(agray, light)
     display: inline-block
     height: $font-size-m
     overflow: hidden
@@ -16,15 +16,15 @@
       width: $font-size-s
 
     &:hover
-      border: 2px solid #00a8de
+      border: 2px solid color(ablue, base)
 
     +is(checked)
-      background-color: #00a8de
-      border: 2px solid #00a8de
+      border: 2px solid color(ablue, base)
+      background-color: color(ablue, base)
 
     +is(disabled)
-      background-color: color(agray, lighter)
-      border: 2px solid #b3b3b3
+      background-color: color(awhite, base)
+      border: 2px solid color(agray, lighter)
 
   +e(label)
     +rem-fallback('line-height', $line-height-s)
