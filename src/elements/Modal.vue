@@ -58,10 +58,10 @@ export default {
       this.$emit('close');
 
       /**
-       * Same as @close but allows components to use open.sync
+       * Same as `@close` but allows components to use `:open.sync=""`
        *
        * @event update:open
-       * @type none
+       * @type Boolean
        */
       this.$emit('update:open', false);
     },

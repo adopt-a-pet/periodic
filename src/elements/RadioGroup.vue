@@ -6,12 +6,13 @@
       :key="index">
 
       <input
-        v-model="selected"
         :class="b('button').toString()"
         :value="item.value"
         :name="name"
         :id="item.id"
-        type="radio">
+        :checked="item.value === value"
+        type="radio"
+        @change="select($event.target)">
 
       <label
         :class="b('label', { color: 'white' }).toString()"
@@ -27,8 +28,8 @@
 import { props as tokens } from '@/assets/tokens/tokens.raw.json';
 
 /**
- * Example component is used to visually communicate core parts of the product
- * and available actions.
+ * Render a set of radio buttons radio buttons that has a `value` of the
+ * currently selected button
  */
 export default {
   name: 'RadioGroup',
@@ -37,6 +38,7 @@ export default {
   blockName: 'radio',
   model: {
     event: 'change',
+    prop: 'value',
   },
   props: {
     /**
@@ -56,11 +58,13 @@ export default {
       type: Array,
       default: () => [],
     },
-  },
-  data() {
-    return {
-      selected: null,
-    };
+    /**
+     * The value of the selected item.
+     */
+    value: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
     // Add an id property to each item so the label can reference it
@@ -73,23 +77,45 @@ export default {
       ));
     },
   },
-  watch: {
-    selected() {
-      this.$emit('change', this.selected);
-    },
-  },
   methods: {
     radioId(item) {
       return `${tokens.prefix_component.value}radio-${this.name}-item-${item.value}`;
+    },
+    select({ value, checked }) {
+      if (!checked) return;
+
+      /**
+       * Change event
+       *
+       * @event change
+       * @type String
+       */
+      this.$emit('change', value);
     },
   },
 };
 </script>
 
 <docs>
-  ```jsx
+```vue
+<template>
   <RadioGroup
+    v-model="radioGroupSelected"
     name="example"
-    :items="[ { display: 'Green', value: 'a' }, { display: 'Blue', value: 'b' } ]" />
-  ```
+    :items="[
+      { display: 'One', value: '1' },
+      { display: 'Two', value: '2' },
+      { display: 'Three', value: '3' }
+    ]" />
+</template>
+<script>
+export default {
+  data() {
+    return {
+      radioGroupSelected: '2', // Change this to change the value item
+    }
+  }
+};
+</script>
+```
 </docs>
