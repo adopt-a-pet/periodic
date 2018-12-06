@@ -114,9 +114,7 @@ export default {
      */
     items: {
       type: Array,
-      default() {
-        return [];
-      },
+      default: () => [],
     },
     /**
      * Special choices always appear at the top of the list and are never
