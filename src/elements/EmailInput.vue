@@ -27,7 +27,7 @@ export default ({
   name: 'EmailInput',
   status: 'under-review',
   release: '1.0.0',
-  blockName: 'form',
+  blockName: 'text-field',
   model: {
     prop: 'value',
     event: 'input',

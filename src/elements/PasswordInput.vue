@@ -19,9 +19,12 @@
 
     <template slot="right">
       <span
-        :class="{ 'eye-icon__active': showPassword }"
-        class="eye-icon"
-        @click="showPassword = !showPassword;" />
+        :class="b('eye').is({ active: showPassword }).toString()"
+        @click="showPassword = !showPassword;">
+
+        <Icon
+          name="eye" />
+      </span>
     </template>
   </TextInput>
 </template>
@@ -36,7 +39,7 @@ export default {
   name: 'PasswordInput',
   status: 'under-review',
   release: '1.0.0',
-  blockName: 'form',
+  blockName: 'text-field',
   props: {
     /**
      * The size of the field. Defaults to large.

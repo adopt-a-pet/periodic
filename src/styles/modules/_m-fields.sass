@@ -1,0 +1,147 @@
++b(text-field)
+  +e(container)
+    position: relative
+    width: 100%
+
+  +e(input)
+    +border(1px solid color(agray, light))
+    +rem-fallback(font-size, $font-size-m)
+    +rem-fallback(height, $height-input)
+    +rem-fallback(padding, $space-xs)
+    background-color: color(awhite)
+    border-radius: $radius-l
+    margin: 0
+    outline: none
+    width: 100%
+
+    +has(focus-border)
+      &:focus
+        +border(1px solid color(ablue))
+
+    &:focus, &.#{_has(content)}
+      +rem-fallback(padding-bottom, $space-xxxxs)
+
+    &[disabled]
+      +border(1px solid color(agray, lighter))
+      pointer-events: none
+      color: color(agray, lighter)
+
+    +is(success)
+      +border(1px solid color(agreen))
+      +rem-fallback(padding-right, $space-xl)
+      background-color: color(awhite)
+
+      &:focus
+        +border(1px solid color(agreen))
+
+    +is(error)
+      +border(1px solid color(aorange))
+
+      &:focus
+        +border(1px solid color(aorange))
+
+    &.is-success-model-box
+      +border(1px solid color(agreen))
+      background-repeat: no-repeat
+      background-position: right 17px center
+      background-color: color(awhite)
+
+      &:focus
+        +border(1px solid color(agreen))
+
+    +m(small)
+      +border(1px solid color(agray, lighter))
+      +rem-fallback(font-size, $font-size-s)
+      +rem-fallback(height, $height-input-small)
+      +rem-fallback(padding, $space-xs)
+      +rem-fallback(padding-bottom, $space-xxxs)
+      background-color: color(awhite)
+      border-radius: $border-radius
+      outline: none
+      width: 100%
+
+      & ~ .#{_b(text-field) + _e(label) + _m(main)}
+        +rem-fallback(top, $space-xxs)
+        +rem-fallback(font-size, $font-size-s)
+
+      &:focus, &.#{_has(content)}
+        +border(1px solid color(ablue))
+
+        & ~ .#{_b(text-field) + _e(label) + _m(main)}
+          +rem-fallback(top, 2px)
+          +rem-fallback(left, $space-xs)
+          +rem-fallback(font-size, $font-size-xxxs)
+          font-weight: 700
+
+      & + .valid-tick
+        background: url('data:image/svg+xmlutf8,<svg width="14px" height="11px" viewBox="0 0 14 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch --><title>Artboard 3</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Artboard-3"><g id="Cell-Elements/Cell-Check-Copy-7"><rect id="Cell-Frame" x="0" y="0" width="14" height="11"></rect><polygon id="Check" fill="%2370cf36" points="1.61538462 5 0 6.5 4.30769231 10.5 14 2 12.3846154 0.5 4.30769231 7.5"></polygon></g></g></g></svg>')
+        background-repeat: no-repeat
+        background-color: color(awhite)
+        top: $space-xs
+        right: $space-xs
+        position: absolute
+        width: 14px
+        height: 11px
+        pointer-events: none
+
+  +e(error-msg)
+    position: absolute
+    +rem-fallback(right, $space-xs)
+    width: 60%
+    text-align: right
+    +rem-fallback(font-size, $font-size-xs)
+    +rem-fallback(line-height, $line-height-xxs)
+    +rem-fallback(top, $space-xxxxs)
+    color: color(aorange)
+    pointer-events: none
+
+  +e(label)
+    +labeltext($labeltext: label-field)
+    +rem-fallback(letter-spacing, -0.25px)
+
+    +m(main)
+      +is(smaller)
+        +rem-fallback(font-size, $font-size-xs)
+        +rem-fallback(left, $space-xs)
+        +rem-fallback(line-height, $line-height-xxs)
+        +rem-fallback(top, $space-xxxxs)
+        font-weight: $weight-bold
+
+    +m(right)
+      +rem-fallback(font-size, $font-size-xs)
+      +rem-fallback(line-height, $line-height-xxs)
+      +rem-fallback(right, $space-xs)
+      +rem-fallback(top, $space-s)
+      font-weight: $weight-bold
+      left: auto
+
+    +is(disabled)
+      color: color(agray, lighter)
+
+    +m(small)
+      +labeltext($labeltext: label-field-small)
+
+  +e(eye)
+    +reset
+    +rem-fallback(height, 15px)
+    +rem-fallback(right, $space-xxs)
+    +rem-fallback(top, $space-s)
+    +rem-fallback(width, 26px)
+    display: inline-block
+    opacity: 0.4
+    position: absolute
+
+    +is(active)
+      opacity: 1
+
+  +e(valid-tick)
+    +rem-fallback(padding-right, $space-xs)
+    +rem-fallback(top, $space-xs)
+    pointer-events: none
+    position: absolute
+    right: 0
+
+    svg
+      +reset
+      width: 14px
+      height: 11px
