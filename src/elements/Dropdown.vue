@@ -10,7 +10,16 @@
       :label="label"
       :label-right="labelRight"
       value=" "
-      readonly />
+      readonly>
+
+      <template slot="right">
+        <Tooltip v-if="tooltip">{{ tooltip }}</Tooltip>
+
+        <span
+          :class="b('arrow').toString()"
+          @click="toggle" />
+      </template>
+    </TextInput>
 
     <select
       :class="b('select').toString()"
@@ -21,8 +30,6 @@
         :key="option.display"
         :value="option.index">{{ option.display | capitalize }}</option>
     </select>
-
-    <span :class="b('arrow').toString()" />
   </div>
 
   <div
