@@ -27,7 +27,7 @@
         @include rem-fallback('top', $space-xxxxs);
         @include rem-fallback('left', $space-xs);
         @include rem-fallback('font-size', $font-size-xs);
-        @include rem-fallback('line-height', $line-height-xxs);
+        @include rem-fallback('line-height', $line-height-xxxxs);
         font-weight: $weight-bold;
       }
     }
@@ -154,7 +154,7 @@
     width: 60%;
     text-align: right;
     @include rem-fallback('font-size', $font-size-xs);
-    @include rem-fallback('line-height', $line-height-xxs);
+    @include rem-fallback('line-height', $line-height-xxxxs);
     @include rem-fallback('top', $space-xxxxs);
     color: color(aorange);
     pointer-events: none;

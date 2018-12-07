@@ -1,0 +1,193 @@
+@include b('heading') {
+  @include element('h1') {
+    @include rem-fallback('font-size', $font-size-xxl);
+    font-weight: 700;
+    font-family: $helvetica;
+    color: color(agray, dark);
+    @include rem-fallback('line-height', $line-height-xxl);
+    @include rem-fallback('letter-spacing', $letter-spacing-xs);
+
+    &--museo {
+      font-family: $font_museo;
+    }
+
+    &--light {
+      color: color(agray, darker);
+      font-weight: 200;
+      letter-spacing: $letter-spacing-m;
+    }
+
+    &--bold {
+      font-weight: bold;
+    }
+  }
+
+  @include element('h2') {
+    @include rem-fallback('font-size', $font-size-xl);
+    font-family: $font_helvetica;
+    color: color(agray, dark);
+    font-weight: normal;
+    @include rem-fallback('line-height', $line-height-xl);
+    @include rem-fallback('letter-spacing', $letter-spacing-s);
+
+    &--museo {
+      font-family: $font_museo;
+    }
+
+    &--light {
+      color: color(agray, darker);
+      font-weight: 200;
+      letter-spacing: $letter-spacing-m;
+    }
+
+    &--bold {
+      font-weight: bold;
+    }
+  }
+
+  @include element('h3') {
+    @include rem-fallback('font-size', $font-size-l);
+    font-family: $helvetica;
+    color: color(agray, dark);
+    font-weight: normal;
+    @include rem-fallback('line-height', $line-height-l);
+    @include rem-fallback('letter-spacing', $letter-spacing-s);
+
+    &--compact {
+      @include rem-fallback('line-height', $line-height-xm);
+    }
+
+    &--x-compact {
+      @include rem-fallback('line-height', $line-height-xm);
+    }
+
+    &--museo {
+      font-family: $font_museo;
+    }
+
+    &--light {
+      color: color(agray, darker);
+      font-weight: 200;
+      letter-spacing: $letter-spacing-m;
+    }
+
+    &--bold {
+      font-weight: bold;
+    }
+
+    &--adopted {
+      color: color(agray, light);
+    }
+
+    &--adopted-light {
+      color: color(agray);
+    }
+  }
+
+  @include element('h4') {
+    @include rem-fallback('font-size', $font-size-m);
+    font-family: $helvetica;
+    color: color(agray, dark);
+    font-weight: normal;
+    @include rem-fallback('line-height', $line-height-m);
+    @include rem-fallback('letter-spacing', $letter-spacing-sm);
+
+    &--compact {
+      @include rem-fallback('line-height', $line-height-xxxm);
+    }
+
+    &--x-compact {
+      @include rem-fallback('line-height', $line-height-sl);
+    }
+
+    &--x-x-compact {
+      @include rem-fallback('line-height', $line-height-sm);
+    }
+
+    &--museo {
+      font-family: $font_museo;
+    }
+
+    &--light {
+      color: color(agray, darker);
+      font-weight: 200;
+      letter-spacing: $letter-spacing-m;
+    }
+
+    &--bold {
+      font-weight: bold;
+    }
+
+    &--adopted {
+      color: color(agray, light);
+    }
+
+    &--adopted-light {
+      color: color(agray);
+    }
+  }
+
+  @include element('h5') {
+    @include rem-fallback('font-size', $font-size-s);
+    font-family: $helvetica;
+    color: color(agray, dark);
+    font-weight: normal;
+    @include rem-fallback('line-height', $line-height-s);
+
+    &--compact {
+      @include rem-fallback('line-height', $line-height-xxs);
+    }
+
+    &--x-compact {
+      @include rem-fallback('line-height', $line-height-xxxs);
+    }
+
+    &--museo {
+      font-family: $font_museo;
+    }
+
+    &--light {
+      color: color(agray, darker);
+      font-weight: 200;
+      letter-spacing: $letter-spacing-m;
+    }
+
+    &--bold {
+      font-weight: bold;
+    }
+  }
+
+  @include element('h6') {
+    @include rem-fallback('font-size', $font-size-xs);
+    font-family: $helvetica;
+    color: color(agray, dark);
+    font-weight: normal;
+    @include rem-fallback('line-height', $line-height-xs);
+
+    &--compact {
+      @include rem-fallback('line-height', $line-height-xxxxs);
+    }
+
+    &--x-compact {
+      @include rem-fallback('line-height', $line-height-xxxxxs);
+    }
+
+    &--tiny {
+      @include font-size(12);
+    }
+
+    &--museo {
+      font-family: $font_museo;
+    }
+
+    &--light {
+      color: color(agray, darker);
+      font-weight: 200;
+      letter-spacing: $letter-spacing-m;
+    }
+
+    &--bold {
+      font-weight: bold;
+    }
+  }
+}

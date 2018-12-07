@@ -12,12 +12,28 @@ props:
     value: "39px"
   line_height_m:
     value: "32px"
+  line_height_xm:
+    value: "31px"
+  line_height_xxm:
+    value: "30px"
+  line_height_xxxm:
+    value: "26px"
   line_height_s:
     value: "25px"
+  line_height_sl:
+    value: "24px"
+  line_height_sm:
+    value: "23px"
   line_height_xs:
     value: "22px"
   line_height_xxs:
+    value: "20px"
+  line_height_xxxs:
+    value: "18px"
+  line_height_xxxxs:
     value: "17px"
+  line_height_xxxxxs:
+    value: "14px"
 global:
   type: number
   category: line-height
