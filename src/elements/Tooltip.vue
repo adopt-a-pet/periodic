@@ -2,10 +2,14 @@
   <div :class="b().toString()">
     <div
       v-if="showBubble"
-      :class="b('bubble').toString()">
+      :class="b('bubble-container').toString()">
 
-      <div :class="b('content').toString()">
-        <slot />
+      <div
+        :class="b('bubble').toString()">
+
+        <div :class="b('content').toString()">
+          <slot />
+        </div>
       </div>
     </div>
 
