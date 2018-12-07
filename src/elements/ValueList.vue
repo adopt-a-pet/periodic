@@ -5,11 +5,24 @@
       <div
         v-for="items in items"
         :key="items.label"
-        :class="b('content--section').toString()">
-        <div :class="[b('label').toString(), 'h4__heading', 'h4--bold', 'h4--compact']">
+        :class="[b('content--section').toString(), {'periodic-pet-facts__content--full-width': fullWidth }]">
+        <div
+          :class="[
+            b('label').toString(),
+            'periodic-heading__h5',
+            'periodic-heading__h5--bold',
+            'periodic-heading__h5--compact',
+            { 'periodic-pet-facts__label--full-width': fullWidth }
+        ]">
           {{ items.label }}
         </div>
-        <div class="h4__heading h4--light h4--compact">
+        <div
+          :class="[
+            'periodic-heading__h5',
+            'periodic-heading__h5--light',
+            'periodic-heading__h5--compact',
+            {'periodic-pet-facts__text--full-width': fullWidth }
+        ]">
           {{ items.value }}
         </div>
       </div>
@@ -36,6 +49,15 @@ export default {
       type: Array,
       default() { return []; },
     },
+
+    /**
+     * If the label and the value should each take up a full line a this should be true.  By default the
+     * label and the value will be on the same line.
+     */
+    fullWidth: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>
@@ -45,13 +67,24 @@ export default {
   <div>
     <ValueList
       :items="[
-        { label: 'Age:', value: 'Adult' },
-        { label: 'Sex:', value: 'Male' },
         { label: 'Breed:', value: 'Greyhound' },
-        { label: 'Size:', value: 'Large' },
-      ]">
+        { label: 'Color:', value: 'Brindle' },
+        { label: 'Age:', value: 'Adult' },
+        { label: 'Size:', value: '(when grown) Med. 26-60 lbs (12-27 kg)' },
+        { label: 'Weight:', value: '(current weight) 70 lbs' },
+        { label: 'Sex:', value: 'Male' },
+        { label: 'Pet ID:', value: '' },
+      ]"
+      fullWidth="true">
       <template slot="header">
-        <span>Facts About Me</span>
+        <h3 class="
+          periodic-heading--no-bottom-m
+          periodic-heading__h3
+          periodic-heading__h3--bold
+          periodic-heading__h3--museo
+          periodic-heading__h3--compact">
+          Facts About Me
+        </h3>
       </template>
     </ValueList>
   </div>

@@ -190,4 +190,8 @@
       font-weight: bold;
     }
   }
+
+  @include modifier('no-bottom-m') {
+    margin-bottom: 0;
+  }
 }

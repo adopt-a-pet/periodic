@@ -1,5 +1,4 @@
 +b(pet-facts)
-
   +breakpoint(tiny)
     @include rem-fallback('padding', 30px 0)
 
@@ -61,8 +60,22 @@
         &:nth-of-type(1n+1)
           order: unset
 
+    +m(full-width)
+      flex-wrap: wrap
+
+    +m(section)
+      word-break: break-word
+
   +e(label)
     flex: 0 0 25%
 
+    +m(full-width)
+      flex: 0 0 100%
+      @include rem-fallback('margin-bottom', 5px)
+
     +breakpoint(normal)
       flex: 0 0 20%
+
+  +e(text)
+    +m(full-width)
+      flex: 0 0 100%
