@@ -35,12 +35,16 @@
       :for="name"
       :class="b('label', { main: true }).is({ smaller: hasContent || focused }).toString()">{{ label }}</label>
 
-    <label
-      v-if="showLabelRight"
-      :for="name"
-      :class="b('label', { right: true }).toString()">{{ labelRight }}</label>
+    <div
+      :class="b('slot', { right: true }).toString()">
 
-    <slot name="right" />
+      <label
+        v-if="showLabelRight"
+        :for="name"
+        :class="b('label', { right: true }).toString()">{{ labelRight }}</label>
+
+      <slot name="right" />
+    </div>
 
     <div
       v-if="errorState"
@@ -172,11 +176,7 @@ export default {
       return this.value && this.value.length;
     },
     showLabelRight() {
-      let showLabelRight = !!this.labelRight;
-
-      if (this.hasContent || this.errorState) {
-        showLabelRight = false;
-      }
+      const showLabelRight = !!this.labelRight;
 
       return showLabelRight;
     },

@@ -50,7 +50,6 @@
         +border(1px solid color(agreen))
 
     +m(small)
-      +border(1px solid color(agray, lighter))
       +rem-fallback(font-size, $font-size-s)
       +rem-fallback(height, $height-input-small)
       +rem-fallback(padding, $space-xs)
@@ -85,15 +84,15 @@
         pointer-events: none
 
   +e(error-msg)
-    position: absolute
-    +rem-fallback(right, $space-xs)
-    width: 60%
-    text-align: right
     +rem-fallback(font-size, $font-size-xs)
     +rem-fallback(line-height, $line-height-xxs)
+    +rem-fallback(right, $space-xs)
     +rem-fallback(top, $space-xxxxs)
     color: color(aorange)
     pointer-events: none
+    position: absolute
+    text-align: right
+    width: 60%
 
   +e(label)
     +labeltext($labeltext: label-field)
@@ -110,8 +109,8 @@
     +m(right)
       +rem-fallback(font-size, $font-size-xs)
       +rem-fallback(line-height, $line-height-xxs)
-      +rem-fallback(right, $space-xs)
-      +rem-fallback(top, $space-s)
+      position: initial
+      float: left
       font-weight: $weight-bold
       left: auto
 
@@ -145,3 +144,18 @@
       +reset
       width: 14px
       height: 11px
+
+  +e(slot)
+    +m(right)
+      +rem-fallback(height, $line-height-s)
+      +rem-fallback(right, $space-xs)
+      +rem-fallback(top, $space-s)
+      display: flex
+      flex-flow: row nowrap
+      font-weight: $weight-bold
+      left: auto
+      position: absolute
+      vertical-align: middle
+
+      > *
+        +inline-space($space-xxs)

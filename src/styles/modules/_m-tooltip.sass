@@ -1,0 +1,33 @@
++b(tooltip)
+  position: relative
+  overflow: visible
+
+  +e(bubble)
+    +rem-fallback('bottom', $space-xl)
+    +rem-fallback('right', -$space-xs)
+    background: color(awhite)
+    border-radius: $radius-m
+    box-shadow: $shadow-callout
+    position: absolute
+
+    &::after
+      +border(8px solid color(ablack))
+      +rem-fallback('margin-left', 152px)
+      +rem-fallback('right', $space-s)
+      border-color: transparent transparent color(awhite) color(awhite)
+      box-shadow: $shadow-callout
+      box-sizing: border-box
+      content: ''
+      height: 0
+      margin-left: 1.8em
+      position: absolute
+      transform-origin: 0 0
+      transform: rotate(315deg)
+      width: 0
+      z-index: 100
+
+  +e(content)
+    +font-size(14)
+    +rem-fallback('line-height', 22px)
+    +rem-fallback('padding', 20px)
+    font-weight: 300
