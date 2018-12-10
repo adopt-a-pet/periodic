@@ -324,6 +324,13 @@
       "originalValue": "44px",
       "name": "height_input_small"
     },
+    "width_tooltip": {
+      "type": "number",
+      "category": "size",
+      "value": "220px",
+      "originalValue": "220px",
+      "name": "width_tooltip"
+    },
     "duration_quickly": {
       "type": "number",
       "category": "time",

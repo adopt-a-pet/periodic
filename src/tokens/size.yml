@@ -12,6 +12,8 @@ props:
     value: "58px"
   height_input_small:
     value: "44px"
+  width_tooltip:
+    value: "220px"
 global:
   type: number
   category: size

@@ -8,8 +8,18 @@
       :error-message="errorMessage"
       :focus-border="false"
       :label="label"
+      :label-right="labelRight"
       value=" "
-      readonly />
+      readonly>
+
+      <template slot="right">
+        <Tooltip v-if="tooltip">{{ tooltip }}</Tooltip>
+
+        <span
+          :class="b('arrow').toString()"
+          @click="toggle" />
+      </template>
+    </TextInput>
 
     <select
       :class="b('select').toString()"
@@ -20,8 +30,6 @@
         :key="option.display"
         :value="option.index">{{ option.display | capitalize }}</option>
     </select>
-
-    <span :class="b('arrow').toString()" />
   </div>
 
   <div
@@ -35,15 +43,20 @@
       :label="label"
       :readonly="readonly"
       :value="filterOrselectedDisplay"
+      :label-right="labelRight"
       @blur="onBlur"
       @click="toggle"
       @focus="onFocus"
-      @input="setFilter" />
+      @input="setFilter">
 
-    <span
-      v-if="!search"
-      :class="b('arrow').toString()"
-      @click="toggle" />
+      <template slot="right">
+        <Tooltip v-if="tooltip">{{ tooltip }}</Tooltip>
+
+        <span
+          :class="b('arrow').toString()"
+          @click="toggle" />
+      </template>
+    </TextInput>
 
     <div
       :class="b('list').toString()">
@@ -56,22 +69,6 @@
           :class="b('list-item').is({ selected: (selectedIndex === option.index) }).toString()"
           @mousedown="e => onSelect(option.index)">{{ option.display | capitalize }}</li>
       </ul>
-    </div>
-
-    <span
-      v-if="infoBubble"
-      :class="b('info-icon').toString()"
-      @mouseleave="showInfoBubble = false"
-      @mouseover="showInfoBubble = true">
-
-      <Icon name="info" />
-    </span>
-
-    <div
-      v-if="showInfoBubble"
-      :class="block('info-bubble').toString()">
-
-      <div :class="block('info-bubble')('content').toString()">{{ infoBubble }}</div>
     </div>
   </div>
 </template>
@@ -108,6 +105,13 @@ export default {
       default: '',
     },
     /**
+     * The label for the right side of the dropdown.
+     */
+    labelRight: {
+      type: String,
+      default: null,
+    },
+    /**
      * A list of items to render. Each item must have a `display` and a `value`.
      *
      * `[{ display: 'One', value: 1 }]`
@@ -141,7 +145,7 @@ export default {
     /**
      * If a value is passed, show the info bubble
      */
-    infoBubble: {
+    tooltip: {
       type: String,
       default: null,
     },
@@ -169,7 +173,6 @@ export default {
       filter: '',
       selectedIndex: this.initialSelection().index,
       showBreedpopup: false,
-      showInfoBubble: false,
     };
   },
 
@@ -331,6 +334,7 @@ export default {
   <div>
     <Dropdown
       label="Without Search"
+      label-right="Right Label"
       :items="[
         { display: 'One', value: 1 },
         { display: 'Two', value: 2 },
@@ -346,7 +350,7 @@ export default {
       ]"
       :search="true"
       :specialChoices="[{ display: 'Any', value: null }]"
-      infoBubble="This is an info bubble" />
+      tooltip="This is an info bubble" />
 
     <br />
 

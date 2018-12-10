@@ -1,10 +1,10 @@
 <template>
-  <div :class="b('text-field-container').toString()">
+  <div :class="b('container').toString()">
     <input
       ref="input"
       :class="[
         inputClass,
-        b
+        b('input', { [size]: true })
           .state({
             error: errorState,
             success: successState,
@@ -18,7 +18,6 @@
       :disabled="disabled"
       :name="name"
       :readonly="readonly"
-      :required="required"
       :type="type"
       :value="value"
       @blur="onBlur"
@@ -27,13 +26,26 @@
       @focus="onFocus"
       @click="onClick">
 
-    <span
+    <Icon
       v-if="successState && showValidTick"
-      class="valid-tick" />
+      :class="b('valid-tick').toString()"
+      name="check-green" />
+
     <label
       :for="name"
-      :class="labelClass">{{ label }}</label>
-    <slot name="right" />
+      :class="b('label', { main: true }).is({ smaller: hasContent || focused }).toString()">{{ label }}</label>
+
+    <div
+      :class="b('slot', { right: true }).toString()">
+
+      <label
+        v-if="showLabelRight"
+        :for="name"
+        :class="b('label', { right: true }).toString()">{{ labelRight }}</label>
+
+      <slot name="right" />
+    </div>
+
     <div
       v-if="errorState"
       :class="b('error-msg').toString()">{{ errorMessage }}</div>
@@ -48,7 +60,7 @@ export default {
   name: 'TextInput',
   status: 'under-review',
   release: '1.0.0',
-  blockName: 'form',
+  blockName: 'text-field',
   model: {
     prop: 'value',
     event: 'input',
@@ -85,16 +97,16 @@ export default {
       default: 'Text',
     },
     /**
+     * The label for the right side of the form input field.
+     */
+    labelRight: {
+      type: String,
+      default: null,
+    },
+    /**
      * Whether the form input field is disabled or not.
      */
     disabled: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-     * Whether the form field is required or not.
-     */
-    required: {
       type: Boolean,
       default: false,
     },
@@ -150,17 +162,23 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      focused: false,
+    };
+  },
   computed: {
-    inputClass() {
-      const addSize = this.size === 'large' ? '' : `-${this.size}`;
-      return this.b('input') + addSize;
-    },
     labelClass() {
       const addSize = this.size === 'large' ? '' : `-${this.size}`;
       return this.b('label') + addSize;
     },
     hasContent() {
       return this.value && this.value.length;
+    },
+    showLabelRight() {
+      const showLabelRight = !!this.labelRight;
+
+      return showLabelRight;
     },
   },
   methods: {
@@ -174,6 +192,8 @@ export default {
       this.$emit('input', value);
     },
     onBlur() {
+      this.focused = false;
+
       /**
        * Blur event
        *
@@ -192,6 +212,8 @@ export default {
       this.$emit('click');
     },
     onFocus() {
+      this.focused = true;
+
       /**
        * Focus event
        *
@@ -224,8 +246,8 @@ export default {
 
     <TextInput
       v-model="textInput2"
-      label="Required"
-      required />
+      label="Label"
+      label-right="Label Right" />
 
     <br />
 
