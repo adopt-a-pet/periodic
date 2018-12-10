@@ -26,11 +26,6 @@
       @focus="onFocus"
       @click="onClick">
 
-    <Icon
-      v-if="successState && showValidTick"
-      :class="b('valid-tick').toString()"
-      name="check-green" />
-
     <label
       :for="name"
       :class="b('label', { main: true }).is({ smaller: hasContent || focused }).toString()">{{ label }}</label>
@@ -44,6 +39,11 @@
         :class="b('label', { right: true }).toString()">{{ labelRight }}</label>
 
       <slot name="right" />
+
+      <Icon
+        v-if="successState && showValidTick"
+        :class="b('valid-tick').toString()"
+        name="check-green" />
     </div>
 
     <div

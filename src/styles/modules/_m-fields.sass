@@ -134,16 +134,13 @@
       opacity: 1
 
   +e(valid-tick)
-    +rem-fallback(padding-right, $space-xs)
-    +rem-fallback(top, $space-xs)
     pointer-events: none
-    position: absolute
-    right: 0
 
     svg
       +reset
       width: 14px
-      height: 11px
+      height: 18px
+      // vertical-align: text-top;
 
   +e(slot)
     +m(right)

@@ -1,7 +1,7 @@
 +b(tooltip)
   position: relative
   overflow: visible
-  pointer-events: all
+  pointer-events: auto
 
   +e(bubble)
     margin-left: auto
@@ -36,6 +36,8 @@
     position: relative
 
   +e(bubble-container)
+    // Set the width on bubble-container acts like max-width normally would
+    // (it's different because the bubble is positioned `absolute`)
     +rem-fallback('width', $width-tooltip)
     +rem-fallback('left', -($width-tooltip / 2))
     +rem-fallback('bottom', $space-xl)
