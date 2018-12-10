@@ -65,9 +65,17 @@
         @mouseleave="onMouseout">
         <li
           v-for="option in choices"
+          :class="b('list-item').is({ selected: isOptionSelected(option) }).toString()"
           :key="option.display"
-          :class="b('list-item').is({ selected: (selectedIndex === option.index) }).toString()"
-          @mousedown="e => onSelect(option.index)">{{ option.display | capitalize }}</li>
+          @mousedown="e => onSelect(option.index)">
+
+          {{ option.display | capitalize }}
+
+          <Icon
+            v-if="isOptionSelected(option)"
+            :class="b('list-check').toString()"
+            name="check-blue" />
+        </li>
       </ul>
     </div>
   </div>
@@ -323,6 +331,10 @@ export default {
 
     hideBreedpopup() {
       this.showBreedpopup = false;
+    },
+
+    isOptionSelected(option) {
+      return this.selectedIndex === option.index;
     },
   },
 
