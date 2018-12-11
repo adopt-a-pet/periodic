@@ -1,0 +1,41 @@
++b(checkbox)
+  vertical-align: middle
+
+  +e(box)
+    +reset
+    +border(2px solid color(agray, light))
+    +rem-fallback(border-radius, $radius-s)
+    background-color: color(awhite, base)
+    display: inline-block
+    height: $font-size-m
+    overflow: hidden
+    width: $font-size-m
+
+    +m(size-small)
+      height: $font-size-s
+      width: $font-size-s
+
+    &:hover
+      +border(2px solid color(ablue, base))
+
+    +is(checked)
+      background-color: color(ablue, base)
+      +border(2px solid color(ablue, base))
+
+    +is(disabled)
+      +border(2px solid color(agray, lighter))
+      background-color: color(awhite, base)
+
+  +e(label)
+    +rem-fallback('line-height', $line-height-s)
+    vertical-align: text-bottom
+
+    +m(size-small)
+      +rem-fallback('line-height', $line-height-xs)
+
+  +e(check)
+    svg
+      +reset
+      height: 100%
+      width: 100%
+      margin-bottom: $space-xxxs

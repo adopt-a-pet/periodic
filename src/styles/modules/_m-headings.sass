@@ -1,0 +1,154 @@
++block('heading')
+  +element('h1')
+    +rem-fallback('font-size', $font-size-xxl)
+    font-weight: 700
+    font-family: $helvetica
+    color: color(agray, dark)
+    +rem-fallback('line-height', $line-height-xxl)
+    +rem-fallback('letter-spacing', $letter-spacing-xs)
+
+    &--museo
+      font-family: $font_museo
+
+    &--light
+      color: color(agray, darker)
+      font-weight: 200
+      letter-spacing: $letter-spacing-m
+
+    &--bold
+      font-weight: bold
+
+  +element('h2')
+    +rem-fallback('font-size', $font-size-xl)
+    font-family: $font_helvetica
+    color: color(agray, dark)
+    font-weight: normal
+    +rem-fallback('line-height', $line-height-xl)
+    +rem-fallback('letter-spacing', $letter-spacing-s)
+
+    &--museo
+      font-family: $font_museo
+
+    &--light
+      color: color(agray, darker)
+      font-weight: 200
+      letter-spacing: $letter-spacing-m
+
+    &--bold
+      font-weight: bold
+
+  +element('h3')
+    +rem-fallback('font-size', $font-size-l)
+    font-family: $helvetica
+    color: color(agray, dark)
+    font-weight: normal
+    +rem-fallback('line-height', $line-height-l)
+    +rem-fallback('letter-spacing', $letter-spacing-s)
+
+    &--compact
+      +rem-fallback('line-height', $line-height-xm)
+
+    &--x-compact
+      +rem-fallback('line-height', $line-height-xm)
+
+    &--museo
+      font-family: $font_museo
+
+    &--light
+      color: color(agray, darker)
+      font-weight: 200
+      letter-spacing: $letter-spacing-m
+
+    &--bold
+      font-weight: bold
+
+    &--adopted
+      color: color(agray, light)
+
+    &--adopted-light
+      color: color(agray)
+
+  +element('h4')
+    +rem-fallback('font-size', $font-size-m)
+    font-family: $helvetica
+    color: color(agray, dark)
+    font-weight: normal
+    +rem-fallback('line-height', $line-height-m)
+    +rem-fallback('letter-spacing', $letter-spacing-sm)
+
+    &--compact
+      +rem-fallback('line-height', $line-height-xxxm)
+
+    &--x-compact
+      +rem-fallback('line-height', $line-height-sl)
+
+    &--x-x-compact
+      +rem-fallback('line-height', $line-height-sm)
+
+    &--museo
+      font-family: $font_museo
+
+    &--light
+      color: color(agray, darker)
+      font-weight: 200
+      letter-spacing: $letter-spacing-m
+
+    &--bold
+      font-weight: bold
+
+    &--adopted
+      color: color(agray, light)
+
+    &--adopted-light
+      color: color(agray)
+
+  +element('h5')
+    +rem-fallback('font-size', $font-size-s)
+    font-family: $helvetica
+    color: color(agray, dark)
+    font-weight: normal
+    +rem-fallback('line-height', $line-height-s)
+
+    &--compact
+      +rem-fallback('line-height', $line-height-xxs)
+
+    &--x-compact
+      +rem-fallback('line-height', $line-height-xxxs)
+
+    &--museo
+      font-family: $font_museo
+
+    &--light
+      color: color(agray, darker)
+      font-weight: 200
+      letter-spacing: $letter-spacing-m
+
+    &--bold
+      font-weight: bold
+
+  +element('h6')
+    +rem-fallback('font-size', $font-size-xs)
+    font-family: $helvetica
+    color: color(agray, dark)
+    font-weight: normal
+    +rem-fallback('line-height', $line-height-xs)
+
+    &--compact
+      +rem-fallback('line-height', $line-height-xxxxs)
+
+    &--x-compact
+      +rem-fallback('line-height', $line-height-xxxxxs)
+
+    &--tiny
+      +font-size(12)
+
+    &--museo
+      font-family: $font_museo
+
+    &--light
+      color: color(agray, darker)
+      font-weight: 200
+      letter-spacing: $letter-spacing-m
+
+    &--bold
+      font-weight: bold
