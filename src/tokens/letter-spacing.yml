@@ -10,6 +10,8 @@ props:
     value: "1px"
   letter_spacing_m:
     value: "0"
+  letter_spacing_sm:
+    value: "-0.25px"
   letter_spacing_s:
     value: "-0.5px"
   letter_spacing_xs:

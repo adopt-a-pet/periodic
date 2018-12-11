@@ -429,6 +429,13 @@
       "originalValue": "0",
       "name": "letter_spacing_m"
     },
+    "letter_spacing_sm": {
+      "type": "number",
+      "category": "letter-spacing",
+      "value": "-0.25px",
+      "originalValue": "-0.25px",
+      "name": "letter_spacing_sm"
+    },
     "letter_spacing_s": {
       "type": "number",
       "category": "letter-spacing",
@@ -555,12 +562,19 @@
       "originalValue": "20px",
       "name": "space_s"
     },
-    "line_height_xxl": {
+    "line_height_m": {
       "type": "number",
       "category": "line-height",
-      "value": "62px",
-      "originalValue": "62px",
-      "name": "line_height_xxl"
+      "value": "32px",
+      "originalValue": "32px",
+      "name": "line_height_m"
+    },
+    "line_height_xxm": {
+      "type": "number",
+      "category": "line-height",
+      "value": "30px",
+      "originalValue": "30px",
+      "name": "line_height_xxm"
     },
     "line_height_xl": {
       "type": "number",
@@ -569,19 +583,26 @@
       "originalValue": "48px",
       "name": "line_height_xl"
     },
-    "line_height_l": {
+    "line_height_xxxm": {
       "type": "number",
       "category": "line-height",
-      "value": "39px",
-      "originalValue": "39px",
-      "name": "line_height_l"
+      "value": "26px",
+      "originalValue": "26px",
+      "name": "line_height_xxxm"
     },
-    "line_height_m": {
+    "line_height_xm": {
       "type": "number",
       "category": "line-height",
-      "value": "32px",
-      "originalValue": "32px",
-      "name": "line_height_m"
+      "value": "31px",
+      "originalValue": "31px",
+      "name": "line_height_xm"
+    },
+    "line_height_sl": {
+      "type": "number",
+      "category": "line-height",
+      "value": "24px",
+      "originalValue": "24px",
+      "name": "line_height_sl"
     },
     "line_height_s": {
       "type": "number",
@@ -590,6 +611,41 @@
       "originalValue": "25px",
       "name": "line_height_s"
     },
+    "line_height_xxs": {
+      "type": "number",
+      "category": "line-height",
+      "value": "20px",
+      "originalValue": "20px",
+      "name": "line_height_xxs"
+    },
+    "line_height_xxxxs": {
+      "type": "number",
+      "category": "line-height",
+      "value": "17px",
+      "originalValue": "17px",
+      "name": "line_height_xxxxs"
+    },
+    "line_height_sm": {
+      "type": "number",
+      "category": "line-height",
+      "value": "23px",
+      "originalValue": "23px",
+      "name": "line_height_sm"
+    },
+    "line_height_xxxxxs": {
+      "type": "number",
+      "category": "line-height",
+      "value": "14px",
+      "originalValue": "14px",
+      "name": "line_height_xxxxxs"
+    },
+    "line_height_xxxs": {
+      "type": "number",
+      "category": "line-height",
+      "value": "18px",
+      "originalValue": "18px",
+      "name": "line_height_xxxs"
+    },
     "line_height_xs": {
       "type": "number",
       "category": "line-height",
@@ -597,12 +653,19 @@
       "originalValue": "22px",
       "name": "line_height_xs"
     },
-    "line_height_xxs": {
+    "line_height_l": {
       "type": "number",
       "category": "line-height",
-      "value": "17px",
-      "originalValue": "17px",
-      "name": "line_height_xxs"
+      "value": "39px",
+      "originalValue": "39px",
+      "name": "line_height_l"
+    },
+    "line_height_xxl": {
+      "type": "number",
+      "category": "line-height",
+      "value": "62px",
+      "originalValue": "62px",
+      "name": "line_height_xxl"
     },
     "prefix_component": {
       "type": "global",
