@@ -124,18 +124,15 @@
     +reset
     +rem-fallback(height, 15px)
     +rem-fallback(right, $space-xxs)
-    +rem-fallback(top, $space-s)
     +rem-fallback(width, 26px)
     display: inline-block
     opacity: 0.4
-    position: absolute
+    pointer-events: auto
 
     +is(active)
       opacity: 1
 
   +e(valid-tick)
-    pointer-events: none
-
     svg
       +reset
       width: 14px

@@ -25,7 +25,7 @@
   </ul>
 </template>
 <script>
-import { props as tokens } from '@/assets/tokens/tokens.raw.json';
+import tokens from '@/assets/tokens/tokens.json';
 
 /**
  * Render a set of radio buttons radio buttons that has a `value` of the
@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     radioId(item) {
-      return `${tokens.prefix_component.value}radio-${this.name}-item-${item.value}`;
+      return `${tokens.prefix_component}radio-${this.name}-item-${item.value}`;
     },
     select({ value, checked }) {
       if (!checked) return;

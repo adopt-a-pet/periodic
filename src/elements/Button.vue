@@ -31,7 +31,7 @@ export default {
       validator: value => value.match(/(button|a)/),
     },
     /**
-     * The size of the button. Defaults to large.
+     * The size of the button.
      * `small, large`
      */
     size: {
@@ -85,7 +85,12 @@ export default {
   methods: {
     click() {
       if (this.disabled) return;
-
+      /**
+       * Click event
+       *
+       * @event click
+       * @type none
+       */
       this.$emit('click');
     },
   },
@@ -232,7 +237,8 @@ export default {
 </style>
 
 <docs>
-  ```jsx
+```vue
+<template>
   <div>
     <Button>Default</Button> <br />
     <Button state="hover">:hover</Button> <br />
@@ -245,5 +251,13 @@ export default {
     <Button color="orange">Orange</Button> <br />
     <Button color="orange" size="small">Small Orange</Button> <br />
   </div>
-  ```
+</template>
+<script>
+export default {
+  data() {
+    return {}
+  }
+};
+</script>
+```
 </docs>

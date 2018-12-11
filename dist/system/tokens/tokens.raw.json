@@ -457,6 +457,13 @@
       "originalValue": "3px",
       "name": "radius_default"
     },
+    "radius-s": {
+      "type": "number",
+      "category": "border-radius",
+      "value": "4px",
+      "originalValue": "4px",
+      "name": "radius-s"
+    },
     "radius_m": {
       "type": "number",
       "category": "border-radius",
