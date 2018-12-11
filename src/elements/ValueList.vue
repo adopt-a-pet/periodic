@@ -1,30 +1,26 @@
 <template>
   <div :class="b().toString()">
-    <slot name="header" />
     <div :class="b('content').toString()">
       <div
         v-for="items in items"
         :key="items.label"
-        :class="[b('content--section').toString(), {'periodic-pet-facts__content--full-width': fullWidth }]">
-        <div
-          :class="[
-            b('label').toString(),
-            'periodic-heading__h5',
-            'periodic-heading__h5--bold',
-            'periodic-heading__h5--compact',
-            { 'periodic-pet-facts__label--full-width': fullWidth }
-        ]">
+        :class="[b('item', { 'full-width': fullWidth }).toString()]">
+
+        <Heading
+          :class="b('label', { 'full-width': fullWidth }).toString()"
+          level="h5"
+          font-weight="bold"
+          line-height="compact">
           {{ items.label }}
-        </div>
-        <div
-          :class="[
-            'periodic-heading__h5',
-            'periodic-heading__h5--light',
-            'periodic-heading__h5--compact',
-            {'periodic-pet-facts__text--full-width': fullWidth }
-        ]">
+        </Heading>
+
+        <Heading
+          :class="[b('text', { 'full-width': fullWidth }).toString()]"
+          level="h5"
+          font-weight="light"
+          line-height="compact">
           {{ items.value }}
-        </div>
+        </Heading>
       </div>
     </div>
   </div>
@@ -37,7 +33,7 @@
  */
 export default {
   name: 'ValueList',
-  blockName: 'pet-facts',
+  blockName: 'value-list',
   status: 'review',
   release: '1.0.0',
   props: {
@@ -63,30 +59,26 @@ export default {
 </script>
 
 <docs>
-  ```jsx
-  <div>
-    <ValueList
-      :items="[
-        { label: 'Breed:', value: 'Greyhound' },
-        { label: 'Color:', value: 'Brindle' },
-        { label: 'Age:', value: 'Adult' },
-        { label: 'Size:', value: '(when grown) Med. 26-60 lbs (12-27 kg)' },
-        { label: 'Weight:', value: '(current weight) 70 lbs' },
-        { label: 'Sex:', value: 'Male' },
-        { label: 'Pet ID:', value: '' },
-      ]"
-      fullWidth="true">
-      <template slot="header">
-        <h3 class="
-          periodic-heading--no-bottom-m
-          periodic-heading__h3
-          periodic-heading__h3--bold
-          periodic-heading__h3--museo
-          periodic-heading__h3--compact">
-          Facts About Me
-        </h3>
-      </template>
-    </ValueList>
-  </div>
-  ```
+```jsx
+<div>
+  <Heading
+    level='h3'
+    font-family='museo'
+    font-weight='bold'
+    line-height='compact'>Facts About Me</Heading>
+
+  <ValueList
+    :items="[
+      { label: 'Breed:', value: 'Greyhound' },
+      { label: 'Color:', value: 'Brindle' },
+      { label: 'Age:', value: 'Adult' },
+      { label: 'Size:', value: '(when grown) Med. 26-60 lbs (12-27 kg)' },
+      { label: 'Weight:', value: '(current weight) 70 lbs' },
+      { label: 'Sex:', value: 'Male' },
+      { label: 'Pet ID:', value: '' },
+    ]"
+    :full-width="true">
+  </ValueList>
+</div>
+```
 </docs>
