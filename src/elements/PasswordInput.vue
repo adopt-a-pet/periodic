@@ -6,6 +6,7 @@
     :size="size"
     :type="showPassword ? 'text' : 'password'"
     :label="label"
+    :label-right="labelRight"
     :wrapper="wrapper"
     :error-state="errorState"
     :error-message="errorMessage"
@@ -19,9 +20,12 @@
 
     <template slot="right">
       <span
-        :class="{ 'eye-icon__active': showPassword }"
-        class="eye-icon"
-        @click="showPassword = !showPassword;" />
+        :class="b('eye').is({ active: showPassword }).toString()"
+        @click="showPassword = !showPassword;">
+
+        <Icon
+          name="eye" />
+      </span>
     </template>
   </TextInput>
 </template>
@@ -36,7 +40,7 @@ export default {
   name: 'PasswordInput',
   status: 'under-review',
   release: '1.0.0',
-  blockName: 'form',
+  blockName: 'text-field',
   props: {
     /**
      * The size of the field. Defaults to large.
@@ -67,6 +71,13 @@ export default {
     label: {
       type: String,
       default: 'Password',
+    },
+    /**
+     * The label for the right side of the form input field.
+     */
+    labelRight: {
+      type: String,
+      default: null,
     },
     /**
      * The html element name used for the wrapper.

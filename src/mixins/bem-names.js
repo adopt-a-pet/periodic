@@ -23,7 +23,23 @@ export default {
       if (!this.$options.blockName) throw new Error('To use this mixin your component must have a blockName property');
 
       const b = block(prefix + this.$options.blockName);
-      const bWithComponentClass = (name, opts) => b(name, opts).mix(prefix + componentClass);
+      const bWithComponentClass = (name, m) => {
+        let modifiers = m;
+
+        // Just like how `.mix` allows an Array or an Object to be passed, this
+        // allows the same for modifiers. All modifiers passed will become --name
+        // and not --name-value modifiers. Use an Object for --name-value type.
+        if (Array.isArray(modifiers)) {
+          modifiers = {};
+
+          m.forEach(modifier => {
+            // `name` could be null
+            if (modifier) modifiers[modifier] = true;
+          });
+        }
+
+        return b(name, modifiers).mix(prefix + componentClass);
+      };
 
       Object.assign(bWithComponentClass, b);
 

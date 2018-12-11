@@ -1,10 +1,10 @@
 <template>
-  <div :class="b('text-field-container').toString()">
+  <div :class="b('container').toString()">
     <input
       ref="input"
       :class="[
         inputClass,
-        b
+        b('input', { [size]: true })
           .state({
             error: errorState,
             success: successState,
@@ -18,22 +18,34 @@
       :disabled="disabled"
       :name="name"
       :readonly="readonly"
-      :required="required"
       :type="type"
       :value="value"
-      @blur="$emit('blur')"
-      @change="$emit('change', value)"
+      @blur="onBlur"
+      @change="onChange($event.target.value)"
       @input="onInput($event.target.value)"
-      @focus="$emit('focus')"
-      @click="$emit('click')">
+      @focus="onFocus"
+      @click="onClick">
 
-    <span
-      v-if="successState && showValidTick"
-      class="valid-tick" />
     <label
       :for="name"
-      :class="labelClass">{{ label }}</label>
-    <slot name="right" />
+      :class="b('label', { main: true }).is({ smaller: hasContent || focused }).toString()">{{ label }}</label>
+
+    <div
+      :class="b('slot', { right: true }).toString()">
+
+      <label
+        v-if="showLabelRight"
+        :for="name"
+        :class="b('label', { right: true }).toString()">{{ labelRight }}</label>
+
+      <slot name="right" />
+
+      <Icon
+        v-if="successState && showValidTick"
+        :class="b('valid-tick').toString()"
+        name="check-green" />
+    </div>
+
     <div
       v-if="errorState"
       :class="b('error-msg').toString()">{{ errorMessage }}</div>
@@ -48,7 +60,7 @@ export default {
   name: 'TextInput',
   status: 'under-review',
   release: '1.0.0',
-  blockName: 'form',
+  blockName: 'text-field',
   model: {
     prop: 'value',
     event: 'input',
@@ -85,16 +97,16 @@ export default {
       default: 'Text',
     },
     /**
+     * The label for the right side of the form input field.
+     */
+    labelRight: {
+      type: String,
+      default: null,
+    },
+    /**
      * Whether the form input field is disabled or not.
      */
     disabled: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-     * Whether the form field is required or not.
-     */
-    required: {
       type: Boolean,
       default: false,
     },
@@ -150,11 +162,12 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      focused: false,
+    };
+  },
   computed: {
-    inputClass() {
-      const addSize = this.size === 'large' ? '' : `-${this.size}`;
-      return this.b('input') + addSize;
-    },
     labelClass() {
       const addSize = this.size === 'large' ? '' : `-${this.size}`;
       return this.b('label') + addSize;
@@ -162,27 +175,114 @@ export default {
     hasContent() {
       return this.value && this.value.length;
     },
+    showLabelRight() {
+      const showLabelRight = !!this.labelRight;
+
+      return showLabelRight;
+    },
   },
   methods: {
     onInput(value) {
+      /**
+       * Input event
+       *
+       * @event input
+       * @type String
+       */
       this.$emit('input', value);
+    },
+    onBlur() {
+      this.focused = false;
+
+      /**
+       * Blur event
+       *
+       * @event blur
+       * @type none
+       */
+      this.$emit('blur');
+    },
+    onClick() {
+      /**
+       * Click event
+       *
+       * @event click
+       * @type none
+       */
+      this.$emit('click');
+    },
+    onFocus() {
+      this.focused = true;
+
+      /**
+       * Focus event
+       *
+       * @event focus
+       * @type none
+       */
+      this.$emit('focus');
+    },
+    onChange(value) {
+      /**
+       * Change event
+       *
+       * @event change
+       * @type String
+       */
+      this.$emit('change', value);
     },
   },
 };
 </script>
 
 <docs>
-  ```jsx
+```vue
+<template>
   <div>
-    <TextInput />
+    <TextInput
+      v-model="textInput1" />
+
     <br />
-    <TextInput label="Required" required />
+
+    <TextInput
+      v-model="textInput2"
+      label="Label"
+      label-right="Label Right" />
+
     <br />
-    <TextInput label="Disabled" disabled />
+
+    <TextInput
+      v-model="textInput3"
+      label="Disabled"
+      disabled />
+
     <br />
-    <TextInput label="Small" size="small" />
+
+    <TextInput
+      v-model="textInput4"
+      label="Small"
+      size="small" />
+
     <br />
-    <TextInput label="Error State" :error-state="true" />
+
+    <TextInput
+      v-model="textInput5"
+      label="Error State"
+      :error-state="true" />
   </div>
-  ```
+</template>
+<script>
+export default {
+  data() {
+    return {
+      textInput1: '',
+      textInput2: '',
+      textInput3: '',
+      textInput4: '',
+      textInput5: '',
+    }
+  }
+};
+</script>
+```
 </docs>

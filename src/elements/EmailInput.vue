@@ -5,6 +5,7 @@
     :required="required"
     :size="size"
     :label="label"
+    :label-right="labelRight"
     :wrapper="wrapper"
     :error-state="errorState"
     :error-message="errorMessage"
@@ -27,7 +28,7 @@ export default ({
   name: 'EmailInput',
   status: 'under-review',
   release: '1.0.0',
-  blockName: 'form',
+  blockName: 'text-field',
   model: {
     prop: 'value',
     event: 'input',
@@ -62,6 +63,13 @@ export default ({
     label: {
       type: String,
       default: 'Email',
+    },
+    /**
+     * The label for the right side of the form input field.
+     */
+    labelRight: {
+      type: String,
+      default: null,
     },
     /**
      * The html element name used for the wrapper.
