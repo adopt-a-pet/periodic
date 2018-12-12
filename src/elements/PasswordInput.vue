@@ -56,7 +56,7 @@ export default {
      */
     name: {
       type: String,
-      default: 'text',
+      default: 'password',
     },
     /**
      * Text value of the form input field.
@@ -119,14 +119,6 @@ export default {
     };
   },
   computed: {
-    inputClass() {
-      const addSize = this.size === 'large' ? '' : `-${this.size}`;
-      return this.b('input') + addSize;
-    },
-    labelClass() {
-      const addSize = this.size === 'large' ? '' : `-${this.size}`;
-      return this.b('label') + addSize;
-    },
     errorState() {
       return this.$v.password.$error;
     },
@@ -151,6 +143,9 @@ export default {
     onChange(value) {
       this.$v.password.$model = value;
       this.$emit('change', value);
+    },
+    validate() {
+      return this.successState;
     },
   },
   validations() {

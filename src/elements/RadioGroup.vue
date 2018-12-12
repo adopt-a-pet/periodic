@@ -57,6 +57,7 @@ export default {
     items: {
       type: Array,
       default: () => [],
+      validator: items => items.every(item => ('display' in item) && ('value' in item)),
     },
     /**
      * The value of the selected item.
