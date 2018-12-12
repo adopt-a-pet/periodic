@@ -17,7 +17,7 @@ export default {
     /**
      * A list of component names to validate before submit.
      *
-     * All components must have a `name` prop (that corresponds to one of the
+     * Child components should have a `name` prop (that corresponds to one of the
      * names in this list) and a `validate` method that returns either a Boolean
      * or a Promise that resolves as a Boolean (`true` when it passes validation)
      */
