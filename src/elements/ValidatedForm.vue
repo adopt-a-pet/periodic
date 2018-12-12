@@ -1,13 +1,13 @@
 <template>
   <form @submit.stop.prevent="onSubmit">
+    <!-- @slot Put all your fields here like a normal form -->
     <slot />
   </form>
 </template>
 
 <script>
 /**
- * Example component is used to visually communicate core parts of the product
- * and available actions.
+ * A form component that will only submit when all fields are valid.
  */
 export default {
   name: 'ValidatedForm',
@@ -15,22 +15,26 @@ export default {
   release: '1.0.0',
   props: {
     /**
-     * A list of component refs (this.$refs) to validate before submit.
-     * All refs must have a `validate` method that returns either a Boolean or a
-     * Promise that resolves as a Boolean (`true` when it passes validation).
+     * A list of component names to validate before submit.
+     *
+     * All components must have a `name` prop (that corresponds to one of the
+     * names in this list) and a `validate` method that returns either a Boolean
+     * or a Promise that resolves as a Boolean (`true` when it passes validation)
      */
     fields: {
       type: Array,
       default: () => [],
-      // validator: refs => refs.every(ref => 'validate' in ref),
     },
   },
   methods: {
     onSubmit() {
-      // Find all child components that have a `name` prop AND are in the list
-      // of `fields`.
-      const fieldComponents = this.fields.map(name => this.$children.find(component => component.name === name));
+      // Make a list of component objects.
+      const fieldComponents = this.fields.map(name =>
+        // Find all child components that have a `name` prop AND are in the list
+        this.$children.find(component => component.name === name),
+      ).filter(component => 'validate' in component); // Ignore components that don't have a `validate` method
 
+      // Give all fields a chance to validate before submit
       Promise.all(fieldComponents.map(ref => ref.validate()))
         .then(validated => {
           const allValid = validated.every(valid => valid);

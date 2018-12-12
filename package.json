@@ -78,6 +78,10 @@
     }
   },
   "eslintConfig": {
+    "rules": {
+      "implicit-arrow-linebreak": "off",
+      "function-paren-newline": "off"
+    },
     "extends": [
       "plugin:adoptapet/base",
       "plugin:adoptapet/vue"
