@@ -36,8 +36,9 @@ const TestComponent = Vue.extend({
     @validate:error="validateError">
 
     <test name="input1" />
-    <button type="submit" />
+    <test name="input2" />
   </ValidatedForm>`,
+  // input2 is not in the :fields list so it will be ignored
 });
 
 describe('elements/ValidatedForm', () => {
@@ -48,6 +49,7 @@ describe('elements/ValidatedForm', () => {
 
     setTimeout(() => {
       expect(wrapper.emitted('submit')).toBeUndefined();
+      expect(wrapper.emitted('validate:error').length).toBe(1);
       expect(wrapper.emitted('validate:error')[0][0]).toBe('input1');
 
       done();
