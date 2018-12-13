@@ -49,6 +49,13 @@ export default {
       default: 'radiogroup',
     },
     /**
+     * Whether the form field is required or not.
+     */
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    /**
      * A list of items to render. Each item must have a `display` and a `value`.
      *
      *
@@ -92,6 +99,13 @@ export default {
        * @type String
        */
       this.$emit('change', value);
+    },
+    validate() {
+      let valid = true;
+
+      if (this.required && !this.value) valid = false;
+
+      return valid;
     },
   },
 };

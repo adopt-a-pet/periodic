@@ -34,7 +34,7 @@
 
   <div
     v-else
-    :class="b().is({ full: full }).toString()">
+    :class="b({ searchable: search }).is({ full: full }).toString()">
 
     <TextInput
       :error-state="errorState"

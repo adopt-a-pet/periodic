@@ -3,6 +3,9 @@
   position: relative
   font-size: 1.25rem
 
+  input[type="text"]
+    cursor: default
+
   +is(full)
     .#{_b(dropdown) + _e(arrow)}
       transform: rotate(0.5turn)
@@ -29,6 +32,10 @@
 
       &:focus
         outline: none
+
+  +m(searchable)
+    input[type="text"]
+      cursor: text
 
   +e(arrow)
     +rem-fallback('height', 7px)

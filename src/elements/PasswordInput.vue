@@ -10,11 +10,11 @@
     :wrapper="wrapper"
     :error-state="errorState"
     :error-message="errorMessage"
-    :show-valid-tick="false"
+    :show-valid-tick="showValidTick"
     :success-state="successState"
     v-model="inputContent"
     @change="onChange"
-    @blur="$v.password.$touch"
+    @blur="onBlur"
     @input="onInput"
     @focus="onFocus">
 
@@ -110,6 +110,13 @@ export default {
       type: Object,
       default() { return {}; },
     },
+    /**
+     * If `successState` is true should it also show the green tick on the right?
+     */
+    showValidTick: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -135,14 +142,43 @@ export default {
   },
   methods: {
     onInput(value) {
+      /**
+       * Input event
+       *
+       * @event input
+       * @type String
+       */
       this.$emit('input', value);
     },
     onFocus(value) {
+      /**
+       * Focus event
+       *
+       * @event focus
+       * @type none
+       */
       this.$emit('focus', value);
     },
     onChange(value) {
       this.$v.password.$model = value;
+      /**
+       * Change event
+       *
+       * @event change
+       * @type String
+       */
       this.$emit('change', value);
+    },
+    onBlur() {
+      this.$v.password.$touch();
+
+      /**
+       * Blur event
+       *
+       * @event blur
+       * @type none
+       */
+      this.$emit('blur');
     },
     validate() {
       return this.successState;

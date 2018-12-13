@@ -226,6 +226,9 @@ export default {
        */
       this.$emit('change', value);
     },
+    validate() {
+      return !this.errorState;
+    },
   },
 };
 </script>
