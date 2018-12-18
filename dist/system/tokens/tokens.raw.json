@@ -569,12 +569,12 @@
       "originalValue": "20px",
       "name": "space_s"
     },
-    "line_height_m": {
+    "line_height_h4": {
       "type": "number",
       "category": "line-height",
       "value": "32px",
       "originalValue": "32px",
-      "name": "line_height_m"
+      "name": "line_height_h4"
     },
     "line_height_xxm": {
       "type": "number",
@@ -590,61 +590,61 @@
       "originalValue": "48px",
       "name": "line_height_h2"
     },
-    "line_height_xxxm": {
+    "line_height_h4v2": {
       "type": "number",
       "category": "line-height",
       "value": "26px",
       "originalValue": "26px",
-      "name": "line_height_xxxm"
+      "name": "line_height_h4v2"
     },
-    "line_height_xm": {
+    "line_height_h3v2": {
       "type": "number",
       "category": "line-height",
       "value": "31px",
       "originalValue": "31px",
-      "name": "line_height_xm"
+      "name": "line_height_h3v2"
     },
-    "line_height_sl": {
+    "line_height_h4v3": {
       "type": "number",
       "category": "line-height",
       "value": "24px",
       "originalValue": "24px",
-      "name": "line_height_sl"
+      "name": "line_height_h4v3"
     },
-    "line_height_s": {
+    "line_height_h5": {
       "type": "number",
       "category": "line-height",
       "value": "25px",
       "originalValue": "25px",
-      "name": "line_height_s"
+      "name": "line_height_h5"
     },
-    "line_height_xxs": {
+    "line_height_h5v2": {
       "type": "number",
       "category": "line-height",
       "value": "20px",
       "originalValue": "20px",
-      "name": "line_height_xxs"
+      "name": "line_height_h5v2"
     },
-    "line_height_xxxxs": {
+    "line_height_h6v2": {
       "type": "number",
       "category": "line-height",
       "value": "17px",
       "originalValue": "17px",
-      "name": "line_height_xxxxs"
+      "name": "line_height_h6v2"
     },
-    "line_height_sm": {
+    "line_height_small": {
       "type": "number",
       "category": "line-height",
       "value": "23px",
       "originalValue": "23px",
-      "name": "line_height_sm"
+      "name": "line_height_small"
     },
-    "line_height_xxxxxs": {
+    "line_height_tiny": {
       "type": "number",
       "category": "line-height",
       "value": "14px",
       "originalValue": "14px",
-      "name": "line_height_xxxxxs"
+      "name": "line_height_tiny"
     },
     "line_height_xxxs": {
       "type": "number",
@@ -653,12 +653,12 @@
       "originalValue": "18px",
       "name": "line_height_xxxs"
     },
-    "line_height_xs": {
+    "line_height_h6": {
       "type": "number",
       "category": "line-height",
       "value": "22px",
       "originalValue": "22px",
-      "name": "line_height_xs"
+      "name": "line_height_h6"
     },
     "line_height_h3": {
       "type": "number",
