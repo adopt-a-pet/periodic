@@ -34,7 +34,7 @@
 
   <div
     v-else
-    :class="b().is({ full: full }).toString()">
+    :class="b({ searchable: search }).is({ full: full }).toString()">
 
     <TextInput
       :error-state="errorState"
@@ -127,6 +127,7 @@ export default {
     items: {
       type: Array,
       default: () => [],
+      validator: items => items.every(item => ('display' in item) && ('value' in item)),
     },
     /**
      * Special choices always appear at the top of the list and are never
@@ -135,6 +136,7 @@ export default {
     specialChoices: {
       type: Array,
       default: () => [],
+      validator: items => items.every(item => ('display' in item) && ('value' in item)),
     },
     /**
      * Is this dropdown searchable?
@@ -240,12 +242,14 @@ export default {
 
   watch: {
     selectedIndex() {
+      /**
+       * Change event
+       *
+       * @event change
+       * @type Any
+       */
       this.$emit('change', this.selectedValue);
     },
-  },
-
-  mounted() {
-    this.$emit('change', this.selectedValue);
   },
 
   methods: {

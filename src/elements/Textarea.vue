@@ -147,6 +147,9 @@ export default {
        */
       this.$emit('blur');
     },
+    validate() {
+      return !this.errorState;
+    },
   },
   validations() {
     const validations = {

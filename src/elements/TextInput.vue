@@ -3,7 +3,6 @@
     <input
       ref="input"
       :class="[
-        inputClass,
         b('input', { [size]: true })
           .state({
             error: errorState,
@@ -168,10 +167,6 @@ export default {
     };
   },
   computed: {
-    labelClass() {
-      const addSize = this.size === 'large' ? '' : `-${this.size}`;
-      return this.b('label') + addSize;
-    },
     hasContent() {
       return this.value && this.value.length;
     },
@@ -230,6 +225,9 @@ export default {
        * @type String
        */
       this.$emit('change', value);
+    },
+    validate() {
+      return !this.errorState;
     },
   },
 };
