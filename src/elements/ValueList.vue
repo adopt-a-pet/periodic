@@ -44,6 +44,7 @@ export default {
     items: {
       type: Array,
       default() { return []; },
+      validator: items => items.every(item => ('label' in item) && ('value' in item)),
     },
 
     /**

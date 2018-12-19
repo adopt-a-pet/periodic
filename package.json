@@ -1,6 +1,6 @@
 {
   "name": "@aap/periodic",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A design system for AAP's Vue components",
   "main": "dist/system/system.js",
   "files": [
@@ -78,6 +78,10 @@
     }
   },
   "eslintConfig": {
+    "rules": {
+      "implicit-arrow-linebreak": "off",
+      "function-paren-newline": "off"
+    },
     "extends": [
       "plugin:adoptapet/base",
       "plugin:adoptapet/vue"
@@ -128,7 +132,7 @@
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",
-    "@vue/test-utils": "^1.0.0-beta.25",
+    "@vue/test-utils": "^1.0.0-beta.27",
     "autoprefixer": "^9.1.5",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
@@ -166,12 +170,12 @@
     "shelljs": "^0.8.2",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.1.0",
-    "theo": "^8.0.0-beta.2",
+    "theo": "^8.0.1",
     "url-loader": "^1.1.1",
     "vue-jest": "^2.6.0",
     "vue-loader": "^15.4.2",
     "vue-style-loader": "^4.1.2",
-    "vue-styleguidist": "^1.9.0",
+    "vue-styleguidist": "^2.1.1",
     "vue-template-compiler": "^2.5.17",
     "vuex": "^3.0.1",
     "webpack": "^4.20.2",

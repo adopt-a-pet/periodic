@@ -52,7 +52,7 @@ export default {
      */
     type: {
       type: String,
-      default: 'submit',
+      default: null,
       validator: value => value.match(/(button|submit)/),
     },
     /**

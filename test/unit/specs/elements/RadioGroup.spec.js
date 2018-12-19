@@ -27,7 +27,7 @@ describe('elements/RadioGroup', () => {
     const wrapper = mount(TestComponent);
     const inputs = wrapper.findAll('input[type="radio"]');
 
-    inputs.at(0).setChecked();
+    inputs.at(0).trigger('click');
 
     expect(wrapper.emitted('change').length).toBe(1);
     expect(wrapper.emitted('change')[0]).toEqual(['a']);
@@ -37,12 +37,12 @@ describe('elements/RadioGroup', () => {
     const wrapper = mount(TestComponent);
     const inputs = wrapper.findAll('input[type="radio"]');
 
-    inputs.at(0).setChecked();
+    inputs.at(0).trigger('click');
 
     expect(wrapper.emitted('change').length).toBe(1);
     expect(wrapper.emitted('change')[0]).toEqual(['a']);
 
-    inputs.at(1).setChecked();
+    inputs.at(1).trigger('click');
 
     expect(wrapper.emitted('change').length).toBe(2);
     expect(wrapper.emitted('change')[1]).toEqual(['b']);
