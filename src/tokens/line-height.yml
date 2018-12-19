@@ -14,7 +14,7 @@ props:
     value: "32px"
   line_height_h3v2:
     value: "31px"
-  line_height_xxm:
+  line_height_h3v2museo:
     value: "30px"
   line_height_h4v2:
     value: "26px"
@@ -22,13 +22,13 @@ props:
     value: "25px"
   line_height_h4v3:
     value: "24px"
-  line_height_small:
+  line_height_h4v3museo:
     value: "23px"
   line_height_h6:
     value: "22px"
   line_height_h5v2:
     value: "20px"
-  line_height_xxxs:
+  line_height_h5v2museo:
     value: "18px"
   line_height_h6v2:
     value: "17px"
