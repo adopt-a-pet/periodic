@@ -569,75 +569,12 @@
       "originalValue": "20px",
       "name": "space_s"
     },
-    "line_height_h4": {
-      "type": "number",
-      "category": "line-height",
-      "value": "32px",
-      "originalValue": "32px",
-      "name": "line_height_h4"
-    },
     "line_height_h3v2museo": {
       "type": "number",
       "category": "line-height",
       "value": "30px",
       "originalValue": "30px",
       "name": "line_height_h3v2museo"
-    },
-    "line_height_h2": {
-      "type": "number",
-      "category": "line-height",
-      "value": "48px",
-      "originalValue": "48px",
-      "name": "line_height_h2"
-    },
-    "line_height_h4v2": {
-      "type": "number",
-      "category": "line-height",
-      "value": "26px",
-      "originalValue": "26px",
-      "name": "line_height_h4v2"
-    },
-    "line_height_h3v2": {
-      "type": "number",
-      "category": "line-height",
-      "value": "31px",
-      "originalValue": "31px",
-      "name": "line_height_h3v2"
-    },
-    "line_height_h4v3": {
-      "type": "number",
-      "category": "line-height",
-      "value": "24px",
-      "originalValue": "24px",
-      "name": "line_height_h4v3"
-    },
-    "line_height_h5": {
-      "type": "number",
-      "category": "line-height",
-      "value": "25px",
-      "originalValue": "25px",
-      "name": "line_height_h5"
-    },
-    "line_height_h5v2": {
-      "type": "number",
-      "category": "line-height",
-      "value": "20px",
-      "originalValue": "20px",
-      "name": "line_height_h5v2"
-    },
-    "line_height_h6v2": {
-      "type": "number",
-      "category": "line-height",
-      "value": "17px",
-      "originalValue": "17px",
-      "name": "line_height_h6v2"
-    },
-    "line_height_h4v3museo": {
-      "type": "number",
-      "category": "line-height",
-      "value": "23px",
-      "originalValue": "23px",
-      "name": "line_height_h4v3museo"
     },
     "line_height_tiny": {
       "type": "number",
@@ -646,19 +583,54 @@
       "originalValue": "14px",
       "name": "line_height_tiny"
     },
-    "line_height_h5v2museo": {
+    "line_height_h3v2": {
       "type": "number",
       "category": "line-height",
-      "value": "18px",
-      "originalValue": "18px",
-      "name": "line_height_h5v2museo"
+      "value": "31px",
+      "originalValue": "31px",
+      "name": "line_height_h3v2"
     },
-    "line_height_h6": {
+    "line_height_h4v2": {
       "type": "number",
       "category": "line-height",
-      "value": "22px",
-      "originalValue": "22px",
-      "name": "line_height_h6"
+      "value": "26px",
+      "originalValue": "26px",
+      "name": "line_height_h4v2"
+    },
+    "line_height_h5v2": {
+      "type": "number",
+      "category": "line-height",
+      "value": "20px",
+      "originalValue": "20px",
+      "name": "line_height_h5v2"
+    },
+    "line_height_h1": {
+      "type": "number",
+      "category": "line-height",
+      "value": "62px",
+      "originalValue": "62px",
+      "name": "line_height_h1"
+    },
+    "line_height_h4v3": {
+      "type": "number",
+      "category": "line-height",
+      "value": "24px",
+      "originalValue": "24px",
+      "name": "line_height_h4v3"
+    },
+    "line_height_h6v2": {
+      "type": "number",
+      "category": "line-height",
+      "value": "17px",
+      "originalValue": "17px",
+      "name": "line_height_h6v2"
+    },
+    "line_height_h2": {
+      "type": "number",
+      "category": "line-height",
+      "value": "48px",
+      "originalValue": "48px",
+      "name": "line_height_h2"
     },
     "line_height_h3": {
       "type": "number",
@@ -667,12 +639,40 @@
       "originalValue": "39px",
       "name": "line_height_h3"
     },
-    "line_height_h1": {
+    "line_height_h4": {
       "type": "number",
       "category": "line-height",
-      "value": "62px",
-      "originalValue": "62px",
-      "name": "line_height_h1"
+      "value": "32px",
+      "originalValue": "32px",
+      "name": "line_height_h4"
+    },
+    "line_height_h5": {
+      "type": "number",
+      "category": "line-height",
+      "value": "25px",
+      "originalValue": "25px",
+      "name": "line_height_h5"
+    },
+    "line_height_h6": {
+      "type": "number",
+      "category": "line-height",
+      "value": "22px",
+      "originalValue": "22px",
+      "name": "line_height_h6"
+    },
+    "line_height_h4v3museo": {
+      "type": "number",
+      "category": "line-height",
+      "value": "23px",
+      "originalValue": "23px",
+      "name": "line_height_h4v3museo"
+    },
+    "line_height_h5v2museo": {
+      "type": "number",
+      "category": "line-height",
+      "value": "18px",
+      "originalValue": "18px",
+      "name": "line_height_h5v2museo"
     },
     "prefix_component": {
       "type": "global",
