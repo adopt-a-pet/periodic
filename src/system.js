@@ -12,6 +12,8 @@ import layout from '@/mixins/layout';
 import vuexModule from '@/mixins/vuex-module';
 import { validationMixin } from 'vuelidate';
 
+import './styles/styles.scss';
+
 // Define contexts to require
 const contexts = [
   require.context('@/elements/', true, /\.vue$/),
