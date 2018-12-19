@@ -45,7 +45,9 @@
                   class="m-space-r--tiny">
                   <use xlink:href="#aap-icon-next" />
                 </svg>
-                <span class="link-blue">{{ hideExtraSocial ? "Log in with LinkedIn and Yahoo" : "Close LinkedIn and Yahoo" }}</span>
+                <span class="link-blue">
+                  {{ hideExtraSocial ? "Log in with LinkedIn and Yahoo" : "Close LinkedIn and Yahoo" }}
+                </span>
               </span>
             </div>
           </div>
@@ -71,20 +73,33 @@
 
               <span
                 v-if="stateName === 'error_social_account'"
-                class="form__error-msg--bottom p-space-t--tiny">Something’s wrong! If you have previously signed up with a social account, log in with one of the buttons above.<br>Forgot your password? <span
+                class="form__error-msg--bottom p-space-t--tiny">
+
+                Something’s wrong! If you have previously signed up with a social account,
+                log in with one of the buttons above.<br>
+                Forgot your password?
+                <span
                   class="link-blue"
-                  @click="$emit('state:next', 'FORGOT_PASSWORD')">Click here.</span></span>
+                  @click="$emit('state:next', 'FORGOT_PASSWORD')">Click here.</span>
+              </span>
 
               <span
                 v-else-if="stateName === 'error_nonexisting_account'"
-                class="form__error-msg--bottom p-space-t--tiny">We don’t have an account associated with this email. Please <a
+                class="form__error-msg--bottom p-space-t--tiny">
+
+                We don’t have an account
+                associated with this email. Please
+                <a
                   href="/uso/signup/accounttype"
                   data-link="link-blue"
                   class="link-blue">sign up.</a></span>
 
               <span
                 v-else-if="stateName === 'error_login_other'"
-                class="form__error-msg--bottom p-space-t--tiny">Something’s wrong! Please make sure you have the correct email address or <a
+                class="form__error-msg--bottom p-space-t--tiny">
+
+                Something’s wrong! Please make sure you have the correct email address or
+                <a
                   href="/uso/signup/accounttype"
                   data-link="link-blue"
                   class="link-blue">sign up</a> here.</span>
