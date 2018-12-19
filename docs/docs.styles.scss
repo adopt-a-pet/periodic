@@ -66,7 +66,7 @@ div[class^="rsg--wrapper"] > h2[class^="rsg--heading"] {
   display: block;
   width: 100%;
   border: 0;
-  line-height: $line-height-s;
+  line-height: $line-height-h5;
   padding: $space-xl $space-xl;
   width: calc(100% + #{$space-xl * 2});
   margin: -#{$space-s} -#{$space-xl} $space-l -#{$space-xl};
@@ -109,7 +109,7 @@ h2[class^="rsg--heading"] {
   padding-bottom: $space-s;
   margin: $space-l 0 $space-m;
   font-size: $size-xl;
-  line-height: $line-height-s;
+  line-height: $line-height-h5;
   font-weight: $weight-normal;
   letter-spacing: -0.5px;
   width: 100%;
@@ -130,7 +130,7 @@ h3[class^="rsg--heading"] a {
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: auto;
   font-weight: $weight-light;
-  line-height: $line-height-m;
+  line-height: $line-height-h4;
   margin: 0 0 $space-l;
   font-size: $size-l;
   color: $docs-color-text;
@@ -147,7 +147,7 @@ h4[class^="rsg--heading"] a {
   letter-spacing: 0;
   margin: $space-l 0 $space-m;
   font-size: $size-l;
-  line-height: $line-height-s;
+  line-height: $line-height-h5;
   color: $docs-color-heading;
 }
 
@@ -157,7 +157,7 @@ p[class^="rsg--para"] {
   -moz-osx-font-smoothing: grayscale;
   color: $docs-color-text;
   margin-bottom: $space-s;
-  line-height: $line-height-m;
+  line-height: $line-height-h4;
   strong a[class^="rsg--link"] {
     font-weight: $weight-semi-bold;
   }
@@ -225,7 +225,7 @@ p[class^="rsg--version"] {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   font-weight: $weight-normal;
   display: inline-block;
-  line-height: $line-height-xs;
+  line-height: $line-height-h6;
   border: 1px solid $color-bleu-de-france;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -319,7 +319,7 @@ div[class^="rsg--sidebar"] {
     // Sidebar sub-list
     ul {
       padding-left: $space-s;
-      line-height: $line-height-s;
+      line-height: $line-height-h5;
       @media (max-width: #{$docs-breakpoint-small}) {
         padding: 0 0 0 $space-l;
         width: 90%;
@@ -327,7 +327,7 @@ div[class^="rsg--sidebar"] {
         // Sidebar sub-list item
         li {
           display: inline;
-          line-height: $line-height-m;
+          line-height: $line-height-h4;
         }
       }
 
@@ -450,7 +450,7 @@ div[class^="rsg--tab"] {
       font-size: $size-s;
       font-weight: $weight-normal;
       font-family: $font-text;
-      line-height: $line-height-s;
+      line-height: $line-height-h5;
       @include inset-squish-space($space-s);
       cursor: pointer;
       background: mix($color-bleu-de-france, $color-rich-black, 50%);
@@ -549,7 +549,7 @@ div[class^="rsg--root"] div[class^="rsg--tabs"] {
   order: 1;
   align-self: flex-end;
   cursor: help;
-  line-height: $line-height-xs;
+  line-height: $line-height-h6;
   background: tint($docs-grey, 50%);
   padding: $space-xs $space-s $space-xs/1.2;
   text-transform: uppercase;
