@@ -1,0 +1,63 @@
++b(status-list)
+  border-bottom: 1px solid color(agray, lighter)
+
+  +breakpoint(tiny)
+    +rem-fallback('padding', 30px 0)
+
+  +breakpoint(tablet-plus)
+    +rem-fallback('padding', 20px 0 30px 0)
+
+  +e(content)
+    display: flex
+    flex-wrap: wrap
+    width: 100%
+    justify-content: space-between
+
+    +breakpoint(tablet-plus)
+      justify-content: unset
+
+  +e(label)
+    width: 100%
+    display: flex
+    padding-right: 0
+    @include rem-fallback('margin-top', 15px)
+
+    @include breakpoint(normal)
+      width: calc(50% - 12px)
+
+    @include breakpoint(tablet-plus)
+      width: 100%
+
+
+  +e(icon)
+    display: block
+    +rem-fallback('width', 16px)
+    +rem-fallback('height', 12px)
+    +rem-fallback('margin-right', 10px)
+
+    +m('state-tick')
+      +rem-fallback('margin-top', 5px)
+      background: url('/icons/aap-icon-check.svg')
+      background-repeat: no-repeat
+      background-position: 96% center
+      align-self: flex-start
+
+      &-adopted
+        background: url('/icons/aap-icon-check.svg')
+        background-repeat: no-repeat
+        background-position: 96% center
+
+
+    +m('state-exclamation')
+      +rem-fallback('margin-top', 4px)
+      background: url('/icons/aap-icon-exclamation.svg')
+      background-repeat: no-repeat
+      background-position: center
+      +rem-fallback('height', 17px)
+      align-self: flex-start
+
+      &-adopted
+        background: url('/icons/aap-icon-exclamation.svg')
+        background-repeat: no-repeat
+        background-position: center
+        +rem-fallback('height', 17px)
