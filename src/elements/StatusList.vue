@@ -7,10 +7,16 @@
       :class="b('label').toString()">
       <span
         v-if="items.state === true"
-        :class="[b('icon', { state: 'tick' }).toString()]" />
+        :class="[b('icon', { state: 'tick' }).toString()]">
+        <Icon
+          name="check-green" />
+      </span>
       <span
         v-if="items.state === false"
-        :class="[b('icon', { state: 'exclamation' }).toString()]" />
+        :class="[b('icon', { state: 'exclamation' }).toString()]">
+        <Icon
+          name="aap-icon-exclamation" />
+      </span>
       <Heading
         :class="b('text').toString()"
         level="h4"
