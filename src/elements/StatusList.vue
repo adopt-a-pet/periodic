@@ -15,7 +15,7 @@
         v-if="items.state === false"
         :class="[b('icon', { state: 'exclamation' }).toString()]">
         <Icon
-          name="aap-icon-exclamation" />
+          name="exclamation" />
       </span>
       <Heading
         :class="b('text').toString()"
