@@ -63,18 +63,7 @@ $hero-background: rgba(0, 168, 222, 0.8);
 $hero-background-opaque: rgba(0, 168, 222, 1);
 
 // Fonts
-@include font-face("Museo300", "/fonts/museo-regular-300", 300);
-@include font-face("Museo500", "/fonts/museo-regular-500", 500);
-@include font-face("Museo700", "/fonts/museo-regular-700", 700);
-
-@include font-face("MuseoSans300", "/fonts/museo-sans-300", 300);
-@include font-face("MuseoSans500", "/fonts/museo-sans-500", 500);
-@include font-face("MuseoSans700", "/fonts/museo-sans-700", 700);
-
 $helvetica: "Helvetica Neue", Helvetica, Arial, Roboto, "Lucida Grande", sans-serif;
-$museo300: "Museo300", $helvetica;
-$museo500: "Museo500", $helvetica;
-$museo700: "Museo700", $helvetica;
 
 $museosans300: "MuseoSans300", $helvetica;
 $museosans500: "MuseoSans500", $helvetica;
