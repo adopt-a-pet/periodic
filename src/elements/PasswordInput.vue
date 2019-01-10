@@ -1,5 +1,6 @@
 <template>
   <TextInput
+    ref="input"
     :disabled="disabled"
     :name="name"
     :required="required"
@@ -7,15 +8,12 @@
     :type="showPassword ? 'text' : 'password'"
     :label="label"
     :label-right="labelRight"
-    :wrapper="wrapper"
-    :error-state="errorState"
-    :error-message="errorMessage"
+    :error-messages="errorMessages"
     :show-valid-tick="showValidTick"
-    :success-state="successState"
-    v-model="inputContent"
+    :validations="validations"
+    :value="value"
     @change="onChange"
     @blur="onBlur"
-    @input="onInput"
     @focus="onFocus">
 
     <template slot="right">
@@ -31,7 +29,7 @@
 </template>
 
 <script>
-import { minLength, required } from 'vuelidate/lib/validators';
+import { minLength } from 'vuelidate/lib/validators';
 
 /**
  *
@@ -41,6 +39,10 @@ export default {
   status: 'under-review',
   release: '1.0.0',
   blockName: 'text-field',
+  model: {
+    prop: 'value',
+    event: 'input',
+  },
   props: {
     /**
      * The size of the field. Defaults to large.
@@ -108,7 +110,17 @@ export default {
      */
     validations: {
       type: Object,
-      default() { return {}; },
+      default() { return { minLength: minLength(8) }; },
+    },
+    /**
+     * What error message to show for each validation error
+     */
+    errorMessages: {
+      type: Object,
+      default: () => ({
+        required: 'Enter Password',
+        minLength: 'Invalid Password',
+      }),
     },
     /**
      * If `successState` is true should it also show the green tick on the right?
@@ -120,36 +132,10 @@ export default {
   },
   data() {
     return {
-      inputContent: this.value,
-      password: this.value,
       showPassword: false,
     };
   },
-  computed: {
-    errorState() {
-      return this.$v.password.$error;
-    },
-    successState() {
-      return !!(this.password && !this.errorState);
-    },
-    errorMessage() {
-      if (this.$v.password.required === false) {
-        return 'Enter Password';
-      }
-
-      return 'Invalid Password';
-    },
-  },
   methods: {
-    onInput(value) {
-      /**
-       * Input event
-       *
-       * @event input
-       * @type String
-       */
-      this.$emit('input', value);
-    },
     onFocus(value) {
       /**
        * Focus event
@@ -160,7 +146,6 @@ export default {
       this.$emit('focus', value);
     },
     onChange(value) {
-      this.$v.password.$model = value;
       /**
        * Change event
        *
@@ -168,10 +153,9 @@ export default {
        * @type String
        */
       this.$emit('change', value);
+      this.$emit('input', value);
     },
     onBlur() {
-      this.$v.password.$touch();
-
       /**
        * Blur event
        *
@@ -181,32 +165,42 @@ export default {
       this.$emit('blur');
     },
     validate() {
-      return this.successState;
+      return this.$refs.input.validate();
     },
-  },
-  validations() {
-    const validations = {
-      password: {
-        minLength: minLength(8),
-        ...this.validations,
-      },
-    };
-
-    if (this.required) validations.password.required = required;
-
-    return validations;
   },
 };
 </script>
 
 <docs>
-  ```jsx
+```vue
+<template>
   <div>
-    <PasswordInput />
+    <PasswordInput
+      v-model="passwordInput1" />
+
     <br />
-    <PasswordInput label="Required" required />
+
+    <PasswordInput
+      v-model="passwordInput2"
+      label="Required"
+      required />
+
     <br />
-    <PasswordInput label="Disabled" disabled />
+
+    <PasswordInput
+      label="Disabled"
+      disabled />
   </div>
-  ```
+</template>
+<script>
+export default {
+  data() {
+    return {
+      passwordInput1: '',
+      passwordInput2: '',
+    }
+  }
+};
+</script>
+```
 </docs>

@@ -52,8 +52,10 @@
 </template>
 
 <script>
+import { required } from 'vuelidate/lib/validators';
+
 /**
- *
+ * An extensible, general text input field
  */
 export default {
   name: 'TextInput',
@@ -117,27 +119,11 @@ export default {
       default: 'text',
     },
     /**
-     * Does the field have validation errors? This is mainly used when extended
-     * by other components.
+     * What error message to show for each validation error
      */
-    errorState: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-     * Did the field pass validation? This is mainly used when extended by other
-     * components.
-     */
-    successState: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-     * If `errorState` is true what error message to show
-     */
-    errorMessage: {
-      type: String,
-      default: 'Invalid Input',
+    errorMessages: {
+      type: Object,
+      default: () => ({}),
     },
     /**
      * If `successState` is true should it also show the green tick on the right?
@@ -160,6 +146,21 @@ export default {
       type: Boolean,
       default: false,
     },
+    /**
+     * Whether the form field is required or not.
+     */
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * Add validations to the field in the form of a Vuelidate object.
+     * `{ maxLength: maxLength(20) }`
+     */
+    validations: {
+      type: Object,
+      default() { return {}; },
+    },
   },
   data() {
     return {
@@ -175,6 +176,20 @@ export default {
 
       return showLabelRight;
     },
+    errorState() {
+      return this.$v.value.$error;
+    },
+    successState() {
+      // It can only be considered to pass validation if there *are* validations
+      if (!Object.keys(this.validations).length) {
+        return false;
+      }
+
+      return !!(this.value && !this.errorState);
+    },
+    errorMessage() {
+      return this.getErrorMessages(this.$v.value, this.errorMessages)[0];
+    },
   },
   methods: {
     onInput(value) {
@@ -188,6 +203,7 @@ export default {
     },
     onBlur() {
       this.focused = false;
+      this.$v.value.$touch();
 
       /**
        * Blur event
@@ -227,8 +243,20 @@ export default {
       this.$emit('change', value);
     },
     validate() {
+      this.$v.value.$touch();
       return !this.errorState;
     },
+  },
+  validations() {
+    const validations = {
+      value: {
+        ...this.validations,
+      },
+    };
+
+    if (this.required) validations.value.required = required;
+
+    return validations;
   },
 };
 </script>
@@ -265,8 +293,9 @@ export default {
 
     <TextInput
       v-model="textInput5"
-      label="Error State"
-      :error-state="true" />
+      label="Customize errors"
+      :errorMessages="{ required: 'Hey! Why is this empty?' }"
+      required />
   </div>
 </template>
 <script>

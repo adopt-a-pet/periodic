@@ -9,6 +9,7 @@ import bemNames from '@/mixins/bem-names';
 import errorMessages from '@/mixins/error-messages';
 import filters from '@/mixins/filters';
 import layout from '@/mixins/layout';
+import validateRequired from '@/mixins/validate-required';
 import vuexModule from '@/mixins/vuex-module';
 import { validationMixin } from 'vuelidate';
 
@@ -32,6 +33,7 @@ export const mixins = [
   errorMessages,
   filters,
   layout,
+  validateRequired,
   validationMixin,
   vuexModule,
 ];
@@ -39,10 +41,11 @@ export const mixins = [
 // Install the above defined components
 const System = {
   install(Vue) {
+    const baseComponent = Vue.extend({ mixins });
+
     components.forEach(component => Vue.component(
       component.name,
-      Vue.extend(component).extend({ mixins }),
-      // Vue.extend({ mixins }).extend(component),
+      baseComponent.extend(component),
     ));
   },
 };

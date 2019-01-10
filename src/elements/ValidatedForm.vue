@@ -21,7 +21,7 @@ export default {
      * names in this list) and a `validate` method that returns either a Boolean
      * or a Promise that resolves as a Boolean (`true` when it passes validation)
      */
-    fields: {
+    names: {
       type: Array,
       default: () => [],
     },
@@ -29,7 +29,7 @@ export default {
   methods: {
     onSubmit() {
       // Make a list of component objects.
-      const fieldComponents = this.fields.map(name =>
+      const fieldComponents = this.names.map(name =>
         // Find all child components that have a `name` prop AND are in the list
         this.$children.find(component => component.name === name),
       ).filter(component => 'validate' in component); // Ignore components that don't have a `validate` method
@@ -70,7 +70,7 @@ export default {
 ```vue
 <template>
   <ValidatedForm
-    :fields="['email', 'password']"
+    :names="['email', 'password']"
     @validate:error="onValidateError"
     @submit="onSubmit">
 

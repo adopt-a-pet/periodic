@@ -1,30 +1,29 @@
 <template>
   <TextInput
+    ref="input"
     :disabled="disabled"
     :name="name"
     :required="required"
     :size="size"
     :label="label"
     :label-right="labelRight"
-    :wrapper="wrapper"
-    :error-state="errorState"
-    :error-message="errorMessage"
-    :success-state="successState"
-    v-model="inputContent"
+    :error-messages="errorMessages"
+    :show-valid-tick="showValidTick"
+    :validations="validations"
+    :value="value"
     type="email"
     @change="onChange"
-    @blur="$v.email.$touch"
-    @input="onInput"
+    @blur="onBlur"
     @focus="onFocus" />
 </template>
 
 <script>
-import { email, required } from 'vuelidate/lib/validators';
+import { email } from 'vuelidate/lib/validators';
 
 /**
  *
  */
-export default ({
+export default {
   name: 'EmailInput',
   status: 'under-review',
   release: '1.0.0',
@@ -100,70 +99,92 @@ export default ({
      */
     validations: {
       type: Object,
-      default() { return {}; },
+      default() { return { email }; },
     },
-  },
-  data() {
-    return {
-      inputContent: this.value,
-      email: this.value,
-    };
-  },
-  computed: {
-    errorState() {
-      return this.$v.email.$error;
+    /**
+     * What error message to show for each validation error
+     */
+    errorMessages: {
+      type: Object,
+      default: () => ({
+        required: 'Enter Email',
+        email: 'Invalid Email',
+      }),
     },
-    successState() {
-      return !!(this.email && !this.errorState);
-    },
-    errorMessage() {
-      if (this.$v.email.required === false) {
-        return 'Enter Email';
-      }
-
-      return 'Invalid Email';
+    /**
+     * If `successState` is true should it also show the green tick on the right?
+     */
+    showValidTick: {
+      type: Boolean,
+      default: true,
     },
   },
   methods: {
-    onInput(value) {
-      this.$emit('input', value);
-    },
     onFocus(value) {
+      /**
+       * Focus event
+       *
+       * @event focus
+       * @type none
+       */
       this.$emit('focus', value);
     },
     onChange(value) {
-      this.$v.email.$model = value;
+      /**
+       * Change event
+       *
+       * @event change
+       * @type String
+       */
       this.$emit('change', value);
+      this.$emit('input', value);
+    },
+    onBlur() {
+      /**
+       * Blur event
+       *
+       * @event blur
+       * @type none
+       */
+      this.$emit('blur');
     },
     validate() {
-      return this.successState;
+      return this.$refs.input.validate();
     },
   },
-  validations() {
-    const validations = {
-      email: {
-        email,
-        ...this.validations,
-      },
-    };
-
-    if (this.required) validations.email.required = required;
-
-    return validations;
-  },
-});
+};
 </script>
 
 <docs>
-  ```jsx
+```vue
+<template>
   <div>
-    <EmailInput />
+    <EmailInput
+      v-model="emailInput1" />
+
     <br />
-    <EmailInput label="Required" required />
+
+    <EmailInput
+      v-model="emailInput2"
+      label="Required"
+      required />
+
     <br />
-    <EmailInput label="Disabled" disabled />
-    <br />
-    <EmailInput label="Small" size="small" />
+
+    <EmailInput
+      label="Disabled"
+      disabled />
   </div>
-  ```
+</template>
+<script>
+export default {
+  data() {
+    return {
+      emailInput1: '',
+      emailInput2: '',
+    }
+  }
+};
+</script>
+```
 </docs>

@@ -101,11 +101,7 @@ export default {
       this.$emit('change', value);
     },
     validate() {
-      let valid = true;
-
-      if (this.required && !this.value) valid = false;
-
-      return valid;
+      return this.validateRequired(this.required, this.value);
     },
   },
 };
