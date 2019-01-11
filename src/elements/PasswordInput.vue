@@ -12,6 +12,7 @@
     :show-valid-tick="showValidTick"
     :validations="validations"
     :value="value"
+    @input="onInput"
     @change="onChange"
     @blur="onBlur"
     @focus="onFocus">
@@ -136,6 +137,15 @@ export default {
     };
   },
   methods: {
+    onInput(value) {
+      /**
+       * Input event
+       *
+       * @event input
+       * @type String
+       */
+      this.$emit('input', value);
+    },
     onFocus(value) {
       /**
        * Focus event
@@ -153,7 +163,6 @@ export default {
        * @type String
        */
       this.$emit('change', value);
-      this.$emit('input', value);
     },
     onBlur() {
       /**

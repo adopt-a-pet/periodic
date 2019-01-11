@@ -12,6 +12,7 @@
     :validations="validations"
     :value="value"
     type="email"
+    @input="onInput"
     @change="onChange"
     @blur="onBlur"
     @focus="onFocus" />
