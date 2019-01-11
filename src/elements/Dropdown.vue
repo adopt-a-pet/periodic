@@ -4,8 +4,6 @@
     :class="b({ native: true }).toString()">
 
     <TextInput
-      :error-state="errorState"
-      :error-message="errorMessage"
       :focus-border="false"
       :label="label"
       :label-right="labelRight"
@@ -37,8 +35,6 @@
     :class="b({ searchable: search }).is({ full: full }).toString()">
 
     <TextInput
-      :error-state="errorState"
-      :error-message="errorMessage"
       :focus-border="false"
       :label="label"
       :readonly="readonly"
@@ -126,7 +122,7 @@ export default {
      */
     items: {
       type: Array,
-      default: () => [],
+      default: () => [{ display: 'Loading...', value: null }],
       validator: items => items.every(item => ('display' in item) && ('value' in item)),
     },
     /**
@@ -158,20 +154,6 @@ export default {
     tooltip: {
       type: String,
       default: null,
-    },
-    /**
-     * Does the field have any validation errors?
-     */
-    errorState: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-     * If `errorState` is `true` what error message to show
-     */
-    errorMessage: {
-      type: String,
-      default: '',
     },
   },
 
@@ -367,17 +349,6 @@ export default {
       :search="true"
       :specialChoices="[{ display: 'Any', value: null }]"
       tooltip="This is an info bubble" />
-
-    <br />
-
-    <Dropdown
-      label="Error State"
-      :error-state="true"
-      error-message="Nope!"
-      :items="[
-        { display: 'One', value: 1 },
-        { display: 'Two', value: 2 },
-      ]" />
   </div>
   ```
 </docs>
