@@ -1,0 +1,124 @@
++b('radio')
+  display: block
+  padding: 0
+
+  +breakpoint(tablet-plus)
+    display: grid
+    grid-template-columns: repeat(auto-fill, 33%)
+
+  +element('item')
+    padding: 0
+    margin: 0
+    +rem-fallback('margin-top', $space-xs)
+    position: relative
+    list-style-type: none
+
+  +element('button')
+    position: absolute
+    visibility: hidden
+
+    &:hover ~ .#{$prefix-component}radio__outside
+      border: 2px solid color(ablue, base)
+
+      &.#{$prefix-component}radio__outside--color-blue
+        border: 2px solid color(awhite, base)
+
+        &::before
+          background: color(awhite, base)
+
+    &:disabled+.#{$prefix-component}radio__label
+      color: color(agray, lighter)
+
+    &:disabled ~ .#{$prefix-component}radio__outside
+      &::before
+        background: transparent
+
+      &.#{$prefix-component}radio__outside--color-blue,
+      &.#{$prefix-component}radio__outside--color-grey,
+      &.#{$prefix-component}radio__outside--color-ltgrey
+        &::before
+          background: transparent
+
+    &:disabled+.#{$prefix-component}radio__label--color-blue
+      color: $ablue-light
+
+    &:disabled+.#{$prefix-component}radio__label--color-grey,
+    &:disabled+.#{$prefix-component}radio__label--color-ltgrey
+      color: color(agray, light)
+
+    &:checked ~ .#{$prefix-component}radio__outside
+      border: 2px solid color(ablue, base)
+
+      &::before
+        height: 13px
+        width: 13px
+        top: 2px
+        left: 2px
+    &:checked ~ .#{$prefix-component}radio__outside--color-blue
+      &.#{$prefix-component}radio__outside
+        border: 2px solid color(awhite, base)
+
+        &::before
+          height: 13px
+          width: 13px
+          top: 2px
+          left: 2px
+
+    &:disabled ~ .#{$prefix-component}radio__outside--color-blue
+      &.#{$prefix-component}radio__outside
+        border: 2px solid $ablue-light
+
+    &:disabled ~ .#{$prefix-component}radio__outside--color-grey,
+    &:disabled ~ .#{$prefix-component}radio__outside--color-ltgrey
+      &.#{$prefix-component}radio__outside
+        border: 2px solid color(agray, light)
+
+    &:disabled ~ .#{$prefix-component}radio__outside--color-white
+      &.#{$prefix-component}radio__outside
+        border: 2px solid color(agray, lighter)
+
+    &:checked ~ .#{$prefix-component}radio__outside
+      &::before
+        background: color(ablue, base)
+
+    &:checked ~ .#{$prefix-component}radio__outside--color-blue
+      &.#{$prefix-component}radio__outside
+        &::before
+          background: color(awhite, base)
+
+  +element('label')
+    +rem-fallback('font-size', $font-size-m)
+    +rem-fallback('border-radius', $radius-m)
+    +rem-fallback('line-height', $line-height-h4v2)
+    +rem-fallback('padding-left', $space-l)
+    color: color(agray, darker)
+    display: inline-block
+    font-weight: 200
+    width: 100%
+
+    +modifier('blue')
+      color: color(awhite)
+
+  +element('outside')
+    display: block
+    position: absolute
+    border: 2px solid color(agray, light)
+    border-radius: 100%
+    +rem-fallback('padding', 8.5px)
+    top: 1px
+    left: 0
+    z-index: 5
+    &::before
+      display: block
+      position: absolute
+      content: ''
+      border-radius: 100%
+      height: 17px
+      width: 17px
+      top: 0
+      left: 0
+      margin: auto
+
+    &--color-blue
+      &.#{$prefix-component}radio__outside
+        border: 2px solid color(awhite, base)
