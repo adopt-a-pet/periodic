@@ -2,6 +2,7 @@
   <div :class="b('container').toString()">
     <input
       ref="input"
+      :autocomplete="autocomplete"
       :class="[
         b('input', { [size]: true })
           .state({
@@ -160,6 +161,13 @@ export default {
     validations: {
       type: Object,
       default() { return {}; },
+    },
+    /**
+     * Change autocomplete settings
+     */
+    autocomplete: {
+      type: String,
+      default: null,
     },
   },
   data() {

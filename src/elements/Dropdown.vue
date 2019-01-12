@@ -7,6 +7,7 @@
       :focus-border="false"
       :label="label"
       :label-right="labelRight"
+      autocomplete="off"
       value=" "
       readonly>
 
@@ -40,6 +41,7 @@
       :readonly="readonly"
       :value="filterOrselectedDisplay"
       :label-right="labelRight"
+      autocomplete="off"
       @blur="onBlur"
       @click="toggle"
       @focus="onFocus"
