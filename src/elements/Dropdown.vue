@@ -7,6 +7,7 @@
       :focus-border="false"
       :label="label"
       :label-right="labelRight"
+      :name="name"
       autocomplete="off"
       value=" "
       readonly>
@@ -38,6 +39,7 @@
     <TextInput
       :focus-border="false"
       :label="label"
+      :name="name"
       :readonly="readonly"
       :value="filterOrselectedDisplay"
       :label-right="labelRight"
@@ -101,8 +103,16 @@ export default {
   release: '1.0.0',
   model: {
     event: 'change',
+    prop: 'value',
   },
   props: {
+    /**
+     * Name input field in the form.
+     */
+    name: {
+      type: String,
+      default: null,
+    },
     /**
      * The label of the form input field.
      */
@@ -144,17 +154,15 @@ export default {
       default: false,
     },
     /**
-     * Which option is selected initially
-     */
-    startingIndex: {
-      type: Number,
-      default: 0,
-    },
-    /**
      * If a value is passed, show the info bubble
      */
     tooltip: {
       type: String,
+      default: null,
+    },
+
+    value: {
+      type: [String, Number],
       default: null,
     },
   },
@@ -165,7 +173,7 @@ export default {
       // focused is only used when search=true. It should stay false otherwise.
       focused: false,
       filter: '',
-      selectedIndex: this.initialSelection().index,
+      selectedIndex: this.initialSelection(),
       showBreedpopup: false,
     };
   },
@@ -173,12 +181,12 @@ export default {
   computed: {
     selectedValue() {
       const selectedItem = this.allChoices[this.selectedIndex];
-      return selectedItem.value;
+      return selectedItem ? selectedItem.value : null;
     },
 
     selectedDisplay() {
       const selectedItem = this.allChoices[this.selectedIndex];
-      return selectedItem.display;
+      return selectedItem ? String(selectedItem.display) : null;
     },
 
     filterOrselectedDisplay() {
@@ -239,7 +247,7 @@ export default {
   methods: {
     // Design team requires an `Any` option to be at the top of the list.
     // This is a problem because when using Fuse the ordering can't be
-    // guaranteed. So we use `specialChoicesBeginning` to add items to the
+    // guaranteed. So we use `withSpecialChoices` to add items to the
     // list *after* the Fuse filtering happens.
     makeChoices(items) {
       const withSpecialChoices = this.specialChoices.concat(items);
@@ -248,7 +256,9 @@ export default {
 
     initialSelection() {
       const withSpecialChoices = this.makeChoices(this.items);
-      return withSpecialChoices[this.startingIndex];
+      const selection = withSpecialChoices.find(choice => choice.value === this.value);
+
+      return selection ? selection.index : null;
     },
 
     onSelect(index) {
@@ -335,6 +345,7 @@ export default {
     <Dropdown
       label="Without Search"
       label-right="Right Label"
+      :value="2"
       :items="[
         { display: 'One', value: 1 },
         { display: 'Two', value: 2 },

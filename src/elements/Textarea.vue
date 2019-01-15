@@ -8,19 +8,23 @@
       :disabled="disabled"
       @input="onInput($event.target.value)"
       @focus="focused = true"
-      @blur="onBlur" />
+      @blur="onBlur"
+      @scroll.passive="onScroll" />
 
-    <label :class="b('label').toString()">
+    <label
+      :class="b('label').is({ hidden: hideLabels }).toString()">
+
       <span v-if="hasContent || focused">{{ shortLabel || placeholder }}</span>
       <span v-if="!(hasContent || focused)">{{ placeholder }}</span>
     </label>
 
+    <span
+      v-if="errorState"
+      :class="b('error-msg').is({ hidden: hideLabels }).toString()">{{ errorMessage }}</span>
+
     <div
       v-if="max"
       :class="b('text-limit').toString()">{{ remaining }} Characters Remaining</div>
-    <span
-      v-if="errorState"
-      :class="b('error-msg').toString()">{{ errorMessage }}</span>
   </div>
 </template>
 
@@ -110,6 +114,7 @@ export default {
   data() {
     return {
       focused: false,
+      scrollAmt: 0,
     };
   },
   computed: {
@@ -124,6 +129,9 @@ export default {
     },
     errorMessage() {
       return this.getErrorMessages(this.$v.value, this.errorMessages)[0];
+    },
+    hideLabels() {
+      return this.scrollAmt > 0;
     },
   },
   methods: {
@@ -149,6 +157,9 @@ export default {
     },
     validate() {
       return !this.errorState;
+    },
+    onScroll({ target: { scrollTop } }) {
+      this.scrollAmt = scrollTop;
     },
   },
   validations() {
@@ -183,7 +194,7 @@ export default {
         required: 'Come on! Put something here!',
         min: 'Needs to be longer than 10 characters'
       }"
-      placeholder="This textarea is required and must be have more than 10 characters"
+      placeholder="This textarea is required and must have more than 10 characters"
       shortLabel="Required and at least 10 characters"
       required />
 

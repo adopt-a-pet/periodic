@@ -12,15 +12,15 @@
         :id="item.id"
         :checked="item.value === value"
         type="radio"
-        @change="select($event.target)">
+        @change="select($event.target, item.value)">
 
       <label
         :class="b('label', { color: 'white' }).toString()"
         :for="item.id">{{ item.display }}</label>
 
-      <div :class="b('outside', { color: 'white' }).toString()">
-        <div class="inside" />
-      </div>
+      <label
+        :class="b('outside', { color: 'white' }).toString()"
+        :for="item.id" />
     </li>
   </ul>
 </template>
@@ -89,7 +89,7 @@ export default {
     radioId(item) {
       return `${tokens.prefix_component}radio-${this.name}-item-${item.value}`;
     },
-    select({ value, checked }) {
+    select({ checked }, value) {
       if (!checked) return;
 
       /**

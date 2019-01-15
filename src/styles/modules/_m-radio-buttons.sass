@@ -1,6 +1,7 @@
 +b('radio')
   display: block
   padding: 0
+  width: 100%
 
   +breakpoint(tablet-plus)
     display: grid
@@ -32,6 +33,9 @@
     &:disabled ~ .#{$prefix-component}radio__outside
       &::before
         background: transparent
+
+      &:hover
+        border: 2px solid color(ablue, base)
 
       &.#{$prefix-component}radio__outside--color-blue,
       &.#{$prefix-component}radio__outside--color-grey,
