@@ -42,7 +42,7 @@ export default {
     size: {
       type: String,
       default: 'large',
-      validator: value => value.match(/(small|large)/),
+      validator: value => value.match(/(tiny|small|large)/),
     },
     /**
      * Name input field in the form.
@@ -99,6 +99,8 @@ export default {
     <br />
     <Checkbox size="small" v-model="checkbox1">Small, same v-model as the first</Checkbox>
     <br />
+    <Checkbox size="tiny" v-model="checkbox3">Tiny</Checkbox>
+    <br />
     <Checkbox disabled>Disabled</Checkbox>
     <br />
   </div>
@@ -109,6 +111,7 @@ export default {
     return {
       checkbox1: false,
       checkbox2: true,
+      checkbox3: true,
     }
   }
 };

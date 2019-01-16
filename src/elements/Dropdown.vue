@@ -8,8 +8,8 @@
       :label="label"
       :label-right="labelRight"
       :name="name"
+      :value="selectedDisplay"
       autocomplete="off"
-      value=" "
       readonly>
 
       <template slot="right">

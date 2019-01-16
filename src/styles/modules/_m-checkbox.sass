@@ -10,10 +10,16 @@
     height: $font-size-m
     overflow: hidden
     width: $font-size-m
+    vertical-align: text-top
 
     +m(size-small)
       height: $font-size-s
       width: $font-size-s
+
+    +m(size-tiny)
+      +rem-fallback(border-radius, $radius-xxs)
+      height: $font-size-xs
+      width: $font-size-xs
 
     &:hover
       +border(2px solid color(ablue, base))
@@ -27,10 +33,13 @@
       background-color: color(awhite, base)
 
   +e(label)
-    +rem-fallback('line-height', $line-height-h5)
+    line-height: 1rem
     vertical-align: text-bottom
 
     +m(size-small)
+      +rem-fallback('line-height', $line-height-h6)
+
+    +m(size-tiny)
       +rem-fallback('line-height', $line-height-h6)
 
   +e(check)
