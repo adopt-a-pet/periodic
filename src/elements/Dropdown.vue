@@ -4,12 +4,12 @@
     :class="b({ native: true }).toString()">
 
     <TextInput
-      :focus-border="false"
       :label="label"
       :label-right="labelRight"
       :name="name"
       :value="selectedDisplay"
       autocomplete="off"
+      focus-border
       readonly>
 
       <template slot="right">
@@ -37,13 +37,13 @@
     :class="b({ searchable: search }).is({ full: full }).toString()">
 
     <TextInput
-      :focus-border="false"
       :label="label"
       :name="name"
       :readonly="readonly"
       :value="filterOrselectedDisplay"
       :label-right="labelRight"
       autocomplete="off"
+      focus-border
       @blur="onBlur"
       @click="toggle"
       @focus="onFocus"
@@ -161,9 +161,20 @@ export default {
       default: null,
     },
 
+    /**
+     * Value of the selected item.
+     */
     value: {
       type: [String, Number],
       default: null,
+    },
+
+    /**
+     * Change border color on focus
+     */
+    focusBorder: {
+      type: Boolean,
+      default: true,
     },
   },
 
@@ -344,12 +355,13 @@ export default {
 </script>
 
 <docs>
-  ```jsx
+```vue
+<template>
   <div>
     <Dropdown
       label="Without Search"
       label-right="Right Label"
-      :value="2"
+      v-model="dropdown1"
       :items="[
         { display: 'One', value: 1 },
         { display: 'Two', value: 2 },
@@ -359,6 +371,7 @@ export default {
 
     <Dropdown
       label="With Search"
+      v-model="dropdown2"
       :items="[
         { display: 'One', value: 1 },
         { display: 'Two', value: 2 },
@@ -367,5 +380,16 @@ export default {
       :specialChoices="[{ display: 'Any', value: null }]"
       tooltip="This is an info bubble" />
   </div>
-  ```
+</template>
+<script>
+export default {
+  data() {
+    return {
+      dropdown1: 2,
+      dropdown2: null,
+    }
+  }
+};
+</script>
+```
 </docs>
