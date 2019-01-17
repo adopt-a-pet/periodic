@@ -320,7 +320,11 @@ export default {
     },
 
     addIndexes(choices) {
-      return choices.map((choice, i) => Object.assign({ index: i }, choice));
+      return choices.map(({ value, display }, i) => ({
+        value,
+        display: String(display),
+        index: i,
+      }));
     },
 
     breedPopup() {
