@@ -10,6 +10,7 @@
             success: successState,
           })
           .has({
+            label,
             content: hasContent,
             'focus-border': focusBorder
           })
@@ -96,7 +97,7 @@ export default {
      */
     label: {
       type: String,
-      default: 'Text',
+      default: '',
     },
     /**
      * The label for the right side of the form input field.

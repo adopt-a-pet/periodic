@@ -18,8 +18,9 @@
       &:focus
         +border(1px solid color(ablue))
 
-    &:focus, &.#{_has(content)}
-      +rem-fallback(padding-bottom, $space-xxxxs)
+    +has(label)
+      &:focus, &.#{_has(content)}
+        +rem-fallback(padding-bottom, $space-xxxxs)
 
     &[disabled]
       +border(1px solid color(agray, lighter))
