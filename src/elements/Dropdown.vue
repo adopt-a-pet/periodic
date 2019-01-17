@@ -160,7 +160,6 @@ export default {
       type: String,
       default: null,
     },
-
     /**
      * Value of the selected item.
      */
@@ -168,7 +167,6 @@ export default {
       type: [String, Number],
       default: null,
     },
-
     /**
      * Change border color on focus
      */
@@ -244,6 +242,10 @@ export default {
   },
 
   watch: {
+    value() {
+      this.selectedIndex = this.initialSelection();
+    },
+
     selectedIndex() {
       /**
        * Change event
