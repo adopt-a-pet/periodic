@@ -189,12 +189,12 @@ export default {
       return this.$v.value.$error;
     },
     successState() {
-      // It can only be considered to pass validation if there *are* validations
-      if (!Object.keys(this.$options.validations()).length) {
-        return false;
+      if (Object.keys(this.validations).length || this.required) {
+        return !!(this.value && !this.errorState);
       }
 
-      return !!(this.value && !this.errorState);
+      // It can only be considered to pass validation if there *are* validations
+      return false;
     },
     errorMessage() {
       return this.getErrorMessages(this.$v.value, this.errorMessages)[0];
