@@ -28,17 +28,24 @@ function setLayout() {
 function data() {
   return {
     layout: 'desktop',
+    $_setLayout: null,
   };
 }
 
 function created() {
-  const setLayoutName = setLayout.bind(this);
+  this.$_setLayout = setLayout.bind(this);
 
-  setLayoutName();
-  window.addEventListener('resize', setLayoutName);
+  window.addEventListener('resize', this.$_setLayout);
+
+  this.$_setLayout();
+}
+
+function beforeDestroy() {
+  window.removeEventListener('resize', this.$_setLayout);
 }
 
 export default {
   created,
   data,
+  beforeDestroy,
 };
