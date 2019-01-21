@@ -190,7 +190,7 @@ export default {
     },
     successState() {
       // It can only be considered to pass validation if there *are* validations
-      if (!Object.keys(this.$options.validations().value).length) {
+      if (!Object.keys(this.$options.validations()).length) {
         return false;
       }
 

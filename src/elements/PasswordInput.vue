@@ -42,7 +42,7 @@ export default {
   blockName: 'text-field',
   model: {
     prop: 'value',
-    event: 'input',
+    event: 'change',
   },
   props: {
     /**

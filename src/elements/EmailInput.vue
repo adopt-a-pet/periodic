@@ -31,7 +31,7 @@ export default {
   blockName: 'text-field',
   model: {
     prop: 'value',
-    event: 'input',
+    event: 'change',
   },
   props: {
     /**
@@ -121,6 +121,15 @@ export default {
     },
   },
   methods: {
+    onInput(value) {
+      /**
+       * Input event
+       *
+       * @event input
+       * @type String
+       */
+      this.$emit('input', value);
+    },
     onFocus(value) {
       /**
        * Focus event
@@ -138,7 +147,6 @@ export default {
        * @type String
        */
       this.$emit('change', value);
-      this.$emit('input', value);
     },
     onBlur() {
       /**
