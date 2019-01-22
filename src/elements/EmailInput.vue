@@ -130,14 +130,14 @@ export default {
        */
       this.$emit('input', value);
     },
-    onFocus(value) {
+    onFocus() {
       /**
        * Focus event
        *
        * @event focus
        * @type none
        */
-      this.$emit('focus', value);
+      this.$emit('focus');
     },
     onChange(value) {
       /**
