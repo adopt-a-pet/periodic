@@ -156,6 +156,7 @@ export default {
       this.$emit('blur');
     },
     validate() {
+      this.$v.value.$touch();
       return !this.errorState;
     },
     onScroll({ target: { scrollTop } }) {
