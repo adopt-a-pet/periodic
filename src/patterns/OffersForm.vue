@@ -7,18 +7,19 @@
       Im-PAW-sibly Good Deals!
     </Heading>
 
+    <VSpacer size="s" />
+
     <Icon name="pet-sponsor" />
+
+    <VSpacer size="s" />
 
     <Checkbox
       v-model="allOffersChecked"
       size="tiny">
 
-      <Heading
-        level="h6"
-        line-height="compact"
-        style="display: inline">
+      <span :class="b('checkbox-text').toString()">
         Get offers and tips from our sponsors.
-      </Heading>
+      </span>
 
       <span
         :class="b('link-blue').toString()"
@@ -38,7 +39,7 @@
 
     <div
       v-if="showAllOffers"
-      :class="b('terms-bg').toString()">
+      :class="b('all-offers').toString()">
 
       <Checkbox
         v-for="(offer, i) in offers"
@@ -48,29 +49,27 @@
         @change="onOfferChecked($event, offer.newsletterId)">
 
         <span
-          class=""
+          :class="b('checkbox-text').toString()"
           v-html="offer.displayHtml" />
 
-        <VSpacer size="s" />
+        <VSpacer size="xxs" />
       </Checkbox>
 
-      <div class="pet-inquiry-form__privacy">
-        <p class="h6__heading">
-          <span>
-            * I certify I am 18 years of age or older and agree that Purina
-            may use my information as described in the
-          </span>
-          <a
-            :class="b('link-blue').toString()"
-            href="https://www.purina.com/privacy-policy"
-            target="_blank">Privacy Policy</a>
-          <span> and </span>
-          <a
-            :class="b('link-blue').toString()"
-            href="https://www.purina.com/about-our-ads"
-            target="_blank">About Our Ads</a>.
-        </p>
-      </div>
+      <p :class="b('footnote').toString()">
+        <span>
+          * I certify I am 18 years of age or older and agree that Purina
+          may use my information as described in the
+        </span>
+        <a
+          :class="b('link-blue').toString()"
+          href="https://www.purina.com/privacy-policy"
+          target="_blank">Privacy Policy</a>
+        <span> and </span>
+        <a
+          :class="b('link-blue').toString()"
+          href="https://www.purina.com/about-our-ads"
+          target="_blank">About Our Ads</a>.
+      </p>
     </div>
   </div>
 </template>
