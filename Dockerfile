@@ -1,5 +1,6 @@
 ### Setup AAP Periodic container image  ####
 FROM adoptapetcom/aap_frontend_env:v2
+
 MAINTAINER TRESELLE
 
 WORKDIR /opt/workspace/application_code/
@@ -22,9 +23,6 @@ RUN npm install
 RUN rm -f .npmrc
 
 COPY . /opt/workspace/application_code/
-
-### Gulp Build ####
-RUN npm run build
 
 ### EXPOSE view model layer PORT 3000 ####
 EXPOSE  3000
