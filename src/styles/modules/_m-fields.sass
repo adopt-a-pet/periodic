@@ -10,6 +10,7 @@
     +rem-fallback(padding, $space-xs)
     background-color: color(awhite)
     border-radius: $radius-m
+    color: color(agray, dark)
     margin: 0
     outline: none
     width: 100%
@@ -100,6 +101,8 @@
     +rem-fallback(letter-spacing, -0.25px)
 
     +m(main)
+      line-height: 1.5
+
       +is(smaller)
         +rem-fallback(font-size, $font-size-xs)
         +rem-fallback(left, $space-xs)

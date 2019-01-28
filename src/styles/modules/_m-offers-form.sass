@@ -1,0 +1,32 @@
++b('offers-form')
+  font-size: $font-size-xxs
+
+  +e('link-blue')
+    color: $color-primary-blue
+    cursor: pointer
+    &:hover
+      text-decoration: underline
+
+  +e('arrow')
+    svg
+      transform: rotate(-0.25turn)
+      transition: all .3s ease-in-out
+      width: .6875rem
+      height: .6875rem
+      fill: $color-primary-blue
+
+    +is('expanded')
+      svg
+        transform: rotate(0.25turn)
+
+  +e('all-offers')
+    +rem-fallback(padding, $space-s)
+    font-weight: 200
+    background: $color-forty-per-lighter-grey
+
+  +e('checkbox-text')
+    +rem-fallback(margin-left, $space-xxxs)
+
+  +e('footnote')
+    font-weight: 400
+    color: color(agray, light)

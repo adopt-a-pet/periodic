@@ -3,10 +3,6 @@
 // would with the main `body {...}` style in a normal app.
 .#{$prefix-component}#{$periodic-component-class} {
     margin: 0;
-    color: $preset-body-color;
     font-family: $font-helvetica;
-    font-size: $font-size-s;
-    font-weight: 400;
-    line-height: 1.5;
     text-decoration: none;
 }
