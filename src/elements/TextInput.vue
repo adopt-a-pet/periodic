@@ -174,6 +174,11 @@ export default {
   data() {
     return {
       focused: false,
+
+      // validatedValue is used to delay validation until @change. This is
+      // because using v-model.lazy on components doesn't currently work.
+      // See: https://github.com/vuejs/vue/pull/6940
+      validatedValue: '',
     };
   },
   computed: {
@@ -186,19 +191,23 @@ export default {
       return showLabelRight;
     },
     errorState() {
-      return this.$v.value.$error;
+      return this.$v.validatedValue.$error;
     },
     successState() {
       if (Object.keys(this.validations).length || this.required) {
-        return !!(this.value && !this.errorState);
+        return !!(this.validatedValue && !this.errorState);
       }
 
       // It can only be considered to pass validation if there *are* validations
       return false;
     },
     errorMessage() {
-      return this.getErrorMessages(this.$v.value, this.errorMessages)[0];
+      return this.getErrorMessages(this.$v.validatedValue, this.errorMessages)[0];
     },
+  },
+  created() {
+    // Not in data() because we don't want it updating every time v-model does
+    this.validatedValue = this.value;
   },
   methods: {
     onInput(value) {
@@ -212,7 +221,7 @@ export default {
     },
     onBlur() {
       this.focused = false;
-      this.$v.value.$touch();
+      this.$v.validatedValue.$touch();
 
       /**
        * Blur event
@@ -243,6 +252,8 @@ export default {
       this.$emit('focus');
     },
     onChange(value) {
+      this.validatedValue = value;
+
       /**
        * Change event
        *
@@ -252,18 +263,18 @@ export default {
       this.$emit('change', value);
     },
     validate() {
-      this.$v.value.$touch();
+      this.$v.validatedValue.$touch();
       return !this.errorState;
     },
   },
   validations() {
     const validations = {
-      value: {
+      validatedValue: {
         ...this.validations,
       },
     };
 
-    if (this.required) validations.value.required = required;
+    if (this.required) validations.validatedValue.required = required;
 
     return validations;
   },
