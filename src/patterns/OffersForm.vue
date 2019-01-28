@@ -1,26 +1,36 @@
 <template>
-  <div>
+  <div :class="b().toString()">
+    <Heading
+      level="h3"
+      font-family="museo"
+      font-weight="bold">
+      Im-PAW-sibly Good Deals!
+    </Heading>
+
+    <Icon name="pet-sponsor" />
+
     <Checkbox
       v-model="allOffersChecked"
       size="tiny">
 
-      <span class="h6__heading h6--tiny h6--compact">Get offers and tips from our sponsors.</span>
+      <Heading
+        level="h6"
+        line-height="compact"
+        style="display: inline">
+        Get offers and tips from our sponsors.
+      </Heading>
 
       <span
+        :class="b('link-blue').toString()"
         style="display: inline-block"
-        class="link-blue accordion-link h6__heading h6--tiny h6--compact"
         @click.stop="showAllOffers = !showAllOffers">
 
         <span>{{ showAllOffers ? 'Close' : 'Learn More' }}</span>
 
-        <svg
-          :class="{
-            'accordion-link-up': showAllOffers,
-            'accordion-link-down': !showAllOffers
-          }"
-          class="offer-section__arrow">
-          <use xlink:href="#aap-icon-prev" />
-        </svg>
+        <Icon
+          :class="b('arrow').is({ expanded: showAllOffers }).toString()"
+          name="arrow"
+          fill="blue" />
       </span>
 
       <VSpacer size="s" />
@@ -28,7 +38,7 @@
 
     <div
       v-if="showAllOffers"
-      class="terms-bg">
+      :class="b('terms-bg').toString()">
 
       <Checkbox
         v-for="(offer, i) in offers"
@@ -51,14 +61,14 @@
             may use my information as described in the
           </span>
           <a
+            :class="b('link-blue').toString()"
             href="https://www.purina.com/privacy-policy"
-            target="_blank"
-            class="link-blue">Privacy Policy</a>
+            target="_blank">Privacy Policy</a>
           <span> and </span>
           <a
+            :class="b('link-blue').toString()"
             href="https://www.purina.com/about-our-ads"
-            target="_blank"
-            class="link-blue">About Our Ads</a>.
+            target="_blank">About Our Ads</a>.
         </p>
       </div>
     </div>
@@ -67,13 +77,14 @@
 
 <script>
 /**
- * NPA signup form
+ * Offers Form
  */
 
 export default {
   name: 'OffersForm',
   status: 'under-review',
   release: '1.0.0',
+  blockName: 'offers-form',
   model: {
     prop: 'optins',
     event: 'change',

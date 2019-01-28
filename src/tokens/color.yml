@@ -86,7 +86,10 @@ props:
     category: color_group_4
 
   color_forty_per_lighter_grey:
-    value: "rgba(color(agray, lighter), .4)"
+    value: "rgba(223,223,223, .4)"
+    category: color_group_5
+  color_primary_blue:
+    value: "#00a8de"
     category: color_group_5
 global:
   type: color

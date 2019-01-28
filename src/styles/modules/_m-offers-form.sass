@@ -1,0 +1,21 @@
++b('offers-form')
+  +e('link-blue')
+    color: $color-primary-blue
+    cursor: pointer
+    &:hover
+      text-decoration: underline
+
+  +e('arrow')
+    svg
+      transform: rotate(-0.25turn)
+      transition: all .3s ease-in-out;
+      width: .6875rem
+      height: .6875rem
+      fill: $color-primary-blue
+
+    +is('expanded')
+      svg
+        transform: rotate(0.25turn)
+  
+  +e('terms-bg')
+    background: $color-forty-per-lighter-grey
