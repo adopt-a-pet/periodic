@@ -1,30 +1,26 @@
-### Setup AAP Periodic container image  ####
-FROM adoptapetcom/aap_frontend_env:v2
+###  AAP Periodic Application Docker image  ####
+FROM adoptapetcom/aap_frontend_env:release
 
-MAINTAINER TRESELLE
+MAINTAINER Adopt-a-Pet
 
 WORKDIR /opt/workspace/application_code/
 
 # Argument for npm credential
 ARG NPM_TOKEN
 
-# Environment variable
+# Set environment for the node application
 ENV NODE_ENV=production
 
-### Copy the package.json files ####
-COPY package.json /opt/workspace/application_code/
-
-RUN cd $(npm root -g)/npm && npm install fs-extra && sed -i -e s/graceful-fs/fs-extra/ -e s/fs.rename/fs.move/ ./lib/utils/rename.js
+### Copy the application code into the docker container ####
+COPY . /opt/workspace/application_code/
 
 ### Install Node Package Manager ####
 RUN npm install
 
-# Remove Credentials
+# Remove Credentials [Post Build Action]
 RUN rm -f .npmrc
 
-COPY . /opt/workspace/application_code/
-
-### EXPOSE view model layer PORT 3000 ####
+### Expose view model layer at PORT 3000 ####
 EXPOSE  3000
 
 ### Execute the nodejs application ####
