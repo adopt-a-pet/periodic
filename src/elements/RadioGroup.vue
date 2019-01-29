@@ -1,5 +1,8 @@
 <template>
-  <ul :class="b().toString()">
+  <ul
+    :class="b().toString()"
+    :style="gridStyles">
+
     <li
       v-for="(item, index) in renderItems"
       :class="b('item').toString()"
@@ -73,6 +76,13 @@ export default {
       type: String,
       default: null,
     },
+    /**
+     * The number of columns in each row of buttons.
+     */
+    columns: {
+      type: Number,
+      default: 3,
+    },
   },
   computed: {
     // Add an id property to each item so the label can reference it
@@ -83,6 +93,13 @@ export default {
           id: this.radioId(item),
         }
       ));
+    },
+    gridStyles() {
+      const columnPercent = Math.floor(100 / this.columns);
+
+      return {
+        'grid-template-columns': `repeat(auto-fill, ${columnPercent}%)`,
+      };
     },
   },
   methods: {
