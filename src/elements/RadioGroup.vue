@@ -81,7 +81,7 @@ export default {
      */
     columns: {
       type: Number,
-      default: 3,
+      default: 1,
     },
   },
   computed: {
@@ -127,6 +127,11 @@ export default {
 <docs>
 ```vue
 <template>
+<div>
+  <Heading
+    font-family="museo"
+    level="h4">1 Column (default)</Heading>
+
   <RadioGroup
     v-model="radioGroupSelected"
     name="example"
@@ -135,12 +140,30 @@ export default {
       { display: 'Two', value: '2' },
       { display: 'Three', value: '3' }
     ]" />
+
+  <VSpacer size="l" />
+
+  <Heading
+    font-family="museo"
+    level="h4">3 Columns</Heading>
+
+  <RadioGroup
+    v-model="radioGroupSelected2"
+    name="example"
+    :columns="3"
+    :items="[
+      { display: 'One', value: '1' },
+      { display: 'Two', value: '2' },
+      { display: 'Three', value: '3' }
+    ]" />
+</div>
 </template>
 <script>
 export default {
   data() {
     return {
-      radioGroupSelected: '2', // Change this to change the value item
+      radioGroupSelected: '2',
+      radioGroupSelected2: '2',
     }
   }
 };
