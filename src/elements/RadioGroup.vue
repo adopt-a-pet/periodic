@@ -149,7 +149,7 @@ export default {
 
   <RadioGroup
     v-model="radioGroupSelected2"
-    name="example"
+    name="example2"
     :columns="3"
     :items="[
       { display: 'One', value: '1' },
