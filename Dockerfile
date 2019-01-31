@@ -1,5 +1,5 @@
 ### AAP Periodic Application Docker image   ####
-FROM adoptapetcom/aap_frontend_env:v2
+FROM adoptapetcom/aap_frontend_env:release
 MAINTAINER TRESELLE
 
 WORKDIR /opt/workspace/application_code/
@@ -14,7 +14,7 @@ ENV NODE_ENV=production
 COPY package.json /opt/workspace/application_code/
 
 ### Install Node Package Manager ####
-RUN npm install
+RUN npm install --save-dev
 
 # Remove Credentials [Post Build Action]
 RUN rm -f .npmrc
