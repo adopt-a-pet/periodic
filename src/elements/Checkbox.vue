@@ -3,6 +3,13 @@
     :class="b().toString()"
     @click="onClick">
 
+    <!-- The actual checkbox is not shown. It's used for tracking and forms. -->
+    <input
+      v-show="false"
+      :checked="checked"
+      :name="name"
+      type="checkbox">
+
     <span
       :class="b('box', { size }).is({ checked, disabled }).toString()">
 
@@ -49,7 +56,7 @@ export default {
      */
     name: {
       type: String,
-      default: 'text',
+      default: 'checkbox',
     },
     /**
      * Should the box start checked.
