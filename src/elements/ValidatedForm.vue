@@ -32,7 +32,7 @@ export default {
       const fieldComponents = this.names.map(name =>
         // Find all child components that have a `name` prop AND are in the list
         this.$children.find(component => component.name === name),
-      ).filter(component => 'validate' in component); // Ignore components that don't have a `validate` method
+      ).filter(component => component && ('validate' in component)); // Ignore components that don't have a `validate` method
 
       // Give all fields a chance to validate before submit
       Promise.all(fieldComponents.map(ref => ref.validate()))
