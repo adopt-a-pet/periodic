@@ -31,7 +31,7 @@ const TestComponent = Vue.extend({
     },
   },
   template: `<ValidatedForm
-    :fields="['input1']"
+    :names="['input1', 'input3']"
     @submit="submit"
     @validate:error="validateError">
 
@@ -39,10 +39,11 @@ const TestComponent = Vue.extend({
     <test name="input2" />
   </ValidatedForm>`,
   // input2 is not in the :fields list so it will be ignored
+  // input3 isn't a component so it will be ignored
 });
 
 describe('elements/ValidatedForm', () => {
-  it('should not submit if the field is invalid', done => {
+  it('should not submit if a field is invalid', done => {
     const wrapper = mount(TestComponent);
 
     wrapper.find('form').trigger('submit');

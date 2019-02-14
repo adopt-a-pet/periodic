@@ -53,19 +53,19 @@ describe('elements/RadioGroup', () => {
     const inputs = wrapper.findAll('input[type="radio"]');
     const labels = wrapper.findAll('label');
 
-    labels.at(0).trigger('click');
+    inputs.at(1).trigger('click');
 
     expect(wrapper.emitted('change').length).toBe(1);
-    expect(wrapper.emitted('change')[0]).toEqual(['a']);
-    expect(inputs.at(0).element.checked).toBe(true);
-    expect(inputs.at(1).element.checked).toBe(false);
-
-    labels.at(1).trigger('click');
-
-    expect(wrapper.emitted('change').length).toBe(2);
-    expect(wrapper.emitted('change')[1]).toEqual(['b']);
+    expect(wrapper.emitted('change')[0]).toEqual(['b']);
     expect(inputs.at(0).element.checked).toBe(false);
     expect(inputs.at(1).element.checked).toBe(true);
+
+    labels.at(0).trigger('click');
+
+    expect(wrapper.emitted('change').length).toBe(2);
+    expect(wrapper.emitted('change')[1]).toEqual(['a']);
+    expect(inputs.at(0).element.checked).toBe(true);
+    expect(inputs.at(1).element.checked).toBe(false);
   });
 
   it('works with v-model', () => {

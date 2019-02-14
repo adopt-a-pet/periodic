@@ -79,9 +79,15 @@ export default {
     <Heading v-if="error" level="h4">Error on field: {{ error }}</Heading>
     <VSpacer size="xs" />
 
-    <EmailInput name="email" />
+    <EmailInput
+      v-model="email"
+      name="email" />
+
     <VSpacer size="xs" />
-    <PasswordInput name="password" />
+
+    <PasswordInput
+      v-model="password"
+      name="password" />
     <VSpacer size="l" />
     <Button v-if="!submitted" type="submit">Submit!</Button>
   </ValidatedForm>
@@ -91,6 +97,8 @@ export default {
 export default {
   data() {
     return {
+      email: '',
+      password: '',
       submitted: false,
       error: null,
     };
