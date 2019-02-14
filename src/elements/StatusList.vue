@@ -1,8 +1,7 @@
 <template>
-  <div :class="b('content').toString()">
+  <div :class="b().toString()">
     <div
       v-for="items in items"
-      v-if="items.show"
       :key="items.value"
       :class="b('label').toString()">
       <span
@@ -39,13 +38,13 @@ export default {
   props: {
     /**
      * The values to be displayed. Each item must have a checkmark or an exclamation point icon to
-     * show the state, a value, and a booleen for visility.
-     * `[{ state: true, value: 'Good with Dogs', show: true }]`
+     * show the state and a value.
+     * `[{ state: true, value: 'Good with Dogs' }]`
      */
     items: {
       type: Array,
       default() { return []; },
-      validator: items => items.every(item => ('state' in item) && ('value' in item) && ('show' in item)),
+      validator: items => items.every(item => ('state' in item) && ('value' in item)),
     },
   },
 };
@@ -62,13 +61,13 @@ export default {
 
   <StatusList
     :items="[
-      { state: true, value: 'Neutered', show: true },
-      { state: true, value: 'Shots Up to Date', show: true },
-      { state: true, value: 'House-trained', show: true },
-      { state: true, value: 'Needs Experienced Adopter', show: false },
-      { state: false, value: 'Not Good with Cats', show: true },
-      { state: true, value: 'Good with Dogs' , show: true},
-      { state: true, value: 'Good with Kids', show: true },
+      { state: true, value: 'Neutered' },
+      { state: true, value: 'Shots Up to Date' },
+      { state: true, value: 'House-trained' },
+      { state: true, value: 'Needs Experienced Adopter' },
+      { state: false, value: 'Not Good with Cats' },
+      { state: true, value: 'Good with Dogs' },
+      { state: true, value: 'Good with Kids' },
     ]">
   </StatusList>
 </div>

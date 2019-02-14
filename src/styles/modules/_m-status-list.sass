@@ -1,20 +1,11 @@
 +b(status-list)
-  border-bottom: 1px solid color(agray, lighter)
-
-  +breakpoint(tiny)
-    +rem-fallback('padding', 30px 0)
+  display: flex
+  flex-wrap: wrap
+  width: 100%
+  justify-content: space-between
 
   +breakpoint(tablet-plus)
-    +rem-fallback('padding', 20px 0 30px 0)
-
-  +e(content)
-    display: flex
-    flex-wrap: wrap
-    width: 100%
-    justify-content: space-between
-
-    +breakpoint(tablet-plus)
-      justify-content: unset
+    justify-content: unset
 
   +e(label)
     width: 100%

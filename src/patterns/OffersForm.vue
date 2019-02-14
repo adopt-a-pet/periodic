@@ -120,15 +120,14 @@ export default {
   },
 
   watch: {
-    allOffersChecked() {
-      if (!this.allOffersChecked) {
+    allOffersChecked(allOffersChecked) {
+      if (allOffersChecked) {
+        // If allOffersChecked === true, check all the offers
+        this.checkEveryOffer();
+      } else {
         // If the main checkbox gets unchecked, show all offer checkboxes
         this.showAllOffers = true;
-        return;
       }
-
-      // If allOffersChecked === true, check all the offers
-      this.checkEveryOffer();
     },
   },
 
