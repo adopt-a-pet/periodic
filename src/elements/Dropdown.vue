@@ -61,8 +61,7 @@
     <div
       :class="b('list').toString()">
 
-      <ul
-        @mouseleave="onMouseout">
+      <ul>
         <li
           v-for="option in choices"
           :class="b('list-item').is({ selected: isOptionSelected(option) }).toString()"
@@ -326,11 +325,6 @@ export default {
     showFull() { this.full = true; },
 
     focusInput() { this.$refs.input.focus(); },
-
-    onMouseout() {
-      if (this.search) return;
-      this.hide();
-    },
 
     addIndexes(choices) {
       return choices.map(({ value, display }, i) => ({
