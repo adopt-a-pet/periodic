@@ -6,7 +6,6 @@
     <TextInput
       :label="label"
       :label-right="labelRight"
-      :name="name"
       :value="selectedDisplay"
       autocomplete="off"
       focus-border
@@ -23,6 +22,7 @@
 
     <select
       :class="b('select').toString()"
+      :name="name"
       v-model.number="selectedIndex">
 
       <option
