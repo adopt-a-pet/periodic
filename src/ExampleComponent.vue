@@ -2,7 +2,9 @@
   <component
     :is="type"
     :class="['example', variation]">
-    <div id="Example-container"><slot /></div>
+    <div id="Example-container">
+      <slot />
+    </div>
   </component>
 </template>
 
@@ -75,7 +77,16 @@ export default {
 </style>
 
 <docs>
-  ```jsx
-  <Example> Docs section should have an example that is shown in the documentation. </Example>
-  ```
+```vue
+<template>
+  <Example>Docs section should have an example that is shown in the documentation. </Example>
+</template>
+<script>
+export default {
+  data() {
+    return {}
+  }
+};
+</script>
+```
 </docs>

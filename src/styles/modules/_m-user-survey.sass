@@ -1,0 +1,10 @@
++b('user-survey')
+  +e('haspets-checkboxes')
+    +breakpoint(tablet-plus)
+      display: grid
+      grid-template-columns: repeat(auto-fill, 50%)
+
+  +e('checkbox-label')
+    position: relative
+    @include rem-fallback('top', -5px)
+    @include rem-fallback('margin-left', 10px)
