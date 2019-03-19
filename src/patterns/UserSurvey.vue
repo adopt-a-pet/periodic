@@ -213,7 +213,7 @@
             :key="'checkbox-' + pet.hasPetType"
             v-model="hasPetTypes[pet.hasPetType]"
             :name="`haspets-${pet.hasPetType.toLowerCase()}`"
-            @change="fieldChange(`haspets-${pet.hasPetType.toLowerCase()}`, $event)">
+            @change="hasPetCheckboxChange(pet, $event)">
             <Paragraph :class="b('checkbox-label').toString()">
               {{ pet.name }}<Paragraph />
             </paragraph>
@@ -369,7 +369,7 @@ export default {
       deep: true,
       handler(userProfile) {
         /**
-         * When a field is changed, emits the whole user profile object.
+         * When a field is changed, emits the whole user profile object
          *
          * @event change
          * @type Object
@@ -380,41 +380,29 @@ export default {
 
     'userProfile.hasChildren': function (hasChildren) {
       if (hasChildren === false) {
-        this.userProfile.numberOfChildren = 0;
+        // Do this so the all the ageOfChildX props get removed
+        this.numberOfChildrenChange(0, this.userProfile.numberOfChildren);
+        this.$delete(this.userProfile, 'numberOfChildren');
       }
     },
 
-    'userProfile.numberOfChildren': function (current, before) {
-      // If the number of children decreases, remove all of the ages that
-      // are not shown any longer
-      if (current < before) {
-        Array(before - current).fill().forEach((n, i) => {
-          const dropdownNumber = current + i + 1;
-          delete this.userProfile[`ageOfChild${dropdownNumber}`];
-        });
-      }
-    },
+    'userProfile.numberOfChildren': 'numberOfChildrenChange',
 
     'userProfile.hasPets': function (hasPets) {
       if (hasPets === false) {
-        this.userProfile.numberOfDogs = 0;
-        this.userProfile.numberOfCats = 0;
-        this.userProfile.numberOfRabbits = 0;
-        this.userProfile.numberOfBirds = 0;
-        this.userProfile.numberOfSmallAnimals = 0;
-        this.userProfile.numberOfHorses = 0;
-        this.userProfile.numberOfReptiles = 0;
-        this.userProfile.numberOfFarmTypeAnimals = 0;
+        const userProfile = Object.assign({}, this.userProfile);
+
+        // Remove all the numberOfDogs, numberOfCats, etc.
+        this.allPetsDropdowns.forEach(({ prop }) => {
+          delete userProfile[prop];
+        });
+
+        // By replacing this.userProfile, it will only emit 'change' once
+        this.userProfile = userProfile;
 
         // Because all the counts are now 0 this will uncheck all the checkboxes
         this.checkHasPetTypes();
       }
-    },
-
-    // When a new `profile` is passed to this component, update the checkboxes
-    profile() {
-      // Check all boxes for pets where pet count > 0
-      this.checkHasPetTypes();
     },
   },
 
@@ -432,12 +420,36 @@ export default {
 
     fieldChange(name, value) {
       /**
-       * When a field is changed, emits both the field name and new value.
+       * When a field is changed, emits both the field name and new value
        *
        * @event field-change
        * @type Any
        */
       this.$emit('field-change', name, value);
+    },
+
+    hasPetCheckboxChange({ hasPetType, prop }, value) {
+      if (value === false) {
+        this.$delete(this.userProfile, prop);
+      }
+
+      this.fieldChange(`haspets-${hasPetType.toLowerCase()}`, value);
+    },
+
+    numberOfChildrenChange(current, before) {
+      // If the number of children decreases, remove all of the ages that
+      // are not shown any longer
+      if (current < before) {
+        const userProfile = Object.assign({}, this.userProfile);
+
+        Array(before - current).fill().forEach((n, i) => {
+          const dropdownNumber = current + i + 1;
+          delete userProfile[`ageOfChild${dropdownNumber}`];
+        });
+
+        // By replacing this.userProfile, it will only emit 'change' once
+        this.userProfile = userProfile;
+      }
     },
   },
 };
