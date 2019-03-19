@@ -81,7 +81,8 @@
           { display: 'Apartment', value: 'apartment' },
           { display: 'Townhouse', value: 'townhouse' },
         ]"
-        name="hometype" />
+        name="hometype"
+        @change="fieldChange('hometype', $event)" />
     </article>
 
     <VSpacer size="xl" />
@@ -106,7 +107,8 @@
           { display: 'Rent', value: 'rent' },
           { display: 'Own', value: 'own' }
         ]"
-        name="rentorown" />
+        name="rentorown"
+        @change="fieldChange('rentorown', $event)" />
     </article>
 
     <VSpacer size="xl" />
@@ -131,7 +133,8 @@
           { display: 'Yes', value: true },
           { display: 'No', value: false },
         ]"
-        name="haschildren" />
+        name="haschildren"
+        @change="fieldChange('haschildren', $event)" />
 
       <div
         v-if="userProfile.hasChildren">
@@ -148,19 +151,22 @@
           :items="dropdownItemsFromRange(1, 6)"
           label="Number of Children"
           name="numberofchildren"
-          focus-border />
+          focus-border
+          @change="fieldChange('haschildren', $event)" />
+
+        <VSpacer size="l" />
 
         <div
-          v-for="n in userProfile.numberOfChildren"
-          :key="n">
-          <VSpacer size="s" />
-
+          :class="b('dropdown-group').toString()">
           <Dropdown
+            v-for="n in userProfile.numberOfChildren"
+            :key="n"
             v-model="userProfile['ageOfChild' + n]"
             :items="dropdownItemsFromRange(1, 21)"
             :name="`ageofchild${n}`"
             :label="`Age of Child ${n}`"
-            focus-border />
+            focus-border
+            @change="fieldChange(`ageofchild${n}`, $event)" />
         </div>
       </div>
     </article>
@@ -187,7 +193,8 @@
           { display: 'Yes', value: true },
           { display: 'No', value: false },
         ]"
-        name="haspets" />
+        name="haspets"
+        @change="fieldChange('haspets', $event)" />
 
       <div
         v-if="userProfile.hasPets"
@@ -205,7 +212,8 @@
             v-for="(pet) in allPetsDropdowns"
             :key="'checkbox-' + pet.hasPetType"
             v-model="hasPetTypes[pet.hasPetType]"
-            class="type">
+            :name="`haspets-${pet.hasPetType.toLowerCase()}`"
+            @change="fieldChange(`haspets-${pet.hasPetType.toLowerCase()}`, $event)">
             <Paragraph :class="b('checkbox-label').toString()">
               {{ pet.name }}<Paragraph />
             </paragraph>
@@ -219,17 +227,19 @@
           Choose how many of each pet
         </Paragraph>
 
-        <div
-          v-for="(dropdown) in checkedPetsDropdowns"
-          :key="'dropdown-' + dropdown.hasPetType">
-          <VSpacer size="s" />
+        <VSpacer size="xs" />
 
+        <div
+          :class="b('dropdown-group').toString()">
           <Dropdown
+            v-for="(dropdown) in checkedPetsDropdowns"
+            :key="'petcount-' + dropdown.hasPetType"
             v-model="userProfile[dropdown.prop]"
             :items="petCountDropdown"
             :label="`Number of ${dropdown.name}`"
-            :name="dropdown.prop.toLowerCase()"
-            focus-border />
+            :name="`petcount-${dropdown.hasPetType.toLowerCase()}`"
+            focus-border
+            @change="fieldChange(`petcount-${dropdown.hasPetType.toLowerCase()}`, $event)" />
         </div>
       </div>
     </article>
@@ -252,14 +262,14 @@ export default {
 
   props: {
     profile: {
-      type: String,
+      type: Object,
       default: () => ({}),
     },
   },
 
   data() {
     return {
-      userProfile: this.profile,
+      userProfile: Object.assign({}, this.profile),
       hasPetTypes: {
         dogs: false,
         cats: false,
@@ -359,10 +369,10 @@ export default {
       deep: true,
       handler(userProfile) {
         /**
-         * Change event
+         * When a field is changed, emits the whole user profile object.
          *
          * @event change
-         * @type Boolean
+         * @type Object
          */
         this.$emit('change', userProfile);
       },
@@ -418,6 +428,16 @@ export default {
       this.allPetsDropdowns.forEach(({ prop, hasPetType }) => {
         this.hasPetTypes[hasPetType] = (this.userProfile[prop] > 0);
       });
+    },
+
+    fieldChange(name, value) {
+      /**
+       * When a field is changed, emits both the field name and new value.
+       *
+       * @event field-change
+       * @type Any
+       */
+      this.$emit('field-change', name, value);
     },
   },
 };

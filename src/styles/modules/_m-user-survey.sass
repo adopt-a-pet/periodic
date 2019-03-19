@@ -1,4 +1,13 @@
 +b('user-survey')
+  +e('dropdown-group')
+    @include rem-fallback('column-gap', $space-xs)
+    @include rem-fallback('row-gap', $space-xs)
+    display: grid
+    grid-template-columns: 1fr
+
+    +breakpoint(tablet-plus)
+      grid-template-columns: 1fr 1fr
+
   +e('haspets-checkboxes')
     +breakpoint(tablet-plus)
       display: grid
