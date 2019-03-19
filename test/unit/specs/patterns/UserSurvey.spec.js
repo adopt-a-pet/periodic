@@ -18,17 +18,32 @@ const TestComponent = Vue.extend({
 });
 
 describe('patterns/UserSurvey', () => {
-  it('should not submit if a field is invalid', done => {
+  it('should emit change on hasChildren change', () => {
     const wrapper = mount(TestComponent);
 
-    wrapper.find('form').trigger('submit');
+    const hasChildren = wrapper.findAll('input[name="haschildren"]');
 
-    setTimeout(() => {
-      expect(wrapper.emitted('submit')).toBeUndefined();
-      expect(wrapper.emitted('validate:error').length).toBe(1);
-      expect(wrapper.emitted('validate:error')[0][0]).toBe('input1');
+    hasChildren.at(0).trigger('click');
 
-      done();
-    }, 100);
+    const change = wrapper.emitted('change');
+
+    expect(change).toHaveLength(1);
+    expect(change[0][0]).toEqual({ hasChildren: true });
+
+    hasChildren.at(1).trigger('click');
+
+    expect(change[0][0]).toEqual({ hasChildren: false });
+  });
+
+  it('should emit field-change on homeType change', () => {
+    const wrapper = mount(TestComponent);
+
+    const hasChildren = wrapper.findAll('input[name="hometype"]');
+
+    hasChildren.at(0).trigger('click');
+
+    const fieldChange = wrapper.emitted('field-change');
+
+    expect(fieldChange[0]).toEqual(['hometype', 'house']);
   });
 });

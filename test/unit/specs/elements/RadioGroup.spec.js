@@ -72,11 +72,11 @@ describe('elements/RadioGroup', () => {
     const wrapper = mount(TestComponent);
     const inputs = wrapper.findAll('input[type="radio"]');
 
-    inputs.at(0).setChecked();
+    inputs.at(0).trigger('click');
 
     expect(wrapper.vm.selected).toBe('a');
 
-    inputs.at(1).setChecked();
+    inputs.at(1).trigger('click');
 
     expect(wrapper.vm.selected).toBe('b');
   });
