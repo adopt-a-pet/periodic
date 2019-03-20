@@ -26,7 +26,7 @@ node {
           def dist_dir = "${JENKINS_HOME}/workspace/development/periodic-deploy/dist/docs"
           def cli_cp = "aws s3 cp --recursive ${dist_dir} s3://test-periodic-copy-for-deploy/"
           def response
-          // Provide credentials for aws cli and initiate check
+          // Provide credentials for aws cli and initiate check --
           try {
             withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: "MYCLI"]]) {
               response = sh(returnStdout: true, script: "${cli_cp}").trim()
