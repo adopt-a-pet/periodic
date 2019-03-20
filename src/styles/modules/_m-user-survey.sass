@@ -3,15 +3,15 @@
     @include rem-fallback('column-gap', $space-xs)
     @include rem-fallback('row-gap', $space-xs)
     display: grid
-    grid-template-columns: 1fr
 
     +breakpoint(tablet-plus)
       grid-template-columns: 1fr 1fr
 
   +e('haspets-checkboxes')
+    display: grid
+
     +breakpoint(tablet-plus)
-      display: grid
-      grid-template-columns: repeat(auto-fill, 50%)
+      grid-template-columns: 1fr 1fr
 
   +e('checkbox-label')
     position: relative
