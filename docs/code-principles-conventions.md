@@ -9,3 +9,7 @@ We are keeping our conventions as mainstream as possible. We are basing our ESLi
 ##### _Component Names_: PascalCase
 
 https://vuejs.org/v2/style-guide/#Single-file-component-filename-casing-strongly-recommended
+
+##### _Event Names_: kebab-case
+
+https://vuejs.org/v2/guide/components-custom-events.html#Event-Names

@@ -2,17 +2,14 @@
   <ul
     :class="b().toString()"
     :style="gridStyles">
-
     <li
       v-for="(item, index) in renderItems"
-      :class="b('item').toString()"
-      :key="index">
-
+      :key="index"
+      :class="b('item').toString()">
       <input
-        :class="b('button').toString()"
-        :value="item.value"
-        :name="name"
         :id="item.id"
+        :class="b('button').toString()"
+        :name="name"
         :checked="item.value === value"
         type="radio"
         @change="select($event.target, item.value)">
@@ -73,7 +70,6 @@ export default {
      * The value of the selected item.
      */
     value: {
-      type: String,
       default: null,
     },
     /**
