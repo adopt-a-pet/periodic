@@ -24,7 +24,7 @@ node {
     }
     stage('Deploy') {
           def dist_dir = "${JENKINS_HOME}/workspace/development/periodic-deploy/dist/docs"
-          def cli_cp = "aws s3 cp --recursive ${dist_dir} s3://test-periodic-copy-for-deploy/"
+          def cli_cp = "aws s3 cp --recursive ${dist_dir} s3://periodic.aapdev.org/"
           def response
           // Provide credentials for aws cli and initiate check --
           try {
