@@ -1,7 +1,7 @@
 +b('user-survey')
   +e('dropdown-group')
-    @include rem-fallback('column-gap', $space-xs)
-    @include rem-fallback('row-gap', $space-xs)
+    +rem-fallback('column-gap', $space-xs)
+    +rem-fallback('row-gap', $space-xs)
     display: grid
 
     +breakpoint(tablet-plus)
@@ -11,9 +11,10 @@
     display: grid
 
     +breakpoint(tablet-plus)
+      +rem-fallback('row-gap', $space-xxs)
       grid-template-columns: 1fr 1fr
 
   +e('checkbox-label')
     position: relative
-    @include rem-fallback('top', -5px)
-    @include rem-fallback('margin-left', 10px)
+    +rem-fallback('top', -5px)
+    +rem-fallback('margin-left', 10px)
