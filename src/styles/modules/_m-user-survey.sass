@@ -8,10 +8,11 @@
       grid-template-columns: 1fr 1fr
 
   +e('haspets-checkboxes')
+    +rem-fallback('row-gap', $space-xxs)
     display: grid
 
     +breakpoint(tablet-plus)
-      +rem-fallback('row-gap', $space-xxs)
+      +rem-fallback('row-gap', $space-s)
       grid-template-columns: 1fr 1fr
 
   +e('checkbox-label')
