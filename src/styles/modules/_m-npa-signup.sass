@@ -2,14 +2,16 @@
   text-align: center
 
   +e(content)
-    max-width: 32rem
+    margin: auto
+    max-width: 36rem
+    padding: 0 2.3rem
 
   +e(checkbox-text)
-    margin-left: $space-xxs
+    +rem-fallback(margin-left, $space-xxs)
 
   +e(skip-continue)
     align-items: center
-    column-gap: $space-s
+    +rem-fallback(column-gap, $space-xxs)
     display: grid
-    grid-template-columns: 1fr 6fr
+    grid-template-columns: 1fr 4fr
     text-align: left

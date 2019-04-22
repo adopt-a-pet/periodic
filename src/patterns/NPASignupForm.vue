@@ -1,6 +1,9 @@
 <template>
   <div :class="b().toString()">
     <div :class="b('content').toString()">
+      <VSpacer
+        size="xxxs" />
+
       <Heading
         level="h4"
         font-weight="light"
@@ -8,17 +11,15 @@
         Set Up Your
       </Heading>
 
-      <VSpacer
-        size="xs" />
-
       <Heading
-        level="h1"
+        :level="layout === 'desktop' ? 'h1' : 'h2'"
+        font-weight="bold"
         font-family="museo">
         New Pet Alert
       </Heading>
 
       <VSpacer
-        size="l" />
+        size="xl" />
 
       <Paragraph
         text-align="left"
@@ -30,7 +31,7 @@
           tag="span"
           font-size="s"
           font-weight="normal">
-          <TextLink>What is This?</TextLink>
+          <TextLink>What is this?</TextLink>
         </Paragraph>
       </Paragraph>
 
@@ -75,6 +76,9 @@
 
         <Button>Save & Continue</Button>
       </div>
+
+      <VSpacer
+        size="xl" />
     </div>
   </div>
 </template>
