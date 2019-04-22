@@ -44,7 +44,7 @@
       <VSpacer
         size="xl" />
 
-      <VDivider />
+      <VDivider type="dashed" />
 
       <VSpacer
         size="xl" />

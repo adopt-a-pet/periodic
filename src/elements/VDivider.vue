@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="b().toString()" />
+    :class="b({ type }).toString()" />
 </template>
 
 <script>
@@ -9,6 +9,16 @@ export default {
   blockName: 'vdivider',
   status: 'under-review',
   release: '1.0.0',
+  props: {
+    /**
+     * The type of divider. Defaults to solid line.
+     * `dashed`
+     */
+    type: {
+      type: String,
+      default: null,
+    },
+  },
 };
 </script>
 
