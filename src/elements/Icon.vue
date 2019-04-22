@@ -3,6 +3,7 @@
     :is="type"
     :aria-label="ariaLabel"
     :class="[b().toString()]"
+    @click="$emit('click', $event)"
     v-html="svg" />
 </template>
 
@@ -33,7 +34,7 @@ export default {
      */
     fill: {
       type: String,
-      default: 'currentColor',
+      default: null,
     },
     /**
      * Descriptive text to be read to screenreaders.
@@ -51,8 +52,12 @@ export default {
     },
   },
   data() {
+    let svg = req(`./${this.name}.svg`);
+
+    if (this.fill) svg = svg.replace(/<svg /, `<svg style="fill: ${this.fill}" `);
+
     return {
-      svg: req(`./${this.name}.svg`).replace(/^<svg /, `<svg style="fill: ${this.fill}" `),
+      svg,
     };
   },
 };
