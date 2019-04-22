@@ -1,0 +1,31 @@
++b(textlink)
+  cursor: pointer
+  hover: none
+  text-decoration: none
+
+  +m(underline)
+    text-decoration: underline
+
+  +m(color-blue)
+    color: color(ablue)
+
+    +breakpoint(wide)
+      &:hover
+        text-decoration: underline
+        color: color(ablue)
+
+    &:active
+      text-decoration: underline
+      color: color(ablue, dark)
+
+  +m(color-gray-light)
+    color: color(agray, light)
+
+    +breakpoint(wide)
+      &:hover
+        text-decoration: underline
+        color: color(ablue)
+
+      &:active
+          text-decoration: underline
+          color: color(ablue, dark)

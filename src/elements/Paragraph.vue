@@ -1,5 +1,6 @@
 <template>
-  <p
+  <component
+    :is="tag"
     :class="b(null, {
       family: fontFamily,
       size: fontSize,
@@ -7,7 +8,7 @@
     :style="{ lineHeight }">
     <!-- @slot Paragraph content goes here -->
     <slot />
-  </p>
+  </component>
 </template>
 
 <script>
@@ -21,6 +22,13 @@ export default {
     event: 'input',
   },
   props: {
+    /**
+     * What tag to use for the text.
+     */
+    tag: {
+      type: String,
+      default: 'p',
+    },
     /**
      * The font weight for the text. `light, normal, bold`
      */
