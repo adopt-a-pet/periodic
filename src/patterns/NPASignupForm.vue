@@ -1,62 +1,81 @@
 <template>
-  <div>
-    <Heading
-      level="h4"
-      font-weight="light"
-      line-height="compact">
-      Set Up Your
-    </Heading>
+  <div :class="b().toString()">
+    <div :class="b('content').toString()">
+      <Heading
+        level="h4"
+        font-weight="light"
+        line-height="compact">
+        Set Up Your
+      </Heading>
 
-    <Heading
-      level="h1"
-      font-family="museo">
-      New Pet Alert
-    </Heading>
+      <VSpacer
+        size="xs" />
 
-    <Paragraph>
-      We'll email you when new pets that match your search criteria are added to our site!
-      <TextLink>What is This?</TextLink>
-    </Paragraph>
+      <Heading
+        level="h1"
+        font-family="museo">
+        New Pet Alert
+      </Heading>
 
-    <VSpacer
-      size="xl" />
+      <VSpacer
+        size="l" />
 
-    <EmailInput
-      v-model="email" />
-
-    <VSpacer
-      size="xl" />
-
-    <VDivider />
-
-    <VSpacer
-      size="xl" />
-
-    <Checkbox v-model="dontShow">
       <Paragraph
-        :class="b('checkbox-text').toString()"
-        font-size="xs"
-        font-weight="light">
-        Don’t show me this again.
+        text-align="left"
+        color="gray"
+        font-weight="normal">
+        We'll email you when new pets that match your search criteria are added to our site!
+
+        <Paragraph
+          tag="span"
+          font-size="s"
+          font-weight="normal">
+          <TextLink>What is This?</TextLink>
+        </Paragraph>
       </Paragraph>
-    </Checkbox>
 
-    <VSpacer
-      size="xl" />
+      <VSpacer
+        size="xl" />
 
-    <TextLink
-      always-underline
-      color="gray-light">
-      <Paragraph
-        tag="span"
-        font-size="m"
-        font-family="museo"
-        font-weight="bold">
-        Skip
-      </Paragraph>
-    </TextLink>
+      <EmailInput
+        v-model="email" />
 
-    <Button>Save & Continue</Button>
+      <VSpacer
+        size="xl" />
+
+      <VDivider />
+
+      <VSpacer
+        size="xl" />
+
+      <Checkbox v-model="dontShow">
+        <Paragraph
+          :class="b('checkbox-text').toString()"
+          font-size="xs"
+          font-weight="light">
+          Don’t show me this again.
+        </Paragraph>
+      </Checkbox>
+
+      <VSpacer
+        size="xl" />
+
+      <div :class="b('skip-continue').toString()">
+        <TextLink
+          always-underline
+          color="gray-light">
+          <Paragraph
+            tag="span"
+            font-size="m"
+            font-family="museo"
+            font-weight="bold">
+            Skip
+          </Paragraph>
+        </TextLink>
+
+        <Button>Save & Continue</Button>
+      </div>
+    </div>
   </div>
 </template>
 
