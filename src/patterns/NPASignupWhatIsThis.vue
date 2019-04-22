@@ -89,6 +89,9 @@
         font-weight="normal">
         It's that easy! You can save up to 15 New Pet Alerts, and you can cancel or change them at any time.
       </Paragraph>
+
+      <VSpacer
+        size="l" />
     </div>
   </div>
 </template>
