@@ -71,7 +71,10 @@ export default {
     <TextLink>Without an href, the tag is a span</TextLink>
     <br />
     <br />
-    <TextLink color="gray-light">Without an href, the tag is a span</TextLink>
+    <TextLink color="gray-light">Without href, gray-light</TextLink>
+    <br />
+    <br />
+    <TextLink color="gray-light" always-underline>Always underline</TextLink>
   </div>
 </template>
 <script>

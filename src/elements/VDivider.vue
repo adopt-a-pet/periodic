@@ -27,6 +27,9 @@ export default {
 <template>
   <div>
     <VDivider />
+    <br />
+    <br />
+    <VDivider type="dashed" />
   </div>
 </template>
 <script>
