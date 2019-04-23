@@ -98,7 +98,7 @@
 
 <script>
 /**
- * NPA signup form
+ * NPA "What is this"
  */
 
 export default {

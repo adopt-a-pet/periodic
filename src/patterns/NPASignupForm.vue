@@ -39,7 +39,7 @@
         size="xl" />
 
       <EmailInput
-        v-model="email" />
+        v-model="form.email" />
 
       <VSpacer
         size="xl" />
@@ -49,7 +49,7 @@
       <VSpacer
         size="xl" />
 
-      <Checkbox v-model="dontShow">
+      <Checkbox v-model="form.dontShowAgain">
         <Paragraph
           :class="b('checkbox-text').toString()"
           font-size="xs"
@@ -64,7 +64,8 @@
       <div :class="b('skip-continue').toString()">
         <TextLink
           always-underline
-          color="gray-light">
+          color="gray-light"
+          @click="skip">
           <Paragraph
             tag="span"
             font-size="m"
@@ -74,7 +75,9 @@
           </Paragraph>
         </TextLink>
 
-        <Button>Save & Continue</Button>
+        <Button @click="saveAndContinue">
+          Save & Continue
+        </Button>
       </div>
 
       <VSpacer
@@ -94,20 +97,34 @@ export default {
   status: 'under-review',
   release: '1.0.0',
 
-  props: {
-  },
-
   data() {
     return {
-      email: '',
-      dontShow: false,
+      form: {
+        email: '',
+        dontShowAgain: false,
+      },
     };
   },
 
-  computed: {
-  },
-
   methods: {
+    skip() {
+      /**
+       * NPA signup skip event
+       *
+       * @event skip
+       * @type none
+       */
+      this.$emit('skip');
+    },
+    saveAndContinue() {
+      /**
+       * NPA signup submit event
+       *
+       * @event submit
+       * @type Object
+       */
+      this.$emit('submit', this.form);
+    },
   },
 };
 </script>
