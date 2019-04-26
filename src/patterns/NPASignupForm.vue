@@ -1,88 +1,96 @@
 <template>
   <div :class="b().toString()">
-    <div :class="b('content').toString()">
-      <VSpacer
-        size="xxxs" />
+    <ValidatedForm
+      v-model="formValid"
+      :names="['email']"
+      @submit="saveAndContinue">
+      <div :class="b('content').toString()">
+        <VSpacer
+          size="xxxs" />
 
-      <Heading
-        level="h4"
-        font-weight="light"
-        line-height="compact">
-        Set Up Your
-      </Heading>
+        <Heading
+          level="h4"
+          font-weight="light"
+          line-height="compact">
+          Set Up Your
+        </Heading>
 
-      <Heading
-        :level="layout === 'desktop' ? 'h1' : 'h2'"
-        font-weight="bold"
-        font-family="museo">
-        New Pet Alert
-      </Heading>
+        <Heading
+          :level="layout === 'desktop' ? 'h1' : 'h2'"
+          font-weight="bold"
+          font-family="museo">
+          New Pet Alert
+        </Heading>
 
-      <VSpacer
-        size="xl" />
-
-      <Paragraph
-        text-align="left"
-        color="gray"
-        font-weight="normal">
-        We'll email you when new pets that match your search criteria are added to our site!
+        <VSpacer
+          size="xl" />
 
         <Paragraph
-          tag="span"
-          font-size="s"
+          text-align="left"
+          color="gray"
           font-weight="normal">
-          <TextLink>What is this?</TextLink>
-        </Paragraph>
-      </Paragraph>
+          We'll email you when new pets that match your search criteria are added to our site!
 
-      <VSpacer
-        size="xl" />
-
-      <EmailInput
-        v-model="form.email" />
-
-      <VSpacer
-        size="xl" />
-
-      <VDivider type="dashed" />
-
-      <VSpacer
-        size="xl" />
-
-      <Checkbox v-model="form.dontShowAgain">
-        <Paragraph
-          :class="b('checkbox-text').toString()"
-          font-size="xs"
-          font-weight="light">
-          Don’t show me this again.
-        </Paragraph>
-      </Checkbox>
-
-      <VSpacer
-        size="xl" />
-
-      <div :class="b('skip-continue').toString()">
-        <TextLink
-          always-underline
-          color="gray-light"
-          @click="skip">
           <Paragraph
             tag="span"
-            font-size="m"
-            font-family="museo"
-            font-weight="bold">
-            Skip
+            font-size="s"
+            font-weight="normal">
+            <TextLink>What is this?</TextLink>
           </Paragraph>
-        </TextLink>
+        </Paragraph>
 
-        <Button @click="saveAndContinue">
-          Save & Continue
-        </Button>
+        <VSpacer
+          size="xl" />
+
+        <EmailInput
+          v-model="form.email"
+          name="email" />
+
+        <VSpacer
+          size="xl" />
+
+        <VDivider type="dashed" />
+
+        <VSpacer
+          size="xl" />
+
+        <Checkbox v-model="form.dontShowAgain">
+          <Paragraph
+            :class="b('checkbox-text').toString()"
+            font-size="xs"
+            font-weight="light">
+            Don’t show me this again.
+          </Paragraph>
+        </Checkbox>
+
+        <VSpacer
+          size="xl" />
+
+        <div :class="b('skip-continue').toString()">
+          <TextLink
+            always-underline
+            color="gray-light"
+            @click="skip">
+            <Paragraph
+              tag="span"
+              font-size="m"
+              font-family="museo"
+              font-weight="bold">
+              Skip
+            </Paragraph>
+          </TextLink>
+
+          <Button
+            :disabled="!formValid"
+            type="submit">
+            Save & Continue
+          </Button>
+        </div>
+
+        <VSpacer
+          size="xl" />
       </div>
-
-      <VSpacer
-        size="xl" />
-    </div>
+    </ValidatedForm>
   </div>
 </template>
 
@@ -99,6 +107,7 @@ export default {
 
   data() {
     return {
+      formValid: true,
       form: {
         email: '',
         dontShowAgain: false,
