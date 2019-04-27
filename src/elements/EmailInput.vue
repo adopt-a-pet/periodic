@@ -160,6 +160,9 @@ export default {
     validate() {
       return this.$refs.input.validate();
     },
+    validateSilent() {
+      return this.$refs.input.validateSilent();
+    },
   },
 };
 </script>

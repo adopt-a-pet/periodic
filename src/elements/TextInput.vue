@@ -33,7 +33,6 @@
 
     <div
       :class="b('slot', { right: true }).toString()">
-
       <label
         v-if="showLabelRight"
         :for="name"
@@ -49,7 +48,9 @@
 
     <div
       v-if="errorState"
-      :class="b('error-msg').toString()">{{ errorMessage }}</div>
+      :class="b('error-msg').toString()">
+      {{ errorMessage }}
+    </div>
   </div>
 </template>
 
@@ -281,10 +282,18 @@ export default {
       this.$emit('change', value);
     },
     validate() {
+      console.log(this.validateSilent());
       this.validatedValue = this.value;
       this.$v.validatedValue.$touch();
 
       return !this.errorState;
+    },
+    validateSilent() {
+      const validations = this.$options.validations.bind(this);
+
+      return Object.values(validations().validatedValue)
+        .map(validation => validation(this.value))
+        .every(v => v);
     },
   },
   validations() {

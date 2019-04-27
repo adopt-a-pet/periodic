@@ -84,8 +84,12 @@ export default {
       ).filter(component => component && ('validate' in component)); // Ignore components that don't have a `validate` method
     },
     validateComponent(component) {
+      const validate = component.validateSilent
+        ? component.validateSilent()
+        : component.validate();
+
       // In some cases validate will return a Promise
-      return Promise.resolve(component.validate())
+      return Promise.resolve(validate)
         .then(valid => {
           const validatedComponentMap = this.validatedComponentMap;
 
