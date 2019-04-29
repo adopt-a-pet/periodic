@@ -12,6 +12,7 @@ import layout from '@/mixins/layout';
 import validateRequired from '@/mixins/validate-required';
 import vuexModule from '@/mixins/vuex-module';
 import { validationMixin } from 'vuelidate';
+import validateLazy from '@/mixins/validate-lazy';
 
 import './styles/styles.scss';
 
@@ -33,6 +34,7 @@ export const mixins = [
   errorMessages,
   filters,
   layout,
+  validateLazy,
   validateRequired,
   validationMixin,
   vuexModule,

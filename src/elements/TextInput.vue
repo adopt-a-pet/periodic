@@ -33,7 +33,6 @@
 
     <div
       :class="b('slot', { right: true }).toString()">
-
       <label
         v-if="showLabelRight"
         :for="name"
@@ -49,7 +48,9 @@
 
     <div
       v-if="errorState"
-      :class="b('error-msg').toString()">{{ errorMessage }}</div>
+      :class="b('error-msg').toString()">
+      {{ errorMessage }}
+    </div>
   </div>
 </template>
 
@@ -67,6 +68,11 @@ export default {
   model: {
     prop: 'value',
     event: 'input',
+  },
+  validate: {
+    prop: 'validatedValue',
+    validateOn: 'change',
+    resetOn: 'input',
   },
   props: {
     /**
@@ -174,14 +180,6 @@ export default {
   data() {
     return {
       focused: false,
-
-      // validatedValue is used to delay validation until @change. This is
-      // because using v-model.lazy on components doesn't currently work.
-      // See: https://github.com/vuejs/vue/pull/6940
-      validatedValue: '',
-
-      // holdValidation is prevents validation until the user leaves the field
-      holdValidation: false,
     };
   },
   computed: {
@@ -208,24 +206,6 @@ export default {
       return this.getErrorMessages(this.$v.validatedValue, this.errorMessages)[0];
     },
   },
-  watch: {
-    value() {
-      // Only validate when the user has left the field
-      if (!this.holdValidation) this.validate();
-    },
-
-    // When holdValidation is switched off, validate the field
-    holdValidation(holdValidation) {
-      if (holdValidation === false) this.validate();
-    },
-  },
-  created() {
-    // Not in data() because we don't want it updating every time v-model does
-    this.validatedValue = this.value;
-
-    // If starting with a value, validate it right away
-    if (this.value) this.validate();
-  },
   methods: {
     onInput(value) {
       /**
@@ -238,7 +218,6 @@ export default {
     },
     onBlur() {
       this.focused = false;
-      this.holdValidation = false;
 
       /**
        * Blur event
@@ -259,7 +238,6 @@ export default {
     },
     onFocus() {
       this.focused = true;
-      this.holdValidation = true;
 
       /**
        * Focus event
@@ -270,8 +248,6 @@ export default {
       this.$emit('focus');
     },
     onChange(value) {
-      this.holdValidation = false;
-
       /**
        * Change event
        *
@@ -279,12 +255,6 @@ export default {
        * @type String
        */
       this.$emit('change', value);
-    },
-    validate() {
-      this.validatedValue = this.value;
-      this.$v.validatedValue.$touch();
-
-      return !this.errorState;
     },
   },
   validations() {
