@@ -2,7 +2,6 @@
   <div
     :class="b().toString()"
     @click="onClick">
-
     <!-- The actual checkbox is not shown. It's used for tracking and forms. -->
     <input
       v-show="false"
