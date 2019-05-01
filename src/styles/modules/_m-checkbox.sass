@@ -1,5 +1,6 @@
 +b(checkbox)
   display: flex
+  align-items: center
 
   +e(box)
     +reset
@@ -42,3 +43,16 @@
       height: 100%
       width: 100%
       margin-bottom: $space-xxxs
+
+
++b(checkbox-group)
+  display: grid
+  padding: 0
+  width: 100%
+  list-style-type: none
+  +rem-fallback('row-gap', $space-s)
+
+  +e('label')
+    font-weight: 200
+    +rem-fallback('font-size', $font-size-m)
+    +rem-fallback('margin-left', $space-xxxs)
