@@ -4,23 +4,12 @@
     :style="gridStyles">
     <li
       v-for="(item, index) in renderItems"
-      :key="index"
-      :class="b('item').toString()">
-      <input
+      :key="index">
+      <Checkbox
         :id="item.id"
-        :class="b('button').toString()"
-        :name="name"
-        :checked="item.value === value"
-        type="radio"
-        @change="select($event.target, item.value)">
-
-      <label
-        :class="b('label', { color: 'white' }).toString()"
-        :for="item.id">{{ item.display }}</label>
-
-      <label
-        :class="b('outside', { color: 'white' }).toString()"
-        :for="item.id" />
+        :checked="false">
+        {{ item.display }}
+      </Checkbox>
     </li>
   </ul>
 </template>
@@ -32,10 +21,10 @@ import tokens from '@/assets/tokens/tokens.json';
  * currently selected button
  */
 export default {
-  name: 'RadioGroup',
+  name: 'CheckboxGroup',
   status: 'under-review',
   release: '1.0.0',
-  blockName: 'radio',
+  blockName: 'checkbox-group',
   model: {
     event: 'change',
     prop: 'value',
@@ -46,7 +35,7 @@ export default {
      */
     name: {
       type: String,
-      default: 'radiogroup',
+      default: 'checkbox-group',
     },
     /**
      * Whether the form field is required or not.
@@ -70,7 +59,8 @@ export default {
      * The value of the selected item.
      */
     value: {
-      default: null,
+      type: Array,
+      default: () => [],
     },
     /**
      * The number of columns in each row of buttons.
@@ -81,12 +71,12 @@ export default {
     },
   },
   computed: {
-    // Add an id property to each item so the label can reference it
+    // Add an id property to each item
     renderItems() {
       return this.items.map(item => (
         {
           ...item,
-          id: this.radioId(item),
+          id: this.checkboxId(item),
         }
       ));
     },
@@ -99,8 +89,8 @@ export default {
     },
   },
   methods: {
-    radioId(item) {
-      return `${tokens.prefix_component}radio-${this.name}-item-${item.value}`;
+    checkboxId(item) {
+      return `${tokens.prefix_component}checkbox-group-${this.name}-item-${item.value}`;
     },
     select({ checked }, value) {
       if (!checked) return;
@@ -114,7 +104,7 @@ export default {
       this.$emit('change', value);
     },
     validate() {
-      return this.validateRequired(this.required, this.value);
+      return this.validateRequired(this.required, this.value.length);
     },
   },
 };
@@ -128,7 +118,7 @@ export default {
     font-family="museo"
     level="h4">1 Column (default)</Heading>
 
-  <RadioGroup
+  <CheckboxGroup
     v-model="radioGroupSelected"
     name="example"
     :items="[
@@ -143,7 +133,7 @@ export default {
     font-family="museo"
     level="h4">3 Columns</Heading>
 
-  <RadioGroup
+  <CheckboxGroup
     v-model="radioGroupSelected2"
     name="example2"
     :columns="3"
