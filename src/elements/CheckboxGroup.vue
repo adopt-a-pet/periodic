@@ -7,8 +7,10 @@
       :key="index">
       <Checkbox
         :id="item.id"
-        :checked="false">
-        {{ item.display }}
+        :checked="boxChecked(item)"
+        :size="size"
+        @change="onCheck(item.value, $event)">
+        <span :class="b('label').toString()">{{ item.display }}</span>
       </Checkbox>
     </li>
   </ul>
@@ -36,6 +38,16 @@ export default {
     name: {
       type: String,
       default: 'checkbox-group',
+    },
+    /**
+     * The size of the checkboxes.
+     *
+     * `tiny, small, large`
+     */
+    size: {
+      type: String,
+      default: 'large',
+      validator: value => value.match(/(tiny|small|large)/),
     },
     /**
      * Whether the form field is required or not.
@@ -106,6 +118,23 @@ export default {
     validate() {
       return this.validateRequired(this.required, this.value.length);
     },
+    boxChecked({ value: checkboxValue }) {
+      return this.value.includes(checkboxValue);
+    },
+    onCheck(value, selected) {
+      console.log('hi');
+      /**
+       * Change event
+       *
+       * @event change
+       * @type Array
+       */
+      if (selected) {
+        this.$emit('change', this.value.concat(value));
+      } else {
+        this.$emit('change', this.value.filter(v => v !== value));
+      }
+    },
   },
 };
 </script>
@@ -122,9 +151,9 @@ export default {
     v-model="radioGroupSelected"
     name="example"
     :items="[
-      { display: 'One', value: '1' },
-      { display: 'Two', value: '2' },
-      { display: 'Three', value: '3' }
+      { display: 'One', value: 1 },
+      { display: 'Two', value: 2 },
+      { display: 'Three', value: 3 }
     ]" />
 
   <VSpacer size="l" />
@@ -138,9 +167,9 @@ export default {
     name="example2"
     :columns="3"
     :items="[
-      { display: 'One', value: '1' },
-      { display: 'Two', value: '2' },
-      { display: 'Three', value: '3' }
+      { display: 'One', value: 1 },
+      { display: 'Two', value: 2 },
+      { display: 'Three', value: 3 }
     ]" />
 </div>
 </template>
@@ -148,8 +177,8 @@ export default {
 export default {
   data() {
     return {
-      radioGroupSelected: '2',
-      radioGroupSelected2: '2',
+      radioGroupSelected: [2],
+      radioGroupSelected2: [1, 3],
     }
   }
 };

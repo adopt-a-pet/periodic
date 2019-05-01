@@ -1,5 +1,6 @@
 +b(checkbox)
   display: flex
+  align-items: center
 
   +e(box)
     +reset
@@ -49,4 +50,9 @@
   padding: 0
   width: 100%
   list-style-type: none
-  row-gap: $space-s
+  +rem-fallback('row-gap', $space-s)
+
+  +e('label')
+    font-weight: 200
+    +rem-fallback('font-size', $font-size-m)
+    +rem-fallback('margin-left', $space-xxxs)
