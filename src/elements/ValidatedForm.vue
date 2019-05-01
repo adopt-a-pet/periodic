@@ -6,6 +6,8 @@
 </template>
 
 <script>
+const emptyMap = new Map();
+
 /**
  * A form component that will only submit when all fields are valid.
  */
@@ -13,6 +15,9 @@ export default {
   name: 'ValidatedForm',
   status: 'under-review',
   release: '1.0.0',
+  model: {
+    event: 'change',
+  },
   props: {
     /**
      * A list of component names to validate before submit.
@@ -26,20 +31,80 @@ export default {
       default: () => [],
     },
   },
+
+  data() {
+    return {
+      validatedComponentMap: new Map(),
+    };
+  },
+
+  computed: {
+    allValid() {
+      const validStates = Array.from(this.validatedComponentMap.values());
+      return validStates.every(valid => valid);
+    },
+  },
+
+  watch: {
+    allValid(allValid) {
+      this.$emit('change', allValid);
+    },
+  },
+
+  mounted() {
+    const fieldComponents = this.getFieldComponents();
+
+    // Listen to each component for changes to re-validate
+    fieldComponents.forEach(component => {
+      const customChange = component.$options.model;
+      const handler = () =>
+        this.$nextTick(() => this.validateComponent(component));
+
+      // Validate once to set the a prop in validatedComponentMap for each field
+      // in the order the names were passed.
+      this.validateComponent(component);
+
+      // Components can define the event for v-model. If that's the case, use that.
+      if (customChange && customChange.event) {
+        component.$on(customChange.event, handler);
+      } else {
+        // If they didn't define anything, fall back to input and change
+        component.$on('input', handler);
+        component.$on('change', handler);
+      }
+    });
+  },
+
   methods: {
-    onSubmit() {
+    getFieldComponents() {
       // Make a list of component objects.
-      const fieldComponents = this.names.map(name =>
+      return this.names.map(name =>
         // Find all child components that have a `name` prop AND are in the list
         this.$children.find(component => component.name === name),
       ).filter(component => component && ('validate' in component)); // Ignore components that don't have a `validate` method
+    },
+    validateComponent(component) {
+      // In some cases validate will return a Promise
+      return Promise.resolve(component.validate())
+        .then(valid => {
+          const validatedComponentMap = this.validatedComponentMap;
+
+          validatedComponentMap.set(component.name, valid);
+
+          // Set it to emptyMap and then back to validatedComponentMap because
+          // Vue doesn't notice changes in a Map.
+          this.validatedComponentMap = emptyMap;
+          this.validatedComponentMap = validatedComponentMap;
+        });
+    },
+    onSubmit() {
+      // Make a list of component objects.
+      const fieldComponents = this.getFieldComponents();
 
       // Give all fields a chance to validate before submit
-      Promise.all(fieldComponents.map(ref => ref.validate()))
+      Promise.all(fieldComponents.map(component => this.validateComponent(component)))
         .then(validated => {
-          const allValid = validated.every(valid => valid);
-
-          if (!allValid) {
+          if (!this.allValid) {
             const firstInvalidIndex = validated.findIndex(v => !v); // return `true` for the first invalid field
             const firstInvalidName = fieldComponents[firstInvalidIndex].name;
 

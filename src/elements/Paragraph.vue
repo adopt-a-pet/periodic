@@ -1,13 +1,15 @@
 <template>
-  <p
+  <component
+    :is="tag"
     :class="b(null, {
+      color,
       family: fontFamily,
       size: fontSize,
       weight: fontWeight }).toString()"
-    :style="{ lineHeight }">
+    :style="{ lineHeight, textAlign }">
     <!-- @slot Paragraph content goes here -->
     <slot />
-  </p>
+  </component>
 </template>
 
 <script>
@@ -21,6 +23,21 @@ export default {
     event: 'input',
   },
   props: {
+    /**
+     * What tag to use for the text.
+     */
+    tag: {
+      type: String,
+      default: 'p',
+    },
+    /**
+     * Color allows us to easily change the color.
+     */
+    color: {
+      type: String,
+      default: null,
+      validator: value => value.match(/(gray)/),
+    },
     /**
      * The font weight for the text. `light, normal, bold`
      */
@@ -51,6 +68,13 @@ export default {
     lineHeight: {
       type: Number,
       default: 1.5,
+    },
+    /**
+     * The alignment for the text. Default is null so it inherits.
+     */
+    textAlign: {
+      type: String,
+      default: null,
     },
   },
 };
