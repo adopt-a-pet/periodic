@@ -79,6 +79,7 @@
   },
   "eslintConfig": {
     "rules": {
+      "no-console": "error",
       "func-names": "off"
     },
     "extends": [

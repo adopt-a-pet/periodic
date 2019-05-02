@@ -122,7 +122,6 @@ export default {
       return this.value.includes(checkboxValue);
     },
     onCheck(value, selected) {
-      console.log('hi');
       /**
        * Change event
        *
