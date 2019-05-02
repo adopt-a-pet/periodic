@@ -28,7 +28,7 @@
 import tokens from '@/assets/tokens/tokens.json';
 
 /**
- * Render a set of radio buttons radio buttons that has a `value` of the
+ * Render a set of radio buttons that has a `value` of the
  * currently selected button
  */
 export default {

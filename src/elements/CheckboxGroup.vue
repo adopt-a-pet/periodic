@@ -19,8 +19,7 @@
 import tokens from '@/assets/tokens/tokens.json';
 
 /**
- * Render a set of radio buttons radio buttons that has a `value` of the
- * currently selected button
+ * Render a set of checkboxes where the v-model is an array of checked values
  */
 export default {
   name: 'CheckboxGroup',
