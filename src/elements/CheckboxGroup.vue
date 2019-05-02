@@ -93,10 +93,8 @@ export default {
       ));
     },
     gridStyles() {
-      const columns = new Array(this.columns);
-
       return {
-        'grid-template-columns': columns.fill('1fr').join(' '),
+        'grid-template-columns': `repeat(${this.columns}, 1fr)`,
       };
     },
   },
