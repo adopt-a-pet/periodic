@@ -1,45 +1,10 @@
 <template>
   <div
-    v-if="native"
-    :class="b({ native: true }).toString()">
-    <TextInput
-      :label="label"
-      :label-right="labelRight"
-      :value="selectedDisplay"
-      autocomplete="off"
-      focus-border
-      readonly>
-      <template slot="right">
-        <Tooltip v-if="tooltip">
-          {{ tooltip }}
-        </Tooltip>
-
-        <span
-          :class="b('arrow').toString()"
-          @click="toggle" />
-      </template>
-    </TextInput>
-
-    <select
-      v-model.number="selectedIndex"
-      :class="b('select').toString()"
-      :name="name">
-      <option
-        v-for="option in choices"
-        :key="option.display"
-        :value="option.index">
-        {{ option.display | capitalize }}
-      </option>
-    </select>
-  </div>
-
-  <div
-    v-else
     :class="b({ searchable: search }).is({ full: full }).toString()">
     <TextInput
       :label="label"
       :name="name"
-      :readonly="readonly"
+      :readonly="!search"
       :value="filterOrselectedDisplay"
       :label-right="labelRight"
       autocomplete="off"
@@ -66,8 +31,12 @@
           v-for="option in choices"
           :key="option.display"
           :class="b('list-item').is({ selected: isOptionSelected(option) }).toString()"
-          @mousedown="e => onSelect(option.index)">
-          {{ option.display | capitalize }}
+          @mousedown.stop.prevent="e => onSelect(option)">
+          <Checkbox
+            style="display: inline-block"
+            :checked="isOptionSelected(option)">
+            {{ option.display | capitalize }}
+          </Checkbox>
 
           <Icon
             v-if="isOptionSelected(option)"
@@ -95,7 +64,7 @@ const fuseOptions = {
 };
 
 export default {
-  name: 'Dropdown',
+  name: 'DropdownMulti',
   blockName: 'dropdown',
   status: 'under-review',
   release: '1.0.0',
@@ -162,8 +131,8 @@ export default {
      * Value of the selected item.
      */
     value: {
-      type: [String, Number],
-      default: null,
+      type: Array,
+      default: () => [],
     },
     /**
      * Change border color on focus
@@ -180,19 +149,17 @@ export default {
       // focused is only used when search=true. It should stay false otherwise.
       focused: false,
       filter: '',
-      selectedIndex: this.initialSelection(),
+      allChoices: this.makeChoices(this.items),
     };
   },
 
   computed: {
-    selectedValue() {
-      const selectedItem = this.allChoices[this.selectedIndex];
-      return selectedItem ? selectedItem.value : null;
-    },
-
     selectedDisplay() {
-      const selectedItem = this.allChoices[this.selectedIndex];
-      return selectedItem ? String(selectedItem.display) : null;
+      return this.value
+        .map(selectedValue =>
+          this.allChoices.find(choice => choice.value === selectedValue).display,
+        )
+        .join(', ');
     },
 
     filterOrselectedDisplay() {
@@ -203,8 +170,6 @@ export default {
       );
     },
 
-    readonly() { return !this.search; },
-
     choices() {
       return (
         (this.search && this.filter !== '')
@@ -213,31 +178,9 @@ export default {
       );
     },
 
-    allChoices() {
-      return this.makeChoices(this.items);
-    },
-
-    native() {
-      // Native dropdowns on non-desktop
-      return (!this.search) && (this.layout !== 'desktop');
-    },
-
-  },
-
-  watch: {
-    value() {
-      this.selectedIndex = this.initialSelection();
-    },
-
-    selectedIndex() {
-      /**
-       * Change event
-       *
-       * @event change
-       * @type Any
-       */
-      this.$emit('change', this.selectedValue);
-    },
+    // allChoices() {
+    //   return this.makeChoices(this.items);
+    // },
   },
 
   methods: {
@@ -250,16 +193,18 @@ export default {
       return this.addIndexes(withSpecialChoices);
     },
 
-    initialSelection() {
-      const withSpecialChoices = this.makeChoices(this.items);
-      const selection = withSpecialChoices.find(choice => choice.value === this.value);
-
-      return selection ? selection.index : null;
-    },
-
-    onSelect(index) {
-      this.selectedIndex = index;
-      this.hide();
+    onSelect({ value: selected }) {
+      /**
+       * Change event
+       *
+       * @event change
+       * @type Array
+       */
+      if (this.value.includes(selected)) {
+        this.$emit('change', this.value.filter(v => v !== selected));
+      } else {
+        this.$emit('change', this.value.concat(selected));
+      }
     },
 
     onBlur() {
@@ -318,8 +263,8 @@ export default {
       }));
     },
 
-    isOptionSelected(option) {
-      return this.selectedIndex === option.index;
+    isOptionSelected({ value: optionValue }) {
+      return this.value.includes(optionValue);
     },
   },
 
@@ -330,7 +275,7 @@ export default {
 ```vue
 <template>
   <div>
-    <Dropdown
+    <DropdownMulti
       label="Without Search"
       label-right="Right Label"
       v-model="dropdown1"
@@ -341,15 +286,16 @@ export default {
 
     <br />
 
-    <Dropdown
+    <DropdownMulti
       label="With Search"
       v-model="dropdown2"
       :items="[
         { display: 'One', value: 1 },
         { display: 'Two', value: 2 },
+        { display: 'Three', value: 3 },
+        { display: 'Four', value: 4 },
       ]"
       :search="true"
-      :specialChoices="[{ display: 'Any', value: null }]"
       tooltip="This is an info bubble" />
   </div>
 </template>
@@ -357,8 +303,8 @@ export default {
 export default {
   data() {
     return {
-      dropdown1: 2,
-      dropdown2: null,
+      dropdown1: [],
+      dropdown2: [2,3],
     }
   }
 };
