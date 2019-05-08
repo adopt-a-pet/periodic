@@ -1,0 +1,38 @@
++b(npa-signup)
+  +e(content)
+    text-align: center
+    margin: auto
+    max-width: 36rem
+    padding: 0 2.3rem
+
+  +e(checkbox-text)
+    +rem-fallback(margin-left, $space-xxs)
+
+  +e(skip-continue)
+    align-items: center
+    +rem-fallback(column-gap, $space-xxs)
+    display: grid
+    grid-template-columns: 1fr 4fr
+    text-align: left
+
++b(npa-signup-whatisthis)
+  +e(content)
+    text-align: center
+    margin: auto
+    padding: 0 5rem
+
+  +e(steps)
+    display: grid
+    grid-template-columns: 1fr
+    padding: 0
+
+    +breakpoint(wide)
+      +rem-fallback(column-gap, $space-xxl)
+      grid-auto-flow: column
+      grid-template-columns: 1fr 1fr
+      grid-template-areas: "a b" "c d"
+
+    li
+      font-weight: 200
+      font-size: $font-size-m
+      +rem-fallback(margin-bottom, $space-s)
