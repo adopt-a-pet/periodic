@@ -18,7 +18,7 @@
     "lint": "eslint '**/*.{js,vue}' --cache",
     "node:build": "node ./build/build.js",
     "node:build:system": "node ./build/build-system.js",
-    "prepublishOnly": "npm test && npm run build:system",
+    "prepublishOnly": "npm run build:system && npm test",
     "styleguide": "vue-styleguidist server --open --config ./config/docs.config.js",
     "styleguide:build": "vue-styleguidist build --config ./config/docs.config.js",
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
