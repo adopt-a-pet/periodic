@@ -235,6 +235,25 @@ module.exports = {
       )
     );
   },
+  styleguideComponents: {
+      // Usage: path.resolve(__dirname, '../docs/components/Usage')
+  },
+  dangerouslyUpdateWebpackConfig(config) {
+    // styleguideComponents doesn't work as it should with `Usage`
+    // It seems to work with other components like `StyleGuideRenderer` though.
+    // This is the only fix I can think of to get it working.
+    config.resolve.alias['rsg-components/Usage'] = path.resolve(__dirname, '../docs/components/Usage');
+
+    return config;
+  },
+  propsParser(filePath, source) {
+    // docgen v2 doesn't have addScriptHandlers.
+    // Can we get v3 to work?
+    // https://github.com/vue-styleguidist/vue-styleguidist/blob/master/packages/vue-styleguidist/loaders/vuedoc-loader.js
+    return require('vue-docgen-api').parse(filePath, {
+      addScriptHandlers: [ (a, b) => console.log(a, b) ]
+    });
+  }
   /**
    * Configure docs server to redirect asset queries
    */

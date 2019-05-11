@@ -43,38 +43,6 @@ So what do you do instead? Usually relaying the events upward works just fine in
 
 ## Vuex
 
-#### mixins/vuex-module
-
-Use it!
-
-Put your modules in `src/store/modules` and then require them in
-
-#### Keep mutations out of components. Always use Actions.
-
-https://github.com/vuejs/vuex/issues/587#issuecomment-346942179
-
-##### But isn't that just another level of indirection? So...why?
-
-No matter how complex your app gets, the data flow will always look like this diagram:
-
-![vuex](https://vuex.vuejs.org/vuex.png)
-
-##### Simplicity within components
-
-It's one less thing to think about for the developer. Instead of having to constantly look back at your state code and remember "Was that an action or a mutation? Was it async or not?" Just know that from the component's perspective you always use actions.
-
-##### Actions can compose mutations
-
-There are plenty of times when you may need to change multiple parts of the state at the same time. To keep your component code small, you can combine all of these mutations into a single action. This also removes the temptation to put business logic inside of your components.
-
-For example, in the official [shopping cart example](https://github.com/vuejs/vuex/blob/dev/examples/shopping-cart/store/modules/cart.js) you can see the `checkout` action does several things:
-
-1. Commit `setCheckoutStatus`
-2. Commit `setCartItems`
-3. Asynchronously call `buyProducts` and commit `setCheckoutStatus`
-
-That's a whole lot of code that otherwise would have been inside the component.
-
 ## Local state, props, or Vuex?
 
 Each pattern and template in Periodic may have its own Vuex module (if needed) using `this.$store.registerModule`! Elements will not. Elements will either keep a small amount of local state or, ideally, no state at all.
