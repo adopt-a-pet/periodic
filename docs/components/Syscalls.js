@@ -1,29 +1,45 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Argument from 'rsg-components/Argument'
+import Arguments from 'rsg-components/Arguments'
 import Markdown from 'rsg-components/Markdown'
 import Name from 'rsg-components/Name'
 import Table from 'rsg-components/Table'
 
-function renderDescription(prop) {
-	const { description } = prop
-	return <div>{description && <Markdown text={description} />}</div>
-}
 
-function renderName(prop) {
-	const { name, tags = {} } = prop
-	return <Name deprecated={!!tags.deprecated}>{name}</Name>
-}
+const getRowKey = ({ name }) => name;
 
-export function getRowKey(row) {
-	return row.name
-}
-
-export function propsToArray(props) {
-	return Object.keys(props)
+const propsToArray = props =>
+	Object.keys(props)
 		.reduce(
 			(acc, name) => acc.concat({ ...props[name], name }),
 			[]
 		);
+
+function renderDescription({ description }) {
+	return <div>{description && <Markdown text={description} />}</div>
+}
+
+function renderName({ name, tags = {} }) {
+	return <Name deprecated={!!tags.deprecated}>{name}</Name>
+}
+
+function renderParams({ params = [] }) {
+	return <Arguments args={params} />;
+}
+
+function renderReturns({ returns }) {
+	if (!returns) return;
+
+	const { type } = returns;
+
+	if (type && type.fields) {
+		returns.type.name = `{${type.fields.map(
+			({ key, value }) => `${key}: ${value.name}`
+		).join(', ')}}`
+	}
+
+	return <Argument returns {...returns} />;
 }
 
 export const columns = [
@@ -33,11 +49,18 @@ export const columns = [
 	},
 	{
 		caption: 'Description',
-		render: renderDescription
-	}
-]
+		render: renderDescription,
+	},
+	{
+		caption: 'Parameters',
+		render: renderParams,
+	},
+	{
+		caption: 'Returns',
+		render: renderReturns,
+	},
+];
 
-// rows={propsToArray(props)}
 export default function Syscalls({ props }) {
 	console.log(props);
 	return <Table columns={columns} rows={propsToArray(props)} getRowKey={getRowKey} />

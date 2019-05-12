@@ -1,13 +1,10 @@
 const { isObjectExpression, isObjectProperty } = require('@babel/types');
 const recast = require('recast');
-const parseDocblock = require('vue-docgen-api/dist/utils/getDocblock').parseDocblock;
-const getDoclets = require('vue-docgen-api/dist/utils/getDoclets').default;
+const transformTagsIntoObject = require('vue-docgen-api/dist/utils/transformTagsIntoObject').default;
+const doctrine = require('doctrine');
+
 
 module.exports = (documentation, path, a) => {
-  // console.log(
-  //   path.get('properties')
-  //   .filter(p => isObjectProperty(p.node) && p.node.key.name === 'methods')
-  // );
   recast.visit(path.node, {
     visitComment(pathExpression) {
       const comment = pathExpression.node.comments.filter(
@@ -16,8 +13,7 @@ module.exports = (documentation, path, a) => {
 
       if (!comment) return false;
 
-      const docblock = parseDocblock(comment.value);
-      const doclets = getDoclets(docblock || '');
+      const doclets = doctrine.parse(comment.value, { unwrap: true });
       const syscallDoc = doclets.tags.find(
         ({ title }) => title === 'syscall'
       );
@@ -27,15 +23,14 @@ module.exports = (documentation, path, a) => {
       documentation.syscallsMap = documentation.syscallsMap || {};
 
       const syscallsMap = documentation.syscallsMap;
-      const syscallName = syscallDoc.content;
-      const syscallTags = doclets.tags.reduce(
-        (acc, tag) => Object.assign(acc, { [tag.title]: [tag] }),
-        {}
-      );
+      const syscallName = syscallDoc.description;
+      const syscallTags = transformTagsIntoObject(doclets.tags);
 
       syscallsMap[syscallName] = {
         description: doclets.description,
-        tags: syscallTags
+        tags: syscallTags,
+        params: doclets.tags.filter(tag => tag.title === 'param'),
+        returns: syscallTags.returns && syscallTags.returns[0]
       };
 
       const toObject = documentation.toObject.bind(documentation);
