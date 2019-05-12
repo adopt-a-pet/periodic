@@ -4,8 +4,9 @@ import Props from 'rsg-components/Props'
 import Methods from 'rsg-components/Methods'
 import Events from 'rsg-components/Events'
 import SlotsTable from 'rsg-components/SlotsTable'
+import Syscalls from './Syscalls'
 
-export default function Usage({ props: { props, methods, events, slots } }) {
+export default function Usage({ props: { props, methods, events, slots, syscalls } }) {
 	let slotsNode;
 
 	slots = Object.keys(slots)
@@ -32,6 +33,12 @@ export default function Usage({ props: { props, methods, events, slots } }) {
 
 	const methodsNode = methods && methods.length > 0 && <Methods methods={methods} />;
 
+	let syscallsNode;
+
+	if (syscalls && (Object.keys(syscalls).length > 0)) {
+		syscallsNode = <Syscalls props={syscalls} />;
+	}
+
 	if (!propsNode && !methodsNode && !slotsNode && !eventsNode) {
 		return null;
 	}
@@ -42,6 +49,7 @@ export default function Usage({ props: { props, methods, events, slots } }) {
 			{methodsNode}
 			{eventsNode}
 			{slotsNode}
+			{syscallsNode}
 		</div>
 	);
 };

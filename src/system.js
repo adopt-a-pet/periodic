@@ -11,6 +11,7 @@ import filters from '@/mixins/filters';
 import layout from '@/mixins/layout';
 import validateRequired from '@/mixins/validate-required';
 import { validationMixin } from 'vuelidate';
+import dropdownItems from '@/mixins/dropdown-items';
 
 import './styles/styles.scss';
 
@@ -29,6 +30,7 @@ contexts.forEach(context => {
 
 export const mixins = [
   bemNames,
+  dropdownItems,
   errorMessages,
   filters,
   layout,

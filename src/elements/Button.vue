@@ -93,6 +93,15 @@ export default {
        */
       this.$emit('click');
     },
+
+    syscallTest() {
+      /**
+       * Do some STUFF!
+       *
+       * @syscall api/getBreeds
+       */
+      this.$syscall('api/getBreeds');
+    },
   },
 };
 </script>

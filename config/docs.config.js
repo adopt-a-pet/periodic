@@ -3,6 +3,8 @@ const merge = require('webpack-merge');
 const chalk = require('chalk');
 const baseConfig = require('../build/webpack.base.conf.js');
 const packageConfig = require('../package.json');
+const docgen = require('vue-docgen-api');
+const vxsyscallHandler = require('../docs/utils/vxsyscallHandler');
 
 module.exports = {
   /**
@@ -250,8 +252,10 @@ module.exports = {
     // docgen v2 doesn't have addScriptHandlers.
     // Can we get v3 to work?
     // https://github.com/vue-styleguidist/vue-styleguidist/blob/master/packages/vue-styleguidist/loaders/vuedoc-loader.js
-    return require('vue-docgen-api').parse(filePath, {
-      addScriptHandlers: [ (a, b) => console.log(a, b) ]
+    // console.log(filePath);
+    return docgen.parseSource(source, filePath, {
+      alias: baseConfig.resolve.alias,
+      addScriptHandlers: [ vxsyscallHandler ]
     });
   }
   /**
