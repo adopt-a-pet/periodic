@@ -20,7 +20,7 @@ By keeping side effects out of our components and isolating them in one place we
 
 Now, you may look at that list of side effects and think: "Hey, those are all useful things that need to be done! If my component can do those things who will?"
 
-The answer generally is: Vuex. Vuex is a library built solely for managing state. It also has `actions` which can make asynchronous modifications to the state (HTTP requests, cookies, analytics, etc).
+For Periodic, the answer is: syscalls. Syscalls are a convenient way to make use of side effects without increasing the size of our builds or making assumptions about the environment where Periodic will be used. There is a whole page of documentation on Syscalls, so check that out when you need it.
 
 #### Module communication without side effects
 
@@ -39,18 +39,13 @@ It's as simple as...
 
 The idea of an event bus makes sense: Two-way communication between deeply nested child components and (grand)parent components. The problem comes when modules are meant to be composed together like building blocks. Now you have elements or patterns which make assumptions about what their parent components will be. This is unacceptable if you want your components to be completely independent and interchangeable.
 
-So what do you do instead? Usually relaying the events upward works just fine in practice. If more complex messaging is needed use Vuex.
+So what do you do instead? Usually relaying the events upward works just fine in practice.
 
-## Vuex
+## Local state, props, or syscalls?
 
-## Local state, props, or Vuex?
+Let's recap:
 
-Each pattern and template in Periodic may have its own Vuex module (if needed) using `this.$store.registerModule`! Elements will not. Elements will either keep a small amount of local state or, ideally, no state at all.
-
-- Elements don't use Vuex. They communicate using custom events. This will help force our elements to stay small.
-- Patterns and templates only use Vuex.
-
-Mixin for two reasons
-
-1. Allow multiple instances like login
-2. Won't conflict with the app
+- Elements should usually only need props and `$emit` for use with `v-model`.
+- Some elements and most patterns will need some local state, which is fine when needed.
+- If you have components that need to communicate with one another, use `$emit`.
+- If you need to do anything with side effects, use syscalls.

@@ -84,19 +84,18 @@ module.exports = {
           usageMode: "hide",
         },
         {
+          name: "Syscalls",
+          content: "../docs/code-principles-syscalls.md",
+          exampleMode: "hide",
+          usageMode: "hide",
+        },
+        {
           name: "CSS",
           content: "../docs/code-principles-css.md",
           exampleMode: "hide",
           usageMode: "hide",
         },
       ],
-    },
-    {
-      name: 'Voice & Tone',
-      content: '../docs/voice-and-tone.md',
-      sectionDepth: 1,
-      exampleMode: 'hide',
-      usageMode: 'hide',
     },
     {
       name: 'Design Tokens',

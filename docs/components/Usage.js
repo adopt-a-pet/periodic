@@ -39,7 +39,7 @@ export default function Usage({ props: { props, methods, events, slots, syscalls
 		syscallsNode = <Syscalls props={syscalls} />;
 	}
 
-	if (!propsNode && !methodsNode && !slotsNode && !eventsNode) {
+	if (!propsNode && !methodsNode && !slotsNode && !eventsNode && !syscallsNode) {
 		return null;
 	}
 
