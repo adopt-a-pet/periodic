@@ -37,7 +37,7 @@ this.$syscall('something', 123)
 ##### In your host environment, when setting up Vuex
 
 ```javascript
-const syscalls = {
+const syscall = {
   namespaced: true,
 
   actions: {
@@ -50,7 +50,7 @@ const syscalls = {
 new Vuex.Store({
   strict: true,
   modules: {
-    syscalls,
+    syscall,
     // ...all of your other Vuex modules
   }
 });

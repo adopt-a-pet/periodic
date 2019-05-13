@@ -25,6 +25,11 @@ function renderName({ name, tags = {} }) {
 }
 
 function renderParams({ params = [] }) {
+	// return (
+	// 	<div>
+	// 		{params.map(param => <Argument args={param} />)}
+	// 	</div>
+	// );
 	return <Arguments args={params} />;
 }
 
@@ -52,7 +57,7 @@ export const columns = [
 		render: renderDescription,
 	},
 	{
-		caption: 'Parameters',
+		caption: 'Syscall Payload',
 		render: renderParams,
 	},
 	{
@@ -62,7 +67,6 @@ export const columns = [
 ];
 
 export default function Syscalls({ props }) {
-	console.log(props);
 	return <Table columns={columns} rows={propsToArray(props)} getRowKey={getRowKey} />
 }
 
