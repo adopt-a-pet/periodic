@@ -43,16 +43,16 @@ export const columns = [
 		render: renderName
 	},
 	{
-		caption: 'Description',
-		render: renderDescription,
-	},
-	{
 		caption: 'Payload',
 		render: renderParams,
 	},
 	{
 		caption: 'Returns',
 		render: renderReturns,
+	},
+	{
+		caption: 'Description',
+		render: renderDescription,
 	},
 ];
 
