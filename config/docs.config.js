@@ -238,6 +238,7 @@ module.exports = {
   },
   styleguideComponents: {
       // Usage: path.resolve(__dirname, '../docs/components/Usage')
+      ArgumentRenderer: path.resolve(__dirname, '../docs/components/ArgumentRenderer')
   },
   dangerouslyUpdateWebpackConfig(config) {
     // styleguideComponents doesn't work as it should with `Usage`

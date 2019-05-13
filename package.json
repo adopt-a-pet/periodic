@@ -168,6 +168,7 @@
     "portfinder": "^1.0.17",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
+    "react-group": "^3.0.0",
     "recast": "^0.17.6",
     "rimraf": "^2.6.0",
     "sass-loader": "^7.1.0",

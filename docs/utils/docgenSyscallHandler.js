@@ -7,13 +7,16 @@ const doctrine = require('doctrine');
 module.exports = (documentation, path, a) => {
   recast.visit(path.node, {
     visitComment(pathExpression) {
-      const comment = pathExpression.node.comments.filter(
+      const comment = pathExpression.node.comments.find(
         ({ type }) => type === 'CommentBlock'
-      )[0];
+      );
 
       if (!comment) return false;
 
-      const doclets = doctrine.parse(comment.value, { unwrap: true });
+      const doclets = doctrine.parse(comment.value, {
+        unwrap: true,
+        recoverable: true,
+      });
       const syscallDoc = doclets.tags.find(
         ({ title }) => title === 'syscall'
       );

@@ -65,7 +65,7 @@ When you create a new component, it's important to communicate to future develop
  * My syscall description!
  *
  * @syscall api/getBreeds
- * @param {Number} something
+ * @param {Number}
  * @returns {{a: Number, b: String}}
  */
 this.$syscall('api/getBreeds', 123)

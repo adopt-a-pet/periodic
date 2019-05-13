@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Argument from 'rsg-components/Argument'
-import Arguments from 'rsg-components/Arguments'
 import Markdown from 'rsg-components/Markdown'
 import Name from 'rsg-components/Name'
 import Table from 'rsg-components/Table'
@@ -25,24 +24,15 @@ function renderName({ name, tags = {} }) {
 }
 
 function renderParams({ params = [] }) {
-	// return (
-	// 	<div>
-	// 		{params.map(param => <Argument args={param} />)}
-	// 	</div>
-	// );
-	return <Arguments args={params} />;
+	const payload = params[0];
+
+	if (!payload) return null;
+
+	return <Argument {...payload} />;
 }
 
 function renderReturns({ returns }) {
-	if (!returns) return;
-
-	const { type } = returns;
-
-	if (type && type.fields) {
-		returns.type.name = `{${type.fields.map(
-			({ key, value }) => `${key}: ${value.name}`
-		).join(', ')}}`
-	}
+	if (!returns) return null;
 
 	return <Argument returns {...returns} />;
 }
@@ -57,7 +47,7 @@ export const columns = [
 		render: renderDescription,
 	},
 	{
-		caption: 'Syscall Payload',
+		caption: 'Payload',
 		render: renderParams,
 	},
 	{
