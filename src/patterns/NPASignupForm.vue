@@ -31,7 +31,9 @@
           tag="span"
           font-size="s"
           font-weight="normal">
-          <TextLink>What is this?</TextLink>
+          <TextLink @click="whatIsThis">
+            What is this?
+          </TextLink>
         </Paragraph>
       </Paragraph>
 
@@ -39,7 +41,10 @@
         size="xl" />
 
       <EmailInput
-        v-model="form.email" />
+        ref="email"
+        v-model="form.email"
+        name="email"
+        @change="checkSubmitEnabled" />
 
       <VSpacer
         size="xl" />
@@ -75,7 +80,9 @@
           </Paragraph>
         </TextLink>
 
-        <Button @click="saveAndContinue">
+        <Button
+          :disabled="submitDisabled"
+          @click="saveAndContinue">
           Save & Continue
         </Button>
       </div>
@@ -97,31 +104,62 @@ export default {
   status: 'under-review',
   release: '1.0.0',
 
+  props: {
+    /**
+     * Email to pre-fill in the form.
+     */
+    email: {
+      type: String,
+      default: '',
+    },
+  },
+
   data() {
     return {
       form: {
-        email: '',
+        email: this.email,
         dontShowAgain: false,
       },
+      submitDisabled: true,
     };
   },
 
+  mounted() {
+    this.checkSubmitEnabled();
+  },
+
   methods: {
-    skip() {
+    checkSubmitEnabled() {
+      this.$nextTick(() => {
+        const valid = !!this.form.email && this.$refs.email.validate();
+
+        this.submitDisabled = !valid;
+      });
+    },
+    whatIsThis() {
       /**
-       * NPA signup skip event
+       * When user clicks "What is this"
        *
-       * @event skip
+       * @event click:whatIsThis
        * @type none
        */
-      this.$emit('skip');
+      this.$emit('click:whatIsThis');
+    },
+    skip() {
+      /**
+       * When user clicks "Skip"
+       *
+       * @event click:skip
+       * @type none
+       */
+      this.$emit('click:skip');
     },
     saveAndContinue() {
       /**
        * NPA signup submit event
        *
        * @event submit
-       * @type Object
+       * @type {{ email: String, dontShowAgain: Boolean }}
        */
       this.$emit('submit', this.form);
     },
