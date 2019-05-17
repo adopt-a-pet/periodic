@@ -134,7 +134,7 @@ export default {
     level="h4">1 Column (default)</Heading>
 
   <CheckboxGroup
-    v-model="radioGroupSelected"
+    v-model="checkboxGroupSelected"
     name="example"
     :items="[
       { display: 'One', value: 1 },
@@ -149,7 +149,7 @@ export default {
     level="h4">3 Columns</Heading>
 
   <CheckboxGroup
-    v-model="radioGroupSelected2"
+    v-model="checkboxGroupSelected2"
     name="example2"
     :columns="3"
     :items="[
@@ -163,8 +163,8 @@ export default {
 export default {
   data() {
     return {
-      radioGroupSelected: [2],
-      radioGroupSelected2: [1, 3],
+      checkboxGroupSelected: [2],
+      checkboxGroupSelected2: [1, 3],
     }
   }
 };

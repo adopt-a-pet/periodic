@@ -4,13 +4,11 @@
     :style="gridStyles">
     <li
       v-for="(item, index) in renderItems"
-      :key="index">
-      <div
-        :id="item.id"
-        @click="onCheck(item.value, !boxChecked(item))">
-        <span :class="b('color', { checked: boxChecked(item) }).toString()" />
-        <span :class="b('label').toString()">{{ item.display }}</span>
-      </div>
+      :id="item.id"
+      :key="index"
+      @click="onCheck(item.value, !boxChecked(item))">
+      <span :class="b('color', { checked: boxChecked(item) }).toString()" />
+      <span :class="b('label').toString()">{{ item.display }}</span>
     </li>
   </ul>
 </template>
@@ -66,22 +64,15 @@ export default {
       default: 1,
     },
   },
+  /**
+   * Change event. This comes from the `onCheck` method in `CheckboxGroup`.
+   *
+   * @event change
+   * @type Array
+   */
   methods: {
     checkboxId(item) {
       return `${tokens.prefix_component}colorselect-${this.name}-item-${item.value}`;
-    },
-    onCheck(value, selected) {
-      /**
-       * Change event
-       *
-       * @event change
-       * @type Array
-       */
-      if (selected) {
-        this.$emit('change', this.value.concat(value));
-      } else {
-        this.$emit('change', this.value.filter(v => v !== value));
-      }
     },
   },
 };
@@ -96,7 +87,7 @@ export default {
     level="h4">1 Column (default)</Heading>
 
   <ColorSelect
-    v-model="radioGroupSelected"
+    v-model="colorSelectSelected"
     name="example"
     :items="[
       { display: 'One', value: 1 },
@@ -111,7 +102,7 @@ export default {
     level="h4">3 Columns</Heading>
 
   <ColorSelect
-    v-model="radioGroupSelected2"
+    v-model="colorSelectSelected2"
     name="example2"
     :columns="3"
     :items="[
@@ -125,8 +116,8 @@ export default {
 export default {
   data() {
     return {
-      radioGroupSelected: [2],
-      radioGroupSelected2: [1, 3],
+      colorSelectSelected: [2],
+      colorSelectSelected2: [1, 3],
     }
   }
 };
