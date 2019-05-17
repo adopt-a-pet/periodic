@@ -1,0 +1,20 @@
++b('colorselect')
+  display: grid
+  padding: 0
+  width: 100%
+  list-style-type: none
+  +rem-fallback('row-gap', $space-s)
+
+  +e('color')
+    border: 2px solid color(agray, light)
+    display: inline-block
+    width: $font-size-l
+    height: $font-size-l
+    border-radius: 50%
+
+    +m('checked')
+      border-color: color(ablue, base)
+
+  +e('label')
+    font-weight: 200
+    +rem-fallback('font-size', $font-size-m)

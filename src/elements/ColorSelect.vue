@@ -5,27 +5,28 @@
     <li
       v-for="(item, index) in renderItems"
       :key="index">
-      <Checkbox
+      <div
         :id="item.id"
-        :checked="boxChecked(item)"
-        :size="size"
-        @change="onCheck(item.value, $event)">
+        @click="onCheck(item.value, !boxChecked(item))">
+        <span :class="b('color', { checked: boxChecked(item) }).toString()" />
         <span :class="b('label').toString()">{{ item.display }}</span>
-      </Checkbox>
+      </div>
     </li>
   </ul>
 </template>
 <script>
+import CheckboxGroup from '@/elements/CheckboxGroup';
 import tokens from '@/assets/tokens/tokens.json';
 
 /**
- * Render a set of checkboxes where the v-model is an array of checked values
+ * Render a set of selectable colors where the v-model is an array of checked values
  */
 export default {
-  name: 'CheckboxGroup',
+  name: 'ColorSelect',
+  extends: CheckboxGroup,
   status: 'under-review',
   release: '1.0.0',
-  blockName: 'checkbox-group',
+  blockName: 'colorselect',
   model: {
     event: 'change',
     prop: 'value',
@@ -36,24 +37,7 @@ export default {
      */
     name: {
       type: String,
-      default: 'checkbox-group',
-    },
-    /**
-     * The size of the checkboxes.
-     *
-     * `tiny, small, large`
-     */
-    size: {
-      type: String,
-      default: 'large',
-      validator: value => value.match(/(tiny|small|large)/),
-    },
-    /**
-     * Whether the form field is required or not.
-     */
-    required: {
-      type: Boolean,
-      default: false,
+      default: 'colorselect',
     },
     /**
      * A list of items to render. Each item must have a `display` and a `value`.
@@ -82,31 +66,9 @@ export default {
       default: 1,
     },
   },
-  computed: {
-    // Add an id property to each item
-    renderItems() {
-      return this.items.map(item => (
-        {
-          ...item,
-          id: this.checkboxId(item),
-        }
-      ));
-    },
-    gridStyles() {
-      return {
-        'grid-template-columns': `repeat(${this.columns}, 1fr)`,
-      };
-    },
-  },
   methods: {
     checkboxId(item) {
-      return `${tokens.prefix_component}checkbox-group-${this.name}-item-${item.value}`;
-    },
-    validate() {
-      return this.validateRequired(this.required, this.value.length);
-    },
-    boxChecked({ value: checkboxValue }) {
-      return this.value.includes(checkboxValue);
+      return `${tokens.prefix_component}colorselect-${this.name}-item-${item.value}`;
     },
     onCheck(value, selected) {
       /**
@@ -133,7 +95,7 @@ export default {
     font-family="museo"
     level="h4">1 Column (default)</Heading>
 
-  <CheckboxGroup
+  <ColorSelect
     v-model="radioGroupSelected"
     name="example"
     :items="[
@@ -148,7 +110,7 @@ export default {
     font-family="museo"
     level="h4">3 Columns</Heading>
 
-  <CheckboxGroup
+  <ColorSelect
     v-model="radioGroupSelected2"
     name="example2"
     :columns="3"
