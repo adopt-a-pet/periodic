@@ -1,9 +1,20 @@
 +b(npa-signup)
+  +breakpoint(tablet-plus)
+    display: grid
+    grid-template-columns: 3fr 2fr
+
   +e(content)
     text-align: center
     margin: auto
     max-width: 36rem
     padding: 0 2.3rem
+
+  +e(fields)
+    display: grid
+    grid-column-gap: 20px
+    grid-row-gap: 20px
+    +breakpoint(tablet-plus)
+      grid-template-columns: 1fr 1fr
 
   +e(checkbox-text)
     +rem-fallback(margin-left, $space-xxs)
@@ -14,6 +25,9 @@
     display: grid
     grid-template-columns: 1fr 4fr
     text-align: left
+
+  +e(offers-form-desktop)
+    margin-top: 135px
 
 +b(npa-signup-whatisthis)
   +e(content)
