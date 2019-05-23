@@ -35,68 +35,68 @@
       </Paragraph>
 
       <VSpacer size="xl" />
-      <div class="grid">
-        <EmailInput
-          ref="email"
-          v-model="form.email"
-          name="email"
-          @change="checkSubmitEnabled" />
 
-        <VSpacer size="xl" />
+      <EmailInput
+        ref="email"
+        v-model="form.email"
+        name="email"
+        @change="checkSubmitEnabled" />
 
-        <VDivider type="dashed" />
+      <VSpacer size="xl" />
 
-        <VSpacer size="xl" />
+      <VDivider type="dashed" />
 
-        <OffersForm
-          v-if="layout !== 'desktop'"
-          v-model="offers" />
+      <VSpacer size="xl" />
 
-        <VSpacer size="l" />
+      <OffersForm
+        v-if="layout !== 'desktop'"
+        v-model="offers" />
 
-        <VDivider type="dashed" />
+      <VSpacer size="l" />
 
-        <VSpacer size="xl" />
+      <VDivider type="dashed" />
 
-        <Checkbox v-model="form.dontShowAgain">
+      <VSpacer size="xl" />
+
+      <Checkbox v-model="form.dontShowAgain">
+        <Paragraph
+          :class="b('checkbox-text').toString()"
+          font-size="xs"
+          font-weight="light">
+          Don’t show me this again.
+        </Paragraph>
+      </Checkbox>
+
+      <VSpacer size="xl" />
+
+      <div :class="b('skip-continue').toString()">
+        <TextLink
+          always-underline
+          color="gray-light"
+          @click="skip">
           <Paragraph
-            :class="b('checkbox-text').toString()"
-            font-size="xs"
-            font-weight="light">
-            Don’t show me this again.
+            tag="span"
+            font-size="m"
+            font-family="museo"
+            font-weight="bold">
+            Skip
           </Paragraph>
-        </Checkbox>
+        </TextLink>
 
-        <VSpacer size="xl" />
-
-        <div :class="b('skip-continue').toString()">
-          <TextLink
-            always-underline
-            color="gray-light"
-            @click="skip">
-            <Paragraph
-              tag="span"
-              font-size="m"
-              font-family="museo"
-              font-weight="bold">
-              Skip
-            </Paragraph>
-          </TextLink>
-
-          <Button
-            :disabled="submitDisabled"
-            @click="saveAndContinue">
-            Save & Continue
-          </Button>
-        </div>
-
-        <VSpacer size="xl" />
+        <Button
+          :disabled="submitDisabled"
+          @click="saveAndContinue">
+          Save & Continue
+        </Button>
       </div>
+
+      <VSpacer size="xl" />
     </div>
 
     <OffersForm
       v-if="layout === 'desktop'"
-      v-model="offers" />
+      v-model="offers"
+      :class="b('offers-form-desktop').toString()" />
   </div>
 </template>
 

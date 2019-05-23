@@ -1,7 +1,7 @@
 <template>
-  <Modal>
-    <NPASignupForm />
-  </Modal>
+  <div>
+    <!-- test components here -->
+  </div>
 </template>
 
 <script>
