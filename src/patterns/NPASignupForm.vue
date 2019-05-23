@@ -48,7 +48,9 @@
 
         <VSpacer size="xl" />
 
-        <OffersForm />
+        <OffersForm
+          v-if="layout !== 'desktop'"
+          v-model="offers" />
 
         <VSpacer size="l" />
 
@@ -91,6 +93,10 @@
         <VSpacer size="xl" />
       </div>
     </div>
+
+    <OffersForm
+      v-if="layout === 'desktop'"
+      v-model="offers" />
   </div>
 </template>
 
@@ -121,6 +127,7 @@ export default {
         email: this.email,
         dontShowAgain: false,
       },
+      offers: [],
       submitDisabled: true,
     };
   },
@@ -182,28 +189,3 @@ export default {
 </script>
 ```
 </docs>
-
-<style lang="scss">
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-
-  @include breakpoint(wide) {
-    grid-template-columns: 3fr 2fr;
-    padding-right: 2rem;
-
-    .periodic-npa-signup__content {
-      margin-right: 0 !important;
-    }
-
-    .periodic-offers-form {
-      margin: 100px auto 0 0;
-      padding: 2.3rem 2.3rem 2rem 0;
-    }
-  }
-
-  .periodic-offers-form {
-    margin: 0 auto;
-  }
-}
-</style>
