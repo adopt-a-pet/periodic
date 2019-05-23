@@ -1,8 +1,7 @@
 <template>
   <div :class="b().toString()">
     <div :class="b('content').toString()">
-      <VSpacer
-        size="xxxs" />
+      <VSpacer size="xxxs" />
 
       <Heading
         level="h4"
@@ -18,15 +17,13 @@
         New Pet Alert
       </Heading>
 
-      <VSpacer
-        size="xl" />
+      <VSpacer size="xl" />
 
       <Paragraph
         text-align="left"
         color="gray"
         font-weight="normal">
         We'll email you when new pets that match your search criteria are added to our site!
-
         <Paragraph
           tag="span"
           font-size="s"
@@ -37,58 +34,62 @@
         </Paragraph>
       </Paragraph>
 
-      <VSpacer
-        size="xl" />
+      <VSpacer size="xl" />
+      <div class="grid">
+        <EmailInput
+          ref="email"
+          v-model="form.email"
+          name="email"
+          @change="checkSubmitEnabled" />
 
-      <EmailInput
-        ref="email"
-        v-model="form.email"
-        name="email"
-        @change="checkSubmitEnabled" />
+        <VSpacer size="xl" />
 
-      <VSpacer
-        size="xl" />
+        <VDivider type="dashed" />
 
-      <VDivider type="dashed" />
+        <VSpacer size="xl" />
 
-      <VSpacer
-        size="xl" />
+        <OffersForm />
 
-      <Checkbox v-model="form.dontShowAgain">
-        <Paragraph
-          :class="b('checkbox-text').toString()"
-          font-size="xs"
-          font-weight="light">
-          Don’t show me this again.
-        </Paragraph>
-      </Checkbox>
+        <VSpacer size="l" />
 
-      <VSpacer
-        size="xl" />
+        <VDivider type="dashed" />
 
-      <div :class="b('skip-continue').toString()">
-        <TextLink
-          always-underline
-          color="gray-light"
-          @click="skip">
+        <VSpacer size="xl" />
+
+        <Checkbox v-model="form.dontShowAgain">
           <Paragraph
-            tag="span"
-            font-size="m"
-            font-family="museo"
-            font-weight="bold">
-            Skip
+            :class="b('checkbox-text').toString()"
+            font-size="xs"
+            font-weight="light">
+            Don’t show me this again.
           </Paragraph>
-        </TextLink>
+        </Checkbox>
 
-        <Button
-          :disabled="submitDisabled"
-          @click="saveAndContinue">
-          Save & Continue
-        </Button>
+        <VSpacer size="xl" />
+
+        <div :class="b('skip-continue').toString()">
+          <TextLink
+            always-underline
+            color="gray-light"
+            @click="skip">
+            <Paragraph
+              tag="span"
+              font-size="m"
+              font-family="museo"
+              font-weight="bold">
+              Skip
+            </Paragraph>
+          </TextLink>
+
+          <Button
+            :disabled="submitDisabled"
+            @click="saveAndContinue">
+            Save & Continue
+          </Button>
+        </div>
+
+        <VSpacer size="xl" />
       </div>
-
-      <VSpacer
-        size="xl" />
     </div>
   </div>
 </template>
@@ -170,15 +171,39 @@ export default {
 <docs>
 ```vue
 <template>
-  <NPASignupForm />
+  <NPASignupForm/>
 </template>
 <script>
 export default {
   data() {
-    return {
-    }
+    return {};
   }
 };
 </script>
 ```
 </docs>
+
+<style lang="scss">
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include breakpoint(wide) {
+    grid-template-columns: 3fr 2fr;
+    padding-right: 2rem;
+
+    .periodic-npa-signup__content {
+      margin-right: 0 !important;
+    }
+
+    .periodic-offers-form {
+      margin: 100px auto 0 0;
+      padding: 2.3rem 2.3rem 2rem 0;
+    }
+  }
+
+  .periodic-offers-form {
+    margin: 0 auto;
+  }
+}
+</style>
