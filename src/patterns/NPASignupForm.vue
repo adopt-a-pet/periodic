@@ -36,25 +36,36 @@
 
       <VSpacer size="xl" />
 
-      <EmailInput
-        ref="email"
-        v-model="form.email"
-        name="email"
-        @change="checkSubmitEnabled" />
+      <div :class="b('fields').toString()">
+        <EmailInput
+          ref="email"
+          v-model="form.email"
+          name="email"
+          @change="checkSubmitEnabled" />
+        <EmailInput
+          ref="emailConfirm"
+          v-model="form.emailConfirm"
+          label="Confirm Email"
+          name="email_confirm"
+          @change="checkSubmitEnabled" />
+      </div>
 
       <VSpacer size="xl" />
 
-      <VDivider type="dashed" />
+      <VDivider
+        v-if="layout == 'desktop'"
+        type="dashed" />
 
-      <VSpacer size="xl" />
-
-      <OffersForm
-        v-if="layout !== 'desktop'"
-        v-model="offers" />
-
-      <VSpacer size="l" />
-
-      <VDivider type="dashed" />
+      <div v-if="layout !== 'desktop'">
+        <VDivider type="dashed" />
+        <VSpacer size="xl" />
+        <OffersForm
+          ref="offersForm"
+          :offers="offers"
+          :optins="optins" />
+        <VSpacer size="xl" />
+        <VDivider type="dashed" />
+      </div>
 
       <VSpacer size="xl" />
 
@@ -95,8 +106,11 @@
 
     <OffersForm
       v-if="layout === 'desktop'"
+      ref="offersForm"
       v-model="offers"
-      :class="b('offers-form-desktop').toString()" />
+      :class="b('offers-form-desktop').toString()"
+      :offers="offers"
+      :optins="optins" />
   </div>
 </template>
 
@@ -107,9 +121,6 @@
 
 export default {
   name: 'NPASignupForm',
-  blockName: 'npa-signup',
-  status: 'under-review',
-  release: '1.0.0',
 
   props: {
     /**
@@ -119,6 +130,24 @@ export default {
       type: String,
       default: '',
     },
+    /**
+     * A list of offers in the form of:
+     *
+     * ```
+     * [ { newsletterId: 1, displayHtml: 'Something...' } ]
+     *```
+     */
+    offers: {
+      type: Array,
+      default: () => [],
+    },
+    /**
+     * A list of newsletterIds that are checked
+     */
+    optins: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   data() {
@@ -126,11 +155,14 @@ export default {
       form: {
         email: this.email,
         dontShowAgain: false,
+        optins: this.$refs.optins,
       },
-      offers: [],
       submitDisabled: true,
     };
   },
+  blockName: 'npa-signup',
+  status: 'under-review',
+  release: '1.0.0',
 
   mounted() {
     this.checkSubmitEnabled();
@@ -139,7 +171,16 @@ export default {
   methods: {
     checkSubmitEnabled() {
       this.$nextTick(() => {
-        const valid = !!this.form.email && this.$refs.email.validate();
+        let valid = false;
+        if (
+          !!this.form.email
+          && this.$refs.email.validate()
+          && !!this.form.emailConfirm
+          && this.$refs.emailConfirm.validate()
+          && this.form.email === this.form.emailConfirm
+        ) {
+          valid = true;
+        }
 
         this.submitDisabled = !valid;
       });
