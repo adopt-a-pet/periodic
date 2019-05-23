@@ -5,7 +5,7 @@
   list-style-type: none
   +rem-fallback('row-gap', $space-s)
 
-  +e('color')
+  +e('color-sample')
     border: 2px solid color(agray, light)
     display: inline-block
     width: $font-size-l
@@ -14,6 +14,12 @@
 
     +m('checked')
       border-color: color(ablue, base)
+
+    +m('color-black')
+      background: #000
+
+    +m('color-brown')
+      background: #401
 
   +e('label')
     font-weight: 200

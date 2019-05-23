@@ -7,7 +7,7 @@
       :id="item.id"
       :key="index"
       @click="onCheck(item.value, !boxChecked(item))">
-      <span :class="b('color', { checked: boxChecked(item) }).toString()" />
+      <span :class="b('color-sample', { checked: boxChecked(item), color: item.color }).toString()" />
       <span :class="b('label').toString()">{{ item.display }}</span>
     </li>
   </ul>
@@ -41,12 +41,14 @@ export default {
      * A list of items to render. Each item must have a `display` and a `value`.
      *
      *
-     * `[ { display: 'Green', value: 'a' } ]`
+     * `[ { display: 'Green', value: 123, color: 'Brown' } ]`
      */
     items: {
       type: Array,
       default: () => [],
-      validator: items => items.every(item => ('display' in item) && ('value' in item)),
+      validator: items => items.every(item =>
+        ('display' in item) && ('value' in item) && ('color' in item),
+      ),
     },
     /**
      * The values of the selected items.
@@ -90,9 +92,9 @@ export default {
     v-model="colorSelectSelected"
     name="example"
     :items="[
-      { display: 'One', value: 1 },
-      { display: 'Two', value: 2 },
-      { display: 'Three', value: 3 }
+      { display: 'One', value: 1, color: 'brown' },
+      { display: 'Two', value: 2, color: 'black' },
+      { display: 'Three', value: 3, color: 'brindle' }
     ]" />
 
   <VSpacer size="l" />
@@ -106,9 +108,9 @@ export default {
     name="example2"
     :columns="3"
     :items="[
-      { display: 'One', value: 1 },
-      { display: 'Two', value: 2 },
-      { display: 'Three', value: 3 }
+      { display: 'One', value: 1, color: 'brown' },
+      { display: 'Two', value: 2, color: 'black' },
+      { display: 'Three', value: 3, color: 'brindle' }
     ]" />
 </div>
 </template>
