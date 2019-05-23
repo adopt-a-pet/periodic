@@ -60,9 +60,8 @@
         <VDivider type="dashed" />
         <VSpacer size="xl" />
         <OffersForm
-          ref="offersForm"
-          :offers="offers"
-          :optins="optins" />
+          v-model="form.optins"
+          :offers="offers" />
         <VSpacer size="xl" />
         <VDivider type="dashed" />
       </div>
@@ -106,11 +105,9 @@
 
     <OffersForm
       v-if="layout === 'desktop'"
-      ref="offersForm"
-      v-model="offers"
+      v-model="form.optins"
       :class="b('offers-form-desktop').toString()"
-      :offers="offers"
-      :optins="optins" />
+      :offers="offers" />
   </div>
 </template>
 
@@ -155,7 +152,7 @@ export default {
       form: {
         email: this.email,
         dontShowAgain: false,
-        optins: this.$refs.optins,
+        optins: this.optins,
       },
       submitDisabled: true,
     };
