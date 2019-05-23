@@ -205,7 +205,7 @@ export default {
        * NPA signup submit event
        *
        * @event submit
-       * @type {{ email: String, dontShowAgain: Boolean }}
+       * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
        */
       this.$emit('submit', this.form);
     },
