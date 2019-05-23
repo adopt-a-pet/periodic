@@ -41,12 +41,18 @@
           ref="email"
           v-model="form.email"
           name="email"
+          :error-messages="{ required: 'Enter Email', emailConfirm: '' }"
+          required
           @change="checkSubmitEnabled" />
-        <EmailInput
+
+        <TextInput
           ref="emailConfirm"
-          v-model="form.emailConfirm"
+          v-model="emailConfirm"
+          :validations="emailConfirmValidators"
+          :error-messages="{ required: 'Enter Email', emailConfirm: '' }"
+          name="email-confirm"
           label="Confirm Email"
-          name="email_confirm"
+          required
           @change="checkSubmitEnabled" />
       </div>
 
@@ -154,6 +160,7 @@ export default {
         dontShowAgain: false,
         optins: this.optins,
       },
+      emailConfirm: '',
       submitDisabled: true,
     };
   },
@@ -161,8 +168,22 @@ export default {
   status: 'under-review',
   release: '1.0.0',
 
+  computed: {
+    emailConfirmValidators() {
+      return {
+        emailConfirm: value => value.toLowerCase() === this.form.email.toLowerCase(),
+      };
+    },
+  },
+
   mounted() {
-    this.checkSubmitEnabled();
+    if (this.form.email) {
+      // If we are auto-filling email because we already have it, bypass emailConfirm
+      this.emailConfirm = this.form.email;
+
+      // Make sure it's valid
+      this.checkSubmitEnabled();
+    }
   },
 
   methods: {
@@ -170,11 +191,10 @@ export default {
       this.$nextTick(() => {
         let valid = false;
         if (
-          !!this.form.email
+          this.form.email
           && this.$refs.email.validate()
-          && !!this.form.emailConfirm
+          && this.emailConfirm
           && this.$refs.emailConfirm.validate()
-          && this.form.email === this.form.emailConfirm
         ) {
           valid = true;
         }
@@ -216,7 +236,7 @@ export default {
 <docs>
 ```vue
 <template>
-  <NPASignupForm/>
+  <NPASignupForm />
 </template>
 <script>
 export default {
