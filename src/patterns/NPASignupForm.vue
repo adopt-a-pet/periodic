@@ -236,12 +236,24 @@ export default {
 <docs>
 ```vue
 <template>
-  <NPASignupForm />
+  <NPASignupForm :offers="offers" />
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      offers: [
+        {
+          newsletterId: 1,
+          displayHtml: "I would like to receive the latest special deals"
+        },
+        {
+          newsletterId: 2,
+          displayHtml:
+            "Yes, I would like to receive communications from the Petco Foundation"
+        }
+      ]
+    };
   }
 };
 </script>
