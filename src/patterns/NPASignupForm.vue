@@ -41,7 +41,7 @@
           ref="email"
           v-model="form.email"
           name="email"
-          :error-messages="{ required: 'Enter Email', emailConfirm: '' }"
+          :error-messages="{ required: 'Enter Email', email: 'Invalid Email' }"
           required
           @change="checkSubmitEnabled" />
 
