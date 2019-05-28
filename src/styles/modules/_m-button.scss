@@ -107,7 +107,7 @@
     line-height: 2.9;
     cursor: not-allowed;
     pointer-events: none;
-    color: color(awhite);
+    color: color(agray, dark);
   }
 
   @include element('image') {
