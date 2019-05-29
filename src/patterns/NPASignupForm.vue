@@ -49,7 +49,7 @@
           ref="emailConfirm"
           v-model="emailConfirm"
           :validations="emailConfirmValidators"
-          :error-messages="{ required: 'Enter Email', emailConfirm: '' }"
+          :error-messages="{ required: 'Enter Email', emailConfirm: 'Invalid Email' }"
           name="email-confirm"
           label="Confirm Email"
           required
