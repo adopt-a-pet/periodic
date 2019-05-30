@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import Fuse from 'fuse.js';
+const Fuse = require('fuse.js');
 
 const fuseOptions = {
   findAllMatches: true,

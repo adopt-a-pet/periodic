@@ -59,7 +59,6 @@ export default {
     },
     /**
      * Should the box start checked.
-     * @model
      */
     checked: {
       type: Boolean,

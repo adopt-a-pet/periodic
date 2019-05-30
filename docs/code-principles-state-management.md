@@ -20,7 +20,7 @@ By keeping side effects out of our components and isolating them in one place we
 
 Now, you may look at that list of side effects and think: "Hey, those are all useful things that need to be done! If my component can do those things who will?"
 
-For Periodic, the answer is: syscalls. Syscalls are a convenient way to make use of side effects without increasing the size of our builds or making assumptions about the environment where Periodic will be used. There is a whole page of documentation on Syscalls, so check that out when you need it.
+The answer generally is: Vuex. Vuex is a library built solely for managing state. It also has `actions` which can make asynchronous modifications to the state (HTTP requests, cookies, analytics, etc).
 
 #### Module communication without side effects
 
@@ -39,13 +39,50 @@ It's as simple as...
 
 The idea of an event bus makes sense: Two-way communication between deeply nested child components and (grand)parent components. The problem comes when modules are meant to be composed together like building blocks. Now you have elements or patterns which make assumptions about what their parent components will be. This is unacceptable if you want your components to be completely independent and interchangeable.
 
-So what do you do instead? Usually relaying the events upward works just fine in practice.
+So what do you do instead? Usually relaying the events upward works just fine in practice. If more complex messaging is needed use Vuex.
 
-## Local state, props, or syscalls?
+## Vuex
 
-Let's recap:
+#### mixins/vuex-module
 
-- Elements should usually only need props and `$emit` for use with `v-model`.
-- Some elements and most patterns will need some local state, which is fine when needed.
-- If you have components that need to communicate with one another, use `$emit`.
-- If you need to do anything with side effects, use syscalls.
+Use it!
+
+Put your modules in `src/store/modules` and then require them in
+
+#### Keep mutations out of components. Always use Actions.
+
+https://github.com/vuejs/vuex/issues/587#issuecomment-346942179
+
+##### But isn't that just another level of indirection? So...why?
+
+No matter how complex your app gets, the data flow will always look like this diagram:
+
+![vuex](https://vuex.vuejs.org/vuex.png)
+
+##### Simplicity within components
+
+It's one less thing to think about for the developer. Instead of having to constantly look back at your state code and remember "Was that an action or a mutation? Was it async or not?" Just know that from the component's perspective you always use actions.
+
+##### Actions can compose mutations
+
+There are plenty of times when you may need to change multiple parts of the state at the same time. To keep your component code small, you can combine all of these mutations into a single action. This also removes the temptation to put business logic inside of your components.
+
+For example, in the official [shopping cart example](https://github.com/vuejs/vuex/blob/dev/examples/shopping-cart/store/modules/cart.js) you can see the `checkout` action does several things:
+
+1. Commit `setCheckoutStatus`
+2. Commit `setCartItems`
+3. Asynchronously call `buyProducts` and commit `setCheckoutStatus`
+
+That's a whole lot of code that otherwise would have been inside the component.
+
+## Local state, props, or Vuex?
+
+Each pattern and template in Periodic may have its own Vuex module (if needed) using `this.$store.registerModule`! Elements will not. Elements will either keep a small amount of local state or, ideally, no state at all.
+
+- Elements don't use Vuex. They communicate using custom events. This will help force our elements to stay small.
+- Patterns and templates only use Vuex.
+
+Mixin for two reasons
+
+1. Allow multiple instances like login
+2. Won't conflict with the app

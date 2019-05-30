@@ -3,8 +3,6 @@ const merge = require('webpack-merge');
 const chalk = require('chalk');
 const baseConfig = require('../build/webpack.base.conf.js');
 const packageConfig = require('../package.json');
-const docgen = require('vue-docgen-api');
-const docgenSyscallHandler = require('../docs/utils/docgenSyscallHandler');
 
 module.exports = {
   /**
@@ -84,18 +82,19 @@ module.exports = {
           usageMode: "hide",
         },
         {
-          name: "Syscalls",
-          content: "../docs/code-principles-syscalls.md",
-          exampleMode: "hide",
-          usageMode: "hide",
-        },
-        {
           name: "CSS",
           content: "../docs/code-principles-css.md",
           exampleMode: "hide",
           usageMode: "hide",
         },
       ],
+    },
+    {
+      name: 'Voice & Tone',
+      content: '../docs/voice-and-tone.md',
+      sectionDepth: 1,
+      exampleMode: 'hide',
+      usageMode: 'hide',
     },
     {
       name: 'Design Tokens',
@@ -236,24 +235,6 @@ module.exports = {
       )
     );
   },
-  styleguideComponents: {
-      // Usage: path.resolve(__dirname, '../docs/components/Usage')
-      ArgumentRenderer: path.resolve(__dirname, '../docs/components/ArgumentRenderer')
-  },
-  dangerouslyUpdateWebpackConfig(config) {
-    // styleguideComponents doesn't work as it should with `Usage`
-    // It seems to work with other components like `StyleGuideRenderer` though.
-    // This is the only fix I can think of to get it working.
-    config.resolve.alias['rsg-components/Usage'] = path.resolve(__dirname, '../docs/components/Usage');
-
-    return config;
-  },
-  propsParser(filePath, source) {
-    return docgen.parseSource(source, filePath, {
-      alias: baseConfig.resolve.alias,
-      addScriptHandlers: [ docgenSyscallHandler ]
-    });
-  }
   /**
    * Configure docs server to redirect asset queries
    */

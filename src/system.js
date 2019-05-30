@@ -10,8 +10,8 @@ import errorMessages from '@/mixins/error-messages';
 import filters from '@/mixins/filters';
 import layout from '@/mixins/layout';
 import validateRequired from '@/mixins/validate-required';
+import vuexModule from '@/mixins/vuex-module';
 import { validationMixin } from 'vuelidate';
-import dropdownItems from '@/mixins/dropdown-items';
 
 import './styles/styles.scss';
 
@@ -30,12 +30,12 @@ contexts.forEach(context => {
 
 export const mixins = [
   bemNames,
-  dropdownItems,
   errorMessages,
   filters,
   layout,
   validateRequired,
   validationMixin,
+  vuexModule,
 ];
 
 // Install the above defined components
@@ -51,9 +51,9 @@ const System = {
 };
 
 // Automatic installation if Vue has been added to the global scope
-// if (typeof window !== 'undefined' && window.Vue) {
-//   window.Vue.use(System);
-// }
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(System);
+}
 
 // Finally export as default
 export default System;
