@@ -49,7 +49,7 @@
           ref="emailConfirm"
           v-model="emailConfirm"
           :validations="emailConfirmValidators"
-          :error-messages="{ required: 'Enter Email', emailConfirm: '' }"
+          :error-messages="{ required: 'Enter Email', emailConfirm: 'Invalid Email' }"
           name="email-confirm"
           label="Confirm Email"
           required
@@ -171,7 +171,8 @@ export default {
   computed: {
     emailConfirmValidators() {
       return {
-        emailConfirm: value => value.toLowerCase() === this.form.email.toLowerCase(),
+        emailConfirm: value =>
+          value.toLowerCase() === this.form.email.toLowerCase(),
       };
     },
   },
@@ -236,7 +237,7 @@ export default {
 <docs>
 ```vue
 <template>
-  <NPASignupForm :offers="offers" />
+  <NPASignupForm :offers="offers"/>
 </template>
 <script>
 export default {

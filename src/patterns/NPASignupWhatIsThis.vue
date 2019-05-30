@@ -8,8 +8,7 @@
         What are New Pet Alerts?
       </Heading>
 
-      <VSpacer
-        size="xl" />
+      <VSpacer size="xl" />
 
       <Paragraph
         text-align="left"
@@ -19,23 +18,21 @@
         pet that matches your search is added, so you won't miss out.
       </Paragraph>
 
-      <VSpacer
-        size="l" />
+      <VSpacer size="l" />
 
       <VDivider />
 
-      <VSpacer
-        size="l" />
+      <VSpacer size="l" />
 
       <Heading
         :level="'h2'"
         font-weight="bold"
-        font-family="museo">
+        font-family="museo"
+        text-align="left">
         Here's How It Works
       </Heading>
 
-      <VSpacer
-        size="l" />
+      <VSpacer size="l" />
 
       <ol :class="b('steps').toString()">
         <li>
@@ -75,13 +72,11 @@
         </li>
       </ol>
 
-      <VSpacer
-        size="m" />
+      <VSpacer size="m" />
 
       <VDivider />
 
-      <VSpacer
-        size="l" />
+      <VSpacer size="l" />
 
       <Paragraph
         text-align="left"
@@ -90,8 +85,7 @@
         It's that easy! You can save up to 15 New Pet Alerts, and you can cancel or change them at any time.
       </Paragraph>
 
-      <VSpacer
-        size="l" />
+      <VSpacer size="l" />
     </div>
   </div>
 </template>
@@ -107,8 +101,7 @@ export default {
   status: 'under-review',
   release: '1.0.0',
 
-  props: {
-  },
+  props: {},
 
   data() {
     return {
@@ -117,24 +110,21 @@ export default {
     };
   },
 
-  computed: {
-  },
+  computed: {},
 
-  methods: {
-  },
+  methods: {},
 };
 </script>
 
 <docs>
 ```vue
 <template>
-  <NPASignupWhatIsThis />
+  <NPASignupWhatIsThis/>
 </template>
 <script>
 export default {
   data() {
-    return {
-    }
+    return {};
   }
 };
 </script>
