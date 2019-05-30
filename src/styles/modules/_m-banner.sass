@@ -1,0 +1,28 @@
++b('banner-popup')
+    width: 100%
+    top: 0
+    position: absolute
+    visibility: hidden
+    top: 0
+    left: 0
+
+    +is('active')
+        opacity: 10
+        visibility: visible
+        z-index: 100000
+
+    @include modifier('color')
+        &-orange
+            background-color: #ff8f43
+
+    +e('close')
+        cursor: pointer
+        z-index: 1100
+        position: absolute
+        top: $space-xxs
+        right: $space-xxs
+        padding: $space-xxs
+        transition: all .5s cubic-bezier(.23,1,.32,1)
+
+    +e('close-svg')
+        pointer-events: none
