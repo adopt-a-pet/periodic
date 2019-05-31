@@ -38,10 +38,9 @@
             {{ option.display | capitalize }}
           </Checkbox>
 
-          <Icon
-            v-if="isOptionSelected(option)"
-            :class="b('list-check').toString()"
-            name="check-blue" />
+          <span
+            v-if="option.labelRight"
+            :style="{ float: 'right' }">{{ option.labelRight }}</span>
         </li>
       </ul>
     </div>
@@ -177,10 +176,6 @@ export default {
           : this.allChoices
       );
     },
-
-    // allChoices() {
-    //   return this.makeChoices(this.items);
-    // },
   },
 
   methods: {
@@ -256,11 +251,7 @@ export default {
     focusInput() { this.$refs.input.focus(); },
 
     addIndexes(choices) {
-      return choices.map(({ value, display }, i) => ({
-        value,
-        display: String(display),
-        index: i,
-      }));
+      return choices.map((choice, i) => ({ ...choice, index: i }));
     },
 
     isOptionSelected({ value: optionValue }) {
@@ -280,8 +271,8 @@ export default {
       label-right="Right Label"
       v-model="dropdown1"
       :items="[
-        { display: 'One', value: 1 },
-        { display: 'Two', value: 2 },
+        { display: 'One', value: 1, labelRight: '(3)' },
+        { display: 'Two', value: 2, labelRight: '(1)' },
       ]" />
 
     <br />
@@ -290,10 +281,10 @@ export default {
       label="With Search"
       v-model="dropdown2"
       :items="[
-        { display: 'One', value: 1 },
-        { display: 'Two', value: 2 },
-        { display: 'Three', value: 3 },
-        { display: 'Four', value: 4 },
+        { display: 'One', value: 1, labelRight: '(0)' },
+        { display: 'Two', value: 2, labelRight: '(2)' },
+        { display: 'Three', value: 3, labelRight: '(5)' },
+        { display: 'Four', value: 4, labelRight: '(1)' },
       ]"
       :search="true"
       tooltip="This is an info bubble" />
