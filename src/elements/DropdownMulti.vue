@@ -38,10 +38,9 @@
             {{ option.display | capitalize }}
           </Checkbox>
 
-          <Icon
-            v-if="isOptionSelected(option)"
-            :class="b('list-check').toString()"
-            name="check-blue" />
+          <span
+            v-if="labelRight"
+            :style="{ float: 'right' }">{{ option.labelRight }}</span>
         </li>
       </ul>
     </div>
@@ -256,9 +255,8 @@ export default {
     focusInput() { this.$refs.input.focus(); },
 
     addIndexes(choices) {
-      return choices.map(({ value, display }, i) => ({
-        value,
-        display: String(display),
+      return choices.map((choice, i) => ({
+        ...choice,
         index: i,
       }));
     },
