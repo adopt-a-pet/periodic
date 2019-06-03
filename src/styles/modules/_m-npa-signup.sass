@@ -7,7 +7,7 @@
     text-align: center
     margin: auto
     max-width: 36rem
-    padding: 0 2.3rem
+    padding: 0 27px
 
   +e(fields)
     display: grid
@@ -30,15 +30,20 @@
     margin-top: 135px
 
 +b(npa-signup-whatisthis)
+  +breakpoint(tablet-plus)
+    display: flex
+    grid-template-columns: 3fr 2fr
+    padding: 0 5rem
+
   +e(content)
     text-align: center
     margin: auto
-    padding: 0 5rem
+    padding: 0 27px
 
   +e(steps)
     display: grid
     grid-template-columns: 1fr
-    padding: 0
+    padding-left: 1.5em
 
     +breakpoint(wide)
       +rem-fallback(column-gap, $space-xxl)
