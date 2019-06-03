@@ -33,14 +33,17 @@
           :class="b('list-item').is({ selected: isOptionSelected(option) }).toString()"
           @mousedown.stop.prevent="e => onSelect(option)">
           <Checkbox
-            style="display: inline-block"
             :checked="isOptionSelected(option)">
-            {{ option.display | capitalize }}
-          </Checkbox>
+            <span>
+              {{ option.display | capitalize }}
+            </span>
 
-          <span
-            v-if="option.labelRight"
-            :style="{ float: 'right' }">{{ option.labelRight }}</span>
+            <template
+              v-if="option.labelRight"
+              slot="right">
+              <span>{{ option.labelRight }}</span>
+            </template>
+          </Checkbox>
         </li>
       </ul>
     </div>

@@ -14,6 +14,9 @@
     width: $font-size-m
     vertical-align: middle
 
+    +m(size-large)
+        +rem-fallback('margin-right', $space-xxxs)
+
     +m(size-small)
       height: $font-size-s
       width: $font-size-s
@@ -34,7 +37,17 @@
       +border(2px solid color(agray, lighter))
       background-color: color(awhite, base)
 
+  +e(label-container)
+    cursor: pointer
+    width: 100%
+
   +e(label)
+    cursor: pointer
+    vertical-align: middle
+
+  +e(label-right)
+    cursor: pointer
+    float: right
     vertical-align: middle
 
   +e(check)
@@ -55,4 +68,3 @@
   +e('label')
     font-weight: 200
     +rem-fallback('font-size', $font-size-m)
-    +rem-fallback('margin-left', $space-xxxs)
