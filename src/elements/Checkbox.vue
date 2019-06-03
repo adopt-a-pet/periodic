@@ -18,11 +18,19 @@
         name="check" />
     </span>
 
-    <label
-      :class="b('label', { size }).toString()">
-      <!-- @slot Any label text you want here -->
-      <slot />
-    </label>
+    <div :class="b('label-container', { size }).toString()">
+      <label
+        :class="b('label', { size }).toString()">
+        <!-- @slot Any label text you want here -->
+        <slot />
+      </label>
+
+      <label
+        :class="b('label-right', { size }).toString()">
+        <!-- @slot Right-aligned label -->
+        <slot name="right" />
+      </label>
+    </div>
   </div>
 </template>
 
@@ -109,6 +117,15 @@ export default {
     <Checkbox size="tiny" v-model="checkbox3">Tiny</Checkbox>
     <br />
     <Checkbox disabled>Disabled</Checkbox>
+    <br />
+    <Checkbox v-model="checkbox1">
+      <span>
+        With right label
+      </span>
+      <template slot="right">
+        <span>(right label)</span>
+      </template>
+    </Checkbox>
     <br />
   </div>
 </template>
