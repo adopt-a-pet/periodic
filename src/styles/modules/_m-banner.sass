@@ -1,19 +1,20 @@
 +b('banner-popup')
     width: 100%
-    top: 0
-    position: absolute
-    visibility: hidden
-    top: 0
-    left: 0
-
-    +is('active')
-        opacity: 10
-        visibility: visible
-        z-index: 100000
+    z-index: 100000
+    position: relative
+    height: 95px
+    padding-top: 25px
+    padding-bottom: 25px
 
     @include modifier('color')
         &-orange
             background-color: #ff8f43
+
+        &-grey
+            background-color: color(agray, light)
+
+        &-yellow
+            background-color: #ffcc1b
 
     +e('close')
         cursor: pointer
