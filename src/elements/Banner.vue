@@ -1,9 +1,6 @@
 <template>
   <div
-    :class="[
-      bannerName,
-      b({color}).toString(),
-    ]"
+    :class="b({color}).toString()"
     role="banner"
     aria-hidden="true">
     <div :class="b('wrapper').toString()">
@@ -46,13 +43,6 @@ export default {
       type: String,
       default: 'yellow',
       validator: value => value.match(/(orange|grey|yellow)/),
-    },
-    /**
-     * Event name to trigger opening of this object
-     */
-    bannerName: {
-      type: String,
-      default: null,
     },
   },
   methods: {
