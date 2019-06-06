@@ -86,20 +86,6 @@ export default {
     return {
       banner: true, // Change this to true to show the banner
     }
-  },
-  mounted() {
-    if (typeof window.sessionStorage !== 'undefined'
-    && window.sessionStorage.getItem('aap_donation_banner_dismissed') !== null) {
-      this.banner = false;
-    }
-  },
-  methods: {
-    closeDonationBanner() {
-      this.banner = false; // close the banner
-      if (typeof window.sessionStorage !== 'undefined') {
-        window.sessionStorage.setItem('aap_donation_banner_dismissed', true);
-      }
-    },
   }
 };
 </script>
