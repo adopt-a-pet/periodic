@@ -4,6 +4,8 @@ node_modules/
 dist/
 /test/unit/coverage/
 npm-debug.log*
+src/router/index.js
+src/Test.vue
 yarn-debug.log*
 yarn-error.log*
 

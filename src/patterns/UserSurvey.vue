@@ -247,14 +247,11 @@
 </template>
 
 <script>
-import dropdownItems from '@/mixins/dropdown-items';
-
 export default {
   name: 'UserSurvey',
   status: 'prototype',
   release: '1.0.0',
   blockName: 'user-survey',
-  mixins: [dropdownItems],
   model: {
     prop: 'profile',
     event: 'change',

@@ -1,8 +1,8 @@
 <template>
   <component
     :is="level"
-    :class="b(level, [ fontFamily, fontWeight, lineHeight ]).toString()">
-
+    :class="b(level, [ fontFamily, fontWeight, lineHeight ]).toString()"
+    :style="{ lineHeight, textAlign }">
     <!-- @slot All content goes here like a normal heading tag -->
     <slot />
   </component>
@@ -51,6 +51,13 @@ export default {
       type: String,
       default: null,
       validator: value => value.match(/(compact|x-compact)/),
+    },
+    /**
+     * The alignment for the text. Default is null so it inherits.
+     */
+    textAlign: {
+      type: String,
+      default: null,
     },
   },
 };
