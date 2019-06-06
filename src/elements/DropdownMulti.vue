@@ -143,6 +143,16 @@ export default {
       type: Boolean,
       default: true,
     },
+
+    zeroSelectedLabel: {
+      type: String,
+      default: '',
+    },
+
+    multiSelectedLabel: {
+      type: String,
+      default: null,
+    },
   },
 
   data() {
@@ -157,6 +167,9 @@ export default {
 
   computed: {
     selectedDisplay() {
+      if (!this.value.length) return this.zeroSelectedLabel;
+      if (this.value.length > 1 && this.multiSelectedLabel) return this.multiSelectedLabel;
+
       return this.value
         .map(selectedValue =>
           this.allChoices.find(choice => choice.value === selectedValue).display,
