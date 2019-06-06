@@ -143,12 +143,18 @@ export default {
       type: Boolean,
       default: true,
     },
-
+    /**
+     * Change the label when nothing is selected. This is almost the same as
+     * the `label` prop, except it's going to show up darker.
+     */
     zeroSelectedLabel: {
       type: String,
       default: '',
     },
-
+    /**
+     * Change the label when more than 1 is selected. This is useful when showing
+     * the values of every selection can take too much space.
+     */
     multiSelectedLabel: {
       type: String,
       default: null,
@@ -167,7 +173,7 @@ export default {
 
   computed: {
     selectedDisplay() {
-      if (!this.value.length) return this.zeroSelectedLabel;
+      if (!this.value.length && this.zeroSelectedLabel) return this.zeroSelectedLabel;
       if (this.value.length > 1 && this.multiSelectedLabel) return this.multiSelectedLabel;
 
       return this.value
@@ -285,6 +291,8 @@ export default {
     <DropdownMulti
       label="Without Search"
       label-right="Right Label"
+      zero-selected-label="Any"
+      multi-selected-label="Multiple"
       v-model="dropdown1"
       :items="[
         { display: 'One', value: 1, labelRight: '(3)' },
