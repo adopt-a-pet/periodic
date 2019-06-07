@@ -36,18 +36,20 @@
     <div
       v-if="showAllOffers"
       :class="b('all-offers').toString()">
-      <Checkbox
+      <div
         v-for="(offer, i) in offers"
-        :key="i"
-        :checked="optins.includes(offer.newsletterId)"
-        size="tiny"
-        @change="onOfferChecked($event, offer.newsletterId)">
-        <span
-          :class="b('checkbox-text').toString()"
-          v-html="offer.displayHtml" />
+        :key="i">
+        <Checkbox
+          :checked="optins.includes(offer.newsletterId)"
+          size="tiny"
+          @change="onOfferChecked($event, offer.newsletterId)">
+          <span
+            :class="b('checkbox-text').toString()"
+            v-html="offer.displayHtml" />
+        </Checkbox>
 
         <VSpacer size="xxs" />
-      </Checkbox>
+      </div>
 
       <p :class="b('footnote').toString()">
         <span>
@@ -126,6 +128,11 @@ export default {
 
   created() {
     this.checkEveryOffer();
+    this.offers = [
+      { display: 'One', value: 1 },
+      { display: 'Two', value: 2 },
+      { display: 'Three', value: 3 },
+    ];
   },
 
   methods: {
