@@ -40,6 +40,8 @@
         v-for="(offer, i) in offers"
         :key="i">
         <Checkbox
+          :id="newsletterCheckboxId(offer)"
+          :name="newsletterCheckboxId(offer)"
           :checked="optins.includes(offer.newsletterId)"
           size="tiny"
           @change="onOfferChecked($event, offer.newsletterId)">
@@ -71,6 +73,8 @@
 </template>
 
 <script>
+import tokens from '@/assets/tokens/tokens.json';
+
 /**
  * Offers Form
  */
@@ -144,6 +148,12 @@ export default {
        * @type Array
        */
       this.$emit('change', this.offers.map(({ newsletterId }) => newsletterId));
+    },
+
+    newsletterCheckboxId(offer) {
+      return `${tokens.prefix_component}offersform-checkbox-newsletter-${
+        offer.techName
+      }`;
     },
 
     onOfferChecked(checked, checkedNewsletterId) {
