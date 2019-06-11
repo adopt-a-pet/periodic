@@ -1,7 +1,7 @@
 +b(checkbox)
   cursor: pointer
   display: flex
-  align-items: center
+  align-items: flex-start
 
   +e(box)
     +reset
@@ -21,11 +21,13 @@
     +m(size-small)
       height: $font-size-s
       width: $font-size-s
+      margin: 3px .5rem 0 0
 
     +m(size-tiny)
       +rem-fallback(border-radius, $radius-xxs)
       height: $font-size-xs
       width: $font-size-xs
+      margin: 4px .5rem 0 0
 
     &:hover
       +border(2px solid color(ablue, base))

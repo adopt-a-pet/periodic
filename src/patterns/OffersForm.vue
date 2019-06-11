@@ -36,18 +36,22 @@
     <div
       v-if="showAllOffers"
       :class="b('all-offers').toString()">
-      <Checkbox
+      <div
         v-for="(offer, i) in offers"
-        :key="i"
-        :checked="optins.includes(offer.newsletterId)"
-        size="tiny"
-        @change="onOfferChecked($event, offer.newsletterId)">
-        <span
-          :class="b('checkbox-text').toString()"
-          v-html="offer.displayHtml" />
+        :key="i">
+        <Checkbox
+          :id="newsletterCheckboxId(offer)"
+          :name="newsletterCheckboxId(offer)"
+          :checked="optins.includes(offer.newsletterId)"
+          size="tiny"
+          @change="onOfferChecked($event, offer.newsletterId)">
+          <span
+            :class="b('checkbox-text').toString()"
+            v-html="offer.displayHtml" />
+        </Checkbox>
 
         <VSpacer size="xxs" />
-      </Checkbox>
+      </div>
 
       <p :class="b('footnote').toString()">
         <span>
@@ -69,6 +73,8 @@
 </template>
 
 <script>
+import tokens from '@/assets/tokens/tokens.json';
+
 /**
  * Offers Form
  */
@@ -126,6 +132,11 @@ export default {
 
   created() {
     this.checkEveryOffer();
+    this.offers = [
+      { display: 'One', value: 1 },
+      { display: 'Two', value: 2 },
+      { display: 'Three', value: 3 },
+    ];
   },
 
   methods: {
@@ -137,6 +148,12 @@ export default {
        * @type Array
        */
       this.$emit('change', this.offers.map(({ newsletterId }) => newsletterId));
+    },
+
+    newsletterCheckboxId(offer) {
+      return `${tokens.prefix_component}offersform-checkbox-newsletter-${
+        offer.techName
+      }`;
     },
 
     onOfferChecked(checked, checkedNewsletterId) {
