@@ -76,11 +76,14 @@
 
       <VSpacer size="xl" />
 
-      <Checkbox v-model="form.dontShowAgain">
+      <Checkbox
+        id="gtm-dont-show"
+        v-model="form.dontShowAgain">
         <Paragraph
           :class="b('checkbox-text').toString()"
           font-size="xs"
-          font-weight="light">
+          font-weight="light"
+          class="gtm-dont-show">
           Don’t show me this again.
         </Paragraph>
       </Checkbox>
