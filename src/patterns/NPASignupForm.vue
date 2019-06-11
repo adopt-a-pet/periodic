@@ -3,21 +3,23 @@
     <div :class="b('content').toString()">
       <VSpacer size="xxxs" />
 
-      <Heading
-        level="h4"
-        font-weight="light"
-        line-height="compact">
-        Set Up Your
-      </Heading>
+      <div :class="b('heading').toString()">
+        <Heading
+          level="h4"
+          font-weight="light"
+          line-height="compact">
+          Set Up Your
+        </Heading>
 
-      <Heading
-        :level="layout === 'desktop' ? 'h1' : 'h2'"
-        font-weight="bold"
-        font-family="museo">
-        New Pet Alert
-      </Heading>
+        <Heading
+          :level="layout === 'desktop' ? 'h1' : 'h2'"
+          font-weight="bold"
+          font-family="museo">
+          New Pet Alert
+        </Heading>
 
-      <VSpacer size="xl" />
+        <VSpacer size="xl" />
+      </div>
 
       <Paragraph
         text-align="left"

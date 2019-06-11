@@ -3,10 +3,13 @@
     display: grid
     grid-template-columns: 3fr 2fr
 
-  +e(content)
+  +e(heading)
     text-align: center
+
+  +e(content)
+    margin: auto
     max-width: 36rem
-    padding: 0 16.7%
+    padding: 0 27px
 
   +e(fields)
     display: grid
@@ -14,9 +17,6 @@
     grid-row-gap: 20px
     +breakpoint(tablet-plus)
       grid-template-columns: 1fr 1fr
-
-  +e(checkbox-text)
-    +rem-fallback(margin-left, $space-xxs)
 
   +e(skip-continue)
     align-items: center
@@ -32,10 +32,11 @@
   +breakpoint(tablet-plus)
     display: flex
     grid-template-columns: 3fr 2fr
-    padding: 0 5rem
+    padding: 0 16.7%
+    +e(content)
+      text-align: center
 
   +e(content)
-    text-align: center
     margin: auto
     padding: 0 27px
 
