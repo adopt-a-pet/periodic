@@ -14,6 +14,7 @@
     <VSpacer size="s" />
 
     <Checkbox
+      id="allSponsorOffers"
       v-model="allOffersChecked"
       size="tiny">
       <span :class="b('checkbox-text').toString()">Get offers and tips from our sponsors.</span>
