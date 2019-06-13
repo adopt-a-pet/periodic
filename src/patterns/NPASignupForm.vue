@@ -1,32 +1,31 @@
 <template>
   <div :class="b().toString()">
     <div :class="b('content').toString()">
-      <VSpacer
-        size="xxxs" />
+      <VSpacer size="xxxs" />
 
-      <Heading
-        level="h4"
-        font-weight="light"
-        line-height="compact">
-        Set Up Your
-      </Heading>
+      <div :class="b('heading').toString()">
+        <Heading
+          level="h4"
+          font-weight="light"
+          line-height="compact">
+          Set Up Your
+        </Heading>
 
-      <Heading
-        :level="layout === 'desktop' ? 'h1' : 'h2'"
-        font-weight="bold"
-        font-family="museo">
-        New Pet Alert
-      </Heading>
+        <Heading
+          :level="layout === 'desktop' ? 'h1' : 'h2'"
+          font-weight="bold"
+          font-family="museo">
+          New Pet Alert
+        </Heading>
 
-      <VSpacer
-        size="xl" />
+        <VSpacer size="xl" />
+      </div>
 
       <Paragraph
         text-align="left"
         color="gray"
         font-weight="normal">
         We'll email you when new pets that match your search criteria are added to our site!
-
         <Paragraph
           tag="span"
           font-size="s"
@@ -37,34 +36,59 @@
         </Paragraph>
       </Paragraph>
 
-      <VSpacer
-        size="xl" />
+      <VSpacer size="xl" />
 
-      <EmailInput
-        ref="email"
-        v-model="form.email"
-        name="email"
-        @change="checkSubmitEnabled" />
+      <div :class="b('fields').toString()">
+        <EmailInput
+          ref="email"
+          v-model="form.email"
+          name="email"
+          :error-messages="{ required: 'Enter Email', email: 'Invalid Email' }"
+          required
+          @change="checkSubmitEnabled" />
 
-      <VSpacer
-        size="xl" />
+        <TextInput
+          ref="emailConfirm"
+          v-model="emailConfirm"
+          :validations="emailConfirmValidators"
+          :error-messages="{ required: 'Enter Email', emailConfirm: 'Emails Don’t Match' }"
+          name="email-confirm"
+          label="Confirm Email"
+          required
+          @change="checkSubmitEnabled" />
+      </div>
 
-      <VDivider type="dashed" />
+      <VSpacer size="xl" />
 
-      <VSpacer
-        size="xl" />
+      <VDivider
+        v-if="layout == 'desktop'"
+        type="dashed" />
 
-      <Checkbox v-model="form.dontShowAgain">
+      <div v-if="layout !== 'desktop'">
+        <VDivider type="dashed" />
+        <VSpacer size="xl" />
+        <OffersForm
+          v-model="form.optins"
+          :offers="offers" />
+        <VSpacer size="xl" />
+        <VDivider type="dashed" />
+      </div>
+
+      <VSpacer size="xl" />
+
+      <Checkbox
+        id="gtm-dont-show"
+        v-model="form.dontShowAgain">
         <Paragraph
           :class="b('checkbox-text').toString()"
           font-size="xs"
-          font-weight="light">
+          font-weight="light"
+          class="gtm-dont-show">
           Don’t show me this again.
         </Paragraph>
       </Checkbox>
 
-      <VSpacer
-        size="xl" />
+      <VSpacer size="xl" />
 
       <div :class="b('skip-continue').toString()">
         <TextLink
@@ -87,9 +111,14 @@
         </Button>
       </div>
 
-      <VSpacer
-        size="xl" />
+      <VSpacer size="xl" />
     </div>
+
+    <OffersForm
+      v-if="layout === 'desktop'"
+      v-model="form.optins"
+      :class="b('offers-form-desktop').toString()"
+      :offers="offers" />
   </div>
 </template>
 
@@ -100,9 +129,6 @@
 
 export default {
   name: 'NPASignupForm',
-  blockName: 'npa-signup',
-  status: 'under-review',
-  release: '1.0.0',
 
   props: {
     /**
@@ -112,6 +138,24 @@ export default {
       type: String,
       default: '',
     },
+    /**
+     * A list of offers in the form of:
+     *
+     * ```
+     * [ { newsletterId: 1, displayHtml: 'Something...' } ]
+     *```
+     */
+    offers: {
+      type: Array,
+      default: () => [],
+    },
+    /**
+     * A list of newsletterIds that are checked
+     */
+    optins: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   data() {
@@ -119,19 +163,47 @@ export default {
       form: {
         email: this.email,
         dontShowAgain: false,
+        optins: this.optins,
       },
+      emailConfirm: '',
       submitDisabled: true,
     };
   },
+  blockName: 'npa-signup',
+  status: 'under-review',
+  release: '1.0.0',
+
+  computed: {
+    emailConfirmValidators() {
+      return {
+        emailConfirm: value =>
+          value.toLowerCase() === this.form.email.toLowerCase(),
+      };
+    },
+  },
 
   mounted() {
-    this.checkSubmitEnabled();
+    if (this.form.email) {
+      // If we are auto-filling email because we already have it, bypass emailConfirm
+      this.emailConfirm = this.form.email;
+
+      // Make sure it's valid
+      this.checkSubmitEnabled();
+    }
   },
 
   methods: {
     checkSubmitEnabled() {
       this.$nextTick(() => {
-        const valid = !!this.form.email && this.$refs.email.validate();
+        let valid = false;
+        if (
+          this.form.email
+          && this.$refs.email.validate()
+          && this.emailConfirm
+          && this.$refs.emailConfirm.validate()
+        ) {
+          valid = true;
+        }
 
         this.submitDisabled = !valid;
       });
@@ -159,7 +231,7 @@ export default {
        * NPA signup submit event
        *
        * @event submit
-       * @type {{ email: String, dontShowAgain: Boolean }}
+       * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
        */
       this.$emit('submit', this.form);
     },
@@ -170,13 +242,24 @@ export default {
 <docs>
 ```vue
 <template>
-  <NPASignupForm />
+  <NPASignupForm :offers="offers"/>
 </template>
 <script>
 export default {
   data() {
     return {
-    }
+      offers: [
+        {
+          newsletterId: 1,
+          displayHtml: "I would like to receive the latest special deals"
+        },
+        {
+          newsletterId: 2,
+          displayHtml:
+            "Yes, I would like to receive communications from the Petco Foundation"
+        }
+      ]
+    };
   }
 };
 </script>

@@ -14,18 +14,15 @@
     <VSpacer size="s" />
 
     <Checkbox
+      id="allSponsorOffers"
       v-model="allOffersChecked"
       size="tiny">
-
-      <span :class="b('checkbox-text').toString()">
-        Get offers and tips from our sponsors.
-      </span>
+      <span :class="b('checkbox-text').toString()">Get offers and tips from our sponsors.</span>
 
       <span
         :class="b('link-blue').toString()"
         style="display: inline-block"
         @click.stop="showAllOffers = !showAllOffers">
-
         <span>{{ showAllOffers ? 'Close' : 'Learn More' }}</span>
 
         <Icon
@@ -40,20 +37,22 @@
     <div
       v-if="showAllOffers"
       :class="b('all-offers').toString()">
-
-      <Checkbox
+      <div
         v-for="(offer, i) in offers"
-        :checked="optins.includes(offer.newsletterId)"
-        :key="i"
-        size="tiny"
-        @change="onOfferChecked($event, offer.newsletterId)">
-
-        <span
-          :class="b('checkbox-text').toString()"
-          v-html="offer.displayHtml" />
+        :key="i">
+        <Checkbox
+          :id="newsletterCheckboxId(offer)"
+          :name="newsletterCheckboxId(offer)"
+          :checked="optins.includes(offer.newsletterId)"
+          size="tiny"
+          @change="onOfferChecked($event, offer.newsletterId)">
+          <span
+            :class="b('checkbox-text').toString()"
+            v-html="offer.displayHtml" />
+        </Checkbox>
 
         <VSpacer size="xxs" />
-      </Checkbox>
+      </div>
 
       <p :class="b('footnote').toString()">
         <span>
@@ -64,7 +63,7 @@
           :class="b('link-blue').toString()"
           href="https://www.purina.com/privacy-policy"
           target="_blank">Privacy Policy</a>
-        <span> and </span>
+        <span>and</span>
         <a
           :class="b('link-blue').toString()"
           href="https://www.purina.com/about-our-ads"
@@ -75,6 +74,8 @@
 </template>
 
 <script>
+import tokens from '@/assets/tokens/tokens.json';
+
 /**
  * Offers Form
  */
@@ -116,8 +117,7 @@ export default {
     };
   },
 
-  computed: {
-  },
+  computed: {},
 
   watch: {
     allOffersChecked(allOffersChecked) {
@@ -133,6 +133,11 @@ export default {
 
   created() {
     this.checkEveryOffer();
+    this.offers = [
+      { display: 'One', value: 1 },
+      { display: 'Two', value: 2 },
+      { display: 'Three', value: 3 },
+    ];
   },
 
   methods: {
@@ -146,15 +151,22 @@ export default {
       this.$emit('change', this.offers.map(({ newsletterId }) => newsletterId));
     },
 
+    newsletterCheckboxId(offer) {
+      return `${tokens.prefix_component}offersform-checkbox-newsletter-${
+        offer.techName
+      }`;
+    },
+
     onOfferChecked(checked, checkedNewsletterId) {
       const newsletterIds = this.offers
         .map(({ newsletterId }) => newsletterId)
-        .filter(newsletterId => (
-          // When we come across the newsletterId that needs to change...
-          newsletterId === checkedNewsletterId
-            ? checked // Remove from the list if unchecked, leave if checked
-            : this.optins.includes(newsletterId) // Otherwise leave it the same
-        ));
+        .filter(
+          newsletterId =>
+            // When we come across the newsletterId that needs to change...
+            (newsletterId === checkedNewsletterId
+              ? checked // Remove from the list if unchecked, leave if checked
+              : this.optins.includes(newsletterId)), // Otherwise leave it the same
+        );
 
       /**
        * Change event
@@ -172,9 +184,7 @@ export default {
 ```vue
 <template>
   <div>
-    <OffersForm
-      :offers="offers"
-      v-model="offersForm1" />
+    <OffersForm :offers="offers" v-model="offersForm1"/>
   </div>
 </template>
 <script>
@@ -182,14 +192,21 @@ export default {
   data() {
     return {
       offersForm1: []
-    }
+    };
   },
 
   computed: {
     offers() {
       return [
-        { newsletterId: 1, displayHtml: 'I would like to receive the latest special deals' },
-        { newsletterId: 2, displayHtml: 'Yes, I would like to receive communications from the Petco Foundation' }
+        {
+          newsletterId: 1,
+          displayHtml: "I would like to receive the latest special deals"
+        },
+        {
+          newsletterId: 2,
+          displayHtml:
+            "Yes, I would like to receive communications from the Petco Foundation"
+        }
       ];
     }
   },

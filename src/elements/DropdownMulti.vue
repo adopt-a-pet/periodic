@@ -33,15 +33,17 @@
           :class="b('list-item').is({ selected: isOptionSelected(option) }).toString()"
           @mousedown.stop.prevent="e => onSelect(option)">
           <Checkbox
-            style="display: inline-block"
             :checked="isOptionSelected(option)">
-            {{ option.display | capitalize }}
-          </Checkbox>
+            <span>
+              {{ option.display | capitalize }}
+            </span>
 
-          <Icon
-            v-if="isOptionSelected(option)"
-            :class="b('list-check').toString()"
-            name="check-blue" />
+            <template
+              v-if="option.labelRight"
+              slot="right">
+              <span>{{ option.labelRight }}</span>
+            </template>
+          </Checkbox>
         </li>
       </ul>
     </div>
@@ -49,7 +51,7 @@
 </template>
 
 <script>
-const Fuse = require('fuse.js');
+import Fuse from 'fuse.js';
 
 const fuseOptions = {
   findAllMatches: true,
@@ -141,6 +143,22 @@ export default {
       type: Boolean,
       default: true,
     },
+    /**
+     * Change the label when nothing is selected. This is almost the same as
+     * the `label` prop, except it's going to show up darker.
+     */
+    zeroSelectedLabel: {
+      type: String,
+      default: '',
+    },
+    /**
+     * Change the label when more than 1 is selected. This is useful when showing
+     * the values of every selection can take too much space.
+     */
+    multiSelectedLabel: {
+      type: String,
+      default: null,
+    },
   },
 
   data() {
@@ -155,6 +173,9 @@ export default {
 
   computed: {
     selectedDisplay() {
+      if (!this.value.length && this.zeroSelectedLabel) return this.zeroSelectedLabel;
+      if (this.value.length > 1 && this.multiSelectedLabel) return this.multiSelectedLabel;
+
       return this.value
         .map(selectedValue =>
           this.allChoices.find(choice => choice.value === selectedValue).display,
@@ -177,10 +198,6 @@ export default {
           : this.allChoices
       );
     },
-
-    // allChoices() {
-    //   return this.makeChoices(this.items);
-    // },
   },
 
   methods: {
@@ -256,11 +273,7 @@ export default {
     focusInput() { this.$refs.input.focus(); },
 
     addIndexes(choices) {
-      return choices.map(({ value, display }, i) => ({
-        value,
-        display: String(display),
-        index: i,
-      }));
+      return choices.map((choice, i) => ({ ...choice, index: i }));
     },
 
     isOptionSelected({ value: optionValue }) {
@@ -278,10 +291,12 @@ export default {
     <DropdownMulti
       label="Without Search"
       label-right="Right Label"
+      zero-selected-label="Any"
+      multi-selected-label="Multiple"
       v-model="dropdown1"
       :items="[
-        { display: 'One', value: 1 },
-        { display: 'Two', value: 2 },
+        { display: 'One', value: 1, labelRight: '(3)' },
+        { display: 'Two', value: 2, labelRight: '(1)' },
       ]" />
 
     <br />
@@ -290,10 +305,10 @@ export default {
       label="With Search"
       v-model="dropdown2"
       :items="[
-        { display: 'One', value: 1 },
-        { display: 'Two', value: 2 },
-        { display: 'Three', value: 3 },
-        { display: 'Four', value: 4 },
+        { display: 'One', value: 1, labelRight: '(0)' },
+        { display: 'Two', value: 2, labelRight: '(2)' },
+        { display: 'Three', value: 3, labelRight: '(5)' },
+        { display: 'Four', value: 4, labelRight: '(1)' },
       ]"
       :search="true"
       tooltip="This is an info bubble" />

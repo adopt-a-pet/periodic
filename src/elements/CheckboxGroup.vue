@@ -11,6 +11,12 @@
         :size="size"
         @change="onCheck(item.value, $event)">
         <span :class="b('label').toString()">{{ item.display }}</span>
+
+        <template
+          v-if="item.labelRight"
+          slot="right">
+          <span :class="b('label').toString()">{{ item.labelRight }}</span>
+        </template>
       </Checkbox>
     </li>
   </ul>
@@ -137,7 +143,7 @@ export default {
     v-model="checkboxGroupSelected"
     name="example"
     :items="[
-      { display: 'One', value: 1 },
+      { display: 'One', value: 1, labelRight: 'This is a right label' },
       { display: 'Two', value: 2 },
       { display: 'Three', value: 3 }
     ]" />

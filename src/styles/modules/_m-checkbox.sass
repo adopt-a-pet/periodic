@@ -1,6 +1,7 @@
 +b(checkbox)
+  cursor: pointer
   display: flex
-  align-items: center
+  align-items: flex-start
 
   +e(box)
     +reset
@@ -14,14 +15,19 @@
     width: $font-size-m
     vertical-align: middle
 
+    +m(size-large)
+        +rem-fallback('margin-right', $space-xxxs)
+
     +m(size-small)
       height: $font-size-s
       width: $font-size-s
+      margin: 3px .5rem 0 0
 
     +m(size-tiny)
       +rem-fallback(border-radius, $radius-xxs)
       height: $font-size-xs
       width: $font-size-xs
+      margin: 4px .5rem 0 0
 
     &:hover
       +border(2px solid color(ablue, base))
@@ -34,7 +40,16 @@
       +border(2px solid color(agray, lighter))
       background-color: color(awhite, base)
 
+  +e(label-container)
+    width: 100%
+
   +e(label)
+    cursor: pointer
+    vertical-align: middle
+
+  +e(label-right)
+    cursor: pointer
+    float: right
     vertical-align: middle
 
   +e(check)
@@ -55,4 +70,3 @@
   +e('label')
     font-weight: 200
     +rem-fallback('font-size', $font-size-m)
-    +rem-fallback('margin-left', $space-xxxs)
