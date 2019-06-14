@@ -39,8 +39,9 @@
           <Paragraph
             text-align="left"
             font-weight="light">
-            New pets are posted to our site daily. We'll email you as soon as a new
-            pet that matches your search is added, so you won't miss out.
+            You select the type of pet you're looking for from our homepage.
+            You can also select preferred color, breed, sex, size or age.
+            Then hit Search.
           </Paragraph>
         </li>
 
