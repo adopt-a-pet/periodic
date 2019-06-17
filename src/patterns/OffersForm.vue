@@ -30,9 +30,8 @@
           name="arrow"
           fill="blue" />
       </span>
-
-      <VSpacer size="s" />
     </Checkbox>
+    <VSpacer size="s" />
 
     <div
       v-if="showAllOffers"

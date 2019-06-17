@@ -1,7 +1,7 @@
 +b(checkbox)
   cursor: pointer
   display: flex
-  align-items: flex-start
+  align-items: center
 
   +e(box)
     +reset
@@ -15,19 +15,14 @@
     width: $font-size-m
     vertical-align: middle
 
-    +m(size-large)
-        +rem-fallback('margin-right', $space-xxxs)
-
     +m(size-small)
       height: $font-size-s
       width: $font-size-s
-      margin: 3px .5rem 0 0
 
     +m(size-tiny)
       +rem-fallback(border-radius, $radius-xxs)
       height: $font-size-xs
       width: $font-size-xs
-      margin: 4px .5rem 0 0
 
     &:hover
       +border(2px solid color(ablue, base))
@@ -42,6 +37,7 @@
 
   +e(label-container)
     width: 100%
+    margin-left: .5rem
 
   +e(label)
     cursor: pointer
@@ -58,7 +54,6 @@
       height: 100%
       width: 100%
       margin-bottom: $space-xxxs
-
 
 +b(checkbox-group)
   display: grid
