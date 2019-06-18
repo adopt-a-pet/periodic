@@ -1,7 +1,7 @@
 +b(checkbox)
   cursor: pointer
   display: flex
-  align-items: center
+  align-items: flex-start
 
   +e(box)
     +reset
@@ -36,8 +36,10 @@
       background-color: color(awhite, base)
 
   +e(label-container)
+    display: flex
     width: 100%
     margin-left: .5rem
+    justify-content: space-between
 
   +e(label)
     cursor: pointer
