@@ -5,8 +5,9 @@
     ]"
     role="dialog"
     aria-hidden="true">
-
-    <div :class="b('dialog').toString()">
+    <div
+      :class="b('dialog').toString()"
+      :style="{maxWidth: maxWidth}">
       <div :class="b('content').toString()">
         <header>
           <slot name="header" />
@@ -14,7 +15,6 @@
           <span
             :class="b('close').toString()"
             @click="close">
-
             <img
               :class="b('close-svg').toString()"
               src="https://images-ra.adoptapet.com/images/close.svg">
@@ -39,6 +39,14 @@ export default {
   status: 'under-review',
   release: '1.0.0',
   props: {
+    /**
+     * Max width of the modal
+     */
+    maxWidth: {
+      type: String,
+      default: null,
+    },
+
     /**
      * Should the modal be open or closed.
      */
@@ -73,8 +81,7 @@ export default {
 ```vue
 <template>
   <div>
-    <Modal
-      :open.sync="modal">
+    <Modal :open.sync="modal">
       <template slot="header">
         <span>This is in the header</span>
       </template>
@@ -83,7 +90,8 @@ export default {
 
       <RadioGroup
         name="example"
-        :items="[ { display: 'Green', value: 'a' }, { display: 'Blue', value: 'b' } ]" />
+        :items="[ { display: 'Green', value: 'a' }, { display: 'Blue', value: 'b' } ]"
+      />
     </Modal>
   </div>
 </template>
@@ -92,8 +100,8 @@ export default {
 export default {
   data() {
     return {
-      modal: false, // Change this to true to open the modal
-    }
+      modal: false // Change this to true to open the modal
+    };
   }
 };
 </script>
