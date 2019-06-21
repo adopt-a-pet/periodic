@@ -22,7 +22,7 @@
       :key="i">
       <div
         v-show="tabSelected(tab)">
-        <slot :name="tab.value" />
+        <slot :name="tab.tab" />
       </div>
     </div>
   </div>
@@ -40,10 +40,11 @@ export default {
   blockName: 'tabs',
   props: {
     /**
-     * Name and display of the tabs
+     * Name and display of the tabs. `display` is what users see and `tab` will
+     * be the slot name used for content.
      *
      * ```
-     * [ { display: 'Search Dogs', value: 'search-dogs' } ]
+     * [ { display: 'Search Dogs', tab: 'search-dogs' } ]
      *```
      */
     tabs: {
@@ -54,19 +55,19 @@ export default {
 
   data() {
     return {
-      selected: this.tabs[0].value,
+      selected: this.tabs[0].tab,
     };
   },
 
   computed: {},
 
   methods: {
-    tabSelected({ value }) {
-      return value === this.selected;
+    tabSelected({ tab }) {
+      return tab === this.selected;
     },
 
-    changeTab({ value }) {
-      this.selected = value;
+    changeTab({ tab }) {
+      this.selected = tab;
     },
   },
 };
@@ -92,8 +93,8 @@ export default {
   computed: {
     tabs() {
       return [
-        { display: 'Dogs', value: 'dogs' },
-        { display: 'Cats', value: 'cats' }
+        { display: 'Dogs', tab: 'dogs' },
+        { display: 'Cats', tab: 'cats' }
       ]
     }
   }
