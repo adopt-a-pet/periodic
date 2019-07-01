@@ -53,7 +53,6 @@ export default {
   @include reset;
   font-family: $font-heading;
   font-weight: $weight-bold;
-  line-height: $line-height-h6;
   color: $color-rich-black;
   margin-bottom: $space-s;
   font-style: normal;

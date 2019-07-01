@@ -2,19 +2,19 @@
   <div class="component-status">
     <ul class="status-list">
       <li>
-        <Icon name="ready" fill="#7cb518" size="small" />
+        <Icon name="ready" fill="#7cb518" style="width: 20px" />
         <p>Ready</p>
       </li>
       <li>
-        <Icon name="review" :fill="tokens.color_ucla_gold.value" size="small" />
+        <Icon name="review" :fill="tokens.color_ucla_gold.value" style="width: 20px" />
         <p>Under review</p>
       </li>
       <li>
-        <Icon name="deprecated" :fill="tokens.color_vermilion.value" size="small" />
+        <Icon name="deprecated" :fill="tokens.color_vermilion.value" style="width: 20px" />
         <p>Deprecated</p>
       </li>
       <li>
-        <Icon name="prototype" :fill="tokens.color_bleu_de_france.value" size="small" />
+        <Icon name="prototype" :fill="tokens.color_bleu_de_france.value" style="width: 20px" />
         <p>Prototype</p>
       </li>
       <li>
@@ -42,25 +42,27 @@
           <td v-if="component.release">{{ component.release }}</td>
           <td v-else>N/A</td>
           <td v-if="component.status">
-            <Icon v-if="component.status === 'ready'" name="ready" fill="#7cb518" size="small" />
-            <Icon
-              v-if="component.status === 'under-review' || component.status === 'review'"
-              name="review"
-              :fill="tokens.color_ucla_gold.value"
-              size="small"
-            />
-            <Icon
-              v-if="component.status === 'prototype'"
-              name="prototype"
-              :fill="tokens.color_bleu_de_france.value"
-              size="small"
-            />
-            <Icon
-              v-if="component.status === 'deprecated'"
-              name="deprecated"
-              :fill="tokens.color_vermilion.value"
-              size="small"
-            />
+            <span style="display: inline-block; width: 20px">
+              <Icon v-if="component.status === 'ready'" name="ready" fill="#7cb518" size="small" />
+              <Icon
+                v-if="component.status === 'under-review' || component.status === 'review'"
+                name="review"
+                :fill="tokens.color_ucla_gold.value"
+                size="small"
+              />
+              <Icon
+                v-if="component.status === 'prototype'"
+                name="prototype"
+                :fill="tokens.color_bleu_de_france.value"
+                size="small"
+              />
+              <Icon
+                v-if="component.status === 'deprecated'"
+                name="deprecated"
+                :fill="tokens.color_vermilion.value"
+                size="small"
+              />
+            </span>
           </td>
           <td v-else>—</td>
         </tr>
