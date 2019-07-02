@@ -6,8 +6,7 @@
   justify-content: center
   left: 0
   opacity: 0
-  overflow-x: hidden
-  overflow-y: auto
+  overflow: hidden
   position: fixed
   right: 0
   top: 0
@@ -70,15 +69,15 @@
     +e('content')
       border-radius: 0
       border: none
-      margin-top: 60px
+      overscroll-behavior: none
 
       header
         background: #ffffff
         border-bottom: 1px solid color(agray, light)
         height: $space-xl
-        margin-bottom: $space-s
-        position: fixed
-        top: 0
-        left: 0
-        right: 0
-        z-index: 100
+
+      main
+        overflow: scroll
+        height: calc(100vh - 40px)
+        box-sizing: border-box
+        padding-top: $space-s
