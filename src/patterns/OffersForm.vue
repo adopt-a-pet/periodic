@@ -28,7 +28,7 @@
         <Icon
           :class="b('arrow').is({ expanded: showAllOffers }).toString()"
           name="arrow"
-          fill="blue" />
+          fill="link-blue" />
       </span>
     </Checkbox>
     <VSpacer size="s" />
