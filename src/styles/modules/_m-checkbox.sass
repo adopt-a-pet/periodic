@@ -38,7 +38,7 @@
   +e(label-container)
     display: flex
     width: 100%
-    margin-left: .5rem
+    @include rem-fallback('margin-left', 14px)
     justify-content: space-between
 
   +e(label)
