@@ -85,6 +85,10 @@ export default {
       default: 'all',
       validator: value => value.match(/(all|patterns|templates|elements)/),
     },
+    category: {
+      type: String,
+      default: ''
+    }
   },
   methods: {
     getComponents() {
@@ -106,7 +110,9 @@ export default {
 
       const components = [];
       contexts.forEach(context => {
-        context.keys().forEach(key => components.push(context(key).default));
+        context.keys()
+        .filter(key => key.includes(`./${this.category}`))
+        .forEach(key => components.push(context(key).default));
       });
 
       return components;

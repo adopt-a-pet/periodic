@@ -116,7 +116,16 @@ module.exports = {
       components: '../src/elements/**/[A-Z]*.vue',
       exampleMode: 'expand',
       usageMode: 'expand',
-      sectionDepth: 2,
+      sectionDepth: 3,
+      sections: [
+        {
+          name: "Form",
+          content: '../docs/elements-form.md',
+          components: '../src/elements/form/[A-Z]*.vue',
+          exampleMode: 'expand',
+          usageMode: 'expand',
+        },
+      ]
     },
     {
       name: 'Patterns',
