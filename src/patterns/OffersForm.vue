@@ -17,13 +17,20 @@
       id="allSponsorOffers"
       v-model="allOffersChecked"
       size="tiny">
-      <span :class="b('checkbox-text').toString()">Get offers and tips from our sponsors.</span>
+      <span
+        :class="b('checkbox-text').toString()"
+        class="periodic-heading__h6 periodic-heading__h6--tiny periodic-heading__h6--compact">
+        Get offers and tips from our sponsors.
+      </span>
 
       <span
-        :class="b('link-blue').toString()"
         style="display: inline-block"
         @click.stop="showAllOffers = !showAllOffers">
-        <span>{{ showAllOffers ? 'Close' : 'Learn More' }}</span>
+        <span
+          :class="b('link-blue').toString()"
+          class="periodic-heading__h6 periodic-heading__h6--tiny periodic-heading__h6--compact">
+          {{ showAllOffers ? 'Close' : 'Learn More' }}
+        </span>
 
         <Icon
           :class="b('arrow').is({ expanded: showAllOffers }).toString()"
@@ -47,13 +54,16 @@
           @change="onOfferChecked($event, offer.newsletterId)">
           <span
             :class="b('checkbox-text').toString()"
+            class="periodic-heading__h6 periodic-heading__h6--light periodic-heading__h6--tiny"
             v-html="offer.displayHtml" />
         </Checkbox>
 
         <VSpacer size="xxs" />
       </div>
 
-      <p :class="b('footnote').toString()">
+      <p
+        :class="b('footnote').toString()"
+        class="periodic-heading__h6 periodic-heading__h6--tiny">
         <span>
           * I certify I am 18 years of age or older and agree that Purina
           may use my information as described in the
@@ -61,12 +71,14 @@
         <a
           :class="b('link-blue').toString()"
           href="https://www.purina.com/privacy-policy"
-          target="_blank">Privacy Policy</a>
+          target="_blank"
+          class="periodic-heading__h6 periodic-heading__h6--tiny">Privacy Policy</a>
         <span>and</span>
         <a
           :class="b('link-blue').toString()"
           href="https://www.purina.com/about-our-ads"
-          target="_blank">About Our Ads</a>.
+          target="_blank"
+          class="periodic-heading__h6 periodic-heading__h6--tiny">About Our Ads</a>.
       </p>
     </div>
   </div>

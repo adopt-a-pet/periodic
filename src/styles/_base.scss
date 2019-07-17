@@ -4,5 +4,9 @@
 .#{$prefix-component}#{$periodic-component-class} {
     margin: 0;
     font-family: $font-helvetica;
+    font-weight: 400;
+    font-size: $base-font-size;
+    color: $preset-body-color;
+    line-height: 1.5;
     text-decoration: none;
 }
