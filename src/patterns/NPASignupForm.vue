@@ -132,6 +132,14 @@ export default {
 
   props: {
     /**
+     * Disable submit button if form is invalid
+     */
+    disableButtonIfFormIsInvalid: {
+      type: Boolean,
+      default: true,
+    },
+
+    /**
      * Email to pre-fill in the form.
      */
     email: {
@@ -166,7 +174,7 @@ export default {
         optins: this.optins,
       },
       emailConfirm: '',
-      submitDisabled: true,
+      submitDisabled: !!this.disableButtonIfFormIsInvalid,
     };
   },
   blockName: 'npa-signup',
@@ -205,7 +213,9 @@ export default {
           valid = true;
         }
 
-        this.submitDisabled = !valid;
+        if (this.disableButtonIfFormIsInvalid) {
+          this.submitDisabled = !valid;
+        }
       });
     },
     whatIsThis() {
@@ -242,7 +252,7 @@ export default {
 <docs>
 ```vue
 <template>
-  <NPASignupForm :offers="offers"/>
+  <NPASignupForm :offers="offers" />
 </template>
 <script>
 export default {
