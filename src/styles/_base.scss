@@ -10,3 +10,13 @@
     line-height: 1.5;
     text-decoration: none;
 }
+
+// This will override some of the above styles, and is only applied to components
+// that opt in to using it. It's needed because inheriting is useful--sometimes
+// actually very necessary--for some text components.
+.#{$prefix-component}#{$periodic-text-inherit-class} {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}

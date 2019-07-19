@@ -7,6 +7,7 @@ import tokens from '@/assets/tokens/tokens.json';
 
 const prefix = tokens.prefix_component;
 const componentClass = tokens.periodic_component_class;
+const textInheritClass = tokens.periodic_text_inherit_class;
 const block = setup({
   mod: '--',
   modValue: '-',
@@ -41,18 +42,21 @@ export default {
         return b(name, modifiers).mix(prefix + componentClass);
       };
 
-      Object.assign(bWithComponentClass, b);
+      // It's useful in cases where we actually want to inherit styles. It's better to
+      // This will add a class from _base.scss that will undo some of the base styles.
+      // opt out of our base styles when needed than always having to opt in.
+      function textInherit(name, m) {
+        return bWithComponentClass(name, m).mix(prefix + textInheritClass);
+      }
+
+      Object.assign(bWithComponentClass, b, {
+        get textInherit() { return textInherit; },
+      });
 
       // .mix adds a generic Periodic class which will allow us to set up global
       // styles for every component without polluting other codebases where
       // periodic is used
       return bWithComponentClass;
-    },
-  },
-
-  methods: {
-    block(blockName) {
-      return block(prefix + blockName);
     },
   },
 };

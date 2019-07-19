@@ -3,7 +3,7 @@
     :is="tag"
     :href="href"
     :target="target"
-    :class="b({ color, underline: alwaysUnderline }).toString()"
+    :class="b.textInherit({ color, underline: alwaysUnderline }).toString()"
     @click="click">
     <slot />
   </component>
