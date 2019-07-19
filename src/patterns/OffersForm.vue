@@ -21,7 +21,8 @@
         tag="span"
         :class="b('checkbox-text').toString()"
         font-size="xxs"
-        font-weight="normal">
+        font-weight="normal"
+        line-height="15px">
         Get offers and tips from our sponsors.
       </Paragraph>
 
@@ -58,6 +59,7 @@
             tag="span"
             :class="b('checkbox-text').toString()"
             font-size="xxs"
+            line-height="15px"
             v-html="offer.displayHtml" />
         </Checkbox>
 
@@ -67,7 +69,8 @@
       <Paragraph
         :class="b('footnote').toString()"
         font-size="xxs"
-        font-weight="normal">
+        font-weight="normal"
+        line-height="15px">
         * I certify I am 18 years of age or older and agree that Purina
         may use my information as described in the
         <TextLink
