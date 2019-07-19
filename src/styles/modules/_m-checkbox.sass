@@ -41,10 +41,17 @@
     @include rem-fallback('margin-left', 14px)
     justify-content: space-between
 
+    +m(size-tiny)
+      line-height: 14px
+
   +e(label)
     cursor: pointer
     vertical-align: middle
     line-height: 1em
+
+    +m(size-tiny)
+      line-height: 14px
+      font-size: 12px
 
   +e(label-right)
     cursor: pointer
@@ -68,3 +75,4 @@
   +e('label')
     font-weight: 200
     +rem-fallback('font-size', $font-size-m)
+    line-height: normal

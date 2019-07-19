@@ -9,6 +9,8 @@ props:
     value: "Periodic"
   periodic_component_class:
     value: "base"
+  periodic_text_inherit_class:
+    value: "base-text-inherit"
 global:
   type: global
   category: compatibility

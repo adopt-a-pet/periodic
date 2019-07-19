@@ -2,7 +2,8 @@
   <component
     :is="tag"
     :href="href"
-    :class="b({ color, underline: alwaysUnderline }).toString()"
+    :target="target"
+    :class="b.textUnstyled({ color, underline: alwaysUnderline }).toString()"
     @click="click">
     <slot />
   </component>
@@ -38,6 +39,14 @@ export default {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Just the normal target prop you find on `a` tags.
+     */
+    target: {
+      type: String,
+      default: null,
+    },
   },
 
   computed: {
@@ -64,7 +73,9 @@ export default {
 <docs>
 ```vue
 <template>
-  <div>
+  <Paragraph
+    font-size="s"
+    font-weight="normal">
     <TextLink href="/">Default</TextLink>
     <br />
     <br />
@@ -75,7 +86,7 @@ export default {
     <br />
     <br />
     <TextLink color="gray-light" always-underline>Always underline</TextLink>
-  </div>
+  </Paragraph>
 </template>
 <script>
 export default {

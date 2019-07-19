@@ -99,7 +99,8 @@
             tag="span"
             font-size="m"
             font-family="museo"
-            font-weight="bold">
+            font-weight="bold"
+            color="gray-light">
             Skip
           </Paragraph>
         </TextLink>

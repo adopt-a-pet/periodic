@@ -67,7 +67,7 @@ export default {
      */
     lineHeight: {
       type: Number,
-      default: 1.5,
+      default: null,
     },
     /**
      * The alignment for the text. Default is null so it inherits.

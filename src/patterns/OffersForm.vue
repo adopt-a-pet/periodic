@@ -17,13 +17,26 @@
       id="allSponsorOffers"
       v-model="allOffersChecked"
       size="tiny">
-      <span :class="b('checkbox-text').toString()">Get offers and tips from our sponsors.</span>
+      <Paragraph
+        tag="span"
+        :class="b('checkbox-text').toString()"
+        font-size="xxs"
+        font-weight="normal"
+        line-height="15px">
+        Get offers and tips from our sponsors.
+      </Paragraph>
 
       <span
-        :class="b('link-blue').toString()"
         style="display: inline-block"
         @click.stop="showAllOffers = !showAllOffers">
-        <span>{{ showAllOffers ? 'Close' : 'Learn More' }}</span>
+        <Paragraph
+          tag="span"
+          :class="b('link-blue').toString()"
+          font-size="xxs"
+          font-weight="normal"
+          line-height="15px">
+          {{ showAllOffers ? 'Close' : 'Learn More' }}
+        </Paragraph>
 
         <Icon
           :class="b('arrow').is({ expanded: showAllOffers }).toString()"
@@ -45,29 +58,36 @@
           :checked="optins.includes(offer.newsletterId)"
           size="tiny"
           @change="onOfferChecked($event, offer.newsletterId)">
-          <span
+          <Paragraph
+            tag="span"
             :class="b('checkbox-text').toString()"
+            font-size="xxs"
+            line-height="15px"
             v-html="offer.displayHtml" />
         </Checkbox>
 
         <VSpacer size="xxs" />
       </div>
 
-      <p :class="b('footnote').toString()">
-        <span>
-          * I certify I am 18 years of age or older and agree that Purina
-          may use my information as described in the
-        </span>
-        <a
-          :class="b('link-blue').toString()"
+      <Paragraph
+        :class="b('footnote').toString()"
+        font-size="xxs"
+        font-weight="normal"
+        line-height="15px">
+        * I certify I am 18 years of age or older and agree that Purina
+        may use my information as described in the
+        <TextLink
           href="https://www.purina.com/privacy-policy"
-          target="_blank">Privacy Policy</a>
+          target="_blank">
+          Privacy Policy
+        </TextLink>
         <span>and</span>
-        <a
-          :class="b('link-blue').toString()"
+        <TextLink
           href="https://www.purina.com/about-our-ads"
-          target="_blank">About Our Ads</a>.
-      </p>
+          target="_blank">
+          About Our Ads
+        </TextLink>
+      </Paragraph>
     </div>
   </div>
 </template>
