@@ -29,11 +29,14 @@
       <span
         style="display: inline-block"
         @click.stop="showAllOffers = !showAllOffers">
-        <span
+        <Paragraph
+          tag="span"
           :class="b('link-blue').toString()"
-          class="periodic-heading__h6 periodic-heading__h6--tiny periodic-heading__h6--compact">
+          font-size="xxs"
+          font-weight="normal"
+          line-height="15px">
           {{ showAllOffers ? 'Close' : 'Learn More' }}
-        </span>
+        </Paragraph>
 
         <Icon
           :class="b('arrow').is({ expanded: showAllOffers }).toString()"
