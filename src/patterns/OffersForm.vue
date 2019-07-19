@@ -17,11 +17,13 @@
       id="allSponsorOffers"
       v-model="allOffersChecked"
       size="tiny">
-      <span
+      <Paragraph
+        tag="span"
         :class="b('checkbox-text').toString()"
-        class="periodic-heading__h6 periodic-heading__h6--tiny periodic-heading__h6--compact">
+        font-size="xxs"
+        font-weight="normal">
         Get offers and tips from our sponsors.
-      </span>
+      </Paragraph>
 
       <span
         style="display: inline-block"
@@ -52,34 +54,34 @@
           :checked="optins.includes(offer.newsletterId)"
           size="tiny"
           @change="onOfferChecked($event, offer.newsletterId)">
-          <span
+          <Paragraph
+            tag="span"
             :class="b('checkbox-text').toString()"
-            class="periodic-heading__h6 periodic-heading__h6--light periodic-heading__h6--tiny"
+            font-size="xxs"
             v-html="offer.displayHtml" />
         </Checkbox>
 
         <VSpacer size="xxs" />
       </div>
 
-      <p
+      <Paragraph
         :class="b('footnote').toString()"
-        class="periodic-heading__h6 periodic-heading__h6--tiny">
-        <span>
-          * I certify I am 18 years of age or older and agree that Purina
-          may use my information as described in the
-        </span>
-        <a
-          :class="b('link-blue').toString()"
+        font-size="xxs"
+        font-weight="normal">
+        * I certify I am 18 years of age or older and agree that Purina
+        may use my information as described in the
+        <TextLink
           href="https://www.purina.com/privacy-policy"
-          target="_blank"
-          class="periodic-heading__h6 periodic-heading__h6--tiny">Privacy Policy</a>
+          target="_blank">
+          Privacy Policy
+        </TextLink>
         <span>and</span>
-        <a
-          :class="b('link-blue').toString()"
+        <TextLink
           href="https://www.purina.com/about-our-ads"
-          target="_blank"
-          class="periodic-heading__h6 periodic-heading__h6--tiny">About Our Ads</a>.
-      </p>
+          target="_blank">
+          About Our Ads
+        </TextLink>
+      </Paragraph>
     </div>
   </div>
 </template>

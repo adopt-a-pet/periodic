@@ -2,6 +2,7 @@
   <component
     :is="tag"
     :href="href"
+    :target="target"
     :class="b({ color, underline: alwaysUnderline }).toString()"
     @click="click">
     <slot />
@@ -37,6 +38,14 @@ export default {
     alwaysUnderline: {
       type: Boolean,
       default: false,
+    },
+
+    /**
+     * Just the normal target prop you find on `a` tags.
+     */
+    target: {
+      type: String,
+      default: null,
     },
   },
 
