@@ -49,9 +49,7 @@ export default {
         return bWithComponentClass(name, m).mix(prefix + textInheritClass);
       }
 
-      Object.assign(bWithComponentClass, b, {
-        get textInherit() { return textInherit; },
-      });
+      Object.assign(bWithComponentClass, b, { textInherit });
 
       // .mix adds a generic Periodic class which will allow us to set up global
       // styles for every component without polluting other codebases where

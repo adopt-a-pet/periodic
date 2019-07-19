@@ -73,7 +73,9 @@ export default {
 <docs>
 ```vue
 <template>
-  <div>
+  <Paragraph
+    font-size="s"
+    font-weight="normal">
     <TextLink href="/">Default</TextLink>
     <br />
     <br />
@@ -84,7 +86,7 @@ export default {
     <br />
     <br />
     <TextLink color="gray-light" always-underline>Always underline</TextLink>
-  </div>
+  </Paragraph>
 </template>
 <script>
 export default {
