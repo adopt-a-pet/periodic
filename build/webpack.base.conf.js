@@ -15,6 +15,7 @@ module.exports = {
     app: './src/main.js',
   },
   output: {
+    globalObject: 'this',
     path: config.build.assetsRoot,
     filename: '[name].js',
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
