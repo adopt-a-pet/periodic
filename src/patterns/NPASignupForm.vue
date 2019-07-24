@@ -96,7 +96,6 @@
         </TextLink>
 
         <Button
-          :disabled="submitDisabled"
           @click="saveAndContinue">
           Save & Continue
         </Button>
@@ -156,7 +155,6 @@ export default {
         dontShowAgain: false,
         optins: this.optins,
       },
-      submitDisabled: true,
     };
   },
   blockName: 'npa-signup',
@@ -174,19 +172,6 @@ export default {
   },
 
   methods: {
-    checkSubmitEnabled() {
-      this.$nextTick(() => {
-        let valid = false;
-        if (
-          this.form.email
-          && this.$refs.email.validate()
-        ) {
-          valid = true;
-        }
-
-        this.submitDisabled = !valid;
-      });
-    },
     whatIsThis() {
       /**
        * When user clicks "What is this"
