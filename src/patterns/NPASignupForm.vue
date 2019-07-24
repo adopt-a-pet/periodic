@@ -206,7 +206,9 @@ export default {
        * @event submit
        * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
        */
-      this.$emit('submit', this.form);
+      if (this.$refs.email.validate()) {
+        this.$emit('submit', this.form);
+      }
     },
   },
 };
