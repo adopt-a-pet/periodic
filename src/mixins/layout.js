@@ -33,8 +33,6 @@ function data() {
 }
 
 function created() {
-  if (!process.client) return;
-
   this.$_setLayout = setLayout.bind(this);
 
   window.addEventListener('resize', this.$_setLayout);
@@ -43,8 +41,6 @@ function created() {
 }
 
 function beforeDestroy() {
-  if (!process.client) return;
-
   window.removeEventListener('resize', this.$_setLayout);
 }
 
