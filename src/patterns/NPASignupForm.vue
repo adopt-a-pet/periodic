@@ -44,8 +44,7 @@
           v-model="form.email"
           name="email"
           :error-messages="{ required: 'Enter Email', email: 'Invalid Email' }"
-          required
-          @change="checkSubmitEnabled" />
+          required />
       </div>
 
       <VSpacer size="xl" />
@@ -168,19 +167,6 @@ export default {
   },
 
   methods: {
-    checkSubmitEnabled() {
-      this.$nextTick(() => {
-        let valid = false;
-        if (
-          this.form.email
-          && this.$refs.email.validate()
-        ) {
-          valid = true;
-        }
-
-        this.submitDisabled = !valid;
-      });
-    },
     whatIsThis() {
       /**
        * When user clicks "What is this"
