@@ -165,13 +165,22 @@ export default {
   },
 
   mounted() {
-    if (this.form.email) {
-      // Make sure it's valid
-      this.checkSubmitEnabled();
-    }
   },
 
   methods: {
+    checkSubmitEnabled() {
+      this.$nextTick(() => {
+        let valid = false;
+        if (
+          this.form.email
+          && this.$refs.email.validate()
+        ) {
+          valid = true;
+        }
+
+        this.submitDisabled = !valid;
+      });
+    },
     whatIsThis() {
       /**
        * When user clicks "What is this"
