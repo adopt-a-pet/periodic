@@ -46,16 +46,6 @@
           :error-messages="{ required: 'Enter Email', email: 'Invalid Email' }"
           required
           @change="checkSubmitEnabled" />
-
-        <TextInput
-          ref="emailConfirm"
-          v-model="emailConfirm"
-          :validations="emailConfirmValidators"
-          :error-messages="{ required: 'Enter Email', emailConfirm: 'Emails Don’t Match' }"
-          name="email-confirm"
-          label="Confirm Email"
-          required
-          @change="checkSubmitEnabled" />
       </div>
 
       <VSpacer size="xl" />
@@ -166,7 +156,6 @@ export default {
         dontShowAgain: false,
         optins: this.optins,
       },
-      emailConfirm: '',
       submitDisabled: true,
     };
   },
@@ -175,19 +164,10 @@ export default {
   release: '1.0.0',
 
   computed: {
-    emailConfirmValidators() {
-      return {
-        emailConfirm: value =>
-          value.toLowerCase() === this.form.email.toLowerCase(),
-      };
-    },
   },
 
   mounted() {
     if (this.form.email) {
-      // If we are auto-filling email because we already have it, bypass emailConfirm
-      this.emailConfirm = this.form.email;
-
       // Make sure it's valid
       this.checkSubmitEnabled();
     }
@@ -200,8 +180,6 @@ export default {
         if (
           this.form.email
           && this.$refs.email.validate()
-          && this.emailConfirm
-          && this.$refs.emailConfirm.validate()
         ) {
           valid = true;
         }
