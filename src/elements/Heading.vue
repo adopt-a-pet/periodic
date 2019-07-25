@@ -1,14 +1,16 @@
 <template>
   <component
     :is="level"
-    :class="b(level, [ fontFamily, fontWeight, lineHeight ]).toString()"
-    :style="{ lineHeight, textAlign }">
+    :class="b(level, [ fontFamily, fontWeight, lineHeightToken ]).toString()"
+    :style="{ lineHeight: lineHeightNonToken, textAlign }">
     <!-- @slot All content goes here like a normal heading tag -->
     <slot />
   </component>
 </template>
 
 <script>
+import lineHeightMixin from '@/mixins/line-height';
+
 /**
  * Headings are used as the titles of each major section of a page in the
  * interface. Use `level` to change the size.
@@ -18,6 +20,7 @@ export default {
   status: 'under-review',
   release: '1.0.0',
   blockName: 'heading',
+  mixins: [lineHeightMixin],
   props: {
     /**
      * The level of the heading: h1, h2, h3, h4, h5, h6.
@@ -45,12 +48,11 @@ export default {
       validator: value => value.match(/(museo)/),
     },
     /**
-     * The line height for the heading.
+     * The line height for the text.
      */
     lineHeight: {
       type: String,
       default: null,
-      validator: value => value.match(/(compact|x-compact)/),
     },
     /**
      * The alignment for the text. Default is null so it inherits.

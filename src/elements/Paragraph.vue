@@ -13,11 +13,14 @@
 </template>
 
 <script>
+import lineHeightMixin from '@/mixins/line-height';
+
 export default {
   name: 'Paragraph',
   status: 'under-review',
   release: '1.0.0',
   blockName: 'paragraph',
+  mixins: [lineHeightMixin],
   model: {
     prop: 'value',
     event: 'input',
@@ -66,7 +69,7 @@ export default {
      * The line height for the text.
      */
     lineHeight: {
-      type: Number,
+      type: String,
       default: null,
     },
     /**
