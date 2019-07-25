@@ -1,4 +1,6 @@
 
+const inBrowser = typeof window !== 'undefined';
+
 const layoutChecks = [
   {
     name: 'desktop',
@@ -33,7 +35,7 @@ function data() {
 }
 
 function created() {
-  if (!process.client) return;
+  if (!inBrowser) return;
 
   this.$_setLayout = setLayout.bind(this);
 
@@ -43,7 +45,7 @@ function created() {
 }
 
 function beforeDestroy() {
-  if (!process.client) return;
+  if (!inBrowser) return;
 
   window.removeEventListener('resize', this.$_setLayout);
 }
