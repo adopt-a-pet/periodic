@@ -44,8 +44,7 @@
           v-model="form.email"
           name="email"
           :error-messages="{ required: 'Enter Email', email: 'Invalid Email' }"
-          required
-          @change="checkSubmitEnabled" />
+          required />
       </div>
 
       <VSpacer size="xl" />
@@ -96,7 +95,6 @@
         </TextLink>
 
         <Button
-          :disabled="submitDisabled"
           @click="saveAndContinue">
           Save & Continue
         </Button>
@@ -156,7 +154,6 @@ export default {
         dontShowAgain: false,
         optins: this.optins,
       },
-      submitDisabled: true,
     };
   },
   blockName: 'npa-signup',
@@ -167,26 +164,9 @@ export default {
   },
 
   mounted() {
-    if (this.form.email) {
-      // Make sure it's valid
-      this.checkSubmitEnabled();
-    }
   },
 
   methods: {
-    checkSubmitEnabled() {
-      this.$nextTick(() => {
-        let valid = false;
-        if (
-          this.form.email
-          && this.$refs.email.validate()
-        ) {
-          valid = true;
-        }
-
-        this.submitDisabled = !valid;
-      });
-    },
     whatIsThis() {
       /**
        * When user clicks "What is this"
@@ -212,7 +192,9 @@ export default {
        * @event submit
        * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
        */
-      this.$emit('submit', this.form);
+      if (this.$refs.email.validate()) {
+        this.$emit('submit', this.form);
+      }
     },
   },
 };
