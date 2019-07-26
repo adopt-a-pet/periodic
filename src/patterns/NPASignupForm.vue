@@ -190,10 +190,10 @@ export default {
       /**
        * When user changes "Don’t show me this again."  It will send true or false
        *
-       * @event change:dontShow
+       * @event change:dontShowAgain
        * @type none
        */
-      this.$emit('change:dontShow', this.form.dontShowAgain);
+      this.$emit('change:dontShowAgain', this.form.dontShowAgain);
     },
     saveAndContinue() {
       /**
