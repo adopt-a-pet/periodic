@@ -67,7 +67,8 @@
 
       <Checkbox
         id="gtm-dont-show"
-        v-model="form.dontShowAgain">
+        v-model="form.dontShowAgain"
+        @change="dontShowAgain">
         <Paragraph
           :class="b('checkbox-text').toString()"
           font-size="xs"
@@ -145,6 +146,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    /**
+     * Don't Show Me this again checkboxes
+     *
+     */
   },
 
   data() {
@@ -184,6 +189,15 @@ export default {
        * @type none
        */
       this.$emit('click:skip');
+    },
+    dontShowAgain() {
+      /**
+       * When user changes "Don’t show me this again."  It will send true or false
+       *
+       * @event change:dontShow
+       * @type none
+       */
+      this.$emit('change:dontShow', this.form.dontShowAgain);
     },
     saveAndContinue() {
       /**
