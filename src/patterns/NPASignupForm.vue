@@ -146,10 +146,6 @@ export default {
       type: Array,
       default: () => [],
     },
-    /**
-     * Don't Show Me this again checkboxes
-     *
-     */
   },
 
   data() {
