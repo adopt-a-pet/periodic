@@ -191,7 +191,7 @@ export default {
        * When user changes "Don’t show me this again."  It will send true or false
        *
        * @event change:dontShowAgain
-       * @type none
+       * @type Boolean
        */
       this.$emit('change:dontShowAgain', this.form.dontShowAgain);
     },
