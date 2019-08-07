@@ -2,6 +2,7 @@
   <div
     :class="b({ searchable: search }).is({ full: full }).toString()">
     <TextInput
+      :class="b('text-input').toString()"
       :label="label"
       :name="name"
       :readonly="!search"
@@ -14,7 +15,9 @@
       @focus="onFocus"
       @input="setFilter">
       <template slot="right">
-        <Tooltip v-if="tooltip">
+        <Tooltip
+          v-if="tooltip"
+          :class="b('tooltip').toString()">
           {{ tooltip }}
         </Tooltip>
 
