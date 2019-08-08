@@ -46,6 +46,11 @@
     input[type="text"]
       cursor: text
 
+      &:focus
+        ~ .periodic-text-field__slot
+          background: pink !important
+          z-index: 1000
+
   +e(arrow)
     +rem-fallback('height', 7px)
     +rem-fallback('margin-top', $space-xxxxs)
@@ -54,6 +59,9 @@
     border-top: 7px solid #4d4d4d
     pointer-events: none
     transition: all 300ms ease-in-out
+    display: inline-block
+    position: relative
+    z-index: 1000
 
   +e(list)
     background-color: #fff
