@@ -10,7 +10,9 @@
       focus-border
       readonly>
       <template slot="right">
-        <Tooltip v-if="tooltip">
+        <Tooltip
+          v-if="tooltip"
+          :class="b('tooltip').toString()">
           {{ tooltip }}
         </Tooltip>
 

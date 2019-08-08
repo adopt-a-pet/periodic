@@ -15,9 +15,7 @@
       @focus="onFocus"
       @input="setFilter">
       <template slot="right">
-        <Tooltip
-          v-if="tooltip"
-          :class="b('tooltip').toString()">
+        <Tooltip v-if="tooltip">
           {{ tooltip }}
         </Tooltip>
 
