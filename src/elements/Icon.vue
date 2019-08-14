@@ -70,6 +70,7 @@ export default {
     <Icon name="review" fill="rgb(255,186,10)" />
     <Icon name="deprecated" fill="rgb(235,59,36)" />
     <Icon name="prototype" fill="rgb(37,138,239)" />
+    <Icon name="service-google" />
   </div>
   ```
 </docs>

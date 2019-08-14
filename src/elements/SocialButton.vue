@@ -7,7 +7,9 @@
     :disabled="disabled"
     :service="service"
     @click="click">
-    <Icon :name="'service-' + service" />
+    <Icon
+      :class="b('check').toString()"
+      :name="'service-' + service" />
     <slot />
   </component>
 </template>
@@ -42,12 +44,8 @@ export default {
 ```vue
 <template>
   <div>
-    <Button>Default</Button> <br />
-    <Button state="hover">:hover</Button> <br />
-    <Button state="active">:active</Button> <br />
-    <Button size="small">Small</Button> <br />
-    <Button :disabled="true">Disabled</Button> <br />
-    <Button :disabled="true" size="small">Small Disabled</Button> <br />
+    <SocialButton service="google" color="blue">Google</SocialButton> <br />
+    <SocialButton service="google" color="blue">Google</SocialButton> <br />
   </div>
 </template>
 <script>
