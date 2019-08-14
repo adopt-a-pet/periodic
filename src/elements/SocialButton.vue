@@ -3,12 +3,12 @@
     :is="tag"
     :href="href"
     :type="type"
-    :class="[b({ color, size }).toString(), state]"
+    :class="[b({ color, size, textColor}).toString(), state]"
     :disabled="disabled"
     :service="service"
     @click="click">
     <Icon
-      :class="b('check').toString()"
+      :class="b('social-icon').toString()"
       :name="'service-' + service" />
     <slot />
   </component>
@@ -36,6 +36,23 @@ export default {
       default: null,
       validator: value => value.match(/(google|facebook)/),
     },
+    /**
+     * Color allows us to easily change the color.
+     * `color`
+     */
+    color: {
+      type: String,
+      default: 'green',
+      validator: value => value.match(/(green|blue|orange|white)/),
+    },
+    textColor: {
+      type: String,
+      default: 'white',
+      validator: value => value.match(/(google|fb)/),
+    },
+  },
+  computed: {
+
   },
 };
 </script>
@@ -44,8 +61,8 @@ export default {
 ```vue
 <template>
   <div>
-    <SocialButton service="google" color="blue">Google</SocialButton> <br />
-    <SocialButton service="google" color="blue">Google</SocialButton> <br />
+    <SocialButton service="google" color="white" textColor="google">Google</SocialButton> <br />
+    <SocialButton service="facebook" color="white" textColor="fb">Facebook</SocialButton> <br />
   </div>
 </template>
 <script>

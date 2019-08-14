@@ -101,6 +101,32 @@
     }
   }
 
+  @include modifier('textColor') {
+    &-fb {
+      color: $color-facebook-blue;
+
+      &:hover,
+      &.hover {
+        background-color: $color-facebook-blue;
+        border: 0;
+        box-shadow: $btn-shade-hover;
+        color: color(awhite, base);
+      }
+    }
+
+    &-google {
+      color: $color-google-red;
+
+      &:hover,
+      &.hover {
+        background-color: $color-google-red;
+        border: 0;
+        box-shadow: $btn-shade-hover;
+        color: color(awhite, base);
+      }
+    }
+  }
+
   &[disabled] {
     background-color: color(agray, lighter);
     border: 0;
@@ -122,6 +148,15 @@
     @include rem-fallback('width', 24px);
     @include rem-fallback('height', 23px);
     display: inline-flex;
+    vertical-align: middle;
+    @include rem-fallback('margin-right', 5px);
+  }
+
+  @include element('social-icon') {
+    width: 20%;
+    @include rem-fallback('width', 24px);
+    @include rem-fallback('height', 23px);
+    display: inline-block;
     vertical-align: middle;
     @include rem-fallback('margin-right', 5px);
   }
