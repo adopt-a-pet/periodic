@@ -22,6 +22,10 @@
     background-color: $color_forty_per_lighter_grey;
     @include border(2px solid color(agray, light));
     color: color(agray, light);
+
+    g {
+      fill: #fff;
+    }
   }
 
   &:active {

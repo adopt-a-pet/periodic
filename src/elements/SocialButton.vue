@@ -45,10 +45,12 @@ export default {
       default: 'green',
       validator: value => value.match(/(green|blue|orange|white)/),
     },
+    /**
+     * Easily change the text color.
+     */
     textColor: {
       type: String,
-      default: 'white',
-      validator: value => value.match(/(google|fb)/),
+      default: '#fff',
     },
   },
   computed: {
