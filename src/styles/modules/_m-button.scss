@@ -23,14 +23,13 @@
     @include border(2px solid color(agray, light));
     color: color(agray, light);
 
-    .periodic-button__social-icon {
+    .#{_b(button) + _e(social-icon)} {
       g {
         fill: #fff;
       }
-    }
-    
-    .svg-path {
-      fill: #fff;
+      .svg-path {
+        fill: #fff;
+      }
     }
   }
 
@@ -111,14 +110,14 @@
     }
   }
 
-  @include modifier('textColor') {
+  @include modifier('text-color') {
     &-fb {
       color: $color-facebook-blue;
 
       &:hover,
       &.hover {
         background-color: $color-facebook-blue;
-        border: 0;
+        border-color: $color-facebook-blue;
         color: color(awhite, base);
       }
     }
@@ -129,7 +128,7 @@
       &:hover,
       &.hover {
         background-color: $color-google-red;
-        border: 0;
+        border-color: $color-google-red;
         color: color(awhite, base);
       }
     }

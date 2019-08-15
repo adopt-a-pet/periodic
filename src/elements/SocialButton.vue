@@ -3,7 +3,7 @@
     :is="tag"
     :href="href"
     :type="type"
-    :class="[b({ color, size, textColor}).toString(), state]"
+    :class="b({ color: 'white', size, 'text-color': textColor}).toString()"
     :disabled="disabled"
     :service="service"
     @click="click">
@@ -37,15 +37,6 @@ export default {
       validator: value => value.match(/(google|facebook)/),
     },
     /**
-     * Color allows us to easily change the color.
-     * `color`
-     */
-    color: {
-      type: String,
-      default: 'green',
-      validator: value => value.match(/(green|blue|orange|white)/),
-    },
-    /**
      * Easily change the text color.
      */
     textColor: {
@@ -63,8 +54,8 @@ export default {
 ```vue
 <template>
   <div>
-    <SocialButton service="google" color="white" textColor="google">Google</SocialButton> <br />
-    <SocialButton service="facebook" color="white" textColor="fb">Facebook</SocialButton> <br />
+    <SocialButton service="google" color="white" text-color="google">Google</SocialButton> <br />
+    <SocialButton service="facebook" color="white" text-color="fb">Facebook</SocialButton> <br />
   </div>
 </template>
 <script>
