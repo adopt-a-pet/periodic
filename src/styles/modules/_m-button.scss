@@ -164,7 +164,7 @@
     @include rem-fallback('width', 24px);
     @include rem-fallback('height', 23px);
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: text-bottom;
     @include rem-fallback('margin-right', 5px);
   }
 
