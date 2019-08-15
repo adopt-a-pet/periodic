@@ -22,6 +22,15 @@
     background-color: $color_forty_per_lighter_grey;
     @include border(2px solid color(agray, light));
     color: color(agray, light);
+
+    .#{_b(button) + _e(social-icon)} {
+      g {
+        fill: #fff;
+      }
+      .svg-path {
+        fill: #fff;
+      }
+    }
   }
 
   &:active {
@@ -101,6 +110,30 @@
     }
   }
 
+  @include modifier('text-color') {
+    &-fb {
+      color: $color-facebook-blue;
+
+      &:hover,
+      &.hover {
+        background-color: $color-facebook-blue;
+        border-color: $color-facebook-blue;
+        color: color(awhite, base);
+      }
+    }
+
+    &-google {
+      color: $color-google-red;
+
+      &:hover,
+      &.hover {
+        background-color: $color-google-red;
+        border-color: $color-google-red;
+        color: color(awhite, base);
+      }
+    }
+  }
+
   &[disabled] {
     background-color: color(agray, lighter);
     border: 0;
@@ -122,6 +155,15 @@
     @include rem-fallback('width', 24px);
     @include rem-fallback('height', 23px);
     display: inline-flex;
+    vertical-align: middle;
+    @include rem-fallback('margin-right', 5px);
+  }
+
+  @include element('social-icon') {
+    width: 20%;
+    @include rem-fallback('width', 24px);
+    @include rem-fallback('height', 23px);
+    display: inline-block;
     vertical-align: middle;
     @include rem-fallback('margin-right', 5px);
   }
