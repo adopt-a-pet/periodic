@@ -3,6 +3,7 @@
     :is="type"
     :aria-label="ariaLabel"
     :class="[b().toString()]"
+    :style="{width, height}"
     @click="$emit('click', $event)"
     v-html="svg" />
 </template>
@@ -49,6 +50,20 @@ export default {
     type: {
       type: String,
       default: 'span',
+    },
+    /**
+     *  Easily set the width of the icon.
+     */
+    width: {
+      type: String,
+      default: null,
+    },
+    /**
+     *  Easily set the height of the icon.
+     */
+    height: {
+      type: String,
+      default: null,
     },
   },
   data() {
