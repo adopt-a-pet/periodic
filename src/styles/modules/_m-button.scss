@@ -23,7 +23,13 @@
     @include border(2px solid color(agray, light));
     color: color(agray, light);
 
-    g {
+    .periodic-button__social-icon {
+      g {
+        fill: #fff;
+      }
+    }
+    
+    .svg-path {
       fill: #fff;
     }
   }
@@ -113,7 +119,6 @@
       &.hover {
         background-color: $color-facebook-blue;
         border: 0;
-        box-shadow: $btn-shade-hover;
         color: color(awhite, base);
       }
     }
@@ -125,7 +130,6 @@
       &.hover {
         background-color: $color-google-red;
         border: 0;
-        box-shadow: $btn-shade-hover;
         color: color(awhite, base);
       }
     }
