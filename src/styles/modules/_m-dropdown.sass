@@ -42,6 +42,9 @@
       &:focus
         outline: none
 
+    input[type="text"]
+      position: static !important
+
   +m(searchable)
     input[type="text"]
       cursor: text
@@ -59,8 +62,6 @@
     pointer-events: none
     transition: all 300ms ease-in-out
     display: inline-block
-    position: relative
-    z-index: 1000
 
   +e(list)
     background-color: #fff
