@@ -20,6 +20,7 @@ aliases:
     value: "#001123"
   white:
     value: "#fff"
+    
 props:
   color_vermilion_darker:
     value: "hsla({!vermilion}, 33%, 1)"
@@ -91,6 +92,14 @@ props:
   color_primary_blue:
     value: "#00a8de"
     category: color_group_5
+
+  color_facebook_blue:
+    value: "#3b5998"
+    category: color_group_6
+  color_google_red:
+    value: "#db4336"
+    category: color_group_6
+
 global:
   type: color
   category: color

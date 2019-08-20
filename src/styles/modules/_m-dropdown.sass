@@ -4,8 +4,15 @@
   font-size: 1.25rem
   color: color(agray, dark)
 
+  +e(text-input) > div
+    background: color(awhite)
+    border-radius: $radius-m
+
   input[type="text"]
     cursor: default
+    background: none
+    position: relative
+    z-index: 1
 
   +is(full)
     .#{_b(dropdown) + _e(arrow)}
@@ -35,9 +42,16 @@
       &:focus
         outline: none
 
+    input[type="text"]
+      position: static !important
+
   +m(searchable)
     input[type="text"]
       cursor: text
+
+      &:focus
+        ~ .periodic-text-field__slot
+          z-index: 1000
 
   +e(arrow)
     +rem-fallback('height', 7px)
@@ -47,6 +61,7 @@
     border-top: 7px solid #4d4d4d
     pointer-events: none
     transition: all 300ms ease-in-out
+    display: inline-block
 
   +e(list)
     background-color: #fff

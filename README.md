@@ -2,6 +2,8 @@
 
 Just as the Periodic Table of Elements lets us see all of the elements that we have to work with in the material world, Periodic is our design system which lets us showcase all of the UI elements that we have to work with for all of our projects.
 
+[Periodic](https://periodic.aapdev.org/)
+
 ## Getting Started
 
 This project is a fork of the fantastic [Vue Design System](https://github.com/viljamis/vue-design-system), tweaked to fit AAP's needs. All of the documentation listed below is on the official Vue Design System repo, which is 100% applicable to this repo as well.
