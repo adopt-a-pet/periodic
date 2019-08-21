@@ -11,9 +11,12 @@
     +rem-fallback('margin-top', $space-xs)
     position: relative
     border: 1px solid color(agray, light)
-    border-radius: $radius-default
+    border-radius: $radius-m
 
   +element('icon')
+    display: block
+    text-align: center
+
     svg
       +rem-fallback('max-height', 30px)
       +rem-fallback('margin-bottom', 5px)
@@ -101,7 +104,6 @@
     +rem-fallback('font-size', $font-size-xs)
     +rem-fallback('border-radius', $radius-m)
     +rem-fallback('line-height', $line-height-h6v2)
-    color: color(agray, darker)
     display: inline-block
     font-weight: 200
     text-align: center
