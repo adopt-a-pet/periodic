@@ -15,11 +15,12 @@
 
   +element('icon')
     display: block
+    +rem-fallback('height', 30px)
+    +rem-fallback('margin-bottom', 5px)
     text-align: center
 
     svg
       +rem-fallback('max-height', 30px)
-      +rem-fallback('margin-bottom', 5px)
 
   +element('button')
     position: absolute
