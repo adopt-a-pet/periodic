@@ -18,14 +18,6 @@
           New Pet Alert
         </Heading>
 
-        <VSpacer size="xl" />
-      </div>
-
-      <Paragraph
-        text-align="left"
-        color="gray"
-        font-weight="normal">
-        We'll email you when new pets that match your search criteria are added to our site!
         <Paragraph
           tag="span"
           font-size="s"
@@ -34,6 +26,15 @@
             What is this?
           </TextLink>
         </Paragraph>
+
+        <VSpacer size="xl" />
+      </div>
+
+      <Paragraph
+        text-align="left"
+        color="gray"
+        font-weight="normal">
+        We'll email you when new pets that match your search criteria are added to our site!
       </Paragraph>
 
       <VSpacer size="xl" />
@@ -45,6 +46,12 @@
           name="email"
           :error-messages="{ required: 'Enter Email', email: 'Invalid Email' }"
           required />
+
+        <RadioGroupBox
+          v-model="npaPlanSelection"
+          name="npa-plan-selection"
+          :columns="2"
+          :items="items" />
       </div>
 
       <VSpacer size="xl" />
@@ -146,6 +153,13 @@ export default {
       type: Array,
       default: () => [],
     },
+    /**
+     * A list of newsletterIds that are checked
+     */
+    items: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   data() {
@@ -155,6 +169,7 @@ export default {
         dontShowAgain: false,
         optins: this.optins,
       },
+      npaPlanSelection: '2',
     };
   },
   blockName: 'npa-signup',
@@ -213,7 +228,9 @@ export default {
 <docs>
 ```vue
 <template>
-  <NPASignupForm :offers="offers"/>
+  <NPASignupForm
+    :offers="offers"
+    :items="items"/>
 </template>
 <script>
 export default {
@@ -229,6 +246,22 @@ export default {
           displayHtml:
             "Yes, I would like to receive communications from the Petco Foundation"
         }
+      ],
+      items:[
+        {
+          heading: "Premium Alert",
+          display:
+          "Get real time, instant notifications when you have a new match with your $5 monthly donation!",
+          icon: "clock",
+          value: "1"
+        },
+        {
+          heading: "Free Alert",
+          display:
+          "We’ll run your pet search daily and send you an email within 24 hours of having a new match.",
+          icon: "envelope",
+          value: "2"
+        },
       ]
     };
   }
