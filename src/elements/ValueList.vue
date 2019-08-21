@@ -18,7 +18,7 @@
           level="h5"
           font-weight="light"
           line-height="compact">
-          <div v-html="items.value" />
+          <span v-html="items.value" />
         </Heading>
       </div>
     </div>
