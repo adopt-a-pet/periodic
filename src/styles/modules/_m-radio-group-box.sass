@@ -1,14 +1,17 @@
 +b('radio-box')
   display: grid
-  grid-column-gap: 10px
+  +rem-fallback('grid-column-gap', 5px)
   list-style-type: none
   padding: 0
   width: 100%
 
+  +breakpoint(tablet-plus)
+    +rem-fallback('grid-column-gap', 25px)
+
   +element('item')
     @include rem-fallback('padding', 15px 10px)
     margin: 0
-    +rem-fallback('margin-top', $space-xs)
+    +rem-fallback('margin-top', 10px)
     position: relative
     border: 1px solid color(agray, light)
     border-radius: $radius-m
