@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     radioId(item) {
-      return `${tokens.prefix_component}radio-${this.name}-item-${item.value}`;
+      return `${tokens.prefix_component}radio-box-${this.name}-item-${item.value}`;
     },
     select({ checked }, value) {
       if (!checked) return;
