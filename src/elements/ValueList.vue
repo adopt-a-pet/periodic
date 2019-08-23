@@ -5,7 +5,6 @@
         v-for="items in items"
         :key="items.label"
         :class="[b('item', { 'full-width': fullWidth }).toString()]">
-
         <Heading
           :class="b('label', { 'full-width': fullWidth }).toString()"
           level="h5"
@@ -19,7 +18,7 @@
           level="h5"
           font-weight="light"
           line-height="compact">
-          {{ items.value }}
+          <span v-html="items.value" />
         </Heading>
       </div>
     </div>
