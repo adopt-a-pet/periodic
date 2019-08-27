@@ -69,7 +69,7 @@ export default {
   data() {
     let svg = req(`./${this.name}.svg`);
 
-    if (this.fill) svg = svg.replace(/<svg /, `<svg style="fill: ${this.fill}" `);
+    svg = svg.replace(/<svg /, `<svg style="fill: ${this.fill}; height: ${this.height}; width: ${this.width}" `);
 
     return {
       svg,
