@@ -4,7 +4,21 @@
   background-color: #ECECEC
   border-radius: $radius-m
   +rem-fallback('padding', $space-xxs $space-xs)
-  +rem-fallback('margin-top', $space-xxs)
+  +rem-fallback('margin-top', $space-s)
+
+  &:before
+    content: ""
+    position: absolute
+    width: 0
+    height: 0
+    +rem-fallback('margin-top', -10px)
+    margin-left: 24%
+    box-sizing: border-box
+    +border(8px solid color(ablack))
+    border-color: transparent transparent #ECECEC #ECECEC
+    transform-origin: 0 0
+    transform: rotate(134deg)
+    z-index: 1
 
   +e('heading')
     display: inline-block
