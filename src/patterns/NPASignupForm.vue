@@ -37,7 +37,30 @@
         We'll email you when new pets that match your search criteria are added to our site!
       </Paragraph>
 
-      <VSpacer size="xl" />
+      <VSpacer size="l" />
+
+      <Paragraph
+        font-size="s"
+        font-weight="bold"
+        line-height="24px">
+        You’re Searching For
+      </Paragraph>
+
+      <Paragraph
+        font-size="m"
+        font-weight="bold"
+        line-height="26px">
+        <TextLink v-if="moreThanClan">
+          <span v-if="age">{{ params.age }},</span> <span v-if="sex">{{ params.sex }},</span>
+          <span v-if="color">{{ params.color }},</span> <span v-if="breed">{{ params.breed }}s</span> within
+          {{ params.radius }} of {{ params.zipcode }}
+        </TextLink>
+        <TextLink v-if="!moreThanClan">
+          All {{ params.clan }} within {{ params.radius }} of {{ params.zipcode }}
+        </TextLink>
+      </Paragraph>
+
+      <VSpacer size="l" />
 
       <div :class="b('fields').toString()">
         <EmailInput
@@ -160,6 +183,13 @@ export default {
       type: Array,
       default: () => [],
     },
+    /**
+     * A list of search paramaters from the users search criteria
+     */
+    params: {
+      type: Object,
+      default: () => {},
+    },
   },
 
   data() {
@@ -177,6 +207,21 @@ export default {
   release: '1.0.0',
 
   computed: {
+    age() {
+      return this.params.age;
+    },
+    sex() {
+      return this.params.sex;
+    },
+    color() {
+      return this.params.color;
+    },
+    breed() {
+      return this.params.breed;
+    },
+    moreThanClan() {
+      return (this.age || this.sex || this.color || this.breed);
+    },
   },
 
   mounted() {
@@ -230,7 +275,8 @@ export default {
 <template>
   <NPASignupForm
     :offers="offers"
-    :items="items"/>
+    :items="items"
+    :params="params"/>
 </template>
 <script>
 export default {
@@ -247,7 +293,7 @@ export default {
             "Yes, I would like to receive communications from the Petco Foundation"
         }
       ],
-      items:[
+      items: [
         {
           heading: "Premium Alert",
           display:
@@ -262,7 +308,16 @@ export default {
           icon: "envelope",
           value: "2"
         },
-      ]
+      ],
+      params: {
+        age: "",
+        sex: "",
+        color: "",
+        breed: "Pittbull",
+        radius: "10 miles or less",
+        zipcode: "90210",
+        clan: "dogs"
+      }
     };
   }
 };
