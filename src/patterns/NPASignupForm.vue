@@ -54,6 +54,19 @@
           :items="items" />
       </div>
 
+      <Infobox
+        icon="lightbulb">
+        <template slot="header">
+          Pro tip
+        </template>
+        <template slot="message">
+          To get the most out of your Premium experience, choose 2 or more filters.
+        </template>
+        <template slot="link">
+          Edit Filters >
+        </template>
+      </Infobox>
+
       <VSpacer size="xl" />
 
       <VDivider
