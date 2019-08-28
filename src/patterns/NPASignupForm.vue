@@ -51,8 +51,8 @@
         font-weight="bold"
         line-height="26px">
         <TextLink v-if="moreThanClan">
-          <span v-if="age">{{ params.age }},</span> <span v-if="sex">{{ params.sex }},</span>
-          <span v-if="color">{{ params.color }},</span> <span v-if="breed">{{ params.breed }}s</span> within
+          <span v-if="age">{{ params.age }}</span> <span v-if="sex">{{ params.sex }}</span>
+          <span v-if="color">{{ params.color }}</span> <span v-if="breed">{{ params.breed }}s</span> within
           {{ params.radius }} miles of {{ params.zipcode }}
         </TextLink>
         <TextLink v-if="!moreThanClan">
