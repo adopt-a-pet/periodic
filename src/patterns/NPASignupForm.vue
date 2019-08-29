@@ -74,7 +74,8 @@
           v-model="npaPlanSelection"
           name="npa-plan-selection"
           :columns="2"
-          :items="items" />
+          :items="items"
+          @change="notSelectedPlan" />
       </div>
 
       <VSpacer size="xl" />
@@ -264,6 +265,16 @@ export default {
        */
       if (this.$refs.email.validate()) {
         this.$emit('submit', this.form);
+      }
+    },
+    notSelectedPlan() {
+      if (this.npaPlanSelection === '1') {
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('not-selected');
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('not-selected');
+      }
+      if (this.npaPlanSelection === '2') {
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.add('not-selected');
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.remove('not-selected');
       }
     },
   },

@@ -4,6 +4,7 @@
     :style="gridStyles">
     <li
       v-for="(item, index) in renderItems"
+      :id="item.id + '-parent'"
       :key="index"
       :class="b('item').toString()">
       <Icon
@@ -141,7 +142,7 @@ export default {
 export default {
   data() {
     return {
-      radioGroupBox: '2',
+      radioGroupBox: '',
     }
   }
 };

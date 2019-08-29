@@ -147,12 +147,23 @@
     &.not-selected
       border: 1px solid color(agray, lighter)
 
-      #{$prefix-component}radio-box__icon
+      .#{$prefix-component}radio-box__icon
         svg
-          fill: color(agray, lighter)
+          path
+            fill: color(agray, lighter)
 
-      #{$prefix-component}radio-box__label
+      .#{$prefix-component}radio-box__button
+        &:hover ~ .#{$prefix-component}radio-box__outside
+          border: 2px solid color(ablue, base)
+
+          &.#{$prefix-component}radio-box__outside--color-blue
+            border: 2px solid color(awhite, base)
+
+            &::before
+              background: color(awhite, base)
+
+      .#{$prefix-component}radio-box__label
         color: color(agray, lighter)
 
-      #{$prefix-component}radio-box__outside
+      .#{$prefix-component}radio-box__outside
         border: 2px solid color(agray, lighter)
