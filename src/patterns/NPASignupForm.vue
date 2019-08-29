@@ -386,7 +386,7 @@ export default {
         document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('not-selected');
         document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('not-selected');
       }
-      if (this.npaPlanSelection === '2') {
+      if (this.form.npaPlanSelection === '2') {
         document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.add('not-selected');
         document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.remove('not-selected');
       }
