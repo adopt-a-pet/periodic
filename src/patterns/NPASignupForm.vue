@@ -47,17 +47,23 @@
       </Paragraph>
 
       <Paragraph
+        v-if="moreThanClan"
         font-size="m"
         font-weight="bold"
-        line-height="26px">
-        <TextLink v-if="moreThanClan">
-          <span v-if="age">{{ params.age }},</span> <span v-if="sex">{{ params.sex }},</span>
-          <span v-if="color">{{ params.color }},</span> <span v-if="breed">{{ params.breed }}s</span> within
-          {{ params.radius }} of {{ params.zipcode }}
-        </TextLink>
-        <TextLink v-if="!moreThanClan">
-          All {{ params.clan }} within {{ params.radius }} of {{ params.zipcode }}
-        </TextLink>
+        line-height="26px"
+        color="blue"
+        :class="b('search-params').toString()">
+        {{ params.age }} {{ params.sex }} {{ params.color }} {{ params.breed }}<span v-if="breed">s</span> within
+        {{ params.radius }} miles of {{ params.zipcode }}
+      </paragraph>
+      <Paragraph
+        v-if="!moreThanClan"
+        font-size="m"
+        font-weight="bold"
+        line-height="26px"
+        color="blue"
+        :class="b('search-params').toString()">
+        All {{ params.clan }} within {{ params.radius }} miles of {{ params.zipcode }}
       </Paragraph>
 
       <VSpacer size="l" />
