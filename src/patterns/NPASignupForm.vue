@@ -71,7 +71,7 @@
           required />
 
         <RadioGroupBox
-          v-model="npaPlanSelection"
+          v-model="form.npaPlanSelection"
           name="npa-plan-selection"
           :columns="2"
           :items="items"
@@ -199,8 +199,8 @@ export default {
         email: this.email,
         dontShowAgain: false,
         optins: this.optins,
+        npaPlanSelection: '',
       },
-      npaPlanSelection: '',
     };
   },
   blockName: 'npa-signup',
@@ -268,7 +268,7 @@ export default {
       }
     },
     notSelectedPlan() {
-      if (this.npaPlanSelection === '1') {
+      if (this.form.npaPlanSelection === '1') {
         document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('not-selected');
         document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('not-selected');
       }
