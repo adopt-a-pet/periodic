@@ -78,10 +78,11 @@
             required />
 
           <RadioGroupBox
-            v-model="npaPlanSelection"
+            v-model="form.npaPlanSelection"
             name="npa-plan-selection"
             :columns="2"
-            :items="items" />
+            :items="items"
+            @change="notSelectedPlan" />
         </div>
 
         <Infobox
@@ -306,8 +307,8 @@ export default {
         email: this.email,
         dontShowAgain: false,
         optins: this.optins,
+        npaPlanSelection: '',
       },
-      npaPlanSelection: '2',
     };
   },
   blockName: 'npa-signup',
@@ -380,6 +381,16 @@ export default {
         this.$emit('submit', this.form);
       }
     },
+    notSelectedPlan() {
+      if (this.form.npaPlanSelection === '1') {
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('not-selected');
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('not-selected');
+      }
+      if (this.npaPlanSelection === '2') {
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.add('not-selected');
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.remove('not-selected');
+      }
+    },
   },
 };
 </script>
@@ -411,7 +422,7 @@ export default {
         {
           heading: "Premium Alert",
           display:
-          "Get real time, instant notifications when you have a new match with your $5 monthly donation!",
+          "Get real time, instant notifications when you have a new match with your $10 monthly payment!",
           icon: "clock",
           value: "1"
         },
