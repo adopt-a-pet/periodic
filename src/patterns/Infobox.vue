@@ -1,11 +1,11 @@
 <template>
   <div :class="b().toString()">
-    <Icon :name="icon" />
     <Paragraph
       font-size="s"
       font-weight="bold"
       line-height="$line-height-h5v2"
       class="periodic-info-box__heading">
+      <Icon :name="icon" />
       <slot name="header" />
     </Paragraph>
 
