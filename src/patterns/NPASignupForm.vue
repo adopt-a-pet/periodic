@@ -170,7 +170,7 @@
       </Heading>
       <div v-if="dogs">
         <Dropdown
-          :v-model="dogsDistance"
+          :value="params.radius"
           :items="[
             { display: '5 miles or less', value: 5 },
             { display: '10 miles or less', value: 10 },
@@ -182,67 +182,85 @@
             { display: '3500 miles or less', value: -1 }
           ]"
           label="Distance" />
-        <!-- <div
-          v-show="dropdown.breeds"
-          class="dropdown breedCheckboxesContainer">
-          <div
-            class="breedCheckboxes"
-            @click="expandBreedsDropdown()">
-            <DropdownMulti
-              id="breedsDropdownElement"
-              :class="{active: breedDropdownActive}"
-              :items="breedsDropdownItems"
-              :value="selectedBreedIds"
-              :label="Breeds"
-              :search="true"
-              :key="breedsDropdownItems.length"
-              multi-selected-label="Multiple"
-              zero-selected-label="Any"
-              size="tiny"
-              type="checkbox" />
-            <ul id="selectedBreeds">
-              <li
-                v-for="breed in selectedBreeds"
-                :key="breed">
-                <svg
-                  class="x-close"
-                  width="21px"
-                  height="21px"
-                  viewBox="0 0 22 22"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  @click="removeBreed(breed)">
-                  <g
-                    id="PSR-Dogs-&amp;-Cats"
-                    stroke="none"
-                    stroke-width="1"
-                    fill="none"
-                    fill-rule="evenodd">
-                    <g
-                      id="PSR-Dogs---Few-Results"
-                      transform="translate(-149.000000, -868.000000)"
-                      fill="#00A8DE">
-                      <g
-                        id="noun_X_2222077_000000"
-                        transform="translate(149.000000, 868.000000)">
-                        <path
-                          id="Shape-Copy-2"
-                          d="M10.9863693,0 C17.0656753,0 22,4.9070632 22,10.9863693 C22,17.0656753
-                          17.0656753,22 10.9863693,22 C4.9070632,22 0,17.0656753 0,10.9863693
-                          C0,4.9070632 4.9070632,0 10.9863693,0 Z M10.9863693,9.24163569
-                          L14.3667906,5.86121437 L16.1387856,7.60594796 L12.7583643,10.9863693
-                          L16.1387856,14.3667906 L14.3667906,16.1387856 L10.9863693,12.7583643
-                          L7.60594796,16.1387856 L5.86121437,14.3667906 L9.24163569,10.9863693
-                           L5.86121437,7.60594796 L7.60594796,5.86121437 L10.9863693,9.24163569 Z" />
-                      </g>
-                    </g>
-                  </g>
-                </svg> {{ breed.display }}
-              </li>
-            </ul>
-          </div>
-        </div> -->
+
+        <VSpacer size="s" />
+
+        <DropdownMulti
+          id="breedsDropdownElement"
+          :key="params.breed.length"
+          :class="{active: breedDropdownActive}"
+          :items="breedsDropdownItems"
+          :value="params.breed"
+          :label="Breeds"
+          :search="true"
+          multi-selected-label="Multiple"
+          zero-selected-label="Any"
+          size="tiny"
+          type="checkbox" />
+
+        <VSpacer size="s" />
+
+        <DropdownMulti
+          label="Sex"
+          zero-selected-label="Any"
+          multi-selected-label="Multiple"
+          :value="params.sex"
+          :columns="1"
+          :items="[
+            { display: 'Male', value: 'm' },
+            { display: 'Female', value: 'f' }
+          ]" />
+
+        <VSpacer size="s" />
+
+        <DropdownMulti
+          label="Age"
+          zero-selected-label="Any"
+          multi-selected-label="Multiple"
+          :value="params.age"
+          :columns="1"
+          :items="[
+            { display: 'Puppy', value: 'puppy' },
+            { display: 'Young', value: 'young' },
+            { display: 'Adult', value: 'adult' },
+            { display: 'Senior', value: 'senior' }
+          ]" />
+
+        <VSpacer size="s" />
+
+        <DropdownMulti
+          label="Color"
+          zero-selected-label="Any"
+          multi-selected-label="Multiple"
+          :value="params.color"
+          :columns="1"
+          :items="[
+            { display: 'Black', value: 152 },
+            { display: 'Brindle', value: 153 },
+            { display: 'Brown/Chocolate', value: 154 },
+            { display: 'Gray/Blue/Silver', value: 155 },
+            { display: 'Merle', value: 156 },
+            { display: 'Red/Golden/Orange', value: 157 },
+            { display: 'Silver & Tan', value: 158 },
+            { display: 'Tan/Yellow/Fawn', value: 159 },
+            { display: 'Tricolor', value: 160 },
+            { display: 'White', value: 161 }
+          ]" />
+
+        <VSpacer size="s" />
+
+        <DropdownMulti
+          label="Size"
+          zero-selected-label="Any"
+          multi-selected-label="Multiple"
+          :value="params.size"
+          :columns="1"
+          :items="[
+            { display: 'Small', value: 1 },
+            { display: 'Medium', value: 2 },
+            { display: 'Large', value: 3 },
+            { display: 'X-Large', value: 4 }
+          ]" />
       </div>
       <div v-if="cats">
         Cats
@@ -439,7 +457,7 @@ export default {
         sex: "",
         color: "",
         breed: "Pittbull",
-        radius: "10 miles or less",
+        radius: "10",
         zipcode: "90210",
         clan: "Dogs"
       },
