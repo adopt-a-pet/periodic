@@ -199,7 +199,7 @@ export default {
         dontShowAgain: false,
         optins: this.optins,
       },
-      npaPlanSelection: '2',
+      npaPlanSelection: '',
     };
   },
   blockName: 'npa-signup',
