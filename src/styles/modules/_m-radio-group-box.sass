@@ -116,6 +116,9 @@
     +modifier('blue')
       color: color(awhite)
 
+    .bold
+      font-weight: bold
+
   +element('outside')
     display: block
     position: absolute
@@ -139,3 +142,17 @@
     &--color-blue
       &.#{$prefix-component}radio-box__outside
         border: 2px solid color(awhite, base)
+
+  +element('item')
+    &.not-selected
+      border: 1px solid color(agray, lighter)
+
+      #{$prefix-component}radio-box__icon
+        svg
+          fill: color(agray, lighter)
+
+      #{$prefix-component}radio-box__label
+        color: color(agray, lighter)
+
+      #{$prefix-component}radio-box__outside
+        border: 2px solid color(agray, lighter)

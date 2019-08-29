@@ -297,7 +297,7 @@ export default {
         {
           heading: "Premium Alert",
           display:
-          "Get real time, instant notifications when you have a new match with your $5 monthly donation!",
+          "Get real time, instant notifications when you have a new match with your $10 monthly payment!",
           icon: "clock",
           value: "1"
         },

@@ -20,7 +20,8 @@
 
       <label
         :class="b('label', { color: 'white' }).toString()"
-        :for="item.id"><b>{{ item.heading }}</b><br>{{ item.display }}</label>
+        :for="item.id"><span class="bold">{{ item.heading }}</span><br>
+        {{ item.display }}</label>
 
       <label
         :class="b('outside', { color: 'white' }).toString()"
