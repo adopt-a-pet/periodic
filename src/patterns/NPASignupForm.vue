@@ -53,7 +53,7 @@
         line-height="26px"
         color="blue"
         :class="b('search-params').toString()">
-        {{ params.age }} {{ params.sex }} {{ params.color }} {{ params.breed }}s within
+        {{ params.age }} {{ params.sex }} {{ params.color }} {{ params.breed }}<span v-if="breed">s</span> within
         {{ params.radius }} miles of {{ params.zipcode }}
       </paragraph>
       <Paragraph
