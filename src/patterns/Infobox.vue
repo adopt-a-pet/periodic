@@ -22,7 +22,7 @@
       font-size="s"
       font-weight="bold"
       line-height="$line-height-h5v2">
-      <TextLink>
+      <TextLink @click="textLink">
         <slot name="link" />
       </TextLink>
     </Paragraph>
@@ -51,6 +51,17 @@ export default {
     return {
       showBubble: false,
     };
+  },
+  methods: {
+    textLink() {
+      /**
+       * When user clicks Text Link
+       *
+       * @event click:textLink
+       * @type none
+       */
+      this.$emit('click:textLink');
+    },
   },
 };
 </script>
