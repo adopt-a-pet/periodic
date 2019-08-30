@@ -2,6 +2,8 @@ import CodeMirror from 'codemirror';
 import Vuex from 'vuex';
 import CodeTabs from '../utils/tabs.js';
 
+import syscalls from '../docs.syscalls';
+
 function format(node, level) {
   const indentBefore = new Array(level++ + 1).join('  ');
   const indentAfter = new Array(level - 1).join('  ');
@@ -25,6 +27,9 @@ function format(node, level) {
 export default previewComponent => {
   const store = new Vuex.Store({
     strict: true,
+    modules: {
+      syscalls
+    }
   });
 
   // https://vuejs.org/v2/guide/render-function.html
