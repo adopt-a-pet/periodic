@@ -7,7 +7,7 @@
       Filters
     </Heading>
     <Dropdown
-      v-model="model"
+      v-model="radius"
       :items="[
         { display: '5 miles or less', value: '5' },
         { display: '10 miles or less', value: '10' },
@@ -35,7 +35,7 @@
     <VSpacer size="s" />
 
     <DropdownMulti
-      v-model="model"
+      v-model="sex"
       label="Sex"
       zero-selected-label="Any"
       multi-selected-label="Multiple"
@@ -48,7 +48,7 @@
     <VSpacer size="s" />
 
     <DropdownMulti
-      v-model="model"
+      v-model="age"
       label="Age"
       zero-selected-label="Any"
       multi-selected-label="Multiple"
@@ -63,7 +63,7 @@
     <VSpacer size="s" />
 
     <DropdownMulti
-      v-model="model"
+      v-model="color"
       label="Color"
       zero-selected-label="Any"
       multi-selected-label="Multiple"
@@ -84,7 +84,7 @@
     <VSpacer size="s" />
 
     <DropdownMulti
-      v-model="model"
+      v-model="size"
       label="Size"
       zero-selected-label="Any"
       multi-selected-label="Multiple"
@@ -109,7 +109,57 @@ export default {
   status: 'under-review',
   release: '1.0.0',
 
-  props: {},
+  props: {
+    /**
+     * Cland ID ex: 1, 2.
+     */
+    clanID: {
+      type: Number,
+      default: 1,
+    },
+    /**
+     * The Breed or Breeds selected from the dropdown.
+     */
+    selectedBreed: {
+      type: Array,
+      default: () => [],
+    },
+    /**
+     * The radius selected from the dropdown.
+     */
+    radius: {
+      type: Number,
+      default: 10,
+    },
+    /**
+     * The sex or sexes selected from the dropdown.
+     */
+    sex: {
+      type: Array,
+      default: () => [],
+    },
+    /**
+     * The age or aexes selected from the dropdown.
+     */
+    age: {
+      type: Array,
+      default: () => [],
+    },
+    /**
+     * The color or colors selected from the dropdown.
+     */
+    color: {
+      type: Array,
+      default: () => [],
+    },
+    /**
+     * The size or sizes selected from the dropdown.
+     */
+    size: {
+      type: Array,
+      default: () => [],
+    },
+  },
 
   data() {
     return {
