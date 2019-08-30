@@ -139,7 +139,7 @@ export default {
       default: () => [],
     },
     /**
-     * The age or aexes selected from the dropdown.
+     * The age or ages selected from the dropdown.
      */
     age: {
       type: Array,
@@ -179,7 +179,7 @@ export default {
      * @param {Number}
      * @returns {{breedId: Number, breedName: String}}
      */
-    this.$syscall('api/getBreeds', this.params.clanID)
+    this.$syscall('api/getBreeds', this.clanID)
       .then(response => {
         this.breedIdsDropdown = response.map(
           ({ breedId, breedName }) => ({
@@ -198,12 +198,15 @@ export default {
 <docs>
 ```vue
 <template>
-  <NPASignupSearchFilters/>
+  <NPASignupSearchFilters
+    :clanID='clanID' />
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      clanID: 1,
+    };
   }
 };
 </script>
