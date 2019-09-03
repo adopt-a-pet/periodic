@@ -10,7 +10,6 @@
 
 <script>
 const req = require.context('@/assets/icons/', true, /^\.\/.*\.svg$/);
-
 /**
  * Icons are used to visually communicate core parts of the product and
  * available actions. They can act as wayfinding tools to help users more
@@ -68,9 +67,12 @@ export default {
   },
   data() {
     let svg = req(`./${this.name}.svg`);
+    let style = `height: ${this.height}; width: ${this.width}`;
 
-    svg = svg.replace(/<svg /, `<svg style="fill: ${this.fill}; height: ${this.height}; width: ${this.width}" `);
-
+    if (this.fill) {
+      style += `; fill: ${this.fill}`;
+    }
+    svg = svg.replace(/<svg /, `<svg style="${style}" `);
     return {
       svg,
     };

@@ -310,10 +310,14 @@ export default {
       if (this.form.npaPlanSelection === '1') {
         document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('not-selected');
         document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('not-selected');
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.add('periodic-radio-box__item--selected');
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.remove('periodic-radio-box__item--selected');
       }
       if (this.form.npaPlanSelection === '2') {
         document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.add('not-selected');
         document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.remove('not-selected');
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('periodic-radio-box__item--selected');
+        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('periodic-radio-box__item--selected');
       }
     },
   },
