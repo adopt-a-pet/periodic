@@ -192,13 +192,16 @@ export default {
 
   data() {
     return {
-      email: '',
-      dontShow: false,
-      breedIdsDropdown: [],
+      breedIdsDropdown: null,
     };
   },
 
   computed: {},
+
+  watch: {
+    breedIdsDropdown() {
+    },
+  },
 
   mounted() {
     /**
