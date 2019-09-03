@@ -2,7 +2,7 @@ import CodeMirror from 'codemirror';
 import Vuex from 'vuex';
 import CodeTabs from '../utils/tabs.js';
 
-import syscalls from '../docs.syscalls';
+import syscall from '../docs.syscalls';
 
 function format(node, level) {
   const indentBefore = new Array(level++ + 1).join('  ');
@@ -28,7 +28,7 @@ export default previewComponent => {
   const store = new Vuex.Store({
     strict: true,
     modules: {
-      syscalls
+      syscall
     }
   });
 
