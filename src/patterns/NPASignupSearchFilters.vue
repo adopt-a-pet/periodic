@@ -18,6 +18,7 @@
 
       <Dropdown
         v-model="radius"
+        label="Distance"
         :items="[
           { display: '5 miles or less', value: '5' },
           { display: '10 miles or less', value: '10' },
@@ -27,8 +28,7 @@
           { display: '250 miles or less', value: '250' },
           { display: '500 miles or less', value: '500' },
           { display: '3500 miles or less', value: -1 }
-        ]"
-        label="Distance" />
+        ]" />
 
       <DropdownMulti
         v-model="selectedBreed"
@@ -118,10 +118,6 @@
 </template>
 
 <script>
-/**
- * NPA "What is this"
- */
-
 export default {
   name: 'NPASignupSearchFilters',
   blockName: 'npa-signup-search-filters',
@@ -148,6 +144,7 @@ export default {
      */
     zipCode: {
       type: Number,
+      default: null,
     },
     /**
      * The radius selected from the dropdown.
