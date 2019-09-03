@@ -1,9 +1,19 @@
 +b(npa-signup-search-filters)
   +e(container)
     display: grid
-    grid-row-gap: 20px
+    +rem-fallback('grid-row-gap', 20px)
     grid-template-columns: 100%
 
     +breakpoint(tablet-plus)
       grid-template-columns: 50% 50%
-      grid-column-gap: 24px
+      +rem-fallback('grid-column-gap', 24px)
+
+  +e(title)
+    +breakpoint(tablet-plus)
+      text-align: center
+
+  +e(save-close)
+    +rem-fallback('margin', 30px 0 20px)
+
+    +breakpoint(tablet-plus)
+      +rem-fallback('margin', 40px 0)

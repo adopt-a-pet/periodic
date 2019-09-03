@@ -1,8 +1,7 @@
 <template>
   <div :class="b('').toString()">
-    <VSpacer size="l" />
-
     <Heading
+      :class="b('title').toString()"
       :level="layout === 'desktop' ? 'h1' : 'h2'"
       font-weight="bold"
       font-family="museo">
@@ -112,11 +111,9 @@
         ]" />
     </div>
 
-    <VSpacer size="l" />
-
-    <Button>Save &amp; Close</Button>
-
-    <VSpacer size="s" />
+    <Button :class="b('save-close').toString()">
+      Save &amp; Close
+    </Button>
   </div>
 </template>
 
@@ -145,6 +142,12 @@ export default {
     selectedBreed: {
       type: Array,
       default: () => [],
+    },
+    /**
+     * Zipcode for search
+     */
+    zipCode: {
+      type: Number,
     },
     /**
      * The radius selected from the dropdown.
@@ -178,6 +181,13 @@ export default {
      * The size or sizes selected from the dropdown.
      */
     size: {
+      type: Array,
+      default: () => [],
+    },
+    /**
+     * The hair typ or types selected from the dropdown.
+     */
+    hair: {
       type: Array,
       default: () => [],
     },
