@@ -1,11 +1,23 @@
 <template>
   <div :class="b('').toString()">
+    <VSpacer size="l" />
+
     <Heading
       :level="layout === 'desktop' ? 'h1' : 'h2'"
       font-weight="bold"
       font-family="museo">
       Filters
     </Heading>
+
+    <VSpacer size="l" />
+
+    <TextInput
+      v-model="zipCode"
+      type="search"
+      label="Zip / Postal or City, State" />
+
+    <VSpacer size="s" />
+
     <Dropdown
       v-model="radius"
       :items="[
@@ -84,6 +96,7 @@
     <VSpacer size="s" />
 
     <DropdownMulti
+      v-if="clanID === 1"
       v-model="size"
       label="Size"
       zero-selected-label="Any"
@@ -95,6 +108,25 @@
         { display: 'Large', value: 3 },
         { display: 'X-Large', value: 4 }
       ]" />
+
+    <DropdownMulti
+      v-if="clanID === 2"
+      v-mode="hair"
+      :columns="1"
+      zero-selected-label="Any"
+      multi-selected-label="Multiple"
+      label="Hair"
+      :items="[
+        { display: 'Short', value: 'short' },
+        { display: 'Medium', value: 'medium' },
+        { display: 'Long', value: 'long' }
+      ]" />
+
+    <VSpacer size="l" />
+
+    <Button>Save &amp; Close</Button>
+
+    <VSpacer size="s" />
   </div>
 </template>
 
