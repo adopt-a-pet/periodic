@@ -11,116 +11,106 @@
 
     <VSpacer size="l" />
 
-    <TextInput
-      v-model="zipCode"
-      type="search"
-      label="Zip / Postal or City, State" />
+    <div :class="b('container').toString()">
+      <TextInput
+        v-model="zipCode"
+        type="search"
+        label="Zip / Postal or City, State" />
 
-    <VSpacer size="s" />
+      <Dropdown
+        v-model="radius"
+        :items="[
+          { display: '5 miles or less', value: '5' },
+          { display: '10 miles or less', value: '10' },
+          { display: '20 miles or less', value: '20' },
+          { display: '50 miles or less', value: '50' },
+          { display: '100 miles or less', value: '100' },
+          { display: '250 miles or less', value: '250' },
+          { display: '500 miles or less', value: '500' },
+          { display: '3500 miles or less', value: -1 }
+        ]"
+        label="Distance" />
 
-    <Dropdown
-      v-model="radius"
-      :items="[
-        { display: '5 miles or less', value: '5' },
-        { display: '10 miles or less', value: '10' },
-        { display: '20 miles or less', value: '20' },
-        { display: '50 miles or less', value: '50' },
-        { display: '100 miles or less', value: '100' },
-        { display: '250 miles or less', value: '250' },
-        { display: '500 miles or less', value: '500' },
-        { display: '3500 miles or less', value: -1 }
-      ]"
-      label="Distance" />
+      <DropdownMulti
+        v-model="selectedBreed"
+        :items="breedIdsDropdown"
+        label="Breeds"
+        :search="true"
+        multi-selected-label="Multiple"
+        zero-selected-label="Any"
+        size="tiny"
+        type="checkbox" />
 
-    <VSpacer size="s" />
+      <DropdownMulti
+        v-model="sex"
+        label="Sex"
+        zero-selected-label="Any"
+        multi-selected-label="Multiple"
+        :columns="1"
+        :items="[
+          { display: 'Male', value: 'm' },
+          { display: 'Female', value: 'f' }
+        ]" />
 
-    <DropdownMulti
-      v-model="selectedBreed"
-      :items="breedIdsDropdown"
-      label="Breeds"
-      :search="true"
-      multi-selected-label="Multiple"
-      zero-selected-label="Any"
-      size="tiny"
-      type="checkbox" />
+      <DropdownMulti
+        v-model="age"
+        label="Age"
+        zero-selected-label="Any"
+        multi-selected-label="Multiple"
+        :columns="1"
+        :items="[
+          { display: 'Puppy', value: 'puppy' },
+          { display: 'Young', value: 'young' },
+          { display: 'Adult', value: 'adult' },
+          { display: 'Senior', value: 'senior' }
+        ]" />
 
-    <VSpacer size="s" />
+      <DropdownMulti
+        v-model="color"
+        label="Color"
+        zero-selected-label="Any"
+        multi-selected-label="Multiple"
+        :columns="1"
+        :items="[
+          { display: 'Black', value: 152 },
+          { display: 'Brindle', value: 153 },
+          { display: 'Brown/Chocolate', value: 154 },
+          { display: 'Gray/Blue/Silver', value: 155 },
+          { display: 'Merle', value: 156 },
+          { display: 'Red/Golden/Orange', value: 157 },
+          { display: 'Silver & Tan', value: 158 },
+          { display: 'Tan/Yellow/Fawn', value: 159 },
+          { display: 'Tricolor', value: 160 },
+          { display: 'White', value: 161 }
+        ]" />
 
-    <DropdownMulti
-      v-model="sex"
-      label="Sex"
-      zero-selected-label="Any"
-      multi-selected-label="Multiple"
-      :columns="1"
-      :items="[
-        { display: 'Male', value: 'm' },
-        { display: 'Female', value: 'f' }
-      ]" />
+      <DropdownMulti
+        v-if="clanID === 1"
+        v-model="size"
+        label="Size"
+        zero-selected-label="Any"
+        multi-selected-label="Multiple"
+        :columns="1"
+        :items="[
+          { display: 'Small', value: 1 },
+          { display: 'Medium', value: 2 },
+          { display: 'Large', value: 3 },
+          { display: 'X-Large', value: 4 }
+        ]" />
 
-    <VSpacer size="s" />
-
-    <DropdownMulti
-      v-model="age"
-      label="Age"
-      zero-selected-label="Any"
-      multi-selected-label="Multiple"
-      :columns="1"
-      :items="[
-        { display: 'Puppy', value: 'puppy' },
-        { display: 'Young', value: 'young' },
-        { display: 'Adult', value: 'adult' },
-        { display: 'Senior', value: 'senior' }
-      ]" />
-
-    <VSpacer size="s" />
-
-    <DropdownMulti
-      v-model="color"
-      label="Color"
-      zero-selected-label="Any"
-      multi-selected-label="Multiple"
-      :columns="1"
-      :items="[
-        { display: 'Black', value: 152 },
-        { display: 'Brindle', value: 153 },
-        { display: 'Brown/Chocolate', value: 154 },
-        { display: 'Gray/Blue/Silver', value: 155 },
-        { display: 'Merle', value: 156 },
-        { display: 'Red/Golden/Orange', value: 157 },
-        { display: 'Silver & Tan', value: 158 },
-        { display: 'Tan/Yellow/Fawn', value: 159 },
-        { display: 'Tricolor', value: 160 },
-        { display: 'White', value: 161 }
-      ]" />
-
-    <VSpacer size="s" />
-
-    <DropdownMulti
-      v-if="clanID === 1"
-      v-model="size"
-      label="Size"
-      zero-selected-label="Any"
-      multi-selected-label="Multiple"
-      :columns="1"
-      :items="[
-        { display: 'Small', value: 1 },
-        { display: 'Medium', value: 2 },
-        { display: 'Large', value: 3 },
-        { display: 'X-Large', value: 4 }
-      ]" />
-
-    <DropdownMulti
-      v-if="clanID === 2"
-      v-mode="hair"
-      :columns="1"
-      zero-selected-label="Any"
-      multi-selected-label="Multiple"
-      label="Hair"
-      :items="[
-        { display: 'Short', value: 'short' },
-        { display: 'Medium', value: 'medium' },
-        { display: 'Long', value: 'long' }
-      ]" />
+      <DropdownMulti
+        v-if="clanID === 2"
+        v-mode="hair"
+        :columns="1"
+        zero-selected-label="Any"
+        multi-selected-label="Multiple"
+        label="Hair"
+        :items="[
+          { display: 'Short', value: 'short' },
+          { display: 'Medium', value: 'medium' },
+          { display: 'Long', value: 'long' }
+        ]" />
+    </div>
 
     <VSpacer size="l" />
 
