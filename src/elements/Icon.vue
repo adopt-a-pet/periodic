@@ -67,12 +67,20 @@ export default {
   },
   data() {
     let svg = req(`./${this.name}.svg`);
-    let style = `height: ${this.height}; width: ${this.width}`;
+    let style = '';
 
     if (this.fill) {
-      style += `; fill: ${this.fill}`;
+      style += `fill: ${this.fill}; `;
     }
-    svg = svg.replace(/<svg /, `<svg style="${style}" `);
+    if (this.height !== null) {
+      style += `height: ${this.height}; `;
+    }
+    if (this.width !== null) {
+      style += `width: ${this.width}; `;
+    }
+    if (style !== '') {
+      svg = svg.replace(/<svg /, `<svg style="${style}" `);
+    }
     return {
       svg,
     };
