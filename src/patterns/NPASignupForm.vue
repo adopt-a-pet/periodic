@@ -54,7 +54,7 @@
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          {{ filters.age }} {{ filters.sex }} {{ filters.color }} {{ filters.breed }}<span v-if="breed">s</span> within
+          {{ age }} {{ sex }} {{ color }} {{ breed }}<span v-if="breed">s</span> within
           {{ filters.radius }} miles of {{ filters.zipcode }}
         </TextLink>
       </Paragraph>
@@ -212,9 +212,9 @@ export default {
     /**
      * A list of search paramaters from the users search criteria
      */
-    params: {
+    filters: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
   },
 
@@ -226,6 +226,8 @@ export default {
         optins: this.optins,
         npaPlanSelection: '',
       },
+      colorsMap: [],
+      breedMap: [],
     };
   },
   blockName: 'npa-signup',
@@ -233,17 +235,38 @@ export default {
   release: '1.0.0',
 
   computed: {
+    sexFullName() {
+      if (this.filters.sex.join() === 'f') {
+        return 'female';
+      }
+      if (this.filters.sex.join() === 'm') {
+        return 'male';
+      }
+      return 'male or female';
+    },
     age() {
-      return this.filters.age;
+      return this.filters.age ? this.filters.age.join(' or ') : '';
     },
     sex() {
-      return this.filters.sex;
+      return this.filters.sex ? this.sexFullName : '';
     },
     color() {
-      return this.filters.color;
+      if (!this.filters.color) {
+        return '';
+      }
+
+      return this.filters.color.map(colorId =>
+        this.colorsMap.find(colorObject => colorObject.colorId === colorId).colorName,
+      ).join(' or ');
     },
     breed() {
-      return this.filters.breed;
+      if (!this.filters.breed) {
+        return '';
+      }
+
+      return this.filters.breed.map(breedId =>
+        this.breedsMap.find(breedObject => breedObject.breedId === breedId).breedName,
+      ).join(' or ');
     },
     moreThanClan() {
       return (this.age || this.sex || this.color || this.breed);
@@ -256,7 +279,30 @@ export default {
     },
   },
 
-  mounted() {
+  created() {
+    /**
+     * Get colors name and Ids from database
+     *
+     * @syscall api/colors
+     * @param {Number}
+     * @returns {{colorId: Number, colorName: String}}
+     */
+    this.$syscall('api/getColors', this.clanID)
+      .then(response => {
+        this.colorsMap = response;
+      });
+
+    /**
+     * Get Breed name and Ids from database
+     *
+     * @syscall api/getBreeds
+     * @param {Number}
+     * @returns {{breedId: Number, breedName: String}}
+     */
+    this.$syscall('api/getBreeds', this.clanID)
+      .then(response => {
+        this.breedMap = response;
+      });
   },
 
   methods: {
@@ -331,7 +377,7 @@ export default {
   <NPASignupForm
     :offers="offers"
     :items="items"
-    :params="params"/>
+    :filters="filters"/>
 </template>
 <script>
 export default {
@@ -365,13 +411,15 @@ export default {
         },
       ],
       filters: {
-        age: "young",
-        sex: "f",
-        color: "Black",
-        breed: "Pittbull",
-        radius: "10",
+        age: ["young", "senior"],
+        sex: ["f"],
+        color: [],
+        breed: [],
+        hair: ['short'],
+        size: [1, 2],
+        radius: 10,
         zipcode: "90210",
-        clan: "Dogs"
+        clan: 1
       },
     };
   }

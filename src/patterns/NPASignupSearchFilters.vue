@@ -12,7 +12,7 @@
 
     <div :class="b('container').toString()">
       <TextInput
-        v-model="form.zipCode"
+        v-model="form.zipcode"
         type="search"
         label="Zip / Postal or City, State" />
 
@@ -20,18 +20,18 @@
         v-model="form.radius"
         label="Distance"
         :items="[
-          { display: '5 miles or less', value: '5' },
-          { display: '10 miles or less', value: '10' },
-          { display: '20 miles or less', value: '20' },
-          { display: '50 miles or less', value: '50' },
-          { display: '100 miles or less', value: '100' },
-          { display: '250 miles or less', value: '250' },
-          { display: '500 miles or less', value: '500' },
+          { display: '5 miles or less', value: 5 },
+          { display: '10 miles or less', value: 10 },
+          { display: '20 miles or less', value: 20 },
+          { display: '50 miles or less', value: 50 },
+          { display: '100 miles or less', value: 100 },
+          { display: '250 miles or less', value: 250 },
+          { display: '500 miles or less', value: 500 },
           { display: '3500 miles or less', value: -1 }
         ]" />
 
       <DropdownMulti
-        v-model="form.selectedBreed"
+        v-model="form.breed"
         :items="breedIdsDropdown"
         label="Breeds"
         :search="true"
@@ -84,7 +84,7 @@
         ]" />
 
       <DropdownMulti
-        v-if="form.clanID === 1"
+        v-if="form.clan === 1"
         v-model="form.size"
         label="Size"
         zero-selected-label="Any"
@@ -98,7 +98,7 @@
         ]" />
 
       <DropdownMulti
-        v-if="form.clanID === 2"
+        v-if="form.clan === 2"
         v-model="form.hair"
         :columns="1"
         zero-selected-label="Any"
@@ -132,13 +132,13 @@ export default {
      *
      * ```
      * {
-     *     age: 'young',
-     *     sex: 'f',
+     *     age: ["young", "senior"],
+     *     sex: ["f"],
      *     color: 'Black',
      *     breed: 'Pittbull',
      *     radius: '10',
      *     zipcode: '90210',
-     *     clan: 'Dogs'
+     *     clan: 1
      *  }
      * ```
      *
@@ -163,7 +163,7 @@ export default {
     },
   },
 
-  mounted() {
+  created() {
     /**
      * Get Breed name and Ids from database
      *
@@ -210,13 +210,23 @@ export default {
 ```vue
 <template>
   <NPASignupSearchFilters
-    :filters='{}' />
+    :filters='filters' />
 </template>
 <script>
 export default {
   data() {
     return {
-      filters: {},
+      filters: {
+        age: ["young", "senior"],
+        sex: ["f"],
+        color: [153],
+        breed: [],
+        hair: ['short'],
+        size: [1, 2],
+        radius: 10,
+        zipcode: "90210",
+        clan: 1
+      },
     };
   }
 };

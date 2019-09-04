@@ -11,6 +11,16 @@ export default {
           },
         ]
       );
+    },
+    'api/getColors': function (_, payload) {
+      return Promise.resolve (
+        [
+          {
+            "colorId": 153,
+            "colorName": "Brindle"
+          },
+        ]
+      );
     }
   }
 };
