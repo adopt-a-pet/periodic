@@ -66,7 +66,7 @@
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          All {{ filters.clan }} within {{ filters.radius }} miles of {{ filters.zipcode }}
+          All {{ fullClanName }} within {{ filters.radius }} miles of {{ filters.zipcode }}
         </TextLink>
       </Paragraph>
 
@@ -274,11 +274,16 @@ export default {
     moreThanClan() {
       return (this.age || this.sex || this.color || this.breed);
     },
-    dogs() {
-      return this.filters.clan === 'Dogs';
-    },
-    cats() {
-      return this.filters.clan === 'Cats';
+    fullClanName() {
+      if (this.filters.clan === 1) {
+        return 'Dogs';
+      }
+
+      if (this.filters.clan === 2) {
+        return 'Cats';
+      }
+
+      return '';
     },
   },
 
@@ -290,7 +295,7 @@ export default {
      * @param {Number}
      * @returns {{colorId: Number, colorName: String}}
      */
-    this.$syscall('api/getColors', this.clanID)
+    this.$syscall('api/getColors', this.filters.clan)
       .then(response => {
         this.colorsMap = response;
       });
@@ -302,7 +307,7 @@ export default {
      * @param {Number}
      * @returns {{breedId: Number, breedName: String}}
      */
-    this.$syscall('api/getBreeds', this.clanID)
+    this.$syscall('api/getBreeds', this.filters.clan)
       .then(response => {
         this.breedMap = response;
       });
