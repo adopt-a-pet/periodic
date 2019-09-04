@@ -89,6 +89,7 @@
       </div>
 
       <Infobox
+        v-if="form.npaPlanSelection == '1'"
         icon="lightbulb"
         @click:textLink="searchFilters">
         <template slot="header">
