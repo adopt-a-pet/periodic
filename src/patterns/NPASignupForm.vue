@@ -236,6 +236,9 @@ export default {
 
   computed: {
     sexFullName() {
+      if (this.filters.sex.join() === '') {
+        return '';
+      }
       if (this.filters.sex.join() === 'f') {
         return 'female';
       }
@@ -245,7 +248,7 @@ export default {
       return 'male or female';
     },
     age() {
-      return this.filters.age ? this.filters.age.join(' or ') : '';
+      return this.filters.age ? this.filters.age.join(' or ') : null;
     },
     sex() {
       return this.filters.sex ? this.sexFullName : '';
@@ -412,7 +415,7 @@ export default {
       ],
       filters: {
         age: ["young", "senior"],
-        sex: ["f"],
+        sex: [],
         color: [],
         breed: [],
         hair: ['short'],
