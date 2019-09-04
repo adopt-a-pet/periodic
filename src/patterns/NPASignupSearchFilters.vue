@@ -12,12 +12,12 @@
 
     <div :class="b('container').toString()">
       <TextInput
-        v-model="zipCode"
+        v-model="form.zipCode"
         type="search"
         label="Zip / Postal or City, State" />
 
       <Dropdown
-        v-model="radius"
+        v-model="form.radius"
         label="Distance"
         :items="[
           { display: '5 miles or less', value: '5' },
@@ -31,7 +31,7 @@
         ]" />
 
       <DropdownMulti
-        v-model="selectedBreed"
+        v-model="form.selectedBreed"
         :items="breedIdsDropdown"
         label="Breeds"
         :search="true"
@@ -41,7 +41,7 @@
         type="checkbox" />
 
       <DropdownMulti
-        v-model="sex"
+        v-model="form.sex"
         label="Sex"
         zero-selected-label="Any"
         multi-selected-label="Multiple"
@@ -52,7 +52,7 @@
         ]" />
 
       <DropdownMulti
-        v-model="age"
+        v-model="form.age"
         label="Age"
         zero-selected-label="Any"
         multi-selected-label="Multiple"
@@ -65,7 +65,7 @@
         ]" />
 
       <DropdownMulti
-        v-model="color"
+        v-model="form.color"
         label="Color"
         zero-selected-label="Any"
         multi-selected-label="Multiple"
@@ -84,8 +84,8 @@
         ]" />
 
       <DropdownMulti
-        v-if="clanID === 1"
-        v-model="size"
+        v-if="form.clanID === 1"
+        v-model="form.size"
         label="Size"
         zero-selected-label="Any"
         multi-selected-label="Multiple"
@@ -98,8 +98,8 @@
         ]" />
 
       <DropdownMulti
-        v-if="clanID === 2"
-        v-mode="hair"
+        v-if="form.clanID === 2"
+        v-model="form.hair"
         :columns="1"
         zero-selected-label="Any"
         multi-selected-label="Multiple"
@@ -128,72 +128,30 @@ export default {
 
   props: {
     /**
-     * Cland ID ex: 1, 2.
+     * Search Filters ex:
+     *
+     * ```
+     * {
+     *     age: 'young',
+     *     sex: 'f',
+     *     color: 'Black',
+     *     breed: 'Pittbull',
+     *     radius: '10',
+     *     zipcode: '90210',
+     *     clan: 'Dogs'
+     *  }
+     * ```
+     *
      */
-    clanID: {
-      type: Number,
-      default: 1,
-    },
-    /**
-     * The Breed or Breeds selected from the dropdown.
-     */
-    selectedBreed: {
-      type: Array,
-      default: () => [],
-    },
-    /**
-     * Zipcode for search
-     */
-    zipCode: {
-      type: Number,
-      default: null,
-    },
-    /**
-     * The radius selected from the dropdown.
-     */
-    radius: {
-      type: Number,
-      default: 10,
-    },
-    /**
-     * The sex or sexes selected from the dropdown.
-     */
-    sex: {
-      type: Array,
-      default: () => [],
-    },
-    /**
-     * The age or ages selected from the dropdown.
-     */
-    age: {
-      type: Array,
-      default: () => [],
-    },
-    /**
-     * The color or colors selected from the dropdown.
-     */
-    color: {
-      type: Array,
-      default: () => [],
-    },
-    /**
-     * The size or sizes selected from the dropdown.
-     */
-    size: {
-      type: Array,
-      default: () => [],
-    },
-    /**
-     * The hair typ or types selected from the dropdown.
-     */
-    hair: {
-      type: Array,
-      default: () => [],
+    filters: {
+      type: Object,
+      default: () => ({}),
     },
   },
 
   data() {
     return {
+      form: { ...this.filters },
       breedIdsDropdown: null,
     };
   },
@@ -226,6 +184,7 @@ export default {
 
   methods: {
     saveAndClose() {
+      this.submit();
       /**
        * When user clicks "What is this"
        *
@@ -233,6 +192,15 @@ export default {
        * @type none
        */
       this.$emit('click:saveAndClose');
+    },
+    submit() {
+      /**
+       * Change event
+       *
+       * @event submit
+       * @type Object
+       */
+      this.$emit('submit', this.form);
     },
   },
 };
@@ -242,13 +210,13 @@ export default {
 ```vue
 <template>
   <NPASignupSearchFilters
-    :clanID='clanID' />
+    :filters='{}' />
 </template>
 <script>
 export default {
   data() {
     return {
-      clanID: 1,
+      filters: {},
     };
   }
 };

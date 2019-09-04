@@ -54,8 +54,8 @@
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          {{ params.age }} {{ params.sex }} {{ params.color }} {{ params.breed }}<span v-if="breed">s</span> within
-          {{ params.radius }} miles of {{ params.zipcode }}
+          {{ filters.age }} {{ filters.sex }} {{ filters.color }} {{ filters.breed }}<span v-if="breed">s</span> within
+          {{ filters.radius }} miles of {{ filters.zipcode }}
         </TextLink>
       </Paragraph>
 
@@ -66,7 +66,7 @@
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          All {{ params.clan }} within {{ params.radius }} miles of {{ params.zipcode }}
+          All {{ filters.clan }} within {{ filters.radius }} miles of {{ filters.zipcode }}
         </TextLink>
       </Paragraph>
 
@@ -234,25 +234,25 @@ export default {
 
   computed: {
     age() {
-      return this.params.age;
+      return this.filters.age;
     },
     sex() {
-      return this.params.sex;
+      return this.filters.sex;
     },
     color() {
-      return this.params.color;
+      return this.filters.color;
     },
     breed() {
-      return this.params.breed;
+      return this.filters.breed;
     },
     moreThanClan() {
       return (this.age || this.sex || this.color || this.breed);
     },
     dogs() {
-      return this.params.clan === 'Dogs';
+      return this.filters.clan === 'Dogs';
     },
     cats() {
-      return this.params.clan === 'Cats';
+      return this.filters.clan === 'Cats';
     },
   },
 
@@ -364,7 +364,7 @@ export default {
           value: "2"
         },
       ],
-      params: {
+      filters: {
         age: "young",
         sex: "f",
         color: "Black",
