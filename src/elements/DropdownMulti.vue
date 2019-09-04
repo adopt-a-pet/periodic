@@ -168,11 +168,11 @@ export default {
       // focused is only used when search=true. It should stay false otherwise.
       focused: false,
       filter: '',
-      allChoices: this.makeChoices(this.items),
     };
   },
 
   computed: {
+    allChoices() { return this.makeChoices(this.items); },
     selectedDisplay() {
       if (!this.value.length && this.zeroSelectedLabel) return this.zeroSelectedLabel;
       if (this.value.length > 1 && this.multiSelectedLabel) return this.multiSelectedLabel;
