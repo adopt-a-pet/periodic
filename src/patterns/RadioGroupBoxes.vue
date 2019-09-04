@@ -6,7 +6,8 @@
       v-for="(item, index) in renderItems"
       :id="item.id + '-parent'"
       :key="index"
-      :class="b('item').toString()">
+      :class="b('item').toString()"
+      @click="select({ checked: true }, item.value)">
       <Icon
         :name="item.icon"
         :class="b('icon').toString()" />
