@@ -111,7 +111,9 @@
         ]" />
     </div>
 
-    <Button :class="b('save-close').toString()">
+    <Button
+      :class="b('save-close').toString()"
+      @click="saveAndClose">
       Save &amp; Close
     </Button>
   </div>
@@ -223,6 +225,15 @@ export default {
   },
 
   methods: {
+    saveAndClose() {
+      /**
+       * When user clicks "What is this"
+       *
+       * @event click:saveAndClose
+       * @type none
+       */
+      this.$emit('click:saveAndClose');
+    },
   },
 };
 </script>
