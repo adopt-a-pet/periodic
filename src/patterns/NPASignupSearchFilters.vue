@@ -171,7 +171,7 @@ export default {
      * @param {Number}
      * @returns {{breedId: Number, breedName: String}}
      */
-    this.$syscall('api/getBreeds', this.filters.clan)
+    this.$syscall('api/getBreeds', this.form.clan)
       .then(response => {
         this.breedIdsDropdown = response.map(
           ({ breedId, breedName }) => ({
