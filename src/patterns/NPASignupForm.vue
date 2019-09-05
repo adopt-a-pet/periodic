@@ -1,5 +1,6 @@
 <template>
-  <div :class="b().toString()">
+  <div
+    :class="b().toString()">
     <div :class="b('content').toString()">
       <VSpacer size="xxxs" />
 
@@ -48,22 +49,25 @@
 
       <Paragraph
         v-if="moreThanClan"
-        font-size="m"
         font-weight="bold"
-        line-height="26px"
-        color="blue"
-        :class="b('search-params').toString()">
-        {{ params.age }} {{ params.sex }} {{ params.color }} {{ params.breed }}<span v-if="breed">s</span> within
-        {{ params.radius }} miles of {{ params.zipcode }}
-      </paragraph>
+        line-height="26px">
+        <TextLink
+          :class="b('search-params').toString()"
+          @click="searchFilters">
+          {{ age }} {{ sex }} {{ color }} {{ breed }}<span v-if="breed">s</span> within
+          {{ filters.radius }} miles of {{ filters.zipcode }}
+        </TextLink>
+      </Paragraph>
+
       <Paragraph
         v-if="!moreThanClan"
-        font-size="m"
         font-weight="bold"
-        line-height="26px"
-        color="blue"
-        :class="b('search-params').toString()">
-        All {{ params.clan }} within {{ params.radius }} miles of {{ params.zipcode }}
+        line-height="26px">
+        <TextLink
+          :class="b('search-params').toString()"
+          @click="searchFilters">
+          All {{ fullClanName }} within {{ filters.radius }} miles of {{ filters.zipcode }}
+        </TextLink>
       </Paragraph>
 
       <VSpacer size="l" />
@@ -83,6 +87,21 @@
           :items="items"
           @change="notSelectedPlan" />
       </div>
+
+      <Infobox
+        v-if="form.npaPlanSelection == '1'"
+        icon="lightbulb"
+        @click:textLink="searchFilters">
+        <template slot="header">
+          Pro tip
+        </template>
+        <template slot="message">
+          To get the most out of your Premium experience, choose 2 or more filters.
+        </template>
+        <template slot="link">
+          Edit Filters >
+        </template>
+      </Infobox>
 
       <VSpacer size="xl" />
 
@@ -193,9 +212,9 @@ export default {
     /**
      * A list of search paramaters from the users search criteria
      */
-    params: {
+    filters: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
   },
 
@@ -207,6 +226,8 @@ export default {
         optins: this.optins,
         npaPlanSelection: '',
       },
+      colorsMap: [],
+      breedMap: [],
     };
   },
   blockName: 'npa-signup',
@@ -214,24 +235,87 @@ export default {
   release: '1.0.0',
 
   computed: {
+    sexFullName() {
+      if (this.filters.sex.join() === '') {
+        return '';
+      }
+      if (this.filters.sex.join() === 'f') {
+        return 'female';
+      }
+      if (this.filters.sex.join() === 'm') {
+        return 'male';
+      }
+      return 'male or female';
+    },
     age() {
-      return this.params.age;
+      return this.filters.age ? this.filters.age.join(' or ') : null;
     },
     sex() {
-      return this.params.sex;
+      return this.filters.sex ? this.sexFullName : '';
     },
     color() {
-      return this.params.color;
+      if (!this.filters.color) {
+        return '';
+      }
+
+      return this.filters.color.map(colorId => this.colorsMap[colorId]).join(' or ');
     },
     breed() {
-      return this.params.breed;
+      if (!this.filters.breed) {
+        return '';
+      }
+
+      return this.filters.breed.map(breedId => this.breedMap[breedId]).join(' or ');
     },
     moreThanClan() {
       return (this.age || this.sex || this.color || this.breed);
     },
+    fullClanName() {
+      if (this.filters.clan === 1) {
+        return 'Dogs';
+      }
+
+      if (this.filters.clan === 2) {
+        return 'Cats';
+      }
+
+      return '';
+    },
   },
 
-  mounted() {
+  created() {
+    /**
+     * Get colors name and Ids from database
+     *
+     * @syscall api/colors
+     * @param {Number}
+     * @returns {{colorId: Number, colorName: String}}
+     */
+    this.$syscall('api/getColors', this.filters.clan)
+      .then(response => {
+        const colorsMap = response;
+
+        this.colorsMap = colorsMap.reduce(
+          (acc, { colorId, colorName }) => Object.assign(acc, { [colorId]: colorName }),
+          {},
+        );
+      });
+    /**
+     * Get Breed name and Ids from database
+     *
+     * @syscall api/getBreeds
+     * @param {Number}
+     * @returns {{breedId: Number, breedName: String}}
+     */
+    this.$syscall('api/getBreeds', this.filters.clan)
+      .then(response => {
+        const breedMap = response;
+
+        this.breedMap = breedMap.reduce(
+          (acc, { breedId, breedName }) => Object.assign(acc, { [breedId]: breedName }),
+          {},
+        );
+      });
   },
 
   methods: {
@@ -243,6 +327,15 @@ export default {
        * @type none
        */
       this.$emit('click:whatIsThis');
+    },
+    searchFilters() {
+      /**
+       * When user clicks "Edit Search filters"
+       *
+       * @event click:searchFilters
+       * @type none
+       */
+      this.$emit('click:searchFilters');
     },
     skip() {
       /**
@@ -297,7 +390,7 @@ export default {
   <NPASignupForm
     :offers="offers"
     :items="items"
-    :params="params"/>
+    :filters="filters"/>
 </template>
 <script>
 export default {
@@ -330,15 +423,17 @@ export default {
           value: "2"
         },
       ],
-      params: {
-        age: "",
-        sex: "",
-        color: "",
-        breed: "Pittbull",
-        radius: "10 miles or less",
+      filters: {
+        age: ["young", "senior"],
+        sex: [],
+        color: [153],
+        breed: [187],
+        hair: ['short'],
+        size: [1, 2],
+        radius: 10,
         zipcode: "90210",
-        clan: "dogs"
-      }
+        clan: 1
+      },
     };
   }
 };
