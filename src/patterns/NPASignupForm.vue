@@ -258,18 +258,14 @@ export default {
         return '';
       }
 
-      return this.filters.color.map(colorId =>
-        this.colorsMap.find(colorObject => colorObject.colorId === colorId).colorName,
-      ).join(' or ');
+      return this.filters.color.map(colorId => this.colorsMap[colorId]).join(' or ');
     },
     breed() {
       if (!this.filters.breed) {
         return '';
       }
 
-      return this.filters.breed.map(breedId =>
-        this.breedsMap.find(breedObject => breedObject.breedId === breedId).breedName,
-      ).join(' or ');
+      return this.filters.breed.map(breedId => this.breedMap[breedId]).join(' or ');
     },
     moreThanClan() {
       return (this.age || this.sex || this.color || this.breed);
@@ -297,9 +293,13 @@ export default {
      */
     this.$syscall('api/getColors', this.filters.clan)
       .then(response => {
-        this.colorsMap = response;
-      });
+        const colorsMap = response;
 
+        this.colorsMap = colorsMap.reduce(
+          (acc, { colorId, colorName }) => Object.assign(acc, { [colorId]: colorName }),
+          {},
+        );
+      });
     /**
      * Get Breed name and Ids from database
      *
@@ -309,7 +309,12 @@ export default {
      */
     this.$syscall('api/getBreeds', this.filters.clan)
       .then(response => {
-        this.breedMap = response;
+        const breedMap = response;
+
+        this.breedMap = breedMap.reduce(
+          (acc, { breedId, breedName }) => Object.assign(acc, { [breedId]: breedName }),
+          {},
+        );
       });
   },
 
@@ -421,8 +426,8 @@ export default {
       filters: {
         age: ["young", "senior"],
         sex: [],
-        color: [],
-        breed: [],
+        color: [153],
+        breed: [187],
         hair: ['short'],
         size: [1, 2],
         radius: 10,
