@@ -152,16 +152,11 @@ export default {
   data() {
     return {
       form: { ...this.filters },
-      breedIdsDropdown: null,
+      breedIdsDropdown: [],
     };
   },
 
   computed: {},
-
-  watch: {
-    breedIdsDropdown() {
-    },
-  },
 
   created() {
     /**
