@@ -134,7 +134,7 @@ export default {
      */
     items: {
       type: Array,
-      default: () => [{ display: 'Loading...', value: null }],
+      default: () => [],
       validator: items => items.every(item => ('display' in item) && ('value' in item)),
     },
     /**
@@ -193,6 +193,8 @@ export default {
     },
 
     selectedDisplay() {
+      if (!(this.items && this.items.length)) return 'Loading...';
+
       const selectedItem = this.allChoices[this.selectedIndex];
       return selectedItem ? String(selectedItem.display) : null;
     },
