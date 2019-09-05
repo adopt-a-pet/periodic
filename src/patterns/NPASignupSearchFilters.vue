@@ -1,5 +1,5 @@
 <template>
-  <div :class="b('').toString()">
+  <div :class="b().toString()">
     <Heading
       :class="b('title').toString()"
       :level="layout === 'desktop' ? 'h1' : 'h2'"
