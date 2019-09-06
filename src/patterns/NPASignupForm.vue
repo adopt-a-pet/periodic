@@ -54,7 +54,7 @@
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          {{ age }} {{ sex }} {{ color }} {{ breed }}<span v-if="breed">s</span> within
+          {{ age }} {{ sex }} {{ color }} {{ selectedBreeds }}<span v-if="selectedBreeds">s</span> within
           {{ filters.radius }} miles of {{ filters.zipcode }}
         </TextLink>
       </Paragraph>
@@ -260,15 +260,15 @@ export default {
 
       return this.filters.color.map(colorId => this.colorsMap[colorId]).join(' or ');
     },
-    breed() {
-      if (!this.filters.breed) {
+    selectedBreeds() {
+      if (!this.filters.selectedBreeds) {
         return '';
       }
 
-      return this.filters.breed.map(breedId => this.breedMap[breedId]).join(' or ');
+      return this.filters.selectedBreeds.map(breedId => this.breedMap[breedId]).join(' or ');
     },
     moreThanClan() {
-      return (this.age || this.sex || this.color || this.breed);
+      return (this.age || this.sex || this.color || this.selectedBreeds);
     },
     fullClanName() {
       if (this.filters.clan === 1) {
@@ -427,7 +427,7 @@ export default {
         age: ["young", "senior"],
         sex: [],
         color: [153],
-        breed: [187],
+        selectedBreeds: [187],
         hair: ['short'],
         size: [1, 2],
         radius: 10,
