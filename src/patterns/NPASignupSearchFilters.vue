@@ -165,16 +165,14 @@ export default {
      * @syscall api/getBreeds
      * @param {Number}
      * @returns {{breedId: Number, breedName: String}}
+     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
      */
-    this.$syscall('api/getBreeds', this.form.clan)
-      .then(response => {
-        this.breedIdsDropdown = response.map(
-          ({ breedId, breedName }) => ({
-            display: breedName,
-            value: breedId,
-          }),
-        );
-      });
+    this.$syscall('api/getBreeds', this.form.clan).then(response => {
+      this.breedIdsDropdown = response.map(({ breedId, breedName }) => ({
+        display: breedName,
+        value: breedId,
+      }));
+    });
   },
 
   methods: {

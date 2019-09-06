@@ -54,8 +54,7 @@
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          {{ age }} {{ sex }} {{ color }} {{ selectedBreeds }}<span v-if="selectedBreeds">s</span> within
-          {{ filters.radius }} miles of {{ filters.zipcode }}
+          {{ petDescription }} within {{ filters.radius }} miles of {{ filters.zipcode }}
         </TextLink>
       </Paragraph>
 
@@ -66,7 +65,7 @@
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          All {{ fullClanName }} within {{ filters.radius }} miles of {{ filters.zipcode }}
+          All {{ clanName }}s within {{ filters.radius }} miles of {{ filters.zipcode }}
         </TextLink>
       </Paragraph>
 
@@ -84,8 +83,7 @@
           v-model="form.npaPlanSelection"
           name="npa-plan-selection"
           :columns="2"
-          :items="items"
-          @change="notSelectedPlan" />
+          :items="npaTypes" />
       </div>
 
       <Infobox
@@ -224,10 +222,10 @@ export default {
         email: this.email,
         dontShowAgain: false,
         optins: this.optins,
-        npaPlanSelection: '',
+        npaPlanSelection: null,
       },
-      colorsMap: [],
-      breedMap: [],
+      colorsMap: {},
+      breedMap: {},
     };
   },
   blockName: 'npa-signup',
@@ -258,29 +256,62 @@ export default {
         return '';
       }
 
-      return this.filters.color.map(colorId => this.colorsMap[colorId]).join(' or ');
+      return this.filters.color
+        .map(colorId => this.colorsMap[colorId])
+        .join(' or ');
     },
     selectedBreeds() {
-      if (!this.filters.selectedBreeds) {
-        return '';
-      }
+      if (!this.filters.selectedBreeds) return this.clanName;
 
-      return this.filters.selectedBreeds.map(breedId => this.breedMap[breedId]).join(' or ');
+      return this.filters.selectedBreeds
+        .map(breedId => this.breedMap[breedId])
+        .join(' or ');
     },
     moreThanClan() {
-      return (this.age || this.sex || this.color || this.selectedBreeds);
+      return this.age || this.sex || this.color || this.selectedBreeds;
     },
-    fullClanName() {
-      if (this.filters.clan === 1) {
-        return 'Dogs';
+
+    clanName() {
+      let name;
+
+      switch (this.filters.clan) {
+        case 1:
+          name = 'dog';
+          break;
+
+        case 2:
+          name = 'dog';
+          break;
+
+        default:
+          name = 'pet';
       }
 
-      if (this.filters.clan === 2) {
-        return 'Cats';
-      }
-
-      return '';
+      return name;
     },
+
+    petDescription() {
+      return [this.age, this.sex, this.color, this.selectedBreeds]
+        .filter(a => !!a)
+        .join(' ');
+    },
+
+    npaTypes: () => [
+      {
+        heading: 'Premium Alert',
+        display:
+          'Get real time, instant notifications when you have a new match with your $10 monthly payment!',
+        icon: 'clock',
+        value: '1',
+      },
+      {
+        heading: 'Free Alert',
+        display:
+          'We’ll run your pet search daily and send you an email within 24 hours of having a new match.',
+        icon: 'envelope',
+        value: '2',
+      },
+    ],
   },
 
   created() {
@@ -305,17 +336,17 @@ export default {
      *
      * @syscall api/getBreeds
      * @param {Number}
-     * @returns {{breedId: Number, breedName: String}}
+     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
      */
-    this.$syscall('api/getBreeds', this.filters.clan)
-      .then(response => {
-        const breedMap = response;
+    this.$syscall('api/getBreeds', this.filters.clan).then(response => {
+      const breedMap = response;
 
-        this.breedMap = breedMap.reduce(
-          (acc, { breedId, breedName }) => Object.assign(acc, { [breedId]: breedName }),
-          {},
-        );
-      });
+      this.breedMap = breedMap.reduce(
+        (acc, { breedId, breedNamePlural }) =>
+          Object.assign(acc, { [breedId]: breedNamePlural }),
+        {},
+      );
+    });
   },
 
   methods: {
@@ -366,20 +397,6 @@ export default {
         this.$emit('submit', this.form);
       }
     },
-    notSelectedPlan() {
-      if (this.form.npaPlanSelection === '1') {
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.add('periodic-radio-box__item--selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.remove('periodic-radio-box__item--selected');
-      }
-      if (this.form.npaPlanSelection === '2') {
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.add('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.remove('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('periodic-radio-box__item--selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('periodic-radio-box__item--selected');
-      }
-    },
   },
 };
 </script>
@@ -388,9 +405,8 @@ export default {
 ```vue
 <template>
   <NPASignupForm
-    :offers="offers"
-    :items="items"
-    :filters="filters"/>
+    :offers='offers'
+    :filters='filters'/>
 </template>
 <script>
 export default {
@@ -399,41 +415,25 @@ export default {
       offers: [
         {
           newsletterId: 1,
-          displayHtml: "I would like to receive the latest special deals"
+          displayHtml: 'I would like to receive the latest special deals'
         },
         {
           newsletterId: 2,
           displayHtml:
-            "Yes, I would like to receive communications from the Petco Foundation"
+            'Yes, I would like to receive communications from the Petco Foundation'
         }
       ],
-      items: [
-        {
-          heading: "Premium Alert",
-          display:
-          "Get real time, instant notifications when you have a new match with your $10 monthly payment!",
-          icon: "clock",
-          value: "1"
-        },
-        {
-          heading: "Free Alert",
-          display:
-          "We’ll run your pet search daily and send you an email within 24 hours of having a new match.",
-          icon: "envelope",
-          value: "2"
-        },
-      ],
       filters: {
-        age: ["young", "senior"],
+        age: ['young', 'senior'],
         sex: [],
         color: [153],
-        selectedBreeds: [187],
+        selectedBreeds: [187, 1],
         hair: ['short'],
         size: [1, 2],
         radius: 10,
-        zipcode: "90210",
+        zipcode: '90210',
         clan: 1
-      },
+      }
     };
   }
 };

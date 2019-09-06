@@ -147,7 +147,9 @@
         border: 2px solid color(awhite, base)
 
   +element('item')
-    &.not-selected
+    background: color(awhite, base)
+
+    +m('not-selected')
       border: 1px solid color(agray, lighter)
 
       .#{$prefix-component}radio-box__icon
