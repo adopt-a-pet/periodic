@@ -31,7 +31,7 @@
         ]" />
 
       <DropdownMulti
-        v-model="form.breed"
+        v-model="form.selectedBreeds"
         :items="breedIdsDropdown"
         label="Breeds"
         :search="true"
@@ -135,7 +135,7 @@ export default {
      *     age: ["young", "senior"],
      *     sex: ["f"],
      *     color: 'Black',
-     *     breed: 'Pittbull',
+     *     selectedBreeds: 'Pittbull',
      *     radius: '10',
      *     zipcode: '90210',
      *     clan: 1
@@ -215,7 +215,7 @@ export default {
         age: ["young", "senior"],
         sex: ["f"],
         color: [153],
-        breed: [],
+        selectedBreeds: [],
         hair: ['short'],
         size: [1, 2],
         radius: 10,
