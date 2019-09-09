@@ -12,7 +12,7 @@
 
     <div :class="b('container').toString()">
       <TextInput
-        v-model="form.zipcode"
+        v-model="form.postalCode"
         type="search"
         label="Zip / Postal or City, State" />
 
@@ -31,7 +31,7 @@
         ]" />
 
       <DropdownMulti
-        v-model="form.selectedBreeds"
+        v-model="form.familyId"
         :items="breedIdsDropdown"
         label="Breeds"
         :search="true"
@@ -65,7 +65,7 @@
         ]" />
 
       <DropdownMulti
-        v-model="form.color"
+        v-model="form.colorId"
         label="Color"
         zero-selected-label="Any"
         multi-selected-label="Multiple"
@@ -84,7 +84,7 @@
         ]" />
 
       <DropdownMulti
-        v-if="form.clan === 1"
+        v-if="form.clanId === 1"
         v-model="form.size"
         label="Size"
         zero-selected-label="Any"
@@ -98,7 +98,7 @@
         ]" />
 
       <DropdownMulti
-        v-if="form.clan === 2"
+        v-if="form.clanId === 2"
         v-model="form.hair"
         :columns="1"
         zero-selected-label="Any"
@@ -132,13 +132,13 @@ export default {
      *
      * ```
      * {
-     *     age: ["young", "senior"],
-     *     sex: ["f"],
-     *     color: 'Black',
-     *     selectedBreeds: 'Pittbull',
-     *     radius: '10',
-     *     zipcode: '90210',
-     *     clan: 1
+     *     age: ['young', 'senior'],
+     *     sex: ['f'],
+     *     colorId: [1,2],
+     *     familyId: [187],
+     *     radius: 10,
+     *     postalCode: '90210',
+     *     clanId: 1
      *  }
      * ```
      *
@@ -167,7 +167,7 @@ export default {
      * @returns {{breedId: Number, breedName: String}}
      * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
      */
-    this.$syscall('api/getBreeds', this.form.clan).then(response => {
+    this.$syscall('api/getBreeds', this.form.clanId).then(response => {
       this.breedIdsDropdown = response.map(({ breedId, breedName }) => ({
         display: breedName,
         value: breedId,
@@ -212,13 +212,12 @@ export default {
       filters: {
         age: ["young", "senior"],
         sex: ["f"],
-        color: [153],
-        selectedBreeds: [],
+        colorId: [153],
         hair: ['short'],
         size: [1, 2],
         radius: 10,
-        zipcode: "90210",
-        clan: 1
+        postalCode: "90210",
+        clanId: 1
       },
     };
   }

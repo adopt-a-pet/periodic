@@ -48,24 +48,24 @@
       </Paragraph>
 
       <Paragraph
-        v-if="moreThanClan"
+        v-if="hasMoreFiltersThanClan"
         font-weight="bold"
         line-height="26px">
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          {{ petDescription }} within {{ filters.radius }} miles of {{ filters.zipcode }}
+          {{ petDescription }} within {{ filters.radius }} miles of {{ filters.postalCode }}
         </TextLink>
       </Paragraph>
 
       <Paragraph
-        v-if="!moreThanClan"
+        v-if="!hasMoreFiltersThanClan"
         font-weight="bold"
         line-height="26px">
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          All {{ clanName }}s within {{ filters.radius }} miles of {{ filters.zipcode }}
+          All {{ clanName }}s within {{ filters.radius }} miles of {{ filters.postalCode }}
         </TextLink>
       </Paragraph>
 
@@ -87,7 +87,7 @@
       </div>
 
       <Infobox
-        v-if="form.npaPlanSelection == '1'"
+        v-if="form.npaPlanSelection === 1"
         icon="lightbulb"
         @click:textLink="searchFilters">
         <template slot="header">
@@ -251,30 +251,28 @@ export default {
     sex() {
       return this.filters.sex ? this.sexFullName : '';
     },
-    color() {
-      if (!this.filters.color) {
-        return '';
-      }
+    colorNames() {
+      if (!this.filters.colorId) return '';
 
-      return this.filters.color
+      return this.filters.colorId
         .map(colorId => this.colorsMap[colorId])
         .join(' or ');
     },
-    selectedBreeds() {
-      if (!this.filters.selectedBreeds) return this.clanName;
+    familyNames() {
+      if (!this.filters.familyId) return this.clanName;
 
-      return this.filters.selectedBreeds
+      return this.filters.familyId
         .map(breedId => this.breedMap[breedId])
         .join(' or ');
     },
-    moreThanClan() {
-      return this.age || this.sex || this.color || this.selectedBreeds;
+    hasMoreFiltersThanClan() {
+      return Boolean(this.age || this.sex || this.colorNames || this.familyNames);
     },
 
     clanName() {
       let name;
 
-      switch (this.filters.clan) {
+      switch (this.filters.clanId) {
         case 1:
           name = 'dog';
           break;
@@ -291,7 +289,7 @@ export default {
     },
 
     petDescription() {
-      return [this.age, this.sex, this.color, this.selectedBreeds]
+      return [this.age, this.sex, this.colorNames, this.familyNames]
         .filter(a => !!a)
         .join(' ');
     },
@@ -302,14 +300,14 @@ export default {
         display:
           'Get real time, instant notifications when you have a new match with your $10 monthly payment!',
         icon: 'clock',
-        value: '1',
+        value: 1,
       },
       {
         heading: 'Free Alert',
         display:
           'We’ll run your pet search daily and send you an email within 24 hours of having a new match.',
         icon: 'envelope',
-        value: '2',
+        value: 0,
       },
     ],
   },
@@ -322,7 +320,7 @@ export default {
      * @param {Number}
      * @returns {{colorId: Number, colorName: String}}
      */
-    this.$syscall('api/getColors', this.filters.clan)
+    this.$syscall('api/getColors', this.filters.clanId)
       .then(response => {
         const colorsMap = response;
 
@@ -338,7 +336,7 @@ export default {
      * @param {Number}
      * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
      */
-    this.$syscall('api/getBreeds', this.filters.clan).then(response => {
+    this.$syscall('api/getBreeds', this.filters.clanId).then(response => {
       const breedMap = response;
 
       this.breedMap = breedMap.reduce(
@@ -426,13 +424,13 @@ export default {
       filters: {
         age: ['young', 'senior'],
         sex: [],
-        color: [153],
-        selectedBreeds: [187, 1],
+        colorId: [153],
+        familyId: [187, 1],
         hair: ['short'],
         size: [1, 2],
         radius: 10,
-        zipcode: '90210',
-        clan: 1
+        postalCode: '90210',
+        clanId: 1
       }
     };
   }
