@@ -234,22 +234,27 @@ export default {
 
   computed: {
     sexFullName() {
-      if (this.filters.sex.join() === '') {
-        return '';
+      if (!this.filters.sex) return '';
+
+      let name = '';
+
+      switch (this.filters.sex.join()) {
+        case 'm':
+          name = 'male';
+          break;
+
+        case 'f':
+          name = 'female';
+          break;
+
+        default:
+          name = 'male or female';
       }
-      if (this.filters.sex.join() === 'f') {
-        return 'female';
-      }
-      if (this.filters.sex.join() === 'm') {
-        return 'male';
-      }
-      return 'male or female';
+
+      return name;
     },
     age() {
       return this.filters.age ? this.filters.age.join(' or ') : null;
-    },
-    sex() {
-      return this.filters.sex ? this.sexFullName : '';
     },
     colorNames() {
       if (!this.filters.colorId) return '';
@@ -266,7 +271,7 @@ export default {
         .join(' or ');
     },
     hasMoreFiltersThanClan() {
-      return Boolean(this.age || this.sex || this.colorNames || this.familyNames);
+      return Boolean(this.age || this.sexFullName || this.colorNames || this.familyNames);
     },
 
     clanName() {
@@ -289,7 +294,7 @@ export default {
     },
 
     petDescription() {
-      return [this.age, this.sex, this.colorNames, this.familyNames]
+      return [this.age, this.sexFullName, this.colorNames, this.familyNames]
         .filter(a => !!a)
         .join(' ');
     },
