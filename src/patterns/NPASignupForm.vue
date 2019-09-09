@@ -283,7 +283,7 @@ export default {
           break;
 
         case 2:
-          name = 'dog';
+          name = 'cat';
           break;
 
         default:
