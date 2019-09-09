@@ -59,7 +59,7 @@
       </Paragraph>
 
       <Paragraph
-        v-if="!hasMoreFiltersThanClan"
+        v-else
         font-weight="bold"
         line-height="26px">
         <TextLink
@@ -80,14 +80,15 @@
           required />
 
         <RadioGroupBox
-          v-model="form.npaPlanSelection"
+          v-model="form.plan"
           name="npa-plan-selection"
           :columns="2"
-          :items="npaTypes" />
+          :items="npaTypes"
+          @change="selectPlan" />
       </div>
 
       <Infobox
-        v-if="form.npaPlanSelection === 1"
+        v-if="form.plan === 1"
         icon="lightbulb"
         @click:textLink="searchFilters">
         <template slot="header">
@@ -150,7 +151,7 @@
         </TextLink>
 
         <Button
-          @click="saveAndContinue">
+          @click="submit">
           Save & Continue
         </Button>
       </div>
@@ -214,6 +215,14 @@ export default {
       type: Object,
       default: () => ({}),
     },
+
+    /**
+     * Which NPA plan to use
+     */
+    plan: {
+      type: Number,
+      default: null,
+    },
   },
 
   data() {
@@ -222,7 +231,7 @@ export default {
         email: this.email,
         dontShowAgain: false,
         optins: this.optins,
-        npaPlanSelection: null,
+        plan: this.plan,
       },
       colorsMap: {},
       breedMap: {},
@@ -334,6 +343,7 @@ export default {
           {},
         );
       });
+
     /**
      * Get Breed name and Ids from database
      *
@@ -389,7 +399,16 @@ export default {
        */
       this.$emit('change:dontShowAgain', this.form.dontShowAgain);
     },
-    saveAndContinue() {
+    selectPlan(plan) {
+      /**
+       * When user changes the NPA plan
+       *
+       * @event change:plan
+       * @type Number
+       */
+      this.$emit('change:plan', plan);
+    },
+    submit() {
       /**
        * NPA signup submit event
        *
@@ -397,7 +416,10 @@ export default {
        * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
        */
       if (this.$refs.email.validate()) {
-        this.$emit('submit', this.form);
+        this.$emit('submit', {
+          ...this.form,
+          filters: this.filters,
+        });
       }
     },
   },

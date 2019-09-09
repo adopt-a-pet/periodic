@@ -117,7 +117,7 @@ export default {
     // This is for when there is a selection, check if `item` is selected.
     // When there is no selection, return false for all items.
     notSelectedState(item) {
-      return !!this.value && (this.value !== item.value);
+      return (this.value !== null) && (this.value !== item.value);
     },
   },
 };
