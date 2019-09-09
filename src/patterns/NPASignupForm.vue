@@ -48,25 +48,24 @@
       </Paragraph>
 
       <Paragraph
-        v-if="moreThanClan"
+        v-if="hasMoreFiltersThanClan"
         font-weight="bold"
         line-height="26px">
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          {{ age }} {{ sex }} {{ color }} {{ breed }}<span v-if="breed">s</span> within
-          {{ filters.radius }} miles of {{ filters.zipcode }}
+          {{ petDescription }} within {{ filters.geoRange }} miles of {{ filters.zipCode }}
         </TextLink>
       </Paragraph>
 
       <Paragraph
-        v-if="!moreThanClan"
+        v-else
         font-weight="bold"
         line-height="26px">
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          All {{ fullClanName }} within {{ filters.radius }} miles of {{ filters.zipcode }}
+          All {{ clanName }}s within {{ filters.geoRange }} miles of {{ filters.zipCode }}
         </TextLink>
       </Paragraph>
 
@@ -81,15 +80,15 @@
           required />
 
         <RadioGroupBox
-          v-model="form.npaPlanSelection"
+          v-model="form.plan"
           name="npa-plan-selection"
           :columns="2"
-          :items="items"
-          @change="notSelectedPlan" />
+          :items="npaTypes"
+          @change="selectPlan" />
       </div>
 
       <Infobox
-        v-if="form.npaPlanSelection == '1'"
+        v-if="form.plan === 1"
         icon="lightbulb"
         @click:textLink="searchFilters">
         <template slot="header">
@@ -155,7 +154,7 @@
         </TextLink>
 
         <Button
-          @click="saveAndContinue">
+          @click="submit">
           Save & Continue
         </Button>
       </div>
@@ -219,6 +218,14 @@ export default {
       type: Object,
       default: () => ({}),
     },
+
+    /**
+     * Which NPA plan to use
+     */
+    plan: {
+      type: Number,
+      default: null,
+    },
   },
 
   data() {
@@ -227,10 +234,10 @@ export default {
         email: this.email,
         dontShowAgain: false,
         optins: this.optins,
-        npaPlanSelection: '',
+        plan: this.plan,
       },
-      colorsMap: [],
-      breedMap: [],
+      colorsMap: {},
+      breedMap: {},
     };
   },
   blockName: 'npa-signup',
@@ -239,51 +246,87 @@ export default {
 
   computed: {
     sexFullName() {
-      if (this.filters.sex.join() === '') {
-        return '';
+      if (!this.filters.sex) return '';
+
+      let name = '';
+
+      switch (this.filters.sex.join()) {
+        case 'm':
+          name = 'male';
+          break;
+
+        case 'f':
+          name = 'female';
+          break;
+
+        default:
+          name = 'male or female';
       }
-      if (this.filters.sex.join() === 'f') {
-        return 'female';
-      }
-      if (this.filters.sex.join() === 'm') {
-        return 'male';
-      }
-      return 'male or female';
+
+      return name;
     },
     age() {
       return this.filters.age ? this.filters.age.join(' or ') : null;
     },
-    sex() {
-      return this.filters.sex ? this.sexFullName : '';
+    colorNames() {
+      if (!this.filters.color) return '';
+
+      return this.filters.color
+        .map(colorId => this.colorsMap[colorId])
+        .join(' or ');
     },
-    color() {
-      if (!this.filters.color) {
-        return '';
+    familyNames() {
+      if (!this.filters.selectedBreeds) return this.clanName;
+
+      return this.filters.selectedBreeds
+        .map(breedId => this.breedMap[breedId])
+        .join(' or ');
+    },
+    hasMoreFiltersThanClan() {
+      return Boolean(this.age || this.sexFullName || this.colorNames || this.familyNames);
+    },
+
+    clanName() {
+      let name;
+
+      switch (this.filters.clan) {
+        case 1:
+          name = 'dog';
+          break;
+
+        case 2:
+          name = 'cat';
+          break;
+
+        default:
+          name = 'pet';
       }
 
-      return this.filters.color.map(colorId => this.colorsMap[colorId]).join(' or ');
+      return name;
     },
-    breed() {
-      if (!this.filters.breed) {
-        return '';
-      }
 
-      return this.filters.breed.map(breedId => this.breedMap[breedId]).join(' or ');
+    petDescription() {
+      return [this.age, this.sexFullName, this.colorNames, this.familyNames]
+        .filter(a => !!a)
+        .join(' ');
     },
-    moreThanClan() {
-      return (this.age || this.sex || this.color || this.breed);
-    },
-    fullClanName() {
-      if (this.filters.clan === 1) {
-        return 'Dogs';
-      }
 
-      if (this.filters.clan === 2) {
-        return 'Cats';
-      }
-
-      return '';
-    },
+    npaTypes: () => [
+      {
+        heading: 'Premium Alert',
+        display:
+          'Get real time, instant notifications when you have a new match with your $10 monthly payment!',
+        icon: 'clock',
+        value: 1,
+      },
+      {
+        heading: 'Free Alert',
+        display:
+          'We’ll run your pet search daily and send you an email within 24 hours of having a new match.',
+        icon: 'envelope',
+        value: 0,
+      },
+    ],
   },
 
   created() {
@@ -303,22 +346,23 @@ export default {
           {},
         );
       });
+
     /**
      * Get Breed name and Ids from database
      *
      * @syscall api/getBreeds
      * @param {Number}
-     * @returns {{breedId: Number, breedName: String}}
+     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
      */
-    this.$syscall('api/getBreeds', this.filters.clan)
-      .then(response => {
-        const breedMap = response;
+    this.$syscall('api/getBreeds', this.filters.clan).then(response => {
+      const breedMap = response;
 
-        this.breedMap = breedMap.reduce(
-          (acc, { breedId, breedName }) => Object.assign(acc, { [breedId]: breedName }),
-          {},
-        );
-      });
+      this.breedMap = breedMap.reduce(
+        (acc, { breedId, breedNamePlural }) =>
+          Object.assign(acc, { [breedId]: breedNamePlural }),
+        {},
+      );
+    });
   },
 
   methods: {
@@ -358,7 +402,16 @@ export default {
        */
       this.$emit('change:dontShowAgain', this.form.dontShowAgain);
     },
-    saveAndContinue() {
+    selectPlan(plan) {
+      /**
+       * When user changes the NPA plan
+       *
+       * @event change:plan
+       * @type Number
+       */
+      this.$emit('change:plan', plan);
+    },
+    submit() {
       /**
        * NPA signup submit event
        *
@@ -366,21 +419,10 @@ export default {
        * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
        */
       if (this.$refs.email.validate()) {
-        this.$emit('submit', this.form);
-      }
-    },
-    notSelectedPlan() {
-      if (this.form.npaPlanSelection === '1') {
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.add('periodic-radio-box__item--selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.remove('periodic-radio-box__item--selected');
-      }
-      if (this.form.npaPlanSelection === '2') {
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.add('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.remove('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('periodic-radio-box__item--selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('periodic-radio-box__item--selected');
+        this.$emit('submit', {
+          ...this.form,
+          filters: this.filters,
+        });
       }
     },
   },
@@ -391,9 +433,8 @@ export default {
 ```vue
 <template>
   <NPASignupForm
-    :offers="offers"
-    :items="items"
-    :filters="filters"/>
+    :offers='offers'
+    :filters='filters'/>
 </template>
 <script>
 export default {
@@ -402,41 +443,25 @@ export default {
       offers: [
         {
           newsletterId: 1,
-          displayHtml: "I would like to receive the latest special deals"
+          displayHtml: 'I would like to receive the latest special deals'
         },
         {
           newsletterId: 2,
           displayHtml:
-            "Yes, I would like to receive communications from the Petco Foundation"
+            'Yes, I would like to receive communications from the Petco Foundation'
         }
       ],
-      items: [
-        {
-          heading: "Premium Alert",
-          display:
-          "Get real time, instant notifications when you have a new match with your $10 monthly payment!",
-          icon: "clock",
-          value: "1"
-        },
-        {
-          heading: "Free Alert",
-          display:
-          "We’ll run your pet search daily and send you an email within 24 hours of having a new match.",
-          icon: "envelope",
-          value: "2"
-        },
-      ],
       filters: {
-        age: ["young", "senior"],
+        age: ['young', 'senior'],
         sex: [],
         color: [153],
-        breed: [187],
+        selectedBreeds: [187, 1],
         hair: ['short'],
         size: [1, 2],
-        radius: 10,
-        zipcode: "90210",
+        geoRange: 10,
+        zipCode: '90210',
         clan: 1
-      },
+      }
     };
   }
 };

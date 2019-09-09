@@ -104,7 +104,7 @@ export default {
      */
     items: {
       type: Array,
-      default: () => [{ display: 'Loading...', value: null }],
+      default: () => [],
       validator: items => items.every(item => ('display' in item) && ('value' in item)),
     },
     /**
@@ -174,8 +174,12 @@ export default {
   computed: {
     allChoices() { return this.makeChoices(this.items); },
     selectedDisplay() {
-      if (!this.value.length && this.zeroSelectedLabel) return this.zeroSelectedLabel;
+      if (!(this.value && this.value.length)) {
+        return this.zeroSelectedLabel || '';
+      }
+
       if (this.value.length > 1 && this.multiSelectedLabel) return this.multiSelectedLabel;
+      if (!(this.items && this.items.length)) return 'Loading...';
 
       return this.value
         .map(selectedValue =>

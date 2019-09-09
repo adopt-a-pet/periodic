@@ -12,12 +12,12 @@
 
     <div :class="b('container').toString()">
       <TextInput
-        v-model="form.zipcode"
+        v-model="form.zipCode"
         type="search"
         label="Zip / Postal or City, State" />
 
       <Dropdown
-        v-model="form.radius"
+        v-model="form.geoRange"
         label="Distance"
         :items="[
           { display: '5 miles or less', value: 5 },
@@ -31,7 +31,7 @@
         ]" />
 
       <DropdownMulti
-        v-model="form.breed"
+        v-model="form.selectedBreeds"
         :items="breedIdsDropdown"
         label="Breeds"
         :search="true"
@@ -132,12 +132,12 @@ export default {
      *
      * ```
      * {
-     *     age: ["young", "senior"],
-     *     sex: ["f"],
-     *     color: 'Black',
-     *     breed: 'Pittbull',
-     *     radius: '10',
-     *     zipcode: '90210',
+     *     age: ['young', 'senior'],
+     *     sex: ['f'],
+     *     color: [1,2],
+     *     selectedBreeds: [187],
+     *     geoRange: 10,
+     *     zipCode: '90210',
      *     clan: 1
      *  }
      * ```
@@ -152,16 +152,11 @@ export default {
   data() {
     return {
       form: { ...this.filters },
-      breedIdsDropdown: null,
+      breedIdsDropdown: [],
     };
   },
 
   computed: {},
-
-  watch: {
-    breedIdsDropdown() {
-    },
-  },
 
   created() {
     /**
@@ -170,16 +165,14 @@ export default {
      * @syscall api/getBreeds
      * @param {Number}
      * @returns {{breedId: Number, breedName: String}}
+     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
      */
-    this.$syscall('api/getBreeds', this.clanID)
-      .then(response => {
-        this.breedIdsDropdown = response.map(
-          ({ breedId, breedName }) => ({
-            display: breedName,
-            value: breedId,
-          }),
-        );
-      });
+    this.$syscall('api/getBreeds', this.form.clan).then(response => {
+      this.breedIdsDropdown = response.map(({ breedId, breedName }) => ({
+        display: breedName,
+        value: breedId,
+      }));
+    });
   },
 
   methods: {
@@ -220,11 +213,10 @@ export default {
         age: ["young", "senior"],
         sex: ["f"],
         color: [153],
-        breed: [],
         hair: ['short'],
         size: [1, 2],
-        radius: 10,
-        zipcode: "90210",
+        geoRange: 10,
+        zipCode: "90210",
         clan: 1
       },
     };
