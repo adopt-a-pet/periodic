@@ -105,7 +105,8 @@
 
       <VSpacer size="xl" />
 
-      <StripeForm />
+      <StripeForm
+        v-show="form.npaPlanSelection === '1'" />
 
       <VDivider
         v-if="layout == 'desktop'"

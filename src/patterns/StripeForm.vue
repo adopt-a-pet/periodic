@@ -138,9 +138,8 @@ export default {
 
       const elementStyles = {
         base: {
-          color: 'color(agray)',
-          fontWeight: 600,
-          // fontFamily: 'Quicksand, Open Sans, Segoe UI, sans-serif',
+          fontWeight: 500,
+          fontFamily: 'Helvetica Neue, Helvetica, Arial, Roboto, Lucida Grande, sans-serif',
           fontSize: '1.25rem',
           fontSmoothing: 'antialiased',
 
@@ -166,6 +165,7 @@ export default {
 
       const cardNumber = elements.create('cardNumber', {
         style: elementStyles,
+        placeholder: 'Credit Card Number',
       });
       cardNumber.mount('#card-number');
 
@@ -187,13 +187,8 @@ export default {
 <style scoped>
 .StripeElement {
   box-sizing: border-box;
-
-  line-height: 1.5;
-
   height: 3.625rem;
-
   padding: 10px 12px;
-
   border: 1px solid color(agray, light);
   border-radius: 6px;
   background-color: white;
@@ -209,6 +204,10 @@ export default {
 
 .StripeElement--invalid {
   border-color: color(aorange);
+}
+
+.StripeElement--complete {
+  border-color: color(agreen);
 }
 
 .StripeElement--webkit-autofill {
