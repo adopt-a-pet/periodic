@@ -95,7 +95,7 @@ export default {
      * @syscall stripe/key
      * @returns {{stripeKey: String}}
      */
-    this.$syscall('stripe/key')
+    this.$syscall('config/stripe/key')
       .then(response => {
         const stripeKey = response;
 
@@ -132,7 +132,6 @@ export default {
         // Stripe's examples are localized to specific languages, but if
         // you wish to have Elements automatically detect your user's locale,
         // use `locale: 'auto'` instead.
-        // eslint-disable-next-line no-underscore-dangle
         locale: 'auto',
       });
 

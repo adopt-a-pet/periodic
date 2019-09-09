@@ -31,7 +31,7 @@ export default {
         ]
       );
     },
-    'stripe/key': function (_, payload) {
+    'config/stripe/key': function (_, payload) {
       return Promise.resolve (
         'pk_test_5W1GpRySJaGqo11L07q0eg1Q'
       );

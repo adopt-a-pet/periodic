@@ -105,7 +105,7 @@
       <VSpacer size="xl" />
 
       <StripeForm
-        v-show="form.npaPlanSelection === '1'" />
+        v-show="form.plan === 1" />
 
       <VDivider
         v-if="layout == 'desktop'"
@@ -236,6 +236,7 @@ export default {
         optins: this.optins,
         plan: this.plan,
       },
+      paymentInfo: {},
       colorsMap: {},
       breedMap: {},
     };
