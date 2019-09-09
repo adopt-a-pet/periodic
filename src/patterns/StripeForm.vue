@@ -4,30 +4,36 @@
       type="hidden"
       name="stripeToken"
       value="">
-    <div class="form-control">
+    <div :class="b('form-control').toString()">
       <TextInput
         v-model="firstName"
         label="First Name"
+        :class="b('first-name').toString()"
         required />
       <TextInput
         v-model="lastName"
         label="Last Name"
+        :class="b('last-name').toString()"
         required />
       <TextInput
         v-model="zipCode"
         label="Zip Code"
         type="number"
+        :class="b('zip-code').toString()"
         required />
       <VSpacer size="xxs" />
       <TextInput
         id="card-number"
-        ref="card-number" />
+        ref="card-number"
+        :class="b('card-number').toString()" />
       <TextInput
         id="card-expiry"
-        ref="card-expiry" />
+        ref="card-expiry"
+        :class="b('card-expiry').toString()" />
       <TextInput
         id="card-cvc"
-        ref="card-cvc" />
+        ref="card-cvc"
+        :class="b('card-cvc').toString()" />
     </div>
     <div
       id="card-errors"
@@ -41,6 +47,7 @@
         There was an error processing your payment, please refresh and try again.
       </Paragraph>
     </div>
+    <VSpacer size="xl" />
   </div>
 </template>
 
@@ -58,14 +65,6 @@ export default {
   release: '1.0.0',
   blockName: 'stripe-form',
   props: {
-    /**
-     * The stripe key to be used when mounting
-     * stripe.
-     */
-    stripeKey: {
-      required: true,
-      type: String,
-    },
   },
 
   data() {
@@ -90,7 +89,18 @@ export default {
   },
 
   created() {
+    /**
+     * Get stripe key
+     *
+     * @syscall stripe/key
+     * @returns {{stripeKey: String}}
+     */
+    this.$syscall('stripe/key')
+      .then(response => {
+        const stripeKey = response;
 
+        this.stripeKey = stripeKey;
+      });
   },
 
   mounted() {
@@ -210,7 +220,7 @@ export default {
 ```vue
 <template>
   <div>
-    <StripeForm stripe-key="pk_test_TYooMQauvdEDq54NiTphI7jx"/>
+    <StripeForm />
   </div>
 </template>
 <script>

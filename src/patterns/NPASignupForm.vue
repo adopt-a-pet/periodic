@@ -105,7 +105,7 @@
 
       <VSpacer size="xl" />
 
-      <StripeForm stripe-key="pk_test_TYooMQauvdEDq54NiTphI7jx" />
+      <StripeForm />
 
       <VDivider
         v-if="layout == 'desktop'"
