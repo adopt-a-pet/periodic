@@ -54,7 +54,7 @@
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          {{ petDescription }} within {{ filters.radius }} miles of {{ filters.postalCode }}
+          {{ petDescription }} within {{ filters.geoRange }} miles of {{ filters.zipCode }}
         </TextLink>
       </Paragraph>
 
@@ -65,7 +65,7 @@
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
-          All {{ clanName }}s within {{ filters.radius }} miles of {{ filters.postalCode }}
+          All {{ clanName }}s within {{ filters.geoRange }} miles of {{ filters.zipCode }}
         </TextLink>
       </Paragraph>
 
@@ -257,16 +257,16 @@ export default {
       return this.filters.age ? this.filters.age.join(' or ') : null;
     },
     colorNames() {
-      if (!this.filters.colorId) return '';
+      if (!this.filters.color) return '';
 
-      return this.filters.colorId
+      return this.filters.color
         .map(colorId => this.colorsMap[colorId])
         .join(' or ');
     },
     familyNames() {
-      if (!this.filters.familyId) return this.clanName;
+      if (!this.filters.selectedBreeds) return this.clanName;
 
-      return this.filters.familyId
+      return this.filters.selectedBreeds
         .map(breedId => this.breedMap[breedId])
         .join(' or ');
     },
@@ -277,7 +277,7 @@ export default {
     clanName() {
       let name;
 
-      switch (this.filters.clanId) {
+      switch (this.filters.clan) {
         case 1:
           name = 'dog';
           break;
@@ -325,7 +325,7 @@ export default {
      * @param {Number}
      * @returns {{colorId: Number, colorName: String}}
      */
-    this.$syscall('api/getColors', this.filters.clanId)
+    this.$syscall('api/getColors', this.filters.clan)
       .then(response => {
         const colorsMap = response;
 
@@ -341,7 +341,7 @@ export default {
      * @param {Number}
      * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
      */
-    this.$syscall('api/getBreeds', this.filters.clanId).then(response => {
+    this.$syscall('api/getBreeds', this.filters.clan).then(response => {
       const breedMap = response;
 
       this.breedMap = breedMap.reduce(
@@ -429,13 +429,13 @@ export default {
       filters: {
         age: ['young', 'senior'],
         sex: [],
-        colorId: [153],
-        familyId: [187, 1],
+        color: [153],
+        selectedBreeds: [187, 1],
         hair: ['short'],
         size: [1, 2],
-        radius: 10,
-        postalCode: '90210',
-        clanId: 1
+        geoRange: 10,
+        zipCode: '90210',
+        clan: 1
       }
     };
   }
