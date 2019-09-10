@@ -24,15 +24,15 @@
       <VSpacer size="xxs" />
       <TextInput
         id="card-number"
-        ref="card-number"
+        ref="cardNumber"
         :class="b('card-number').toString()" />
       <TextInput
         id="card-expiry"
-        ref="card-expiry"
+        ref="cardExpiry"
         :class="b('card-expiry').toString()" />
       <TextInput
         id="card-cvc"
-        ref="card-cvc"
+        ref="cardCvc"
         :class="b('card-cvc').toString()" />
     </div>
     <div
@@ -108,9 +108,6 @@ export default {
   },
 
   methods: {
-    submitPayment() {
-      // console.log('paiddddd');
-    },
     checkForStripe() {
       if (window.Stripe) {
         this.stripeReady = true;
@@ -119,16 +116,9 @@ export default {
       }
     },
     mountStripe() {
-      const stripe = Stripe(this.stripeKey);
-      /* const elements = stripe.elements();
-      const card = elements.create('card');
-      card.mount(this.$refs.card); */
-      const elements = stripe.elements({
-        fonts: [
-          {
-            cssSrc: 'https://fonts.googleapis.com/css?family=Quicksand',
-          },
-        ],
+      this.stripe = Stripe(this.stripeKey);
+
+      const elements = this.stripe.elements({
         // Stripe's examples are localized to specific languages, but if
         // you wish to have Elements automatically detect your user's locale,
         // use `locale: 'auto'` instead.
@@ -162,28 +152,53 @@ export default {
         },
       };
 
-      const cardNumber = elements.create('cardNumber', {
+      this.cardNumber = elements.create('cardNumber', {
         style: elementStyles,
         placeholder: 'Credit Card Number',
       });
-      cardNumber.mount('#card-number');
+      this.cardNumber.mount('#card-number');
 
-      const cardExpiry = elements.create('cardExpiry', {
+      this.cardExpiry = elements.create('cardExpiry', {
         style: elementStyles,
       });
-      cardExpiry.mount('#card-expiry');
+      this.cardExpiry.mount('#card-expiry');
 
-      const cardCvc = elements.create('cardCvc', {
+      this.cardCvc = elements.create('cardCvc', {
         style: elementStyles,
       });
-      cardCvc.mount('#card-cvc');
-
-      // registerElements([cardNumber, cardExpiry, cardCvc], 'example3');
+      this.cardCvc.mount('#card-cvc');
+    },
+    /**
+     * If we ever need to check before creating a Stripe Token
+     * we can do so here.
+     */
+    handleSubmit() {
+      this.createStripeToken();
+    },
+    /**
+     * Creates our stripe token to send off to the VML. Notice
+     * we only have to pass in one of the stripe elements (cardNumber)
+     * even though there are multiple elements (cardExpiry, cardCvc). Stripe
+     * knows to pull all of these in.
+     */
+    createStripeToken() {
+      this.stripe.createToken(this.cardNumber).then(result => {
+        if (result.token) {
+          this.postToken(result.token.id);
+        }
+        if (result.error) {
+          this.hasCardErrors = true;
+          this.$forceUpdate(); // Forcing the DOM to update so the Stripe Element can update.
+        }
+      });
     },
   },
 };
 </script>
 <style scoped>
+/**
+ Scoped Stripe styles
+ */
 .StripeElement {
   box-sizing: border-box;
   height: 3.625rem;

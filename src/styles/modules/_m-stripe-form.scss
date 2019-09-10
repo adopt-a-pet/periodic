@@ -6,18 +6,18 @@
     grid-template-areas:
       'firstname firstname'
       'lastname lastname'
+      'zipcode zipcode'
       'cardnumber cardnumber'
-      'cardexpiry cardcvc'
-      'zipcode zipcode';
+      'cardexpiry cardcvc';
     grid-column-gap: 10px;
     grid-row-gap: 20px;
 
     @include breakpoint(tablet-plus) {
       grid-template-areas:
         'firstname lastname'
+        'zipcode zipcode'
         'cardnumber cardnumber'
-        'cardexpiry cardcvc'
-        'zipcode zipcode';
+        'cardexpiry cardcvc';
       grid-column-gap: 20px;
     }
   }

@@ -105,7 +105,8 @@
       <VSpacer size="xl" />
 
       <StripeForm
-        v-show="form.plan === 1" />
+        v-show="form.plan === 1"
+        ref="stripeForm" />
 
       <VDivider
         v-if="layout == 'desktop'"
@@ -486,6 +487,10 @@ export default {
           ...this.form,
           filters: this.filters,
         });
+
+        if (this.form.plan === 1) {
+          this.$refs.stripeForm.handleSubmit();
+        }
       }
     },
   },
