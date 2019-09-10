@@ -212,7 +212,21 @@ export default {
       default: () => [],
     },
     /**
-     * A list of search paramaters from the users search criteria
+     * A list of search paramaters from the user's search criteria
+     *
+     * ```
+     * {
+     *     age: ['young', 'senior'],
+     *     bondedPair: true,
+     *     breeds: [187],
+     *     clan: 1,
+     *     color: [1,2],
+     *     geoRange: 10,
+     *     sex: ['f'],
+     *     specialNeeds: true,
+     *     zipCode: '90210',
+     *  }
+     * ```
      */
     filters: {
       type: Object,
@@ -246,12 +260,25 @@ export default {
   release: '1.0.0',
 
   computed: {
+    sizeMap() {
+      return {
+        1: 'small',
+        2: 'medium',
+        3: 'large',
+        4: 'x-large',
+      };
+    },
+
     sexFullName() {
       if (!this.filters.sex) return '';
 
       let name = '';
 
       switch (this.filters.sex.join()) {
+        case '':
+          name = '';
+          break;
+
         case 'm':
           name = 'male';
           break;
@@ -277,9 +304,9 @@ export default {
         .join(' or ');
     },
     familyNames() {
-      if (!this.filters.selectedBreeds) return this.clanName;
+      if (!this.filters.breeds) return this.clanName;
 
-      return this.filters.selectedBreeds
+      return this.filters.breeds
         .map(breedId => this.breedMap[breedId])
         .join(' or ');
     },
@@ -306,8 +333,32 @@ export default {
       return name;
     },
 
+    bondedPair() {
+      return this.filters.bondedPair ? 'bonded pair' : '';
+    },
+
+    specialNeeds() {
+      return this.filters.specialNeeds ? 'with special needs' : '';
+    },
+
+    sizeNames() {
+      if (!(this.filters.size && this.filters.size.length)) return '';
+
+      return this.filters.size
+        .map(sizeId => this.sizeMap[sizeId])
+        .join(' or ');
+    },
+
     petDescription() {
-      return [this.age, this.sexFullName, this.colorNames, this.familyNames]
+      return [
+        this.bondedPair,
+        this.age,
+        this.sexFullName,
+        this.colorNames,
+        this.sizeNames,
+        this.familyNames,
+        this.specialNeeds,
+      ]
         .filter(a => !!a)
         .join(' ');
     },
@@ -334,15 +385,13 @@ export default {
     /**
      * Get colors name and Ids from database
      *
-     * @syscall api/colors
+     * @syscall api/pets/colors
      * @param {Number}
      * @returns {{colorId: Number, colorName: String}}
      */
-    this.$syscall('api/getColors', this.filters.clan)
+    this.$syscall('api/pets/getColors', this.filters.clan)
       .then(response => {
-        const colorsMap = response;
-
-        this.colorsMap = colorsMap.reduce(
+        this.colorsMap = response.reduce(
           (acc, { colorId, colorName }) => Object.assign(acc, { [colorId]: colorName }),
           {},
         );
@@ -351,14 +400,27 @@ export default {
     /**
      * Get Breed name and Ids from database
      *
+     * @syscall api/pets/getBreeds
+     * @param {Number}
+     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
+     */
+    this.$syscall('api/pets/getBreeds', this.filters.clan).then(response => {
+      this.breedMap = response.reduce(
+        (acc, { breedId, breedNamePlural }) =>
+          Object.assign(acc, { [breedId]: breedNamePlural }),
+        {},
+      );
+    });
+
+    /**
+     * Get Breed name and Ids from database
+     *
      * @syscall api/getBreeds
      * @param {Number}
      * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
      */
-    this.$syscall('api/getBreeds', this.filters.clan).then(response => {
-      const breedMap = response;
-
-      this.breedMap = breedMap.reduce(
+    this.$syscall('api/pets/getSizes', this.filters.clan).then(response => {
+      this.breedMap = response.reduce(
         (acc, { breedId, breedNamePlural }) =>
           Object.assign(acc, { [breedId]: breedNamePlural }),
         {},
@@ -413,13 +475,13 @@ export default {
       this.$emit('change:plan', plan);
     },
     submit() {
-      /**
-       * NPA signup submit event
-       *
-       * @event submit
-       * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
-       */
       if (this.$refs.email.validate()) {
+        /**
+         * NPA signup submit event
+         *
+         * @event submit
+         * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
+         */
         this.$emit('submit', {
           ...this.form,
           filters: this.filters,
@@ -454,14 +516,16 @@ export default {
       ],
       filters: {
         age: ['young', 'senior'],
-        sex: [],
+        bondedPair: true,
+        breeds: [187, 1],
+        clan: 1,
         color: [153],
-        selectedBreeds: [187, 1],
-        hair: ['short'],
-        size: [1, 2],
         geoRange: 10,
+        hair: ['short'],
+        sex: [],
+        specialNeeds: true,
+        size: [1, 2],
         zipCode: '90210',
-        clan: 1
       }
     };
   }
