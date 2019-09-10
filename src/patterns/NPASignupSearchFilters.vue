@@ -31,7 +31,7 @@
         ]" />
 
       <DropdownMulti
-        v-model="form.selectedBreeds"
+        v-model="form.breeds"
         :items="breedIdsDropdown"
         label="Breeds"
         :search="true"
@@ -133,12 +133,14 @@ export default {
      * ```
      * {
      *     age: ['young', 'senior'],
-     *     sex: ['f'],
+     *     bondedPair: true,
+     *     breeds: [187],
+     *     clan: 1,
      *     color: [1,2],
-     *     selectedBreeds: [187],
      *     geoRange: 10,
+     *     sex: ['f'],
+     *     specialNeeds: true,
      *     zipCode: '90210',
-     *     clan: 1
      *  }
      * ```
      *
@@ -162,12 +164,12 @@ export default {
     /**
      * Get Breed name and Ids from database
      *
-     * @syscall api/getBreeds
+     * @syscall api/pets/getBreeds
      * @param {Number}
      * @returns {{breedId: Number, breedName: String}}
      * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
      */
-    this.$syscall('api/getBreeds', this.form.clan).then(response => {
+    this.$syscall('api/pets/getBreeds', this.form.clan).then(response => {
       this.breedIdsDropdown = response.map(({ breedId, breedName }) => ({
         display: breedName,
         value: breedId,
@@ -211,13 +213,13 @@ export default {
     return {
       filters: {
         age: ["young", "senior"],
-        sex: ["f"],
+        clan: 1,
         color: [153],
-        hair: ['short'],
-        size: [1, 2],
         geoRange: 10,
+        hair: ['short'],
+        sex: ["f"],
+        size: [1, 2],
         zipCode: "90210",
-        clan: 1
       },
     };
   }
