@@ -116,7 +116,7 @@ export default {
         this.stripeKey = response;
       });
 
-    this.$syscall('config/vmlBase')
+    this.$syscall('config/vml/vmlBase')
       .then(response => {
         this.vmlBaseEndpoint = response;
       });
