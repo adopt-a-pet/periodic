@@ -459,16 +459,6 @@ export default {
         {},
       );
     });
-
-    /**
-     * Get vml base endpoint
-     *
-     * @syscall config/vml/base
-     * @returns {vmlBaseEndpoint assignment: String}
-     */
-    this.$syscall('syscall/config/vml/base').then(response => {
-      this.vmlBaseEndpoint = response;
-    });
   },
 
   methods: {
@@ -519,47 +509,38 @@ export default {
     },
     submit() {
       if (this.$refs.email.validate()) {
+        if (this.form.plan === 1) {
+          this.$refs.stripeForm.handleSubmit();
+        } else {
         /**
          * NPA signup submit event
          *
          * @event submit
          * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
          */
-        this.$emit('submit', {
-          ...this.form,
-          filters: this.filters,
-        });
-
-        if (this.form.plan === 1) {
-          this.$refs.stripeForm.handleSubmit();
+          this.$emit('submit', {
+            ...this.form,
+            filters: this.filters,
+          });
         }
       }
     },
     /**
-     * Post user data and stripe token
+     * Emit createPremiumNPA event with token
+     * and user info.
      */
     createPremiumNPA(stripeToken, zipCode) {
-      const createPremiumEndpoint = `${this.vmlBaseEndpoint}/users/npaPremiumSubscription`;
       const obj = {
         token: stripeToken,
         email: this.$refs.email.value,
         zipcode: zipCode,
       };
 
-      // TODO Emit event, handle http request from FE.
-      this.$http.post(createPremiumEndpoint, obj)
-        // eslint-disable-next-line consistent-return
-        .then(response => {
-          if (response.status === 200) {
-            return this.createPremiumSuccess();
-          }
-          this.showError = true;
-        }).catch(() => {
-          this.showError = true;
-        });
-    },
-    createPremiumSuccess() {
-      this.$emit('premiumCreatedSuccess');
+      this.$emit('submit', {
+        ...this.form,
+        filters: this.filters,
+        stripeInfo: obj,
+      });
     },
   },
 };
