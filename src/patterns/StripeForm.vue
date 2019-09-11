@@ -237,7 +237,7 @@ export default {
         });
     },
     createPremiumSuccess() {
-      this.$emit('premiumSuccess');
+      this.$emit('premiumCreatedSuccess');
     },
   },
 };
@@ -245,6 +245,7 @@ export default {
 <style scoped>
 /**
  Scoped Stripe styles
+ Stripe sets these classes when it mounts
  */
 .StripeElement {
   box-sizing: border-box;
