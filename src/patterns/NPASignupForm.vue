@@ -104,9 +104,40 @@
 
       <VSpacer size="xl" />
 
+      <Heading
+        v-if="form.plan === 1"
+        level="h4"
+        font-weight="bold"
+        font-family="museo">
+        Payment
+      </Heading>
+
+      <VSpacer
+        v-if="form.plan === 1"
+        size="xxs" />
+
+      <Heading
+        v-if="form.plan === 1"
+        level="h5"
+        font-weight="bold">
+        Amount (Billed Monthly)
+      </Heading>
+
+      <Heading
+        v-if="form.plan === 1"
+        level="h4"
+        font-weight="bold">
+        10$
+      </Heading>
+
+      <VSpacer
+        v-if="form.plan === 1"
+        size="s" />
+
       <StripeForm
         v-show="form.plan === 1"
-        ref="stripeForm" />
+        ref="stripeForm"
+        :email="form.email" />
 
       <VDivider
         v-if="layout == 'desktop'"

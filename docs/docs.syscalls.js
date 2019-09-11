@@ -33,6 +33,11 @@ export default {
       return Promise.resolve (
         'pk_test_5W1GpRySJaGqo11L07q0eg1Q'
       );
+    },
+    'config/vmlBase': function (_, payload) {
+      return Promise.resolve (
+        'local.adoptapet.com:3000'
+      );
     }
   }
 };

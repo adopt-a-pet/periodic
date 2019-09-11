@@ -20,6 +20,11 @@
         label="Zip Code"
         type="number"
         :class="b('zip-code').toString()"
+        :validations="zipValidator"
+        :error-messages="{
+          zipValidator: 'Invalid Location',
+          required: 'Invalid Location'
+        }"
         required />
       <VSpacer size="xxs" />
       <TextInput
@@ -54,6 +59,7 @@
 <script>
 /* global Stripe */
 // import tokens from '@/assets/tokens/tokens.json';
+import { zipValidator } from '../utils/validators/location-vuelidate';
 
 /**
  * Stripe Form
@@ -65,6 +71,10 @@ export default {
   release: '1.0.0',
   blockName: 'stripe-form',
   props: {
+    email: {
+      type: String,
+      default: '',
+    },
   },
 
   data() {
@@ -77,7 +87,13 @@ export default {
     };
   },
 
-  computed: {},
+  computed: {
+    zipValidator() {
+      return {
+        zipValidator,
+      };
+    },
+  },
 
   watch: {
     stripeReady() {
@@ -97,9 +113,12 @@ export default {
      */
     this.$syscall('config/stripe/key')
       .then(response => {
-        const stripeKey = response;
+        this.stripeKey = response;
+      });
 
-        this.stripeKey = stripeKey;
+    this.$syscall('config/vmlBase')
+      .then(response => {
+        this.vmlBaseEndpoint = response;
       });
   },
 
@@ -109,11 +128,14 @@ export default {
 
   methods: {
     checkForStripe() {
-      if (window.Stripe) {
+      /* if (window.Stripe) {
         this.stripeReady = true;
       } else {
         setInterval(() => this.checkForStripe(), 1000);
-      }
+      } */
+      window.onload = () => {
+        this.stripeReady = true;
+      };
     },
     mountStripe() {
       this.stripe = Stripe(this.stripeKey);
@@ -184,13 +206,38 @@ export default {
     createStripeToken() {
       this.stripe.createToken(this.cardNumber).then(result => {
         if (result.token) {
-          this.postToken(result.token.id);
+          this.createPremiumNPA(result.token.id);
         }
         if (result.error) {
           this.hasCardErrors = true;
           this.$forceUpdate(); // Forcing the DOM to update so the Stripe Element can update.
         }
       });
+    },
+    /**
+     * Post user data and stripe token
+     */
+    createPremiumNPA(stripeToken) {
+      const createPremiumEndpoint = `${this.vmlBaseEndpoint}/users/npaPremiumSubscription`;
+      const obj = {
+        token: stripeToken,
+        email: this.email,
+        zipcode: this.zipCode,
+      };
+
+      this.$http.post(createPremiumEndpoint, obj)
+        // eslint-disable-next-line consistent-return
+        .then(response => {
+          if (response.status === 200) {
+            return this.createPremiumSuccess();
+          }
+          this.showError = true;
+        }).catch(() => {
+          this.showError = true;
+        });
+    },
+    createPremiumSuccess() {
+      this.$emit('premiumSuccess');
     },
   },
 };
