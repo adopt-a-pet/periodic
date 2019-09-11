@@ -137,7 +137,8 @@
       <StripeForm
         v-show="form.plan === 1"
         ref="stripeForm"
-        :email="form.email" />
+        :email="form.email"
+        @paymentInfo="createPremiumNPA" />
 
       <VDivider
         v-if="layout == 'desktop'"
@@ -458,6 +459,16 @@ export default {
         {},
       );
     });
+
+    /**
+     * Get vml base endpoint
+     *
+     * @syscall config/vml/base
+     * @returns {vmlBaseEndpoint assignment: String}
+     */
+    this.$syscall('syscall/config/vml/base').then(response => {
+      this.vmlBaseEndpoint = response;
+    });
   },
 
   methods: {
@@ -523,6 +534,32 @@ export default {
           this.$refs.stripeForm.handleSubmit();
         }
       }
+    },
+    /**
+     * Post user data and stripe token
+     */
+    createPremiumNPA(stripeToken, zipCode) {
+      const createPremiumEndpoint = `${this.vmlBaseEndpoint}/users/npaPremiumSubscription`;
+      const obj = {
+        token: stripeToken,
+        email: this.$refs.email.value,
+        zipcode: zipCode,
+      };
+
+      // TODO Emit event, handle http request from FE.
+      this.$http.post(createPremiumEndpoint, obj)
+        // eslint-disable-next-line consistent-return
+        .then(response => {
+          if (response.status === 200) {
+            return this.createPremiumSuccess();
+          }
+          this.showError = true;
+        }).catch(() => {
+          this.showError = true;
+        });
+    },
+    createPremiumSuccess() {
+      this.$emit('premiumCreatedSuccess');
     },
   },
 };

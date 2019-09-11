@@ -111,14 +111,9 @@ export default {
      * @syscall stripe/key
      * @returns {{stripeKey: String}}
      */
-    this.$syscall('config/stripe/key')
+    this.$syscall('syscall/config/stripe/key')
       .then(response => {
         this.stripeKey = response;
-      });
-
-    this.$syscall('config/vml/vmlBase')
-      .then(response => {
-        this.vmlBaseEndpoint = response;
       });
   },
 
@@ -206,38 +201,17 @@ export default {
     createStripeToken() {
       this.stripe.createToken(this.cardNumber).then(result => {
         if (result.token) {
-          this.createPremiumNPA(result.token.id);
+          this.$emit(
+            'paymentInfo',
+            result.token.id,
+            this.zipCode,
+          );
         }
         if (result.error) {
           this.hasCardErrors = true;
           this.$forceUpdate(); // Forcing the DOM to update so the Stripe Element can update.
         }
       });
-    },
-    /**
-     * Post user data and stripe token
-     */
-    createPremiumNPA(stripeToken) {
-      const createPremiumEndpoint = `${this.vmlBaseEndpoint}/users/npaPremiumSubscription`;
-      const obj = {
-        token: stripeToken,
-        email: this.email,
-        zipcode: this.zipCode,
-      };
-
-      this.$http.post(createPremiumEndpoint, obj)
-        // eslint-disable-next-line consistent-return
-        .then(response => {
-          if (response.status === 200) {
-            return this.createPremiumSuccess();
-          }
-          this.showError = true;
-        }).catch(() => {
-          this.showError = true;
-        });
-    },
-    createPremiumSuccess() {
-      this.$emit('premiumCreatedSuccess');
     },
   },
 };

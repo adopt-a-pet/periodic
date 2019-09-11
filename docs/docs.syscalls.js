@@ -29,12 +29,12 @@ export default {
         },
       ]);
     },
-    'config/stripe/key': function (_, payload) {
+    'syscall/config/stripe/key': function (_, payload) {
       return Promise.resolve (
         'pk_test_5W1GpRySJaGqo11L07q0eg1Q'
       );
     },
-    'config/vml/vmlBase': function (_, payload) {
+    'syscall/config/vml/base': function (_, payload) {
       return Promise.resolve (
         'local.adoptapet.com:3000'
       );
