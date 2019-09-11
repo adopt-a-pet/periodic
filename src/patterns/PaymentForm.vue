@@ -62,14 +62,14 @@
 import { zipValidator } from '../utils/validators/location-vuelidate';
 
 /**
- * Stripe Form
+ * Payment Form
  */
 
 export default {
-  name: 'StripeForm',
+  name: 'PaymentForm',
   status: 'under-review',
   release: '1.0.0',
-  blockName: 'stripe-form',
+  blockName: 'payment-form',
   props: {
     email: {
       type: String,
@@ -201,10 +201,18 @@ export default {
     createStripeToken() {
       this.stripe.createToken(this.cardNumber).then(result => {
         if (result.token) {
+          /**
+         * paymentInfo event
+         *
+         * @event paymentInfo
+         * @type {{ stripeToken: String, zipCode: String }}
+         */
           this.$emit(
             'paymentInfo',
-            result.token.id,
-            this.zipCode,
+            {
+              stripeToken: result.token.id,
+              zipCode: this.zipCode,
+            },
           );
         }
         if (result.error) {
@@ -255,7 +263,7 @@ export default {
 ```vue
 <template>
   <div>
-    <StripeForm />
+    <PaymentForm />
   </div>
 </template>
 <script>

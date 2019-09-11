@@ -134,9 +134,9 @@
         v-if="form.plan === 1"
         size="s" />
 
-      <StripeForm
+      <PaymentForm
         v-show="form.plan === 1"
-        ref="stripeForm"
+        ref="paymentForm"
         :email="form.email"
         @paymentInfo="createPremiumNPA" />
 
@@ -510,7 +510,7 @@ export default {
     submit() {
       if (this.$refs.email.validate()) {
         if (this.form.plan === 1) {
-          this.$refs.stripeForm.handleSubmit();
+          this.$refs.paymentForm.handleSubmit();
         } else {
         /**
          * NPA signup submit event
@@ -529,11 +529,11 @@ export default {
      * Emit createPremiumNPA event with token
      * and user info.
      */
-    createPremiumNPA(stripeToken, zipCode) {
+    createPremiumNPA(eventData) {
       const obj = {
-        token: stripeToken,
+        token: eventData.stripeToken,
         email: this.$refs.email.value,
-        zipcode: zipCode,
+        zipcode: eventData.zipCode,
       };
 
       this.$emit('submit', {

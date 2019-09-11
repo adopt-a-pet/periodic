@@ -1,4 +1,4 @@
-@include b('stripe-form') {
+@include b('payment-form') {
 
   @include element('form-control') {
     color: color(agray, darker);
