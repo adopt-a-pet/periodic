@@ -45,7 +45,7 @@
       role="alert" />
     <div
       v-if="showError"
-      class="error-text">
+      :class="b('error-text').toString()">
       <Paragraph
         font-size="m"
         font-weight="light">
@@ -75,6 +75,10 @@ export default {
       type: String,
       default: '',
     },
+    paymentError: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -95,6 +99,9 @@ export default {
   },
 
   watch: {
+    paymentError(bool) {
+      if (bool === true) this.showError = true;
+    },
   },
 
   created() {

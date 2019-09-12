@@ -45,4 +45,8 @@
   @include element('zip-code') {
     grid-area: zipcode;
   }
+
+  @include element('error-text') {
+    color: color(aorange) !important;
+  }
 }

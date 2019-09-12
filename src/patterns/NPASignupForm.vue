@@ -138,6 +138,7 @@
         v-show="form.plan === 1"
         ref="paymentForm"
         :email="form.email"
+        :payment-error="paymentError"
         @paymentInfo="createPremiumNPA" />
 
       <VDivider
@@ -272,6 +273,10 @@ export default {
     plan: {
       type: Number,
       default: null,
+    },
+    paymentError: {
+      type: Boolean,
+      default: false,
     },
   },
 
