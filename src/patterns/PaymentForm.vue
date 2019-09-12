@@ -83,7 +83,6 @@ export default {
       lastName: '',
       zipCode: '',
       showError: false,
-      stripeReady: false,
     };
   },
 
@@ -96,15 +95,21 @@ export default {
   },
 
   watch: {
-    stripeReady() {
-      if (this.stripeReady) {
-        return this.mountStripe();
-      }
-      return false;
-    },
   },
 
   created() {
+    /**
+     * Append the Stripe script to the head of our HTML
+     * (Stripe only supports it being in the head). Wait for
+     * the script to finish loading and then mount the Stripe
+     * Elements
+     */
+    const stripeScript = document.createElement('script');
+    document.head.appendChild(stripeScript);
+    stripeScript.onload = () => {
+      this.mountStripe();
+    };
+    stripeScript.setAttribute('src', 'https://js.stripe.com/v3/');
     /**
      * Get stripe key
      *
@@ -118,20 +123,9 @@ export default {
   },
 
   mounted() {
-    this.checkForStripe();
   },
 
   methods: {
-    checkForStripe() {
-      /* if (window.Stripe) {
-        this.stripeReady = true;
-      } else {
-        setInterval(() => this.checkForStripe(), 1000);
-      } */
-      window.onload = () => {
-        this.stripeReady = true;
-      };
-    },
     mountStripe() {
       this.stripe = Stripe(this.stripeKey);
 

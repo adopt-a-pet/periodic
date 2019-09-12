@@ -77,17 +77,6 @@
 import orderBy from 'lodash/orderBy';
 import designTokens from '../../docs.tokens.json';
 
-/**
- * Add the stripe script to the head of our index.html
- * We don't want this bundled in with Periodic so we
- * do it here in the docs. The FE or any other host
- * environment should have the stripe script in its
- * html head.
- */
-const stripeScript = document.createElement('script');
-stripeScript.setAttribute('src', 'https://js.stripe.com/v3/');
-document.head.appendChild(stripeScript);
-
 export default {
   name: 'Components',
   props: {
