@@ -116,7 +116,7 @@ export default {
      * @syscall stripe/key
      * @returns {{stripeKey: String}}
      */
-    this.$syscall('syscall/config/stripe/key')
+    this.$syscall('config/stripe/key')
       .then(response => {
         this.stripeKey = response;
       });
