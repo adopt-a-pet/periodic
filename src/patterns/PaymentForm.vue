@@ -139,9 +139,9 @@ export default {
       const elementStyles = {
         base: {
           fontWeight: 500,
-          fontFamily: 'Helvetica Neue, Helvetica, Arial, Roboto, Lucida Grande, sans-serif',
-          fontSize: '1.25rem',
-          fontSmoothing: 'antialiased',
+          fontSize: '20px',
+          color: '#4d4d4d',
+          padding: '17px',
 
           '::placeholder': {
             color: '#b3b3b3',
@@ -226,7 +226,7 @@ export default {
 .StripeElement {
   box-sizing: border-box;
   height: 3.625rem;
-  padding: 10px 12px;
+  padding: 17px;
   border: 1px solid color(agray, light);
   border-radius: 6px;
   background-color: white;
