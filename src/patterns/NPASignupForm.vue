@@ -449,21 +449,6 @@ export default {
         {},
       );
     });
-
-    /**
-     * Get Breed name and Ids from database
-     *
-     * @syscall api/getBreeds
-     * @param {Number}
-     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
-     */
-    this.$syscall('api/pets/getSizes', this.filters.clan).then(response => {
-      this.breedMap = response.reduce(
-        (acc, { breedId, breedNamePlural }) =>
-          Object.assign(acc, { [breedId]: breedNamePlural }),
-        {},
-      );
-    });
   },
 
   methods: {
