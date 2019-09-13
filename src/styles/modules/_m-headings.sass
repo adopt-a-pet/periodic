@@ -6,6 +6,11 @@
     color: color(agray, dark)
     +rem-fallback('line-height', $line-height-h1)
     +rem-fallback('letter-spacing', $letter-spacing-xs)
+    margin-bottom: 20px
+
+    @include breakpointminmax(normal, tablet-plus)
+      font-size: 32px
+      line-height: 48px
 
     &--museo
       font-family: $font-museo
@@ -25,6 +30,11 @@
     font-weight: normal
     +rem-fallback('line-height', $line-height-h2)
     +rem-fallback('letter-spacing', $letter-spacing-s)
+    margin-bottom: 20px
+
+    @include breakpointminmax(normal, tablet-plus)
+      font-size: 26px
+      line-height: 48px
 
     &--museo
       font-family: $font-museo
@@ -44,6 +54,7 @@
     font-weight: normal
     +rem-fallback('line-height', $line-height-h3)
     +rem-fallback('letter-spacing', $letter-spacing-s)
+    margin-bottom: 20px
 
     &--compact
       +rem-fallback('line-height', $line-height-h3v2)

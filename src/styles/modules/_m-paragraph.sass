@@ -3,6 +3,7 @@ $sizes: ( xxxs: $font-size-xxxs, xxs: $font-size-xxs, xs: $font-size-xs, s: $fon
 +b('paragraph')
   letter-spacing: $letter-spacing-m
   font-weight: normal
+  margin-bottom: 40px
 
   @each $size, $token in $sizes
     +m(size-#{$size})
