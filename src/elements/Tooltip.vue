@@ -3,10 +3,8 @@
     <div
       v-if="showBubble"
       :class="b('bubble-container').toString()">
-
       <div
         :class="b('bubble').toString()">
-
         <div :class="b('content').toString()">
           <slot />
         </div>
@@ -50,6 +48,6 @@ export default {
 
 <docs>
   ```jsx
-  <InfoBubble>Hi</InfoBubble>
+  <Tooltip>Hi</Tooltip>
   ```
 </docs>

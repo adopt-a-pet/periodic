@@ -7,11 +7,12 @@
 
 import { validationMixin } from 'vuelidate';
 import bemNames from '@/mixins/bem-names';
+import dropdownItems from '@/mixins/dropdown-items';
 import errorMessages from '@/mixins/error-messages';
 import filters from '@/mixins/filters';
 import layout from '@/mixins/layout';
+import syscall from '@/mixins/syscall';
 import validateRequired from '@/mixins/validate-required';
-import dropdownItems from '@/mixins/dropdown-items';
 
 import './styles/styles.scss';
 
@@ -34,6 +35,7 @@ export const mixins = [
   errorMessages,
   filters,
   layout,
+  syscall,
   validateRequired,
   validationMixin,
 ];

@@ -1,5 +1,6 @@
 <template>
-  <div :class="b().toString()">
+  <div
+    :class="b().toString()">
     <div :class="b('content').toString()">
       <VSpacer size="xxxs" />
 
@@ -47,23 +48,25 @@
       </Paragraph>
 
       <Paragraph
-        v-if="moreThanClan"
-        font-size="m"
+        v-if="hasMoreFiltersThanClan"
         font-weight="bold"
-        line-height="26px"
-        color="blue"
-        :class="b('search-params').toString()">
-        {{ params.age }} {{ params.sex }} {{ params.color }} {{ params.breed }}<span v-if="breed">s</span> within
-        {{ params.radius }} miles of {{ params.zipcode }}
-      </paragraph>
+        line-height="26px">
+        <TextLink
+          :class="b('search-params').toString()"
+          @click="searchFilters">
+          {{ petDescription }} within {{ filters.geoRange }} miles of {{ filters.zipCode }}
+        </TextLink>
+      </Paragraph>
+
       <Paragraph
-        v-if="!moreThanClan"
-        font-size="m"
+        v-else
         font-weight="bold"
-        line-height="26px"
-        color="blue"
-        :class="b('search-params').toString()">
-        All {{ params.clan }} within {{ params.radius }} miles of {{ params.zipcode }}
+        line-height="26px">
+        <TextLink
+          :class="b('search-params').toString()"
+          @click="searchFilters">
+          All {{ clanName }}s within {{ filters.geoRange }} miles of {{ filters.zipCode }}
+        </TextLink>
       </Paragraph>
 
       <VSpacer size="l" />
@@ -77,12 +80,27 @@
           required />
 
         <RadioGroupBox
-          v-model="form.npaPlanSelection"
+          v-model="form.plan"
           name="npa-plan-selection"
           :columns="2"
-          :items="items"
-          @change="notSelectedPlan" />
+          :items="npaTypes"
+          @change="selectPlan" />
       </div>
+
+      <Infobox
+        v-if="form.plan === 1"
+        icon="lightbulb"
+        @click:textLink="searchFilters">
+        <template slot="header">
+          Pro tip
+        </template>
+        <template slot="message">
+          To get the most out of your Premium experience, choose 2 or more filters.
+        </template>
+        <template slot="link">
+          Edit Filters >
+        </template>
+      </Infobox>
 
       <VSpacer size="xl" />
 
@@ -133,7 +151,7 @@
         </TextLink>
 
         <Button
-          @click="saveAndContinue">
+          @click="submit">
           Save & Continue
         </Button>
       </div>
@@ -191,11 +209,33 @@ export default {
       default: () => [],
     },
     /**
-     * A list of search paramaters from the users search criteria
+     * A list of search paramaters from the user's search criteria
+     *
+     * ```
+     * {
+     *     age: ['young', 'senior'],
+     *     bondedPair: true,
+     *     breeds: [187],
+     *     clan: 1,
+     *     color: [1,2],
+     *     geoRange: 10,
+     *     sex: ['f'],
+     *     specialNeeds: true,
+     *     zipCode: '90210',
+     *  }
+     * ```
      */
-    params: {
+    filters: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
+    },
+
+    /**
+     * Which NPA plan to use
+     */
+    plan: {
+      type: Number,
+      default: null,
     },
   },
 
@@ -205,8 +245,10 @@ export default {
         email: this.email,
         dontShowAgain: false,
         optins: this.optins,
-        npaPlanSelection: '',
+        plan: this.plan,
       },
+      colorsMap: {},
+      breedMap: {},
     };
   },
   blockName: 'npa-signup',
@@ -214,24 +256,157 @@ export default {
   release: '1.0.0',
 
   computed: {
+    sizeMap() {
+      return {
+        1: 'small',
+        2: 'medium',
+        3: 'large',
+        4: 'x-large',
+      };
+    },
+
+    sexFullName() {
+      if (!this.filters.sex) return '';
+
+      let name = '';
+
+      switch (this.filters.sex.join()) {
+        case '':
+          name = '';
+          break;
+
+        case 'm':
+          name = 'male';
+          break;
+
+        case 'f':
+          name = 'female';
+          break;
+
+        default:
+          name = 'male or female';
+      }
+
+      return name;
+    },
     age() {
-      return this.params.age;
+      return this.filters.age ? this.filters.age.join(' or ') : null;
     },
-    sex() {
-      return this.params.sex;
+    colorNames() {
+      if (!this.filters.color) return '';
+
+      return this.filters.color
+        .map(colorId => this.colorsMap[colorId])
+        .join(' or ');
     },
-    color() {
-      return this.params.color;
+    familyNames() {
+      if (!this.filters.breeds) return this.clanName;
+
+      return this.filters.breeds
+        .map(breedId => this.breedMap[breedId])
+        .join(' or ');
     },
-    breed() {
-      return this.params.breed;
+    hasMoreFiltersThanClan() {
+      return Boolean(this.age || this.sexFullName || this.colorNames || this.familyNames);
     },
-    moreThanClan() {
-      return (this.age || this.sex || this.color || this.breed);
+
+    clanName() {
+      let name;
+
+      switch (this.filters.clan) {
+        case 1:
+          name = 'dog';
+          break;
+
+        case 2:
+          name = 'cat';
+          break;
+
+        default:
+          name = 'pet';
+      }
+
+      return name;
     },
+
+    bondedPair() {
+      return this.filters.bondedPair ? 'bonded pair' : '';
+    },
+
+    specialNeeds() {
+      return this.filters.specialNeeds ? 'with special needs' : '';
+    },
+
+    sizeNames() {
+      if (!(this.filters.size && this.filters.size.length)) return '';
+
+      return this.filters.size
+        .map(sizeId => this.sizeMap[sizeId])
+        .join(' or ');
+    },
+
+    petDescription() {
+      return [
+        this.bondedPair,
+        this.age,
+        this.sexFullName,
+        this.colorNames,
+        this.sizeNames,
+        this.familyNames,
+        this.specialNeeds,
+      ]
+        .filter(a => !!a)
+        .join(' ');
+    },
+
+    npaTypes: () => [
+      {
+        heading: 'Premium Alert',
+        display:
+          'Get real time, instant notifications when you have a new match with your $10 monthly payment!',
+        icon: 'clock',
+        value: 1,
+      },
+      {
+        heading: 'Free Alert',
+        display:
+          'We’ll run your pet search daily and send you an email within 24 hours of having a new match.',
+        icon: 'envelope',
+        value: 0,
+      },
+    ],
   },
 
-  mounted() {
+  created() {
+    /**
+     * Get colors name and Ids from database
+     *
+     * @syscall api/pets/colors
+     * @param {Number}
+     * @returns {{colorId: Number, colorName: String}}
+     */
+    this.$syscall('api/pets/getColors', this.filters.clan)
+      .then(response => {
+        this.colorsMap = response.reduce(
+          (acc, { colorId, colorName }) => Object.assign(acc, { [colorId]: colorName }),
+          {},
+        );
+      });
+
+    /**
+     * Get Breed name and Ids from database
+     *
+     * @syscall api/pets/getBreeds
+     * @param {Number}
+     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
+     */
+    this.$syscall('api/pets/getBreeds', this.filters.clan).then(response => {
+      this.breedMap = response.reduce(
+        (acc, { breedId, breedNamePlural }) =>
+          Object.assign(acc, { [breedId]: breedNamePlural }),
+        {},
+      );
+    });
   },
 
   methods: {
@@ -243,6 +418,15 @@ export default {
        * @type none
        */
       this.$emit('click:whatIsThis');
+    },
+    searchFilters() {
+      /**
+       * When user clicks "Edit Search filters"
+       *
+       * @event click:searchFilters
+       * @type none
+       */
+      this.$emit('click:searchFilters');
     },
     skip() {
       /**
@@ -262,29 +446,27 @@ export default {
        */
       this.$emit('change:dontShowAgain', this.form.dontShowAgain);
     },
-    saveAndContinue() {
+    selectPlan(plan) {
       /**
-       * NPA signup submit event
+       * When user changes the NPA plan
        *
-       * @event submit
-       * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
+       * @event change:plan
+       * @type Number
        */
-      if (this.$refs.email.validate()) {
-        this.$emit('submit', this.form);
-      }
+      this.$emit('change:plan', plan);
     },
-    notSelectedPlan() {
-      if (this.form.npaPlanSelection === '1') {
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.add('periodic-radio-box__item--selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.remove('periodic-radio-box__item--selected');
-      }
-      if (this.form.npaPlanSelection === '2') {
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.add('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.remove('not-selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-2-parent').classList.add('periodic-radio-box__item--selected');
-        document.getElementById('periodic-radio-box-npa-plan-selection-item-1-parent').classList.remove('periodic-radio-box__item--selected');
+    submit() {
+      if (this.$refs.email.validate()) {
+        /**
+         * NPA signup submit event
+         *
+         * @event submit
+         * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
+         */
+        this.$emit('submit', {
+          ...this.form,
+          filters: this.filters,
+        });
       }
     },
   },
@@ -295,9 +477,8 @@ export default {
 ```vue
 <template>
   <NPASignupForm
-    :offers="offers"
-    :items="items"
-    :params="params"/>
+    :offers='offers'
+    :filters='filters'/>
 </template>
 <script>
 export default {
@@ -306,38 +487,26 @@ export default {
       offers: [
         {
           newsletterId: 1,
-          displayHtml: "I would like to receive the latest special deals"
+          displayHtml: 'I would like to receive the latest special deals'
         },
         {
           newsletterId: 2,
           displayHtml:
-            "Yes, I would like to receive communications from the Petco Foundation"
+            'Yes, I would like to receive communications from the Petco Foundation'
         }
       ],
-      items: [
-        {
-          heading: "Premium Alert",
-          display:
-          "Get real time, instant notifications when you have a new match with your $10 monthly payment!",
-          icon: "clock",
-          value: "1"
-        },
-        {
-          heading: "Free Alert",
-          display:
-          "We’ll run your pet search daily and send you an email within 24 hours of having a new match.",
-          icon: "envelope",
-          value: "2"
-        },
-      ],
-      params: {
-        age: "",
-        sex: "",
-        color: "",
-        breed: "Pittbull",
-        radius: "10 miles or less",
-        zipcode: "90210",
-        clan: "dogs"
+      filters: {
+        age: ['young', 'senior'],
+        bondedPair: true,
+        breeds: [187, 1],
+        clan: 1,
+        color: [153],
+        geoRange: 10,
+        hair: ['short'],
+        sex: [],
+        specialNeeds: true,
+        size: [1, 2],
+        zipCode: '90210',
       }
     };
   }

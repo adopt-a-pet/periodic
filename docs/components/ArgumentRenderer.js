@@ -43,7 +43,6 @@ export function ArgumentRenderer({ classes, name, type, description, returns, bl
 					{type && ':'}
 				</span>
 			)}
-			{console.log(type)}
 			{type && (
 				<Type>
 					{type.fields
