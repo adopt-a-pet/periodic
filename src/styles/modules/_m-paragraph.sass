@@ -5,8 +5,8 @@ $sizes: ( xxxs: $font-size-xxxs, xxs: $font-size-xxs, xs: $font-size-xs, s: $fon
   font-weight: normal
   margin-bottom: 40px
 
-    a
-      font-weight: bold
+  a
+    font-weight: bold
 
   @each $size, $token in $sizes
     +m(size-#{$size})
