@@ -18,7 +18,7 @@ By keeping side effects out of our components and isolating them in one place we
 
 #### Managing state without side effects
 
-Now, you may look at that list of side effects and think: "Hey, those are all useful things that need to be done! If my component can do those things who will?"
+Now, you may look at that list of side effects and think: "Hey, those are all useful things that need to be done! If my component can't do those things who will?"
 
 For Periodic, the answer is: syscalls. Syscalls are a convenient way to make use of side effects without increasing the size of our builds or making assumptions about the environment where Periodic will be used. There is a whole page of documentation on Syscalls, so check that out when you need it.
 
