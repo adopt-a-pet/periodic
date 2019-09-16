@@ -19,9 +19,9 @@
         v-model="zipCode"
         label="Zip Code"
         :class="b('zip-code').toString()"
-        :validations="zipValidator"
+        :validations="zipsValidator"
         :error-messages="{
-          zipValidator: 'Invalid Location',
+          zipsValidator: 'Invalid Location',
           required: 'Invalid Location'
         }"
         required />
@@ -58,8 +58,7 @@
 <script>
 /* global Stripe */
 // import tokens from '@/assets/tokens/tokens.json';
-// import { or } from 'vuelidate';
-import { zipValidator } from '../utils/validators/location-vuelidate';
+import { zipsValidator } from '../utils/validators/location-vuelidate';
 
 /**
  * Payment Form
@@ -90,10 +89,10 @@ export default {
     };
   },
 
-  validations: {
-    zipValidator() {
+  computed: {
+    zipsValidator() {
       return {
-        zipValidator,
+        zipsValidator,
       };
     },
   },
@@ -118,7 +117,11 @@ export default {
     };
     stripeScript.setAttribute('src', 'https://js.stripe.com/v3/');
     /**
-     * Get stripe key
+     * Get stripe key, the PaymentForm expects the host
+     * environment to provide a syscall vuex module so
+     * we can pull in the stripe key from there. This allows
+     * us to use different keys across our projects instead
+     * of having one hard coded key inside our form.
      *
      * @syscall stripe/key
      * @returns {{stripeKey: String}}
@@ -133,6 +136,11 @@ export default {
   },
 
   methods: {
+    /**
+     * When stripe is done loading inside of the created
+     * lifecycle hook, we call the mountStripe method. This method
+     * actually mounts the stripe elements once ready.
+     */
     mountStripe() {
       this.stripe = Stripe(this.stripeKey);
 
