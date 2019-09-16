@@ -36,7 +36,7 @@ export default {
     },
     'config/vml/base': function (_, payload) {
       return Promise.resolve (
-        'local.adoptapet.com:3000'
+        'ra-api.adoptapet.com'
       );
     }
   }

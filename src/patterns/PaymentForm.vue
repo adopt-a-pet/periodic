@@ -18,7 +18,6 @@
       <TextInput
         v-model="zipCode"
         label="Zip Code"
-        type="number"
         :class="b('zip-code').toString()"
         :validations="zipValidator"
         :error-messages="{
@@ -59,6 +58,7 @@
 <script>
 /* global Stripe */
 // import tokens from '@/assets/tokens/tokens.json';
+// import { or } from 'vuelidate';
 import { zipValidator } from '../utils/validators/location-vuelidate';
 
 /**
@@ -90,7 +90,7 @@ export default {
     };
   },
 
-  computed: {
+  validations: {
     zipValidator() {
       return {
         zipValidator,

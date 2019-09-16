@@ -104,42 +104,37 @@
 
       <VSpacer size="xl" />
 
-      <Heading
-        v-if="form.plan === 1"
-        level="h4"
-        font-weight="bold"
-        font-family="museo">
-        Payment
-      </Heading>
+      <div v-if="form.plan === 1">
+        <Heading
+          level="h4"
+          font-weight="bold"
+          font-family="museo">
+          Payment
+        </Heading>
 
-      <VSpacer
-        v-if="form.plan === 1"
-        size="xxs" />
+        <VSpacer size="xxs" />
 
-      <Heading
-        v-if="form.plan === 1"
-        level="h5"
-        font-weight="bold">
-        Amount (Billed Monthly)
-      </Heading>
+        <Heading
+          level="h5"
+          font-weight="bold">
+          Amount (Billed Monthly)
+        </Heading>
 
-      <Heading
-        v-if="form.plan === 1"
-        level="h4"
-        font-weight="bold">
-        10$
-      </Heading>
+        <Heading
+          level="h4"
+          font-weight="bold">
+          $10
+        </Heading>
 
-      <VSpacer
-        v-if="form.plan === 1"
-        size="s" />
+        <VSpacer size="s" />
 
-      <PaymentForm
-        v-show="form.plan === 1"
-        ref="paymentForm"
-        :email="form.email"
-        :payment-error="paymentError"
-        @paymentInfo="createPremiumNPA" />
+        <PaymentForm
+          ref="paymentForm"
+          :email="form.email"
+          :payment-error="paymentError"
+          @paymentInfo="createPremiumNPA" />
+      </div>
+
 
       <VDivider
         v-if="layout == 'desktop'"
