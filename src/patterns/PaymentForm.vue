@@ -233,40 +233,6 @@ export default {
   },
 };
 </script>
-<style scoped>
-/**
- Scoped Stripe styles
- Stripe sets these classes when it mounts
- */
-.StripeElement {
-  box-sizing: border-box;
-  height: 3.625rem;
-  padding: 17px;
-  border: 1px solid color(agray, light);
-  border-radius: 6px;
-  background-color: white;
-
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
-}
-
-.StripeElement--focus {
-  box-shadow: 0 1px 3px 0 #cfd7df;
-}
-
-.StripeElement--invalid {
-  border-color: color(aorange);
-}
-
-.StripeElement--complete {
-  border-color: color(agreen);
-}
-
-.StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
-}
-</style>
 
 <docs>
 ```vue
