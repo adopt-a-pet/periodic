@@ -12,12 +12,12 @@
 
     <div :class="b('container').toString()">
       <TextInput
-        v-model="form.zipcode"
+        v-model="form.zipCode"
         type="search"
         label="Zip / Postal or City, State" />
 
       <Dropdown
-        v-model="form.radius"
+        v-model="form.geoRange"
         label="Distance"
         :items="[
           { display: '5 miles or less', value: 5 },
@@ -31,7 +31,7 @@
         ]" />
 
       <DropdownMulti
-        v-model="form.breed"
+        v-model="form.breeds"
         :items="breedIdsDropdown"
         label="Breeds"
         :search="true"
@@ -132,13 +132,15 @@ export default {
      *
      * ```
      * {
-     *     age: ["young", "senior"],
-     *     sex: ["f"],
-     *     color: 'Black',
-     *     breed: 'Pittbull',
-     *     radius: '10',
-     *     zipcode: '90210',
-     *     clan: 1
+     *     age: ['young', 'senior'],
+     *     bondedPair: true,
+     *     breeds: [187],
+     *     clan: 1,
+     *     color: [1,2],
+     *     geoRange: 10,
+     *     sex: ['f'],
+     *     specialNeeds: true,
+     *     zipCode: '90210',
      *  }
      * ```
      *
@@ -162,19 +164,17 @@ export default {
     /**
      * Get Breed name and Ids from database
      *
-     * @syscall api/getBreeds
+     * @syscall api/pets/getBreeds
      * @param {Number}
      * @returns {{breedId: Number, breedName: String}}
+     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
      */
-    this.$syscall('api/getBreeds', this.form.clan)
-      .then(response => {
-        this.breedIdsDropdown = response.map(
-          ({ breedId, breedName }) => ({
-            display: breedName,
-            value: breedId,
-          }),
-        );
-      });
+    this.$syscall('api/pets/getBreeds', this.form.clan).then(response => {
+      this.breedIdsDropdown = response.map(({ breedId, breedName }) => ({
+        display: breedName,
+        value: breedId,
+      }));
+    });
   },
 
   methods: {
@@ -213,14 +213,13 @@ export default {
     return {
       filters: {
         age: ["young", "senior"],
-        sex: ["f"],
+        clan: 1,
         color: [153],
-        breed: [],
+        geoRange: 10,
         hair: ['short'],
+        sex: ["f"],
         size: [1, 2],
-        radius: 10,
-        zipcode: "90210",
-        clan: 1
+        zipCode: "90210",
       },
     };
   }

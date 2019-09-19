@@ -6,7 +6,7 @@
       v-for="(item, index) in renderItems"
       :id="item.id + '-parent'"
       :key="index"
-      :class="b('item').toString()"
+      :class="b('item', { 'not-selected': notSelectedState(item) }).toString()"
       @click="select({ checked: true }, item.value)">
       <Icon
         :name="item.icon"
@@ -54,13 +54,6 @@ export default {
     name: {
       type: String,
       default: 'radiogroupbox',
-    },
-    /**
-     * Whether the form field is required or not.
-     */
-    required: {
-      type: Boolean,
-      default: false,
     },
     /**
      * A list of items to render. Each item must have a 'heading', `display`, and a `value`.
@@ -127,6 +120,11 @@ export default {
     },
     validate() {
       return this.validateRequired(this.required, this.value);
+    },
+    // This is for when there is a selection, check if `item` is selected.
+    // When there is no selection, return false for all items.
+    notSelectedState(item) {
+      return (this.value !== null) && (this.value !== item.value);
     },
   },
 };
