@@ -1,18 +1,47 @@
 +b(search-form)
+  padding: $space-m
+  background: $color_forty_per_lighter_grey
+  border-radius: $radius-m
+  border-top: 10px solid $color_primary_blue
+
+  h3
+    margin-bottom: $space-xxxxs
 
   nav
+    display: flex
+    justify-content: space-between
 
     a
       display: inline-block
       text-align: center
       cursor: pointer
+      padding: $space-xxs
+      font-size: $font-size-s
+      font-family: $font-museo
+      font-weight: $weight-bold
+      color: #b3b3b3
 
       div.underline
         margin: 0 auto
         height: 2px
-        background: blue
         width: 0
+        transition: width .25s
 
-        &.active
-          width: 20px
-          transition: width .5s
+      &:hover
+        color: $color_primary_blue
+
+        div.underline
+          width: 100%
+          background: $color_primary_blue
+
+      &.active
+        color: #008bb8
+
+        div.underline
+          width: 100%
+          background: #008bb8
+
+  section
+
+    > div
+      margin-bottom: 10px

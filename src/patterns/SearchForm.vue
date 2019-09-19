@@ -1,94 +1,112 @@
 <template>
   <div :class="b().toString()">
-    <Heading level="h3">
+    <Heading
+      level="h3"
+      font-family="museo"
+      font-weight="bold">
       Find a Pet to Adopt
     </Heading>
     <nav>
       <a
         v-for="(section, index) of sections"
         :key="section"
-        @click="activeSectionIndex = index">{{ section }}
-        <div
-          :class="{ active: activeSectionIndex === index }"
-          class="underline" />
+        :class="{ active: activeSectionIndex === index }"
+        @click="activeSectionIndex = index;">
+        {{ section }}
+        <div class="underline" />
       </a>
     </nav>
     <section v-if="sections[activeSectionIndex] === 'Dogs'">
       <TextInput
         v-model="fields.zipcode"
-        label="Zip / Postal or City, State" />
+        label="Zip / Postal or City, State"
+        size="small" />
       <Dropdown
         v-model="fields.distance"
         :items="distances"
-        label="Distance" />
+        label="Distance"
+        size="small" />
       <Dropdown
         v-model="fields.breedId"
         :items="breeds"
         :search="true"
         :special-choices="[{ display: 'Any', value: null }]"
-        label="Breed" />
+        label="Breed"
+        size="small" />
       <Dropdown
         v-model="fields.sex"
         :items="sexes"
         :special-choices="[{ display: 'Any', value: null }]"
-        label="Sex" />
+        label="Sex"
+        size="small" />
       <Dropdown
         v-model="fields.size"
         :items="sizes"
         :special-choices="[{ display: 'Any', value: null }]"
-        label="Size" />
+        label="Size"
+        size="small" />
       <Dropdown
         v-model="fields.color"
         :items="colors"
         :special-choices="[{ display: 'Any', value: null }]"
-        label="Color" />
+        label="Color"
+        size="small" />
       <Dropdown
         v-model="fields.age"
         :items="ages"
         :special-choices="[{ display: 'Any', value: null }]"
-        label="Age" />
+        label="Age"
+        size="small" />
     </section>
     <section v-if="sections[activeSectionIndex] === 'Cats'">
       <TextInput
         v-model="fields.zipcode"
-        label="Zip / Postal or City, State" />
+        label="Zip / Postal or City, State"
+        size="small" />
       <Dropdown
         v-model="fields.distance"
         :items="distances"
-        label="Distance" />
+        label="Distance"
+        size="small" />
       <Dropdown
         v-model="fields.breedId"
         :items="breeds"
         :search="true"
         :special-choices="[{ display: 'Any', value: null }]"
-        label="Breed" />
+        label="Breed"
+        size="small" />
       <Dropdown
         v-model="fields.sex"
         :items="sexes"
         :special-choices="[{ display: 'Any', value: null }]"
-        label="Sex" />
+        label="Sex"
+        size="small" />
       <Dropdown
         v-model="fields.size"
         :items="sizes"
         :special-choices="[{ display: 'Any', value: null }]"
-        label="Size" />
+        label="Size"
+        size="small" />
       <Dropdown
         v-model="fields.hair"
         :items="hairs"
         :special-choices="[{ display: 'Any', value: '' }]"
-        label="Hair" />
+        label="Hair"
+        size="small" />
       <Dropdown
         v-model="fields.age"
         :items="ages"
         :special-choices="[{ display: 'Any', value: null }]"
-        label="Age" />
+        label="Age"
+        size="small" />
     </section>
     <section v-if="sections[activeSectionIndex] === 'Others'">
       <Dropdown
         v-model="fields.clanId"
         :items="clans"
         :special-choices="[{ display: 'Any', value: null }]"
-        label="Others" />
+        label="Others"
+        size="small" />
     </section>
   </div>
 </template>
@@ -137,6 +155,7 @@ export default {
       colors: [],
       distances,
       fields: {
+        clanId: 1,
         distance: distances[0].value,
       },
       hairs: [],

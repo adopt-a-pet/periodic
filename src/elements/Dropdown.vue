@@ -1,10 +1,11 @@
 <template>
   <div
     v-if="native"
-    :class="b({ native: true }).toString()">
+    :class="b({ native: true, [size]: true }).toString()">
     <TextInput
       :label="label"
       :label-right="labelRight"
+      :size="size"
       :value="selectedDisplay"
       autocomplete="off"
       focus-border
@@ -37,13 +38,14 @@
 
   <div
     v-else
-    :class="b({ searchable: search }).is({ full: full }).toString()">
+    :class="b({ searchable: search, [size]: true }).is({ full: full }).toString()">
     <TextInput
       :label="label"
       :name="name"
       :readonly="readonly"
       :value="filterOrselectedDisplay"
       :label-right="labelRight"
+      :size="size"
       autocomplete="off"
       focus-border
       @blur="onBlur"
@@ -138,6 +140,21 @@ export default {
       validator: items => items.every(item => ('display' in item) && ('value' in item)),
     },
     /**
+     * Is this dropdown searchable?
+     */
+    search: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * Size of the dropdown
+     */
+    size: {
+      type: String,
+      default: 'large',
+      validator: value => value.match(/(small|large)/),
+    },
+    /**
      * Special choices always appear at the top of the list and are never
      * filtered out in searchable dropdowns.
      */
@@ -145,13 +162,6 @@ export default {
       type: Array,
       default: () => [],
       validator: items => items.every(item => ('display' in item) && ('value' in item)),
-    },
-    /**
-     * Is this dropdown searchable?
-     */
-    search: {
-      type: Boolean,
-      default: false,
     },
     /**
      * If a value is passed, show the info bubble
@@ -354,6 +364,19 @@ export default {
       ]"
       :search="true"
       :specialChoices="[{ display: 'Any', value: null }]"
+      tooltip="This is an info bubble" />
+
+    <br />
+
+    <Dropdown
+      v-model="dropdown3"
+      :items="[
+        { display: 'One', value: 1 },
+        { display: 'Two', value: 2 },
+      ]"
+      :specialChoices="[{ display: 'Any', value: null }]"
+      label="Small"
+      size="small"
       tooltip="This is an info bubble" />
   </div>
 </template>
