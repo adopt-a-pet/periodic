@@ -109,6 +109,38 @@
 
       <VSpacer size="xl" />
 
+      <div v-if="form.plan === 1">
+        <Heading
+          level="h4"
+          font-weight="bold"
+          font-family="museo">
+          Payment
+        </Heading>
+
+        <VSpacer size="xxs" />
+
+        <Heading
+          level="h5"
+          font-weight="bold">
+          Amount (Billed Monthly)
+        </Heading>
+
+        <Heading
+          level="h4"
+          font-weight="bold">
+          $10
+        </Heading>
+
+        <VSpacer size="s" />
+
+        <PaymentForm
+          ref="paymentForm"
+          :email="form.email"
+          :payment-error="paymentError"
+          @paymentInfo="createPremiumNPA" />
+      </div>
+
+
       <VDivider
         v-if="layout == 'desktop'"
         type="dashed" />
@@ -242,6 +274,10 @@ export default {
       type: Number,
       default: null,
     },
+    paymentError: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -252,6 +288,7 @@ export default {
         optins: this.optins,
         plan: this.plan,
       },
+      paymentInfo: {},
       colorsMap: {},
       breedMap: {},
     };
@@ -462,17 +499,38 @@ export default {
     },
     submit() {
       if (this.$refs.email.validate()) {
+        if (this.form.plan === 1) {
+          this.$refs.paymentForm.handleSubmit();
+        } else {
         /**
          * NPA signup submit event
          *
          * @event submit
          * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
          */
-        this.$emit('submit', {
-          ...this.form,
-          filters: this.filters,
-        });
+          this.$emit('submit', {
+            ...this.form,
+            filters: this.filters,
+          });
+        }
       }
+    },
+    /**
+     * Emit createPremiumNPA event with token
+     * and user info.
+     */
+    createPremiumNPA(eventData) {
+      const obj = {
+        token: eventData.stripeToken,
+        email: this.$refs.email.value,
+        zipcode: eventData.zipCode,
+      };
+
+      this.$emit('submit', {
+        ...this.form,
+        filters: this.filters,
+        stripeInfo: obj,
+      });
     },
   },
 };

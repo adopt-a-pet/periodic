@@ -1,0 +1,81 @@
+@include b('payment-form') {
+
+  @include element('form-control') {
+    color: color(agray, darker);
+    display: grid;
+    grid-template-areas:
+      'firstname firstname'
+      'lastname lastname'
+      'zipcode zipcode'
+      'cardnumber cardnumber'
+      'cardexpiry cardcvc';
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+
+    @include breakpoint(tablet-plus) {
+      grid-template-areas:
+        'firstname lastname'
+        'zipcode zipcode'
+        'cardnumber cardnumber'
+        'cardexpiry cardcvc';
+      grid-column-gap: 20px;
+    }
+  }
+
+  @include element('card-number') {
+    grid-area: cardnumber;
+  }
+
+  @include element('card-expiry') {
+    grid-area: cardexpiry;
+  }
+
+  @include element('card-cvc') {
+    grid-area: cardcvc;
+  }
+
+  @include element('first-name') {
+    grid-area: firstname;
+  }
+
+  @include element('last-name') {
+    grid-area: lastname;
+  }
+
+  @include element('zip-code') {
+    grid-area: zipcode;
+  }
+
+  @include element('error-text') {
+    color: color(aorange) !important;
+  }
+}
+
+.StripeElement {
+  box-sizing: border-box;
+  height: 3.625rem;
+  padding: 17px;
+  border: 1px solid color(agray, light);
+  border-radius: 6px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: color(aorange);
+}
+
+.StripeElement--complete {
+  border-color: color(agreen);
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
