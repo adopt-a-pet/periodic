@@ -40,36 +40,38 @@
 
       <VSpacer size="l" />
 
-      <Paragraph
-        font-size="s"
-        font-weight="bold"
-        line-height="24px">
-        You’re Searching For
-      </Paragraph>
+      <div v-if="filters.clan === 1 || filters.clan === 2">
+        <Paragraph
+          font-size="s"
+          font-weight="bold"
+          line-height="24px">
+          You’re Searching For
+        </Paragraph>
 
-      <Paragraph
-        v-if="hasMoreFiltersThanClan"
-        font-weight="bold"
-        line-height="26px">
-        <TextLink
-          :class="b('search-params').toString()"
-          @click="searchFilters">
-          {{ petDescription }} within {{ filters.geoRange }} miles of {{ filters.zipCode }}
-        </TextLink>
-      </Paragraph>
+        <Paragraph
+          v-if="hasMoreFiltersThanClan"
+          font-weight="bold"
+          line-height="26px">
+          <TextLink
+            :class="b('search-params').toString()"
+            @click="searchFilters">
+            {{ petDescription }} within {{ filters.geoRange }} miles of {{ filters.zipCode }}
+          </TextLink>
+        </Paragraph>
 
-      <Paragraph
-        v-else
-        font-weight="bold"
-        line-height="26px">
-        <TextLink
-          :class="b('search-params').toString()"
-          @click="searchFilters">
-          All {{ clanName }}s within {{ filters.geoRange }} miles of {{ filters.zipCode }}
-        </TextLink>
-      </Paragraph>
+        <Paragraph
+          v-else
+          font-weight="bold"
+          line-height="26px">
+          <TextLink
+            :class="b('search-params').toString()"
+            @click="searchFilters">
+            All {{ clanName }}s within {{ filters.geoRange }} miles of {{ filters.zipCode }}
+          </TextLink>
+        </Paragraph>
 
-      <VSpacer size="l" />
+        <VSpacer size="l" />
+      </div>
 
       <div :class="b('fields').toString()">
         <EmailInput
@@ -80,6 +82,7 @@
           required />
 
         <RadioGroupBox
+          v-if="filters.clan === 1 || filters.clan === 2"
           v-model="form.plan"
           name="npa-plan-selection"
           :columns="2"
@@ -87,20 +90,22 @@
           @change="selectPlan" />
       </div>
 
-      <Infobox
-        v-if="form.plan === 1"
-        icon="lightbulb"
-        @click:textLink="searchFilters">
-        <template slot="header">
-          Pro tip
-        </template>
-        <template slot="message">
-          To get the most out of your Premium experience, choose 2 or more filters.
-        </template>
-        <template slot="link">
-          Edit Filters >
-        </template>
-      </Infobox>
+      <div v-if="filters.clan === 1 || filters.clan === 2">
+        <Infobox
+          v-if="form.plan === 1"
+          icon="lightbulb"
+          @click:textLink="searchFilters">
+          <template slot="header">
+            Pro tip
+          </template>
+          <template slot="message">
+            To get the most out of your Premium experience, choose 2 or more filters.
+          </template>
+          <template slot="link">
+            Edit Filters >
+          </template>
+        </Infobox>
+      </div>
 
       <VSpacer size="xl" />
 
