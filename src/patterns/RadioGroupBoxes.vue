@@ -23,7 +23,7 @@
       <label
         :class="b('label', { color: 'white' }).toString()"
         :for="item.id"><span class="bold">{{ item.heading }}</span><br>
-        {{ item.display }}</label>
+        <span v-if="showDisplayText">{{ item.display }}</span></label>
 
       <label
         :class="b('outside', { color: 'white' }).toString()"
@@ -78,6 +78,13 @@ export default {
     columns: {
       type: Number,
       default: 1,
+    },
+    /**
+     * Determine whether or not to show the display text.
+     */
+    showDisplayText: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {
@@ -134,7 +141,8 @@ export default {
       :items="[
         { heading: 'Heading One', display: 'One Content', icon: 'service-google', value: '1' },
         { heading: 'Heading Two', display: 'Two Content', icon: 'service-google', value: '2' },
-      ]" />
+      ]"
+      :showDisplayText="showDisplayText" />
   </div>
 </template>
 <script>
@@ -142,6 +150,7 @@ export default {
   data() {
     return {
       radioGroupBox: '',
+      showDisplayText: false
     }
   }
 };

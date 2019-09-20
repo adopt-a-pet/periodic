@@ -87,6 +87,7 @@
           name="npa-plan-selection"
           :columns="2"
           :items="npaTypes"
+          :show-display-text="showDisplayText"
           @change="selectPlan" />
       </div>
 
@@ -239,11 +240,15 @@ export default {
       default: () => [],
     },
     /**
-     * A list of newsletterIds that are checked
+     * A list of items to render. Each item must have a 'heading', `display`, and a `value`.
+     *
+     *
+     * `[ { heading: 'Color', display: 'Green', value: 'a' } ]`
      */
     items: {
       type: Array,
       default: () => [],
+      validator: items => items.every(item => ('heading' in item) && ('display' in item) && ('value' in item)),
     },
     /**
      * A list of search paramaters from the user's search criteria
@@ -266,7 +271,13 @@ export default {
       type: Object,
       default: () => ({}),
     },
-
+    /**
+     * Determine whether or not to show the display text in the RadioGroupBox.
+     */
+    showDisplayText: {
+      type: Boolean,
+      default: true,
+    },
     /**
      * Which NPA plan to use
      */
@@ -541,7 +552,8 @@ export default {
 <template>
   <NPASignupForm
     :offers='offers'
-    :filters='filters'/>
+    :filters='filters'
+    :showDisplayText='showDisplayText'/>
 </template>
 <script>
 export default {
@@ -570,7 +582,8 @@ export default {
         specialNeeds: true,
         size: [1, 2],
         zipCode: '90210',
-      }
+      },
+      showDisplayText: false
     };
   }
 };
