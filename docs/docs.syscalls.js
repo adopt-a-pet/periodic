@@ -7,7 +7,7 @@ export default {
 
   actions: {
     'api/location/validate': function (_, zipCode) {
-      return axios.get(`utilities/locations?zipcode=${zipCode}`).then(res => (res.data.body));
+      return axios.get(`utilities/locations?zipCode=${zipCode}`).then(res => (res.data.body.status));
     },
     'api/pets/getBreeds': function (_, breedIds) {
       return axios.get(`pet-utilities/${breedIds}/breeds`).then(res => (res.data.body));

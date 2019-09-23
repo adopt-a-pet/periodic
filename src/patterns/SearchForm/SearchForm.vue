@@ -43,6 +43,7 @@ export default {
       fields: {
         clanId: 1,
         distance: distances[0].value,
+        zipcode: null,
       },
       sections: [
         {
@@ -68,16 +69,6 @@ export default {
           value: 'female',
         },
       ],
-      validations: {
-        location: {
-          required: true,
-          async isUnique(value) {
-            if (value === '') return true;
-            const response = await this.$syscall('api/location/validate', this.fields.zipcode);
-            return Boolean(await response.json());
-          },
-        },
-      },
     };
   },
   computed: {
@@ -211,6 +202,13 @@ export default {
       this.fields.colorId = null;
       this.fields.age = null;
       this.fields.hairId = null;
+    },
+
+    /**
+     * Submit form
+     */
+    submitForm() {
+      // console.log('Submit form!!!');
     },
   },
 };
