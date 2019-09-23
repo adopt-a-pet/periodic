@@ -12,6 +12,7 @@ import errorMessages from '@/mixins/error-messages';
 import filters from '@/mixins/filters';
 import layout from '@/mixins/layout';
 import syscall from '@/mixins/syscall';
+import validateAsync from '@/mixins/validate-async';
 import validateRequired from '@/mixins/validate-required';
 
 import './styles/styles.scss';
@@ -36,6 +37,7 @@ export const mixins = [
   filters,
   layout,
   syscall,
+  validateAsync,
   validateRequired,
   validationMixin,
 ];
