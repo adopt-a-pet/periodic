@@ -33,7 +33,6 @@
 
     <div
       :class="b('slot', { right: true }).toString()">
-
       <label
         v-if="showLabelRight"
         :for="name"
@@ -49,7 +48,9 @@
 
     <div
       v-if="errorState"
-      :class="b('error-msg').toString()">{{ errorMessage }}</div>
+      :class="b('error-msg').toString()">
+      {{ errorMessage }}
+    </div>
   </div>
 </template>
 
@@ -197,6 +198,9 @@ export default {
       return this.$v.validatedValue.$error;
     },
     successState() {
+      // It's not considered either successState or errorState while validating
+      if (this.$v.validatedValue.$pending) return false;
+
       if (Object.keys(this.validations).length || this.required) {
         return !!(this.validatedValue && !this.errorState);
       }
