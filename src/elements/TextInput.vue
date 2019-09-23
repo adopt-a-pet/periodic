@@ -284,9 +284,11 @@ export default {
        */
       this.$emit('change', value);
     },
-    validate() {
+    async validate() {
       this.validatedValue = this.value;
       this.$v.validatedValue.$touch();
+
+      await this.pauseWhileValidating(this.$v.validatedValue);
 
       return !this.errorState;
     },
