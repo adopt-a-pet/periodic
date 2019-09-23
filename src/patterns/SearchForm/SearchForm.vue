@@ -208,7 +208,13 @@ export default {
      * Submit form
      */
     submitForm() {
-      // console.log('Submit form!!!');
+      /**
+       * Returns the form data
+       *
+       * @event submit
+       * @type Object
+       */
+      this.$emit('submit', this.fields);
     },
   },
 };
@@ -216,8 +222,17 @@ export default {
 
 <docs>
   ```vue
-  <div style="background: #fff">
-    <SearchForm />
-  </div>
+  <template>
+    <SearchForm @submit="submit" />
+  </template>
+  <script>
+    export default {
+      methods: {
+        submit(event) {
+          console.log('formData = ', event);
+        }
+      }
+    }
+  </script>
   ```
 </docs>
