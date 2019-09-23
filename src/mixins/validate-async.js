@@ -2,7 +2,7 @@
 export default {
   methods: {
     /**
-     * validateAsync
+     * pauseWhileValidating
      *
      * Continually checks if validation is done until it can resolve
      *
