@@ -65,6 +65,7 @@
         ]" />
 
       <DropdownMulti
+        v-if="form.clan === 1"
         v-model="form.color"
         label="Color"
         zero-selected-label="Any"
@@ -81,6 +82,33 @@
           { display: 'Tan/Yellow/Fawn', value: 159 },
           { display: 'Tricolor', value: 160 },
           { display: 'White', value: 161 }
+        ]" />
+
+      <DropdownMulti
+        v-if="form.clan === 2"
+        v-model="form.color"
+        label="Color"
+        zero-selected-label="Any"
+        multi-selected-label="Multiple"
+        :columns="1"
+        :items="[
+          { display: 'Black', value: 46 },
+          { display: 'Black & White or Tuxedo', value: 47 },
+          { display: 'Brown or Chocolate', value: 48 },
+          { display: 'Brown Tabby', value: 49 },
+          { display: 'Calico or Dilute Calico', value: 50 },
+          { display: 'Cream or Ivory', value: 51 },
+          { display: 'Gray, Blue or Silver Tabby', value: 53 },
+          { display: 'Gray or Blue', value: 52 },
+          { display: 'Orange or Red', value: 54 },
+          { display: 'Orange or Red Tabby', value: 55 },
+          { display: 'Spotted Tabby/Leopard Spotted', value: 56 },
+          { display: 'Tabby', value: 61 },
+          { display: 'Tan or Fawn', value: 57 },
+          { display: 'Tan or Fawn Tabby', value: 58 },
+          { display: 'Tiger Striped', value: 163 },
+          { display: 'Tortoiseshell', value: 59 },
+          { display: 'White', value: 60 }
         ]" />
 
       <DropdownMulti
