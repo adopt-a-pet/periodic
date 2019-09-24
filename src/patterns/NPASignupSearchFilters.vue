@@ -58,7 +58,7 @@
         multi-selected-label="Multiple"
         :columns="1"
         :items="[
-          { display: 'Puppy', value: 'puppy' },
+          { display: form.clan === 1 ? 'Puppy' : 'Kitten', value: form.clan === 1 ? 'puppy' : 'kitten' },
           { display: 'Young', value: 'young' },
           { display: 'Adult', value: 'adult' },
           { display: 'Senior', value: 'senior' }
