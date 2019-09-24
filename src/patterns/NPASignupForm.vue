@@ -360,7 +360,9 @@ export default {
         .join(' or ');
     },
     hasMoreFiltersThanClan() {
-      return Boolean(this.age || this.sexFullName || this.colorNames || this.familyNames);
+      return Boolean(
+        this.age || this.sexFullName || this.colorNames || this.familyNames || this.sizeNames || this.hair,
+      );
     },
 
     clanName() {
@@ -405,6 +407,7 @@ export default {
         this.sexFullName,
         this.colorNames,
         this.sizeNames,
+        this.hair,
         this.familyNames,
         this.specialNeeds,
       ]
