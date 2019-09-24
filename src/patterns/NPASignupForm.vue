@@ -345,6 +345,9 @@ export default {
     age() {
       return this.filters.age ? this.filters.age.join(' or ') : null;
     },
+    hairNames() {
+      return this.filters.hair ? this.filters.hair.join(' or ') : null;
+    },
     colorNames() {
       if (!this.filters.color) return '';
 
@@ -361,7 +364,7 @@ export default {
     },
     hasMoreFiltersThanClan() {
       return Boolean(
-        this.age || this.sexFullName || this.colorNames || this.familyNames || this.sizeNames || this.hair,
+        this.age || this.sexFullName || this.colorNames || this.familyNames || this.sizeNames || this.hairNames,
       );
     },
 
@@ -407,7 +410,7 @@ export default {
         this.sexFullName,
         this.colorNames,
         this.sizeNames,
-        this.hair,
+        this.hairNames,
         this.familyNames,
         this.specialNeeds,
       ]
