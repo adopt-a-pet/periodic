@@ -112,7 +112,7 @@
 
       <div v-if="form.plan === 1">
         <Heading
-          level="h4"
+          level="h3"
           font-weight="bold"
           font-family="museo">
           Payment
