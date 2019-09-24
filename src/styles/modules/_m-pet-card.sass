@@ -1,0 +1,60 @@
++b(pet-card)
+  background: $color-white
+  border-radius: $radius-l
+  box-shadow: 0 0 4px #b3b3b3
+  padding: $space-xxs
+  max-height: 140px
+  display: grid
+  grid-template-columns: 124px auto
+
+  +breakpoint(tablet-plus)
+    max-height: 366px
+    grid-template-columns: auto
+
+  a
+    border-radius: $radius-m
+    position: relative
+
+    img, svg
+      width: 100%
+
+      +breakpoint(tablet-plus)
+        width: 100%
+
+        div.border-bottom
+          height: 25px
+          background: #FF8F43
+          position: absolute
+          bottom: 0
+          left: 0
+          right: 0
+          border-bottom-left-radius: $radius-m
+          border-bottom-right-radius: $radius-m
+
+  div.content
+    margin-left: $space-xs
+    position: relative
+    height: 100%
+
+    +breakpoint(tablet-plus)
+      margin-left: 0
+
+    h4
+      margin-bottom: 53px
+
+      +breakpoint(tablet-plus)
+        margin-bottom: 10px
+
+    p
+      position: absolute
+      font-weight: 300
+      line-height: 20px
+      bottom: 24px
+      margin: 0
+
+      +breakpoint(tablet-plus)
+        position: static
+
+      .orange
+        color: #FF8F43
+        font-weight: normal
