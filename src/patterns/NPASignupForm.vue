@@ -55,7 +55,7 @@
           <TextLink
             :class="b('search-params').toString()"
             @click="searchFilters">
-            {{ petDescription }} within {{ filters.geoRange }} miles of {{ filters.zipCode }}
+            {{ petDescription }} within {{ geoRange }} miles of {{ filters.zipCode }}
           </TextLink>
         </Paragraph>
 
@@ -66,7 +66,7 @@
           <TextLink
             :class="b('search-params').toString()"
             @click="searchFilters">
-            All {{ clanName }}s within {{ filters.geoRange }} miles of {{ filters.zipCode }}
+            All {{ clanName }}s within {{ geoRange }} miles of {{ filters.zipCode }}
           </TextLink>
         </Paragraph>
 
@@ -401,6 +401,10 @@ export default {
       return this.filters.size
         .map(sizeId => this.sizeMap[sizeId])
         .join(' or ');
+    },
+
+    geoRange() {
+      return this.filters.geoRange === -1 ? 3500 : this.filters.geoRange;
     },
 
     petDescription() {
