@@ -6,12 +6,13 @@
       <img v-if="pet.clanId === 2" src="/icons/no-photo-cat.png" />
       <img v-if="pet.clanId > 2" src="/icons/no-photo-other.png" />
     </span>
-    <div v-if="pet.specialNeeds || pet.bondedTo" class="border-bottom"></div>
+    <div v-if="pet.status == 'adopted'" class="border-bottom blue">Adopted</div>
+    <div v-else-if="pet.specialNeeds || pet.bondedTo || pet.actQuickly" class="border-bottom orange">Act Quickly</div>
   </a>
   <div class="content">
     <Heading level="h4" font-weight="bold">{{ pet.name }}</Heading>
     <Paragraph font-size="s">
-      {{ petFormatted.sex }}, {{ petFormatted.age }}<span v-if="pet.specialNeeds">, <span class="orange">Medical Needs</span></span><span v-if="pet.specialNeeds">, <span class="orange">Bonded Pair</span></span>
+      {{ petFormatted.sex }}, {{ petFormatted.age }}<span v-if="pet.specialNeeds">, <span class="orange">Special Needs</span></span><span v-if="pet.specialNeeds">, <span class="orange">Bonded Pair</span></span>
       <div v-if="breeds">
         {{ pet.breedName }}
         <span v-if="petFormatted.secondaryBreedName">

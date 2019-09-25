@@ -159,7 +159,7 @@ export default {
               "bondedTo": 0,
               "specialNeeds": false,
               "description": null,
-              "status": "available",
+              "status": "adopted",
               "city": "Spanish Fork",
               "state": "UT",
               "actQuickly": false,

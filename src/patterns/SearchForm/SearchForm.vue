@@ -5,6 +5,15 @@ export default {
   blockName: 'search-form',
   status: 'under-review',
   release: '1.0.0',
+  props: {
+    /**
+     * Whether or not to include advanced options
+     */
+    advanced: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     this.getData();
     const distances = [
@@ -214,7 +223,9 @@ export default {
        * @event submit
        * @type Object
        */
-      this.$emit('submit', this.fields);
+      if (this.fields.clanId) {
+        this.$emit('submit', this.fields);
+      }
     },
   },
 };

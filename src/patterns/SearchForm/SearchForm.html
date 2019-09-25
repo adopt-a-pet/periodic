@@ -17,8 +17,13 @@
   <ValidatedForm :names="['location']" @submit="submitForm">
     <!-- dogs -->
     <section v-if="sections[sectionIndex].display === 'Dogs'">
-      <LocationInput v-model="fields.zipcode" :required="true" name="location" size="small" />
+      <LocationInput
+        v-model="fields.zipcode"
+        :required="true"
+        name="location"
+        size="small" />
       <Dropdown
+        v-if="advanced"
         v-model="fields.distance"
         :items="distances"
         label="Distance"
@@ -31,18 +36,21 @@
         label="Breed"
         size="small" />
       <Dropdown
+        v-if="advanced"
         v-model="fields.sex"
         :items="sexes"
         :special-choices="[{ display: 'Any', value: null }]"
         label="Sex"
         size="small" />
       <Dropdown
+        v-if="advanced"
         v-model="fields.sizeId"
         :items="sizes"
         :special-choices="[{ display: 'Any', value: null }]"
         label="Size"
         size="small" />
       <Dropdown
+        v-if="advanced"
         v-model="fields.color"
         :items="colors"
         :special-choices="[{ display: 'Any', value: null }]"
@@ -58,16 +66,19 @@
 
     <!-- cats -->
     <section v-if="sections[sectionIndex].display === 'Cats'">
-      <TextInput
+      <LocationInput
         v-model="fields.zipcode"
-        label="Zip / Postal or City, State"
+        :required="true"
+        name="location"
         size="small" />
       <Dropdown
+        v-if="advanced"
         v-model="fields.distance"
         :items="distances"
         label="Distance"
         size="small" />
       <Dropdown
+        v-if="advanced"
         v-model="fields.breedId"
         :items="breeds"
         :search="true"
@@ -81,12 +92,14 @@
         label="Sex"
         size="small" />
       <Dropdown
+        v-if="advanced"
         v-model="fields.colorId"
         :items="colors"
         :special-choices="[{ display: 'Any', value: null }]"
         label="Color"
         size="small" />
       <Dropdown
+        v-if="advanced"
         v-model="fields.hairId"
         :items="hair"
         :special-choices="[{ display: 'Any', value: '' }]"
@@ -112,28 +125,33 @@
 
       <!-- Rabbits -->
       <section v-if="fields.clanId === 3">
-        <TextInput
+        <LocationInput
           v-model="fields.zipcode"
-          label="Zip / Postal or City, State"
+          :required="true"
+          name="location"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.distance"
           :items="distances"
           label="Distance"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.sex"
           :items="sexes"
           :special-choices="[{ display: 'Any', value: null }]"
           label="Sex"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.sizeId"
           :items="sizes"
           :special-choices="[{ display: 'Any', value: null }]"
           label="Size"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.age"
           :items="ages"
           :special-choices="[{ display: 'Any', value: null }]"
@@ -143,16 +161,19 @@
 
       <!-- Small Animals -->
       <section v-if="fields.clanId === 4">
-        <TextInput
+        <LocationInput
           v-model="fields.zipcode"
-          label="Zip / Postal or City, State"
+          :required="true"
+          name="location"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.distance"
           :items="distances"
           label="Distance"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.breedId"
           :items="breeds"
           :search="true"
@@ -160,12 +181,14 @@
           label="Species"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.sex"
           :items="sexes"
           :special-choices="[{ display: 'Any', value: null }]"
           label="Sex"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.age"
           :items="ages"
           :special-choices="[{ display: 'Any', value: null }]"
@@ -175,16 +198,19 @@
 
       <!-- Birds -->
       <section v-if="fields.clanId === 5">
-        <TextInput
+        <LocationInput
           v-model="fields.zipcode"
-          label="Zip / Postal or City, State"
+          :required="true"
+          name="location"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.distance"
           :items="distances"
           label="Distance"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.breedId"
           :items="breeds"
           :search="true"
@@ -192,12 +218,14 @@
           label="Breed"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.sex"
           :items="sexes"
           :special-choices="[{ display: 'Any', value: null }]"
           label="Sex"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.sizeId"
           :items="sizes"
           :special-choices="[{ display: 'Any', value: null }]"
@@ -207,24 +235,27 @@
 
       <!-- Horses -->
       <section v-if="fields.clanId === 6">
-        <TextInput
+        <LocationInput
           v-model="fields.zipcode"
-          label="Zip / Postal or City, State"
+          :required="true"
+          name="location"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.distance"
           :items="distances"
           label="Distance"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.breedId"
           :items="breeds"
           :search="true"
           :special-choices="[{ display: 'Any', value: null }]"
           label="Breed"
           size="small" />
-        <Checkbox v-model="includeMixes">Include Mixes</Checkbox>
-        <div v-if="includeMixes">
+        <Checkbox v-if="advanced" v-model="includeMixes">Include Mixes</Checkbox>
+        <div v-if="advanced && includeMixes">
           <Dropdown
             v-model="fields.sex"
             :items="sexes"
@@ -254,16 +285,19 @@
 
       <!-- Reptiles, Amphibians, and/or Fish -->
       <section v-if="fields.clanId === 7">
-        <TextInput
+        <LocationInput
           v-model="fields.zipcode"
-          label="Zip / Postal or City, State"
+          :required="true"
+          name="location"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.distance"
           :items="distances"
           label="Distance"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.breedId"
           :items="breeds"
           :search="true"
@@ -271,6 +305,7 @@
           label="Species"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.sizeId"
           :items="sizes"
           :special-choices="[{ display: 'Any', value: null }]"
@@ -280,16 +315,19 @@
 
       <!-- Reptiles, Amphibians, and/or Fish -->
       <section v-if="fields.clanId === 8">
-        <TextInput
+        <LocationInput
           v-model="fields.zipcode"
-          label="Zip / Postal or City, State"
+          :required="true"
+          name="location"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.distance"
           :items="distances"
           label="Distance"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.breedId"
           :items="breeds"
           :search="true"
@@ -297,18 +335,21 @@
           label="Species"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.sex"
           :items="sexes"
           :special-choices="[{ display: 'Any', value: null }]"
           label="Sex"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.sizeId"
           :items="sizes"
           :special-choices="[{ display: 'Any', value: null }]"
           label="Size"
           size="small" />
         <Dropdown
+          v-if="advanced"
           v-model="fields.age"
           :items="ages"
           :special-choices="[{ display: 'Any', value: null }]"
@@ -316,6 +357,6 @@
           size="small" />
       </section>
     </section>
-    <Button>Submit</Button>
+    <Button class="submit">Submit</Button>
   </ValidatedForm>
 </div>
