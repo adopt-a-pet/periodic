@@ -14,22 +14,31 @@
         v-model="firstName"
         label="First Name"
         :class="b('first-name').toString()"
-        required />
+        required
+        :error-messages="{
+          required: 'Required'
+        }"
+        @change="removePaymentError" />
       <TextInput
         v-model="lastName"
         label="Last Name"
         :class="b('last-name').toString()"
-        required />
+        required
+        :error-messages="{
+          required: 'Required'
+        }"
+        @change="removePaymentError" />
       <TextInput
         v-model="zipCode"
         label="Zip Code"
         :class="b('zip-code').toString()"
         :validations="zipsValidator"
+        required
         :error-messages="{
           zipsValidator: 'Invalid Location',
           required: 'Invalid Location'
         }"
-        required />
+        @change="removePaymentError" />
       <VSpacer size="xxs" />
       <TextInput
         id="card-number"
@@ -114,6 +123,7 @@ export default {
     paymentError(bool) {
       if (bool === true) this.showError = true;
     },
+
   },
 
   created() {
@@ -212,6 +222,7 @@ export default {
        * the messages are dynamic depending on what the error is.
        */
       this.cardNumber.addEventListener('change', event => {
+        this.showError = false;
         const displayError = document.getElementById('card-errors');
         if (event.error) {
           displayError.textContent = event.error.message;
@@ -222,6 +233,20 @@ export default {
           this.cardErrors = false;
           displayError.style.display = 'none';
         }
+      });
+
+      /**
+       * Had to add these to manually pick up on changes so we
+       * can remove the paymentError text. Adding a change event
+       * listener in the template for these stripe fields does not
+       * work
+       */
+      this.cardExpiry.addEventListener('change', () => {
+        this.showError = false;
+      });
+
+      this.cardCvc.addEventListener('change', () => {
+        this.showError = false;
       });
     },
     /**
@@ -253,13 +278,16 @@ export default {
               zipCode: this.zipCode,
             },
           );
-          this.paymentError = false;
+          this.showError = false;
         }
         if (result.error) {
-          this.paymentError = true;
+          this.showError = true;
           this.$forceUpdate(); // Forcing the DOM to update so the Stripe Element can update.
         }
       });
+    },
+    removePaymentError() {
+      this.showError = false;
     },
   },
 };
