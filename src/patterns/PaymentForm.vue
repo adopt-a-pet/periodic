@@ -5,8 +5,11 @@
       name="stripeToken"
       value="">
     <div
-      :class="{'periodic-payment-form__form-control periodic-base': !cardErrors,
-               'periodic-payment-form__form-control--card-errors periodic-base': cardErrors}">
+      :class="{'periodic-payment-form__form-control periodic-base': !cardErrors && !paymentError,
+               'periodic-payment-form__form-control--card-errors periodic-base': cardErrors && !paymentError,
+               'periodic-payment-form__form-control--payment-error periodic-base': !cardErrors && paymentError,
+               'periodic-payment-form__form-control--multiple-errors periodic-base': cardErrors && paymentError
+      }">
       <TextInput
         v-model="firstName"
         label="First Name"
@@ -50,8 +53,9 @@
       v-if="showError"
       :class="b('error-text').toString()">
       <Paragraph
-        font-size="m"
-        font-weight="light">
+        :class="b('text-orange').toString()"
+        font-weight="normal"
+        font-size="s">
         There was an error processing your payment, please check your payment information and try again.
       </Paragraph>
     </div>
@@ -78,6 +82,10 @@ export default {
       type: String,
       default: '',
     },
+    /**
+     * Show payment error div if
+     * stripe returns error.
+     */
     paymentError: {
       type: Boolean,
       default: false,
@@ -245,9 +253,10 @@ export default {
               zipCode: this.zipCode,
             },
           );
+          this.paymentError = false;
         }
         if (result.error) {
-          this.hasCardErrors = true;
+          this.paymentError = true;
           this.$forceUpdate(); // Forcing the DOM to update so the Stripe Element can update.
         }
       });
