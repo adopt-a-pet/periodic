@@ -104,6 +104,7 @@
   }
 
   @include element('card-errors') {
+    margin-top: -15px;
     grid-area: errors;
     color: color(aorange);
   }
