@@ -4,7 +4,9 @@
       type="hidden"
       name="stripeToken"
       value="">
-    <div :class="b('form-control').toString()">
+    <div
+      :class="{'periodic-payment-form__form-control periodic-base': !cardErrors,
+               'periodic-payment-form__form-control--card-errors periodic-base': cardErrors}">
       <TextInput
         v-model="firstName"
         label="First Name"
@@ -30,6 +32,11 @@
         id="card-number"
         ref="cardNumber"
         :class="b('card-number').toString()" />
+      <div
+        id="card-errors"
+        style="display:none;"
+        :class="b('card-errors').toString()"
+        role="alert" />
       <TextInput
         id="card-expiry"
         ref="cardExpiry"
@@ -40,15 +47,12 @@
         :class="b('card-cvc').toString()" />
     </div>
     <div
-      id="card-errors"
-      role="alert" />
-    <div
       v-if="showError"
       :class="b('error-text').toString()">
       <Paragraph
         font-size="m"
         font-weight="light">
-        There was an error processing your payment, please refresh and try again.
+        There was an error processing your payment, please check your payment information and try again.
       </Paragraph>
     </div>
     <VSpacer size="xl" />
@@ -86,6 +90,7 @@ export default {
       lastName: '',
       zipCode: '',
       showError: false,
+      cardErrors: false,
     };
   },
 
@@ -193,6 +198,23 @@ export default {
         style: elementStyles,
       });
       this.cardCvc.mount('#card-cvc');
+
+      /**
+       * Stripes default way of handling card errors. Super handy,
+       * the messages are dynamic depending on what the error is.
+       */
+      this.cardNumber.addEventListener('change', event => {
+        const displayError = document.getElementById('card-errors');
+        if (event.error) {
+          displayError.textContent = event.error.message;
+          this.cardErrors = true;
+          displayError.style.display = 'block';
+        } else {
+          displayError.textContent = '';
+          this.cardErrors = false;
+          displayError.style.display = 'none';
+        }
+      });
     },
     /**
      * If we ever need to check before creating a Stripe Token
