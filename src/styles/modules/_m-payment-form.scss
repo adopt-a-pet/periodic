@@ -12,6 +12,49 @@
     grid-column-gap: 10px;
     grid-row-gap: 20px;
 
+    @include modifier('card-errors') {
+      color: color(agray, darker);
+      display: grid;
+      grid-template-areas:
+        'firstname firstname'
+        'lastname lastname'
+        'zipcode zipcode'
+        'cardnumber cardnumber'
+        'errors errors'
+        'cardexpiry cardcvc';
+      grid-column-gap: 10px;
+      grid-row-gap: 20px;
+    }
+
+    @include modifier('payment-error') {
+      color: color(agray, darker);
+      display: grid;
+      grid-template-areas:
+        'firstname firstname'
+        'lastname lastname'
+        'zipcode zipcode'
+        'cardnumber cardnumber'
+        'cardexpiry cardcvc'
+        'paymenterror paymenterror';
+      grid-column-gap: 10px;
+      grid-row-gap: 20px;
+    }
+
+    @include modifier('multiple-errors') {
+      color: color(agray, darker);
+      display: grid;
+      grid-template-areas:
+        'firstname firstname'
+        'lastname lastname'
+        'zipcode zipcode'
+        'cardnumber cardnumber'
+        'errors errors'
+        'cardexpiry cardcvc'
+        'paymenterror paymenterror';
+      grid-column-gap: 10px;
+      grid-row-gap: 20px;
+    }
+
     @include breakpoint(tablet-plus) {
       grid-template-areas:
         'firstname lastname'
@@ -19,11 +62,50 @@
         'cardnumber cardnumber'
         'cardexpiry cardcvc';
       grid-column-gap: 20px;
+
+      @include modifier('card-errors') {
+        grid-template-areas:
+          'firstname lastname'
+          'zipcode zipcode'
+          'cardnumber cardnumber'
+          'errors errors'
+          'cardexpiry cardcvc';
+        grid-column-gap: 20px;
+      }
+
+      @include modifier('payment-error') {
+        grid-template-areas:
+          'firstname lastname'
+          'zipcode zipcode'
+          'cardnumber cardnumber'
+          'cardexpiry cardcvc'
+          'paymenterror paymenterror';
+        grid-column-gap: 20px;
+      }
+
+      @include modifier('multiple-errors') {
+        grid-template-areas:
+          'firstname lastname'
+          'zipcode zipcode'
+          'cardnumber cardnumber'
+          'errors errors'
+          'cardexpiry cardcvc'
+          'paymenterror paymenterror';
+        grid-column-gap: 20px;
+      }
+
+
     }
+
   }
 
   @include element('card-number') {
     grid-area: cardnumber;
+  }
+
+  @include element('card-errors') {
+    grid-area: errors;
+    color: color(aorange);
   }
 
   @include element('card-expiry') {
@@ -47,6 +129,10 @@
   }
 
   @include element('error-text') {
+    grid-area: paymenterror;
+  }
+
+  @include element('text-orange') {
     color: color(aorange) !important;
   }
 }

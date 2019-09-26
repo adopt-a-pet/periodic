@@ -285,6 +285,9 @@ export default {
       type: Number,
       default: null,
     },
+    /**
+     * If stripe Payment Error
+     */
     paymentError: {
       type: Boolean,
       default: false,
@@ -534,6 +537,8 @@ export default {
             filters: this.filters,
           });
         }
+      } else {
+        this.$emit('scrollToEmail');
       }
     },
     /**
