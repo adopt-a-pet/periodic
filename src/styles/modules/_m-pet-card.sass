@@ -1,0 +1,64 @@
++b(pet-card)
+  background: $color-white
+  border-radius: $radius-l
+  box-shadow: 0 0 4px #b3b3b3
+  padding: $space-xxs
+  display: grid
+  grid-template-columns: 124px auto
+
+  +breakpoint(tablet-plus)
+    max-height: 366px
+    display: block
+
+  a
+    border-radius: $radius-m
+    position: relative
+    height: auto
+
+    img, svg
+      width: 100%
+
+    div.border-bottom
+      height: 25px
+      position: absolute
+      bottom: 0
+      left: 0
+      right: 0
+      border-bottom-left-radius: $radius-m
+      border-bottom-right-radius: $radius-m
+      color: color(awhite)
+      text-align: center
+      font-size: $font-size-xs
+      display: flex
+      align-items: center
+      justify-content: center
+      font-family: museo
+      font-weight: 700
+
+      &.orange
+        background: #FF8F43
+
+      &.blue
+        background: color(ablue)
+
+  div.content
+    margin-left: $space-xs
+    position: relative
+    height: 100%
+    top: 0
+
+    +breakpoint(tablet-plus)
+      margin-left: 0
+
+    h4
+      margin-bottom: 10px
+      word-break: break-all
+
+    p
+      font-weight: 300
+      line-height: 20px
+      margin: 0
+
+      .orange
+        color: #FF8F43
+        font-weight: normal

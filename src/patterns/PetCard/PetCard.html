@@ -1,0 +1,25 @@
+<div :class="b().toString()">
+  <a :href="`https://adoptapet.com/pet/${pet.petId}-${pet.city}-${pet.state}`">
+    <img v-if="pet.image" :src="pet.image" />
+    <span v-if="!pet.image">
+      <img v-if="pet.clanId === 1" src="/icons/no-photo-dog.png" />
+      <img v-if="pet.clanId === 2" src="/icons/no-photo-cat.png" />
+      <img v-if="pet.clanId > 2" src="/icons/no-photo-other.png" />
+    </span>
+    <div v-if="pet.status == 'adopted'" class="border-bottom blue">Adopted</div>
+    <div v-else-if="pet.specialNeeds || pet.bondedTo || pet.actQuickly" class="border-bottom orange">Act Quickly</div>
+  </a>
+  <div class="content">
+    <Heading level="h4" font-weight="bold">{{ pet.name }}</Heading>
+    <Paragraph font-size="s">
+      {{ petFormatted.sex }}, {{ petFormatted.age }}<span v-if="pet.specialNeeds">, <span class="orange">Special Needs</span></span><span v-if="pet.specialNeeds">, <span class="orange">Bonded Pair</span></span>
+      <div v-if="breeds">
+        {{ pet.breedName }}
+        <span v-if="petFormatted.secondaryBreedName">
+          / {{ pet.secondaryBreedName }}
+        </span>
+      </div>
+      <div v-if="location">{{ pet.city }}, {{ pet.state }}</div>
+    </Paragraph>
+  </div>
+</div>
