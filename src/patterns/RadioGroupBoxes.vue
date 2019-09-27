@@ -22,7 +22,7 @@
 
       <label
         :class="b('label', { color: 'white' }).toString()"
-        :for="item.id"><span class="bold">{{ item.heading }}</span><br>
+        :for="item.id"><span :class="b('label--heading').toString()">{{ item.heading }}</span><br>
         <span v-if="showDisplayText">{{ item.display }}</span></label>
 
       <label

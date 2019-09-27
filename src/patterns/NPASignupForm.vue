@@ -429,14 +429,14 @@ export default {
       {
         heading: 'Premium Alert',
         display:
-          'Get real time, instant notifications when you have a new match with your $10 monthly payment!',
+          'Get real-time, instant emails when you have a new match for $10 per month. Your payment supports our non-profit! Cancel anytime.',
         icon: 'clock',
         value: 1,
       },
       {
         heading: 'Free Alert',
         display:
-          'We’ll run your pet search daily and send you an email within 24 hours of having a new match.',
+          'We’ll run your pet search once a day and send you an email with your new matches from the past 24 hours.',
         icon: 'envelope',
         value: 0,
       },
