@@ -493,6 +493,7 @@ export default {
        * @type none
        */
       this.$emit('click:searchFilters');
+      this.dispatchTrack('Premium Alert - Edit Filters');
     },
     skip() {
       /**
@@ -520,6 +521,11 @@ export default {
        * @type Number
        */
       this.$emit('change:plan', plan);
+
+      /**
+       * Dispatch free or premium alert based off of plan,
+       * for tracking
+       */
       if (plan < 1) {
         this.dispatchTrack('Free Alert');
       } else {
@@ -568,7 +574,7 @@ export default {
      * or eventLabel
      */
     dispatchTrack(event) {
-      this.$syscall('analytics/track/dispatchTrack', event);
+      this.$syscall('analytics/track/dispatchTrack', { event });
     },
   },
 };

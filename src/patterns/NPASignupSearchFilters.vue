@@ -14,7 +14,8 @@
       <TextInput
         v-model="form.zipCode"
         type="search"
-        label="Zip / Postal or City, State" />
+        label="Zip / Postal or City, State"
+        @change="dispatchTrack({event: 'Select Location – premium alert filter', eventLabel: form.zipCode})" />
 
       <Dropdown
         v-model="form.geoRange"
@@ -28,7 +29,8 @@
           { display: '250 miles or less', value: 250 },
           { display: '500 miles or less', value: 500 },
           { display: '3500 miles or less', value: -1 }
-        ]" />
+        ]"
+        @change="dispatchTrack({event: 'Select Distance – premium alert filter', eventLabel: form.geoRange})" />
 
       <DropdownMulti
         v-model="form.breeds"
@@ -38,7 +40,8 @@
         multi-selected-label="Multiple"
         zero-selected-label="Any"
         size="tiny"
-        type="checkbox" />
+        type="checkbox"
+        @change="dispatchTrack({event: 'Select Breed – premium alert filter', eventLabel: form.breeds})" />
 
       <DropdownMulti
         v-model="form.sex"
@@ -49,7 +52,8 @@
         :items="[
           { display: 'Male', value: 'm' },
           { display: 'Female', value: 'f' }
-        ]" />
+        ]"
+        @change="dispatchTrack({event: 'Select Sex – premium alert filter', eventLabel: form.sex})" />
 
       <DropdownMulti
         v-model="form.age"
@@ -62,7 +66,8 @@
           { display: 'Young', value: 'young' },
           { display: 'Adult', value: 'adult' },
           { display: 'Senior', value: 'senior' }
-        ]" />
+        ]"
+        @change="dispatchTrack({event: 'Select Age – premium alert filter', eventLabel: form.age})" />
 
       <DropdownMulti
         v-if="form.clan === 1"
@@ -82,7 +87,8 @@
           { display: 'Tan/Yellow/Fawn', value: 159 },
           { display: 'Tricolor', value: 160 },
           { display: 'White', value: 161 }
-        ]" />
+        ]"
+        @change="dispatchTrack({event: 'Select Color – premium alert filter', eventLabel: form.color})" />
 
       <DropdownMulti
         v-if="form.clan === 2"
@@ -109,7 +115,8 @@
           { display: 'Tiger Striped', value: 163 },
           { display: 'Tortoiseshell', value: 59 },
           { display: 'White', value: 60 }
-        ]" />
+        ]"
+        @change="dispatchTrack({event: 'Select Color – premium alert filter', eventLabel: form.color})" />
 
       <DropdownMulti
         v-if="form.clan === 1"
@@ -123,7 +130,8 @@
           { display: 'Medium', value: 2 },
           { display: 'Large', value: 3 },
           { display: 'X-Large', value: 4 }
-        ]" />
+        ]"
+        @change="dispatchTrack({event: 'Select Size – premium alert filter', eventLabel: form.size})" />
 
       <DropdownMulti
         v-if="form.clan === 2"
@@ -215,6 +223,7 @@ export default {
        * @type none
        */
       this.$emit('click:saveAndClose');
+      this.dispatchTrack({ event: 'Select Color – premium alert filter', eventLabel: JSON.stringify(this.form) });
     },
     submit() {
       /**
@@ -224,6 +233,13 @@ export default {
        * @type Object
        */
       this.$emit('submit', this.form);
+    },
+    /**
+     * Dispatch analytics track with an eventData
+     */
+    dispatchTrack(eventData) {
+      eventData.eventLabel = eventData.eventLabel.toString();
+      this.$syscall('analytics/track/dispatchTrack', eventData);
     },
   },
 };
