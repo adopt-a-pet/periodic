@@ -38,6 +38,9 @@ export default {
       return Promise.resolve (
         'ra-api.adoptapet.com'
       );
+    },
+    'analytics/track/dispatchTrack': function(_, payload) {
+      console.log(payload);
     }
   }
 };
