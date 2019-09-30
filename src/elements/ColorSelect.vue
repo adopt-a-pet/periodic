@@ -84,33 +84,54 @@ export default {
 ```vue
 <template>
 <div>
-  <Heading
-    font-family="museo"
-    level="h4">1 Column (default)</Heading>
-
-  <ColorSelect
-    v-model="colorSelectSelected"
-    name="example"
-    :items="[
-      { display: 'One', value: 1, color: 'brown' },
-      { display: 'Two', value: 2, color: 'black' },
-      { display: 'Three', value: 3, color: 'brindle' }
-    ]" />
-
-  <VSpacer size="l" />
 
   <Heading
     font-family="museo"
-    level="h4">3 Columns</Heading>
-
+    level="h4">Dogs</Heading>
+  <VSpacer />
   <ColorSelect
     v-model="colorSelectSelected2"
     name="example2"
-    :columns="3"
+    :columns="1"
     :items="[
-      { display: 'One', value: 1, color: 'brown' },
-      { display: 'Two', value: 2, color: 'black' },
-      { display: 'Three', value: 3, color: 'brindle' }
+      { display: 'Black', value: 152, color: 'dogs-black' },
+      { display: 'Brindle', value: 153, color: 'dogs-brindle' },
+      { display: 'Brown/Chocolate', value: 154, color: 'dogs-brown' },
+      { display: 'Gray/Blue/Silver/Salt & Pepper', value: 155, color: 'dogs-gray' },
+      { display: 'Merle', value: 156, color: 'dogs-merle' },
+      { display: 'Red/Golden/Orange/Chestnut', value: 157, color: 'dogs-red' },
+      { display: 'Silver & Tan (Yorkie Colors)', value: 158, color: 'dogs-silver' },
+      { display: 'Tan/Yellow/Fawn', value: 159, color: 'dogs-tan' },
+      { display: 'Tricolor (Tan/Brown and Black & White)', value: 160, color: 'dogs-tricolor' },
+      { display: 'White', value: 161, color: 'dogs-white' }
+    ]" />
+  <VSpacer size="l" />
+  <Heading
+    font-family="museo"
+    level="h4">Cats</Heading>
+  <VSpacer />
+  <ColorSelect
+    v-model="colorSelectSelected2"
+    name="example2"
+    :columns="1"
+    :items="[
+      { display: 'Black', value: 46, color: 'cats-black' },
+      { display: 'Black & White, or Tuxedo', value: 47, color: 'cats-tuxedo' },
+      { display: 'Brown or Chocolate', value: 48, color: 'cats-brown' },
+      { display: 'Brown Tabby', value: 49, color: 'cats-brown-tabby' },
+      { display: 'Calico or Dilute Calico', value: 50, color: 'cats-calico' },
+      { display: 'Cream or Ivory', value: 51, color: 'cats-cream' },
+      { display: 'Gray, Blue or Silver Tabby', value: 53, color: 'cats-silver-tabby' },
+      { display: 'Gray or Blue', value: 52, color: 'cats-gray' },
+      { display: 'Orange or Red', value: 54, color: 'cats-orange' },
+      { display: 'Orange or Red Tabby', value: 55, color: 'cats-red-tabby' },
+      { display: 'Spotted Tabby/Leopard Spotted', value: 56, color: 'cats-spotted' },
+      { display: 'Tabby', value: 61, color: 'cats-tabby' },
+      { display: 'Tan or Fawn', value: 57, color: 'cats-tan' },
+      { display: 'Tan or Fawn Tabby', value: 58, color: 'cats-fawn-tabby' },
+      { display: 'Tiger-striped', value: 163, color: 'cats-tiger' },
+      { display: 'Tortoiseshell', value: 59, color: 'cats-tortoise' },
+      { display: 'White', value: 60, color: 'cats-white' }
     ]" />
 </div>
 </template>
