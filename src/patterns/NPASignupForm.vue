@@ -520,6 +520,11 @@ export default {
        * @type Number
        */
       this.$emit('change:plan', plan);
+      if (plan < 1) {
+        this.dispatchTrack('Free Alert');
+      } else {
+        this.dispatchTrack('Premium Alert');
+      }
     },
     submit() {
       if (this.$refs.email.validate()) {
@@ -557,6 +562,13 @@ export default {
         filters: this.filters,
         stripeInfo: obj,
       });
+    },
+    /**
+     * Dispatch analytics track with an eventAction
+     * or eventLabel
+     */
+    dispatchTrack(event) {
+      this.$syscall('analytics/track/dispatchTrack', event);
     },
   },
 };
