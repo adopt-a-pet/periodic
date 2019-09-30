@@ -6,21 +6,104 @@
   +rem-fallback('row-gap', $space-s)
 
   +e('color-sample')
-    border: 2px solid color(agray, light)
+    border: 2px solid #dfdfdf
     display: inline-block
     width: $font-size-l
     height: $font-size-l
     border-radius: 50%
+    background-position: center
+    background-repeat: no-repeat
+    background-size: 18px 18px
+    width: 30px
+    height: 30px
 
     +m('checked')
       border-color: color(ablue, base)
 
-    +m('color-black')
-      background: #000
+    +m('color-dogs-black')
+      background-image: url('~/images/color-dogs-black.png')
 
-    +m('color-brown')
-      background: #401
+    +m('color-dogs-brindle')
+      background-image: url('~/images/color-dogs-brindle.png')
+
+    +m('color-dogs-brown')
+      background-image: url('~/images/color-dogs-brown.png')
+
+    +m('color-dogs-gray')
+      background-image: url('~/images/color-dogs-gray.png')
+
+    +m('color-dogs-merle')
+      background-image: url('~/images/color-dogs-merle.png')
+
+    +m('color-dogs-red')
+      background-image: url('~/images/color-dogs-red.png')
+
+    +m('color-dogs-silver')
+      background-image: url('~/images/color-dogs-silver.png')
+
+    +m('color-dogs-tan')
+      background-image: url('~/images/color-dogs-tan.png')
+
+    +m('color-dogs-tricolor')
+      background-image: url('~/images/color-dogs-tricolor.png')
+
+    +m('color-dogs-white')
+      background-image: url('~/images/color-dogs-white.png')
+
+    +m('color-cats-black')
+      background-image: url('~/images/color-cats-black.png')
+
+    +m('color-cats-tuxedo')
+      background-image: url('~/images/color-cats-tuxedo.png')
+
+    +m('color-cats-brown')
+      background-image: url('~/images/color-cats-brown.png')
+
+    +m('color-cats-brown-tabby')
+      background-image: url('~/images/color-cats-brown-tabby.png')
+
+    +m('color-cats-calico')
+      background-image: url('~/images/color-cats-calico.png')
+
+    +m('color-cats-cream')
+      background-image: url('~/images/color-cats-cream.png')
+
+    +m('color-cats-silver-tabby')
+      background-image: url('~/images/color-cats-silver-tabby.png')
+
+    +m('color-cats-gray')
+      background-image: url('~/images/color-cats-gray.png')
+
+    +m('color-cats-orange')
+      background-image: url('~/images/color-cats-orange.png')
+
+    +m('color-cats-red-tabby')
+      background-image: url('~/images/color-cats-red-tabby.png')
+
+    +m('color-cats-spotted')
+      background-image: url('~/images/color-cats-spotted.png')
+
+    +m('color-cats-tabby')
+      background-image: url('~/images/color-cats-tabby.png')
+
+    +m('color-cats-tan')
+      background-image: url('~/images/color-cats-tan.png')
+
+    +m('color-cats-fawn-tabby')
+      background-image: url('~/images/color-cats-fawn-tabby.png')
+
+    +m('color-cats-tiger')
+      background-image: url('~/images/color-cats-tiger.png')
+
+    +m('color-cats-tortoise')
+      background-image: url('~/images/color-cats-tortoise.png')
+
+    +m('color-cats-white')
+      background-image: url('~/images/color-cats-white.png')
+
 
   +e('label')
     font-weight: 200
+    vertical-align: super
+    margin-left: 6px
     +rem-fallback('font-size', $font-size-m)
