@@ -241,7 +241,7 @@ export default {
     dispatchTrackEdit(eventObj) {
       if (eventObj.eventLabel !== '' && eventObj.eventLabel !== undefined) {
         eventObj.eventLabel = eventObj.eventLabel.toString();
-        this.$syscall(`analytics/track/NPASignupSearchFilters/edit/${eventObj.event}`, eventObj);
+        this.$syscall(`analytics/track/NPASignupSearchFilters/select/${eventObj.event}`, eventObj);
       }
     },
     dispatchTrackClick(eventObj) {

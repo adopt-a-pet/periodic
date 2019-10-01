@@ -60,5 +60,38 @@ export default {
     'analytics/track/PaymentForm/click/zipCode': function(_, payload) {
       console.log('event:', 'zipCode');
     },
+    'analytics/track/NPASearchFilters/click/save': function(_, payload) {
+      console.log('event:', 'save');
+    },
+    'analytics/track/NPASearchFilters/select/location': function(_, payload) {
+      console.log('event:', 'location');
+    },
+    'analytics/track/NPASearchFilters/select/distance': function(_, payload) {
+      console.log('event:', 'distance');
+    },
+    'analytics/track/NPASearchFilters/select/breed': function(_, payload) {
+      console.log('event:', 'breed');
+    },
+    'analytics/track/NPASearchFilters/select/sex': function(_, payload) {
+      console.log('event:', 'sex');
+    },
+    'analytics/track/NPASearchFilters/select/age': function(_, payload) {
+      console.log('event:', 'age');
+    },
+    'analytics/track/NPASearchFilters/select/color': function(_, payload) {
+      console.log('event:', 'color');
+    },
+    'analytics/track/NPASearchFilters/select/size': function(_, payload) {
+      console.log('event:', 'size');
+    },
+    'analytics/track/NPASignupForm/click/premiumAlert': function(_, payload) {
+      console.log('event:', 'premiumAlert');
+    },
+    'analytics/track/NPASignupForm/click/FreeAlert': function(_, payload) {
+      console.log('event:', 'freeAlert');
+    },
+    'analytics/track/NPASignupForm/click/editFilters': function(_, payload) {
+      console.log('event:', 'editFilters');
+    },
   }
 };

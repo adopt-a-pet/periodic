@@ -493,7 +493,7 @@ export default {
        * @type none
        */
       this.$emit('click:searchFilters');
-      this.dispatchTrack('editFilters');
+      this.dispatchTrackClick('editFilters');
     },
     skip() {
       /**
@@ -527,9 +527,9 @@ export default {
        * for tracking
        */
       if (plan < 1) {
-        this.dispatchTrack('freeAlert');
+        this.dispatchTrackClick('freeAlert');
       } else {
-        this.dispatchTrack('premiumAlert');
+        this.dispatchTrackClick('premiumAlert');
       }
     },
     submit() {
@@ -573,7 +573,7 @@ export default {
      * Dispatch analytics track with an eventAction
      * or eventLabel
      */
-    dispatchTrack(event) {
+    dispatchTrackClick(event) {
       this.$syscall(`analytics/track/NPASignupForm/click/${event}`);
     },
   },
