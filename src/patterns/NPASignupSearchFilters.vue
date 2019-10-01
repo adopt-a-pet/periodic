@@ -224,7 +224,7 @@ export default {
        */
       this.$emit('click:saveAndClose');
       const parsedData = this.parseForm();
-      this.dispatchTrack({ event: 'Save button – premium alert filter', eventLabel: parsedData });
+      this.dispatchTrack({ event: 'Save button – premium alert filter', eventLabel: JSON.stringify(parsedData) });
     },
     submit() {
       /**
