@@ -223,7 +223,8 @@ export default {
        * @type none
        */
       this.$emit('click:saveAndClose');
-      this.dispatchTrack({ event: 'Select Color – premium alert filter', eventLabel: JSON.stringify(this.form) });
+      const parsedData = this.parseForm();
+      this.dispatchTrack({ event: 'Save button – premium alert filter', eventLabel: parsedData });
     },
     submit() {
       /**
@@ -242,6 +243,24 @@ export default {
         eventData.eventLabel = eventData.eventLabel.toString();
         this.$syscall('analytics/track/dispatchTrack', eventData);
       }
+    },
+    parseForm() {
+      const parsedData = {};
+      const form = this.form;
+      const formKeys = Object.keys(form);
+      /**
+       * Remove any null values or empty arrays for tracking
+       */
+      formKeys.forEach(prop => {
+        if (Array.isArray(form[prop]) && form[prop].length > 0) {
+          parsedData[prop] = form[prop];
+        }
+        if (form[prop] !== null && form[prop] !== '') {
+          parsedData[prop] = form[prop];
+        }
+      });
+
+      return parsedData;
     },
   },
 };
