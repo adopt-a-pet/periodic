@@ -238,8 +238,10 @@ export default {
      * Dispatch analytics track with an eventData
      */
     dispatchTrack(eventData) {
-      eventData.eventLabel = eventData.eventLabel.toString();
-      this.$syscall('analytics/track/dispatchTrack', eventData);
+      if (eventData.eventLabel !== '' && eventData.eventLabel !== undefined) {
+        eventData.eventLabel = eventData.eventLabel.toString();
+        this.$syscall('analytics/track/dispatchTrack', eventData);
+      }
     },
   },
 };
