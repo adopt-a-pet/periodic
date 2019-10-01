@@ -316,7 +316,6 @@ export default {
      * or eventLabel
      */
     dispatchTrack(event) {
-      // this.$syscall('analytics/track/dispatchTrack', { event });
       this.$syscall(`analytics/track/PaymentForm/click/${event}`);
     },
   },
