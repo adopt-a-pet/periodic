@@ -60,29 +60,29 @@ export default {
     'analytics/track/PaymentForm/click/zipCode': function(_, payload) {
       console.log('event:', 'zipCode');
     },
-    'analytics/track/NPASearchFilters/click/save': function(_, payload) {
-      console.log('event:', 'save');
+    'analytics/track/NPASignupSearchFilters/click/save': function(_, payload) {
+      console.log('event:', 'save', payload);
     },
-    'analytics/track/NPASearchFilters/select/location': function(_, payload) {
-      console.log('event:', 'location');
+    'analytics/track/NPASignupSearchFilters/select/location': function(_, payload) {
+      console.log('event:', 'location', payload);
     },
-    'analytics/track/NPASearchFilters/select/distance': function(_, payload) {
-      console.log('event:', 'distance');
+    'analytics/track/NPASignupSearchFilters/select/distance': function(_, payload) {
+      console.log('event:', 'distance', payload);
     },
-    'analytics/track/NPASearchFilters/select/breed': function(_, payload) {
-      console.log('event:', 'breed');
+    'analytics/track/NPASignupSearchFilters/select/breed': function(_, payload) {
+      console.log('event:', 'breed', payload);
     },
-    'analytics/track/NPASearchFilters/select/sex': function(_, payload) {
-      console.log('event:', 'sex');
+    'analytics/track/NPASignupSearchFilters/select/sex': function(_, payload) {
+      console.log('event:', 'sex', payload);
     },
-    'analytics/track/NPASearchFilters/select/age': function(_, payload) {
-      console.log('event:', 'age');
+    'analytics/track/NPASignupSearchFilters/select/age': function(_, payload) {
+      console.log('event:', 'age', payload);
     },
-    'analytics/track/NPASearchFilters/select/color': function(_, payload) {
-      console.log('event:', 'color');
+    'analytics/track/NPASignupSearchFilters/select/color': function(_, payload) {
+      console.log('event:', 'color', payload);
     },
-    'analytics/track/NPASearchFilters/select/size': function(_, payload) {
-      console.log('event:', 'size');
+    'analytics/track/NPASignupSearchFilters/select/size': function(_, payload) {
+      console.log('event:', 'size', payload);
     },
     'analytics/track/NPASignupForm/click/premiumAlert': function(_, payload) {
       console.log('event:', 'premiumAlert');

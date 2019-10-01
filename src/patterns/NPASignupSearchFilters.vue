@@ -15,7 +15,7 @@
         v-model="form.zipCode"
         type="search"
         label="Zip / Postal or City, State"
-        @change="dispatchTrackEdit({event: 'location', eventLabel: form.zipCode})" />
+        @change="dispatchTrackSelect({event: 'location', eventLabel: form.zipCode})" />
 
       <Dropdown
         v-model="form.geoRange"
@@ -30,7 +30,7 @@
           { display: '500 miles or less', value: 500 },
           { display: '3500 miles or less', value: -1 }
         ]"
-        @change="dispatchTrackEdit({event: 'distance', eventLabel: form.geoRange})" />
+        @change="dispatchTrackSelect({event: 'distance', eventLabel: form.geoRange})" />
 
       <DropdownMulti
         v-model="form.breeds"
@@ -41,7 +41,7 @@
         zero-selected-label="Any"
         size="tiny"
         type="checkbox"
-        @change="dispatchTrackEdit({event: 'breed', eventLabel: form.breeds})" />
+        @change="dispatchTrackSelect({event: 'breed', eventLabel: form.breeds})" />
 
       <DropdownMulti
         v-model="form.sex"
@@ -53,7 +53,7 @@
           { display: 'Male', value: 'm' },
           { display: 'Female', value: 'f' }
         ]"
-        @change="dispatchTrackEdit({event: 'sex', eventLabel: form.sex})" />
+        @change="dispatchTrackSelect({event: 'sex', eventLabel: form.sex})" />
 
       <DropdownMulti
         v-model="form.age"
@@ -67,7 +67,7 @@
           { display: 'Adult', value: 'adult' },
           { display: 'Senior', value: 'senior' }
         ]"
-        @change="dispatchTrackEdit({event: 'age', eventLabel: form.age})" />
+        @change="dispatchTrackSelect({event: 'age', eventLabel: form.age})" />
 
       <DropdownMulti
         v-if="form.clan === 1"
@@ -88,7 +88,7 @@
           { display: 'Tricolor', value: 160 },
           { display: 'White', value: 161 }
         ]"
-        @change="dispatchTrackEdit({event: 'color', eventLabel: form.color})" />
+        @change="dispatchTrackSelect({event: 'color', eventLabel: form.color})" />
 
       <DropdownMulti
         v-if="form.clan === 2"
@@ -116,7 +116,7 @@
           { display: 'Tortoiseshell', value: 59 },
           { display: 'White', value: 60 }
         ]"
-        @change="dispatchTrackEdit({event: 'color', eventLabel: form.color})" />
+        @change="dispatchTrackSelect({event: 'color', eventLabel: form.color})" />
 
       <DropdownMulti
         v-if="form.clan === 1"
@@ -131,7 +131,7 @@
           { display: 'Large', value: 3 },
           { display: 'X-Large', value: 4 }
         ]"
-        @change="dispatchTrackEdit({event: 'size', eventLabel: form.size})" />
+        @change="dispatchTrackSelect({event: 'size', eventLabel: form.size})" />
 
       <DropdownMulti
         v-if="form.clan === 2"
@@ -156,11 +156,14 @@
 </template>
 
 <script>
+import filterMaps from '@/mixins/filter-maps';
+
 export default {
   name: 'NPASignupSearchFilters',
   blockName: 'npa-signup-search-filters',
   status: 'under-review',
   release: '1.0.0',
+  mixins: [filterMaps],
 
   props: {
     /**
@@ -223,7 +226,7 @@ export default {
        * @type none
        */
       this.$emit('click:saveAndClose');
-      const parsedData = this.parseForm();
+      const parsedData = this.parseForm(this.form, this.breedIdsDropdown);
       this.dispatchTrackClick({ event: 'save', eventLabel: JSON.stringify(parsedData) });
     },
     submit() {
@@ -236,34 +239,22 @@ export default {
       this.$emit('submit', this.form);
     },
     /**
-     * Dispatch analytics track with an eventData
+     * Dispatch analytics track with an eventData,
+     * use mixins to map ids to names
      */
-    dispatchTrackEdit(eventObj) {
-      if (eventObj.eventLabel !== '' && eventObj.eventLabel !== undefined) {
-        eventObj.eventLabel = eventObj.eventLabel.toString();
+    dispatchTrackSelect(eventObj) {
+      const eventName = eventObj.event;
+      let eventLabel = eventObj.eventLabel;
+      if (eventLabel !== '' && eventLabel !== undefined) {
+        if (eventName === 'breed') eventLabel = this.mapBreedNamesGA(eventLabel, this.breedIdsDropdown);
+        if (eventName === 'color') eventLabel = this.mapColorsGA(eventLabel, this.form.clan);
+        if (eventName === 'size') eventLabel = this.mapSizesGA(eventLabel);
+        eventObj.eventLabel = eventLabel.toString();
         this.$syscall(`analytics/track/NPASignupSearchFilters/select/${eventObj.event}`, eventObj);
       }
     },
     dispatchTrackClick(eventObj) {
       this.$syscall(`analytics/track/NPASignupSearchFilters/click/${eventObj.event}`, eventObj);
-    },
-    parseForm() {
-      const parsedData = {};
-      const form = this.form;
-      const formKeys = Object.keys(form);
-      /**
-       * Remove any null values or empty arrays for tracking
-       */
-      formKeys.forEach(prop => {
-        if (Array.isArray(form[prop]) && form[prop].length > 0) {
-          parsedData[prop] = form[prop];
-        }
-        if (form[prop] !== null && form[prop] !== '') {
-          parsedData[prop] = form[prop];
-        }
-      });
-
-      return parsedData;
     },
   },
 };
