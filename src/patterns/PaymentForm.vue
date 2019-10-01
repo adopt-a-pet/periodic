@@ -19,7 +19,7 @@
           required: 'Required'
         }"
         @change="removePaymentError"
-        @click="dispatchTrack('Premium Alert – First Name')" />
+        @click="dispatchTrack('firstName')" />
       <TextInput
         v-model="lastName"
         label="Last Name"
@@ -29,7 +29,7 @@
           required: 'Required'
         }"
         @change="removePaymentError"
-        @click="dispatchTrack('Premium Alert – Last Name')" />
+        @click="dispatchTrack('lastName')" />
       <TextInput
         v-model="zipCode"
         label="Zip Code"
@@ -41,7 +41,7 @@
           required: 'Invalid Location'
         }"
         @change="removePaymentError"
-        @click="dispatchTrack('Premium Alert – zipcode')" />
+        @click="dispatchTrack('zipCode')" />
       <VSpacer size="xxs" />
       <TextInput
         id="card-number"
@@ -228,15 +228,15 @@ export default {
        * to work either.
        */
       this.cardNumber.addEventListener('blur', () => {
-        this.dispatchTrack('Premium Alert – Credit Card Number');
+        this.dispatchTrack('cardNumber');
       });
 
       this.cardCvc.addEventListener('blur', () => {
-        this.dispatchTrack('Premium Alert – CVC');
+        this.dispatchTrack('cardCVC');
       });
 
       this.cardExpiry.addEventListener('blur', () => {
-        this.dispatchTrack('Premium Alert – MM/YY');
+        this.dispatchTrack('cardExpiration');
       });
 
       /**
@@ -316,7 +316,8 @@ export default {
      * or eventLabel
      */
     dispatchTrack(event) {
-      this.$syscall('analytics/track/dispatchTrack', { event });
+      // this.$syscall('analytics/track/dispatchTrack', { event });
+      this.$syscall(`analytics/track/PaymentForm/click/${event}`);
     },
   },
 };

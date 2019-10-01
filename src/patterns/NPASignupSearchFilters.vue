@@ -15,7 +15,7 @@
         v-model="form.zipCode"
         type="search"
         label="Zip / Postal or City, State"
-        @change="dispatchTrack({event: 'Select Location – premium alert filter', eventLabel: form.zipCode})" />
+        @change="dispatchTrackEdit({event: 'location', eventLabel: form.zipCode})" />
 
       <Dropdown
         v-model="form.geoRange"
@@ -30,7 +30,7 @@
           { display: '500 miles or less', value: 500 },
           { display: '3500 miles or less', value: -1 }
         ]"
-        @change="dispatchTrack({event: 'Select Distance – premium alert filter', eventLabel: form.geoRange})" />
+        @change="dispatchTrackEdit({event: 'distance', eventLabel: form.geoRange})" />
 
       <DropdownMulti
         v-model="form.breeds"
@@ -41,7 +41,7 @@
         zero-selected-label="Any"
         size="tiny"
         type="checkbox"
-        @change="dispatchTrack({event: 'Select Breed – premium alert filter', eventLabel: form.breeds})" />
+        @change="dispatchTrackEdit({event: 'breed', eventLabel: form.breeds})" />
 
       <DropdownMulti
         v-model="form.sex"
@@ -53,7 +53,7 @@
           { display: 'Male', value: 'm' },
           { display: 'Female', value: 'f' }
         ]"
-        @change="dispatchTrack({event: 'Select Sex – premium alert filter', eventLabel: form.sex})" />
+        @change="dispatchTrackEdit({event: 'sex', eventLabel: form.sex})" />
 
       <DropdownMulti
         v-model="form.age"
@@ -67,7 +67,7 @@
           { display: 'Adult', value: 'adult' },
           { display: 'Senior', value: 'senior' }
         ]"
-        @change="dispatchTrack({event: 'Select Age – premium alert filter', eventLabel: form.age})" />
+        @change="dispatchTrackEdit({event: 'age', eventLabel: form.age})" />
 
       <DropdownMulti
         v-if="form.clan === 1"
@@ -88,7 +88,7 @@
           { display: 'Tricolor', value: 160 },
           { display: 'White', value: 161 }
         ]"
-        @change="dispatchTrack({event: 'Select Color – premium alert filter', eventLabel: form.color})" />
+        @change="dispatchTrackEdit({event: 'color', eventLabel: form.color})" />
 
       <DropdownMulti
         v-if="form.clan === 2"
@@ -116,7 +116,7 @@
           { display: 'Tortoiseshell', value: 59 },
           { display: 'White', value: 60 }
         ]"
-        @change="dispatchTrack({event: 'Select Color – premium alert filter', eventLabel: form.color})" />
+        @change="dispatchTrackEdit({event: 'color', eventLabel: form.color})" />
 
       <DropdownMulti
         v-if="form.clan === 1"
@@ -131,7 +131,7 @@
           { display: 'Large', value: 3 },
           { display: 'X-Large', value: 4 }
         ]"
-        @change="dispatchTrack({event: 'Select Size – premium alert filter', eventLabel: form.size})" />
+        @change="dispatchTrackEdit({event: 'size', eventLabel: form.size})" />
 
       <DropdownMulti
         v-if="form.clan === 2"
@@ -224,7 +224,7 @@ export default {
        */
       this.$emit('click:saveAndClose');
       const parsedData = this.parseForm();
-      this.dispatchTrack({ event: 'Save button – premium alert filter', eventLabel: JSON.stringify(parsedData) });
+      this.dispatchTrackClick({ event: 'save', eventLabel: JSON.stringify(parsedData) });
     },
     submit() {
       /**
@@ -238,11 +238,14 @@ export default {
     /**
      * Dispatch analytics track with an eventData
      */
-    dispatchTrack(eventData) {
-      if (eventData.eventLabel !== '' && eventData.eventLabel !== undefined) {
-        eventData.eventLabel = eventData.eventLabel.toString();
-        this.$syscall('analytics/track/dispatchTrack', eventData);
+    dispatchTrackEdit(eventObj) {
+      if (eventObj.eventLabel !== '' && eventObj.eventLabel !== undefined) {
+        eventObj.eventLabel = eventObj.eventLabel.toString();
+        this.$syscall(`analytics/track/NPASignupSearchFilters/edit/${eventObj.event}`, eventObj);
       }
+    },
+    dispatchTrackClick(eventObj) {
+      this.$syscall(`analytics/track/NPASignupSearchFilters/click/${eventObj.event}`, eventObj);
     },
     parseForm() {
       const parsedData = {};
