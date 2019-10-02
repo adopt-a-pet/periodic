@@ -109,7 +109,7 @@ const methods = {
     const parsedData = {};
     const formKeys = Object.keys(form);
     formKeys.forEach(prop => {
-      if (form[prop] !== null && form[prop] !== '' && Array.isArray(form[prop] !== true)) {
+      if (form[prop] !== null && form[prop] !== '' && Array.isArray(form[prop]) !== true) {
         parsedData[prop] = form[prop];
       }
       if (Array.isArray(form[prop]) && form[prop].length > 0) {
