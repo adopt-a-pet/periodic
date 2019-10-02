@@ -109,10 +109,10 @@ const methods = {
     const parsedData = {};
     const formKeys = Object.keys(form);
     formKeys.forEach(prop => {
+      if (form[prop] !== null && form[prop] !== '') {
+        parsedData[prop] = form[prop];
+      }
       if (Array.isArray(form[prop]) && form[prop].length > 0) {
-        if (form[prop] !== null && form[prop] !== '') {
-          parsedData[prop] = form[prop];
-        }
         parsedData[prop] = form[prop];
         if (prop === 'breeds') parsedData[prop] = this.mapBreedNamesGA(form[prop], breeds);
         if (prop === 'color') parsedData[prop] = this.mapColorsGA(form[prop], form.clan);
