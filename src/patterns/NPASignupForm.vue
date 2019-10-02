@@ -493,6 +493,7 @@ export default {
        * @type none
        */
       this.$emit('click:searchFilters');
+      this.dispatchTrackClick('editFilters');
     },
     skip() {
       /**
@@ -520,6 +521,16 @@ export default {
        * @type Number
        */
       this.$emit('change:plan', plan);
+
+      /**
+       * Dispatch free or premium alert based off of plan,
+       * for tracking
+       */
+      if (plan < 1) {
+        this.dispatchTrackClick('freeAlert');
+      } else {
+        this.dispatchTrackClick('premiumAlert');
+      }
     },
     submit() {
       if (this.$refs.email.validate()) {
@@ -557,6 +568,13 @@ export default {
         filters: this.filters,
         stripeInfo: obj,
       });
+    },
+    /**
+     * Dispatch analytics track with an eventAction
+     * or eventLabel
+     */
+    dispatchTrackClick(event) {
+      this.$syscall(`analytics/track/NPASignupForm/click/${event}`);
     },
   },
 };

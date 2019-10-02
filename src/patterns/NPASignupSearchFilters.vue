@@ -14,7 +14,8 @@
       <TextInput
         v-model="form.zipCode"
         type="search"
-        label="Zip / Postal or City, State" />
+        label="Zip / Postal or City, State"
+        @change="dispatchTrackSelect({event: 'location', eventLabel: form.zipCode})" />
 
       <Dropdown
         v-model="form.geoRange"
@@ -28,7 +29,8 @@
           { display: '250 miles or less', value: 250 },
           { display: '500 miles or less', value: 500 },
           { display: '3500 miles or less', value: -1 }
-        ]" />
+        ]"
+        @change="dispatchTrackSelect({event: 'distance', eventLabel: form.geoRange})" />
 
       <DropdownMulti
         v-model="form.breeds"
@@ -38,7 +40,8 @@
         multi-selected-label="Multiple"
         zero-selected-label="Any"
         size="tiny"
-        type="checkbox" />
+        type="checkbox"
+        @change="dispatchTrackSelect({event: 'breed', eventLabel: form.breeds})" />
 
       <DropdownMulti
         v-model="form.sex"
@@ -49,7 +52,8 @@
         :items="[
           { display: 'Male', value: 'm' },
           { display: 'Female', value: 'f' }
-        ]" />
+        ]"
+        @change="dispatchTrackSelect({event: 'sex', eventLabel: form.sex})" />
 
       <DropdownMulti
         v-model="form.age"
@@ -62,7 +66,8 @@
           { display: 'Young', value: 'young' },
           { display: 'Adult', value: 'adult' },
           { display: 'Senior', value: 'senior' }
-        ]" />
+        ]"
+        @change="dispatchTrackSelect({event: 'age', eventLabel: form.age})" />
 
       <DropdownMulti
         v-if="form.clan === 1"
@@ -82,7 +87,8 @@
           { display: 'Tan/Yellow/Fawn', value: 159 },
           { display: 'Tricolor', value: 160 },
           { display: 'White', value: 161 }
-        ]" />
+        ]"
+        @change="dispatchTrackSelect({event: 'color', eventLabel: form.color})" />
 
       <DropdownMulti
         v-if="form.clan === 2"
@@ -109,7 +115,8 @@
           { display: 'Tiger Striped', value: 163 },
           { display: 'Tortoiseshell', value: 59 },
           { display: 'White', value: 60 }
-        ]" />
+        ]"
+        @change="dispatchTrackSelect({event: 'color', eventLabel: form.color})" />
 
       <DropdownMulti
         v-if="form.clan === 1"
@@ -123,7 +130,8 @@
           { display: 'Medium', value: 2 },
           { display: 'Large', value: 3 },
           { display: 'X-Large', value: 4 }
-        ]" />
+        ]"
+        @change="dispatchTrackSelect({event: 'size', eventLabel: form.size})" />
 
       <DropdownMulti
         v-if="form.clan === 2"
@@ -148,11 +156,14 @@
 </template>
 
 <script>
+import filterMaps from '@/mixins/filter-maps';
+
 export default {
   name: 'NPASignupSearchFilters',
   blockName: 'npa-signup-search-filters',
   status: 'under-review',
   release: '1.0.0',
+  mixins: [filterMaps],
 
   props: {
     /**
@@ -215,6 +226,8 @@ export default {
        * @type none
        */
       this.$emit('click:saveAndClose');
+      const parsedData = this.parseForm(this.form, this.breedIdsDropdown);
+      this.dispatchTrackClick({ event: 'save', eventLabel: JSON.stringify(parsedData) });
     },
     submit() {
       /**
@@ -224,6 +237,24 @@ export default {
        * @type Object
        */
       this.$emit('submit', this.form);
+    },
+    /**
+     * Dispatch analytics track with an eventData,
+     * use mixins to map ids to names
+     */
+    dispatchTrackSelect(eventObj) {
+      const eventName = eventObj.event;
+      let eventLabel = eventObj.eventLabel;
+      if (eventLabel !== '' && eventLabel !== undefined) {
+        if (eventName === 'breed') eventLabel = this.mapBreedNamesGA(eventLabel, this.breedIdsDropdown);
+        if (eventName === 'color') eventLabel = this.mapColorsGA(eventLabel, this.form.clan);
+        if (eventName === 'size') eventLabel = this.mapSizesGA(eventLabel);
+        eventObj.eventLabel = eventLabel.toString();
+        this.$syscall(`analytics/track/NPASignupSearchFilters/select/${eventObj.event}`, eventObj);
+      }
+    },
+    dispatchTrackClick(eventObj) {
+      this.$syscall(`analytics/track/NPASignupSearchFilters/click/${eventObj.event}`, eventObj);
     },
   },
 };

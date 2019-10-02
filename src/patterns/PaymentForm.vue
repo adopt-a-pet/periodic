@@ -18,7 +18,8 @@
         :error-messages="{
           required: 'Required'
         }"
-        @change="removePaymentError" />
+        @change="removePaymentError"
+        @click="dispatchTrack('firstName')" />
       <TextInput
         v-model="lastName"
         label="Last Name"
@@ -27,7 +28,8 @@
         :error-messages="{
           required: 'Required'
         }"
-        @change="removePaymentError" />
+        @change="removePaymentError"
+        @click="dispatchTrack('lastName')" />
       <TextInput
         v-model="zipCode"
         label="Zip Code"
@@ -38,7 +40,8 @@
           zipsValidator: 'Invalid Location',
           required: 'Invalid Location'
         }"
-        @change="removePaymentError" />
+        @change="removePaymentError"
+        @click="dispatchTrack('zipCode')" />
       <VSpacer size="xxs" />
       <TextInput
         id="card-number"
@@ -218,6 +221,25 @@ export default {
       this.cardCvc.mount('#card-cvc');
 
       /**
+       * Have to add these listeners manually, we need them
+       * to track the clicking of these stripe fields. Unfortunately
+       * @click does not work properly with these fields. We're using
+       * blur instead of click because the click events did not seem
+       * to work either.
+       */
+      this.cardNumber.addEventListener('blur', () => {
+        this.dispatchTrack('cardNumber');
+      });
+
+      this.cardCvc.addEventListener('blur', () => {
+        this.dispatchTrack('cardCVC');
+      });
+
+      this.cardExpiry.addEventListener('blur', () => {
+        this.dispatchTrack('cardExpiration');
+      });
+
+      /**
        * Stripes default way of handling card errors. Super handy,
        * the messages are dynamic depending on what the error is.
        */
@@ -288,6 +310,13 @@ export default {
     },
     removePaymentError() {
       this.showError = false;
+    },
+    /**
+     * Dispatch analytics track with an eventAction
+     * or eventLabel
+     */
+    dispatchTrack(event) {
+      this.$syscall(`analytics/track/PaymentForm/click/${event}`);
     },
   },
 };
