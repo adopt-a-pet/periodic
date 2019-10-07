@@ -18,7 +18,7 @@
     <!-- dogs -->
     <section v-if="sections[sectionIndex].display === 'Dogs'">
       <LocationInput
-        v-model="fields.zipcode"
+        v-model="fields.location"
         :required="true"
         name="location"
         size="small" />
@@ -67,7 +67,7 @@
     <!-- cats -->
     <section v-if="sections[sectionIndex].display === 'Cats'">
       <LocationInput
-        v-model="fields.zipcode"
+        v-model="fields.location"
         :required="true"
         name="location"
         size="small" />
@@ -126,7 +126,7 @@
       <!-- Rabbits -->
       <section v-if="fields.clanId === 3">
         <LocationInput
-          v-model="fields.zipcode"
+          v-model="fields.location"
           :required="true"
           name="location"
           size="small" />
@@ -162,7 +162,7 @@
       <!-- Small Animals -->
       <section v-if="fields.clanId === 4">
         <LocationInput
-          v-model="fields.zipcode"
+          v-model="fields.location"
           :required="true"
           name="location"
           size="small" />
@@ -199,7 +199,7 @@
       <!-- Birds -->
       <section v-if="fields.clanId === 5">
         <LocationInput
-          v-model="fields.zipcode"
+          v-model="fields.location"
           :required="true"
           name="location"
           size="small" />
@@ -236,7 +236,7 @@
       <!-- Horses -->
       <section v-if="fields.clanId === 6">
         <LocationInput
-          v-model="fields.zipcode"
+          v-model="fields.location"
           :required="true"
           name="location"
           size="small" />
@@ -286,7 +286,7 @@
       <!-- Reptiles, Amphibians, and/or Fish -->
       <section v-if="fields.clanId === 7">
         <LocationInput
-          v-model="fields.zipcode"
+          v-model="fields.location"
           :required="true"
           name="location"
           size="small" />
@@ -316,7 +316,7 @@
       <!-- Reptiles, Amphibians, and/or Fish -->
       <section v-if="fields.clanId === 8">
         <LocationInput
-          v-model="fields.zipcode"
+          v-model="fields.location"
           :required="true"
           name="location"
           size="small" />

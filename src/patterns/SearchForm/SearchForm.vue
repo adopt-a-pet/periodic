@@ -52,7 +52,7 @@ export default {
       fields: {
         clanId: 1,
         distance: distances[0].value,
-        zipcode: null,
+        location: null,
       },
       sections: [
         {
