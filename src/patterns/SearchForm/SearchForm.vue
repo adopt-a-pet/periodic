@@ -71,11 +71,11 @@ export default {
       sexes: [
         {
           display: 'Male',
-          value: 'male',
+          value: 'm',
         },
         {
           display: 'Female',
-          value: 'female',
+          value: 'f',
         },
       ],
     };
