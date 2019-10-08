@@ -12,12 +12,12 @@
 
     <div :class="b('container').toString()">
       <TextInput
+        ref="zipCode"
         v-model="form.zipCode"
         type="search"
         label="Zip / Postal or City, State"
         :error-messages="{ required: 'Enter Zip / Postal or City, State' }"
         required
-        name="zipCode"
         @change="dispatchTrackSelect({event: 'location', eventLabel: form.zipCode})" />
 
       <Dropdown
