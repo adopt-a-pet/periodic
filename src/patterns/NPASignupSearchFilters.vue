@@ -12,7 +12,7 @@
 
     <div :class="b('container').toString()">
       <TextInput
-        ref="zipCode"
+        ref="zipcode"
         v-model="form.zipCode"
         type="search"
         label="Zip / Postal or City, State"
@@ -239,7 +239,9 @@ export default {
        * @event submit
        * @type Object
        */
-      this.$emit('submit', this.form);
+      if (this.$refs.zipcode.validate()) {
+        this.$emit('submit', this.form);
+      }
     },
     /**
      * Dispatch analytics track with an eventData,
