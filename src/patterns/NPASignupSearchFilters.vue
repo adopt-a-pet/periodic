@@ -5,7 +5,7 @@
       :level="layout === 'desktop' ? 'h1' : 'h2'"
       font-weight="bold"
       font-family="museo">
-      Filters
+      <slot name="header" />
     </Heading>
 
     <VSpacer size="l" />
@@ -150,7 +150,7 @@
     <Button
       :class="b('save-close').toString()"
       @click="saveAndClose">
-      Save &amp; Close
+      <slot name="button" />
     </Button>
   </div>
 </template>
@@ -264,7 +264,14 @@ export default {
 ```vue
 <template>
   <NPASignupSearchFilters
-    :filters='filters' />
+    :filters='filters'>
+    <template slot="header">
+      Filters
+    </template>
+    <template slot="button">
+      Save &amp; Close
+    </template>
+  </NPASignupSearchFilters>
 </template>
 <script>
 export default {
