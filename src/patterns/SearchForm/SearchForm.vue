@@ -144,29 +144,31 @@ export default {
               this.allBreeds = res;
             });
 
-          // get sizes
-          this.$syscall('api/pets/getSizes', clanIds)
-            .then(res => {
-              this.allSizes = res;
-            });
-
-          // get colors
-          this.$syscall('api/pets/getColors', clanIds)
-            .then(res => {
-              this.allColors = res;
-            });
-
           // get ages
           this.$syscall('api/pets/getAges', clanIds)
             .then(res => {
               this.allAges = res;
             });
 
-          // get hair
-          this.$syscall('api/pets/getHair', clanIds)
-            .then(res => {
-              this.allHair = res;
-            });
+          if (this.advanced) {
+            // get sizes
+            this.$syscall('api/pets/getSizes', clanIds)
+              .then(res => {
+                this.allSizes = res;
+              });
+
+            // get colors
+            this.$syscall('api/pets/getColors', clanIds)
+              .then(res => {
+                this.allColors = res;
+              });
+
+            // get hair
+            this.$syscall('api/pets/getHair', clanIds)
+              .then(res => {
+                this.allHair = res;
+              });
+          }
         });
     },
 
