@@ -13,12 +13,13 @@
     <Heading level="h4" font-weight="bold">{{ pet.name }}</Heading>
     <Paragraph font-size="s">
       {{ petFormatted.sex }}, {{ petFormatted.age }}<span v-if="pet.specialNeeds">, <span class="orange">Special Needs</span></span><span v-if="pet.specialNeeds">, <span class="orange">Bonded Pair</span></span>
-      <div v-if="breeds">
+      <span v-if="breeds">
+        <br>
         {{ pet.breedName }}
         <span v-if="petFormatted.secondaryBreedName">
           / {{ pet.secondaryBreedName }}
         </span>
-      </div>
+      </span>
       <div v-if="location">{{ pet.city }}, {{ pet.state }}</div>
     </Paragraph>
   </div>
