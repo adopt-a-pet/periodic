@@ -2,9 +2,9 @@
   <a :href="`https://adoptapet.com/pet/${pet.petId}-${pet.city}-${pet.state}`">
     <img v-if="pet.image" :src="pet.image" />
     <span v-if="!pet.image">
-      <img v-if="pet.clanId === 1" src="https://images-ra.adoptapet.com/images/X_NoPhoto_outlined_Dog.svg" />
-      <img v-if="pet.clanId === 2" src="https://images-ra.adoptapet.com/images/X_NoPhoto_outlined_Cat.svg" />
-      <img v-if="pet.clanId > 2" src="https://images-ra.adoptapet.com/images/X_NoPhoto_outlined_Others.svg" />
+      <Icon v-if="pet.clanId === 1" name="no-photo-dog" />
+      <Icon v-if="pet.clanId === 2" name="no-photo-cat" />
+      <Icon v-if="pet.clanId > 2" name="no-photo-other" />
     </span>
     <div v-if="pet.status == 'adopted'" class="border-bottom blue">Adopted</div>
     <div v-else-if="pet.specialNeeds || pet.bondedTo || pet.actQuickly" class="border-bottom orange">Act Quickly</div>
