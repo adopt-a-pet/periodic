@@ -3,9 +3,12 @@
     v-if="native"
     :class="b({ native: true }).toString()">
     <TextInput
+      ref="input"
       :label="label"
       :label-right="labelRight"
       :value="selectedDisplay"
+      :error-messages="errorMessages"
+      :required="required"
       autocomplete="off"
       focus-border
       readonly>
@@ -25,7 +28,8 @@
     <select
       v-model.number="selectedIndex"
       :class="b('select').toString()"
-      :name="name">
+      :name="name"
+      @blur="validate">
       <option
         v-for="option in choices"
         :key="option.display"
@@ -39,11 +43,15 @@
     v-else
     :class="b({ searchable: search }).is({ full: full }).toString()">
     <TextInput
+      ref="input"
       :label="label"
       :name="name"
       :readonly="readonly"
       :value="filterOrselectedDisplay"
       :label-right="labelRight"
+      :size="size"
+      :error-messages="errorMessages"
+      :required="required"
       autocomplete="off"
       focus-border
       @blur="onBlur"
@@ -174,6 +182,22 @@ export default {
       type: Boolean,
       default: true,
     },
+
+    /**
+     * Whether the form field is required or not.
+     */
+    required: {
+      type: Boolean,
+      default: false,
+    },
+
+    /**
+     * What error message to show for each validation error
+     */
+    errorMessages: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   data() {
@@ -269,6 +293,7 @@ export default {
     onBlur() {
       this.focused = false;
       this.hide();
+      this.validate();
     },
 
     onFocus() {
@@ -325,6 +350,10 @@ export default {
     isOptionSelected(option) {
       return this.selectedIndex === option.index;
     },
+
+    async validate() {
+      this.$refs.input.validate();
+    },
   },
 
 };
@@ -355,6 +384,32 @@ export default {
       :search="true"
       :specialChoices="[{ display: 'Any', value: null }]"
       tooltip="This is an info bubble" />
+
+    <br />
+
+    <Dropdown
+      v-model="dropdown3"
+      :items="[
+        { display: 'One', value: 1 },
+        { display: 'Two', value: 2 },
+      ]"
+      :specialChoices="[{ display: 'Any', value: null }]"
+      label="Small"
+      size="small"
+      tooltip="This is an info bubble" />
+
+    <br />
+
+    <Dropdown
+      label="Required"
+      label-right="Right Label"
+      v-model="dropdown4"
+      :items="[
+        { display: 'One', value: 1 },
+        { display: 'Two', value: 2 },
+      ]"
+      :error-messages="{required: 'You should select something'}"
+      required />
   </div>
 </template>
 <script>
@@ -363,6 +418,8 @@ export default {
     return {
       dropdown1: 2,
       dropdown2: null,
+      dropdown3: 1,
+      dropdown4: null
     }
   }
 };

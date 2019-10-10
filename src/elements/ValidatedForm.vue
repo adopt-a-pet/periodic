@@ -54,7 +54,7 @@ export default {
           }
 
           /**
-           * Submit event
+           * Submit event that only fires when every field in `names` is valid.
            *
            * @event submit
            * @type none
