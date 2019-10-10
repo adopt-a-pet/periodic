@@ -1,0 +1,38 @@
++b(dropdown-group)
+
+  +breakpoint(normal)
+    display: flex
+
+  .#{$prefix-component}dropdown
+    margin-bottom: $space-xxs
+
+    +breakpoint(normal)
+      width: 100%
+
+      .#{$prefix-component}text-field__container
+
+        .#{$prefix-component}text-field__input
+          border-radius: 0
+
+          &:focus
+            z-index: 100
+
+      &:not(:first-child)
+        position: relative
+        margin-left: -1px
+
+      &:first-child
+
+        .#{$prefix-component}text-field__container
+
+          .#{$prefix-component}text-field__input
+            border-top-left-radius: $radius-m
+            border-bottom-left-radius: $radius-m
+
+      &:last-child
+
+        .#{$prefix-component}text-field__container
+
+          .#{$prefix-component}text-field__input
+            border-top-right-radius: $radius-m
+            border-bottom-right-radius: $radius-m
