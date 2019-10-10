@@ -356,7 +356,7 @@ export default {
 
       return this.filters.color
         .map(colorId => this.colorsMap[colorId])
-        .join(' or ');
+        .join(' or ').toLowerCase();
     },
     familyNames() {
       if (!this.filters.breeds) return this.clanName;
