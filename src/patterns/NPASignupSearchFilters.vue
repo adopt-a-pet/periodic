@@ -5,16 +5,19 @@
       :level="layout === 'desktop' ? 'h1' : 'h2'"
       font-weight="bold"
       font-family="museo">
-      Filters
+      <slot name="header" />
     </Heading>
 
     <VSpacer size="l" />
 
     <div :class="b('container').toString()">
       <TextInput
+        ref="zipcode"
         v-model="form.zipCode"
         type="search"
         label="Zip / Postal or City, State"
+        :error-messages="{ required: 'Enter Zip / Postal or City, State' }"
+        required
         @change="dispatchTrackSelect({event: 'location', eventLabel: form.zipCode})" />
 
       <Dropdown
@@ -150,7 +153,7 @@
     <Button
       :class="b('save-close').toString()"
       @click="saveAndClose">
-      Save &amp; Close
+      <slot name="button" />
     </Button>
   </div>
 </template>
@@ -236,7 +239,9 @@ export default {
        * @event submit
        * @type Object
        */
-      this.$emit('submit', this.form);
+      if (this.$refs.zipcode.validate()) {
+        this.$emit('submit', this.form);
+      }
     },
     /**
      * Dispatch analytics track with an eventData,
@@ -264,7 +269,14 @@ export default {
 ```vue
 <template>
   <NPASignupSearchFilters
-    :filters='filters' />
+    :filters='filters'>
+    <template slot="header">
+      Filters
+    </template>
+    <template slot="button">
+      Save &amp; Close
+    </template>
+  </NPASignupSearchFilters>
 </template>
 <script>
 export default {
