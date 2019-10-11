@@ -3,18 +3,23 @@
   <div class="login-popup forgot-popup">
     <h1
       data-login="e-modal-form-heading"
-      class="e-modal__form--heading forgot-heading__desktop">Forgot Password?</h1>
+      class="e-modal__form--heading forgot-heading__desktop">
+      Forgot Password?
+    </h1>
     <div class="container">
       <h1
         data-login="e-modal-form-heading"
-        class="e-modal__form--heading forgot-heading__mobile">Forgot Password?</h1>
+        class="e-modal__form--heading forgot-heading__mobile">
+        Forgot Password?
+      </h1>
       <div class="forgot-password__left">
         <div
           data-login="login-popup-forgot-pwd"
           class="login-popup__forgot-pwd">
-
           <!-- eslint-disable-next-line max-len -->
-          <p class="p__body-copy p--light m-space--regular">Enter your email address and we'll send you a link to reset your password.</p>
+          <p class="p__body-copy p--light m-space--regular">
+            Enter your email address and we'll send you a link to reset your password.
+          </p>
 
           <form @submit.prevent="submit">
             <EmailInput
@@ -35,14 +40,22 @@
       <div class="forgot-password__right">
         <h3
           data-h3="heading-museo-xcompact"
-          class="h3__heading">Can't log in with your email address?</h3>
+          class="h3__heading">
+          Can't log in with your email address?
+        </h3>
 
         <!-- eslint-disable-next-line max-len -->
-        <p class="p__body-copy p--light p-space-tb--small">Check to make sure there are no typos or misspellings in your entry, and make sure you are using the correct email address associated with your account.</p>
-        <p class="p__body-copy p--light">Need more help? Email us at
+        <p class="p__body-copy p--light p-space-tb--small">
+          Check to make sure there are no typos or misspellings in your entry,
+          and make sure you are using the correct email address associated with
+          your account.
+        </p>
+        <p class="p__body-copy p--light">
+          Need more help? Email us at
           <a
             href="mailto:info@adoptapet.com"
-            class="link-blue">info@adoptapet.com.</a></p>
+            class="link-blue">info@adoptapet.com.</a>
+        </p>
       </div>
     </div>
   </div>

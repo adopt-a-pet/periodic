@@ -1,6 +1,1 @@
-node_modules/*
-build/*
-config/*
-dist/*
-docs/*
-test/unit/coverage/*
+../periodic/dist/

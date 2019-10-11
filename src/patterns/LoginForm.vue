@@ -4,7 +4,9 @@
     class="login-popup">
     <h1
       data-login="e-modal-form-heading"
-      class="e-modal__form--heading m-space--medium">Log In</h1>
+      class="e-modal__form--heading m-space--medium">
+      Log In
+    </h1>
     <section>
       <div
         data-login="login-popup-section"
@@ -55,9 +57,11 @@
 
         <div
           data-login="login-popup-middle"
-          class="login-popup__middle"><hr
+          class="login-popup__middle">
+          <hr
             class="vertical-divider"
-            data-content="or"></div>
+            data-content="or">
+        </div>
 
         <div
           data-login="login-popup-right"

@@ -1,17 +1,17 @@
 <template>
   <div :class="b().toString()">
     <div
-      v-for="items in items"
-      :key="items.value"
+      v-for="item in items"
+      :key="item.value"
       :class="b('label').toString()">
       <span
-        v-if="items.state === true"
+        v-if="item.state === true"
         :class="[b('icon', { state: 'tick' }).toString()]">
         <Icon
           name="check-green" />
       </span>
       <span
-        v-if="items.state === false"
+        v-if="item.state === false"
         :class="[b('icon', { state: 'exclamation' }).toString()]">
         <Icon
           name="exclamation" />
@@ -19,7 +19,8 @@
       <Heading
         :class="b('text').toString()"
         level="h4"
-        line-height="compact">{{ items.value }}
+        line-height="compact">
+        {{ item.value }}
       </Heading>
     </div>
   </div>

@@ -16,7 +16,6 @@
     @change="onChange"
     @blur="onBlur"
     @focus="onFocus">
-
     <template slot="right">
       <span
         :class="b('eye').is({ active: showPassword }).toString()"

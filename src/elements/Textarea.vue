@@ -24,7 +24,9 @@
 
     <div
       v-if="max"
-      :class="b('text-limit').toString()">{{ remaining }} Characters Remaining</div>
+      :class="b('text-limit').toString()">
+      {{ remaining }} Characters Remaining
+    </div>
   </div>
 </template>
 
