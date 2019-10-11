@@ -1,24 +1,44 @@
-+b(fieldgroup)
++b(field-group)
 
-  @include breakpoint(normal)
+  +breakpoint(normal)
     display: flex
 
-    > div
+  .#{$prefix-component}button
+    height: 58px !important
+
+  > div, > button
+    margin-bottom: $space-xxs
+
+    +breakpoint(normal)
       width: 100%
+      border-radius: 0
+      margin-bottom: 0
+
+      label
+        top: 15px
+
+      .#{$prefix-component}text-field__input
+        border-radius: 0
+
+        &:focus
+          z-index: 100
+
+      &:not(:first-child)
+        position: relative
+        margin-left: -1px
 
       &:first-child
+        border-top-left-radius: $radius-m
+        border-bottom-left-radius: $radius-m
 
-        input
-          border-top-right-radius: 0
-          border-bottom-right-radius: 0
+        .#{$prefix-component}text-field__input
+          border-top-left-radius: $radius-m
+          border-bottom-left-radius: $radius-m
 
       &:last-child
+        border-top-right-radius: $radius-m
+        border-bottom-right-radius: $radius-m
 
-        input
-          border-top-left-radius: 0
-          border-bottom-left-radius: 0
-
-      &:not(:first-child):not(:last-child)
-
-        input
-          border-radius: 0
+        .#{$prefix-component}text-field__input
+          border-top-right-radius: $radius-m
+          border-bottom-right-radius: $radius-m
