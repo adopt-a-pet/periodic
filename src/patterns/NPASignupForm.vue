@@ -574,7 +574,7 @@ export default {
      * or eventLabel
      */
     dispatchTrackClick(event) {
-      this.$syscall(`analytics/track/NPASignupForm/click/${event}`);
+      this.$syscall(`analytics/track/NPASignupForm/${event}/click`);
     },
   },
 };
