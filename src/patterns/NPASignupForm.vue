@@ -407,8 +407,6 @@ export default {
           this.colorNames,
           this.sizeNames,
           this.hairNames,
-          this.specialNeeds,
-          this.bondedPair,
         ]
           .filter(a => !!a)
           .join(', ');
