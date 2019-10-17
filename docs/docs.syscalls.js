@@ -87,7 +87,7 @@ export default {
     'analytics/track/NPASignupForm/premiumAlert/click': function(_, payload) {
       console.log('event:', 'premiumAlert');
     },
-    'analytics/track/NPASignupForm/FreeAlert/click': function(_, payload) {
+    'analytics/track/NPASignupForm/freeAlert/click': function(_, payload) {
       console.log('event:', 'freeAlert');
     },
     'analytics/track/NPASignupForm/editFilters/click': function(_, payload) {
