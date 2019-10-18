@@ -1,7 +1,5 @@
 <svg width="16px" height="12px" viewBox="0 0 16 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <g id="Style-Guide-Form" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-    <g id="Form-10" transform="translate(-1027.000000, -297.000000)" fill="#FFFFFF">
-      <polygon id="Check-Copy-5" points="1028.8 302.4 1027 304.2 1031.8 309 1042.6 298.8 1040.8 297 1031.8 305.4"></polygon>
-    </g>
+  <g id="Form-10" transform="translate(-1027.000000, -297.000000)">
+    <polygon id="Check-Copy-5" points="1028.8 302.4 1027 304.2 1031.8 309 1042.6 298.8 1040.8 297 1031.8 305.4"></polygon>
   </g>
 </svg>
