@@ -334,10 +334,10 @@ export default {
       return name;
     },
     age() {
-      return this.filters.age ? this.filters.age.join(' or ') : null;
+      return this.filters.age ? this.filters.age.map(this.$options.filters.capitalize).join(' or ') : null;
     },
     hairNames() {
-      return this.filters.hair ? this.filters.hair.join(' or ') : null;
+      return this.filters.hair ? this.filters.hair.map(this.$options.filters.capitalize).join(' or ') : null;
     },
     colorNames() {
       if (!this.filters.color) return '';
