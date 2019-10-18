@@ -1,0 +1,45 @@
++b(popup)
+  position: relative
+  overflow: visible
+  pointer-events: auto
+  z-index: 1
+
+  +e(bubble)
+    margin-left: auto
+    margin-right: 0
+    right: 0
+    background: color(awhite)
+    border-radius: $radius-m
+    box-shadow: $shadow-callout
+    position: relative
+    display: inline-block
+
+    &::after
+      +border(8px solid color(ablack))
+      +rem-fallback('left', $space-xxxxl)
+      border-color: transparent transparent color(awhite) color(awhite)
+      box-shadow: $shadow-callout
+      box-sizing: border-box
+      content: ''
+      height: 0
+      margin-left: 1.8em
+      position: absolute
+      transform-origin: 0 0
+      transform: rotate(315deg)
+      width: 0
+      z-index: 100
+
+  +e(content)
+    +font-size(14)
+    +rem-fallback('line-height', 22px)
+    +rem-fallback('padding', 20px)
+    font-weight: 300
+    position: relative
+
+  +e(bubble-container)
+    // Set the width on bubble-container acts like max-width normally would
+    // (it's different because the bubble is positioned `absolute`)
+    +rem-fallback('width', $width-tooltip)
+    +rem-fallback('left', -($width-tooltip / 2))
+    +rem-fallback('bottom', $space-xl)
+    position: absolute
