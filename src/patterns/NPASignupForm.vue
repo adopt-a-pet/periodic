@@ -49,24 +49,12 @@
         </Paragraph>
 
         <Paragraph
-          v-if="hasMoreFiltersThanClan"
           font-weight="bold"
           line-height="26px">
           <TextLink
             :class="b('search-params').toString()"
             @click="searchFilters">
-            {{ petDescription }} within {{ geoRange }} miles of {{ filters.zipCode }}
-          </TextLink>
-        </Paragraph>
-
-        <Paragraph
-          v-else
-          font-weight="bold"
-          line-height="26px">
-          <TextLink
-            :class="b('search-params').toString()"
-            @click="searchFilters">
-            All {{ clanName }}s within {{ geoRange }} miles of {{ filters.zipCode }}
+            {{ clanName }}s: {{ petDescription }} - within {{ geoRange }} miles of {{ filters.zipCode }}
           </TextLink>
         </Paragraph>
 
@@ -314,10 +302,10 @@ export default {
   computed: {
     sizeMap() {
       return {
-        1: 'small',
-        2: 'medium',
-        3: 'large',
-        4: 'x-large',
+        1: 'Small',
+        2: 'Medium',
+        3: 'Large',
+        4: 'X-Large',
       };
     },
 
@@ -332,31 +320,31 @@ export default {
           break;
 
         case 'm':
-          name = 'male';
+          name = 'Male';
           break;
 
         case 'f':
-          name = 'female';
+          name = 'Female';
           break;
 
         default:
-          name = 'male or female';
+          name = 'Male or Female';
       }
 
       return name;
     },
     age() {
-      return this.filters.age ? this.filters.age.join(' or ') : null;
+      return this.filters.age ? this.filters.age.map(this.$options.filters.capitalize).join(' or ') : null;
     },
     hairNames() {
-      return this.filters.hair ? this.filters.hair.join(' or ') : null;
+      return this.filters.hair ? this.filters.hair.map(this.$options.filters.capitalize).join(' or ') : null;
     },
     colorNames() {
       if (!this.filters.color) return '';
 
       return this.filters.color
         .map(colorId => this.colorsMap[colorId])
-        .join(' or ').toLowerCase();
+        .join(' or ');
     },
     familyNames() {
       if (!this.filters.breeds) return this.clanName;
@@ -411,18 +399,19 @@ export default {
     },
 
     petDescription() {
-      return [
-        this.bondedPair,
-        this.age,
-        this.sexFullName,
-        this.colorNames,
-        this.sizeNames,
-        this.hairNames,
-        this.familyNames,
-        this.specialNeeds,
-      ]
-        .filter(a => !!a)
-        .join(' ');
+      if (this.hasMoreFiltersThanClan) {
+        return [
+          this.familyNames,
+          this.sexFullName,
+          this.age,
+          this.colorNames,
+          this.sizeNames,
+          this.hairNames,
+        ]
+          .filter(a => !!a)
+          .join(', ');
+      }
+      return 'All';
     },
 
     npaTypes: () => [
