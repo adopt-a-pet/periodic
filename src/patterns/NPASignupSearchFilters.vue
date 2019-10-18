@@ -255,11 +255,11 @@ export default {
         if (eventName === 'color') eventLabel = this.mapColorsGA(eventLabel, this.form.clan);
         if (eventName === 'size') eventLabel = this.mapSizesGA(eventLabel);
         eventObj.eventLabel = eventLabel.toString();
-        this.$syscall(`analytics/track/NPASignupSearchFilters/select/${eventObj.event}`, eventObj);
+        this.$syscall(`analytics/track/NPASignupSearchFilters/${eventObj.event}/select`, eventObj);
       }
     },
     dispatchTrackClick(eventObj) {
-      this.$syscall(`analytics/track/NPASignupSearchFilters/click/${eventObj.event}`, eventObj);
+      this.$syscall(`analytics/track/NPASignupSearchFilters/${eventObj.event}/click`, eventObj);
     },
   },
 };
