@@ -22,7 +22,8 @@
       box-sizing: border-box
       content: ''
       height: 0
-      margin-left: 1.8em
+      margin-left: -11px
+      left: 50%
       position: absolute
       transform-origin: 0 0
       transform: rotate(315deg)
@@ -39,7 +40,7 @@
   +e(bubble-container)
     // Set the width on bubble-container acts like max-width normally would
     // (it's different because the bubble is positioned `absolute`)
-    +rem-fallback('width', $width-tooltip)
+    // +rem-fallback('width', $width-tooltip)
     +rem-fallback('left', -($width-tooltip / 2))
     +rem-fallback('bottom', $space-xl)
     position: absolute
