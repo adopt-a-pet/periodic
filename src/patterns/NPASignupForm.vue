@@ -67,7 +67,8 @@
           v-model="form.email"
           name="email"
           :error-messages="{ required: 'Enter Email', email: 'Invalid Email' }"
-          required />
+          required
+          @change="changeEmail" />
 
         <RadioGroupBox
           v-if="filters.clan === 1 || filters.clan === 2"
@@ -564,6 +565,13 @@ export default {
      */
     dispatchTrackClick(event) {
       this.$syscall(`analytics/track/NPASignupForm/${event}/click`);
+    },
+    /**
+     * Emit this so we can update the store
+     * from the frontend
+     */
+    changeEmail() {
+      this.$emit('change:npaEmail', this.$refs.email.value);
     },
   },
 };
