@@ -348,7 +348,6 @@ export default {
         .join(' or ');
     },
     familyNames() {
-      this.resetFamilyName();
       return this.filters.breeds
         .map(breedId => this.breedMap[breedId])
         .join(' or ');
@@ -571,14 +570,6 @@ export default {
      */
     changeEmail() {
       this.$emit('change:npaEmail', this.$refs.email.value);
-    },
-    /**
-     * Reset selectedBreeds back to breeds after form is submitted
-     */
-    resetFamilyName() {
-      if (this.filters.selectedBreeds) {
-        this.filters.breeds = this.filters.selectedBreeds;
-      }
     },
   },
 };
