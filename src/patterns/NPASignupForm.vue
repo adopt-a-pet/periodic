@@ -452,12 +452,12 @@ export default {
      *
      * @syscall api/pets/getBreeds
      * @param {Number}
-     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
+     * @returns {{breedId: Number, breedName: String}}
      */
     this.$syscall('api/pets/getBreeds', this.filters.clan).then(response => {
       this.breedMap = response.reduce(
-        (acc, { breedId, breedNamePlural }) =>
-          Object.assign(acc, { [breedId]: breedNamePlural }),
+        (acc, { breedId, breedName }) =>
+          Object.assign(acc, { [breedId]: breedName }),
         {},
       );
     });
