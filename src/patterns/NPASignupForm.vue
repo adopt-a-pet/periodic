@@ -350,6 +350,7 @@ export default {
     familyNames() {
       return this.filters.breeds
         .map(breedId => this.breedMap[breedId])
+        .sort()
         .join(' or ');
     },
     hasMoreFiltersThanClan() {
