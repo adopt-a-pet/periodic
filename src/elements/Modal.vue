@@ -21,7 +21,7 @@
           </span>
         </header>
 
-        <main>
+        <main :class="b('main').toString()">
           <slot />
         </main>
       </div>
