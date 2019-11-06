@@ -53,9 +53,6 @@ export default {
         { display: "linkOne", href: "https://google.com" },
         { display: "linkTwo", href: "https://adoptapet.com" },
         { display: "linkThree", href: "https://adoptapet.com" },
-        { display: "linkFour", href: "https://adoptapet.com" },
-        { display: "linkFive", href: "https://adoptapet.com" },
-        { display: "linkSix", href: "https://adoptapet.com" },
       ]' />
   </div>
   ```
