@@ -1,0 +1,50 @@
+@import '~/assets/sass'
+
+section.confirmation
+  @include breakpoint(tablet-wide)
+    display: grid
+    grid-template-columns: 50% 50%
+
+.wrapper
+  @include breakpoint(tablet)
+    display: grid
+    grid-template-columns: auto
+
+    .container
+      grid-area: 1 / 1 / 1 / 1
+
+  .buttons, .inputs
+    display: grid
+    grid-template-columns: auto
+    grid-gap: 20px 20px
+
+    @include breakpoint(tablet)
+      display: grid
+      grid-template-columns: 1fr 1fr
+      grid-gap: 20px 20px
+
+      .inputs
+        display: grid
+        grid-template-columns: auto auto
+        grid-gap: $grid-gap $grid-gap
+
+      .confirmation
+        display: grid
+        grid-template-columns: auto auto
+        grid-gap: $grid-gap $grid-gap
+
+  .or-divider
+    position: relative
+    text-align: center
+    margin-bottom: 0
+
+    &::after
+      background-color: #fff
+      content: attr(data-content)
+      display: inline-block
+      font-size: 16px
+      font-size: 22px
+      font-weight: 300
+      padding: 0 .6em
+      position: relative
+      top: -.85em

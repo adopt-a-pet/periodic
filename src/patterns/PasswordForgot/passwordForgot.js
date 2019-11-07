@@ -1,0 +1,31 @@
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'PasswordForgot',
+  data() {
+    return {
+      email: null,
+      section: 'initial',
+    };
+  },
+  methods: {
+    /**
+     * Request password reset link
+     */
+    async requestPasswordResetLink() {
+      try {
+        await this.$syscall('api/users/resetPassword');
+      } catch (err) {
+        this.error = true;
+      }
+      this.section = 'confirmation';
+    },
+
+    /**
+     * On validation error
+     */
+    onValidateError() {
+      //
+    },
+  },
+});
