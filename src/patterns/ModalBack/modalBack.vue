@@ -1,3 +1,3 @@
-<template src="./modalBack.html" />
-<style src="./modalBack.sass" lang="sass" scoped></style>
-<script src="./modalBack.js"></script>
+<template src="./ModalBack.html" />
+<!-- <style src="./modalBack.sass" lang="sass" scoped></style> -->
+<script src="./ModalBack.js"></script>

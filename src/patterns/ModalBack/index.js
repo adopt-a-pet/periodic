@@ -1,3 +1,3 @@
-import ModalBack from './modalBack.vue';
+import ModalBack from './ModalBack.vue';
 
 export default ModalBack;

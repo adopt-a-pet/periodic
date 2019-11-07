@@ -1,3 +1,3 @@
-import PasswordForgot from './passwordForgot.vue';
+import PasswordForgot from './PasswordForgot.vue';
 
 export default PasswordForgot;

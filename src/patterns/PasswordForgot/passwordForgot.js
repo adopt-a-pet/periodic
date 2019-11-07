@@ -2,6 +2,9 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'PasswordForgot',
+  blockName: 'password-forgot',
+  status: 'under-review',
+  release: '1.0.0',
   data() {
     return {
       email: null,

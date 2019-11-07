@@ -1,20 +1,23 @@
-import Vue from 'vue';
-
-export default Vue.extend({
+export default {
   name: 'LoginForm',
+  blockName: 'login-form',
+  status: 'under-review',
+  release: '1.0.0',
   props: {
     open: {
       type: Boolean,
       default: false,
     },
+    section: {
+      type: String,
+      default: 'login',
+    },
   },
   data() {
-    const section = this.$route.query.loginModalSection ? this.$route.query.loginModalSection : 'login';
     return {
       credsLoginError: null,
       email: null,
       password: null,
-      section,
       socialLoginError: null,
     };
   },
@@ -71,4 +74,4 @@ export default Vue.extend({
       modalLoginMain.scrollTop = 0;
     },
   },
-});
+};
