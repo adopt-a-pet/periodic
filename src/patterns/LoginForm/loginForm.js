@@ -18,12 +18,9 @@ export default {
       credsLoginError: null,
       email: null,
       password: null,
+      sec: this.section,
       socialLoginError: null,
     };
-  },
-  watch: {
-    // Reset after every close
-    open() { this.section = 'login'; },
   },
   methods: {
     /**
@@ -39,7 +36,7 @@ export default {
         return;
       }
 
-      this.section = 'loginConfirmation';
+      this.sec = 'loginConfirmation';
     },
 
     /**
@@ -59,19 +56,15 @@ export default {
         return;
       }
 
-      this.section = 'loginConfirmation';
+      this.sec = 'loginConfirmation';
     },
 
     /**
      * Change Section
      */
     changeSection(section) {
-      this.section = section;
-      const query = JSON.parse(JSON.stringify(this.$route.query));
-      query.loginModalSection = section;
-      this.$router.push({ query });
-      const modalLoginMain = document.getElementById('login-modal-main');
-      modalLoginMain.scrollTop = 0;
+      this.sec = section;
+      this.$emit('changeSection', section);
     },
   },
 };

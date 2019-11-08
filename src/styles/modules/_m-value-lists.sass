@@ -2,7 +2,7 @@
   +breakpoint(tiny)
     @include rem-fallback('padding', 30px 0)
 
-  +breakpoint(tablet-plus)
+  +breakpoint(tablet-wide)
     @include rem-fallback('padding', 20px 0)
     border-top: 0
 
@@ -14,12 +14,12 @@
       flex-direction: row
       height: auto
 
-    +breakpoint(normal)
+    +breakpoint(tablet)
       flex-direction: unset
       flex-basis: 100%
       justify-content: space-between
 
-    +breakpoint(tablet-plus)
+    +breakpoint(tablet-wide)
       flex-direction: row
       height: auto
       justify-content: unset
@@ -32,7 +32,7 @@
     +breakpoint(tiny)
       flex: 0 0 100%
 
-    +breakpoint(normal)
+    +breakpoint(tablet)
       flex: 0 0 calc(50% - 12px)
       @include rem-fallback('margin-top', 15px)
 
@@ -54,7 +54,7 @@
       &:nth-of-type(6)
         order: 6
 
-    +breakpoint(tablet-plus)
+    +breakpoint(tablet-wide)
       flex: 0 0 100%
 
       &:nth-of-type(1n+1)
@@ -73,7 +73,7 @@
       flex: 0 0 100%
       @include rem-fallback('margin-bottom', 5px)
 
-    +breakpoint(normal)
+    +breakpoint(tablet)
       flex: 0 0 20%
 
   +e(text)

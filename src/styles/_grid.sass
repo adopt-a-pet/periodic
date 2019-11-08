@@ -1,0 +1,74 @@
+@mixin cols12
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto
+
+@include breakpoint(default)
+  .d-none
+    display: none
+  .d-inline
+    display: inline
+  .d-inline-block
+    display: inline-block
+  .d-block
+    display: block
+  .d-inherit
+    display: inherit
+
+@include breakpoint(phone)
+  .d-phone-none
+    display: none
+  .d-phone-inline
+    display: inline
+  .d-phone-inline-block
+    display: inline-block
+  .d-phone-block
+    display: block
+  .d-phone-inherit
+    display: inherit
+
+@include breakpoint(phone-wide)
+  .d-phone-wide-none
+    display: none
+  .d-phone-wide-inline
+    display: inline
+  .d-phone-wide-inline-block
+    display: inline-block
+  .d-phone-wide-block
+    display: block
+  .d-phone-wide-inherit
+    display: inherit
+
+@include breakpoint(tablet)
+  .d-tablet-none
+    display: none
+  .d-tablet-inline
+    display: inline
+  .d-tablet-inline-block
+    display: inline-block
+  .d-tablet-block
+    display: block
+  .d-tablet-inherit
+    display: inherit
+
+@include breakpoint(phone-wide)
+  .d-tablet-wide-none
+    display: none
+  .d-tablet-wide-inline
+    display: inline
+  .d-tablet-wide-inline-block
+    display: inline-block
+  .d-tablet-wide-block
+    display: block
+  .d-tablet-wide-inherit
+    display: inherit
+
+@include breakpoint(desktop)
+  .d-tablet-none
+    display: none
+  .d-desktop-inline
+    display: inline
+  .d-desktop-inline-block
+    display: inline-block
+  .d-desktop-block
+    display: block
+  .d-desktop-inherit
+    display: inherit

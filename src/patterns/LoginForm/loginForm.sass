@@ -1,12 +1,12 @@
 +b('login-form')
 
   section.confirmation
-    +breakpoint(tablet-plus)
+    +breakpoint(tablet-wide)
       display: grid
       grid-template-columns: 50% 50%
 
   .wrapper
-    @include breakpoint(normal)
+    @include breakpoint(tablet)
       display: grid
       grid-template-columns: auto
 
@@ -18,7 +18,7 @@
       grid-template-columns: auto
       grid-gap: 20px 20px
 
-      @include breakpoint(normal)
+      @include breakpoint(tablet)
         display: grid
         grid-template-columns: 1fr 1fr
         grid-gap: 20px 20px
