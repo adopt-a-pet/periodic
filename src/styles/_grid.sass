@@ -1,17 +1,16 @@
 @mixin cols12
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto
 
-@include breakpoint(default)
-  .d-none
-    display: none
-  .d-inline
-    display: inline
-  .d-inline-block
-    display: inline-block
-  .d-block
-    display: block
-  .d-inherit
-    display: inherit
+.d-none
+  display: none
+.d-inline
+  display: inline
+.d-inline-block
+  display: inline-block
+.d-block
+  display: block
+.d-inherit
+  display: inherit
 
 @include breakpoint(phone)
   .d-phone-none
