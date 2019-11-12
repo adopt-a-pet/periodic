@@ -99,7 +99,7 @@
 
       <VSpacer size="xl" />
 
-      <div v-if="form.plan === 1">
+      <div v-if="form.plan === 1 && !isConfirmedUser">
         <Heading
           level="h3"
           font-weight="bold"
@@ -278,6 +278,13 @@ export default {
      * If stripe Payment Error
      */
     paymentError: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * Is user already a Premium customer?
+     */
+    isConfirmedUser: {
       type: Boolean,
       default: false,
     },
@@ -523,8 +530,10 @@ export default {
     },
     submit() {
       if (this.$refs.email.validate()) {
-        if (this.form.plan === 1) {
+        if (this.form.plan === 1 && !this.isConfirmedUser) {
           this.$refs.paymentForm.handleSubmit();
+        } else if (this.form.plan === 1 && this.isConfirmedUser) {
+          this.createPremiumNPA({});
         } else {
         /**
          * NPA signup submit event
@@ -547,10 +556,16 @@ export default {
      */
     createPremiumNPA(eventData) {
       const obj = {
-        token: eventData.stripeToken,
         email: this.$refs.email.value,
-        zipcode: eventData.zipCode,
       };
+
+      if (eventData.stripeToken) {
+        obj.token = eventData.stripeToken;
+      }
+
+      if (eventData.zipCode) {
+        obj.zipcode = eventData.zipCode;
+      }
 
       this.$emit('submit', {
         ...this.form,
