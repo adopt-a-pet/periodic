@@ -41,12 +41,16 @@ export default {
       default: null,
     },
   },
+  created() {
+    this.$scrollTo('#element');
+  },
 };
 </script>
 
 <docs>
   ```vue
   <div>
+    <a v-scroll-to="'#element'">Scroll to #element</a>
     <TableOfContents
       heading="Hello!"
       :links='[
@@ -54,6 +58,37 @@ export default {
         { display: "linkTwo", href: "https://adoptapet.com" },
         { display: "linkThree", href: "https://adoptapet.com" },
       ]' />
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div id="element">
+        Hi. I'm #element.
+    </div>
   </div>
   ```
 </docs>
