@@ -1,0 +1,39 @@
++b('accordion')
+
+  &.below
+    display: grid
+    grid-template-rows: auto 1fr
+
+    div.header
+      grid-area: 2 / 1 / 2 / 1
+
+    div.main
+      font-size: $font-size-m
+      font-weight: 200
+
+      div.content
+        padding: $space-xxs 0 $space-xxs
+
+  div.header
+    font-weight: bold
+    font-size: $font-size-m
+    line-height: $line-height-h4
+    color: $color-primary-blue
+    margin-bottom: $space-xxs
+    cursor: pointer
+
+    &.open
+
+      svg
+        transform: rotate(-180deg)
+
+    svg
+      margin-right: $space-xxs
+      transition: transform .5s
+
+  div.main
+    font-size: $font-size-m
+    font-weight: 200
+
+    div.content
+      padding-bottom: $space-s
