@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import Meta from 'vue-meta';
+import VueScrollTo from 'vue-scrollto';
 import App from '@/App';
 import router from '@/router';
 import WebFontLoader from '@/utils/webFontLoader'; // eslint-disable-line no-unused-vars
@@ -11,6 +12,7 @@ import DesignSystem from '@/system';
 
 Vue.use(DesignSystem);
 Vue.use(Meta);
+Vue.use(VueScrollTo);
 
 Vue.config.productionTip = false;
 
