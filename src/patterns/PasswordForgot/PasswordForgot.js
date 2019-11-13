@@ -1,6 +1,4 @@
-import Vue from 'vue';
-
-export default Vue.extend({
+export default {
   name: 'PasswordForgot',
   blockName: 'password-forgot',
   status: 'under-review',
@@ -31,4 +29,4 @@ export default Vue.extend({
       //
     },
   },
-});
+};
