@@ -355,10 +355,13 @@ export default {
         .join(' or ');
     },
     familyNames() {
-      return this.filters.breeds
-        .map(breedId => this.breedMap[breedId])
-        .sort()
-        .join(' or ');
+      if (this.filters.breeds) {
+        return this.filters.breeds
+          .map(breedId => this.breedMap[breedId])
+          .sort()
+          .join(' or ');
+      }
+      return '';
     },
     hasMoreFiltersThanClan() {
       return Boolean(
