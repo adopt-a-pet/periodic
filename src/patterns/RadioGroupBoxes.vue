@@ -86,6 +86,13 @@ export default {
       type: Boolean,
       default: true,
     },
+    /**
+     * Whether the form field is required or not.
+     */
+    required: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     // Add an id property to each item so the label can reference it

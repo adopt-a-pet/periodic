@@ -72,11 +72,13 @@
 
         <RadioGroupBox
           v-if="filters.clan === 1 || filters.clan === 2"
+          ref="plan"
           v-model="form.plan"
           name="npa-plan-selection"
           :columns="2"
           :items="npaTypes"
           :show-display-text="showDisplayText"
+          required
           @change="selectPlan" />
       </div>
 
@@ -532,25 +534,29 @@ export default {
       }
     },
     submit() {
-      if (this.$refs.email.validate()) {
-        if (this.form.plan === 1 && !this.isConfirmedUser) {
-          this.$refs.paymentForm.handleSubmit();
-        } else if (this.form.plan === 1 && this.isConfirmedUser) {
-          this.createPremiumNPA({});
-        } else {
-        /**
-         * NPA signup submit event
-         *
-         * @event submit
-         * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
-         */
-          this.$emit('submit', {
-            ...this.form,
-            filters: this.filters,
-          });
-        }
-      } else {
+      if (!this.$refs.email.validate()) {
         this.$emit('scrollToEmail');
+        return;
+      }
+      if (!this.$refs.plan.validate()) {
+        this.$emit('scrollToEmail');
+        return;
+      }
+      if (this.form.plan === 1 && !this.isConfirmedUser) {
+        this.$refs.paymentForm.handleSubmit();
+      } else if (this.form.plan === 1 && this.isConfirmedUser) {
+        this.createPremiumNPA({});
+      } else {
+      /**
+       * NPA signup submit event
+       *
+       * @event submit
+       * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
+       */
+        this.$emit('submit', {
+          ...this.form,
+          filters: this.filters,
+        });
       }
     },
     /**
