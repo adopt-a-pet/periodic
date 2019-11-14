@@ -66,7 +66,7 @@
       class="login-confirmation">
       <div>
         <VSpacer size="l" />
-        <Heading level="h1">Welcome Back, {{ $store.state.session.user.firstName }}!</Heading>
+        <Heading level="h1">Welcome Back<span v-if="$store.state.session.user">, {{ $store.state.session.user.firstName }}</span>!</Heading>
         <Button tag="a"
           href="https://adoptapet.com/">Start a New Pet Search</Button>
         <VSpacer size="xs" />
