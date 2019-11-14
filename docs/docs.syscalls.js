@@ -5,14 +5,6 @@ axios.defaults.baseURL = 'https://staging-api-ra.adoptapet.com/v1/';
 export default {
   namespaced: true,
 
-  state() {
-    return {
-      session: {
-        user: 'Steve',
-      },
-    };
-  },
-
   actions: {
     'api/location/validate': function (_, zipCode) {
       return axios.get(`utilities/locations?zipCode=${zipCode}`).then(res => (res.data.body.status));
@@ -34,31 +26,6 @@ export default {
     },
     'api/pets/getHair': function (_, clanId) {
       return axios.get(`pet-utilities/${clanId}/hair`).then(res => (res.data.body));
-    },
-
-    /**
-     * Login with Guard Dog. Takes a service name.
-     */
-    async socialLogin({ dispatch }, { service }) {
-      return this.$guardcat.oauthOpen(service)
-        .then(() => dispatch('loadUserFromSession'));
-    },
-
-    /**
-     * Login with email, password.
-     */
-    async credsLogin({ dispatch }, { email, password }) {
-      return axios.post('auth/login', { email, password })
-        .then(({ body: { sessionId } }) => this.$guardcat.setCookie(sessionId))
-        .then(() => dispatch('loadUserFromSession'));
-    },
-
-    /**
-     * Log out
-     */
-    async logout({ commit }) {
-      this.$guardcat.logout()
-        .then(() => commit('data', { user: null }));
     },
   },
 };
