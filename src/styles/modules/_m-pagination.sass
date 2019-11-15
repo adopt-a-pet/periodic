@@ -17,35 +17,35 @@
       line-height: 26px
       cursor: pointer
 
-      .pet-results-popup
-        position: absolute
-        margin-left: 15px
+    .pet-results-popup
+      position: absolute
+      margin-left: 15px
 
-        ul
-          margin: 0
-          padding: 0
-          list-style: none
+      ul
+        margin: 0
+        padding: 0
+        list-style: none
 
-          li
-            padding-bottom: 6px
+        li
+          padding-bottom: 6px
+          display: flex
+
+          &:last-child
+            padding-bottom: 0
+
+          a
+            font-size: 16px
+            font-weight: 400
+            line-height: 24px
             display: flex
+            width: 88px
 
-            &:last-child
-              padding-bottom: 0
+            &.active
+              font-weight: bold
 
-            a
-              font-size: 16px
-              font-weight: 400
-              line-height: 24px
-              display: flex
-              width: 88px
+          .periodic-icon
+            fill: $color-primary-blue
+            margin-left: 1em
 
-              &.active
-                font-weight: bold
-
-            .periodic-icon
-              fill: $color-primary-blue
-              margin-left: 1em
-
-              &.active
-                color: $color-primary-blue
+            &.active
+              color: $color-primary-blue
