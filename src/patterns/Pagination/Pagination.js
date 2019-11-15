@@ -4,10 +4,17 @@ export default {
   status: 'under-review',
   release: '1.0.0',
   props: {
+    /**
+     * The number of records shown per page
+     */
     limit: {
       type: Number,
       default: 20,
     },
+
+    /**
+     * The total number of records
+     */
     recordCount: {
       type: Number,
       required: true,
@@ -16,6 +23,8 @@ export default {
   data() {
     return {
       loading: false,
+      newPage: null,
+      newStart: null,
       page: 1,
       popupIsOpen: false,
       start: 1,
@@ -54,24 +63,33 @@ export default {
      * Change results page
      */
     changePage(direction, page) {
-      let newStart;
-      let newPage;
       if (page) {
-        newStart = (page * this.limit) - this.limit + 1;
-        newPage = page;
+        this.newStart = (page * this.limit) - this.limit + 1;
+        this.newPage = page;
       } else {
         if (direction === 'forward') {
-          newStart = this.start + this.limit;
-          newPage = this.page + 1;
+          this.newStart = this.start + this.limit;
+          this.newPage = this.page + 1;
         } else {
-          newStart = this.start - this.limit;
-          newPage = this.page - 1;
+          this.newStart = this.start - this.limit;
+          this.newPage = this.page - 1;
         }
-        if (newStart < 1 || newStart >= this.recordCount) {
+        if (this.newStart < 1 || this.newStart >= this.recordCount) {
           return;
         }
       }
-      this.$emit('onPageChange', { newPage, newStart });
+      this.loading = true;
+      this.popupIsOpen = false;
+      this.$emit('onPageChange', { newStart: this.newStart });
+    },
+
+    /**
+     * onNewPage
+     */
+    onNewPage() {
+      this.loading = false;
+      this.page = this.newPage;
+      this.start = this.newStart;
     },
   },
 };
