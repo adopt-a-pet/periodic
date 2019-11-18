@@ -4,7 +4,7 @@
   width: 100%
   justify-content: space-between
 
-  +breakpoint(tablet-plus)
+  +breakpoint(tablet-wide)
     justify-content: unset
 
   +e(label)
@@ -13,10 +13,10 @@
     padding-right: 0
     @include rem-fallback('margin-top', 15px)
 
-    @include breakpoint(normal)
+    @include breakpoint(tablet)
       width: calc(50% - 12px)
 
-    @include breakpoint(tablet-plus)
+    @include breakpoint(phone-wide)
       width: 100%
 
 

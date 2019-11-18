@@ -1,7 +1,7 @@
 +b(npa-signup)
   color: color(agray, darker)
 
-  +breakpoint(tablet-plus)
+  +breakpoint(tablet-wide)
     display: grid
     grid-template-columns: 3fr 2fr
     column-gap: $space-m
@@ -17,7 +17,7 @@
     display: grid
     grid-column-gap: 20px
     grid-row-gap: 20px
-    +breakpoint(tablet-plus)
+    +breakpoint(tablet-wide)
       grid-template-columns: 1fr
 
   +e(skip-continue)
@@ -39,7 +39,7 @@
       text-transform: uppercase
 
 +b(npa-signup-whatisthis)
-  +breakpoint(tablet-plus)
+  +breakpoint(tablet-wide)
     display: flex
     grid-template-columns: 3fr 2fr
     +e(content)
@@ -54,7 +54,7 @@
     grid-template-columns: 1fr
     padding-left: 1.5em
 
-    +breakpoint(wide)
+    +breakpoint(desktop)
       +rem-fallback(column-gap, $space-xxl)
       //grid-auto-flow: column
       grid-template-columns: 1fr 1fr

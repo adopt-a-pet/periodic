@@ -282,7 +282,7 @@ export default {
 
   computed: {
     radioColumns() {
-      return this.layout === 'desktop' ? 3 : 1;
+      return this.layout === 'tablet-wide' ? 3 : 1;
     },
     checkedPetTypesCount() {
       return Object.keys(this.hasPetTypes)
