@@ -6,7 +6,7 @@
   display: grid
   grid-template-columns: 124px auto
 
-  +breakpoint(normal)
+  +breakpoint(tablet)
     display: block
 
   a
@@ -44,8 +44,11 @@
     margin-left: $space-xs
     position: relative
     top: 0
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
 
-    +breakpoint(normal)
+    +breakpoint(tablet)
       margin-left: 0
 
     h4

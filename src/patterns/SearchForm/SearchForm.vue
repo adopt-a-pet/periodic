@@ -43,8 +43,8 @@ export default {
       sectionIndex: 0,
       subsectionClanId: null,
       allAges: [],
-      allColors: [],
       allBreeds: [],
+      allColors: [],
       allHair: [],
       allSizes: [],
       clans: [],
@@ -82,19 +82,19 @@ export default {
   },
   computed: {
     /**
+     * Ages
+     */
+    ages() {
+      const filtered = this.allAges.filter(item => item.clanId === this.fields.clanId);
+      return this.formatList(filtered, 'age');
+    },
+
+    /**
      * Breeds
      */
     breeds() {
       const filtered = this.allBreeds.filter(item => item.clanId === this.fields.clanId);
       return this.formatList(filtered, 'breedName', 'breedId');
-    },
-
-    /**
-     * Sizes
-     */
-    sizes() {
-      const filtered = this.allSizes.filter(item => item.clanId === this.fields.clanId);
-      return this.formatList(filtered, 'petSizeRangeName', 'sizeId');
     },
 
     /**
@@ -106,19 +106,19 @@ export default {
     },
 
     /**
-     * Ages
-     */
-    ages() {
-      const filtered = this.allAges.filter(item => item.clanId === this.fields.clanId);
-      return this.formatList(filtered, 'age');
-    },
-
-    /**
      * Hairs
      */
     hair() {
       const filtered = this.allHair.filter(item => item.clanId === this.fields.clanId);
       return this.formatList(filtered, 'hairName', 'hairId');
+    },
+
+    /**
+     * Sizes
+     */
+    sizes() {
+      const filtered = this.allSizes.filter(item => item.clanId === this.fields.clanId);
+      return this.formatList(filtered, 'petSizeRangeName', 'sizeId');
     },
   },
   methods: {

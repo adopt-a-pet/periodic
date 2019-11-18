@@ -21,7 +21,7 @@
           </span>
         </header>
 
-        <main>
+        <main :id="`${id}-main`">
           <slot />
         </main>
       </div>
@@ -39,6 +39,17 @@ export default {
   status: 'under-review',
   release: '1.0.0',
   props: {
+    /**
+     * ID (this is passed to child components, allowing for the assignment of
+     * unique ID's. This is useful, for example, if your modal has multiple sections,
+     * and as you navigate between them, you want to be automatically scrolled
+     * to the top of the section. Doing so requires selecting an element's unique ID.)
+     */
+    id: {
+      type: String,
+      default: null,
+    },
+
     /**
      * Max width of the modal
      */

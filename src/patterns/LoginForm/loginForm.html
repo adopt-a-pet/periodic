@@ -1,0 +1,94 @@
+<div :class="b().toString()">
+  <div class="container">
+
+    <!-- Login -->
+    <section v-if="sec === 'login'"
+      class="login">
+      <Heading level="h1"
+        class="text-center">Log In</Heading>
+      <VSpacer size="s" />
+      <Paragraph>No account?
+        <TextLink href="https://adoptapet.com/uso/signup/accounttype">
+          <strong>Sign up here</strong>.
+        </TextLink>
+      </Paragraph>
+      <div class="buttons">
+        <SocialButton service="google"
+          text-color="google"
+          @click="socialLogin('google')">
+          Google
+        </SocialButton>
+        <SocialButton service="facebook"
+          text-color="fb"
+          @click="socialLogin('facebook')">
+          Facebook
+        </SocialButton>
+      </div>
+      <VSpacer size="xxl" />
+      <VDivider class="or-divider"
+        data-content="or" />
+      <VSpacer size="s" />
+      <ValidatedForm :names="['email', 'password']"
+        @submit="credsLogin">
+        <div class="inputs">
+          <EmailInput v-model="email"
+            label="Email"
+            name="email" />
+          <PasswordInput v-model="password"
+            :validations="{}"
+            name="password" />
+        </div>
+
+        <VSpacer size="xxs" />
+
+        <Paragraph v-if="credsLoginError === 1"
+          fontSize="xs"
+          fontWeight="normal">
+          Something’s wrong! Please make sure you have the correct email address or
+          <TextLink href="/uso/signup/accounttype">sign up</TextLink>
+          <VSpacer size="xxs" />
+        </Paragraph>
+
+        <VSpacer v-else
+          size="l" />
+
+        <Button type="submit">Login</Button>
+      </ValidatedForm>
+      <VSpacer size="xxs" />
+      <Paragraph font-size="s">
+        Forgot your password or email isn't working? <TextLink @click="changeSection('passwordForgot')"><strong>Click here.</strong></TextLink><br>
+        Rehome member? <TextLink href="https://rehome.adoptapet.com/auth/login">Log in here</TextLink>.
+      </Paragraph>
+    </section>
+
+    <!-- Login Confirmation -->
+    <section v-if="sec === 'loginConfirmation'"
+      class="login-confirmation">
+      <div>
+        <VSpacer size="l" />
+        <Heading level="h1">Welcome Back<span v-if="$store.state.session.user">, {{ $store.state.session.user.firstName }}</span>!</Heading>
+        <Button tag="a"
+          href="https://adoptapet.com/">Start a New Pet Search</Button>
+        <VSpacer size="xs" />
+        <Paragraph font-size="s">
+          <TextLink href="https://adoptapet.com/favorite-pets">See My Favorite Pets &nbsp;
+            <Icon name="angle-right"
+              height="11"
+              width="11" />
+          </TextLink>
+        </Paragraph>
+      </div>
+      <div>
+        <img src="/img/animals/happy-retriever.jpg"
+          alt="happy retriever"
+          class="bg" />
+      </div>
+    </section>
+
+    <!-- Password Reset -->
+    <section v-if="sec === 'passwordForgot'"
+      class="password-forgot">
+      <PasswordForgot />
+    </section>
+  </div>
+</div>
