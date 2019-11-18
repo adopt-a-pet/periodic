@@ -40,9 +40,9 @@ export default {
      * Format pet properties
      */
     petFormatted() {
-      const petFormatted = this.pet;
+      const petFormatted = JSON.parse(JSON.stringify(this.pet));
       petFormatted.age = this.$options.filters.capitalize(petFormatted.age);
-      petFormatted.sex = 'm' ? 'Male' : 'Female';
+      petFormatted.sex = this.pet.sex === 'm' ? 'Male' : 'Female';
       return petFormatted;
     },
   },
