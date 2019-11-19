@@ -8,7 +8,10 @@
         :id="item.id + '-parent'"
         :key="index"
         :class="[
-          b('item', { 'not-selected': notSelectedState(item) })
+          b('item',
+            { 'not-selected': notSelectedState(item),
+              'selected': selectedState(item)
+            })
             .state({
               error: errorState,
             })
@@ -197,6 +200,10 @@ export default {
     // When there is no selection, return false for all items.
     notSelectedState(item) {
       return (this.value !== null) && (this.value !== item.value);
+    },
+    // This is for when there is a selection, check if `item` is selected.
+    selectedState(item) {
+      return (this.value !== null) && (item.value !== '');
     },
   },
   validations() {
