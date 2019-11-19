@@ -1,37 +1,45 @@
 <template>
-  <ul
-    :class="b().toString()"
-    :style="gridStyles">
-    <li
-      v-for="(item, index) in renderItems"
-      :id="item.id + '-parent'"
-      :key="index"
-      :class="b('item', { 'not-selected': notSelectedState(item) }).toString()"
-      @click="select({ checked: true }, item.value)">
-      <Icon
-        :name="item.icon"
-        :class="b('icon').toString()" />
+  <div>
+    <ul
+      :class="b().toString()"
+      :style="gridStyles">
+      <li
+        v-for="(item, index) in renderItems"
+        :id="item.id + '-parent'"
+        :key="index"
+        :class="b('item', { 'not-selected': notSelectedState(item) }).toString()"
+        @click="select({ checked: true }, item.value)">
+        <Icon
+          :name="item.icon"
+          :class="b('icon').toString()" />
 
-      <input
-        :id="item.id"
-        :class="b('button').toString()"
-        :name="name"
-        :checked="item.value === value"
-        type="radio"
-        @change="select($event.target, item.value)">
+        <input
+          :id="item.id"
+          :class="b('button').toString()"
+          :name="name"
+          :checked="item.value === value"
+          type="radio"
+          @change="select($event.target, item.value)">
 
-      <label
-        :class="b('label', { color: 'white' }).toString()"
-        :for="item.id"><span :class="b('label--heading').toString()">{{ item.heading }}</span><br>
-        <span v-if="showDisplayText">{{ item.display }}</span></label>
+        <label
+          :class="b('label', { color: 'white' }).toString()"
+          :for="item.id"><span :class="b('label--heading').toString()">{{ item.heading }}</span><br>
+          <span v-if="showDisplayText">{{ item.display }}</span></label>
 
-      <label
-        :class="b('outside', { color: 'white' }).toString()"
-        :for="item.id" />
-    </li>
-  </ul>
+        <label
+          :class="b('outside', { color: 'white' }).toString()"
+          :for="item.id" />
+      </li>
+    </ul>
+    <div
+      v-if="errorState"
+      :class="b('error-msg').toString()">
+      {{ errorMessage }}
+    </div>
+  </div>
 </template>
 <script>
+import { required } from 'vuelidate/lib/validators';
 import tokens from '@/assets/tokens/tokens.json';
 
 /**
@@ -93,6 +101,28 @@ export default {
       type: Boolean,
       default: false,
     },
+    /**
+     * What error message to show for each validation error
+     */
+    errorMessages: {
+      type: Object,
+      default: () => ({}),
+    },
+    /**
+     * Add validations to the field in the form of a Vuelidate object.
+     * `{ maxLength: maxLength(20) }`
+     */
+    validations: {
+      type: Object,
+      default() { return {}; },
+    },
+  },
+  data() {
+    return {
+      // validatedValue is used to delay validation until @change. This is
+      // because using v-model.lazy on components doesn't currently work.
+      validatedValue: '',
+    };
   },
   computed: {
     // Add an id property to each item so the label can reference it
@@ -109,6 +139,33 @@ export default {
         'grid-template-columns': `repeat(${this.columns}, 1fr)`,
       };
     },
+    successState() {
+      if (Object.keys(this.validations).length || this.required) {
+        return !!(this.validatedValue && !this.errorState);
+      }
+
+      // It can only be considered to pass validation if there *are* validations
+      return false;
+    },
+    errorState() {
+      return this.$v.validatedValue.$error;
+    },
+    errorMessage() {
+      return this.getErrorMessages(this.$v.validatedValue, this.errorMessages)[0];
+    },
+  },
+  watch: {
+    value() {
+      // Only validate when the user has left the field
+      this.validate();
+    },
+  },
+  created() {
+    // Not in data() because we don't want it updating every time v-model does
+    this.validatedValue = this.value;
+
+    // If starting with a value, validate it right away
+    if (this.value) this.validate();
   },
   methods: {
     radioId(item) {
@@ -116,7 +173,6 @@ export default {
     },
     select({ checked }, value) {
       if (!checked) return;
-
       /**
        * Change event
        *
@@ -126,13 +182,27 @@ export default {
       this.$emit('change', value);
     },
     validate() {
-      return this.validateRequired(this.required, this.value);
+      this.validatedValue = this.value;
+      this.$v.validatedValue.$touch();
+
+      return !this.errorState;
     },
     // This is for when there is a selection, check if `item` is selected.
     // When there is no selection, return false for all items.
     notSelectedState(item) {
       return (this.value !== null) && (this.value !== item.value);
     },
+  },
+  validations() {
+    const validations = {
+      validatedValue: {
+        ...this.validations,
+      },
+    };
+
+    if (this.required) validations.validatedValue.required = required;
+
+    return validations;
   },
 };
 </script>
@@ -149,7 +219,10 @@ export default {
         { heading: 'Heading One', display: 'One Content', icon: 'service-google', value: '1' },
         { heading: 'Heading Two', display: 'Two Content', icon: 'service-google', value: '2' },
       ]"
-      :showDisplayText="showDisplayText" />
+      :showDisplayText="showDisplayText"
+      :errorMessages="{required: 'Please select an option'}"
+      required
+       />
   </div>
 </template>
 <script>

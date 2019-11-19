@@ -175,3 +175,10 @@
 
       .#{$prefix-component}radio-box__outside
         border: 2px solid color(agray, lighter)
+
+  +e(error-msg)
+    +rem-fallback(font-size, $font-size-xs)
+    +rem-fallback(line-height, $line-height-h5v2)
+    +rem-fallback(margin-top, $space-xxxs)
+    color: color(aorange)
+    pointer-events: none

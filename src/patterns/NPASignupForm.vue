@@ -78,6 +78,7 @@
           :columns="2"
           :items="npaTypes"
           :show-display-text="showDisplayText"
+          :error-messages="{required: 'Please select an option'}"
           required
           @change="selectPlan" />
       </div>
@@ -636,8 +637,7 @@ export default {
         size: [1, 2],
         zipCode: '90210',
       },
-      showDisplayText: false
-    };
+      showDisplayText: true    };
   }
 };
 </script>
