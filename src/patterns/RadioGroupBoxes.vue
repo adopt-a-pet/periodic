@@ -7,7 +7,13 @@
         v-for="(item, index) in renderItems"
         :id="item.id + '-parent'"
         :key="index"
-        :class="b('item', { 'not-selected': notSelectedState(item) }).toString()"
+        :class="[
+          b('item', { 'not-selected': notSelectedState(item) })
+            .state({
+              error: errorState,
+            })
+            .toString()
+        ]"
         @click="select({ checked: true }, item.value)">
         <Icon
           :name="item.icon"
