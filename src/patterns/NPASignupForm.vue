@@ -78,7 +78,7 @@
           :columns="2"
           :items="npaTypes"
           :show-display-text="showDisplayText"
-          :error-messages="{required: 'Please select an option'}"
+          :error-messages="{required: 'Please select an option.'}"
           required
           @change="selectPlan" />
       </div>
