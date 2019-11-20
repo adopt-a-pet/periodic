@@ -1,0 +1,22 @@
++b('table-of-contents')
+  // display: grid
+  // +rem-fallback('grid-column-gap', 5px)
+  list-style-type: none
+  padding: 0
+  width: 100%
+
+  nav
+
+    +breakpoint(tablet-plus)
+      column-count: 3
+
+    li
+      font-weight: $weight-light
+      padding: 15px 0
+
+    .#{$prefix-component}textlink
+      color: $color-rich-black
+
+      &:hover
+        color: $color-primary-blue
+        text-decoration: none
