@@ -3,7 +3,7 @@ const inBrowser = typeof window !== 'undefined';
 
 const layoutChecks = [
   {
-    name: 'desktop',
+    name: 'tablet-wide',
     check() { return window.matchMedia('(min-width: 977px)').matches; },
   },
   {
@@ -29,7 +29,7 @@ function setLayout() {
 
 function data() {
   return {
-    layout: 'desktop',
+    layout: 'tablet-wide',
     $_setLayout: null,
   };
 }

@@ -12,8 +12,8 @@ export default {
     'api/pets/getBreeds': function (_, breedIds) {
       return axios.get(`pet-utilities/${breedIds}/breeds`).then(res => (res.data.body));
     },
-    'api/pets/getClans': function (_, payload) {
-      return axios.get(`pet-utilities/clans`).then(res => (res.data.body));
+    'api/pets/getClans': function () {
+      return axios.get('pet-utilities/clans').then(res => (res.data.body));
     },
     'api/pets/getColors': function (_, clanId) {
       return axios.get(`pet-utilities/${clanId}/colors`).then(res => (res.data.body));
@@ -21,8 +21,8 @@ export default {
     'api/pets/getSizes': function (_, clanId) {
       return axios.get(`pet-utilities/${clanId}/sizes`).then(res => (res.data.body));
     },
-    'api/pets/getAges': function (_, payload) {
-      return axios.get(`pet-utilities/ages`).then(res => (res.data.body));
+    'api/pets/getAges': function () {
+      return axios.get('pet-utilities/ages').then(res => (res.data.body));
     },
     'api/pets/getHair': function (_, clanId) {
       return axios.get(`pet-utilities/${clanId}/hair`).then(res => (res.data.body));

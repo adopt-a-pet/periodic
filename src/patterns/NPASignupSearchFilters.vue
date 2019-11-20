@@ -2,7 +2,7 @@
   <div :class="b().toString()">
     <Heading
       :class="b('title').toString()"
-      :level="layout === 'desktop' ? 'h1' : 'h2'"
+      :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
       font-weight="bold"
       font-family="museo">
       Filters
