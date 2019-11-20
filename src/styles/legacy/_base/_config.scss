@@ -23,19 +23,19 @@ $seventy-percent-darker-grey: rgba(color(agray, darker), 0.7);
 // Breakpoints
 
 $tiny: em(300);
-$thin: em(326);
-$phone-plus: em(499);
-$normal: em(750);
-$tablet-plus: em(977);
-$wide: em(1170);
+$phone: em(326);
+$phone-wide: em(499);
+$tablet: em(750);
+$tablet-wide: em(977);
+$desktop: em(1170);
 
 $breakpoints: (
   tiny: $tiny,
-  thin: $thin,
-  phone-plus: $phone-plus,
-  normal: $normal,
-  tablet-plus: $tablet-plus,
-  wide: $wide,
+  phone: $phone,
+  phone-wide: $phone-wide,
+  tablet: $tablet,
+  tablet-wide: $tablet-wide,
+  desktop: $desktop,
   full: 100%,
 ) !global;
 

@@ -13,7 +13,7 @@
         </Heading>
 
         <Heading
-          :level="layout === 'desktop' ? 'h1' : 'h2'"
+          :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
           font-weight="bold"
           font-family="museo">
           New Pet Alert
@@ -105,10 +105,10 @@
       <VSpacer size="xl" />
 
       <VDivider
-        v-if="layout == 'desktop'"
+        v-if="layout == 'tablet-wide'"
         type="dashed" />
 
-      <div v-if="layout !== 'desktop'">
+      <div v-if="layout !== 'tablet-wide'">
         <VDivider type="dashed" />
         <VSpacer size="xl" />
         <OffersForm
@@ -160,9 +160,9 @@
     </div>
 
     <OffersForm
-      v-if="layout === 'desktop'"
+      v-if="layout === 'tablet-wide'"
       v-model="form.optins"
-      :class="b('offers-form-desktop').toString()"
+      :class="b('offers-form-tablet-wide').toString()"
       :offers="offers" />
   </div>
 </template>

@@ -1,16 +1,16 @@
 +block('heading')
   +element('h1')
-    +rem-fallback('font-size', $font-size-xxl)
+    +rem-fallback('font-size', $font-size-xl)
     font-weight: 700
     font-family: $font-helvetica
     color: color(agray, dark)
-    +rem-fallback('line-height', $line-height-h1)
+    +rem-fallback('line-height', $line-height-h2)
     +rem-fallback('letter-spacing', $letter-spacing-xs)
-    margin-bottom: 20px
+    +rem-fallback('margin-bottom', 20px)
 
-    @include breakpointminmax(normal, tablet-plus)
-      font-size: 32px
-      line-height: 48px
+    +breakpoint(tablet-wide)
+      +rem-fallback('font-size', $font-size-xxl)
+      +rem-fallback('line-height', $line-height-h1)
 
     &--museo
       font-family: $font-museo
@@ -24,17 +24,17 @@
       font-weight: bold
 
   +element('h2')
-    +rem-fallback('font-size', $font-size-xl)
+    +rem-fallback('font-size', $font-size-l)
     font-family: $font-helvetica
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h2)
+    +rem-fallback('line-height', $line-height-h3)
     +rem-fallback('letter-spacing', $letter-spacing-s)
-    margin-bottom: 20px
+    +rem-fallback('margin-bottom', 20px)
 
-    @include breakpointminmax(normal, tablet-plus)
-      font-size: 26px
-      line-height: 48px
+    @include breakpoint(phone-wide)
+      font-size: $font-size-xl
+      line-height: $line-height-h2
 
     &--museo
       font-family: $font-museo
@@ -48,13 +48,17 @@
       font-weight: bold
 
   +element('h3')
-    +rem-fallback('font-size', $font-size-l)
+    +rem-fallback('font-size', $font-size-m)
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h3)
+    +rem-fallback('line-height', $line-height-h4)
     +rem-fallback('letter-spacing', $letter-spacing-s)
-    margin-bottom: 20px
+    +rem-fallback('margin-bottom', 20px)
+
+    @include breakpoint(phone-wide)
+      font-size: $font-size-l
+      line-height: $line-height-h3
 
     &--compact
       +rem-fallback('line-height', $line-height-h3v2)

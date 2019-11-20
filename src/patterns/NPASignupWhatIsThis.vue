@@ -2,7 +2,7 @@
   <div :class="b().toString()">
     <div :class="b('content').toString()">
       <Heading
-        :level="layout === 'desktop' ? 'h1' : 'h2'"
+        :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
         font-weight="bold"
         font-family="museo">
         What are New Pet Alerts?
