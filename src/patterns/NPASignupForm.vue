@@ -540,7 +540,7 @@ export default {
         return;
       }
       if (!this.$refs.plan.validate()) {
-        this.$emit('scrollToEmail');
+        this.$emit('scrollToPlan');
         return;
       }
       if (this.form.plan === 1 && !this.isConfirmedUser) {
