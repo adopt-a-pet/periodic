@@ -5,7 +5,10 @@
       class="header"
       @click="open = !open">
       <Icon name="angle-down" />
-      <slot name="header" />
+      <slot
+        v-if="headerPlacement === 'above' || (headerPlacement === 'below' && !open)"
+        name="header" />
+      <span v-else>Close</span>
     </div>
     <div
       :ref="ref"
