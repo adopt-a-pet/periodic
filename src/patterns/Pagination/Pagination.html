@@ -1,0 +1,33 @@
+<div :class="b().toString()">
+  <div class="controls">
+    <Icon v-bind:class="{ 'si-disabled': page === 1 || loading }"
+      class="si-cursor-pointer"
+      height="18px"
+      name="angle-left"
+      @click="changePage('backward')" />
+    <div class="pages">
+      <span @click="popupIsOpen = !popupIsOpen">Page {{ page }} of {{ pageCount }}</span>
+      <Popup class="pet-results-popup"
+        v-if="popupIsOpen">
+        <ul>
+          <li v-for="p of pages">
+            <a v-bind:class="{ active: p == page }"
+              @click="changePage(null, p)">
+              <span>Page {{ p }}</span>
+            </a>
+            <Icon v-if="p == page"
+              name="check" />
+          </li>
+        </ul>
+      </Popup>
+    </div>
+    <Icon v-bind:class="{ 'si-disabled': page === pageCount || loading }"
+      class="si-cursor-pointer"
+      height="18px"
+      name="angle-right"
+      @click="changePage('forward')" />
+  </div>
+  <Paragraph font-size="s">
+    {{ start }} - {{ end }} of {{ recordCount }} Adoptable Pets at This Shelter
+  </Paragraph>
+</div>
