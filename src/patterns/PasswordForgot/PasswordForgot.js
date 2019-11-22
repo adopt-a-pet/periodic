@@ -15,7 +15,7 @@ export default {
      */
     async requestPasswordResetLink() {
       try {
-        await this.$syscall('api/users/resetPassword');
+        await this.$syscall('api/users/resetPassword', { email: this.email });
       } catch (err) {
         this.error = true;
       }
