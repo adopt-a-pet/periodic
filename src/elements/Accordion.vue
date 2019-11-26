@@ -3,8 +3,10 @@
     <div
       :class="{ open }"
       class="header"
-      @click="open = !open">
-      <Icon name="angle-down" />
+      @click="toggle">
+      <Icon
+        name="angle-down"
+        :fill="tokens.color_primary_blue" />
       <slot
         v-if="headerPlacement === 'above' || (headerPlacement === 'below' && !open)"
         name="header" />
@@ -21,6 +23,8 @@
   </div>
 </template>
 <script>
+import tokens from '@/assets/tokens/tokens.json';
+
 /**
  * A widget the expands and collapses when you click on it.
  */
@@ -44,29 +48,61 @@ export default {
       height: null,
       ref: `${this.blockName}-main`,
       open: true,
+      style: null,
+      tokens,
     };
   },
-  computed: {
-    style() {
-      if (!this.open) {
-        return {
+  mounted() {
+    window.addEventListener('resize', this.onResize);
+    this.open = false;
+    this.onResize();
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize);
+  },
+  methods: {
+    /**
+     * Toggle accordion
+     */
+    toggle() {
+      this.open = !this.open;
+      this.onResize({ toggle: true });
+    },
+
+    /**
+     * Resize accordion content to allow for dynamic heights
+     */
+    onResize(event) {
+      if (this.open) {
+        this.style = {
+          'max-height': 'inherit',
+        };
+        this.$nextTick(() => {
+          this.height = this.$refs[this.ref].clientHeight;
+          this.style = {
+            'max-height': 0,
+            opacity: 0,
+          };
+          setTimeout(() => {
+            this.style = {
+              'max-height': `${this.height}px`,
+              overflow: 'hidden',
+              opacity: 1,
+            };
+            if (event.toggle) {
+              this.style.transition = 'opacity 1s, max-height .5s';
+            }
+          });
+        });
+      } else {
+        this.style = {
           'max-height': 0,
           overflow: 'hidden',
-          transition: 'opacity .5s, max-height ease-in .5s',
           opacity: 0,
+          transition: 'opacity 1s, max-height .5s',
         };
       }
-      return {
-        'max-height': `${this.height}px`,
-        transition: 'opacity 1s, max-height ease-out .5s',
-        overflow: 'hidden',
-        opacity: 1,
-      };
     },
-  },
-  mounted() {
-    this.height = this.$refs[this.ref].clientHeight;
-    this.open = false;
   },
 };
 </script>
