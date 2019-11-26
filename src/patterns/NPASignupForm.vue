@@ -181,6 +181,7 @@
         </TextLink>
 
         <Button
+          id="npa-submit-button"
           @click="submit">
           Save & Continue
         </Button>
@@ -535,6 +536,7 @@ export default {
       }
     },
     submit() {
+      const submitButton = document.getElementById('npa-submit-button');
       if (!this.$refs.email.validate()) {
         this.$emit('scrollToEmail');
         return;
@@ -542,6 +544,9 @@ export default {
       if (!this.$refs.plan.validate()) {
         this.$emit('scrollToPlan');
         return;
+      }
+      if (submitButton) {
+        submitButton.disabled = true;
       }
       if (this.form.plan === 1 && !this.isConfirmedUser) {
         this.$refs.paymentForm.handleSubmit();
