@@ -41,7 +41,8 @@
       <VSpacer size="l" />
 
       <SearchQuerySentence
-        :filters="filters" />
+        :filters="filters"
+        @click:searchFilters="searchFilters" />
 
       <VSpacer size="l" />
 

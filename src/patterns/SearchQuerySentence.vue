@@ -204,14 +204,6 @@ export default {
        * @type none
        */
       this.$emit('click:searchFilters');
-      this.dispatchTrackClick('editFilters');
-    },
-    /**
-     * Dispatch analytics track with an eventAction
-     * or eventLabel
-     */
-    dispatchTrackClick(event) {
-      this.$syscall(`analytics/track/NPASignupForm/${event}/click`);
     },
   },
 };
