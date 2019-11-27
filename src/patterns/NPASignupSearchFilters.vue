@@ -221,27 +221,17 @@ export default {
 
   methods: {
     saveAndClose() {
-      this.submit();
       /**
        * When user clicks "What is this"
        *
        * @event click:saveAndClose
        * @type none
        */
-      this.$emit('click:saveAndClose');
+      if (this.$refs.zipcode.validate()) {
+        this.$emit('click:saveAndClose', this.form);
+      }
       const parsedData = this.parseForm(this.form, this.breedIdsDropdown);
       this.dispatchTrackClick({ event: 'save', eventLabel: JSON.stringify(parsedData) });
-    },
-    submit() {
-      /**
-       * Change event
-       *
-       * @event submit
-       * @type Object
-       */
-      if (this.$refs.zipcode.validate()) {
-        this.$emit('submit', this.form);
-      }
     },
     /**
      * Dispatch analytics track with an eventData,
