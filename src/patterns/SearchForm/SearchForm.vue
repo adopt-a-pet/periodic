@@ -86,7 +86,9 @@ export default {
      */
     ages() {
       const filtered = this.allAges.filter(item => item.clanId === this.fields.clanId);
-      return this.formatList(filtered, 'age');
+      const agesFormatted = this.formatList(filtered, 'age');
+      const agesOrdered = this.$options.filters.orderAges(agesFormatted);
+      return agesOrdered;
     },
 
     /**

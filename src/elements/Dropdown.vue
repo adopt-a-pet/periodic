@@ -233,7 +233,7 @@ export default {
 
     native() {
       // Native dropdowns on non-desktop
-      return (!this.search) && (this.layout !== 'desktop');
+      return (!this.search) && (this.layout !== 'tablet-wide');
     },
 
   },
@@ -386,6 +386,7 @@ export default {
     return {
       dropdown1: 2,
       dropdown2: null,
+      dropdown3: null,
     }
   }
 };
