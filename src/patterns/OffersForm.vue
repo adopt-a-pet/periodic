@@ -16,7 +16,8 @@
     <Checkbox
       id="allSponsorOffers"
       v-model="allOffersChecked"
-      size="tiny">
+      size="tiny"
+      @change="allOffers">
       <Paragraph
         tag="span"
         :class="b('checkbox-text').toString()"
@@ -127,11 +128,16 @@ export default {
       type: Array,
       default: () => [],
     },
+    /**
+     * Status of all checkboxes checkedNewsletterId
+     */
+    allOffersChecked: {
+      type: Boolean,
+    },
   },
 
   data() {
     return {
-      allOffersChecked: true,
       showAllOffers: false,
     };
   },
@@ -170,6 +176,10 @@ export default {
       this.$emit('change', this.offers.map(({ newsletterId }) => newsletterId));
     },
 
+    allOffers() {
+      this.$emit('change:allOffersChecked', this.allOffersChecked);
+    },
+
     newsletterCheckboxId(offer) {
       return `${tokens.prefix_component}offersform-checkbox-newsletter-${
         offer.techName
@@ -204,14 +214,18 @@ export default {
 ```vue
 <template>
   <div>
-    <OffersForm :offers="offers" v-model="offersForm1"/>
+    <OffersForm
+     :offers="offers"
+     :allOffersChecked="allOffersChecked"
+     v-model="offersForm1" />
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      offersForm1: []
+      offersForm1: [],
+      allOffersChecked: true
     };
   },
 
