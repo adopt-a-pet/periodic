@@ -60,6 +60,10 @@
         id="card-cvc"
         ref="cardCvc"
         :class="b('card-cvc').toString()" />
+
+      <div id="payment-request-button">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
     </div>
     <div
       v-if="showError"
@@ -204,6 +208,17 @@ export default {
         },
       };
 
+      const paymentRequest = this.stripe.paymentRequest({
+        country: 'US',
+        currency: 'usd',
+        total: {
+          label: 'Demo total',
+          amount: 1000,
+        },
+        requestPayerName: true,
+        requestPayerEmail: true,
+      });
+
       this.cardNumber = elements.create('cardNumber', {
         style: elementStyles,
         placeholder: 'Credit Card Number',
@@ -219,6 +234,19 @@ export default {
         style: elementStyles,
       });
       this.cardCvc.mount('#card-cvc');
+
+      const prButton = elements.create('paymentRequestButton', {
+        paymentRequest,
+      });
+
+      // Check the availability of the Payment Request API first.
+      paymentRequest.canMakePayment().then(result => {
+        if (result) {
+          prButton.mount('#payment-request-button');
+        } else {
+          document.getElementById('payment-request-button').style.display = 'none';
+        }
+      });
 
       /**
        * Have to add these listeners manually, we need them

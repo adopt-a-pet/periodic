@@ -128,7 +128,8 @@
         <VSpacer size="xl" />
         <OffersForm
           v-model="form.optins"
-          :offers="offers" />
+          :offers="offers"
+          @change:optins="emitOptins" />
         <VSpacer size="xl" />
         <VDivider type="dashed" />
       </div>
@@ -179,7 +180,8 @@
       v-if="layout === 'desktop'"
       v-model="form.optins"
       :class="b('offers-form-desktop').toString()"
-      :offers="offers" />
+      :offers="offers"
+      @change:optins="emitOptins" />
   </div>
 </template>
 
@@ -436,6 +438,9 @@ export default {
      */
     changeEmail() {
       this.$emit('change:npaEmail', this.$refs.email.value);
+    },
+    emitOptins(event) {
+      this.$emit('change:optins', event);
     },
   },
 };

@@ -151,12 +151,12 @@ export default {
   },
 
   created() {
-    this.checkEveryOffer();
-    this.offers = [
+    // this.checkEveryOffer();
+    /* this.offers = [
       { display: 'One', value: 1 },
       { display: 'Two', value: 2 },
       { display: 'Three', value: 3 },
-    ];
+    ]; */
   },
 
   methods: {
@@ -194,6 +194,7 @@ export default {
        * @type Array
        */
       this.$emit('change', newsletterIds);
+      this.$emit('change:optins', newsletterIds);
     },
   },
 };
