@@ -128,7 +128,9 @@
         <VSpacer size="xl" />
         <OffersForm
           v-model="form.optins"
-          :offers="offers" />
+          :offers="offers"
+          @change:optins="emitOptins"
+          @change:allOffersChecked="emitAllOffersChecked" />
         <VSpacer size="xl" />
         <VDivider type="dashed" />
       </div>
@@ -179,7 +181,11 @@
       v-if="layout === 'desktop'"
       v-model="form.optins"
       :class="b('offers-form-desktop').toString()"
-      :offers="offers" />
+      :offers="offers"
+      :optins="optins"
+      :all-offers-checked="allOffersChecked"
+      @change:optins="emitOptins"
+      @change:allOffersChecked="emitAllOffersChecked" />
   </div>
 </template>
 
@@ -216,6 +222,12 @@ export default {
     optins: {
       type: Array,
       default: () => [],
+    },
+    /**
+     * Status of all checkboxes checkedNewsletterId
+     */
+    allOffersChecked: {
+      type: Boolean,
     },
     /**
      * A list of items to render. Each item must have a 'heading', `display`, and a `value`.
@@ -284,7 +296,6 @@ export default {
       form: {
         email: this.email,
         dontShowAgain: false,
-        optins: this.optins,
         plan: this.plan,
       },
       paymentInfo: {},
@@ -437,6 +448,12 @@ export default {
     changeEmail() {
       this.$emit('change:npaEmail', this.$refs.email.value);
     },
+    emitOptins(event) {
+      this.$emit('change:optins', event);
+    },
+    emitAllOffersChecked(event) {
+      this.$emit('change:allOffersChecked', event);
+    },
   },
 };
 </script>
@@ -446,6 +463,8 @@ export default {
 <template>
   <NPASignupForm
     :offers='offers'
+    :allOffersChecked="allOffersChecked"
+    :optins="optins"
     :filters='filters'
     :showDisplayText='showDisplayText'/>
 </template>
@@ -464,6 +483,8 @@ export default {
             'Yes, I would like to receive communications from the Petco Foundation'
         }
       ],
+      optins: [1, 2],
+      allOffersChecked: true,
       filters: {
         age: ['young', 'senior'],
         bondedPair: true,

@@ -16,7 +16,8 @@
     <Checkbox
       id="allSponsorOffers"
       v-model="allOffersChecked"
-      size="tiny">
+      size="tiny"
+      @change="allOffers">
       <Paragraph
         tag="span"
         :class="b('checkbox-text').toString()"
@@ -104,10 +105,6 @@ export default {
   status: 'under-review',
   release: '1.0.0',
   blockName: 'offers-form',
-  model: {
-    prop: 'optins',
-    event: 'change',
-  },
   props: {
     /**
      * A list of offers in the form of:
@@ -127,11 +124,16 @@ export default {
       type: Array,
       default: () => [],
     },
+    /**
+     * Status of all checkboxes checkedNewsletterId
+     */
+    allOffersChecked: {
+      type: Boolean,
+    },
   },
 
   data() {
     return {
-      allOffersChecked: true,
       showAllOffers: false,
     };
   },
@@ -151,12 +153,12 @@ export default {
   },
 
   created() {
-    this.checkEveryOffer();
-    this.offers = [
+    // this.checkEveryOffer();
+    /* this.offers = [
       { display: 'One', value: 1 },
       { display: 'Two', value: 2 },
       { display: 'Three', value: 3 },
-    ];
+    ]; */
   },
 
   methods: {
@@ -168,6 +170,10 @@ export default {
        * @type Array
        */
       this.$emit('change', this.offers.map(({ newsletterId }) => newsletterId));
+    },
+
+    allOffers() {
+      this.$emit('change:allOffersChecked', this.allOffersChecked);
     },
 
     newsletterCheckboxId(offer) {
@@ -194,6 +200,7 @@ export default {
        * @type Array
        */
       this.$emit('change', newsletterIds);
+      this.$emit('change:optins', newsletterIds);
     },
   },
 };
@@ -203,14 +210,20 @@ export default {
 ```vue
 <template>
   <div>
-    <OffersForm :offers="offers" v-model="offersForm1"/>
+    <OffersForm
+     :offers="offers"
+     :allOffersChecked="allOffersChecked"
+     :optins="optins"
+     v-model="offersForm1" />
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      offersForm1: []
+      offersForm1: [],
+      allOffersChecked: true,
+      optins: [1, 2],
     };
   },
 
@@ -219,10 +232,12 @@ export default {
       return [
         {
           newsletterId: 1,
+          techName: 'petcof2',
           displayHtml: "I would like to receive the latest special deals"
         },
         {
           newsletterId: 2,
+          techName: 'petcof2',
           displayHtml:
             "Yes, I would like to receive communications from the Petco Foundation"
         }
