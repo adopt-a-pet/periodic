@@ -182,6 +182,7 @@
       v-model="form.optins"
       :class="b('offers-form-desktop').toString()"
       :offers="offers"
+      :optins="optins"
       :all-offers-checked="allOffersChecked"
       @change:optins="emitOptins"
       @change:allOffersChecked="emitAllOffersChecked" />
@@ -295,7 +296,6 @@ export default {
       form: {
         email: this.email,
         dontShowAgain: false,
-        optins: this.optins,
         plan: this.plan,
       },
       paymentInfo: {},
@@ -464,6 +464,7 @@ export default {
   <NPASignupForm
     :offers='offers'
     :allOffersChecked="allOffersChecked"
+    :optins="optins"
     :filters='filters'
     :showDisplayText='showDisplayText'/>
 </template>
@@ -482,6 +483,7 @@ export default {
             'Yes, I would like to receive communications from the Petco Foundation'
         }
       ],
+      optins: [1, 2],
       allOffersChecked: true,
       filters: {
         age: ['young', 'senior'],

@@ -105,10 +105,6 @@ export default {
   status: 'under-review',
   release: '1.0.0',
   blockName: 'offers-form',
-  model: {
-    prop: 'optins',
-    event: 'change',
-  },
   props: {
     /**
      * A list of offers in the form of:
@@ -217,6 +213,7 @@ export default {
     <OffersForm
      :offers="offers"
      :allOffersChecked="allOffersChecked"
+     :optins="optins"
      v-model="offersForm1" />
   </div>
 </template>
@@ -225,7 +222,8 @@ export default {
   data() {
     return {
       offersForm1: [],
-      allOffersChecked: true
+      allOffersChecked: true,
+      optins: [1, 2],
     };
   },
 
@@ -234,10 +232,12 @@ export default {
       return [
         {
           newsletterId: 1,
+          techName: 'petcof2',
           displayHtml: "I would like to receive the latest special deals"
         },
         {
           newsletterId: 2,
+          techName: 'petcof2',
           displayHtml:
             "Yes, I would like to receive communications from the Petco Foundation"
         }
