@@ -129,6 +129,8 @@
         <OffersForm
           v-model="form.optins"
           :offers="offers"
+          :optins="optins"
+          :all-offers-checked="allOffersChecked"
           @change:optins="emitOptins"
           @change:allOffersChecked="emitAllOffersChecked" />
         <VSpacer size="xl" />
