@@ -224,7 +224,7 @@ export default {
        */
       setTimeout(() => {
         this.hide();
-      }, 500);
+      }, 2000);
 
       if (this.value.includes(selected)) {
         this.$emit('change', this.value.filter(v => v !== selected));
