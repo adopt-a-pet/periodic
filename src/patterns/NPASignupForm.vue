@@ -105,7 +105,8 @@
 
         <Heading
           level="h4"
-          font-weight="bold">
+          font-weight="bold"
+          class="premium-price-plan">
           $10
         </Heading>
 
@@ -312,7 +313,7 @@ export default {
       {
         heading: 'Premium Alert',
         display:
-          'Get real-time, instant emails when you have a new match for $10 per month. Your payment supports our non-profit! Cancel anytime.',
+          'Get real-time, instant emails when you have a new match. Your payment supports our non-profit! Cancel anytime.',
         icon: 'clock',
         value: 1,
       },
