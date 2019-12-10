@@ -7,12 +7,12 @@ node {
     docker.image('node:10-alpine').inside("-v $WORKSPACE:/output -u root") {
           stage('Checkout') {
           checkout([$class: 'GitSCM',
-    			      branches: [[name: '*/master']],
-    			      doGenerateSubmoduleConfigurations: false,
-    			      extensions: [[$class: 'CleanCheckout']],
-    			      submoduleCfg: [],
-    			      userRemoteConfigs: [[credentialsId: 'github',
-    			      url: 'https://github.com/adopt-a-pet/periodic.git']]])
+                branches: [[name: '*/master']],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [[$class: 'CleanCheckout']],
+                submoduleCfg: [],
+                userRemoteConfigs: [[credentialsId: 'github',
+                url: 'https://github.com/adopt-a-pet/periodic.git']]])
         }
         
         stage('Build') {
@@ -28,9 +28,8 @@ node {
           def response
           // Provide credentials for aws cli and initiate check --
           try {
-            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: "MYCLI"]]) {
               response = sh(returnStdout: true, script: "${cli_cp}").trim()
-            }
+            
             items_copied = true
           } catch(Ex) {
             println "Unable to copy files to bucket: ${Ex.toString()}"
