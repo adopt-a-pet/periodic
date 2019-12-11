@@ -37,9 +37,11 @@
 
       <DropdownMulti
         v-model="form.breeds"
+        :class="{'pointer-events-true': pointerEvents}"
         :items="breedIdsDropdown"
         label="Breeds"
         :search="true"
+        :pointer-events="true"
         multi-selected-label="Multiple"
         zero-selected-label="Any"
         size="tiny"
