@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="b({ searchable: search }).is({ full: full }).toString()">
+    :class="b({ searchable: search }).is({ full: full }).is({'with-events': focusedEvents}).toString()">
     <TextInput
       :class="b('text-input').toString()"
       :label="label"
@@ -160,6 +160,14 @@ export default {
       type: String,
       default: null,
     },
+    /**
+     * Issues on iOS when using the searchable dropowns.
+     * Using this to decicde if we need to turn on pointer events.
+     */
+    pointerEvents: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -202,6 +210,10 @@ export default {
           ? this.filterSearch(this.filter)
           : this.allChoices
       );
+    },
+
+    focusedEvents() {
+      return this.pointerEvents === true && this.focused;
     },
   },
 

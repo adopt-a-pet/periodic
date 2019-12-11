@@ -23,6 +23,10 @@
       opacity: 1
       visibility: visible
 
+  +is(with-events)
+    .#{_b(dropdown) + _e(arrow)}
+      pointer-events: auto
+
   +m(native)
     select
       +reset
