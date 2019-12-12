@@ -8,7 +8,6 @@
       :readonly="!search"
       :value="filterOrselectedDisplay"
       :label-right="labelRight"
-      :autoclose="autoclose"
       autocomplete="off"
       focus-border
       @blur="onBlur"
