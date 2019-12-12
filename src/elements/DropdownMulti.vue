@@ -8,6 +8,7 @@
       :readonly="!search"
       :value="filterOrselectedDisplay"
       :label-right="labelRight"
+      :autoclose="autoclose"
       autocomplete="off"
       focus-border
       @blur="onBlur"
@@ -160,6 +161,13 @@ export default {
       type: String,
       default: null,
     },
+    /**
+     * Autoclose the dropdown
+     */
+    autoclose: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -222,14 +230,16 @@ export default {
        * @event change
        * @type Array
        */
-      setTimeout(() => {
-        this.hide();
-      }, 2000);
-
       if (this.value.includes(selected)) {
         this.$emit('change', this.value.filter(v => v !== selected));
       } else {
         this.$emit('change', this.value.concat(selected));
+      }
+
+      if (this.autoclose) {
+        setTimeout(() => {
+          this.hide();
+        }, 2000);
       }
     },
 
