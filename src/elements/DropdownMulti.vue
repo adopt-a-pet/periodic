@@ -234,9 +234,6 @@ export default {
        * @event change
        * @type Array
        */
-      setTimeout(() => {
-        this.hide();
-      }, 2000);
 
       if (this.value.includes(selected)) {
         this.$emit('change', this.value.filter(v => v !== selected));
