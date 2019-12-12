@@ -7,6 +7,14 @@ export default {
   release: '1.0.0',
   props: {
     /**
+     * The URL to redirect to upon click
+     */
+    href: {
+      default: '',
+      type: String,
+    },
+
+    /**
      * A pet object
      */
     pet: {
