@@ -171,7 +171,7 @@ export default {
     /**
      * Autoclose the dropdown
      */
-    autoclose: {
+    autoClose: {
       type: Boolean,
       default: false,
     },
@@ -247,7 +247,7 @@ export default {
         this.$emit('change', this.value.concat(selected));
       }
 
-      if (this.autoclose) {
+      if (this.autoClose) {
         setTimeout(() => {
           this.hide();
         }, 2000);
