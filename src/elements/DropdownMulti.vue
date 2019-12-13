@@ -168,6 +168,13 @@ export default {
       type: Boolean,
       default: false,
     },
+    /**
+     * Autoclose the dropdown
+     */
+    autoClose: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -234,11 +241,16 @@ export default {
        * @event change
        * @type Array
        */
-
       if (this.value.includes(selected)) {
         this.$emit('change', this.value.filter(v => v !== selected));
       } else {
         this.$emit('change', this.value.concat(selected));
+      }
+
+      if (this.autoClose) {
+        setTimeout(() => {
+          this.hide();
+        }, 2000);
       }
     },
 
