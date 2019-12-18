@@ -116,6 +116,7 @@
           ref="paymentForm"
           :email="form.email"
           :payment-error="paymentError"
+          @tokenError:creation="emitTokenError"
           @paymentInfo="createPremiumNPA" />
       </div>
 
@@ -431,6 +432,10 @@ export default {
         obj.zipcode = eventData.zipCode;
       }
 
+      if (eventData.ev) {
+        obj.ev = eventData.ev;
+      }
+
       this.$emit('submit', {
         ...this.form,
         filters: this.filters,
@@ -456,6 +461,9 @@ export default {
     },
     emitAllOffersChecked(event) {
       this.$emit('change:allOffersChecked', event);
+    },
+    emitTokenError() {
+      this.$emit('tokenError');
     },
   },
 };

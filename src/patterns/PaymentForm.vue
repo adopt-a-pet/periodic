@@ -5,6 +5,36 @@
       name="stripeToken"
       value="">
     <div
+      v-if="quickPayAvailable"
+      class="pay-options">
+      <TextLink
+        :font-weight="headingIsActive"
+        :class="b('quick-pay').toString()"
+        @click="handleClickPayOption('quickPay')">
+        Quickpay
+      </TextLink>
+      <TextLink
+        :font-weight="headingIsActive"
+        :class="b('credit-card').toString()"
+        @click="handleClickPayOption('creditCard')">
+        Credit Card
+      </TextLink>
+    </div>
+    <div v-show="quickPaySelected">
+      <!--<div id="payment-request-button">
+        A Stripe Element will be inserted here.
+      </div> -->
+      <Button
+        id="payment-request-button"
+        :class="b('payment-request-button').toString()"
+        @click="showPaymentRequestWindow">
+        <Icon
+          :class="b('social-icon').toString()"
+          name="apple-pay" />
+      </Button>
+    </div>
+    <div
+      v-show="!quickPaySelected"
       :class="{'periodic-payment-form__form-control periodic-base': !cardErrors && !paymentError,
                'periodic-payment-form__form-control--card-errors periodic-base': cardErrors && !paymentError,
                'periodic-payment-form__form-control--payment-error periodic-base': !cardErrors && paymentError,
@@ -111,6 +141,9 @@ export default {
       zipCode: '',
       showError: false,
       cardErrors: false,
+      quickPayAvailable: true,
+      quickPaySelected: false,
+      quickPayAmount: 100,
     };
   },
 
@@ -119,6 +152,9 @@ export default {
       return {
         zipsValidator,
       };
+    },
+    headingIsActive() {
+      return 'light';
     },
   },
 
@@ -141,6 +177,7 @@ export default {
     stripeScript.onload = () => {
       this.mountStripe();
     };
+
     stripeScript.setAttribute('src', 'https://js.stripe.com/v3/');
     /**
      * Get stripe key, the PaymentForm expects the host
@@ -219,6 +256,45 @@ export default {
         style: elementStyles,
       });
       this.cardCvc.mount('#card-cvc');
+
+      this.paymentRequest = this.stripe.paymentRequest({
+        country: 'US',
+        currency: 'usd',
+        total: {
+          label: 'Demo total',
+          amount: this.quickPayAmount,
+        },
+        requestPayerName: false,
+        requestPayerEmail: false,
+      });
+
+      /* const paymentRequest = this.paymentRequest;
+
+      this.prButton = elements.create('paymentRequestButton', {
+        paymentRequest,
+      }); */
+
+      // Check the availability of the Payment Request API first.
+      this.paymentRequest.canMakePayment().then(result => {
+        if (result) {
+          // this.prButton.mount('#payment-request-button');
+          return true;
+        }
+        document.getElementById('payment-request-button').style.display = 'none';
+        return false;
+      });
+
+      this.paymentRequest.on('token', ev => {
+        this.$emit(
+          'paymentInfo',
+          {
+            stripeToken: ev.token.id,
+            zipCode: ev.token.card.address_zip,
+            ev,
+          },
+        );
+        ev.complete('success');
+      });
 
       /**
        * Have to add these listeners manually, we need them
@@ -303,6 +379,7 @@ export default {
           this.showError = false;
         }
         if (result.error) {
+          this.$emit('tokenError:creation');
           this.showError = true;
           this.$forceUpdate(); // Forcing the DOM to update so the Stripe Element can update.
         }
@@ -317,6 +394,16 @@ export default {
      */
     dispatchTrackClick(event) {
       this.$syscall(`analytics/track/PaymentForm/${event}/click`);
+    },
+    showPaymentRequestWindow() {
+      this.paymentRequest.show();
+    },
+    handleClickPayOption(option) {
+      if (option === 'creditCard') {
+        this.quickPaySelected = false;
+      } else {
+        this.quickPaySelected = true;
+      }
     },
   },
 };

@@ -1,5 +1,53 @@
 @include b('payment-form') {
 
+  @include element('quick-pay') {
+    display: inline-block;
+    margin: 10px 10px 10px 0px;
+    border-bottom: 1px solid;
+    color: #9B9B9B;
+    cursor: pointer;
+
+    &:active {
+      color: $color-primary-blue;
+      font-weight: bold;
+      border-bottom: 2px solid;
+    }
+
+    &:hover {
+      color: $color-primary-blue;
+      text-decoration: none;
+    }
+  }
+
+  @include element('credit-card') {
+    display: inline-block;
+    margin: 10px;
+    border-bottom: 1px solid;
+    color: #9B9B9B;
+    cursor: pointer;
+
+    &:active {
+      color: $color-primary-blue;
+      font-weight: bold;
+      border-bottom: 2px solid;
+    }
+
+    &:hover {
+      color: $color-primary-blue;
+      text-decoration: none;
+    }
+  }
+
+  @include element('payment-request-button') {
+    background-color: black;
+    vertical-align: text-bottom;
+    display: inline-block;
+    
+    &:hover {
+      background-color: black;
+    }
+  }
+
   @include element('form-control') {
     color: color(agray, darker);
     display: grid;
