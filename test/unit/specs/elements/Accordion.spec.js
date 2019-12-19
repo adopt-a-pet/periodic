@@ -20,16 +20,13 @@ describe('elements/Accordion', () => {
   it('clicking header toggles content', () => {
     const wrapper = mount(TestComponent);
     return Vue.nextTick().then(() => {
-      // const header = wrapper.find('.header');
+      const header = wrapper.find('.header');
       const main = wrapper.find('.main');
-      // return Vue.nextTick().then(() => {
-      // console.log('main.attributes(\'style\') = ', main.attributes('style'));
       expect(main.isVisible()).toBe(false);
-      // header.trigger('click');
-      // return Vue.nextTick().then(() => {
-      //   expect(main.isVisible()).toBe(true);
-      // });
+      header.trigger('click');
+      return Vue.nextTick().then(() => {
+        expect(main.isVisible()).toBe(true);
+      });
     });
-    // });
   });
 });

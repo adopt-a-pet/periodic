@@ -74,34 +74,35 @@ export default {
      */
     onResize(event) {
       if (this.open) {
-        // this.style = {
-        //   'max-height': 'inherit',
-        // };
+        this.style = {
+          'max-height': 'inherit',
+        };
         this.$nextTick(() => {
           this.height = this.$refs[this.ref].clientHeight;
-          // this.style = {
-          //   'max-height': 0,
-          //   opacity: 0,
-          // };
+          this.style = {
+            'max-height': 0,
+            opacity: 0,
+            display: 'inherit',
+          };
           setTimeout(() => {
-            // this.style = {
-            //   'max-height': `${this.height}px`,
-            //   overflow: 'hidden',
-            //   opacity: 1,
-            // };
+            this.style = {
+              'max-height': `${this.height}px`,
+              overflow: 'hidden',
+              opacity: 1,
+            };
             if (event.toggle) {
-              // this.style.transition = 'opacity 1s, max-height .5s';
+              this.style.transition = 'opacity 1s, max-height .5s';
             }
           });
         });
       } else {
-        // this.style = {
-        //   display: 'none',
-        //   'max-height': 0,
-        //   overflow: 'hidden',
-        //   opacity: 0,
-        //   transition: 'opacity 1s, max-height .5s',
-        // };
+        this.style = {
+          display: 'none',
+          'max-height': 0,
+          overflow: 'hidden',
+          opacity: 0,
+          transition: 'opacity 1s, max-height .5s',
+        };
       }
     },
   },
