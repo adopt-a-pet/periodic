@@ -7,23 +7,29 @@ Vue.use(Periodic);
 
 const TestComponent = Vue.extend({
   template: `
-    <Banner>
+    <Accordion>
       <template slot="header">Top Header</template>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
-    </Banner>`,
+    </Accordion>`,
 });
 
-describe('elements/Banner', () => {
-  it('accordion click', () => {
+describe('elements/Accordion', () => {
+  it('clicking header toggles content', () => {
     const wrapper = mount(TestComponent);
-    const main = wrapper.find('.main');
-    setTimeout(() => {
+    return Vue.nextTick().then(() => {
+      // const header = wrapper.find('.header');
+      const main = wrapper.find('.main');
+      // return Vue.nextTick().then(() => {
+      // console.log('main.attributes(\'style\') = ', main.attributes('style'));
       expect(main.isVisible()).toBe(false);
-      wrapper.find('.header').trigger('click');
-      expect(main.isVisible()).toBe(true);
+      // header.trigger('click');
+      // return Vue.nextTick().then(() => {
+      //   expect(main.isVisible()).toBe(true);
+      // });
     });
+    // });
   });
 });
