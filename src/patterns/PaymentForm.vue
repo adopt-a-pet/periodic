@@ -304,6 +304,7 @@ export default {
         }
         if (result.error) {
           this.showError = true;
+          this.$emit('tokenError:creation');
           this.$forceUpdate(); // Forcing the DOM to update so the Stripe Element can update.
         }
       });
