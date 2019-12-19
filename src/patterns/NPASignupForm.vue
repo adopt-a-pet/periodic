@@ -116,7 +116,8 @@
           ref="paymentForm"
           :email="form.email"
           :payment-error="paymentError"
-          @paymentInfo="createPremiumNPA" />
+          @paymentInfo="createPremiumNPA"
+          @tokenError:creation="emitTokenError" />
       </div>
 
 
@@ -456,6 +457,9 @@ export default {
     },
     emitAllOffersChecked(event) {
       this.$emit('change:allOffersChecked', event);
+    },
+    emitTokenError() {
+      this.$emit('tokenError');
     },
   },
 };
