@@ -6,15 +6,20 @@ const Vue = createLocalVue();
 Vue.use(Periodic);
 
 const TestComponent = Vue.extend({
-  template: '<Dropdown label="With Search" :items="[{ display: \'One\', value: 1 }, { display: \'Two\', value: 2 }]" :search="true" :specialChoices="[{ display: \'Any\', value: null }]" tooltip="This is an info bubble" />',
+  template: '<Dropdown label="With Search" :items="[{ display: \'One\', value: 1 }, { display: \'Two\', value: 2 }]" :search="true" :specialChoices="[{ display: \'Any\', value: null }]" tooltip="This is an info bubble" @change="emit(\'change\')" />',
 });
 
 describe('elements/Dropdown', () => {
-  it('filter results', () => {
-    const wrapper = mount(TestComponent);
-    const textInput = wrapper.find('input[type="text"]');
-    const listItems = wrapper.findAll('li');
+  const wrapper = mount(TestComponent);
+  const textInput = wrapper.find('input[type="text"]');
+  const listItems = wrapper.findAll('li');
 
+  it('select dropdown', () => {
+    listItems[1].trigger('click');
+    expect(wrapper.emitted('change').length).toBe(1);
+  });
+
+  it('filter results', () => {
     expect(listItems.length).toBe(3);
     textInput.setValue('Two');
     expect(wrapper.findAll('li').length).toBe(2);
