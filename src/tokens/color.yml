@@ -7,84 +7,107 @@
 # utilize both global & local tokens for colors.
 #
 
-# aliases:
-#   vermilion:
-#     value: "7, 83%"
-#   ucla_gold:
-#     value: "43, 100%"
-#   bleu_de_france:
-#     value: "210, 86%"
-#   oxford_blue:
-#     value: "210, 100%"
-#   rich_black:
-#     value: "#001123"
-#   white:
-#     value: "#fff"
-
-  # color_vermilion_darker:
-  #   value: "hsla({!vermilion}, 33%, 1)"
-  #   category: color_group_1
+aliases:
+  vermilion:
+    value: "7, 83%"
+  ucla_gold:
+    value: "43, 100%"
+  bleu_de_france:
+    value: "210, 86%"
+  oxford_blue:
+    value: "210, 100%"
+  rich_black:
+    value: "#001123"
+  white:
+    value: "#fff"
 
 props:
-
-  color-aap-logo:
-    vlue: "rgb(0, 191, 218)"
+  color_vermilion_darker:
+    value: "hsla({!vermilion}, 33%, 1)"
     category: color_group_1
-  color-aap-logo-dark:
-    vlue: "rgb(0, 153, 184)"
+  color_vermilion_dark:
+    value: "hsla({!vermilion}, 43%, 1)"
     category: color_group_1
-  color-aap-logo-darker:
-    vlue: "rgb(0, 53, 60)"
+  color_vermilion:
+    value: "hsla({!vermilion}, 53%, 1)"
+    category: color_group_1
+  color_vermilion_light:
+    value: "hsla({!vermilion}, 63%, 1)"
+    category: color_group_1
+  color_vermilion_lighter:
+    value: "hsla({!vermilion}, 75%, 1)"
     category: color_group_1
 
-  color-rehome:
-    vlue: "rgb(0, 204, 168)"
+  color_ucla_gold_darker:
+    value: "hsla({!ucla_gold}, 35%, 1)"
     category: color_group_2
-  color-rehome-dark:
-    vlue: "rgb(0, 168, 136)"
+  color_ucla_gold_dark:
+    value: "hsla({!ucla_gold}, 45%, 1)"
     category: color_group_2
-  color-rehome-darker:
-    vlue: "rgb(0, 93, 77)"
+  color_ucla_gold:
+    value: "hsla({!ucla_gold}, 52%, 1)"
+    category: color_group_2
+  color_ucla_gold_light:
+    value: "hsla({!ucla_gold}, 65%, 1)"
+    category: color_group_2
+  color_ucla_gold_lighter:
+    value: "hsla({!ucla_gold}, 75%, 1)"
     category: color_group_2
 
-  color-primary-warning:
-    vlue: "rgb(249, 102, 94)"
+  color_bleu_de_france_darker:
+    value: "hsla({!bleu_de_france}, 34%, 1)"
     category: color_group_3
-  color-primary-warning-dark:
-    vlue: "rgb(204, 86, 61)"
+  color_bleu_de_france_dark:
+    value: "hsla({!bleu_de_france}, 44%, 1)"
     category: color_group_3
-  color-primary-warning-darker:
-    vlue: "rgb(136, 57, 41)"
+  color_bleu_de_france:
+    value: "hsla({!bleu_de_france}, 54%, 1)"
+    category: color_group_3
+  color_bleu_de_france_light:
+    value: "hsla({!bleu_de_france}, 64%, 1)"
+    category: color_group_3
+  color_bleu_de_france_lighter:
+    value: "hsla({!bleu_de_france}, 74%, 1)"
     category: color_group_3
 
-  color-primary-accent:
-    vlue: "rgb(255, 204, 27)"
+  color_oxford_blue:
+    value: "hsla({!oxford_blue}, 15%, 1)"
     category: color_group_4
-  color-primary-accent-dark:
-    vlue: "rgb(209, 167, 23)"
+  color_rich_black:
+    value: "{!rich_black}"
     category: color_group_4
-  color-primary-accent-darker:
-    vlue: "rgb(158, 127, 17)"
+  color_white:
+    value: "{!white}"
+    category: color_group_4
+  color_silver:
+    value: "#7F8891"
+    category: color_group_4
+  color_cloud:
+    value: "#E9F3FD"
     category: color_group_4
 
-  color-black:
-    vlue: "rgb(36, 36, 36)"
-    category: color_group_5
-  color-gray-darker:
-    vlue: "rgb(179,179,179)"
-    category: color_group_5
-  color-gray-dark:
-    vlue: "rgb(218,218,218)"
-    category: color_group_5
-  color-gray:
-    vlue: "rgb(236,236,236)"
+  color-gray-lighter:
+    value: "#ECECEC"
     category: color_group_5
   color-gray-light:
-    vlue: "rgb(242,242,242)"
+    value: "#dfdfdf"
     category: color_group_5
-  color-gray-lighter:
-    vlue: "rgb(249,249,249)"
+  color-gray:
+    value: "#b3b3b3"
     category: color_group_5
+  color_forty_per_lighter_grey:
+    value: "rgba(223,223,223, .4)"
+    category: color_group_5
+  color_primary_blue:
+    value: "#00a8de"
+    category: color_group_5
+
+  color_facebook_blue:
+    value: "#3b5998"
+    category: color_group_6
+  color_google_red:
+    value: "#db4336"
+    category: color_group_6
 
 global:
   type: color
