@@ -93,5 +93,15 @@ export default {
     'analytics/track/NPASignupForm/editFilters/click': function(_, payload) {
       console.log('event:', 'editFilters');
     },
+    'api/validation/locationValidator': function (_, payload) {
+      const CITY_AND_STATE_RULES = /^([a-zA-Z0-9~ñ*'-.\s]+\S,((\s\w{2})|\w{2}))$/;
+      const fieldType = CITY_AND_STATE_RULES.test(payload) ? 'cityState' : 'zipCode';
+      const query = {
+        [fieldType]: payload
+      };
+      const validationEndpoint = `${['https://staging-api-ra.adoptapet.com/v1', 'utilities', 'locations'].join('/')}?${qs.stringify(query)}`;
+      // Execute proxy call to VML to validate the location before submit
+      return axios.get(validationEndpoint).then((response) => response.body.status);
+    }
   }
 };
