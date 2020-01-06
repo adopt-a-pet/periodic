@@ -160,6 +160,7 @@ export default {
       quickPaySelected: false,
       checkedForQuickPay: false,
       quickPayType: 'google',
+      quickPayAmount: 1000,
     };
   },
 
@@ -172,27 +173,15 @@ export default {
     headingIsActive() {
       return 'light';
     },
-    quickPayAmount() {
-      switch (this.premiumPlanId) {
-        case 'plan_FmSGrwj2xKEwx5':
-          return 1000;
-        case 'plan_GNSdel7hWq8aNc':
-          return 999;
-        case 'plan_GDXBNQ7dmqUXZN':
-          return 499;
-        case 'plan_GDX9FmuaU0V3Lk':
-          return 299;
-        default:
-          return 1000;
-      }
-    },
   },
 
   watch: {
     paymentError(bool) {
       if (bool === true) this.showError = true;
     },
-
+    premiumPlanId() {
+      this.quickPayAmountSwitch();
+    },
   },
 
   created() {
@@ -291,7 +280,7 @@ export default {
         country: 'US',
         currency: 'usd',
         total: {
-          label: 'Demo total',
+          label: 'AAP - Premium New Pet Alert',
           amount: this.quickPayAmount,
         },
         requestPayerName: false,
@@ -440,6 +429,24 @@ export default {
         this.quickPaySelected = false;
       } else {
         this.quickPaySelected = true;
+      }
+    },
+    quickPayAmountSwitch() {
+      switch (this.premiumPlanId) {
+        case 'plan_FmSGrwj2xKEwx5':
+          this.quickPayAmount = 1000;
+          break;
+        case 'plan_GNSdel7hWq8aNc':
+          this.quickPayAmount = 999;
+          break;
+        case 'plan_GDXBNQ7dmqUXZN':
+          this.quickPayAmount = 499;
+          break;
+        case 'plan_GDX9FmuaU0V3Lk':
+          this.quickPayAmount = 299;
+          break;
+        default:
+          this.quickPayAmount = 1000;
       }
     },
   },
