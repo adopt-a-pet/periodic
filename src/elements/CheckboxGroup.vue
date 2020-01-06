@@ -146,7 +146,7 @@ export default {
 <template>
 <div>
   <Heading
-    font-family="museo"
+    font-family="special"
     level="h4">1 Column (default)</Heading>
 
   <CheckboxGroup
@@ -161,7 +161,7 @@ export default {
   <VSpacer size="l" />
 
   <Heading
-    font-family="museo"
+    font-family="special"
     level="h4">3 Columns</Heading>
 
   <CheckboxGroup

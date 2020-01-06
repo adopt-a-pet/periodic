@@ -4,7 +4,7 @@
       <Heading
         :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
         font-weight="bold"
-        font-family="museo">
+        font-family="special">
         What are New Pet Alerts?
       </Heading>
 
@@ -27,7 +27,7 @@
       <Heading
         :level="'h2'"
         font-weight="bold"
-        font-family="museo"
+        font-family="special"
         text-align="left">
         Here's How It Works
       </Heading>

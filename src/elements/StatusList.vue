@@ -56,7 +56,7 @@ export default {
 <div>
   <Heading
     level='h3'
-    font-family='museo'
+    font-family='special'
     font-weight='bold'
     line-height='compact'>My Info</Heading>
 

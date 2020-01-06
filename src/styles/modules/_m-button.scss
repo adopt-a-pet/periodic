@@ -168,12 +168,4 @@
     vertical-align: text-bottom;
     @include rem-fallback('margin-right', 5px);
   }
-
-  // @include element ('ask-about-me') {
-  //     font-family: $museo700;
-  //     color: color(awhite);
-  //     @include font-size(20);
-  //     @include rem-fallback('line-height', 26px);
-  //     @include rem-fallback('letter-spacing', -.25px);
-  // }
 }
