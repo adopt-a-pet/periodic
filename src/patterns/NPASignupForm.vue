@@ -110,7 +110,7 @@
           $10
         </Heading>
 
-        <VSpacer size="s" />
+        <VSpacer size="xs" />
 
         <PaymentForm
           ref="paymentForm"

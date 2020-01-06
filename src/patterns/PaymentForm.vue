@@ -9,13 +9,19 @@
       class="pay-options">
       <TextLink
         :font-weight="headingIsActive"
-        :class="b('quick-pay').toString()"
+        :class="{
+          'periodic-payment-form__quick-pay': !quickPaySelected,
+          'periodic-payment-form__quick-pay--active': quickPaySelected
+        }"
         @click="handleClickPayOption('quickPay')">
         Quickpay
       </TextLink>
       <TextLink
         :font-weight="headingIsActive"
-        :class="b('credit-card').toString()"
+        :class="{
+          'periodic-payment-form__credit-card': quickPaySelected,
+          'periodic-payment-form__credit-card--active': !quickPaySelected
+        }"
         @click="handleClickPayOption('creditCard')">
         Credit Card
       </TextLink>
@@ -33,8 +39,9 @@
         Pay
       </Button>
     </div>
+    <!-- Use v-show instead of v-if so stripe can mount in these fields -->
     <div
-      v-show="!quickPaySelected"
+      v-show="!quickPaySelected && checkedForQuickPay"
       :class="{'periodic-payment-form__form-control periodic-base': !cardErrors && !paymentError,
                'periodic-payment-form__form-control--card-errors periodic-base': cardErrors && !paymentError,
                'periodic-payment-form__form-control--payment-error periodic-base': !cardErrors && paymentError,
@@ -107,7 +114,6 @@
 
 <script>
 /* global Stripe */
-// import tokens from '@/assets/tokens/tokens.json';
 import { zipsValidator } from '../utils/validators/location-vuelidate';
 
 /**
@@ -124,6 +130,7 @@ export default {
       type: String,
       default: '',
     },
+
     /**
      * Show payment error div if
      * stripe returns error.
@@ -131,6 +138,11 @@ export default {
     paymentError: {
       type: Boolean,
       default: false,
+    },
+
+    quickPayAmount: {
+      type: Number,
+      default: 1000,
     },
   },
 
@@ -141,9 +153,9 @@ export default {
       zipCode: '',
       showError: false,
       cardErrors: false,
-      quickPayAvailable: true,
+      quickPayAvailable: false,
       quickPaySelected: false,
-      quickPayAmount: 100,
+      checkedForQuickPay: false,
     };
   },
 
@@ -268,19 +280,17 @@ export default {
         requestPayerEmail: false,
       });
 
-      /* const paymentRequest = this.paymentRequest;
-
-      this.prButton = elements.create('paymentRequestButton', {
-        paymentRequest,
-      }); */
-
       // Check the availability of the Payment Request API first.
       this.paymentRequest.canMakePayment().then(result => {
         if (result) {
-          // this.prButton.mount('#payment-request-button');
+          this.quickPaySelected = true;
+          this.quickPayAvailable = true;
+          this.checkedForQuickPay = true;
           return true;
         }
+        this.quickPayAvailable = false;
         document.getElementById('payment-request-button').style.display = 'none';
+        this.checkedForQuickPay = true;
         return false;
       });
 

@@ -2,44 +2,52 @@
 
   @include element('quick-pay') {
     display: inline-block;
-    margin: 10px 10px 10px 0px;
+    margin: 0px 10px 30px 0px;
     border-bottom: 1px solid;
     color: #9B9B9B;
     cursor: pointer;
 
-    &:active {
-      color: $color-primary-blue;
-      font-weight: bold;
-      border-bottom: 2px solid;
-    }
-
     &:hover {
       color: $color-primary-blue;
       text-decoration: none;
+    }
+
+    @include modifier('active') {
+      display: inline-block;
+      color: $color-primary-blue;
+      font-weight: bold;
+      border-bottom: 2px solid;
+      margin: 0px 10px 30px 0px;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 
   @include element('credit-card') {
     display: inline-block;
-    margin: 10px;
+    margin: 0px 10px 30px 10px;
     border-bottom: 1px solid;
     color: #9B9B9B;
     cursor: pointer;
-
-    &:active {
-      color: $color-primary-blue;
-      font-weight: bold;
-      border-bottom: 2px solid;
-    }
 
     &:hover {
       color: $color-primary-blue;
       text-decoration: none;
     }
-  }
 
-  @include element('quick-pay-box') {
-    margin-top: 30px;
+    @include modifier('active') {
+      display: inline-block;
+      color: $color-primary-blue;
+      font-weight: bold;
+      border-bottom: 2px solid;
+      margin: 0px 10px 30px 10px;
+      
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 
   @include element('payment-request-button') {
