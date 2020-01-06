@@ -8,7 +8,7 @@
       v-if="quickPayAvailable"
       class="pay-options">
       <TextLink
-        :font-weight="headingIsActive"
+        font-weight="light"
         :class="{
           'periodic-payment-form__quick-pay': !quickPaySelected,
           'periodic-payment-form__quick-pay--active': quickPaySelected
@@ -17,7 +17,7 @@
         Quickpay
       </TextLink>
       <TextLink
-        :font-weight="headingIsActive"
+        font-weight="light"
         :class="{
           'periodic-payment-form__credit-card': quickPaySelected,
           'periodic-payment-form__credit-card--active': !quickPaySelected
@@ -35,7 +35,7 @@
         @click="showPaymentRequestWindow">
         <Icon
           class="periodic-button__social-icon"
-          name="google-pay" />
+          :name="quickPayType + '-pay'" />
         Pay
       </Button>
     </div>
@@ -140,9 +140,12 @@ export default {
       default: false,
     },
 
-    quickPayAmount: {
-      type: Number,
-      default: 1000,
+    /** Amount to be displayed in
+     * quick pay window
+     */
+    premiumPlanId: {
+      type: String,
+      default: '',
     },
   },
 
@@ -156,6 +159,7 @@ export default {
       quickPayAvailable: false,
       quickPaySelected: false,
       checkedForQuickPay: false,
+      quickPayType: 'google',
     };
   },
 
@@ -167,6 +171,20 @@ export default {
     },
     headingIsActive() {
       return 'light';
+    },
+    quickPayAmount() {
+      switch (this.premiumPlanId) {
+        case 'plan_FmSGrwj2xKEwx5':
+          return 1000;
+        case 'plan_GNSdel7hWq8aNc':
+          return 999;
+        case 'plan_GDXBNQ7dmqUXZN':
+          return 499;
+        case 'plan_GDX9FmuaU0V3Lk':
+          return 299;
+        default:
+          return 1000;
+      }
     },
   },
 
@@ -283,6 +301,10 @@ export default {
       // Check the availability of the Payment Request API first.
       this.paymentRequest.canMakePayment().then(result => {
         if (result) {
+          if (result.applePay === true) {
+            this.quickPayType = 'apple';
+          }
+
           this.quickPaySelected = true;
           this.quickPayAvailable = true;
           this.checkedForQuickPay = true;
@@ -406,7 +428,12 @@ export default {
       this.$syscall(`analytics/track/PaymentForm/${event}/click`);
     },
     showPaymentRequestWindow() {
+      if (this.email === '' || this.email === undefined) {
+        this.$emit('noEmail');
+        return false;
+      }
       this.paymentRequest.show();
+      return true;
     },
     handleClickPayOption(option) {
       if (option === 'creditCard') {
