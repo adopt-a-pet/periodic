@@ -38,6 +38,10 @@
     }
   }
 
+  @include element('quick-pay-box') {
+    margin-top: 30px;
+  }
+
   @include element('payment-request-button') {
     background-color: black;
     vertical-align: text-bottom;

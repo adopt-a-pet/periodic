@@ -20,7 +20,9 @@
         Credit Card
       </TextLink>
     </div>
-    <div v-show="quickPaySelected">
+    <div
+      v-show="quickPaySelected"
+      :class="b('quick-pay-box').toString()">
       <Button
         id="payment-request-button"
         :class="b('payment-request-button').toString()"
