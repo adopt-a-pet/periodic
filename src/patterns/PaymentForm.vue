@@ -21,16 +21,14 @@
       </TextLink>
     </div>
     <div v-show="quickPaySelected">
-      <!--<div id="payment-request-button">
-        A Stripe Element will be inserted here.
-      </div> -->
       <Button
         id="payment-request-button"
         :class="b('payment-request-button').toString()"
         @click="showPaymentRequestWindow">
         <Icon
-          :class="b('social-icon').toString()"
-          name="apple-pay" />
+          class="periodic-button__social-icon"
+          name="google-pay" />
+        Pay
       </Button>
     </div>
     <div
@@ -379,7 +377,6 @@ export default {
           this.showError = false;
         }
         if (result.error) {
-          this.$emit('tokenError:creation');
           this.showError = true;
           this.$emit('tokenError:creation');
           this.$forceUpdate(); // Forcing the DOM to update so the Stripe Element can update.
