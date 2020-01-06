@@ -116,8 +116,8 @@
           ref="paymentForm"
           :email="form.email"
           :payment-error="paymentError"
-          @tokenError:creation="emitTokenError"
-          @paymentInfo="createPremiumNPA" />
+          @paymentInfo="createPremiumNPA"
+          @tokenError:creation="emitTokenError" />
       </div>
 
 
