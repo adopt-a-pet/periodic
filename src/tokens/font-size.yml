@@ -4,22 +4,23 @@
 #
 
 props:
-  font_size_xxl:
-    value: "45px"
-  font_size_xl:
-    value: "32px"
-  font_size_l:
-    value: "26px"
-  font_size_m:
-    value: "20px"
-  font_size_s:
-    value: "16px"
-  font_size_xs:
-    value: "14px"
-  font_size_xxs:
+  font-size-xxs:
     value: "12px"
-  font_size_xxxs:
-    value: "11px"
+  font-size-xs:
+    value: "14px"
+  font-size-s:
+    value: "16px"
+  font-size-m:
+    value: "20px"
+  font-size-l:
+    value: "26px"
+  font-size-xl:
+    value: "32px"
+  font-size-xxl:
+    value: "45px"
+  font-size-xxxl:
+    value: "56px"
+
 global:
   type: number
   category: font-size

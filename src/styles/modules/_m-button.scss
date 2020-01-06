@@ -4,8 +4,8 @@
   @include border(2px solid color(agray, light));
   border-radius: $border-radius;
   color: color(agray, light);
-  font-family: $font_museo;
-  font-weight: $weight_bold;
+  font-family: $font;
+  font-weight: $font-weight-bold;
   @include rem-fallback('font-size', 20px);
   cursor: pointer;
   line-height: 2.7;
@@ -20,7 +20,7 @@
   }
 
   &:hover {
-    background-color: $color_forty_per_lighter_grey;
+    background-color: $color-gray;
     @include border(2px solid color(agray, light));
     color: color(agray, light);
 
@@ -113,23 +113,23 @@
 
   @include modifier('text-color') {
     &-fb {
-      color: $color-facebook-blue;
+      color: $color-facebook;
 
       &:hover,
       &.hover {
-        background-color: $color-facebook-blue;
-        border-color: $color-facebook-blue;
+        background-color: $color-facebook;
+        border-color: $color-facebook;
         color: color(awhite, base);
       }
     }
 
     &-google {
-      color: $color-google-red;
+      color: $color-google;
 
       &:hover,
       &.hover {
-        background-color: $color-google-red;
-        border-color: $color-google-red;
+        background-color: $color-google;
+        border-color: $color-google;
         color: color(awhite, base);
       }
     }

@@ -72,7 +72,7 @@
         & ~ .#{_b(text-field) + _e(label) + _m(main)}
           +rem-fallback(top, 2px)
           +rem-fallback(left, $space-xs)
-          +rem-fallback(font-size, $font-size-xxxs)
+          +rem-fallback(font-size, $font-size-xxs)
           font-weight: 700
 
       & + .valid-tick
@@ -88,7 +88,7 @@
 
   +e(error-msg)
     +rem-fallback(font-size, $font-size-xs)
-    +rem-fallback(line-height, $line-height-h5v2)
+    +rem-fallback(line-height, $line-height-s-v2)
     +rem-fallback(right, $space-xs)
     +rem-fallback(top, $space-xxxxs)
     color: color(aorange)
@@ -107,16 +107,16 @@
       +is(smaller)
         +rem-fallback(font-size, $font-size-xs)
         +rem-fallback(left, $space-xs)
-        +rem-fallback(line-height, $line-height-h5v2)
+        +rem-fallback(line-height, $line-height-s-v2)
         +rem-fallback(top, $space-xxxxs)
-        font-weight: $weight-bold
+        font-weight: $font-weight-bold
 
     +m(right)
       +rem-fallback(font-size, $font-size-xs)
-      +rem-fallback(line-height, $line-height-h5v2)
+      +rem-fallback(line-height, $line-height-s-v2)
       position: initial
       float: left
-      font-weight: $weight-bold
+      font-weight: $font-weight-bold
       left: auto
 
     +is(disabled)
@@ -146,12 +146,12 @@
 
   +e(slot)
     +m(right)
-      +rem-fallback(height, $line-height-h5)
+      +rem-fallback(height, $line-height-s)
       +rem-fallback(right, $space-xs)
       +rem-fallback(top, $space-s)
       display: flex
       flex-flow: row nowrap
-      font-weight: $weight-bold
+      font-weight: $font-weight-bold
       left: auto
       position: absolute
       vertical-align: middle

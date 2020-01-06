@@ -7,84 +7,84 @@
 # utilize both global & local tokens for colors.
 #
 
+# Leaving the previous way of dynamically defining and adjusting colors for
+# reference. If we want the ability to easily change a few colors and have the
+# shades be auto-generated, this would be the way:
+#
 # aliases:
-#   vermilion:
-#     value: "7, 83%"
-#   ucla_gold:
-#     value: "43, 100%"
-#   bleu_de_france:
-#     value: "210, 86%"
-#   oxford_blue:
-#     value: "210, 100%"
-#   rich_black:
-#     value: "#001123"
-#   white:
-#     value: "#fff"
+  # blue:
+  #   value: "187, 100%"
 
-  # color_vermilion_darker:
-  #   value: "hsla({!vermilion}, 33%, 1)"
-  #   category: color_group_1
+# color_vermilion_darker:
+#   value: "hsla({!vermilion}, 33%, 1)"
+#   category: color_group_1
 
 props:
-
-  color-aap-logo:
-    vlue: "rgb(0, 191, 218)"
+  color-primary:
+    value: "rgb(0, 191, 218)"
     category: color_group_1
-  color-aap-logo-dark:
-    vlue: "rgb(0, 153, 184)"
+  color-primary-dark:
+    value: "rgb(0, 153, 184)"
     category: color_group_1
-  color-aap-logo-darker:
-    vlue: "rgb(0, 53, 60)"
+  color-primary-darker:
+    value: "rgb(0, 53, 60)"
     category: color_group_1
 
   color-rehome:
-    vlue: "rgb(0, 204, 168)"
+    value: "rgb(0, 204, 168)"
     category: color_group_2
   color-rehome-dark:
-    vlue: "rgb(0, 168, 136)"
+    value: "rgb(0, 168, 136)"
     category: color_group_2
   color-rehome-darker:
-    vlue: "rgb(0, 93, 77)"
+    value: "rgb(0, 93, 77)"
     category: color_group_2
 
-  color-primary-warning:
-    vlue: "rgb(249, 102, 94)"
+  color-warning:
+    value: "rgb(249, 102, 94)"
     category: color_group_3
-  color-primary-warning-dark:
-    vlue: "rgb(204, 86, 61)"
+  color-warning-dark:
+    value: "rgb(204, 86, 61)"
     category: color_group_3
-  color-primary-warning-darker:
-    vlue: "rgb(136, 57, 41)"
+  color-warning-darker:
+    value: "rgb(136, 57, 41)"
     category: color_group_3
 
   color-primary-accent:
-    vlue: "rgb(255, 204, 27)"
+    value: "rgb(255, 204, 27)"
     category: color_group_4
   color-primary-accent-dark:
-    vlue: "rgb(209, 167, 23)"
+    value: "rgb(209, 167, 23)"
     category: color_group_4
   color-primary-accent-darker:
-    vlue: "rgb(158, 127, 17)"
+    value: "rgb(158, 127, 17)"
     category: color_group_4
 
   color-black:
-    vlue: "rgb(36, 36, 36)"
+    value: "rgb(36, 36, 36)"
     category: color_group_5
   color-gray-darker:
-    vlue: "rgb(179,179,179)"
+    value: "rgb(179,179,179)"
     category: color_group_5
   color-gray-dark:
-    vlue: "rgb(218,218,218)"
+    value: "rgb(218,218,218)"
     category: color_group_5
   color-gray:
-    vlue: "rgb(236,236,236)"
+    value: "rgb(236,236,236)"
     category: color_group_5
   color-gray-light:
-    vlue: "rgb(242,242,242)"
+    value: "rgb(242,242,242)"
     category: color_group_5
   color-gray-lighter:
-    vlue: "rgb(249,249,249)"
+    value: "rgb(249,249,249)"
     category: color_group_5
+
+  color-facebook:
+    value: "rgb(59, 89, 152)"
+    category: color_group_6
+  color-google:
+    value: "rgb(219, 67, 54)"
+    category: color_group_6
 
 global:
   type: color

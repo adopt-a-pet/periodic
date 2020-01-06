@@ -2,47 +2,47 @@
   +element('h1')
     +rem-fallback('font-size', $font-size-xl)
     font-weight: 700
-    font-family: $font-helvetica
+    font-family: $font
     color: color(agray, dark)
-    +rem-fallback('line-height', $line-height-h2)
-    +rem-fallback('letter-spacing', $letter-spacing-xs)
+    +rem-fallback('line-height', $line-height-xl)
+    +rem-fallback('letter-spacing', $letter-spacing-default)
     +rem-fallback('margin-bottom', 20px)
 
     +breakpoint(tablet-wide)
       +rem-fallback('font-size', $font-size-xxl)
-      +rem-fallback('line-height', $line-height-h1)
+      +rem-fallback('line-height', $line-height-xxl)
 
     &--museo
-      font-family: $font-museo
+      font-family: $font-special
 
     &--light
       color: color(agray, darker)
       font-weight: 200
-      letter-spacing: $letter-spacing-m
+      letter-spacing: $letter-spacing-default
 
     &--bold
       font-weight: bold
 
   +element('h2')
     +rem-fallback('font-size', $font-size-l)
-    font-family: $font-helvetica
+    font-family: $font
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h3)
-    +rem-fallback('letter-spacing', $letter-spacing-s)
+    +rem-fallback('line-height', $line-height-l)
+    +rem-fallback('letter-spacing', $letter-spacing-default)
     +rem-fallback('margin-bottom', 20px)
 
     @include breakpoint(phone-wide)
       font-size: $font-size-xl
-      line-height: $line-height-h2
+      line-height: $line-height-xl
 
     &--museo
-      font-family: $font-museo
+      font-family: $font-special
 
     &--light
       color: color(agray, darker)
       font-weight: 200
-      letter-spacing: $letter-spacing-m
+      letter-spacing: $letter-spacing-default
 
     &--bold
       font-weight: bold
@@ -52,27 +52,27 @@
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h4)
-    +rem-fallback('letter-spacing', $letter-spacing-s)
+    +rem-fallback('line-height', $line-height-m)
+    +rem-fallback('letter-spacing', $letter-spacing-default)
     +rem-fallback('margin-bottom', 20px)
 
     @include breakpoint(phone-wide)
       font-size: $font-size-l
-      line-height: $line-height-h3
+      line-height: $line-height-l
 
     &--compact
-      +rem-fallback('line-height', $line-height-h3v2)
+      +rem-fallback('line-height', $line-height-l-v2)
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-h3v2)
+      +rem-fallback('line-height', $line-height-l-v2)
 
     &--museo
-      font-family: $font-museo
+      font-family: $font-special
 
     &--light
       color: color(agray, darker)
       font-weight: 200
-      letter-spacing: $letter-spacing-m
+      letter-spacing: $letter-spacing-default
 
     &--bold
       font-weight: bold
@@ -88,25 +88,25 @@
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h4)
-    +rem-fallback('letter-spacing', $letter-spacing-sm)
+    +rem-fallback('line-height', $line-height-m)
+    +rem-fallback('letter-spacing', $letter-spacing-default)
 
     &--compact
-      +rem-fallback('line-height', $line-height-h4v2)
+      +rem-fallback('line-height', $line-height-m-v2)
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-h4v3)
+      +rem-fallback('line-height', $line-height-m-v3)
 
     &--x-x-compact
-      +rem-fallback('line-height', $line-height-h4v3museo)
+      +rem-fallback('line-height', $line-height-m)
 
     &--museo
-      font-family: $font-museo
+      font-family: $font-special
 
     &--light
       color: color(agray, darker)
       font-weight: 200
-      letter-spacing: $letter-spacing-m
+      letter-spacing: $letter-spacing-default
 
     &--bold
       font-weight: bold
@@ -122,21 +122,21 @@
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h5)
+    +rem-fallback('line-height', $line-height-s)
 
     &--compact
-      +rem-fallback('line-height', $line-height-h5v2)
+      +rem-fallback('line-height', $line-height-s-v2)
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-h5v2museo)
+      +rem-fallback('line-height', $line-height-s)
 
     &--museo
-      font-family: $font-museo
+      font-family: $font-special
 
     &--light
       color: color(agray, darker)
       font-weight: 200
-      letter-spacing: $letter-spacing-m
+      letter-spacing: $letter-spacing-default
 
     &--bold
       font-weight: bold
@@ -146,24 +146,24 @@
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h6)
+    +rem-fallback('line-height', $line-height-xs)
 
     &--compact
-      +rem-fallback('line-height', $line-height-h6v2)
+      +rem-fallback('line-height', $line-height-xs-v2)
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-tiny)
+      +rem-fallback('line-height', $line-height-xs)
 
     &--tiny
       +font-size(12)
 
     &--museo
-      font-family: $font-museo
+      font-family: $font-special
 
     &--light
       color: color(agray, darker)
       font-weight: 200
-      letter-spacing: $letter-spacing-m
+      letter-spacing: $letter-spacing-default
 
     &--bold
       font-weight: bold

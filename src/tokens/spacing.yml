@@ -4,6 +4,10 @@
 #
 
 props:
+  space-xxxxxxl:
+    value: "120px"
+  space-xxxxxl:
+    value: "100px"
   space_xxxxl:
     value: "80px"
   space_xxxl:
@@ -26,6 +30,7 @@ props:
     value: "8px"
   space_xxxxs:
     value: "5px"
+
 global:
   type: number
   category: space

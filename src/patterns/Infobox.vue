@@ -3,7 +3,7 @@
     <Paragraph
       font-size="s"
       font-weight="bold"
-      line-height="$line-height-h5v2"
+      line-height="$line-height-s-v2"
       class="periodic-info-box__heading">
       <Icon :name="icon" />
       <slot name="header" />
@@ -12,7 +12,7 @@
     <Paragraph
       font-size="s"
       font-weight="normal"
-      line-height="$line-height-h5v2">
+      line-height="$line-height-s-v2">
       <slot name="message" />
     </Paragraph>
 
@@ -21,7 +21,7 @@
     <Paragraph
       font-size="s"
       font-weight="bold"
-      line-height="$line-height-h5v2">
+      line-height="$line-height-s-v2">
       <TextLink @click="textLink">
         <slot name="link" />
       </TextLink>
