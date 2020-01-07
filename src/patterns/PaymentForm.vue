@@ -34,8 +34,13 @@
         :class="b('payment-request-button').toString()"
         @click="showPaymentRequestWindow">
         <Icon
+          v-show="quickPayType === 'apple'"
           class="periodic-button__social-icon"
-          :name="quickPayType + '-pay'" />
+          name="apple-pay" />
+        <Icon
+          v-show="quickPayType !== 'apple'"
+          class="periodic-button__social-icon"
+          name="google-pay" />
         Pay
       </Button>
     </div>
@@ -159,7 +164,7 @@ export default {
       quickPayAvailable: false,
       quickPaySelected: false,
       checkedForQuickPay: false,
-      quickPayType: 'google',
+      quickPayType: 'apple',
       quickPayAmount: 1000,
     };
   },
@@ -293,8 +298,8 @@ export default {
       // Check the availability of the Payment Request API first.
       this.paymentRequest.canMakePayment().then(result => {
         if (result) {
-          if (result.applePay === true) {
-            this.quickPayType = 'apple';
+          if (result.applePay !== true) {
+            this.quickPayType = 'google';
           }
 
           this.quickPaySelected = true;
