@@ -5,13 +5,7 @@
 
 props:
   radius_default:
-    value: "3px"
-  radius_m:
     value: "6px"
-  radius_l:
-    value: "9px"
-  radius_xl:
-    value: "12px"
   radius_circle:
     value: "50%"
 global:
