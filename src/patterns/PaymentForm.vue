@@ -160,6 +160,7 @@ export default {
       quickPaySelected: false,
       checkedForQuickPay: false,
       quickPayType: 'google',
+      quickPayAmount: 1000,
     };
   },
 
@@ -214,6 +215,9 @@ export default {
   },
 
   mounted() {
+    if (this.premiumPlanId !== '') {
+      this.quickPayAmountSwitch(this.premiumPlanId);
+    }
   },
 
   methods: {
@@ -280,7 +284,7 @@ export default {
         currency: 'usd',
         total: {
           label: 'AAP - Premium New Pet Alert',
-          amount: 1000,
+          amount: this.quickPayAmount,
         },
         requestPayerName: false,
         requestPayerEmail: false,
@@ -431,29 +435,28 @@ export default {
       }
     },
     quickPayAmountSwitch(id) {
-      let newAmount;
       switch (id) {
         case 'plan_FmSGrwj2xKEwx5':
-          newAmount = 1000;
+          this.quickPayAmount = 1000;
           break;
         case 'plan_GNSdel7hWq8aNc':
-          newAmount = 999;
+          this.quickPayAmount = 999;
           break;
         case 'plan_GDXBNQ7dmqUXZN':
-          newAmount = 499;
+          this.quickPayAmount = 499;
           break;
         case 'plan_GDX9FmuaU0V3Lk':
-          newAmount = 299;
+          this.quickPayAmount = 299;
           break;
         default:
-          newAmount = 1000;
+          this.quickPayAmount = 1000;
       }
 
       // update quick pay window with amount
       this.paymentRequest.update({
         total: {
           label: 'AAP - Premium New Pet Alert',
-          amount: newAmount,
+          amount: this.quickPayAmount,
         },
       });
     },
