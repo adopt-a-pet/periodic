@@ -165,7 +165,7 @@ export default {
       quickPaySelected: false,
       checkedForQuickPay: false,
       quickPayType: 'apple',
-      quickPayAmount: 1000,
+      quickPayAmount: 499,
     };
   },
 
@@ -223,6 +223,10 @@ export default {
     if (this.premiumPlanId !== '') {
       this.quickPayAmountSwitch(this.premiumPlanId);
     }
+  },
+
+  updated() {
+    this.quickPayAmountSwitch(this.premiumPlanId);
   },
 
   methods: {
@@ -288,10 +292,10 @@ export default {
         country: 'US',
         currency: 'usd',
         total: {
-          label: 'AAP - Premium New Pet Alert',
+          label: 'Adopt-a-Pet.com Premium New Pet Alert',
           amount: this.quickPayAmount,
         },
-        requestPayerName: false,
+        requestPayerName: true,
         requestPayerEmail: false,
       });
 
@@ -454,8 +458,9 @@ export default {
           this.quickPayAmount = 299;
           break;
         default:
-          this.quickPayAmount = 1000;
+          this.quickPayAmount = 499;
       }
+
 
       // update quick pay window with amount
       this.paymentRequest.update({
