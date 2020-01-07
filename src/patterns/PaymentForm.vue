@@ -465,7 +465,7 @@ export default {
       // update quick pay window with amount
       this.paymentRequest.update({
         total: {
-          label: 'AAP - Premium New Pet Alert',
+          label: 'Adopt-a-Pet.com Premium New Pet Alert',
           amount: this.quickPayAmount,
         },
       });
