@@ -15,10 +15,14 @@
         ref="zipcode"
         v-model="form.zipCode"
         type="search"
+        :validations="isLocationValid"
         label="Zip / Postal or City, State"
-        :error-messages="{ required: 'Enter Zip / Postal or City, State' }"
+        :error-messages="{
+          required: 'Enter Zip / Postal or City, State',
+          isLocationValid: 'Invalid location'
+        }"
         required
-        @change="validateLocation({event: 'location', eventLabel: form.zipCode})" />
+        @change="dispatchTrackAndLocation({event: 'location', eventLabel: form.zipCode})" />
 
       <Dropdown
         v-model="form.geoRange"
@@ -199,6 +203,10 @@ export default {
     return {
       form: { ...this.filters },
       breedIdsDropdown: [],
+      isLocationValid: {
+        type: Boolean,
+        default: true,
+      },
     };
   },
 
@@ -263,10 +271,17 @@ export default {
     dispatchTrackClick(eventObj) {
       this.$syscall(`analytics/track/NPASignupSearchFilters/${eventObj.event}/click`, eventObj);
     },
-    validateLocation(eventObj) {
-      const location = this.form.zipCode;
-      this.$syscall('api/validation/locationValidator', location);
+    dispatchTrackAndLocation(eventObj) {
       this.dispatchTrackSelect(eventObj);
+      this.validateLocation();
+    },
+    validateLocation() {
+      const location = this.form.zipCode;
+      this.$syscall('api/validation/locationValidator', location).then(res => {
+        this.isLocationValid = res;
+        // console.log('VM: ',this.isLocationValid);
+        return res;
+      });
     },
   },
 };
