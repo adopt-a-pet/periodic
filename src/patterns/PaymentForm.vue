@@ -303,7 +303,10 @@ export default {
       this.paymentRequest.canMakePayment().then(result => {
         if (result) {
           if (result.applePay !== true) {
+            this.dispatchTrackLoad('googlePayLoads');
             this.quickPayType = 'google';
+          } else {
+            this.dispatchTrackLoad('applePayLoads');
           }
 
           this.quickPaySelected = true;
@@ -428,18 +431,30 @@ export default {
     dispatchTrackClick(event) {
       this.$syscall(`analytics/track/PaymentForm/${event}/click`);
     },
+    dispatchTrackLoad(event) {
+      this.$syscall(`analytics/track/PaymentForm/${event}/load`);
+    },
     showPaymentRequestWindow() {
       if (this.email === '' || this.email === undefined) {
         this.$emit('noEmail');
         return false;
       }
+
+      if (this.quickPayType === 'apple') {
+        this.dispatchTrackClick('applePay');
+      } else {
+        this.dispatchTrackClick('googlePay');
+      }
+
       this.paymentRequest.show();
       return true;
     },
     handleClickPayOption(option) {
       if (option === 'creditCard') {
+        this.dispatchTrackClick('creditCard');
         this.quickPaySelected = false;
       } else {
+        this.dispatchTrackClick('quickPay');
         this.quickPaySelected = true;
       }
     },
