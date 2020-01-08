@@ -5,6 +5,48 @@
       name="stripeToken"
       value="">
     <div
+      v-if="quickPayAvailable"
+      class="pay-options">
+      <TextLink
+        font-weight="light"
+        :class="{
+          'periodic-payment-form__quick-pay': !quickPaySelected,
+          'periodic-payment-form__quick-pay--active': quickPaySelected
+        }"
+        @click="handleClickPayOption('quickPay')">
+        Quickpay
+      </TextLink>
+      <TextLink
+        font-weight="light"
+        :class="{
+          'periodic-payment-form__credit-card': quickPaySelected,
+          'periodic-payment-form__credit-card--active': !quickPaySelected
+        }"
+        @click="handleClickPayOption('creditCard')">
+        Credit Card
+      </TextLink>
+    </div>
+    <div
+      v-show="quickPaySelected"
+      :class="b('quick-pay-box').toString()">
+      <Button
+        id="payment-request-button"
+        :class="b('payment-request-button').toString()"
+        @click="showPaymentRequestWindow">
+        <Icon
+          v-show="quickPayType === 'apple'"
+          class="periodic-button__social-icon"
+          name="apple-pay" />
+        <Icon
+          v-show="quickPayType !== 'apple'"
+          class="periodic-button__social-icon"
+          name="google-pay" />
+        Pay
+      </Button>
+    </div>
+    <!-- Use v-show instead of v-if so stripe can mount in these fields -->
+    <div
+      v-show="!quickPaySelected && checkedForQuickPay"
       :class="{'periodic-payment-form__form-control periodic-base': !cardErrors && !paymentError,
                'periodic-payment-form__form-control--card-errors periodic-base': cardErrors && !paymentError,
                'periodic-payment-form__form-control--payment-error periodic-base': !cardErrors && paymentError,
@@ -77,7 +119,6 @@
 
 <script>
 /* global Stripe */
-// import tokens from '@/assets/tokens/tokens.json';
 import { zipsValidator } from '../utils/validators/location-vuelidate';
 
 /**
@@ -94,6 +135,7 @@ export default {
       type: String,
       default: '',
     },
+
     /**
      * Show payment error div if
      * stripe returns error.
@@ -101,6 +143,14 @@ export default {
     paymentError: {
       type: Boolean,
       default: false,
+    },
+
+    /** Amount to be displayed in
+     * quick pay window
+     */
+    premiumPlanId: {
+      type: String,
+      default: '',
     },
   },
 
@@ -111,6 +161,11 @@ export default {
       zipCode: '',
       showError: false,
       cardErrors: false,
+      quickPayAvailable: false,
+      quickPaySelected: false,
+      checkedForQuickPay: false,
+      quickPayType: 'apple',
+      quickPayAmount: 499,
     };
   },
 
@@ -120,13 +175,18 @@ export default {
         zipsValidator,
       };
     },
+    headingIsActive() {
+      return 'light';
+    },
   },
 
   watch: {
     paymentError(bool) {
       if (bool === true) this.showError = true;
     },
-
+    premiumPlanId(id) {
+      this.quickPayAmountSwitch(id);
+    },
   },
 
   created() {
@@ -141,6 +201,7 @@ export default {
     stripeScript.onload = () => {
       this.mountStripe();
     };
+
     stripeScript.setAttribute('src', 'https://js.stripe.com/v3/');
     /**
      * Get stripe key, the PaymentForm expects the host
@@ -159,6 +220,13 @@ export default {
   },
 
   mounted() {
+    if (this.premiumPlanId !== '') {
+      this.quickPayAmountSwitch(this.premiumPlanId);
+    }
+  },
+
+  updated() {
+    this.quickPayAmountSwitch(this.premiumPlanId);
   },
 
   methods: {
@@ -219,6 +287,47 @@ export default {
         style: elementStyles,
       });
       this.cardCvc.mount('#card-cvc');
+
+      this.paymentRequest = this.stripe.paymentRequest({
+        country: 'US',
+        currency: 'usd',
+        total: {
+          label: 'Adopt-a-Pet.com Premium New Pet Alert',
+          amount: this.quickPayAmount,
+        },
+        requestPayerName: true,
+        requestPayerEmail: false,
+      });
+
+      // Check the availability of the Payment Request API first.
+      this.paymentRequest.canMakePayment().then(result => {
+        if (result) {
+          if (result.applePay !== true) {
+            this.quickPayType = 'google';
+          }
+
+          this.quickPaySelected = true;
+          this.quickPayAvailable = true;
+          this.checkedForQuickPay = true;
+          return true;
+        }
+        this.quickPayAvailable = false;
+        document.getElementById('payment-request-button').style.display = 'none';
+        this.checkedForQuickPay = true;
+        return false;
+      });
+
+      this.paymentRequest.on('token', ev => {
+        this.$emit(
+          'paymentInfo',
+          {
+            stripeToken: ev.token.id,
+            zipCode: ev.token.card.address_zip,
+            ev,
+          },
+        );
+        ev.complete('success');
+      });
 
       /**
        * Have to add these listeners manually, we need them
@@ -318,6 +427,48 @@ export default {
      */
     dispatchTrackClick(event) {
       this.$syscall(`analytics/track/PaymentForm/${event}/click`);
+    },
+    showPaymentRequestWindow() {
+      if (this.email === '' || this.email === undefined) {
+        this.$emit('noEmail');
+        return false;
+      }
+      this.paymentRequest.show();
+      return true;
+    },
+    handleClickPayOption(option) {
+      if (option === 'creditCard') {
+        this.quickPaySelected = false;
+      } else {
+        this.quickPaySelected = true;
+      }
+    },
+    quickPayAmountSwitch(id) {
+      switch (id) {
+        case 'plan_FmSGrwj2xKEwx5':
+          this.quickPayAmount = 1000;
+          break;
+        case 'plan_GNSdel7hWq8aNc':
+          this.quickPayAmount = 999;
+          break;
+        case 'plan_GDXBNQ7dmqUXZN':
+          this.quickPayAmount = 499;
+          break;
+        case 'plan_GDX9FmuaU0V3Lk':
+          this.quickPayAmount = 299;
+          break;
+        default:
+          this.quickPayAmount = 499;
+      }
+
+
+      // update quick pay window with amount
+      this.paymentRequest.update({
+        total: {
+          label: 'AAP - Premium New Pet Alert',
+          amount: this.quickPayAmount,
+        },
+      });
     },
   },
 };

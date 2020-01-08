@@ -1,5 +1,65 @@
 @include b('payment-form') {
 
+  @include element('quick-pay') {
+    display: inline-block;
+    @include rem-fallback('margin', 0px 10px 30px 0px);
+    @include rem-fallback('border-bottom', 1px solid);
+    color: #9B9B9B;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-primary-blue;
+      text-decoration: none;
+    }
+
+    @include modifier('active') {
+      display: inline-block;
+      @include rem-fallback('margin', 0px 10px 30px 0px);
+      color: $color-primary-blue;
+      font-weight: bold;
+      @include rem-fallback('border-bottom', 2px solid);
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  @include element('credit-card') {
+    display: inline-block;
+    @include rem-fallback('margin', 0px 10px 30px 10px);
+    @include rem-fallback('border-bottom', 1px solid);
+    color: #9B9B9B;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-primary-blue;
+      text-decoration: none;
+    }
+
+    @include modifier('active') {
+      display: inline-block;
+      @include rem-fallback('margin', 0px 10px 30px 10px);
+      color: $color-primary-blue;
+      font-weight: bold;
+      @include rem-fallback('border-bottom', 2px solid);
+      
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  @include element('payment-request-button') {
+    background-color: black;
+    vertical-align: text-bottom;
+    display: inline-block;
+    
+    &:hover {
+      background-color: black;
+    }
+  }
+
   @include element('form-control') {
     color: color(agray, darker);
     display: grid;
