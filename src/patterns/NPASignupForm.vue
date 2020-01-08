@@ -476,6 +476,7 @@ export default {
       this.$emit('tokenError');
     },
     emitScrollToEmail() {
+      this.$refs.email.validate(false);
       this.$emit('scrollToEmail');
     },
   },
