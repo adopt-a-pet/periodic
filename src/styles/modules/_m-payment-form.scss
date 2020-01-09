@@ -60,7 +60,7 @@
     }
 
     @include breakpoint(tablet-plus) {
-      width: 66%;
+      @include column(8/12);
     }
   }
 
