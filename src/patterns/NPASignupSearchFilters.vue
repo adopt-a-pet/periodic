@@ -11,19 +11,25 @@
     <VSpacer size="l" />
 
     <div :class="b('container').toString()">
-      <TextInput
-        ref="zipcode"
-        v-model="form.zipCode"
-        type="search"
-        :validations="locationValidator"
-        label="Zip / Postal or City, State"
-        :error-messages="{
-          locationValidator: 'Invalid location',
-          required: 'Enter Zip / Postal or City, State'
-        }"
-        required
-        @change="dispatchTrackAndLocation({event: 'location', eventLabel: form.zipCode})" />
-
+      <div>
+        <TextInput
+          ref="zipcode"
+          v-model="form.zipCode"
+          type="search"
+          :validations="locationValidator"
+          label="Zip / Postal or City, State"
+          :error-messages="{
+            locationValidator: 'Invalid location',
+            required: 'Enter Zip / Postal or City, State'
+          }"
+          required
+          @change="dispatchTrackAndLocation({event: 'location', eventLabel: form.zipCode})" />
+        <div
+          v-if="!isLocationValid"
+          :class="b('error-message').toString()">
+          Enter a zip / postal or city, state (2 letter state).
+        </div>
+      </div>
       <Dropdown
         v-model="form.geoRange"
         label="Distance"
@@ -282,6 +288,13 @@ export default {
     },
     dispatchTrackAndLocation(eventObj) {
       this.dispatchTrackSelect(eventObj);
+      this.validateLocation(eventObj.eventLabel);
+    },
+    validateLocation(location) {
+      const vm = this;
+      locationValidator(location, vm).then(res => {
+        vm.isLocationValid = res;
+      });
     },
   },
 };
