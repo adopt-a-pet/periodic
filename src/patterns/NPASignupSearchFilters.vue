@@ -15,11 +15,11 @@
         ref="zipcode"
         v-model="form.zipCode"
         type="search"
-        :validations="isLocationValid"
+        :validations="locationValidator"
         label="Zip / Postal or City, State"
         :error-messages="{
-          required: 'Enter Zip / Postal or City, State',
-          isLocationValid: 'Invalid location'
+          locationValidator: 'Invalid location',
+          required: 'Enter Zip / Postal or City, State'
         }"
         required
         @change="dispatchTrackAndLocation({event: 'location', eventLabel: form.zipCode})" />
@@ -167,6 +167,9 @@
 <script>
 import filterMaps from '@/mixins/filter-maps';
 
+const locationValidator = (location, vm) =>
+  vm.$syscall('api/validation/locationValidator', location).then(res => res);
+
 export default {
   name: 'NPASignupSearchFilters',
   blockName: 'npa-signup-search-filters',
@@ -210,7 +213,13 @@ export default {
     };
   },
 
-  computed: {},
+  computed: {
+    locationValidator() {
+      return {
+        locationValidator,
+      };
+    },
+  },
 
   created() {
     /**
@@ -273,15 +282,6 @@ export default {
     },
     dispatchTrackAndLocation(eventObj) {
       this.dispatchTrackSelect(eventObj);
-      this.validateLocation();
-    },
-    validateLocation() {
-      const location = this.form.zipCode;
-      this.$syscall('api/validation/locationValidator', location).then(res => {
-        this.isLocationValid = res;
-        // console.log('VM: ',this.isLocationValid);
-        return res;
-      });
     },
   },
 };
