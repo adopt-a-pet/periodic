@@ -11,23 +11,23 @@
     @include rem-fallback("line-height", 25px);
   }
   @if $h-heading == "h5-museo" {
-    font-family: $font-museo;
+    font-family: $font;
     @include font-size(16);
     font-weight: 700;
   }
   @if $h-heading == "h6-heading" {
-    font-family: $font-museo;
+    font-family: $font;
     font-weight: 700;
     @include font-size(14);
     @include rem-fallback("line-height", 22px);
   }
   @if $h-heading == "h6-museo" {
-    font-family: $font-museo;
+    font-family: $font;
     font-weight: 700;
     @include font-size(14);
   }
   @if $h-heading == "h1-museo" {
-    font-family: $font-museo;
+    font-family: $font;
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(45);
@@ -35,7 +35,7 @@
     @include rem-fallback("letter-spacing", -1px);
   }
   @if $h-heading == "h2-museo" {
-    font-family: $font-museo;
+    font-family: $font;
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(32);
@@ -91,7 +91,7 @@
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--museo" {
-    font-family: $font-museo;
+    font-family: $font;
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(16);
@@ -99,7 +99,7 @@
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--museo-h5--x-compact" {
-    font-family: $font-museo;
+    font-family: $font;
     color: color(agray, dark);
     font-weight: 400;
     @include font-size(16);
@@ -163,7 +163,7 @@
     letter-spacing: 0;
   }
   @if $h-heading == "h1__heading-h1--museo" {
-    font-family: $font-museo;
+    font-family: $font;
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(45);
@@ -171,7 +171,7 @@
     @include rem-fallback("letter-spacing", -1px);
   }
   @if $h-heading == "h2__heading-h2--museo" {
-    font-family: $font-museo;
+    font-family: $font;
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(32);
@@ -179,7 +179,7 @@
     @include rem-fallback("letter-spacing", -0.5px);
   }
   @if $h-heading == "h3__heading-h3--museo" {
-    font-family: $font-museo;
+    font-family: $font;
     color: color(agray, dark);
     font-weight: normal;
     @include font-size(26);
@@ -195,7 +195,7 @@
     @include rem-fallback("letter-spacing", -0.5px);
   }
   @if $h-heading == "h3__heading-h3--museo-h3--x-compact" {
-    font-family: $font-museo;
+    font-family: $font;
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(26);
@@ -225,7 +225,7 @@
     @include rem-fallback("line-height", 17px);
   }
   @if $h-heading == "h6__heading-h6--museo-h6--compact" {
-    font-family: $font-museo;
+    font-family: $font;
     font-weight: normal;
     @include font-size(14);
     @include rem-fallback("line-height", 17px);
@@ -255,7 +255,7 @@
     letter-spacing: 0;
   }
   @if $h-heading == "h4__heading-h4--museo-h4--compact" {
-    font-family: $font-museo;
+    font-family: $font;
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(20);
@@ -263,7 +263,7 @@
     @include rem-fallback("letter-spacing", -0.25px);
   }
   @if $h-heading == "h4__heading-h4--museo" {
-    font-family: $font-museo;
+    font-family: $font;
     color: color(agray, dark);
     font-weight: 400;
     @include font-size(20);

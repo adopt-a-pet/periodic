@@ -4,35 +4,31 @@
 #
 
 props:
-  line_height_h1:
+  line-height-xxxl:
+    value: "65px"
+  line-height-xxl:
     value: "62px"
-  line_height_h2:
+  line-height-xl:
     value: "48px"
-  line_height_h3:
+  line-height-l:
     value: "39px"
-  line_height_h4:
-    value: "32px"
-  line_height_h3v2:
-    value: "31px"
-  line_height_h3v2museo:
+  line-height-l-v2:
     value: "30px"
-  line_height_h4v2:
+  line-height-m:
+    value: "32px"
+  line-height-m-v2:
     value: "26px"
-  line_height_h5:
-    value: "25px"
-  line_height_h4v3:
-    value: "24px"
-  line_height_h4v3museo:
+  line-height-m-v3:
     value: "23px"
-  line_height_h6:
-    value: "22px"
-  line_height_h5v2:
-    value: "20px"
-  line_height_h5v2museo:
+  line-height-s:
+    value: "25px"
+  line-height-s-v2:
     value: "18px"
-  line_height_h6v2:
+  line-height-xs:
+    value: "22px"
+  line-height-xs-v2:
     value: "17px"
-  line_height_tiny:
+  line-height-xxs:
     value: "14px"
 global:
   type: number

@@ -1,7 +1,7 @@
 +b(textarea)
   +reset
   +border(1px solid color(agray, light))
-  +rem-fallback('border-radius', $radius-m)
+  +rem-fallback('border-radius', $radius-default)
   +rem-fallback('font-size', $font-size-m)
   +rem-fallback('height', 240px)
   +rem-fallback('padding', $space-s)
@@ -40,7 +40,7 @@
 
   +e(error-msg)
     @include rem-fallback('font-size', $font-size-xs)
-    @include rem-fallback('line-height', $line-height-h6v2)
+    @include rem-fallback('line-height', $line-height-xs-v2)
     @include rem-fallback('right', $space-xs)
     @include rem-fallback('top', $space-xxxxs)
     color: color(aorange)
@@ -54,7 +54,7 @@
 
   +e(text-limit)
     +rem-fallback('font-size', $font-size-xs)
-    +rem-fallback('line-height', $line-height-h6)
+    +rem-fallback('line-height', $line-height-xs)
     +rem-fallback('margin-top', $space-xxs)
     font-weight: 200
     letter-spacing: 0

@@ -4,28 +4,33 @@
 #
 
 props:
-  space_xxxxl:
+  space-xxxxxxl:
+    value: "120px"
+  space-xxxxxl:
+    value: "100px"
+  space-xxxxl:
     value: "80px"
-  space_xxxl:
+  space-xxxl:
     value: "60px"
-  space_xxl:
+  space-xxl:
     value: "50px"
-  space_xl:
+  space-xl:
     value: "40px"
-  space_l:
+  space-l:
     value: "30px"
-  space_m:
+  space-m:
     value: "25px"
-  space_s:
+  space-s:
     value: "20px"
-  space_xs:
+  space-xs:
     value: "15px"
-  space_xxs:
+  space-xxs:
     value: "10px"
-  space_xxxs:
+  space-xxxs:
     value: "8px"
-  space_xxxxs:
+  space-xxxxs:
     value: "5px"
+
 global:
   type: number
   category: space

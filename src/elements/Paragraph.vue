@@ -50,12 +50,12 @@ export default {
       validator: value => value.match(/(light|normal|bold)/),
     },
     /**
-     * The font family for the text. `museo`
+     * The font family for the text. `special`
      */
     fontFamily: {
       type: String,
       default: null,
-      validator: value => value.match(/(museo)/),
+      validator: value => value.match(/(special)/),
     },
     /**
      * The font size for the text. `xxxs, xxs, xs, s, m, l, xl, xxl`
@@ -97,7 +97,7 @@ export default {
 
     <Paragraph
       font-size="l"
-      font-family="museo"
+      font-family="special"
       font-weight="normal">
       Principles are the foundation of the system. They form the basis of a good
       product and help the team with decision making. They are here to guide you
@@ -109,7 +109,7 @@ export default {
 
     <Paragraph
       font-size="xs"
-      font-family="museo"
+      font-family="special"
       font-weight="bold"
       line-height="2">
       Principles are the foundation of the system. They form the basis of a good
