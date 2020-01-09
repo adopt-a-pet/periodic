@@ -2,7 +2,7 @@
   <div :class="b().toString()">
     <Heading
       level="h3"
-      font-family="museo"
+      font-family="special"
       font-weight="bold">
       Im-PAW-sibly Good Deals!
     </Heading>

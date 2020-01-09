@@ -3,30 +3,20 @@
 # Use these tokens to set font-weight and font-family.
 #
 
-aliases:
-  helvetica:
-    value: "'Helvetica Neue', Helvetica, Arial, Roboto, 'Lucida Grande', sans-serif"
-
 props:
-  helvetica: # This one is just for legacy compatibility. It should eventually be removed.
-    value: "{!helvetica}"
-  font_helvetica:
-    value: "{!helvetica}"
-  font_museo:
-    value: "Museo, {!helvetica}"
-
-  font_heading:
-    value: "'Fira Sans', Helvetica, Arial, sans-serif"
-  font_text:
-    value: "'Fira Sans', Helvetica, Arial, sans-serif"
-  weight_bold:
+  font:
+    value: "Soleil, Helvetica Neue, Arial, sans-serif"
+  font-special:
+    value: "Bayu Prahara, Bradley Hand ITC, cursive"
+  font-weight-bolder:
+    value: "800"
+  font-weight-bold:
     value: "700"
-  weight_semi_bold:
-    value: "600"
-  weight_normal:
-    value: "400"
-  weight_light:
+  font-weight-light:
     value: "200"
+  font-weight-normal:
+    value: "400"
+
 global:
   type: ...
   category: font

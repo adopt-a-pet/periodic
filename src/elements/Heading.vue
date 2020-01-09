@@ -45,7 +45,7 @@ export default {
     fontFamily: {
       type: String,
       default: null,
-      validator: value => value.match(/(museo)/),
+      validator: value => value.match(/(special)/),
     },
     /**
      * The line height for the text.
@@ -71,7 +71,7 @@ export default {
     <Heading level='h1'>H1 - The quick brown fox.</Heading>
     <Heading
       level='h1'
-      font-family='museo'>H1 - The quick brown fox.</Heading>
+      font-family='special'>H1 - The quick brown fox.</Heading>
     <Heading
       level='h2'
       font-weight='bold'>H2 - The quick brown fox.</Heading>
@@ -81,7 +81,7 @@ export default {
       font-weight='light'>H2 - The quick brown fox.</Heading>
     <Heading
       level='h2'
-      font-family='museo'>H2 - The quick brown fox.</Heading>
+      font-family='special'>H2 - The quick brown fox.</Heading>
     <Heading
       level='h3'
       font-weight='bold'>H3 - The quick brown fox.</Heading>
@@ -102,7 +102,7 @@ export default {
       line-height='compact'>H3 - The quick brown fox.</Heading>
     <Heading
       level='h3'
-      font-family='museo'>H3 - The quick brown fox.</Heading>
+      font-family='special'>H3 - The quick brown fox.</Heading>
     <Heading
       level='h4'
       font-weight='bold'>H4 - The quick brown fox.</Heading>
@@ -134,14 +134,14 @@ export default {
       line-height='x-compact'>H4 - The quick brown fox.</Heading>
     <Heading
       level='h4'
-      font-family='museo'>H4 - The quick brown fox.</Heading>
+      font-family='special'>H4 - The quick brown fox.</Heading>
     <Heading
       level='h4'
-      font-family='museo'
+      font-family='special'
       line-height='compact'>H4 - The quick brown fox.</Heading>
     <Heading
       level='h4'
-      font-family='museo'
+      font-family='special'
       line-height='x-compact'>H4 - The quick brown fox.</Heading>
     <Heading
       level='h5'
@@ -163,10 +163,10 @@ export default {
       line-height='compact'>H5 - The quick brown fox.</Heading>
     <Heading
       level='h5'
-      font-family='museo'>H5 - The quick brown fox.</Heading>
+      font-family='special'>H5 - The quick brown fox.</Heading>
     <Heading
       level='h5'
-      font-family='museo'
+      font-family='special'
       line-height='compact'>H5 - The quick brown fox.</Heading>
     <Heading
       level='h6'
@@ -188,10 +188,10 @@ export default {
       line-height='compact'>H6 - The quick brown fox.</Heading>
     <Heading
       level='h6'
-      font-family='museo'>H6 - The quick brown fox.</Heading>
+      font-family='special'>H6 - The quick brown fox.</Heading>
     <Heading
       level='h6'
-      font-family='museo'
+      font-family='special'
       line-height='compact'>H6 - The quick brown fox.</Heading>
   </div>
   ```

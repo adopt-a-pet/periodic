@@ -69,7 +69,7 @@ export default {
 .example {
   @include reset;
   @include stack-space($space-m);
-  color: set-text-color($color-rich-black, $color-white);
+  color: set-text-color($color-black, $color-gray-lighter);
   @media #{$media-query-m} {
     @include stack-space($space-xl);
   }

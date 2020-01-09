@@ -15,7 +15,7 @@
         <Heading
           :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
           font-weight="bold"
-          font-family="museo">
+          font-family="special">
           New Pet Alert
         </Heading>
 
@@ -143,7 +143,7 @@
           <Paragraph
             tag="span"
             font-size="m"
-            font-family="museo"
+            font-family="special"
             font-weight="bold"
             color="gray-light">
             Skip
