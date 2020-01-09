@@ -1,5 +1,6 @@
 <template>
   <div
+    v-show="open"
     :class="[
       b({'align': 'top'}).is({ active: open }).toString(),
     ]"
