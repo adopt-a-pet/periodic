@@ -14,7 +14,7 @@
     +rem-fallback('margin-top', 10px)
     position: relative
     border: 1px solid color(agray, light)
-    border-radius: $radius-m
+    border-radius: $radius-default
 
     &--selected
       border: 1px solid color(ablue, base)
@@ -109,7 +109,7 @@
 
   +element('label')
     +rem-fallback('font-size', $font-size-xs)
-    +rem-fallback('border-radius', $radius-m)
+    +rem-fallback('border-radius', $radius-default)
     +rem-fallback('line-height', $line-height-xs-v2)
     display: inline-block
     font-weight: 200

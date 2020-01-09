@@ -4,6 +4,8 @@
 #
 
 props:
+  font-size-xxxs:
+    value: "10px"
   font-size-xxs:
     value: "12px"
   font-size-xs:
