@@ -82,6 +82,7 @@ export default {
           this.style = {
             'max-height': 0,
             opacity: 0,
+            display: 'inherit',
           };
           setTimeout(() => {
             this.style = {
@@ -96,6 +97,7 @@ export default {
         });
       } else {
         this.style = {
+          display: 'none',
           'max-height': 0,
           overflow: 'hidden',
           opacity: 0,

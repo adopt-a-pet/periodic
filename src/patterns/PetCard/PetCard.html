@@ -1,16 +1,23 @@
 <div :class="b().toString()">
-  <a :href="`https://adoptapet.com/pet/${pet.petId}-${pet.city}-${pet.state}`">
-    <img v-if="pet.image" :src="pet.image" />
+  <a :href="href">
+    <img v-if="pet.image"
+      :src="pet.image" />
     <span v-if="!pet.image">
-      <Icon v-if="pet.clanId === 1" name="no-photo-dog" />
-      <Icon v-if="pet.clanId === 2" name="no-photo-cat" />
-      <Icon v-if="pet.clanId > 2" name="no-photo-other" />
+      <Icon v-if="pet.clanId === 1"
+        name="no-photo-dog" />
+      <Icon v-if="pet.clanId === 2"
+        name="no-photo-cat" />
+      <Icon v-if="pet.clanId > 2"
+        name="no-photo-other" />
     </span>
-    <div v-if="pet.status == 'adopted'" class="border-bottom blue">Adopted</div>
-    <div v-else-if="pet.specialNeeds || pet.bondedTo || pet.actQuickly" class="border-bottom orange">Act Quickly</div>
+    <div v-if="pet.status == 'adopted'"
+      class="border-bottom blue">Adopted</div>
+    <div v-else-if="pet.specialNeeds || pet.bondedTo || pet.actQuickly"
+      class="border-bottom orange">Act Quickly</div>
   </a>
   <div class="content">
-    <Heading level="h4" font-weight="bold">{{ pet.name }}</Heading>
+    <Heading level="h4"
+      font-weight="bold">{{ pet.name }}</Heading>
     <Paragraph font-size="s">
       {{ petFormatted.sex }}, {{ petFormatted.age }}<span v-if="pet.specialNeeds">, <span class="orange">Special Needs</span></span><span v-if="pet.specialNeeds">, <span class="orange">Bonded Pair</span></span>
       <span v-if="breeds">
