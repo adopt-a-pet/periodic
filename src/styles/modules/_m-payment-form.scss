@@ -58,6 +58,10 @@
     &:hover {
       background-color: black;
     }
+
+    @include breakpoint(tablet-plus) {
+      @include column(8/12);
+    }
   }
 
   @include element('form-control') {

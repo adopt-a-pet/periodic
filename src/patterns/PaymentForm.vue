@@ -435,15 +435,15 @@ export default {
       this.$syscall(`analytics/track/PaymentForm/${event}/load`);
     },
     showPaymentRequestWindow() {
-      if (this.email === '' || this.email === undefined) {
-        this.$emit('noEmail');
-        return false;
-      }
-
       if (this.quickPayType === 'apple') {
         this.dispatchTrackClick('applePay');
       } else {
         this.dispatchTrackClick('googlePay');
+      }
+
+      if (this.email === '' || this.email === undefined) {
+        this.$emit('noEmail');
+        return false;
       }
 
       this.paymentRequest.show();
