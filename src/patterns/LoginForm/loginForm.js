@@ -31,7 +31,7 @@ export default {
       this.socialLoginError = null;
 
       try {
-        await this.$store.dispatch('session/socialLogin', { service });
+        await this.$syscall('session/socialLogin', { service });
       } catch (err) {
         return;
       }
@@ -49,7 +49,7 @@ export default {
       this.credsLoginError = null;
 
       try {
-        await this.$store.dispatch('session/credsLogin', creds);
+        await this.$syscall('session/credsLogin', creds);
       } catch (err) {
         // If we want to differentiate errors, we can inspect err
         this.credsLoginError = 1;

@@ -8,8 +8,7 @@ Vue.use(Periodic);
 const TestComponent = Vue.extend({
   template: `
     <Infobox
-      icon="lightbulb"
-      @click:textLink="$emit('click:textLink')">
+      icon="lightbulb">
       <template slot="header">
         Pro tip
       </template>
@@ -27,6 +26,6 @@ describe('patterns/InfoBox', () => {
   it('should trigger event on click text link', () => {
     const wrapper = mount(TestComponent);
     wrapper.find('.periodic-textlink').trigger('click');
-    expect(wrapper.emitted('click:textLink').length).toBe(1);
+    expect(wrapper.emitted('onClick').length).toBe(1);
   });
 });

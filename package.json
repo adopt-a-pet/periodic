@@ -25,6 +25,7 @@
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
     "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo",
     "test": "npm-run-all theo unit",
+    "test:file": "npx jest --config ./test/unit/jest.conf.js test/unit/specs/${FILE}.spec.js",
     "hook:pre-commit": "lint-staged"
   },
   "browserslist": [

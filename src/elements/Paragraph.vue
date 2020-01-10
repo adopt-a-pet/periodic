@@ -6,21 +6,19 @@
       family: fontFamily,
       size: fontSize,
       weight: fontWeight }).toString()"
-    :style="{ lineHeight, textAlign }">
+    :style="{ textAlign }">
     <!-- @slot Paragraph content goes here -->
     <slot />
   </component>
 </template>
 
 <script>
-import lineHeightMixin from '@/mixins/line-height';
 
 export default {
   name: 'Paragraph',
   status: 'under-review',
   release: '1.0.0',
   blockName: 'paragraph',
-  mixins: [lineHeightMixin],
   model: {
     prop: 'value',
     event: 'input',

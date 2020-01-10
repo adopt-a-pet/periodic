@@ -1,170 +1,6 @@
 <template>
   <div
-    :class="b().toString()">
-    <div :class="b('content').toString()">
-      <VSpacer size="xxxs" />
-
-      <div :class="b('heading').toString()">
-        <Heading
-          level="h4"
-          font-weight="light"
-          line-height="compact">
-          Set Up Your
-        </Heading>
-
-        <Heading
-          :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
-          font-weight="bold"
-          font-family="special">
-          New Pet Alert
-        </Heading>
-
-        <Paragraph
-          tag="span"
-          font-size="s"
-          font-weight="normal">
-          <TextLink @click="whatIsThis">
-            What is this?
-          </TextLink>
-        </Paragraph>
-
-        <VSpacer size="xl" />
-      </div>
-
-      <Paragraph
-        text-align="left"
-        color="gray"
-        font-weight="normal">
-        We'll email you when new pets that match your search criteria are added to our site!
-      </Paragraph>
-
-      <VSpacer size="l" />
-
-      <Paragraph
-        font-size="s"
-        font-weight="bold"
-        line-height="24px">
-        You’re Searching For
-      </Paragraph>
-
-      <Paragraph
-        v-if="hasMoreFiltersThanClan"
-        font-weight="bold"
-        line-height="26px">
-        <TextLink
-          :class="b('search-params').toString()"
-          @click="searchFilters">
-          {{ petDescription }} within {{ filters.geoRange }} miles of {{ filters.zipCode }}
-        </TextLink>
-      </Paragraph>
-
-      <Paragraph
-        v-else
-        font-weight="bold"
-        line-height="26px">
-        <TextLink
-          :class="b('search-params').toString()"
-          @click="searchFilters">
-          All {{ clanName }}s within {{ filters.geoRange }} miles of {{ filters.zipCode }}
-        </TextLink>
-      </Paragraph>
-
-      <VSpacer size="l" />
-
-      <div :class="b('fields').toString()">
-        <EmailInput
-          ref="email"
-          v-model="form.email"
-          name="email"
-          :error-messages="{ required: 'Enter Email', email: 'Invalid Email' }"
-          required />
-
-        <RadioGroupBox
-          v-model="form.plan"
-          name="npa-plan-selection"
-          :columns="2"
-          :items="npaTypes"
-          @change="selectPlan" />
-      </div>
-
-      <Infobox
-        v-if="form.plan === 1"
-        icon="lightbulb"
-        @click:textLink="searchFilters">
-        <template slot="header">
-          Pro tip
-        </template>
-        <template slot="message">
-          To get the most out of your Premium experience, choose 2 or more filters.
-        </template>
-        <template slot="link">
-          Edit Filters >
-        </template>
-      </Infobox>
-
-      <VSpacer size="xl" />
-
-      <VDivider
-        v-if="layout == 'tablet-wide'"
-        type="dashed" />
-
-      <div v-if="layout !== 'tablet-wide'">
-        <VDivider type="dashed" />
-        <VSpacer size="xl" />
-        <OffersForm
-          v-model="form.optins"
-          :offers="offers" />
-        <VSpacer size="xl" />
-        <VDivider type="dashed" />
-      </div>
-
-      <VSpacer size="xl" />
-
-      <Checkbox
-        id="gtm-dont-show"
-        v-model="form.dontShowAgain"
-        @change="dontShowAgain">
-        <Paragraph
-          :class="b('checkbox-text').toString()"
-          font-size="xs"
-          font-weight="light"
-          class="gtm-dont-show">
-          Don’t show me this again.
-        </Paragraph>
-      </Checkbox>
-
-      <VSpacer size="xl" />
-
-      <div :class="b('skip-continue').toString()">
-        <TextLink
-          always-underline
-          color="gray-light"
-          @click="skip">
-          <Paragraph
-            tag="span"
-            font-size="m"
-            font-family="special"
-            font-weight="bold"
-            color="gray-light">
-            Skip
-          </Paragraph>
-        </TextLink>
-
-        <Button
-          @click="submit">
-          Save & Continue
-        </Button>
-      </div>
-
-      <VSpacer size="xl" />
-    </div>
-
-    <OffersForm
-      v-if="layout === 'tablet-wide'"
-      v-model="form.optins"
-      :class="b('offers-form-tablet-wide').toString()"
-      :offers="offers" />
-  </div>
+    :class="b().toString()" />
 </template>
 
 <script>
@@ -255,127 +91,127 @@ export default {
   status: 'under-review',
   release: '1.0.0',
 
-  computed: {
-    sizeMap() {
-      return {
-        1: 'small',
-        2: 'medium',
-        3: 'large',
-        4: 'x-large',
-      };
-    },
-
-    sexFullName() {
-      if (!this.filters.sex) return '';
-
-      let name = '';
-
-      switch (this.filters.sex.join()) {
-        case '':
-          name = '';
-          break;
-
-        case 'm':
-          name = 'male';
-          break;
-
-        case 'f':
-          name = 'female';
-          break;
-
-        default:
-          name = 'male or female';
-      }
-
-      return name;
-    },
-    age() {
-      return this.filters.age ? this.filters.age.join(' or ') : null;
-    },
-    colorNames() {
-      if (!this.filters.color) return '';
-
-      return this.filters.color
-        .map(colorId => this.colorsMap[colorId])
-        .join(' or ');
-    },
-    familyNames() {
-      if (!this.filters.breeds) return this.clanName;
-
-      return this.filters.breeds
-        .map(breedId => this.breedMap[breedId])
-        .join(' or ');
-    },
-    hasMoreFiltersThanClan() {
-      return Boolean(this.age || this.sexFullName || this.colorNames || this.familyNames);
-    },
-
-    clanName() {
-      let name;
-
-      switch (this.filters.clan) {
-        case 1:
-          name = 'dog';
-          break;
-
-        case 2:
-          name = 'cat';
-          break;
-
-        default:
-          name = 'pet';
-      }
-
-      return name;
-    },
-
-    bondedPair() {
-      return this.filters.bondedPair ? 'bonded pair' : '';
-    },
-
-    specialNeeds() {
-      return this.filters.specialNeeds ? 'with special needs' : '';
-    },
-
-    sizeNames() {
-      if (!(this.filters.size && this.filters.size.length)) return '';
-
-      return this.filters.size
-        .map(sizeId => this.sizeMap[sizeId])
-        .join(' or ');
-    },
-
-    petDescription() {
-      return [
-        this.bondedPair,
-        this.age,
-        this.sexFullName,
-        this.colorNames,
-        this.sizeNames,
-        this.familyNames,
-        this.specialNeeds,
-      ]
-        .filter(a => !!a)
-        .join(' ');
-    },
-
-    npaTypes: () => [
-      {
-        heading: 'Premium Alert',
-        display:
-          'Get real time, instant notifications when you have a new match with your $10 monthly payment!',
-        icon: 'clock',
-        value: 1,
-      },
-      {
-        heading: 'Free Alert',
-        display:
-          'We’ll run your pet search daily and send you an email within 24 hours of having a new match.',
-        icon: 'envelope',
-        value: 0,
-      },
-    ],
-  },
+  // computed: {
+  //   sizeMap() {
+  //     return {
+  //       1: 'small',
+  //       2: 'medium',
+  //       3: 'large',
+  //       4: 'x-large',
+  //     };
+  //   },
+  //
+  //   sexFullName() {
+  //     if (!this.filters.sex) return '';
+  //
+  //     let name = '';
+  //
+  //     switch (this.filters.sex.join()) {
+  //       case '':
+  //         name = '';
+  //         break;
+  //
+  //       case 'm':
+  //         name = 'male';
+  //         break;
+  //
+  //       case 'f':
+  //         name = 'female';
+  //         break;
+  //
+  //       default:
+  //         name = 'male or female';
+  //     }
+  //
+  //     return name;
+  //   },
+  //   age() {
+  //     return this.filters.age ? this.filters.age.join(' or ') : null;
+  //   },
+  //   colorNames() {
+  //     if (!this.filters.color) return '';
+  //
+  //     return this.filters.color
+  //       .map(colorId => this.colorsMap[colorId])
+  //       .join(' or ');
+  //   },
+  //   familyNames() {
+  //     if (!this.filters.breeds) return this.clanName;
+  //
+  //     return this.filters.breeds
+  //       .map(breedId => this.breedMap[breedId])
+  //       .join(' or ');
+  //   },
+  //   hasMoreFiltersThanClan() {
+  //     return Boolean(this.age || this.sexFullName || this.colorNames || this.familyNames);
+  //   },
+  //
+  //   clanName() {
+  //     let name;
+  //
+  //     switch (this.filters.clan) {
+  //       case 1:
+  //         name = 'dog';
+  //         break;
+  //
+  //       case 2:
+  //         name = 'cat';
+  //         break;
+  //
+  //       default:
+  //         name = 'pet';
+  //     }
+  //
+  //     return name;
+  //   },
+  //
+  //   bondedPair() {
+  //     return this.filters.bondedPair ? 'bonded pair' : '';
+  //   },
+  //
+  //   specialNeeds() {
+  //     return this.filters.specialNeeds ? 'with special needs' : '';
+  //   },
+  //
+  //   sizeNames() {
+  //     if (!(this.filters.size && this.filters.size.length)) return '';
+  //
+  //     return this.filters.size
+  //       .map(sizeId => this.sizeMap[sizeId])
+  //       .join(' or ');
+  //   },
+  //
+  //   petDescription() {
+  //     return [
+  //       this.bondedPair,
+  //       this.age,
+  //       this.sexFullName,
+  //       this.colorNames,
+  //       this.sizeNames,
+  //       this.familyNames,
+  //       this.specialNeeds,
+  //     ]
+  //       .filter(a => !!a)
+  //       .join(' ');
+  //   },
+  //
+  //   npaTypes: () => [
+  //     {
+  //       heading: 'Premium Alert',
+  //       display:
+  //         'Get real time, instant notifications when you have a new match with your $10 monthly payment!',
+  //       icon: 'clock',
+  //       value: 1,
+  //     },
+  //     {
+  //       heading: 'Free Alert',
+  //       display:
+  //         'We’ll run your pet search daily and send you an email within 24 hours of having a new match.',
+  //       icon: 'envelope',
+  //       value: 0,
+  //     },
+  //   ],
+  // },
 
   created() {
     /**

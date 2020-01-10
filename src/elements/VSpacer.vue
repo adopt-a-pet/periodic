@@ -37,7 +37,7 @@ export default {
 
   computed: {
     height() {
-      return designTokens.props[`space_${this.size}`].value;
+      return designTokens.props[`space-${this.size}`].value;
     },
   },
 };

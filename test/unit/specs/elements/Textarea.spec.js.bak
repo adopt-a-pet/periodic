@@ -11,7 +11,7 @@ const errorMessages = {
 };
 const TestComponent = Vue.extend({
   template: `<Textarea
-      v-model="myField"
+      v-model="textarea"
       :min="10"
       :errorMessages="{
         required: '${errorMessages.required}',
@@ -28,18 +28,31 @@ describe('elements/Textarea', () => {
   const wrapper = mount(TestComponent, {
     data() {
       return {
-        myField: '',
+        textarea: 'foo',
       };
     },
   });
   const textarea = wrapper.find('textarea');
 
-  it('emits blur event and shows error message for empty required field', () => {
-    textarea.setValue('foo');
-    expect(wrapper.vm.myField).toBe('foo');
-    textarea.setValue('');
-    expect(wrapper.vm.myField).toBe('');
+  it('emits blur event and shows error message for empty required field', done => {
+    textarea.trigger('focus');
+    // textarea.setValue('foo');
+    textarea.value = 'foo';
+    // wrapper.setData({ textarea: 'foo' });
+
     textarea.trigger('blur');
-    expect(wrapper.emitted('blur').length).toBe(1);
+    // expect(wrapper.emitted('blur').length).toBe(1);
+    console.log('wrapper = ', wrapper);
+    setTimeout(() => {
+      expect(wrapper.html()).toContain('foo');
+      done();
+    }, 500);
   });
+
+  // it('emits input event and doesn\'t show error message for completed required field', () => {
+  //   textarea.setValue('Some text');
+  //   textarea.trigger('blur');
+  //   expect(wrapper.emitted('input').length);
+  //   expect(wrapper.text()).not.toContain(errorMessage);
+  // });
 });

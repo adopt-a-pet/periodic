@@ -1,0 +1,53 @@
+import { mount, createLocalVue } from '@vue/test-utils';
+import Periodic from '../../../../dist/system/system';
+
+const Vue = createLocalVue();
+
+Vue.use(Periodic);
+
+const TestComponent = Vue.extend({
+  data() {
+    return {
+      offers: [
+        {
+          newsletterId: 1,
+          displayHtml: 'I would like to receive the latest special deals',
+        },
+        {
+          newsletterId: 2,
+          displayHtml:
+            'Yes, I would like to receive communications from the Petco Foundation',
+        },
+      ],
+      filters: {
+        age: ['young', 'senior'],
+        bondedPair: true,
+        breeds: [187, 1],
+        clan: 1,
+        color: [153],
+        geoRange: 10,
+        hair: ['short'],
+        sex: [],
+        specialNeeds: true,
+        size: [1, 2],
+        zipCode: '90210',
+      },
+    };
+  },
+  template: `
+    <NPASignupForm
+      :offers='offers'
+      :filters='filters'/>
+  `,
+});
+
+describe('patterns/InfoBox', () => {
+  it('reveals payment information upon clicking "Premium Alert"', done => {
+    const wrapper = mount(TestComponent);
+    wrapper.find('#periodic-radio-box-npa-plan-selection-item-1-parent').trigger('click');
+    setTimeout(() => {
+      expect(wrapper.text()).toContain('Amount (Billed Monthly)');
+      done();
+    }, 500);
+  });
+});
