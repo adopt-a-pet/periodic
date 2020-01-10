@@ -11,15 +11,25 @@
     <VSpacer size="l" />
 
     <div :class="b('container').toString()">
-      <TextInput
-        ref="zipcode"
-        v-model="form.zipCode"
-        type="search"
-        label="Zip / Postal or City, State"
-        :error-messages="{ required: 'Enter Zip / Postal or City, State' }"
-        required
-        @change="dispatchTrackSelect({event: 'location', eventLabel: form.zipCode})" />
-
+      <div>
+        <TextInput
+          ref="zipcode"
+          v-model="form.zipCode"
+          type="search"
+          :validations="locationValidator"
+          label="Zip / Postal or City, State"
+          :error-messages="{
+            locationValidator: 'Invalid location',
+            required: 'Enter Zip / Postal or City, State'
+          }"
+          required
+          @change="dispatchTrackAndLocation({event: 'location', eventLabel: form.zipCode})" />
+        <div
+          v-if="!isLocationValid"
+          :class="b('error-message').toString()">
+          Enter a zip / postal or city, state (2 letter state).
+        </div>
+      </div>
       <Dropdown
         v-model="form.geoRange"
         label="Distance"
@@ -163,6 +173,9 @@
 <script>
 import filterMaps from '@/mixins/filter-maps';
 
+const locationValidator = (location, vm) =>
+  vm.$syscall('api/validation/locationValidator', location).then(res => res);
+
 export default {
   name: 'NPASignupSearchFilters',
   blockName: 'npa-signup-search-filters',
@@ -199,10 +212,20 @@ export default {
     return {
       form: { ...this.filters },
       breedIdsDropdown: [],
+      isLocationValid: {
+        type: Boolean,
+        default: true,
+      },
     };
   },
 
-  computed: {},
+  computed: {
+    locationValidator() {
+      return {
+        locationValidator,
+      };
+    },
+  },
 
   created() {
     /**
@@ -262,6 +285,16 @@ export default {
     },
     dispatchTrackClick(eventObj) {
       this.$syscall(`analytics/track/NPASignupSearchFilters/${eventObj.event}/click`, eventObj);
+    },
+    dispatchTrackAndLocation(eventObj) {
+      this.dispatchTrackSelect(eventObj);
+      this.validateLocation(eventObj.eventLabel);
+    },
+    validateLocation(location) {
+      const vm = this;
+      locationValidator(location, vm).then(res => {
+        vm.isLocationValid = res;
+      });
     },
   },
 };
