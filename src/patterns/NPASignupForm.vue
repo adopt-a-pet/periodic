@@ -126,14 +126,16 @@
           $10
         </Heading>
 
-        <VSpacer size="s" />
+        <VSpacer size="xs" />
 
         <PaymentForm
           ref="paymentForm"
           :email="form.email"
           :payment-error="paymentError"
+          :premium-plan-id="premiumPlanId"
           @paymentInfo="createPremiumNPA"
-          @tokenError:creation="emitTokenError" />
+          @tokenError:creation="emitTokenError"
+          @noEmail="emitScrollToEmail" />
       </div>
 
 
@@ -311,6 +313,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    /** Amount to be displayed in
+     * quick pay window, passed down
+     * to PaymentForm
+     */
+    premiumPlanId: {
+      type: String,
+      default: '',
+    },
   },
 
   data() {
@@ -415,7 +425,7 @@ export default {
     submit() {
       const submitButton = document.getElementById('npa-submit-button');
       if (!this.$refs.email.validate()) {
-        this.$emit('scrollToEmail');
+        this.emitScrollToEmail();
         return;
       }
       if (!this.$refs.plan.validate()) {
@@ -459,6 +469,10 @@ export default {
         obj.zipcode = eventData.zipCode;
       }
 
+      if (eventData.ev) {
+        obj.ev = eventData.ev;
+      }
+
       this.$emit('submit', {
         ...this.form,
         filters: this.filters,
@@ -491,6 +505,10 @@ export default {
     },
     emitTokenError() {
       this.$emit('tokenError');
+    },
+    emitScrollToEmail() {
+      this.$refs.email.validate(false);
+      this.$emit('scrollToEmail');
     },
   },
 };
