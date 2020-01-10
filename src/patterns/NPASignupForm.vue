@@ -47,13 +47,29 @@
       <VSpacer size="l" />
 
       <div :class="b('fields').toString()">
-        <EmailInput
-          ref="email"
-          v-model="form.email"
-          name="email"
-          :error-messages="{ required: 'Enter Email', email: 'Invalid Email' }"
-          required
-          @change="changeEmail" />
+        <div>
+          <EmailInput
+            ref="email"
+            v-model="form.email"
+            name="email"
+            :validations="emailDNCValidator"
+            :error-messages="{
+              required: 'Enter Email',
+              email: 'Invalid Email',
+              emailDNCValidator: 'Oops!',
+            }"
+            required
+            @change="changeEmail" />
+          <div
+            v-if="isEmailOnDNC"
+            :class="b('error-message').toString()">
+            You are currently on our Do Not Contact list.
+            To be removed and get help setting up for New Pet Alerts, email
+            <TextLink href="mailto:info@adoptapet.com">
+              info@adoptapet.com
+            </TextLink>.
+          </div>
+        </div>
 
         <RadioGroupBox
           v-if="filters.clan === 1 || filters.clan === 2"
@@ -196,6 +212,8 @@
 </template>
 
 <script>
+const emailDNCValidator = (email, vm) =>
+  vm.$syscall('api/validation/emailDNCValidator', email).then(res => res);
 /**
  * NPA signup form
  */
@@ -313,6 +331,10 @@ export default {
         plan: this.plan,
       },
       paymentInfo: {},
+      isEmailOnDNC: {
+        type: Boolean,
+        default: null,
+      },
     };
   },
   blockName: 'npa-signup',
@@ -336,6 +358,11 @@ export default {
         value: 0,
       },
     ],
+    emailDNCValidator() {
+      return {
+        emailDNCValidator,
+      };
+    },
   },
 
   methods: {
@@ -464,7 +491,11 @@ export default {
      * from the frontend
      */
     changeEmail() {
+      const vm = this;
       this.$emit('change:npaEmail', this.$refs.email.value);
+      emailDNCValidator(this.$refs.email.value, vm).then(res => {
+        vm.isEmailOnDNC = !res;
+      });
     },
     emitOptins(event) {
       this.$emit('change:optins', event);
