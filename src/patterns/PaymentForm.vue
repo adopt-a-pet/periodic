@@ -473,7 +473,7 @@ export default {
           this.quickPayAmount = 299;
           break;
         default:
-          this.quickPayAmount = 499;
+          this.quickPayAmount = 1000;
       }
 
 
