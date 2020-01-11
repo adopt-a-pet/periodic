@@ -60,6 +60,24 @@ export default {
     'analytics/track/PaymentForm/zipCode/click': function(_, payload) {
       console.log('event:', 'zipCode');
     },
+    'analytics/track/PaymentForm/googlePay/click': function(_, payload) {
+      console.log('event:', 'googlePay');
+    },
+    'analytics/track/PaymentForm/applePay/click': function(_, payload) {
+      console.log('event:', 'applePay');
+    },
+    'analytics/track/PaymentForm/creditCard/click': function(_, payload) {
+      console.log('event:', 'creditCard');
+    },
+    'analytics/track/PaymentForm/quickPay/click': function(_, payload) {
+      console.log('event:', 'quickPay');
+    },
+    'analytics/track/PaymentForm/applePayLoads/load': function(_, payload) {
+      console.log('event:', 'applePayLoads');
+    },
+    'analytics/track/PaymentForm/googlePayLoads/load': function(_, payload) {
+      console.log('event:', 'googlePayLoads');
+    },
     'analytics/track/NPASignupSearchFilters/save/click': function(_, payload) {
       console.log('event:', 'save', payload);
     },
