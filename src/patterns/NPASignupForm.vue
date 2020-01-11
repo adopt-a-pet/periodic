@@ -61,7 +61,7 @@
             required
             @change="changeEmail" />
           <div
-            v-if="isEmailOnDNC"
+            v-if="isEmailOnDNC && form.email !== ''"
             :class="b('error-message').toString()">
             You are currently on our Do Not Contact list.
             To be removed and get help setting up for New Pet Alerts, email
@@ -211,7 +211,15 @@
 
 <script>
 const emailDNCValidator = (email, vm) =>
-  vm.$syscall('api/validation/emailDNCValidator', email).then(res => res);
+  vm.$syscall('api/validation/emailDNCValidator', email)
+    .then(res => {
+      vm.isEmailOnDNC = res;
+      return res;
+    })
+    .catch(err => {
+      vm.isEmailOnDNC = false;
+      return err;
+    });
 /**
  * NPA signup form
  */
@@ -323,7 +331,7 @@ export default {
       paymentInfo: {},
       isEmailOnDNC: {
         type: Boolean,
-        default: null,
+        default: false,
       },
     };
   },
@@ -479,9 +487,14 @@ export default {
     changeEmail() {
       const vm = this;
       this.$emit('change:npaEmail', this.$refs.email.value);
-      emailDNCValidator(this.$refs.email.value, vm).then(res => {
-        vm.isEmailOnDNC = !res;
-      });
+      emailDNCValidator(this.$refs.email.value, vm)
+        .then(res => {
+          vm.isEmailOnDNC = !res;
+        })
+        .catch(err => {
+          vm.isEmailOnDNC = false;
+          return err;
+        });
     },
     emitOptins(event) {
       this.$emit('change:optins', event);
