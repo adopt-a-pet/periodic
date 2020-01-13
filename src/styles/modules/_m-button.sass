@@ -1,0 +1,144 @@
++b(button)
+  display: block
+  background-color: $color-white
+  +border(2px solid $color-gray-light)
+  border-radius: $border-radius
+  color: $color-gray-light
+  font-family: $font
+  font-weight: $font-weight-bold
+  +rem-fallback('font-size', $space-s)
+  cursor: pointer
+  line-height: 2.7
+  width: 100%
+  transition: background $duration_medium ease
+  margin: 0 auto
+  padding: 0
+  text-align: center
+
+  &:focus
+    outline: 0
+
+  &:hover
+    background-color: $color-gray
+    +border(2px solid $color-gray-light)
+    color: $color-gray-light
+
+    .#{_b(button)} + _e(social-icon)
+      g
+        fill: $color-white
+
+      .svg-path
+        fill: $color-white
+
+  &:active
+    background-color: $color-gray-light
+    color: $color-white
+
+  +modifier('size')
+    &-small
+      line-height: 2.5
+      +rem-fallback('font-size', 16px)
+
+  +modifier('color')
+    &-primary
+      background-color: $color-primary
+      border: 0
+      line-height: 2.9
+      color: $color-white
+
+      &:hover,
+      &.hover
+        background-color: $color-primary-dark
+        border: 0
+        box-shadow: $btn-shade-hover
+        color: $color-white
+
+      &:active,
+      &.active
+        background-color: $color-primary
+        box-shadow: $btn-shade-active
+
+    &-accent
+      background-color: $color-accent
+      border: 0
+      line-height: 2.9
+      color: $color-white
+
+      &:hover,
+      &.hover
+        background-color: $color-accent-dark
+        border: 0
+        box-shadow: $btn-shade-hover
+        color: $color-white
+
+      &:active,
+      &.active
+        background-color: $color-accent
+        box-shadow: $btn-shade-active
+
+    &-blue
+      background-color: $color-warning
+      border: 0
+      line-height: 2.9
+      color: $color-white
+
+      &:hover,
+      &.hover
+        box-shadow: $btn-shade-hover
+        border: 0
+        background-color: $color-warning-dark
+        color: $color-white
+
+      &:active,
+      &.active
+        box-shadow: $btn-shade-active
+        background-color: $color-warning
+
+  +modifier('text-color')
+    &-fb
+      color: $color-facebook
+
+      &:hover,
+      &.hover
+        background-color: $color-facebook
+        border-color: $color-facebook
+        color: $color-white
+
+    &-google
+      color: $color-google
+
+      &:hover,
+      &.hover
+        background-color: $color-google
+        border-color: $color-google
+        color: $color-white
+
+  &[disabled]
+    background-color: color(agray, lighter)
+    border: 0
+    line-height: 2.9
+    cursor: not-allowed
+    pointer-events: none
+    color: $color-gray-darker
+
+  +element('image')
+    float: left
+    +rem-fallback('width', 58px)
+    +rem-fallback('height', 58px)
+    display: flex
+
+  +element('icon')
+    fill: $color-white
+    +rem-fallback('width', 24px)
+    +rem-fallback('height', 23px)
+    display: inline-flex
+    vertical-align: middle
+    +rem-fallback('margin-right', $space_xxxxs)
+
+  +element('social-icon')
+    width: 20%
+    +rem-fallback('width', 24px)
+    +rem-fallback('height', 23px)
+    display: inline-block
+    vertical-align: text-bottom
+    +rem-fallback('margin-right', $space_xxxxs)

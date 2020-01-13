@@ -50,13 +50,13 @@ props:
     value: "rgb(136, 57, 41)"
     category: color_group_3
 
-  color_primary_accent:
+  color_accent:
     value: "rgb(255, 204, 27)"
     category: color_group_4
-  color_primary_accent_dark:
+  color_accent_dark:
     value: "rgb(209, 167, 23)"
     category: color_group_4
-  color_primary_accent_darker:
+  color_accent_darker:
     value: "rgb(158, 127, 17)"
     category: color_group_4
 
@@ -77,6 +77,9 @@ props:
     category: color_group_5
   color_gray_lighter:
     value: "rgb(249,249,249)"
+    category: color_group_5
+  color_white:
+    value: "rgb(255,255,255)"
     category: color_group_5
 
   color_facebook:

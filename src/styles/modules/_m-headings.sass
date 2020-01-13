@@ -6,7 +6,7 @@
     color: color(agray, dark)
     +rem-fallback('line-height', $line-height-xl)
     +rem-fallback('letter-spacing', $letter-spacing-default)
-    +rem-fallback('margin-bottom', 20px)
+    +rem-fallback('margin-bottom', $space-s)
 
     +breakpoint(tablet-wide)
       +rem-fallback('font-size', $font-size-xxl)
@@ -30,7 +30,7 @@
     font-weight: normal
     +rem-fallback('line-height', $line-height-l)
     +rem-fallback('letter-spacing', $letter-spacing-default)
-    +rem-fallback('margin-bottom', 20px)
+    +rem-fallback('margin-bottom', $space-s)
 
     @include breakpoint(phone-wide)
       font-size: $font-size-xl
@@ -54,7 +54,7 @@
     font-weight: normal
     +rem-fallback('line-height', $line-height-m)
     +rem-fallback('letter-spacing', $letter-spacing-default)
-    +rem-fallback('margin-bottom', 20px)
+    +rem-fallback('margin-bottom', $space-s)
 
     @include breakpoint(phone-wide)
       font-size: $font-size-l

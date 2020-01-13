@@ -25,13 +25,13 @@
 
   +e('dialog')
     max-width: 90%
-    padding: 50px 0
+    padding: $space-xxl 0
     width: 90%
 
   +e('content')
     @include border-radius($radius-default)
     background-clip: padding-box
-    background: #fff
+    background: $color-white
     border: 6px solid color(ablue)
     position: relative
     width: 100%
@@ -39,7 +39,7 @@
     header
       margin-bottom: 0
       height: $space-xl
-      padding: 7px 0 0 20px
+      padding: 7px 0 0 $space-s
 
   +e('close')
     cursor: pointer
@@ -55,7 +55,7 @@
 
 @media screen and (max-width: 977px)
   +b('modal-popup')
-    background: #fff
+    background: $color-white
 
     +e('dialog')
       max-width: 100% !important
@@ -73,7 +73,7 @@
       overscroll-behavior: none
 
       header
-        background: #ffffff
+        background: $color-white
         border-bottom: 1px solid color(agray, light)
         height: $space-xl
 

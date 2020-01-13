@@ -1,20 +1,20 @@
 +b(npa-signup-search-filters)
   +e(container)
     display: grid
-    +rem-fallback('grid-row-gap', 20px)
+    +rem-fallback('grid-row-gap', $space-s)
     grid-template-columns: 100%
 
     +breakpoint(tablet-wide)
       grid-template-columns: 49% 48%
-      +rem-fallback('grid-column-gap', 24px)
+      +rem-fallback('grid-column-gap', $space-m)
 
   +e(title)
     +breakpoint(tablet-wide)
       text-align: center
 
   +e(save-close)
-    +rem-fallback('margin', 30px 0 20px)
+    +rem-fallback('margin', 30px 0 $space-s)
 
     +breakpoint(tablet-wide)
       +rem-fallback('width', 367px)
-      +rem-fallback('margin', 40px auto)
+      +rem-fallback('margin', $space-xl auto)

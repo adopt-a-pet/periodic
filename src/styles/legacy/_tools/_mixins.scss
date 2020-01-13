@@ -111,7 +111,7 @@
     color: color(agray, darker);
     font-weight: 200;
     @include font-size(16);
-    @include rem-fallback("line-height", 20px);
+    @include rem-fallback("line-height", $space-s);
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--light" {
@@ -143,7 +143,7 @@
     color: color(agray, dark);
     font-weight: normal;
     @include font-size(16);
-    @include rem-fallback("line-height", 20px);
+    @include rem-fallback("line-height", $space-s);
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--bold-h5--compact" {
@@ -151,7 +151,7 @@
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(16);
-    @include rem-fallback("line-height", 20px);
+    @include rem-fallback("line-height", $space-s);
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--bold" {
@@ -280,7 +280,7 @@
   } @else if $m-space == "x-small" {
     @include rem-fallback("margin", 0 0 15px);
   } @else if $m-space == "small" {
-    @include rem-fallback("margin", 0 0 20px);
+    @include rem-fallback("margin", 0 0 $space-s);
   } @else if $m-space == "medium" {
     @include rem-fallback("margin", 0 0 40px);
   } @else if $m-space == "big" {
@@ -292,7 +292,7 @@
   } @else if $m-space == "tb-medium" {
     @include rem-fallback("margin", 40px 0);
   } @else if $m-space == "tb-small" {
-    @include rem-fallback("margin", 20px 0);
+    @include rem-fallback("margin", $space-s 0);
   } @else if $m-space == "tb-tiny" {
     @include rem-fallback("margin", 10px 0);
   } @else if $m-space == "tb-x-tiny" {
@@ -318,7 +318,7 @@
   } @else if $p-space == "x-small" {
     @include rem-fallback("padding", 0 0 15px);
   } @else if $p-space == "small" {
-    @include rem-fallback("padding", 0 0 20px);
+    @include rem-fallback("padding", 0 0 $space-s);
   } @else if $p-space == "medium" {
     @include rem-fallback("padding", 0 0 40px);
   } @else if $p-space == "big" {
@@ -328,7 +328,7 @@
   } @else if $p-space == "t-medium" {
     @include rem-fallback("padding", 40px 0 0);
   } @else if $p-space == "t-small" {
-    @include rem-fallback("padding", 20px 0 0);
+    @include rem-fallback("padding", $space-s 0 0);
   } @else if $p-space == "tb-medium" {
     @include rem-fallback("padding", 40px 0);
   } @else if $p-space == "r-tiny" {
@@ -357,7 +357,7 @@
     @include rem-fallback("bottom", 14px);
   } @else if $labeltext == "label-textarea" {
     @include font-size(20) @include rem-fallback("top", 53px);
-    @include rem-fallback("left", 20px);
+    @include rem-fallback("left", $space-s);
   } @else if $labeltext == "label-field-small" {
     @include font-size(16);
     @include rem-fallback("top", 14px);
