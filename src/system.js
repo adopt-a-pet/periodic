@@ -73,7 +73,9 @@ Vue.use(VueScrollTo, {
   y: true,
 });
 
-Vue.prototype.$tokens = tokens;
+Object.keys(tokens).forEach(key => {
+  Vue.prototype[`$${key}`] = tokens[key];
+});
 
 // Automatic installation if Vue has been added to the global scope
 // if (typeof window !== 'undefined' && window.Vue) {
