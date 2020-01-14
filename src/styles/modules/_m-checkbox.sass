@@ -5,7 +5,7 @@
 
   +e(box)
     +reset
-    +border(2px solid color(agray, light))
+    +border(2px solid $color-gray-light)
     +rem-fallback(border-radius, $radius-default)
     background-color: color(awhite, base)
     display: inline-block
@@ -73,6 +73,6 @@
   +rem-fallback('row-gap', $space-s)
 
   +e('label')
-    font-weight: 200
+    font-weight: $font-weight-light
     +rem-fallback('font-size', $font-size-m)
     line-height: normal

@@ -2,7 +2,7 @@
   +reset
   position: relative
   font-size: 1.25rem
-  color: color(agray, dark)
+  color: $color-black
 
   +e(text-input) > div
     background: color(awhite)
@@ -89,7 +89,7 @@
   +e('list-item')
     cursor: pointer
     font-size: 1.25rem
-    font-weight: 200
+    font-weight: $font-weight-light
     +rem-fallback('padding', $space-xs)
     position: relative
 
@@ -122,4 +122,4 @@
       padding: 10px 15px
 
     input:not(:active)
-      border: 1px solid color(agray, light)
+      border: 1px solid $color-gray-light

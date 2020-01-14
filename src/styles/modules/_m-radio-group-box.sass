@@ -13,7 +13,7 @@
     margin: 0
     +rem-fallback('margin-top', 10px)
     position: relative
-    border: 1px solid color(agray, light)
+    border: 1px solid $color-gray-light
     border-radius: $radius-default
 
     &--selected
@@ -64,7 +64,7 @@
 
     &:disabled+.#{$prefix-component}radio-box__label--color-grey,
     &:disabled+.#{$prefix-component}radio-box__label--color-ltgrey
-      color: color(agray, light)
+      color: $color-gray-light
 
     &:checked ~ .#{$prefix-component}radio-box__outside
       border: 2px solid color(ablue, base)
@@ -92,7 +92,7 @@
     &:disabled ~ .#{$prefix-component}radio-box__outside--color-grey,
     &:disabled ~ .#{$prefix-component}radio-box__outside--color-ltgrey
       &.#{$prefix-component}radio-box__outside
-        border: 2px solid color(agray, light)
+        border: 2px solid $color-gray-light
 
     &:disabled ~ .#{$prefix-component}radio-box__outside--color-white
       &.#{$prefix-component}radio-box__outside
@@ -112,7 +112,7 @@
     +rem-fallback('border-radius', $radius-default)
     +rem-fallback('line-height', $line-height-xs-v2)
     display: inline-block
-    font-weight: 200
+    font-weight: $font-weight-light
     text-align: center
     width: 100%
 
@@ -120,12 +120,12 @@
       color: color(awhite)
 
     .bold
-      font-weight: bold
+      font-weight: $font-weight-bold
 
   +element('outside')
     display: block
     position: absolute
-    border: 2px solid color(agray, light)
+    border: 2px solid $color-gray-light
     border-radius: 100%
     +rem-fallback('padding', 8.5px)
     +rem-fallback('top', 10px)

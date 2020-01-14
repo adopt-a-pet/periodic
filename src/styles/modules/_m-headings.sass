@@ -1,9 +1,9 @@
 +block('heading')
   +element('h1')
     +rem-fallback('font-size', $font-size-xl)
-    font-weight: 700
+    font-weight: $font_weight_bolder
     font-family: $font
-    color: color(agray, dark)
+    color: $color-black
     +rem-fallback('line-height', $line-height-xl)
     +rem-fallback('letter-spacing', $letter-spacing-default)
     +rem-fallback('margin-bottom', $space-s)
@@ -16,18 +16,18 @@
       font-family: $font-special
 
     &--light
-      color: color(agray, darker)
-      font-weight: 200
+      color: $color-gray-darker
+      font-weight: $font_weight_light
       letter-spacing: $letter-spacing-default
 
     &--bold
-      font-weight: bold
+      font-weight: $font-weight-bold
 
   +element('h2')
     +rem-fallback('font-size', $font-size-l)
     font-family: $font
-    color: color(agray, dark)
-    font-weight: normal
+    color: $color-black
+    font-weight: $font_weight_bolder
     +rem-fallback('line-height', $line-height-l)
     +rem-fallback('letter-spacing', $letter-spacing-default)
     +rem-fallback('margin-bottom', $space-s)
@@ -40,18 +40,18 @@
       font-family: $font-special
 
     &--light
-      color: color(agray, darker)
-      font-weight: 200
+      color: $color-gray-darker
+      font-weight: $font-weight-light
       letter-spacing: $letter-spacing-default
 
     &--bold
-      font-weight: bold
+      font-weight: $font-weight-bold
 
   +element('h3')
     +rem-fallback('font-size', $font-size-m)
-    font-family: $helvetica
-    color: color(agray, dark)
-    font-weight: normal
+    font-family: $font
+    color: $color-black
+    font-weight: $font_weight_bolder
     +rem-fallback('line-height', $line-height-m)
     +rem-fallback('letter-spacing', $letter-spacing-default)
     +rem-fallback('margin-bottom', $space-s)
@@ -70,24 +70,24 @@
       font-family: $font-special
 
     &--light
-      color: color(agray, darker)
-      font-weight: 200
+      color: $color-gray-darker
+      font-weight: $font-weight-light
       letter-spacing: $letter-spacing-default
 
     &--bold
-      font-weight: bold
+      font-weight: $font-weight-bold
 
     &--adopted
-      color: color(agray, light)
+      color: $color-gray-light
 
     &--adopted-light
-      color: color(agray)
+      color: $color-gray
 
   +element('h4')
     +rem-fallback('font-size', $font-size-m)
     font-family: $helvetica
-    color: color(agray, dark)
-    font-weight: normal
+    color: $color-black
+    font-weight: $font-weight-normal
     +rem-fallback('line-height', $line-height-m)
     +rem-fallback('letter-spacing', $letter-spacing-default)
 
@@ -104,24 +104,24 @@
       font-family: $font-special
 
     &--light
-      color: color(agray, darker)
-      font-weight: 200
+      color: $color-gray-darker
+      font-weight: $font-weight-light
       letter-spacing: $letter-spacing-default
 
     &--bold
-      font-weight: bold
+      font-weight: $font-weight-bold
 
     &--adopted
-      color: color(agray, light)
+      color: $color-gray-light
 
     &--adopted-light
-      color: color(agray)
+      color: $color-gray
 
   +element('h5')
     +rem-fallback('font-size', $font-size-s)
     font-family: $helvetica
-    color: color(agray, dark)
-    font-weight: normal
+    color: $color-black
+    font-weight: $font-weight-normal
     +rem-fallback('line-height', $line-height-s)
 
     &--compact
@@ -134,18 +134,18 @@
       font-family: $font-special
 
     &--light
-      color: color(agray, darker)
-      font-weight: 200
+      color: $color-gray-darker
+      font-weight: $font-weight-light
       letter-spacing: $letter-spacing-default
 
     &--bold
-      font-weight: bold
+      font-weight: $font-weight-bold
 
   +element('h6')
     +rem-fallback('font-size', $font-size-xs)
     font-family: $helvetica
-    color: color(agray, dark)
-    font-weight: normal
+    color: $color-black
+    font-weight: $font-weight-normal
     +rem-fallback('line-height', $line-height-xs)
 
     &--compact
@@ -161,9 +161,9 @@
       font-family: $font-special
 
     &--light
-      color: color(agray, darker)
-      font-weight: 200
+      color: $color-gray-darker
+      font-weight: $font-weight-light
       letter-spacing: $letter-spacing-default
 
     &--bold
-      font-weight: bold
+      font-weight: $font-weight-bold

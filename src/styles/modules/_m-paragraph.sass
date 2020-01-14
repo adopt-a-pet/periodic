@@ -2,21 +2,21 @@ $sizes: ( xxs: $font-size-xxs, xs: $font-size-xs, s: $font-size-s, m: $font-size
 
 +b('paragraph')
   letter-spacing: $letter-spacing-default
-  font-weight: normal
+  font-weight: $font-weight-normal
   margin-bottom: 40px
 
   a
-    font-weight: bold
+    font-weight: $font-weight-bold
 
   @each $size, $token in $sizes
     +m(size-#{$size})
       +rem-fallback('font-size', $token)
 
   +m('color-gray')
-    color: color(agray)
+    color: $color-gray
 
   +m('color-gray-light')
-    color: color(agray, light)
+    color: $color-gray-light
 
   +m('color-blue')
     color: color(ablue)
@@ -25,10 +25,10 @@ $sizes: ( xxs: $font-size-xxs, xs: $font-size-xs, s: $font-size-s, m: $font-size
     font-family: $font-special
 
   +m('weight-light')
-    font-weight: 200
+    font-weight: $font-weight-light
 
   +m('weight-normal')
-    font-weight: normal
+    font-weight: $font-weight-normal
 
   +m('weight-bold')
-    font-weight: bold
+    font-weight: $font-weight-bold

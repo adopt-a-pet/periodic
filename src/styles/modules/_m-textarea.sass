@@ -1,13 +1,13 @@
 +b(textarea)
   +reset
-  +border(1px solid color(agray, light))
+  +border(1px solid $color-gray-light)
   +rem-fallback('border-radius', $radius-default)
   +rem-fallback('font-size', $font-size-m)
   +rem-fallback('height', 240px)
   +rem-fallback('padding', $space-s)
   +rem-fallback('padding-top', $space-l)
   box-shadow: $text-field-shade
-  color: color(agray, dark)
+  color: $color-black
   display: flex
   height: 100%
   line-height: 1.5
@@ -56,7 +56,7 @@
     +rem-fallback('font-size', $font-size-xs)
     +rem-fallback('line-height', $line-height-xs)
     +rem-fallback('margin-top', $space-xxs)
-    font-weight: 200
+    font-weight: $font-weight-light
     letter-spacing: 0
     text-align: right
 

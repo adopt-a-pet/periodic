@@ -107,10 +107,10 @@ export default {
     <Button size="small">Small</Button> <br />
     <Button :disabled="true">Disabled</Button> <br />
     <Button :disabled="true" size="small">Small Disabled</Button> <br />
-    <Button color="warning">Warning</Button> <br />
-    <Button color="warning" size="small">Small Warning</Button> <br />
     <Button color="accent">Accent</Button> <br />
     <Button color="accent" size="small">Small Accent</Button> <br />
+    <Button color="warning">Warning</Button> <br />
+    <Button color="warning" size="small">Small Warning</Button> <br />
   </div>
 </template>
 <script>
