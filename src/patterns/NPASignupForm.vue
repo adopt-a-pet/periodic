@@ -61,7 +61,7 @@
             required
             @change="changeEmail" />
           <div
-            v-if="isEmailOnDNC && form.email !== ''"
+            v-if="showDNCError"
             :class="b('error-message').toString()">
             You are currently on our Do Not Contact list.
             To be removed and get help setting up for New Pet Alerts, email
@@ -215,11 +215,11 @@
 const emailDNCValidator = (email, vm) =>
   vm.$syscall('api/validation/emailDNCValidator', email)
     .then(res => {
-      vm.isEmailOnDNC = res;
+      vm.showDNCError = !res;
       return res;
     })
     .catch(err => {
-      vm.isEmailOnDNC = false;
+      vm.showDNCError = false;
       return err;
     });
 /**
@@ -339,10 +339,7 @@ export default {
         plan: this.plan,
       },
       paymentInfo: {},
-      isEmailOnDNC: {
-        type: Boolean,
-        default: false,
-      },
+      showDNCError: false,
     };
   },
   blockName: 'npa-signup',
@@ -366,11 +363,7 @@ export default {
         value: 0,
       },
     ],
-    emailDNCValidator() {
-      return {
-        emailDNCValidator,
-      };
-    },
+    emailDNCValidator: () => emailDNCValidator,
   },
 
   methods: {
@@ -499,14 +492,15 @@ export default {
      * from the frontend
      */
     changeEmail() {
-      const vm = this;
       this.$emit('change:npaEmail', this.$refs.email.value);
+
+      const vm = this;
       emailDNCValidator(this.$refs.email.value, vm)
         .then(res => {
-          vm.isEmailOnDNC = !res;
+          vm.showDNCError = !res;
         })
         .catch(err => {
-          vm.isEmailOnDNC = false;
+          vm.showDNCError = false;
           return err;
         });
     },
