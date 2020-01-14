@@ -44,7 +44,7 @@
           background: color(awhite, base)
 
     &:disabled+.#{$prefix-component}radio-box__label
-      color: color(agray, lighter)
+      color: $color-gray-lighter
 
     &:disabled ~ .#{$prefix-component}radio-box__outside
       &::before
@@ -96,7 +96,7 @@
 
     &:disabled ~ .#{$prefix-component}radio-box__outside--color-white
       &.#{$prefix-component}radio-box__outside
-        border: 2px solid color(agray, lighter)
+        border: 2px solid $color-gray-lighter
 
     &:checked ~ .#{$prefix-component}radio-box__outside
       &::before
@@ -117,7 +117,7 @@
     width: 100%
 
     +modifier('blue')
-      color: color(awhite)
+      color: $color-white
 
     .bold
       font-weight: $font-weight-bold
@@ -150,12 +150,12 @@
     background: color(awhite, base)
 
     +m('not-selected')
-      border: 1px solid color(agray, lighter)
+      border: 1px solid $color-gray-lighter
 
       .#{$prefix-component}radio-box__icon
         svg
           path
-            fill: color(agray, lighter)
+            fill: $color-gray-lighter
 
       .#{$prefix-component}radio-box__button
         &:hover ~ .#{$prefix-component}radio-box__outside
@@ -168,7 +168,7 @@
               background: color(awhite, base)
 
       .#{$prefix-component}radio-box__label
-        color: color(agray, lighter)
+        color: $color-gray-lighter
 
       .#{$prefix-component}radio-box__outside
-        border: 2px solid color(agray, lighter)
+        border: 2px solid $color-gray-lighter

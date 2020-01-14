@@ -3,10 +3,10 @@ $preset-body-color: $color-black;
 $base-font-size: 16px;
 $sixty-percent-grey: $color-gray;
 $twenthy-percent-grey: #f9f9f9;
-$twenty-percent-lighter-grey: rgba(color(agray, lighter), 0.2);
-$eighty-per-lighter-grey: rgba(color(agray, lighter), 0.8);
-$sixty-per-lighter-grey: rgba(color(agray, lighter), 0.6);
-$forty-per-lighter-grey: rgba(color(agray, lighter), 0.4);
+$twenty-percent-lighter-grey: rgba($color-gray-lighter, 0.2);
+$eighty-per-lighter-grey: rgba($color-gray-lighter, 0.8);
+$sixty-per-lighter-grey: rgba($color-gray-lighter, 0.6);
+$forty-per-lighter-grey: rgba($color-gray-lighter, 0.4);
 $sixty-per-light-grey: rgba($color-gray-light, 0.6);
 $forty-per-light-grey: rgba($color-gray-light, 0.4);
 $twenty-per-light-grey: rgba($color-gray-light, 0.2);
@@ -16,8 +16,8 @@ $ablue-light: #6bcbf2;
 $modal-border: #ff8f43;
 $sticky-close-grey: #f2f2f2;
 $twenty-per-lighter-blue: rgba(color(ablue, lighter), 0.2);
-$eighty-per-blue-base: rgba(color(ablue), 0.8);
-$twentyfive-percent-lighter-grey: rgba(color(agray, lighter), 0.25);
+$eighty-per-blue-base: rgba($color-primary, 0.8);
+$twentyfive-percent-lighter-grey: rgba($color-gray-lighter, 0.25);
 $seventy-percent-darker-grey: rgba($color-gray-darker, 0.7);
 
 // Breakpoints
@@ -49,7 +49,7 @@ $text-field-shade: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
 // Pet card shades
 $pet-card-shade: 0 0 4px #b3b3b3;
 $pet-card-bg-shade: inset 0 3px 4px $color-gray-light;
-$pet-card-border: inset 0 0 1px color(agray, lighter);
+$pet-card-border: inset 0 0 1px $color-gray-lighter;
 $video-bg-shade: rgba(36, 36, 36, 0.6);
 $progress-bar-shade: inset 0 12px 13px -15px #ccc;
 $foster-card-shade: 0 2px 4px 0 #b3b3b3;

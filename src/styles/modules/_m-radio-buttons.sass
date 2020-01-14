@@ -24,7 +24,7 @@
           background: color(awhite, base)
 
     &:disabled+.#{$prefix-component}radio__label
-      color: color(agray, lighter)
+      color: $color-gray-lighter
 
     &:disabled ~ .#{$prefix-component}radio__outside
       &::before
@@ -75,7 +75,7 @@
 
     &:disabled ~ .#{$prefix-component}radio__outside--color-white
       &.#{$prefix-component}radio__outside
-        border: 2px solid color(agray, lighter)
+        border: 2px solid $color-gray-lighter
 
     &:checked ~ .#{$prefix-component}radio__outside
       &::before
@@ -97,7 +97,7 @@
     width: 100%
 
     +modifier('blue')
-      color: color(awhite)
+      color: $color-white
 
   +element('outside')
     display: block

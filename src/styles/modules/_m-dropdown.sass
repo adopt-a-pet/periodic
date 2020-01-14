@@ -5,7 +5,7 @@
   color: $color-black
 
   +e(text-input) > div
-    background: color(awhite)
+    background: $color-white
     border-radius: $radius-default
 
   input[type="text"]
@@ -95,12 +95,12 @@
 
     &:hover
       color: #4d4d4d
-      font-weight: 400
+      font-weight: $font_weight_normal
       background-color: rgba(223,223,223,.4)
 
     +is(selected)
-      color: color(ablue)
-      font-weight: 400
+      color: $color-primary
+      font-weight: $font_weight_normal
 
   +e(list-check)
     float: right
