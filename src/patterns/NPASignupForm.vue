@@ -363,7 +363,11 @@ export default {
         value: 0,
       },
     ],
-    emailDNCValidator: () => emailDNCValidator,
+    emailDNCValidator() {
+      return {
+        emailDNCValidator,
+      };
+    },
   },
 
   methods: {
