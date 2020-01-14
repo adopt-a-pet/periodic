@@ -52,10 +52,10 @@
             ref="email"
             v-model="form.email"
             name="email"
-            :validations="emailDNCValidator"
+            :validations="{emailDNCValidator, emailValidator}"
             :error-messages="{
               required: 'Enter Email',
-              email: 'Invalid Email',
+              emailValidator: 'Invalid Email',
               emailDNCValidator: 'Oops!',
             }"
             required
@@ -212,16 +212,7 @@
 </template>
 
 <script>
-const emailDNCValidator = (email, vm) =>
-  vm.$syscall('api/validation/emailDNCValidator', email)
-    .then(res => {
-      vm.showDNCError = !res;
-      return res;
-    })
-    .catch(err => {
-      vm.showDNCError = false;
-      return err;
-    });
+import { email as emailValidator } from 'vuelidate/lib/validators';
 /**
  * NPA signup form
  */
@@ -340,6 +331,7 @@ export default {
       },
       paymentInfo: {},
       showDNCError: false,
+      emailValidator,
     };
   },
   blockName: 'npa-signup',
@@ -363,10 +355,20 @@ export default {
         value: 0,
       },
     ],
-    emailDNCValidator: () => emailDNCValidator,
   },
 
   methods: {
+    emailDNCValidator(email) {
+      return this.$syscall('api/validation/emailDNCValidator', email)
+        .then(res => {
+          this.showDNCError = !res;
+          return res;
+        })
+        .catch(err => {
+          this.showDNCError = false;
+          return err;
+        });
+    },
     whatIsThis() {
       /**
        * When user clicks "What is this"
@@ -493,16 +495,6 @@ export default {
      */
     changeEmail() {
       this.$emit('change:npaEmail', this.$refs.email.value);
-
-      const vm = this;
-      emailDNCValidator(this.$refs.email.value, vm)
-        .then(res => {
-          vm.showDNCError = !res;
-        })
-        .catch(err => {
-          vm.showDNCError = false;
-          return err;
-        });
     },
     emitOptins(event) {
       this.$emit('change:optins', event);
