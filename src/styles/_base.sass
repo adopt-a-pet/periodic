@@ -1,0 +1,21 @@
+
+// Styles here will be applied to every periodic component. Treat this like you
+// would with the main `body...}` style in a normal app.
+.#{$prefix-component}#{$periodic-component-class}
+    margin: 0
+    padding: 0
+    font-family: $font
+    font-weight: 400
+    font-size: $base-font-size
+    color: $preset-body-color
+    line-height: 1.5
+    text-decoration: none
+
+// This will override some of the above styles, and is only applied to components
+// that opt in to using it. It's needed because inheriting is useful--sometimes
+// actually very necessary--for some text components.
+.#{$prefix-component}#{$periodic-text-inherit-class}
+    font-family: inherit
+    font-weight: inherit
+    font-size: inherit
+    line-height: inherit
