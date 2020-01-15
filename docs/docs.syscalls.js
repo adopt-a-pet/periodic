@@ -1,3 +1,6 @@
+import axios from 'axios';
+axios.defaults.baseURL = 'https://staging-api-ra.adoptapet.com/v1/';
+
 export default {
   namespaced: true,
 
@@ -115,7 +118,13 @@ export default {
       console.log("Hit VML and validate!");
     },
     'api/validation/emailDNCValidator': function (_, payload) {
-      console.log("Hit VML and validate!");
+      return axios.get(`marketing/donotcontact/${payload}`).then(res => {
+        if (res !== undefined) return !res.data.body.doNotContactList;
+        else return true;
+      })
+      .catch(err => {
+        return true;
+      })
     },
   }
 };
