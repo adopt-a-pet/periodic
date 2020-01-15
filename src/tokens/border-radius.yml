@@ -4,7 +4,11 @@
 #
 
 props:
-  radius_default:
+  radius_s:
+    value: "2px"
+  radius_m:
+    value: "4px"
+  radius_l:
     value: "6px"
   radius_circle:
     value: "50%"

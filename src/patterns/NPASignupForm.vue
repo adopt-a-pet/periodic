@@ -6,23 +6,26 @@
 
       <div :class="b('heading').toString()">
         <Heading
-          level="h4"
-          font-weight="light"
-          line-height="compact">
+          :style="{
+            'font-weight': $font_weight_light,
+            'line-height': $line_height_xs
+          }"
+          level="h4">
           Set Up Your
         </Heading>
 
         <Heading
           :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
-          font-weight="bold"
-          font-family="special">
+          :style="{ 'font-weight': $font_weight_bold }">
           New Pet Alert
         </Heading>
 
         <Paragraph
-          tag="span"
-          font-size="s"
-          font-weight="normal">
+          :style="{
+            'font-size': $font_size_s,
+            'font-weight': $font_weight_normal
+          }"
+          tag="span">
           <TextLink @click="whatIsThis">
             What is this?
           </TextLink>
@@ -32,25 +35,30 @@
       </div>
 
       <Paragraph
-        text-align="left"
-        color="gray"
-        font-weight="normal">
+        :style="{
+          'font-weight': $font_weight_mormal,
+          'text-align': 'left'
+        }">
         We'll email you when new pets that match your search criteria are added to our site!
       </Paragraph>
 
       <VSpacer size="l" />
 
       <Paragraph
-        font-size="s"
-        font-weight="bold"
-        line-height="24px">
+        :style="{
+          'font-size': $font_size_s,
+          'font-weight': $font_weight_bold,
+          'line-height': $line_height_s
+        }">
         You’re Searching For
       </Paragraph>
 
       <Paragraph
         v-if="hasMoreFiltersThanClan"
-        font-weight="bold"
-        line-height="26px">
+        :style="{
+          'font-weight': $font_weight_bold,
+          'line-height': $line_height_m_v2
+        }">
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
@@ -60,8 +68,7 @@
 
       <Paragraph
         v-else
-        font-weight="bold"
-        line-height="26px">
+        :style="{ 'font-weight': $font_weight_bold, 'line-height': $line_height_m_v2 }">
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
@@ -75,15 +82,15 @@
         <EmailInput
           ref="email"
           v-model="form.email"
-          name="email"
           :error-messages="{ required: 'Enter Email', email: 'Invalid Email' }"
+          name="email"
           required />
 
         <RadioGroupBox
           v-model="form.plan"
-          name="npa-plan-selection"
           :columns="2"
           :items="npaTypes"
+          name="npa-plan-selection"
           @change="selectPlan" />
       </div>
 
@@ -95,7 +102,8 @@
           Pro tip
         </template>
         <template slot="message">
-          To get the most out of your Premium experience, choose 2 or more filters.
+          <span :style="{ 'font-weight': $font_weight_light }">To get the most
+            out of your Premium experience, choose 2 or more filters.</span>
         </template>
         <template slot="link">
           Edit Filters >
@@ -126,8 +134,10 @@
         @change="dontShowAgain">
         <Paragraph
           :class="b('checkbox-text').toString()"
-          font-size="xs"
-          font-weight="light"
+          :style="{
+            'font-size': $font_size_xs,
+            'font-weight': $font_weight_light
+          }"
           class="gtm-dont-show">
           Don’t show me this again.
         </Paragraph>
@@ -137,15 +147,16 @@
 
       <div :class="b('skip-continue').toString()">
         <TextLink
+          :style="{ color: $color_gray_darker }"
           always-underline
-          color="gray-light"
           @click="skip">
           <Paragraph
-            tag="span"
-            font-size="m"
-            font-family="special"
-            font-weight="bold"
-            color="gray-light">
+            :style="{
+              'color': $color_gray_darker,
+              'font-size': $font_size_m,
+              'font-weight': $font_weight_bold
+            }"
+            tag="span">
             Skip
           </Paragraph>
         </TextLink>

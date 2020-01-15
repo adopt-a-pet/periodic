@@ -5,35 +5,35 @@
 
   +e(box)
     +reset
-    +border(2px solid $color-gray-light)
-    +rem-fallback(border-radius, $radius-default)
-    background-color: color(awhite, base)
+    +border(2px solid $color_gray_darker)
+    +rem-fallback(border-radius, $radius_m)
+    background-color: $color_white
     display: inline-block
     flex: 0 0 auto
-    height: $font-size-m
+    +rem-fallback('height', $font-size-m)
     overflow: hidden
-    width: $font-size-m
+    +rem-fallback('width', $font-size-m)
     vertical-align: middle
 
     +m(size-small)
-      height: $font-size-s
-      width: $font-size-s
+      +rem-fallback('height', $font-size-s)
+      +rem-fallback('width', $font-size-s)
 
     +m(size-tiny)
-      +rem-fallback(border-radius, $radius-default)
-      height: $font-size-xs
-      width: $font-size-xs
+      +rem-fallback(border-radius, $radius_s)
+      +rem-fallback('height', $font-size-xs)
+      +rem-fallback('width', $font-size-xs)
 
     &:hover
-      +border(2px solid color(ablue, base))
+      +border(2px solid $color_primary)
 
     +is(checked)
-      background-color: color(ablue, base)
-      +border(2px solid color(ablue, base))
+      background-color: $color_primary
+      +border(2px solid $color_primary)
 
     +is(disabled)
-      +border(2px solid $color-gray-lighter)
-      background-color: color(awhite, base)
+      +border(2px solid $color_gray_dark)
+      background-color: $color_white
 
   +e(label-container)
     display: flex
@@ -42,7 +42,7 @@
     justify-content: space-between
 
     +m(size-tiny)
-      line-height: 14px
+      +rem-fallback('line-height', $line-height-xs)
 
   +e(label)
     cursor: pointer
@@ -50,8 +50,8 @@
     line-height: 1em
 
     +m(size-tiny)
-      line-height: 14px
-      font-size: 12px
+      +rem-fallback('line-height', $line-height-xxs)
+      +rem-fallback('font-size', $font-size-xxs)
 
   +e(label-right)
     cursor: pointer

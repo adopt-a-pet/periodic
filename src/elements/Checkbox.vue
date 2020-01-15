@@ -15,7 +15,7 @@
       <Icon
         v-if="checked"
         :class="b('check').toString()"
-        name="check" />
+        name="check-white" />
     </span>
 
     <div :class="b('label-container', { size }).toString()">

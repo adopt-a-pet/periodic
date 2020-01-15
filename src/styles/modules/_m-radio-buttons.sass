@@ -15,23 +15,23 @@
     visibility: hidden
 
     &:hover ~ .#{$prefix-component}radio__outside
-      border: 2px solid color(ablue, base)
+      border: 2px solid $color_primary
 
       &.#{$prefix-component}radio__outside--color-blue
-        border: 2px solid color(awhite, base)
+        border: 2px solid $color_white
 
         &::before
-          background: color(awhite, base)
+          background: $color_white
 
     &:disabled+.#{$prefix-component}radio__label
-      color: $color-gray-lighter
+      color: $color_gray_dark
 
     &:disabled ~ .#{$prefix-component}radio__outside
       &::before
         background: transparent
 
       &:hover
-        border: 2px solid color(ablue, base)
+        border: 2px solid $color_primary
 
       &.#{$prefix-component}radio__outside--color-blue,
       &.#{$prefix-component}radio__outside--color-grey,
@@ -44,10 +44,10 @@
 
     &:disabled+.#{$prefix-component}radio__label--color-grey,
     &:disabled+.#{$prefix-component}radio__label--color-ltgrey
-      color: $color-gray-light
+      color: $color_gray_darker
 
     &:checked ~ .#{$prefix-component}radio__outside
-      border: 2px solid color(ablue, base)
+      border: 2px solid $color_primary
 
       &::before
         height: 13px
@@ -56,7 +56,7 @@
         left: 2px
     &:checked ~ .#{$prefix-component}radio__outside--color-blue
       &.#{$prefix-component}radio__outside
-        border: 2px solid color(awhite, base)
+        border: 2px solid $color_white
 
         &::before
           height: 13px
@@ -71,24 +71,24 @@
     &:disabled ~ .#{$prefix-component}radio__outside--color-grey,
     &:disabled ~ .#{$prefix-component}radio__outside--color-ltgrey
       &.#{$prefix-component}radio__outside
-        border: 2px solid $color-gray-light
+        border: 2px solid $color_gray_darker
 
     &:disabled ~ .#{$prefix-component}radio__outside--color-white
       &.#{$prefix-component}radio__outside
-        border: 2px solid $color-gray-lighter
+        border: 2px solid $color_gray_dark
 
     &:checked ~ .#{$prefix-component}radio__outside
       &::before
-        background: color(ablue, base)
+        background: $color_primary
 
     &:checked ~ .#{$prefix-component}radio__outside--color-blue
       &.#{$prefix-component}radio__outside
         &::before
-          background: color(awhite, base)
+          background: $color_white
 
   +element('label')
     +rem-fallback('font-size', $font-size-m)
-    +rem-fallback('border-radius', $radius-default)
+    +rem-fallback('border-radius', $radius_l)
     +rem-fallback('line-height', $line-height-m-v2)
     +rem-fallback('padding-left', $space-l)
     color: $color-gray-darker
@@ -102,7 +102,7 @@
   +element('outside')
     display: block
     position: absolute
-    border: 2px solid $color-gray-light
+    border: 2px solid $color_gray_darker
     border-radius: 100%
     +rem-fallback('padding', 8.5px)
     top: 1px
@@ -121,4 +121,4 @@
 
     &--color-blue
       &.#{$prefix-component}radio__outside
-        border: 2px solid color(awhite, base)
+        border: 2px solid $color_white

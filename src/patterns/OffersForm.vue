@@ -2,7 +2,6 @@
   <div :class="b().toString()">
     <Heading
       level="h3"
-      font-family="special"
       font-weight="bold">
       Im-PAW-sibly Good Deals!
     </Heading>
@@ -71,9 +70,12 @@
 
       <Paragraph
         :class="b('footnote').toString()"
-        font-size="xxs"
-        font-weight="normal"
-        line-height="15px">
+        :style="{
+          'color': $color_gray_darker,
+          'font-size': $font_size_xxs,
+          'font-weight': $font_weight_normal,
+          'line-height': $line_height_xxs }
+        ">
         * I certify I am 18 years of age or older and agree that Purina
         may use my information as described in the
         <TextLink
