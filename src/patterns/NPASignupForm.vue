@@ -52,16 +52,16 @@
             ref="email"
             v-model="form.email"
             name="email"
-            :validations="emailDNCValidator"
+            :validations="{emailDNCValidator, emailValidator}"
             :error-messages="{
               required: 'Enter Email',
-              email: 'Invalid Email',
+              emailValidator: 'Invalid Email',
               emailDNCValidator: 'Oops!',
             }"
             required
             @change="changeEmail" />
           <div
-            v-if="isEmailOnDNC && form.email !== ''"
+            v-if="showDNCError"
             :class="b('error-message').toString()">
             You are currently on our Do Not Contact list.
             To be removed and get help setting up for New Pet Alerts, email
@@ -212,16 +212,7 @@
 </template>
 
 <script>
-const emailDNCValidator = (email, vm) =>
-  vm.$syscall('api/validation/emailDNCValidator', email)
-    .then(res => {
-      vm.isEmailOnDNC = res;
-      return res;
-    })
-    .catch(err => {
-      vm.isEmailOnDNC = false;
-      return err;
-    });
+import { email as emailValidator } from 'vuelidate/lib/validators';
 /**
  * NPA signup form
  */
@@ -339,10 +330,8 @@ export default {
         plan: this.plan,
       },
       paymentInfo: {},
-      isEmailOnDNC: {
-        type: Boolean,
-        default: false,
-      },
+      showDNCError: false,
+      emailValidator,
     };
   },
   blockName: 'npa-signup',
@@ -366,14 +355,20 @@ export default {
         value: 0,
       },
     ],
-    emailDNCValidator() {
-      return {
-        emailDNCValidator,
-      };
-    },
   },
 
   methods: {
+    emailDNCValidator(email) {
+      return this.$syscall('api/validation/emailDNCValidator', email)
+        .then(res => {
+          this.showDNCError = !res;
+          return res;
+        })
+        .catch(err => {
+          this.showDNCError = false;
+          return err;
+        });
+    },
     whatIsThis() {
       /**
        * When user clicks "What is this"
@@ -499,16 +494,7 @@ export default {
      * from the frontend
      */
     changeEmail() {
-      const vm = this;
       this.$emit('change:npaEmail', this.$refs.email.value);
-      emailDNCValidator(this.$refs.email.value, vm)
-        .then(res => {
-          vm.isEmailOnDNC = !res;
-        })
-        .catch(err => {
-          vm.isEmailOnDNC = false;
-          return err;
-        });
     },
     emitOptins(event) {
       this.$emit('change:optins', event);
