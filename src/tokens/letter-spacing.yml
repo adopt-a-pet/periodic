@@ -5,7 +5,7 @@
 
 props:
   letter_spacing_default:
-    value: "_0.15px"
+    value: "-0.15px"
 
 global:
   type: number
