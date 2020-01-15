@@ -1,9 +1,9 @@
 +b(button)
   display: block
   background-color: $color-white
-  +border(2px solid $color-gray-light)
+  +border(2px solid $color-gray-darker)
   border-radius: $border-radius
-  color: $color-gray-light
+  color: $color-gray-darker
   font-family: $font
   font-weight: $font-weight-bold
   +rem-fallback('font-size', $space-s)
@@ -20,8 +20,8 @@
 
   &:hover
     background-color: $color-gray
-    +border(2px solid $color-gray-light)
-    color: $color-gray-light
+    +border(2px solid $color-gray-darker)
+    color: $color-gray-darker
 
     .#{_b(button)} + _e(social-icon)
       g
