@@ -1,0 +1,140 @@
++b("payment-form")
+  +element("quick-pay")
+    display: inline-block
+    +rem-fallback("margin", 0px 10px 30px 0px)
+    +rem-fallback("border-bottom", 1px solid)
+    color: #9B9B9B
+    cursor: pointer
+    &:hover
+      color: $color-primary
+      text-decoration: none
+    +modifier("active")
+      display: inline-block
+      +rem-fallback("margin", 0px 10px 30px 0px)
+      color: $color-primary
+      font-weight: bold
+      +rem-fallback("border-bottom", 2px solid)
+      &:hover
+        text-decoration: none
+
+  +element("credit-card")
+    display: inline-block
+    +rem-fallback("margin", 0px 10px 30px 10px)
+    +rem-fallback("border-bottom", 1px solid)
+    color: #9B9B9B
+    cursor: pointer
+    &:hover
+      color: $color-primary
+      text-decoration: none
+    +modifier("active")
+      display: inline-block
+      +rem-fallback("margin", 0px 10px 30px 10px)
+      color: $color-primary
+      font-weight: bold
+      +rem-fallback("border-bottom", 2px solid)
+      &:hover
+        text-decoration: none
+
+  +element("payment-request-button")
+    background-color: black
+    vertical-align: text-bottom
+    display: inline-block
+    &:hover
+      background-color: black
+    +breakpoint(tablet-plus)
+      +column(8 / 12)
+
+  +element("form-control")
+    color: color(agray, darker)
+    display: grid
+    grid-template-areas: 'firstname firstname' 'lastname lastname' 'zipcode zipcode' 'cardnumber cardnumber' 'cardexpiry cardcvc'
+    grid-column-gap: 10px
+    grid-row-gap: 20px
+    +modifier("card-errors")
+      color: color(agray, darker)
+      display: grid
+      grid-template-areas: 'firstname firstname' 'lastname lastname' 'zipcode zipcode' 'cardnumber cardnumber' 'errors errors' 'cardexpiry cardcvc'
+      grid-column-gap: 10px
+      grid-row-gap: 20px
+
+    +modifier("payment-error")
+      color: color(agray, darker)
+      display: grid
+      grid-template-areas: 'firstname firstname' 'lastname lastname' 'zipcode zipcode' 'cardnumber cardnumber' 'cardexpiry cardcvc' 'paymenterror paymenterror'
+      grid-column-gap: 10px
+      grid-row-gap: 20px
+
+    +modifier("multiple-errors")
+      color: color(agray, darker)
+      display: grid
+      grid-template-areas: 'firstname firstname' 'lastname lastname' 'zipcode zipcode' 'cardnumber cardnumber' 'errors errors' 'cardexpiry cardcvc' 'paymenterror paymenterror'
+      grid-column-gap: 10px
+      grid-row-gap: 20px
+
+    +breakpoint(tablet-plus)
+      grid-template-areas: 'firstname lastname' 'zipcode zipcode' 'cardnumber cardnumber' 'cardexpiry cardcvc'
+      grid-column-gap: 20px
+      +modifier("card-errors")
+        grid-template-areas: 'firstname lastname' 'zipcode zipcode' 'cardnumber cardnumber' 'errors errors' 'cardexpiry cardcvc'
+        grid-column-gap: 20px
+
+      +modifier("payment-error")
+        grid-template-areas: 'firstname lastname' 'zipcode zipcode' 'cardnumber cardnumber' 'cardexpiry cardcvc' 'paymenterror paymenterror'
+        grid-column-gap: 20px
+
+      +modifier("multiple-errors")
+        grid-template-areas: 'firstname lastname' 'zipcode zipcode' 'cardnumber cardnumber' 'errors errors' 'cardexpiry cardcvc' 'paymenterror paymenterror'
+        grid-column-gap: 20px
+
+  +element("card-number")
+    grid-area: cardnumber
+
+  +element("card-errors")
+    margin-top: -15px
+    grid-area: errors
+    color: color(aorange)
+
+  +element("card-expiry")
+    grid-area: cardexpiry
+
+  +element("card-cvc")
+    grid-area: cardcvc
+
+  +element("first-name")
+    grid-area: firstname
+
+  +element("last-name")
+    grid-area: lastname
+
+  +element("zip-code")
+    grid-area: zipcode
+
+  +element("error-text")
+    grid-area: paymenterror
+
+  +element("text-orange")
+    color: color(aorange) !important
+
+
+.StripeElement
+  box-sizing: border-box
+  height: 3.625rem
+  padding: 17px
+  border: 1px solid color(agray, light)
+  border-radius: 6px
+  background-color: white
+  box-shadow: 0 1px 3px 0 #e6ebf1
+  -webkit-transition: box-shadow 150ms ease
+  transition: box-shadow 150ms ease
+
+.StripeElement--focus
+  box-shadow: 0 1px 3px 0 #cfd7df
+
+.StripeElement--invalid
+  border-color: color(aorange)
+
+.StripeElement--complete
+  border-color: color(agreen)
+
+.StripeElement--webkit-autofill
+  background-color: #fefde5 !important
