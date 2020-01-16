@@ -4,7 +4,8 @@
       font-size="s"
       font-weight="bold"
       line-height="$line-height-s-v2"
-      class="periodic-info-box__heading">
+      class="periodic-info-box__heading"
+      style="margin-bottom: 0">
       <Icon :name="icon" />
       <slot name="header" />
     </Paragraph>
@@ -12,7 +13,8 @@
     <Paragraph
       font-size="s"
       font-weight="normal"
-      line-height="$line-height-s-v2">
+      line-height="$line-height-s-v2"
+      style="margin-bottom: 0">
       <slot name="message" />
     </Paragraph>
 
@@ -21,7 +23,8 @@
     <Paragraph
       font-size="s"
       font-weight="bold"
-      line-height="$line-height-s-v2">
+      line-height="$line-height-s-v2"
+      style="margin-bottom: 0">
       <TextLink @click="textLink">
         <slot name="link" />
       </TextLink>

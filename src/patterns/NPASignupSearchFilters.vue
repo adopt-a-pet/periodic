@@ -3,6 +3,7 @@
     <Heading
       :class="b('title').toString()"
       :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
+      style="margin-bottom: 0"
       font-weight="bold">
       Filters
     </Heading>

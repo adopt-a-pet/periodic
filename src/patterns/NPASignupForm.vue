@@ -16,7 +16,7 @@
 
         <Heading
           :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
-          :style="{ 'font-weight': $font_weight_bold }">
+          :style="{ 'font-weight': $font_weight_bold, 'margin-bottom': 0 }">
           New Pet Alert
         </Heading>
 
@@ -27,7 +27,7 @@
           }"
           tag="span">
           <TextLink @click="whatIsThis">
-            What is this?
+            What's this?
           </TextLink>
         </Paragraph>
 
@@ -46,7 +46,8 @@
         :style="{
           'font-size': $font_size_s,
           'font-weight': $font_weight_bold,
-          'line-height': $line_height_s
+          'line-height': $line_height_s,
+          'margin-bottom': 0
         }">
         You’re Searching For
       </Paragraph>
