@@ -6,28 +6,25 @@
 
       <div :class="b('heading').toString()">
         <Heading
-          :style="{
-            'font-weight': $font_weight_light,
-            'line-height': $line_height_xs
-          }"
-          level="h4">
+          level="h4"
+          font-weight="light"
+          line-height="compact">
           Set Up Your
         </Heading>
 
         <Heading
-          :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
-          :style="{ 'font-weight': $font_weight_bold, 'margin-bottom': 0 }">
+          :level="layout === 'desktop' ? 'h1' : 'h2'"
+          font-weight="bold"
+          font-family="museo">
           New Pet Alert
         </Heading>
 
         <Paragraph
-          :style="{
-            'font-size': $font_size_s,
-            'font-weight': $font_weight_normal
-          }"
-          tag="span">
+          tag="span"
+          font-size="s"
+          font-weight="normal">
           <TextLink @click="whatIsThis">
-            What's this?
+            What is this?
           </TextLink>
         </Paragraph>
 
@@ -35,93 +32,132 @@
       </div>
 
       <Paragraph
-        :style="{
-          'font-weight': $font_weight_mormal,
-          'text-align': 'left'
-        }">
+        text-align="left"
+        color="gray"
+        font-weight="normal">
         We'll email you when new pets that match your search criteria are added to our site!
       </Paragraph>
 
-      <Paragraph
-        :style="{
-          'font-size': $font_size_s,
-          'font-weight': $font_weight_bold,
-          'line-height': $line_height_s,
-          'margin-bottom': 0
-        }">
-        You’re Searching For
-      </Paragraph>
+      <VSpacer size="l" />
 
-      <Paragraph
-        v-if="hasMoreFiltersThanClan"
-        :style="{
-          'font-weight': $font_weight_bold,
-          'line-height': $line_height_m_v2
-        }">
-        <TextLink
-          :class="b('search-params').toString()"
-          @click="searchFilters">
-          {{ petDescription }} within {{ filters.geoRange }} miles of {{ filters.zipCode }}
-        </TextLink>
-      </Paragraph>
+      <SearchQuerySentence
+        :filters="filters"
+        @click:searchFilters="searchFilters" />
 
-      <Paragraph
-        v-else
-        :style="{ 'font-weight': $font_weight_bold, 'line-height': $line_height_m_v2 }">
-        <TextLink
-          :class="b('search-params').toString()"
-          @click="searchFilters">
-          All {{ clanName }}s within {{ filters.geoRange }} miles of {{ filters.zipCode }}
-        </TextLink>
-      </Paragraph>
+      <VSpacer size="l" />
 
       <div :class="b('fields').toString()">
-        <EmailInput
-          ref="email"
-          v-model="form.email"
-          :error-messages="{ required: 'Enter Email', email: 'Invalid Email' }"
-          name="email"
-          required />
+        <div>
+          <EmailInput
+            ref="email"
+            v-model="form.email"
+            name="email"
+            :validations="{emailDNCValidator, emailValidator}"
+            :error-messages="{
+              required: 'Enter Email',
+              emailValidator: 'Invalid Email',
+              emailDNCValidator: 'Oops!',
+            }"
+            required
+            @change="changeEmail" />
+          <div
+            v-if="showDNCError"
+            :class="b('error-message').toString()">
+            You are currently on our Do Not Contact list.
+            To be removed and get help setting up for New Pet Alerts, email
+            <TextLink href="mailto:info@adoptapet.com">
+              info@adoptapet.com
+            </TextLink>.
+          </div>
+        </div>
 
         <RadioGroupBox
+          v-if="filters.clan === 1 || filters.clan === 2"
+          ref="plan"
           v-model="form.plan"
+          name="npa-plan-selection"
           :columns="2"
           :items="npaTypes"
-          name="npa-plan-selection"
+          :show-display-text="showDisplayText"
+          :error-messages="{required: 'Please select an option.'}"
+          required
           @change="selectPlan" />
       </div>
 
-      <Infobox
-        v-if="form.plan === 1"
-        icon="lightbulb"
-        @click:textLink="searchFilters">
-        <template slot="header">
-          Pro tip
-        </template>
-        <template slot="message">
-          <span :style="{ 'font-weight': $font_weight_light }">To get the most
-            out of your Premium experience, choose 2 or more filters.</span>
-        </template>
-        <template slot="link">
-          Edit Filters >
-        </template>
-      </Infobox>
+      <div v-if="filters.clan === 1 || filters.clan === 2">
+        <Infobox
+          v-if="form.plan === 1"
+          icon="lightbulb"
+          @click:textLink="searchFilters">
+          <template slot="header">
+            Pro tip
+          </template>
+          <template slot="message">
+            To get the most out of your Premium experience, choose 2 or more filters.
+          </template>
+          <template slot="link">
+            Edit Filters >
+          </template>
+        </Infobox>
+      </div>
 
       <VSpacer size="xl" />
 
+      <div v-if="form.plan === 1 && !isConfirmedUser">
+        <Heading
+          level="h3"
+          font-weight="bold"
+          font-family="museo">
+          Payment
+        </Heading>
+
+        <VSpacer size="xxs" />
+
+        <Heading
+          level="h5"
+          font-weight="bold">
+          Amount (Billed Monthly)
+        </Heading>
+
+        <Heading
+          level="h4"
+          font-weight="bold"
+          class="premium-price-plan">
+          $10
+        </Heading>
+
+        <VSpacer size="xs" />
+
+        <PaymentForm
+          ref="paymentForm"
+          :email="form.email"
+          :payment-error="paymentError"
+          :premium-plan-id="premiumPlanId"
+          @paymentInfo="createPremiumNPA"
+          @tokenError:creation="emitTokenError"
+          @noEmail="emitScrollToEmail" />
+      </div>
+
+
       <VDivider
-        v-if="layout == 'tablet-wide'"
+        v-if="layout == 'desktop'"
         type="dashed" />
 
-      <div v-if="layout !== 'tablet-wide'">
+      <div v-if="layout !== 'desktop'">
         <VDivider type="dashed" />
-        <!-- <VSpacer size="xl" /> -->
+        <VSpacer size="xl" />
         <OffersForm
           v-model="form.optins"
-          :offers="offers" />
-        <VSpacer size="xs" />
+          :offers="offers"
+          :optins="optins"
+          :all-offers-checked="allOffersChecked"
+          @change:optins="emitOptins"
+          @change:allOffersChecked="emitAllOffersChecked" />
+        <VSpacer size="xl" />
         <VDivider type="dashed" />
       </div>
+
+      <VSpacer size="xl" />
 
       <Checkbox
         id="gtm-dont-show"
@@ -129,31 +165,32 @@
         @change="dontShowAgain">
         <Paragraph
           :class="b('checkbox-text').toString()"
-          :style="{
-            'font-size': $font_size_xs,
-            'font-weight': $font_weight_light
-          }"
+          font-size="xs"
+          font-weight="light"
           class="gtm-dont-show">
           Don’t show me this again.
         </Paragraph>
       </Checkbox>
 
+      <VSpacer size="xl" />
+
       <div :class="b('skip-continue').toString()">
         <TextLink
-          :style="{ color: $color_gray_darker }"
+          always-underline
+          color="gray-light"
           @click="skip">
           <Paragraph
-            :style="{
-              'color': $color_black,
-              'font-size': $font_size_m,
-              'font-weight': $font_weight_bold
-            }"
-            tag="span">
+            tag="span"
+            font-size="m"
+            font-family="museo"
+            font-weight="bold"
+            color="gray-light">
             Skip
           </Paragraph>
         </TextLink>
 
         <Button
+          id="npa-submit-button"
           @click="submit">
           Save & Continue
         </Button>
@@ -163,14 +200,19 @@
     </div>
 
     <OffersForm
-      v-if="layout === 'tablet-wide'"
+      v-if="layout === 'desktop'"
       v-model="form.optins"
-      :class="b('offers-form-tablet-wide').toString()"
-      :offers="offers" />
+      :class="b('offers-form-desktop').toString()"
+      :offers="offers"
+      :optins="optins"
+      :all-offers-checked="allOffersChecked"
+      @change:optins="emitOptins"
+      @change:allOffersChecked="emitAllOffersChecked" />
   </div>
 </template>
 
 <script>
+import { email as emailValidator } from 'vuelidate/lib/validators';
 /**
  * NPA signup form
  */
@@ -205,11 +247,21 @@ export default {
       default: () => [],
     },
     /**
-     * A list of newsletterIds that are checked
+     * Status of all checkboxes checkedNewsletterId
+     */
+    allOffersChecked: {
+      type: Boolean,
+    },
+    /**
+     * A list of items to render. Each item must have a 'heading', `display`, and a `value`.
+     *
+     *
+     * `[ { heading: 'Color', display: 'Green', value: 'a' } ]`
      */
     items: {
       type: Array,
       default: () => [],
+      validator: items => items.every(item => ('heading' in item) && ('display' in item) && ('value' in item)),
     },
     /**
      * A list of search paramaters from the user's search criteria
@@ -232,13 +284,41 @@ export default {
       type: Object,
       default: () => ({}),
     },
-
+    /**
+     * Determine whether or not to show the display text in the RadioGroupBox.
+     */
+    showDisplayText: {
+      type: Boolean,
+      default: true,
+    },
     /**
      * Which NPA plan to use
      */
     plan: {
       type: Number,
       default: null,
+    },
+    /**
+     * If stripe Payment Error
+     */
+    paymentError: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * Is user already a Premium customer?
+     */
+    isConfirmedUser: {
+      type: Boolean,
+      default: false,
+    },
+    /** Amount to be displayed in
+     * quick pay window, passed down
+     * to PaymentForm
+     */
+    premiumPlanId: {
+      type: String,
+      default: '',
     },
   },
 
@@ -247,11 +327,11 @@ export default {
       form: {
         email: this.email,
         dontShowAgain: false,
-        optins: this.optins,
         plan: this.plan,
       },
-      colorsMap: {},
-      breedMap: {},
+      paymentInfo: {},
+      showDNCError: false,
+      emailValidator,
     };
   },
   blockName: 'npa-signup',
@@ -259,160 +339,36 @@ export default {
   release: '1.0.0',
 
   computed: {
-    sizeMap() {
-      return {
-        1: 'small',
-        2: 'medium',
-        3: 'large',
-        4: 'x-large',
-      };
-    },
-
-    sexFullName() {
-      if (!this.filters.sex) return '';
-
-      let name = '';
-
-      switch (this.filters.sex.join()) {
-        case '':
-          name = '';
-          break;
-
-        case 'm':
-          name = 'male';
-          break;
-
-        case 'f':
-          name = 'female';
-          break;
-
-        default:
-          name = 'male or female';
-      }
-
-      return name;
-    },
-    age() {
-      return this.filters.age ? this.filters.age.join(' or ') : null;
-    },
-    colorNames() {
-      if (!this.filters.color) return '';
-
-      return this.filters.color
-        .map(colorId => this.colorsMap[colorId])
-        .join(' or ');
-    },
-    familyNames() {
-      if (!this.filters.breeds) return this.clanName;
-
-      return this.filters.breeds
-        .map(breedId => this.breedMap[breedId])
-        .join(' or ');
-    },
-    hasMoreFiltersThanClan() {
-      return Boolean(this.age || this.sexFullName || this.colorNames || this.familyNames);
-    },
-
-    clanName() {
-      let name;
-
-      switch (this.filters.clan) {
-        case 1:
-          name = 'dog';
-          break;
-
-        case 2:
-          name = 'cat';
-          break;
-
-        default:
-          name = 'pet';
-      }
-
-      return name;
-    },
-
-    bondedPair() {
-      return this.filters.bondedPair ? 'bonded pair' : '';
-    },
-
-    specialNeeds() {
-      return this.filters.specialNeeds ? 'with special needs' : '';
-    },
-
-    sizeNames() {
-      if (!(this.filters.size && this.filters.size.length)) return '';
-
-      return this.filters.size
-        .map(sizeId => this.sizeMap[sizeId])
-        .join(' or ');
-    },
-
-    petDescription() {
-      return [
-        this.bondedPair,
-        this.age,
-        this.sexFullName,
-        this.colorNames,
-        this.sizeNames,
-        this.familyNames,
-        this.specialNeeds,
-      ]
-        .filter(a => !!a)
-        .join(' ');
-    },
-
     npaTypes: () => [
       {
         heading: 'Premium Alert',
         display:
-          'Get real time, instant notifications when you have a new match with your $10 monthly payment!',
+          'Get real-time, instant emails when you have a new match. Your payment supports our non-profit! Cancel anytime.',
         icon: 'clock',
         value: 1,
       },
       {
         heading: 'Free Alert',
         display:
-          'We’ll run your pet search daily and send you an email within 24 hours of having a new match.',
+          'We’ll run your pet search once a day and send you an email with your new matches from the past 24 hours.',
         icon: 'envelope',
         value: 0,
       },
     ],
   },
 
-  created() {
-    /**
-     * Get colors name and Ids from database
-     *
-     * @syscall api/pets/colors
-     * @param {Number}
-     * @returns {{colorId: Number, colorName: String}}
-     */
-    this.$syscall('api/pets/getColors', this.filters.clan)
-      .then(response => {
-        this.colorsMap = response.reduce(
-          (acc, { colorId, colorName }) => Object.assign(acc, { [colorId]: colorName }),
-          {},
-        );
-      });
-
-    /**
-     * Get Breed name and Ids from database
-     *
-     * @syscall api/pets/getBreeds
-     * @param {Number}
-     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
-     */
-    this.$syscall('api/pets/getBreeds', this.filters.clan).then(response => {
-      this.breedMap = response.reduce(
-        (acc, { breedId, breedNamePlural }) =>
-          Object.assign(acc, { [breedId]: breedNamePlural }),
-        {},
-      );
-    });
-  },
-
   methods: {
+    emailDNCValidator(email) {
+      return this.$syscall('api/validation/emailDNCValidator', email)
+        .then(res => {
+          this.showDNCError = !res;
+          return res;
+        })
+        .catch(err => {
+          this.showDNCError = false;
+          return err;
+        });
+    },
     whatIsThis() {
       /**
        * When user clicks "What is this"
@@ -430,6 +386,7 @@ export default {
        * @type none
        */
       this.$emit('click:searchFilters');
+      this.dispatchTrackClick('editFilters');
     },
     skip() {
       /**
@@ -457,20 +414,100 @@ export default {
        * @type Number
        */
       this.$emit('change:plan', plan);
+
+      /**
+       * Dispatch free or premium alert based off of plan,
+       * for tracking
+       */
+      if (plan < 1) {
+        this.dispatchTrackClick('freeAlert');
+      } else {
+        this.dispatchTrackClick('premiumAlert');
+      }
     },
     submit() {
-      if (this.$refs.email.validate()) {
-        /**
-         * NPA signup submit event
-         *
-         * @event submit
-         * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
-         */
+      const submitButton = document.getElementById('npa-submit-button');
+      if (!this.$refs.email.validate()) {
+        this.emitScrollToEmail();
+        return;
+      }
+      if (!this.$refs.plan.validate()) {
+        this.$emit('scrollToPlan');
+        return;
+      }
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+      if (this.form.plan === 1 && !this.isConfirmedUser) {
+        this.$refs.paymentForm.handleSubmit();
+      } else if (this.form.plan === 1 && this.isConfirmedUser) {
+        this.createPremiumNPA({});
+      } else {
+      /**
+       * NPA signup submit event
+       *
+       * @event submit
+       * @type {{ email: String, dontShowAgain: Boolean, offers: Array }}
+       */
         this.$emit('submit', {
           ...this.form,
           filters: this.filters,
         });
       }
+    },
+    /**
+     * Emit createPremiumNPA event with token
+     * and user info.
+     */
+    createPremiumNPA(eventData) {
+      const obj = {
+        email: this.$refs.email.value,
+      };
+
+      if (eventData.stripeToken) {
+        obj.token = eventData.stripeToken;
+      }
+
+      if (eventData.zipCode) {
+        obj.zipcode = eventData.zipCode;
+      }
+
+      if (eventData.ev) {
+        obj.ev = eventData.ev;
+      }
+
+      this.$emit('submit', {
+        ...this.form,
+        filters: this.filters,
+        stripeInfo: obj,
+      });
+    },
+    /**
+     * Dispatch analytics track with an eventAction
+     * or eventLabel
+     */
+    dispatchTrackClick(event) {
+      this.$syscall(`analytics/track/NPASignupForm/${event}/click`);
+    },
+    /**
+     * Emit this so we can update the store
+     * from the frontend
+     */
+    changeEmail() {
+      this.$emit('change:npaEmail', this.$refs.email.value);
+    },
+    emitOptins(event) {
+      this.$emit('change:optins', event);
+    },
+    emitAllOffersChecked(event) {
+      this.$emit('change:allOffersChecked', event);
+    },
+    emitTokenError() {
+      this.$emit('tokenError');
+    },
+    emitScrollToEmail() {
+      this.$refs.email.validate(false);
+      this.$emit('scrollToEmail');
     },
   },
 };
@@ -481,7 +518,10 @@ export default {
 <template>
   <NPASignupForm
     :offers='offers'
-    :filters='filters'/>
+    :allOffersChecked="allOffersChecked"
+    :optins="optins"
+    :filters='filters'
+    :showDisplayText='showDisplayText'/>
 </template>
 <script>
 export default {
@@ -498,6 +538,8 @@ export default {
             'Yes, I would like to receive communications from the Petco Foundation'
         }
       ],
+      optins: [1, 2],
+      allOffersChecked: true,
       filters: {
         age: ['young', 'senior'],
         bondedPair: true,
@@ -510,8 +552,8 @@ export default {
         specialNeeds: true,
         size: [1, 2],
         zipCode: '90210',
-      }
-    };
+      },
+      showDisplayText: true    };
   }
 };
 </script>
