@@ -6,13 +6,13 @@
       name="angle-left"
       @click="changePage('backward')" />
     <div class="pages">
-      <span @click="popupIsOpen = !popupIsOpen">Page {{ page }} of {{ pageCount }}</span>
+      <span @click="popupIsOpen = !popupIsOpen; pageSelector()">Page {{ page }} of {{ pageCount }}</span>
       <Popup class="pet-results-popup"
         v-if="popupIsOpen">
         <ul>
           <li v-for="p of pages">
             <a v-bind:class="{ active: p == page }"
-              @click="changePage(null, p)">
+              @click="changePage(null, p);">
               <span>Page {{ p }}</span>
             </a>
             <Icon v-if="p == page"
