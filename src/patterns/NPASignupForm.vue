@@ -114,11 +114,11 @@
 
       <div v-if="layout !== 'tablet-wide'">
         <VDivider type="dashed" />
-        <VSpacer size="xl" />
+        <!-- <VSpacer size="xl" /> -->
         <OffersForm
           v-model="form.optins"
           :offers="offers" />
-        <VSpacer size="xl" />
+        <VSpacer size="xs" />
         <VDivider type="dashed" />
       </div>
 
@@ -140,11 +140,10 @@
       <div :class="b('skip-continue').toString()">
         <TextLink
           :style="{ color: $color_gray_darker }"
-          always-underline
           @click="skip">
           <Paragraph
             :style="{
-              'color': $color_gray_darker,
+              'color': $color_black,
               'font-size': $font_size_m,
               'font-weight': $font_weight_bold
             }"
