@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import designTokens from '@/assets/tokens/tokens.raw.json';
 
 /**
  * Adds a standard amount of verticals space between elements
@@ -31,13 +30,13 @@ export default {
     size: {
       type: String,
       default: 'm',
-      validator: value => value.match(/(xxxxs|xxxs|xxs|xs|s|m|l|xl|xxl|xxxl|xxxxl)/),
+      validator: value => value.match(/(xxxxs|xxxs|xxs|xs|s|m|l|xl|xxl|xxxl|xxxxl|xxxxxl|xxxxxxl|)/),
     },
   },
 
   computed: {
     height() {
-      return designTokens.props[`space_${this.size}`].value;
+      return this[`$space_${this.size}`];
     },
   },
 };

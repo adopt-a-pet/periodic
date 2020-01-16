@@ -42,8 +42,6 @@
         We'll email you when new pets that match your search criteria are added to our site!
       </Paragraph>
 
-      <VSpacer size="l" />
-
       <Paragraph
         :style="{
           'font-size': $font_size_s,
@@ -75,8 +73,6 @@
           All {{ clanName }}s within {{ filters.geoRange }} miles of {{ filters.zipCode }}
         </TextLink>
       </Paragraph>
-
-      <VSpacer size="l" />
 
       <div :class="b('fields').toString()">
         <EmailInput
@@ -126,8 +122,6 @@
         <VDivider type="dashed" />
       </div>
 
-      <VSpacer size="xl" />
-
       <Checkbox
         id="gtm-dont-show"
         v-model="form.dontShowAgain"
@@ -142,8 +136,6 @@
           Don’t show me this again.
         </Paragraph>
       </Checkbox>
-
-      <VSpacer size="xl" />
 
       <div :class="b('skip-continue').toString()">
         <TextLink
