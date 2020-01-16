@@ -12,7 +12,7 @@
         <ul>
           <li v-for="p of pages">
             <a v-bind:class="{ active: p == page }"
-              @click="changePage(null, p);">
+              @click="changePage(null, p)">
               <span>Page {{ p }}</span>
             </a>
             <Icon v-if="p == page"
