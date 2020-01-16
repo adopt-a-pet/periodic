@@ -74,8 +74,8 @@
           'color': $color_gray_darker,
           'font-size': $font_size_xxs,
           'font-weight': $font_weight_normal,
-          'line-height': $line_height_xxs }
-        ">
+          'line-height': $line_height_xxs
+        }">
         * I certify I am 18 years of age or older and agree that Purina
         may use my information as described in the
         <TextLink
