@@ -66,13 +66,16 @@ export default {
       if (page) {
         this.newStart = (page * this.limit) - this.limit + 1;
         this.newPage = page;
+        this.pageSelected(this.newPage);
       } else {
         if (direction === 'forward') {
           this.newStart = this.start + this.limit;
           this.newPage = this.page + 1;
+          this.nextPage();
         } else {
           this.newStart = this.start - this.limit;
           this.newPage = this.page - 1;
+          this.previousPage();
         }
         if (this.newStart < 1 || this.newStart >= this.recordCount) {
           return;
@@ -83,6 +86,45 @@ export default {
       this.$emit('onPageChange', { newStart: this.newStart });
     },
 
+    pageSelector() {
+      /**
+       * When user clicks on the page selector
+       *
+       * @event pageSelector
+       * @type none
+       */
+      this.$emit('pageSelector');
+    },
+
+    pageSelected(page) {
+      /**
+       * When user selects a page from the popup menu
+       *
+       * @event pageSelected
+       * @type none
+       */
+      this.emit('pageSelected', { page });
+    },
+
+    nextPage() {
+      /**
+       * When user clicks on the next page button
+       *
+       * @event nextPage
+       * @type none
+       */
+      this.$emit('nextPage');
+    },
+
+    previousPage() {
+      /**
+       * When user clicks on the prevous page button
+       *
+       * @event previousPage
+       * @type none
+       */
+      this.$emit('previousPage');
+    },
     /**
      * onNewPage
      */
