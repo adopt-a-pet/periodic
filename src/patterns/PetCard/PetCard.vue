@@ -54,6 +54,17 @@ export default {
       return petFormatted;
     },
   },
+  methods: {
+    petCardClick() {
+      /**
+       * When user clicks on petcard
+       *
+       * @event petCardClick
+       * @type none
+       */
+      this.$emit('petCardClick');
+    },
+  },
 };
 </script>
 
