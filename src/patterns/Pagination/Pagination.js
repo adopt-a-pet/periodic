@@ -103,7 +103,7 @@ export default {
        * @event pageSelected
        * @type none
        */
-      this.emit('pageSelected', { page });
+      this.$emit('pageSelected', { page });
     },
 
     nextPage() {
