@@ -1,5 +1,7 @@
 <div :class="b().toString()">
-  <a :href="href">
+  <a
+    :href="href"
+    @click="petCardClick">
     <img v-if="pet.image"
       :src="pet.image" />
     <span v-if="!pet.image">
