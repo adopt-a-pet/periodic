@@ -88,6 +88,8 @@
       <TextInput
         id="card-number"
         ref="cardNumber"
+        label="Credit Card Number"
+        required
         :class="b('card-number').toString()" />
       <div
         id="card-errors"
@@ -97,10 +99,14 @@
       <TextInput
         id="card-expiry"
         ref="cardExpiry"
+        label="MM / YY"
+        required
         :class="b('card-expiry').toString()" />
       <TextInput
         id="card-cvc"
         ref="cardCvc"
+        label="CVC"
+        required
         :class="b('card-cvc').toString()" />
     </div>
     <div

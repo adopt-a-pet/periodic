@@ -7,22 +7,20 @@
       <div :class="b('heading').toString()">
         <Heading
           level="h4"
-          font-weight="light"
-          line-height="compact">
+          line-height="compact"
+          :style="{ color: $color_black, 'margin-bottom': 0, 'font-weight': $font_weight_light }">
           Set Up Your
         </Heading>
 
         <Heading
           :level="layout === 'desktop' ? 'h1' : 'h2'"
-          font-weight="bold"
-          font-family="museo">
+          :style="{ 'font-weight': $font_weight_bold, 'margin-bottom': 0 }">
           New Pet Alert
         </Heading>
 
         <Paragraph
           tag="span"
-          font-size="s"
-          font-weight="normal">
+          :style="{ 'font-size': $font_size_s, 'font-weight': $font_weight_normal }">
           <TextLink @click="whatIsThis">
             What is this?
           </TextLink>
@@ -32,13 +30,14 @@
       </div>
 
       <Paragraph
-        text-align="left"
-        color="gray"
-        font-weight="normal">
+        :style="{
+          color: $color_gray_darker,
+          'margin-bottom': 0,
+          'text-align': 'left',
+          'font-weight': $font_weight_normal
+        }">
         We'll email you when new pets that match your search criteria are added to our site!
       </Paragraph>
-
-      <VSpacer size="l" />
 
       <SearchQuerySentence
         :filters="filters"
@@ -106,8 +105,7 @@
       <div v-if="form.plan === 1 && !isConfirmedUser">
         <Heading
           level="h3"
-          font-weight="bold"
-          font-family="museo">
+          :style="{ 'font-weight': $font_weight_bold }">
           Payment
         </Heading>
 
@@ -115,13 +113,13 @@
 
         <Heading
           level="h5"
-          font-weight="bold">
+          :style="{ 'font-weight': $font_weight_bold }">
           Amount (Billed Monthly)
         </Heading>
 
         <Heading
+          :style="{ 'font-weight': $font_weight_bold }"
           level="h4"
-          font-weight="bold"
           class="premium-price-plan">
           $10
         </Heading>
@@ -165,8 +163,7 @@
         @change="dontShowAgain">
         <Paragraph
           :class="b('checkbox-text').toString()"
-          font-size="xs"
-          font-weight="light"
+          :style="{ 'font-size': $font_size_xs, 'font-weight': $font_weight_light }"
           class="gtm-dont-show">
           Don’t show me this again.
         </Paragraph>
@@ -177,14 +174,15 @@
       <div :class="b('skip-continue').toString()">
         <TextLink
           always-underline
-          color="gray-light"
+          :style="{ color: $color_gray_darker }"
           @click="skip">
           <Paragraph
             tag="span"
-            font-size="m"
-            font-family="museo"
-            font-weight="bold"
-            color="gray-light">
+            :style="{
+              'font-size': $font_size_m,
+              'font-weight': $font_weight_bold,
+              'color': $color_gray_darker
+            }">
             Skip
           </Paragraph>
         </TextLink>
@@ -219,7 +217,6 @@ import { email as emailValidator } from 'vuelidate/lib/validators';
 
 export default {
   name: 'NPASignupForm',
-
   props: {
     /**
      * Email to pre-fill in the form.
@@ -334,10 +331,6 @@ export default {
       emailValidator,
     };
   },
-  blockName: 'npa-signup',
-  status: 'under-review',
-  release: '1.0.0',
-
   computed: {
     npaTypes: () => [
       {
@@ -356,6 +349,9 @@ export default {
       },
     ],
   },
+  blockName: 'npa-signup',
+  status: 'under-review',
+  release: '1.0.0',
 
   methods: {
     emailDNCValidator(email) {

@@ -27,5 +27,11 @@ export default {
     'api/pets/getHair': function (_, clanId) {
       return axios.get(`pet-utilities/${clanId}/hair`).then(res => (res.data.body));
     },
+    'api/validation/emailDNCValidator': function (_, payload) {
+      return axios.get(`marketing/donotcontact/${payload}`).then(res => {
+        if (res !== undefined) return !res.data.body.doNotContactList;
+        return true;
+      });
+    },
   },
 };

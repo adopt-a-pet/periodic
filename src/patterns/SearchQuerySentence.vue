@@ -3,7 +3,8 @@
     <Paragraph
       font-size="s"
       font-weight="bold"
-      line-height="24px">
+      line-height="24px"
+      style="margin-bottom: 0">
       You’re Searching For
     </Paragraph>
 
