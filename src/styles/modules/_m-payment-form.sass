@@ -41,7 +41,7 @@
     display: inline-block
     &:hover
       background-color: black
-    +breakpoint(tablet-plus)
+    +breakpoint(tablet-wide)
       +column(8 / 12)
 
   +element("form-control")
@@ -71,7 +71,7 @@
       grid-column-gap: 10px
       grid-row-gap: 20px
 
-    +breakpoint(tablet-plus)
+    +breakpoint(tablet-wide)
       grid-template-areas: 'firstname lastname' 'zipcode zipcode' 'cardnumber cardnumber' 'cardexpiry cardcvc'
       grid-column-gap: 20px
       +modifier("card-errors")
