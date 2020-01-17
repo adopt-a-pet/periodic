@@ -4,13 +4,14 @@
       font-size="s"
       font-weight="bold"
       line-height="24px"
-      style="margin-bottom: 0">
+      style="margin-bottom: 10px">
       You’re Searching For
     </Paragraph>
 
     <Paragraph
       font-weight="bold"
-      line-height="26px">
+      line-height="26px"
+      style="margin-bottom: 0">
       <TextLink
         :class="b('search-params').toString()"
         @click="searchFilters">

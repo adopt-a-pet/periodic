@@ -1,24 +1,21 @@
 +b(npa-signup)
   color: $color-gray-darker
 
-  +breakpoint(tablet-wide)
-    display: grid
-    grid-template-columns: 3fr 2fr
-    +rem-fallback('column-gap', $space-m)
 
   +e(heading)
     text-align: center
 
   +e(content)
-    margin: 0 auto
-    max-width: 36rem
+    display: grid
+
+    +breakpoint(tablet-wide)
+      grid-template-columns: 3fr 2fr
+      +rem-fallback('column-gap', $space-xxxl)
 
   +e(fields)
     display: grid
     grid-column-gap: $space-s
     grid-row-gap: $space-s
-    +breakpoint(tablet-wide)
-      grid-template-columns: 1fr
 
   +e(skip-continue)
     align-items: center
@@ -26,9 +23,6 @@
     display: grid
     grid-template-columns: 1fr 4fr
     text-align: left
-
-  +e(offers-form-desktop)
-    +rem-fallback('margin-top', 135px)
 
   +e(search-params)
     display: block

@@ -1,51 +1,43 @@
 <template>
   <div
     :class="b().toString()">
-    <div :class="b('content').toString()">
-      <VSpacer size="xxxs" />
+    <div :class="b('heading').toString()">
+      <Heading
+        level="h4"
+        line-height="compact"
+        :style="{ color: $color_black, 'margin-bottom': 0, 'font-weight': $font_weight_light }">
+        Set Up Your
+      </Heading>
 
-      <div :class="b('heading').toString()">
-        <Heading
-          level="h4"
-          line-height="compact"
-          :style="{ color: $color_black, 'margin-bottom': 0, 'font-weight': $font_weight_light }">
-          Set Up Your
-        </Heading>
-
-        <Heading
-          :level="layout === 'desktop' ? 'h1' : 'h2'"
-          :style="{ 'font-weight': $font_weight_bold, 'margin-bottom': 0 }">
-          New Pet Alert
-        </Heading>
-
-        <Paragraph
-          tag="span"
-          :style="{ 'font-size': $font_size_s, 'font-weight': $font_weight_normal }">
-          <TextLink @click="whatIsThis">
-            What is this?
-          </TextLink>
-        </Paragraph>
-
-        <VSpacer size="xl" />
-      </div>
+      <Heading
+        :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
+        :style="{ 'font-weight': $font_weight_bold, 'margin-bottom': 0 }">
+        New Pet Alert
+      </Heading>
 
       <Paragraph
-        :style="{
-          color: $color_gray_darker,
-          'margin-bottom': 0,
-          'text-align': 'left',
-          'font-weight': $font_weight_normal
-        }">
-        We'll email you when new pets that match your search criteria are added to our site!
+        tag="span"
+        :style="{ 'font-size': $font_size_s, 'font-weight': $font_weight_normal }">
+        <TextLink @click="whatIsThis">
+          What is this?
+        </TextLink>
       </Paragraph>
 
-      <SearchQuerySentence
-        :filters="filters"
-        @click:searchFilters="searchFilters" />
+      <VSpacer size="xl" />
+    </div>
+    <div :class="b('content').toString()">
+      <div>
+        <VSpacer size="xxxs" />
 
-      <VSpacer size="l" />
+        <Paragraph
+          :style="{
+            color: $color_black,
+            'text-align': 'left',
+            'font-weight': $font_weight_light
+          }">
+          We'll email you when new pets that match your search criteria are added to our site!
+        </Paragraph>
 
-      <div :class="b('fields').toString()">
         <div>
           <EmailInput
             ref="email"
@@ -70,142 +62,146 @@
           </div>
         </div>
 
-        <RadioGroupBox
-          v-if="filters.clan === 1 || filters.clan === 2"
-          ref="plan"
-          v-model="form.plan"
-          name="npa-plan-selection"
-          :columns="2"
-          :items="npaTypes"
-          :show-display-text="showDisplayText"
-          :error-messages="{required: 'Please select an option.'}"
-          required
-          @change="selectPlan" />
-      </div>
+        <VSpacer />
 
-      <div v-if="filters.clan === 1 || filters.clan === 2">
-        <Infobox
-          v-if="form.plan === 1"
-          icon="lightbulb"
-          @click:textLink="searchFilters">
-          <template slot="header">
-            Pro tip
-          </template>
-          <template slot="message">
-            To get the most out of your Premium experience, choose 2 or more filters.
-          </template>
-          <template slot="link">
-            Edit Filters >
-          </template>
-        </Infobox>
-      </div>
+        <SearchQuerySentence
+          :filters="filters"
+          @click:searchFilters="searchFilters" />
 
-      <VSpacer size="xl" />
+        <VSpacer size="l" />
 
-      <div v-if="form.plan === 1 && !isConfirmedUser">
-        <Heading
-          level="h3"
-          :style="{ 'font-weight': $font_weight_bold }">
-          Payment
-        </Heading>
+        <div :class="b('fields').toString()">
+          <RadioGroupBox
+            v-if="filters.clan === 1 || filters.clan === 2"
+            ref="plan"
+            v-model="form.plan"
+            name="npa-plan-selection"
+            :columns="2"
+            :items="npaTypes"
+            :show-display-text="showDisplayText"
+            :error-messages="{required: 'Please select an option.'}"
+            required
+            @change="selectPlan" />
+        </div>
 
-        <VSpacer size="xxs" />
+        <div v-if="filters.clan === 1 || filters.clan === 2">
+          <Infobox
+            v-if="form.plan === 1"
+            icon="lightbulb"
+            @click:textLink="searchFilters">
+            <template slot="header">
+              Pro tip
+            </template>
+            <template slot="message">
+              To get the most out of your Premium experience, choose 2 or more filters.
+            </template>
+            <template slot="link">
+              Edit Filters >
+            </template>
+          </Infobox>
+        </div>
 
-        <Heading
-          level="h5"
-          :style="{ 'font-weight': $font_weight_bold }">
-          Amount (Billed Monthly)
-        </Heading>
-
-        <Heading
-          :style="{ 'font-weight': $font_weight_bold }"
-          level="h4"
-          class="premium-price-plan">
-          $10
-        </Heading>
-
-        <VSpacer size="xs" />
-
-        <PaymentForm
-          ref="paymentForm"
-          :email="form.email"
-          :payment-error="paymentError"
-          :premium-plan-id="premiumPlanId"
-          @paymentInfo="createPremiumNPA"
-          @tokenError:creation="emitTokenError"
-          @noEmail="emitScrollToEmail" />
-      </div>
-
-
-      <VDivider
-        v-if="layout == 'desktop'"
-        type="dashed" />
-
-      <div v-if="layout !== 'desktop'">
-        <VDivider type="dashed" />
         <VSpacer size="xl" />
+
+        <div v-if="form.plan === 1 && !isConfirmedUser">
+          <Heading
+            level="h3"
+            :style="{ 'font-weight': $font_weight_bold }">
+            Payment
+          </Heading>
+
+          <VSpacer size="xxs" />
+
+          <Heading
+            level="h5"
+            :style="{ 'font-weight': $font_weight_bold }">
+            Amount (Billed Monthly)
+          </Heading>
+
+          <Heading
+            :style="{ 'font-weight': $font_weight_bold }"
+            level="h4"
+            class="premium-price-plan">
+            $10
+          </Heading>
+
+          <VSpacer size="xs" />
+
+          <PaymentForm
+            ref="paymentForm"
+            :email="form.email"
+            :payment-error="paymentError"
+            :premium-plan-id="premiumPlanId"
+            @paymentInfo="createPremiumNPA"
+            @tokenError:creation="emitTokenError"
+            @noEmail="emitScrollToEmail" />
+        </div>
+
+
+        <VDivider
+          v-if="layout == 'tablet-wide'"
+          type="dashed" />
+
+        <div v-if="layout !== 'tablet-wide'">
+          <VDivider type="dashed" />
+          <VSpacer size="xl" />
+          <OffersForm
+            v-model="form.optins"
+            :offers="offers"
+            :optins="optins"
+            :all-offers-checked="allOffersChecked"
+            @change:optins="emitOptins"
+            @change:allOffersChecked="emitAllOffersChecked" />
+          <VSpacer size="xl" />
+          <VDivider type="dashed" />
+        </div>
+
+        <Checkbox
+          id="gtm-dont-show"
+          v-model="form.dontShowAgain"
+          @change="dontShowAgain">
+          <Paragraph
+            :class="b('checkbox-text').toString()"
+            :style="{ 'font-size': $font_size_xs, 'font-weight': $font_weight_light }"
+            class="gtm-dont-show">
+            Don’t show me this again.
+          </Paragraph>
+        </Checkbox>
+
+        <VSpacer size="s" />
+
+        <div :class="b('skip-continue').toString()">
+          <TextLink
+            :style="{
+              'font-size': $font_size_m,
+              'font-weight': $font_weight_bold,
+              'color': $color_black
+            }"
+            @click="skip">
+            Skip
+          </TextLink>
+
+          <Button
+            id="npa-submit-button"
+            @click="submit">
+            Save & Continue
+          </Button>
+        </div>
+
+        <VSpacer size="xl" />
+      </div>
+      <div>
         <OffersForm
+          v-if="layout === 'tablet-wide'"
           v-model="form.optins"
+          :class="b('offers-form-desktop').toString()"
           :offers="offers"
           :optins="optins"
           :all-offers-checked="allOffersChecked"
           @change:optins="emitOptins"
           @change:allOffersChecked="emitAllOffersChecked" />
-        <VSpacer size="xl" />
-        <VDivider type="dashed" />
       </div>
-
-      <VSpacer size="xl" />
-
-      <Checkbox
-        id="gtm-dont-show"
-        v-model="form.dontShowAgain"
-        @change="dontShowAgain">
-        <Paragraph
-          :class="b('checkbox-text').toString()"
-          :style="{ 'font-size': $font_size_xs, 'font-weight': $font_weight_light }"
-          class="gtm-dont-show">
-          Don’t show me this again.
-        </Paragraph>
-      </Checkbox>
-
-      <VSpacer size="xl" />
-
-      <div :class="b('skip-continue').toString()">
-        <TextLink
-          always-underline
-          :style="{ color: $color_gray_darker }"
-          @click="skip">
-          <Paragraph
-            tag="span"
-            :style="{
-              'font-size': $font_size_m,
-              'font-weight': $font_weight_bold,
-              'color': $color_gray_darker
-            }">
-            Skip
-          </Paragraph>
-        </TextLink>
-
-        <Button
-          id="npa-submit-button"
-          @click="submit">
-          Save & Continue
-        </Button>
-      </div>
-
-      <VSpacer size="xl" />
     </div>
-
-    <OffersForm
-      v-if="layout === 'desktop'"
-      v-model="form.optins"
-      :class="b('offers-form-desktop').toString()"
-      :offers="offers"
-      :optins="optins"
-      :all-offers-checked="allOffersChecked"
-      @change:optins="emitOptins"
-      @change:allOffersChecked="emitAllOffersChecked" />
   </div>
 </template>
 
