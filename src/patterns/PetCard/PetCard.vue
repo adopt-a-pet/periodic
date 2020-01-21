@@ -134,7 +134,7 @@ export default {
               "status": "available",
               "city": "Spanish Fork",
               "state": "UT",
-              "actQuickly": false,
+              "actQuickly": true,
               "breedName": "Bloodhound",
               "secondaryBreedName": "Great Pyrenees"
             },
