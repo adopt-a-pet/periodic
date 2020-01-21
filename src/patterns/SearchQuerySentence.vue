@@ -5,7 +5,7 @@
       font-weight="bold"
       line-height="24px"
       style="margin-bottom: 10px">
-      You’re Searching For
+      You’re searching for
     </Paragraph>
 
     <Paragraph

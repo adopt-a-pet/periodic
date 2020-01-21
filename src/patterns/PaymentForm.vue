@@ -167,9 +167,9 @@ export default {
       zipCode: '',
       showError: false,
       cardErrors: false,
-      quickPayAvailable: true,
+      quickPayAvailable: false,
       quickPaySelected: false,
-      checkedForQuickPay: true,
+      checkedForQuickPay: false,
       quickPayType: 'apple',
       quickPayAmount: 499,
     };

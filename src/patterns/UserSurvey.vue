@@ -1,248 +1,162 @@
 <template>
-  <!-- <Heading
-    level="h3"
-    font-weight="bold">Pet Care</Heading>
+  <div>
+    <Heading
+      level="h3"
+      font-weight="bold">
+      Home type
+    </Heading>
 
-  <VSpacer size="s" />
-
-  <div v-show="dogPage">
     <Paragraph>
-      How many hours will your newly adopted pet be alone per day?
+      Which best describes your home?
     </Paragraph>
 
     <RadioGroup
+      v-model="userProfile.homeType"
       :columns="radioColumns"
       :items="[
-        { display: '0-3 hours ', value: '0-3' },
-        { display: '4-6 hours', value: '4-6' },
-        { display: '7-9 hours', value: '7-9' },
-        { display: '9 or more hours', value: '> 9' },
+        { display: 'House', value: 'house' },
+        { display: 'Apartment', value: 'apartment' },
+        { display: 'Townhouse', value: 'townhouse' },
       ]"
-      v-model="userProfile.petHoursAlone"
-      name="pethoursalone" />
-  </div>
+      name="hometype"
+      @change="fieldChange('hometype', $event)" />
 
-  <div v-show="catPage">
+    <VSpacer size="xl" />
+
+    <Heading
+      level="h3"
+      font-weight="bold">
+      Rent or own
+    </Heading>
+
+
     <Paragraph>
-      Declawing is a surgery to permanently amputate the last bone in each of the cat’s or
-      kitten’s toes. Is this something you will consider having done to your new adopted
-      cat, if [he/she] isn't declawed already?
+      Do you rent or own?
     </Paragraph>
 
     <RadioGroup
+      v-model="userProfile.rentOrOwn"
+      :columns="radioColumns"
+      :items="[
+        { display: 'Rent', value: 'rent' },
+        { display: 'Own', value: 'own' }
+      ]"
+      name="rentorown"
+      @change="fieldChange('rentorown', $event)" />
+
+    <VSpacer size="xl" />
+
+    <Heading
+      level="h3"
+      font-weight="bold">
+      Kids
+    </Heading>
+
+
+    <Paragraph>
+      Are there any children living in your household?
+    </Paragraph>
+
+    <RadioGroup
+      v-model="userProfile.hasChildren"
       :columns="radioColumns"
       :items="[
         { display: 'Yes', value: true },
         { display: 'No', value: false },
       ]"
-      v-model="userProfile.declawingCat"
-      name="declawingcat" />
+      name="haschildren"
+      @change="fieldChange('haschildren', $event)" />
 
-    <VSpacer size="s" />
-
-    <Paragraph>
-      Where will your new adopted cat be allowed?
-    </Paragraph>
-
-    <RadioGroup
-      :columns="radioColumns"
-      :items="[
-        { display: 'Indoors only', value: 'indoors' },
-        { display: 'Outdoors only', value: 'outdoors' },
-        { display: 'Indoors and Outdoors', value: 'indoors and outdoors' },
-        { display: 'Indoors with some outdoor access when supervised',
-          value: 'indoors with outdoor supervision' },
-      ]"
-      v-model="userProfile.whereCatAllowed"
-      name="wherecatallowed" />
-  </div>
-
-  <VSpacer size="xl" /> -->
-
-  <div>
-    <article>
-      <Heading
-        level="h3"
-        font-weight="bold">
-        Home Type
-      </Heading>
-
-      <VSpacer size="s" />
-
+    <div
+      v-if="userProfile.hasChildren">
       <Paragraph>
-        Which best describes your home?
+        How many children live in your household?
       </Paragraph>
 
-      <RadioGroup
-        v-model="userProfile.homeType"
-        :columns="radioColumns"
-        :items="[
-          { display: 'House', value: 'house' },
-          { display: 'Apartment', value: 'apartment' },
-          { display: 'Townhouse', value: 'townhouse' },
-        ]"
-        name="hometype"
-        @change="fieldChange('hometype', $event)" />
-    </article>
-
-    <VSpacer size="xl" />
-
-    <article>
-      <Heading
-        level="h3"
-        font-weight="bold">
-        Rent or Own
-      </Heading>
-
-      <VSpacer size="s" />
-
-      <Paragraph>
-        Do you rent or own?
-      </Paragraph>
-
-      <RadioGroup
-        v-model="userProfile.rentOrOwn"
-        :columns="radioColumns"
-        :items="[
-          { display: 'Rent', value: 'rent' },
-          { display: 'Own', value: 'own' }
-        ]"
-        name="rentorown"
-        @change="fieldChange('rentorown', $event)" />
-    </article>
-
-    <VSpacer size="xl" />
-
-    <article>
-      <Heading
-        level="h3"
-        font-weight="bold">
-        Kids
-      </Heading>
-
-      <VSpacer size="s" />
-
-      <Paragraph>
-        Are there any children living in your household?
-      </Paragraph>
-
-      <RadioGroup
-        v-model="userProfile.hasChildren"
-        :columns="radioColumns"
-        :items="[
-          { display: 'Yes', value: true },
-          { display: 'No', value: false },
-        ]"
-        name="haschildren"
+      <Dropdown
+        v-model="userProfile.numberOfChildren"
+        :items="dropdownItemsFromRange(1, 6)"
+        label="Number of Children"
+        name="numberofchildren"
+        focus-border
         @change="fieldChange('haschildren', $event)" />
 
       <div
-        v-if="userProfile.hasChildren">
-        <VSpacer size="s" />
-
-        <Paragraph>
-          How many children live in your household?
-        </Paragraph>
-
-        <VSpacer size="s" />
-
+        :class="b('dropdown-group').toString()">
         <Dropdown
-          v-model="userProfile.numberOfChildren"
-          :items="dropdownItemsFromRange(1, 6)"
-          label="Number of Children"
-          name="numberofchildren"
+          v-for="n in userProfile.numberOfChildren"
+          :key="n"
+          v-model="userProfile['ageOfChild' + n]"
+          :items="dropdownItemsFromRange(1, 21)"
+          :name="`ageofchild${n}`"
+          :label="`Age of Child ${n}`"
           focus-border
-          @change="fieldChange('haschildren', $event)" />
-
-        <VSpacer size="l" />
-
-        <div
-          :class="b('dropdown-group').toString()">
-          <Dropdown
-            v-for="n in userProfile.numberOfChildren"
-            :key="n"
-            v-model="userProfile['ageOfChild' + n]"
-            :items="dropdownItemsFromRange(1, 21)"
-            :name="`ageofchild${n}`"
-            :label="`Age of Child ${n}`"
-            focus-border
-            @change="fieldChange(`ageofchild${n}`, $event)" />
-        </div>
+          @change="fieldChange(`ageofchild${n}`, $event)" />
       </div>
-    </article>
+    </div>
 
     <VSpacer size="xl" />
 
-    <article>
-      <Heading
-        level="h3"
-        font-weight="bold">
-        Current Pets
-      </Heading>
+    <Heading
+      level="h3"
+      font-weight="bold">
+      Current pets
+    </Heading>
 
+    <Paragraph>
+      Do you have any other pets?
+    </Paragraph>
+
+    <RadioGroup
+      v-model="userProfile.hasPets"
+      :columns="radioColumns"
+      :items="[
+        { display: 'Yes', value: true },
+        { display: 'No', value: false },
+      ]"
+      name="haspets"
+      @change="fieldChange('haspets', $event)" />
+
+    <div
+      v-if="userProfile.hasPets"
+      class="pet-inquiry-form__adopter-question--pet-types">
       <VSpacer size="s" />
 
       <Paragraph>
-        Do you have any other pets?
+        Choose all that apply
       </Paragraph>
 
-      <RadioGroup
-        v-model="userProfile.hasPets"
-        :columns="radioColumns"
-        :items="[
-          { display: 'Yes', value: true },
-          { display: 'No', value: false },
-        ]"
-        name="haspets"
-        @change="fieldChange('haspets', $event)" />
+      <div :class="b('haspets-checkboxes').toString()">
+        <Checkbox
+          v-for="(pet) in allPetsDropdowns"
+          :key="'checkbox-' + pet.hasPetType"
+          v-model="hasPetTypes[pet.hasPetType]"
+          :name="`haspets-${pet.hasPetType.toLowerCase()}`"
+          @change="hasPetCheckboxChange(pet, $event)">
+          <Paragraph :class="b('checkbox-label').toString()">
+            {{ pet.name }}<Paragraph />
+          </paragraph>
+        </Checkbox>
+      </div>
+
+      <Paragraph
+        v-if="checkedPetTypesCount > 0">
+        Choose how many of each pet
+      </Paragraph>
 
       <div
-        v-if="userProfile.hasPets"
-        class="pet-inquiry-form__adopter-question--pet-types">
-        <VSpacer size="s" />
-
-        <Paragraph>
-          Choose all that apply
-        </Paragraph>
-
-        <VSpacer size="s" />
-
-        <div :class="b('haspets-checkboxes').toString()">
-          <Checkbox
-            v-for="(pet) in allPetsDropdowns"
-            :key="'checkbox-' + pet.hasPetType"
-            v-model="hasPetTypes[pet.hasPetType]"
-            :name="`haspets-${pet.hasPetType.toLowerCase()}`"
-            @change="hasPetCheckboxChange(pet, $event)">
-            <Paragraph :class="b('checkbox-label').toString()">
-              {{ pet.name }}<Paragraph />
-            </paragraph>
-          </Checkbox>
-        </div>
-
-        <VSpacer size="m" />
-
-        <Paragraph
-          v-if="checkedPetTypesCount > 0">
-          Choose how many of each pet
-        </Paragraph>
-
-        <VSpacer size="xs" />
-
-        <div
-          :class="b('dropdown-group').toString()">
-          <Dropdown
-            v-for="(dropdown) in checkedPetsDropdowns"
-            :key="'petcount-' + dropdown.hasPetType"
-            v-model="userProfile[dropdown.prop]"
-            :items="petCountDropdown"
-            :label="`Number of ${dropdown.name}`"
-            :name="`petcount-${dropdown.hasPetType.toLowerCase()}`"
-            focus-border
-            @change="fieldChange(`petcount-${dropdown.hasPetType.toLowerCase()}`, $event)" />
-        </div>
+        :class="b('dropdown-group').toString()">
+        <Dropdown
+          v-for="(dropdown) in checkedPetsDropdowns"
+          :key="'petcount-' + dropdown.hasPetType"
+          v-model="userProfile[dropdown.prop]"
+          :items="petCountDropdown"
+          :label="`Number of ${dropdown.name}`"
+          :name="`petcount-${dropdown.hasPetType.toLowerCase()}`"
+          focus-border
+          @change="fieldChange(`petcount-${dropdown.hasPetType.toLowerCase()}`, $event)" />
       </div>
-    </article>
+    </div>
   </div>
 </template>
 

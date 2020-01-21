@@ -132,8 +132,8 @@ export default {
       name="npa-plan-selection"
       :columns="2"
       :items="[
-        { heading: 'Heading One', display: 'One Content', icon: 'service-google', value: '1' },
-        { heading: 'Heading Two', display: 'Two Content', icon: 'service-google', value: '2' },
+        { heading: 'Heading one', display: 'One content', icon: 'service-google', value: '1' },
+        { heading: 'Heading two', display: 'Two content', icon: 'service-google', value: '2' },
       ]" />
   </div>
 </template>

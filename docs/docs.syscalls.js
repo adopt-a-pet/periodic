@@ -33,5 +33,10 @@ export default {
         return true;
       });
     },
+    'config/stripe/key': function () {
+      return Promise.resolve(
+        'pk_test_5W1GpRySJaGqo11L07q0eg1Q',
+      );
+    },
   },
 };

@@ -3,7 +3,7 @@
     <Heading
       level="h3"
       font-weight="bold">
-      Im-PAW-sibly Good Deals!
+      Im-PAW-sibly good deals!
     </Heading>
 
     <VSpacer size="s" />
@@ -34,7 +34,7 @@
           font-size="xxs"
           font-weight="normal"
           line-height="15px">
-          {{ showAllOffers ? 'Close' : 'Learn More' }}
+          {{ showAllOffers ? 'Close' : 'Learn more' }}
         </Paragraph>
 
         <Icon

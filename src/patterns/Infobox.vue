@@ -80,7 +80,7 @@ export default {
       To get the most out of your Premium experience, choose 2 or more filters.
     </template>
     <template slot="link">
-      Edit Filters >
+      Edit Filters <Icon name="angle-right" width="10" :fill="$color_primary" />
     </template>
   </Infobox>
   ```

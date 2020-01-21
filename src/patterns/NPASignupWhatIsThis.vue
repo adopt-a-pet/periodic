@@ -3,36 +3,30 @@
     <div :class="b('content').toString()">
       <Heading
         :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
-        font-weight="bold"
-        font-family="special">
-        What are New Pet Alerts?
+        font-weight="bold">
+        What are new pet alerts?
       </Heading>
 
-      <VSpacer size="xl" />
-
       <Paragraph
-        text-align="left"
-        color="gray"
-        font-weight="normal">
+        :style="{
+          'text-align': 'left',
+          'color': $color_gray_darker,
+          'font_weight': $font_weight_normal }">
         New pets are posted to our site daily. We'll email you as soon as a new
         pet that matches your search is added, so you won't miss out.
       </Paragraph>
 
-      <VSpacer size="l" />
+      <VSpacer size="xs" />
 
-      <VDivider />
-
-      <VSpacer size="l" />
+      <VDivider :style="{ 'margin-bottom': $space_m }" />
 
       <Heading
         :level="'h2'"
-        font-weight="bold"
-        font-family="special"
-        text-align="left">
-        Here's How It Works
+        :style="{
+          'text-align': 'left',
+          'font_weight': $font_weight_bold }">
+        Here's how it works
       </Heading>
-
-      <VSpacer size="l" />
 
       <ol :class="b('steps').toString()">
         <li>
@@ -73,20 +67,15 @@
         </li>
       </ol>
 
-      <VSpacer size="m" />
-
       <VDivider />
 
-      <VSpacer size="l" />
-
       <Paragraph
-        text-align="left"
-        color="gray"
-        font-weight="normal">
+        :style="{
+          'text-align': 'left',
+          'color': $color_gray_darker,
+          'font_weight': $font_weight_normal }">
         It's that easy! You can save up to 15 New Pet Alerts, and you can cancel or change them at any time.
       </Paragraph>
-
-      <VSpacer size="l" />
     </div>
   </div>
 </template>

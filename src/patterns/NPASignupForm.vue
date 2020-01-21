@@ -6,13 +6,13 @@
         level="h4"
         line-height="compact"
         :style="{ color: $color_black, 'margin-bottom': 0, 'font-weight': $font_weight_light }">
-        Set Up Your
+        Set up your
       </Heading>
 
       <Heading
         :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
-        :style="{ 'font-weight': $font_weight_bold, 'margin-bottom': 0 }">
-        New Pet Alert
+        :style="{ 'font-weight': $font_weight_bold, 'margin-bottom': '10px' }">
+        New pet alert
       </Heading>
 
       <Paragraph
@@ -184,7 +184,7 @@
           <Button
             id="npa-submit-button"
             @click="submit">
-            Save & Continue
+            Save & continue
           </Button>
         </div>
 
@@ -330,14 +330,14 @@ export default {
   computed: {
     npaTypes: () => [
       {
-        heading: 'Premium Alert',
+        heading: 'Premium alert',
         display:
           'Get real-time, instant emails when you have a new match. Your payment supports our non-profit! Cancel anytime.',
         icon: 'clock',
         value: 1,
       },
       {
-        heading: 'Free Alert',
+        heading: 'Free alert',
         display:
           'We’ll run your pet search once a day and send you an email with your new matches from the past 24 hours.',
         icon: 'envelope',
