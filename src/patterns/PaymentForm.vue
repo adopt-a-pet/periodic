@@ -113,6 +113,11 @@
         There was an error processing your payment, please check your payment information and try again.
       </Paragraph>
     </div>
+    <TextLink
+      :class="b('terms-and-conditions').toString()"
+      @click="emitTermsClicked">
+      Terms & Conditions >
+    </TextLink>
     <VSpacer size="xl" />
   </div>
 </template>
@@ -484,6 +489,9 @@ export default {
           amount: this.quickPayAmount,
         },
       });
+    },
+    emitTermsClicked() {
+      this.$emit('paymentTermsClicked');
     },
   },
 };

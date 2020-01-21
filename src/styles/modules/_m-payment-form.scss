@@ -200,6 +200,10 @@
   @include element('text-orange') {
     color: color(aorange) !important;
   }
+
+  @include element('terms-and-conditions') {
+    font-weight: bold;
+  }
 }
 
 .StripeElement {
