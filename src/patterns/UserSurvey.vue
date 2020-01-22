@@ -2,11 +2,12 @@
   <div>
     <Heading
       level="h3"
-      font-weight="bold">
+      font-weight="bold"
+      :style="{ 'margin-bottom': $space_xxs }">
       Home type
     </Heading>
 
-    <Paragraph>
+    <Paragraph :style="{ 'margin-bottom': $space_xxxs }">
       Which best describes your home?
     </Paragraph>
 
@@ -21,16 +22,17 @@
       name="hometype"
       @change="fieldChange('hometype', $event)" />
 
-    <VSpacer size="xl" />
+    <VSpacer size="l" />
 
     <Heading
       level="h3"
-      font-weight="bold">
+      font-weight="bold"
+      :style="{ 'margin-bottom': $space_xxs }">
       Rent or own
     </Heading>
 
 
-    <Paragraph>
+    <Paragraph :style="{ 'margin-bottom': $space_xxxs }">
       Do you rent or own?
     </Paragraph>
 
@@ -44,16 +46,17 @@
       name="rentorown"
       @change="fieldChange('rentorown', $event)" />
 
-    <VSpacer size="xl" />
+    <VSpacer size="l" />
 
     <Heading
       level="h3"
-      font-weight="bold">
+      font-weight="bold"
+      :style="{ 'margin-bottom': $space_xxs }">
       Kids
     </Heading>
 
 
-    <Paragraph>
+    <Paragraph :style="{ 'margin-bottom': $space_xxxs }">
       Are there any children living in your household?
     </Paragraph>
 
@@ -67,9 +70,9 @@
       name="haschildren"
       @change="fieldChange('haschildren', $event)" />
 
-    <div
-      v-if="userProfile.hasChildren">
-      <Paragraph>
+    <div v-if="userProfile.hasChildren">
+      <VSpacer />
+      <Paragraph :style="{ 'margin-bottom': $space_xxxs }">
         How many children live in your household?
       </Paragraph>
 
@@ -95,15 +98,17 @@
       </div>
     </div>
 
-    <VSpacer size="xl" />
+    <VSpacer size="l" />
 
     <Heading
       level="h3"
-      font-weight="bold">
+      font-weight="bold"
+      :style="{ 'margin-bottom': $space_xxs }">
       Current pets
     </Heading>
 
-    <Paragraph>
+    <Paragraph
+      :style="{ 'margin-bottom': $space_xxxs }">
       Do you have any other pets?
     </Paragraph>
 

@@ -12,14 +12,14 @@
       <Heading
         :level="layout === 'tablet-wide' ? 'h1' : 'h2'"
         :style="{ 'font-weight': $font_weight_bold, 'margin-bottom': '10px' }">
-        New pet alert
+        New Pet Alert
       </Heading>
 
       <Paragraph
         tag="span"
-        :style="{ 'font-size': $font_size_s, 'font-weight': $font_weight_normal }">
+        :style="{ 'font-size': $font_size_s, 'font-weight': $font_weight_bold }">
         <TextLink @click="whatIsThis">
-          What is this?
+          What's this?
         </TextLink>
       </Paragraph>
 
@@ -96,7 +96,10 @@
               To get the most out of your Premium experience, choose 2 or more filters.
             </template>
             <template slot="link">
-              Edit Filters >
+              Edit Filters <Icon
+                name="angle-right"
+                width="10"
+                :fill="$color_primary" />
             </template>
           </Infobox>
         </div>

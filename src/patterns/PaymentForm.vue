@@ -54,7 +54,7 @@
       }">
       <TextInput
         v-model="firstName"
-        label="First Name"
+        label="First name"
         :class="b('first-name').toString()"
         required
         :error-messages="{
@@ -64,7 +64,7 @@
         @click="dispatchTrackClick('firstName')" />
       <TextInput
         v-model="lastName"
-        label="Last Name"
+        label="Last name"
         :class="b('last-name').toString()"
         required
         :error-messages="{
@@ -74,13 +74,13 @@
         @click="dispatchTrackClick('lastName')" />
       <TextInput
         v-model="zipCode"
-        label="Zip Code"
+        label="Zip code"
         :class="b('zip-code').toString()"
         :validations="zipsValidator"
         required
         :error-messages="{
-          zipsValidator: 'Invalid Location',
-          required: 'Invalid Location'
+          zipsValidator: 'Invalid location',
+          required: 'Invalid location'
         }"
         @change="removePaymentError"
         @click="dispatchTrackClick('zipCode')" />
@@ -88,7 +88,7 @@
       <TextInput
         id="card-number"
         ref="cardNumber"
-        label="Credit Card Number"
+        label="Credit card number"
         required
         :class="b('card-number').toString()" />
       <div
@@ -280,7 +280,7 @@ export default {
 
       this.cardNumber = elements.create('cardNumber', {
         style: elementStyles,
-        placeholder: 'Credit Card Number',
+        placeholder: 'Credit card number',
       });
       this.cardNumber.mount('#card-number');
 

@@ -15,7 +15,7 @@
       <TextLink
         :class="b('search-params').toString()"
         @click="searchFilters">
-        {{ clanName }}s: {{ petDescription }} - within {{ geoRange }} miles of {{ filters.zipCode }}
+        {{ clanName | capitalize }}s: {{ petDescription }} - within {{ geoRange }} miles of {{ filters.zipCode }}
       </TextLink>
     </Paragraph>
   </div>

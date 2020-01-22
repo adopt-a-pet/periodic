@@ -91,10 +91,13 @@
     +rem-fallback('border-radius', $radius_l)
     +rem-fallback('line-height', $line-height-m-v2)
     +rem-fallback('padding-left', $space-l)
-    color: $color-gray-darker
+    +rem-fallback('top', -2px)
+    position: relative
+    color: $color-black
     display: inline-block
     font-weight: $font-weight-light
     width: 100%
+
 
     +modifier('blue')
       color: $color-white

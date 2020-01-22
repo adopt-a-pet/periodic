@@ -122,9 +122,7 @@ export default {
 ```vue
 <template>
 <div>
-  <Heading
-    font-family="special"
-    level="h4">1 Column (default)</Heading>
+  <Heading level="h4">1 Column (default)</Heading>
 
   <RadioGroup
     v-model="radioGroupSelected"
@@ -137,9 +135,7 @@ export default {
 
   <VSpacer size="l" />
 
-  <Heading
-    font-family="special"
-    level="h4">3 Columns</Heading>
+  <Heading level="h4">3 Columns</Heading>
 
   <RadioGroup
     v-model="radioGroupSelected2"
