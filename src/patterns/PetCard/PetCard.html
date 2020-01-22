@@ -19,11 +19,9 @@
     <Heading level="h4"
       font-weight="bold">{{ pet.name }}</Heading>
     <Paragraph font-size="s">
-      {{ petFormatted.sex }}, {{ petFormatted.age }}
-      <span v-if="pet.specialNeeds">,
+      {{ petFormatted.sex }}, {{ petFormatted.age }}<span v-if="pet.specialNeeds">,
         <span class="orange">Special Needs</span>
-      </span>
-      <span v-if="pet.bondedTo">,
+      </span><span v-if="pet.bondedTo">,
         <span class="orange">Bonded Pair</span>
       </span>
       <span v-if="breeds">
