@@ -73,3 +73,22 @@
 =has($name)
   &.#{_has($name)}
     @content
+
+// Mixins For Textarea
+=labeltext($labeltext)
+  color: $color-gray-darker
+  position: absolute
+  @include rem-fallback("left", 17px)
+  pointer-events: none
+  transition: 0.2s ease
+  @if $labeltext == "label-field"
+    font-size: $font_size_m
+    @include rem-fallback("bottom", 14px)
+  @else if $labeltext == "label-textarea"
+    font-size: $font-size_m
+    @include rem-fallback("top", 53px)
+    @include rem-fallback("left", $space-s)
+  @else if $labeltext == "label-field-small"
+    font-size: $font_size_s
+    @include rem-fallback("top", 14px)
+    @include rem-fallback("left", 16px)
