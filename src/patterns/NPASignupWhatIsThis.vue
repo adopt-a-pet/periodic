@@ -24,7 +24,7 @@
         :level="'h2'"
         :style="{
           'text-align': 'left',
-          'font_weight': $font_weight_bold }">
+          'font-weight': $font_weight_bold }">
         Here's how it works
       </Heading>
 

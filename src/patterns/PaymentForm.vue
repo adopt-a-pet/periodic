@@ -253,27 +253,27 @@ export default {
 
       const elementStyles = {
         base: {
-          fontWeight: 500,
-          fontSize: '20px',
-          color: '#4d4d4d',
-          padding: '17px',
+          fontWeight: this.$font_weight_normal,
+          fontSize: this.$font_size_m,
+          color: this.$color_black,
+          padding: this.$space_s,
 
           '::placeholder': {
-            color: '#b3b3b3',
+            color: this.$color_gray_darker,
           },
 
           ':focus::placeholder': {
-            color: '#CFD7DF',
+            color: this.$color_gray_dark,
           },
         },
 
         invalid: {
-          color: 'orange',
+          color: this.$color_warning,
           ':focus': {
-            color: '#FA755A',
+            color: this.$color_primary,
           },
           '::placeholder': {
-            color: '#FFCCA5',
+            color: this.$color_accent,
           },
         },
       };
