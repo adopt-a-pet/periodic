@@ -6,12 +6,19 @@
     grid-template-columns: 3fr 2fr
     column-gap: $space-m
 
+    +e(heading)
+      &--payment-terms
+        +rem-fallback('margin-left', 85px)
+
   +e(heading)
     text-align: center
 
   +e(content)
     margin: 0 auto
     max-width: 36rem
+
+    &--payment-terms
+      +rem-fallback('max-width', 757px)
 
   +e(fields)
     display: grid
@@ -33,6 +40,20 @@
 
   +e(offers-form-desktop)
     margin-top: 135px
+
+  +e(terms-paragraph)
+    +rem-fallback('margin', 10px 0px 20px 0px)
+    +rem-fallback('letter-spacing', -0.25px !important)
+
+  +e(terms-heading)
+    +rem-fallback('margin', 10px 0px 20px 0px)
+    +rem-fallback('letter-spacing', -0.25px)
+
+  &--payment-terms
+    grid-template-columns: 1fr
+
+  +e(donation-link)
+    font-weight: bold
 
 +b(npa-signup-whatisthis)
   +breakpoint(tablet-plus)

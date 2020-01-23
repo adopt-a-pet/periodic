@@ -59,6 +59,8 @@
       background-color: black;
     }
 
+    @include rem-fallback('margin-bottom', 20px);
+
     @include breakpoint(tablet-plus) {
       @include column(8/12);
     }
@@ -199,6 +201,10 @@
 
   @include element('text-orange') {
     color: color(aorange) !important;
+  }
+
+  @include element('terms-and-conditions') {
+    font-weight: bold;
   }
 }
 
