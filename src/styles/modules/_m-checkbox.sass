@@ -27,9 +27,19 @@
     &:hover
       +border(2px solid $color_primary)
 
-    +is(checked)
+    &.is-checked
       background-color: $color_primary
       +border(2px solid $color_primary)
+
+      &.is-inverted
+        background-color: $color_white
+
+        .#{$prefix-component}icon
+          g
+            fill: $color-primary !important
+
+          .svg-path
+            fill: $color-primary !important
 
     +is(disabled)
       +border(2px solid $color_gray_dark)

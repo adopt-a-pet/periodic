@@ -10,12 +10,12 @@
       type="checkbox">
 
     <span
-      :class="b('box', { size }).is({ checked, disabled }).toString()">
+      :class="b('box', { size }).is({ checked, disabled, inverted }).toString()">
 
       <Icon
         v-if="checked"
         :class="b('check').toString()"
-        name="check-white" />
+        :name="inverted ? 'check' : 'check-white'" />
     </span>
 
     <div :class="b('label-container', { size }).toString()">
@@ -48,6 +48,13 @@ export default {
     event: 'change',
   },
   props: {
+    /**
+     * Invert the color and background of the check
+     */
+    inverted: {
+      type: Boolean,
+      default: false,
+    },
     /**
      * The size of the field.
      *
@@ -112,6 +119,8 @@ export default {
     <br />
     <Checkbox v-model="checkbox2">Starts checked</Checkbox>
     <br />
+    <Checkbox v-model="checkbox4" inverted>Inverted</Checkbox>
+    <br />
     <Checkbox size="small" v-model="checkbox1">Small, same v-model as the first</Checkbox>
     <br />
     <Checkbox size="tiny" v-model="checkbox3">Tiny</Checkbox>
@@ -136,6 +145,7 @@ export default {
       checkbox1: false,
       checkbox2: true,
       checkbox3: true,
+      checkbox4: true,
     }
   }
 };
