@@ -25,29 +25,29 @@
 
   +e('dialog')
     max-width: 90%
-    padding: $space-xxl 0
+    padding: $space_xxl 0
     width: 90%
 
   +e('content')
     @include border-radius($radius_l)
     background-clip: padding-box
-    background: $color-white
-    border: 6px solid $color-primary
+    background: $color_white
+    border: 6px solid $color_primary
     position: relative
     width: 100%
 
     header
       margin-bottom: 0
-      height: $space-xl
-      padding: 7px 0 0 $space-s
+      height: $space_xl
+      padding: 7px 0 0 $space_s
 
   +e('close')
     cursor: pointer
     z-index: 1100
     position: absolute
-    top: $space-xxs
-    right: $space-xxs
-    padding: $space-xxs
+    top: $space_xxs
+    right: $space_xxs
+    padding: $space_xxs
     transition: all .5s cubic-bezier(.23,1,.32,1)
 
   +e('close-svg')
@@ -55,7 +55,7 @@
 
 @media screen and (max-width: 977px)
   +b('modal-popup')
-    background: $color-white
+    background: $color_white
 
     +e('dialog')
       max-width: 100% !important
@@ -63,8 +63,8 @@
       width: 100%
 
     +e('close')
-      padding: $space-xxxs
-      right: $space-l
+      padding: $space_xxxs
+      right: $space_l
       top: 0
 
     +e('content')
@@ -73,12 +73,12 @@
       overscroll-behavior: none
 
       header
-        background: $color-white
+        background: $color_white
         border-bottom: 1px solid $color_gray_light
-        height: $space-xl
+        height: $space_xl
 
       main
         overflow: scroll
         height: calc(100vh - 40px)
         box-sizing: border-box
-        padding-top: $space-s
+        padding-top: $space_s

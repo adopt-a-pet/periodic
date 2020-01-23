@@ -1,12 +1,12 @@
 +b(button)
   display: block
-  background-color: $color-white
+  background-color: $color_white
   +border(2px solid $color_gray_darker)
-  border-radius: $border-radius
+  border-radius: $border_radius
   color: $color_gray_darker
   font-family: $font
   font-weight: $font_weight_bold
-  +rem-fallback('font-size', $space-s)
+  +rem-fallback('font-size', $space_s)
   cursor: pointer
   line-height: 2.7
   width: 100%
@@ -20,20 +20,20 @@
     outline: 0
 
   &:hover
-    background-color: $color-gray
+    background-color: $color_gray
     +border(2px solid $color_gray_darker)
     color: $color_gray_darker
 
-    .#{$prefix-component}icon
+    .#{$prefix_component}icon
       g
-        fill: $color-white
+        fill: $color_white
 
       .svg-path
-        fill: $color-white
+        fill: $color_white
 
   &:active
     background-color: $color_gray_light
-    color: $color-white
+    color: $color_white
 
   +modifier('size')
     &-small
@@ -42,79 +42,79 @@
 
   +modifier('color')
     &-primary
-      background-color: $color-primary
+      background-color: $color_primary
       border: 0
       line-height: 2.9
-      color: $color-white
+      color: $color_white
 
       &:hover,
       &.hover
         background-color: $color_primary_dark
         border: 0
         box-shadow: $btn_shade_hover
-        color: $color-white
+        color: $color_white
 
       &:active,
       &.active
-        background-color: $color-primary
+        background-color: $color_primary
         box-shadow: $btn_shade_active
 
     &-accent
-      background-color: $color-accent
+      background-color: $color_accent
       border: 0
       line-height: 2.9
-      color: $color-white
+      color: $color_white
 
       &:hover,
       &.hover
         background-color: $color_accent_dark
         border: 0
         box-shadow: $btn_shade_hover
-        color: $color-white
+        color: $color_white
 
       &:active,
       &.active
-        background-color: $color-accent
+        background-color: $color_accent
         box-shadow: $btn_shade_active
 
     &-warning
-      background-color: $color-warning
+      background-color: $color_warning
       border: 0
       line-height: 2.9
-      color: $color-white
+      color: $color_white
 
       &:hover,
       &.hover
         box-shadow: $btn_shade_hover
         border: 0
         background-color: $color_warning_dark
-        color: $color-white
+        color: $color_white
 
       &:active,
       &.active
         box-shadow: $btn_shade_active
-        background-color: $color-warning
+        background-color: $color_warning
 
   +modifier('text-color')
     &-fb
-      color: $color-facebook
+      color: $color_facebook
       max-width: none
 
       &:hover,
       &.hover
-        background-color: $color-facebook
-        border-color: $color-facebook
-        color: $color-white
+        background-color: $color_facebook
+        border-color: $color_facebook
+        color: $color_white
 
     &-google
-      color: $color-google
+      color: $color_google
       max-width: none
 
       &:hover,
       &.hover
-        background-color: $color-google
-        border-color: $color-google
-        color: $color-white
+        background-color: $color_google
+        border-color: $color_google
+        color: $color_white
 
   &[disabled]
     background-color: $color_gray_lighter
@@ -131,7 +131,7 @@
     display: flex
 
   +element('icon')
-    fill: $color-white
+    fill: $color_white
     +rem-fallback('width', 24px)
     +rem-fallback('height', 23px)
     display: inline-flex

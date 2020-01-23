@@ -27,8 +27,8 @@
   $r: max(red($foreground), red($background)) - min(red($foreground), red($background))
   $g: max(green($foreground), green($background)) - min(green($foreground), green($background))
   $b: max(blue($foreground), blue($background)) - min(blue($foreground), blue($background))
-  $sum-rgb: $r + $g + $b
-  @if $sum-rgb < 350
+  $sum_rgb: $r + $g + $b
+  @if $sum_rgb < 350
     @return "false"
   @else
     @return "true"
@@ -66,7 +66,7 @@
 //   @if $unit == "rem" {
 //     @return $value;
 //   } @else if $unit == "px" {
-//     @return $value / $size-m * 1rem;
+//     @return $value / $size_m * 1rem;
 //   } @else if $unit == "em" {
 //     @return $unit / 1em * 1rem;
 //   } @else {
@@ -83,9 +83,9 @@
 //   @if $unit == "px" {
 //     @return $value;
 //   } @else if $unit == "em" {
-//     @return ($value / 1em) * $size-m;
+//     @return ($value / 1em) * $size_m;
 //   } @else if $unit == "rem" {
-//     @return ($value / 1rem) * $size-m;
+//     @return ($value / 1rem) * $size_m;
 //   } @else {
 //     @error "Value must be in rem, em, or px.";
 //   }
@@ -118,7 +118,7 @@
 // @param  {String} $name of the block
 // @return {String}
 @function _b($name)
-  @return $prefix-component + $name
+  @return $prefix_component + $name
 
 // Returns a BEM element name
 //

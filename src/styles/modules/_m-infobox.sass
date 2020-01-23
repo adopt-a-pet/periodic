@@ -1,21 +1,21 @@
 +b('info-box')
   position: relative
   width: 100%
-  background-color: $color-gray
+  background-color: $color_gray
   border-radius: $radius_l
-  +rem-fallback('padding', $space-xxs $space-xs)
-  +rem-fallback('margin-top', $space-s)
+  +rem-fallback('padding', $space_xxs $space_xs)
+  +rem-fallback('margin-top', $space_s)
 
   &:before
     content: ""
     position: absolute
     width: 0
     height: 0
-    +rem-fallback('margin-top', -$space-xxs)
+    +rem-fallback('margin-top', -$space_xxs)
     margin-left: 24%
     box-sizing: border-box
-    +border(8px solid $color-black)
-    border-color: transparent transparent $color-gray $color-gray
+    +border(8px solid $color_black)
+    border-color: transparent transparent $color_gray $color_gray
     transform-origin: 0 0
     transform: rotate(134deg)
     z-index: 1
@@ -23,5 +23,5 @@
   +e('heading')
     display: grid
     +rem-fallback('grid-template-columns', 33px 100px)
-    +rem-fallback('grid-column-gap', $space-xxxxs)
+    +rem-fallback('grid-column-gap', $space_xxxxs)
     align-items: center
