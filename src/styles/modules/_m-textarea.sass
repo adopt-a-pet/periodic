@@ -1,12 +1,12 @@
 +b(textarea)
   +reset
-  +border(1px solid $color-gray-light)
+  +border(1px solid $color_gray_light)
   +rem-fallback('border-radius', $radius_l)
-  +rem-fallback('font-size', $font-size-m)
+  +rem-fallback('font-size', $font_size_m)
   +rem-fallback('height', 240px)
   +rem-fallback('padding', $space-s)
   +rem-fallback('padding-top', $space-l)
-  box-shadow: $text-field-shade
+  box-shadow: $text_field_shade
   color: $color-black
   display: flex
   height: 100%
@@ -34,12 +34,12 @@
 
   &:focus, &.#{_has(content)}
     ~ label
-      +rem-fallback('font-size', $font-size-xxs)
+      +rem-fallback('font-size', $font_size_xxs)
       font-weight: $font_weight_bold
       line-height: 1
 
   +e(error-msg)
-    @include rem-fallback('font-size', $font-size-xs)
+    @include rem-fallback('font-size', $font_size_xs)
     @include rem-fallback('line-height', $line_height_xs_v2)
     @include rem-fallback('right', $space-xs)
     @include rem-fallback('top', $space-xxxxs)
@@ -53,10 +53,10 @@
       opacity: 0
 
   +e(text-limit)
-    +rem-fallback('font-size', $font-size-xs)
-    +rem-fallback('line-height', $line-height-xs)
+    +rem-fallback('font-size', $font_size_xs)
+    +rem-fallback('line-height', $line_height_xs)
     +rem-fallback('margin-top', $space-xxs)
-    font-weight: $font-weight-light
+    font-weight: $font_weight_light
     letter-spacing: 0
     text-align: right
 

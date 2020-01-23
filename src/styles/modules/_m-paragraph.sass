@@ -1,12 +1,12 @@
-$sizes: ( xxs: $font-size-xxs, xs: $font-size-xs, s: $font-size-s, m: $font-size-m, l: $font-size-l, xl: $font-size-xl, xxl: $font-size-xxl )
+$sizes: ( xxs: $font_size_xxs, xs: $font_size_xs, s: $font_size_s, m: $font_size_m, l: $font_size_l, xl: $font_size_xl, xxl: $font_size_xxl )
 
 +b('paragraph')
-  letter-spacing: $letter-spacing-default
-  font-weight: $font-weight-normal
+  letter-spacing: $letter_spacing_default
+  font-weight: $font_weight_normal
   margin-bottom: $space-s
 
   a
-    font-weight: $font-weight-bold
+    font-weight: $font_weight_bold
 
   @each $size, $token in $sizes
     +m(size-#{$size})
@@ -16,7 +16,7 @@ $sizes: ( xxs: $font-size-xxs, xs: $font-size-xs, s: $font-size-s, m: $font-size
     color: $color-gray
 
   +m('color-gray-light')
-    color: $color-gray-light
+    color: $color_gray_light
 
   +m('color-blue')
     color: $color-primary
@@ -25,10 +25,10 @@ $sizes: ( xxs: $font-size-xxs, xs: $font-size-xs, s: $font-size-s, m: $font-size
     font-family: $font-special
 
   +m('weight-light')
-    font-weight: $font-weight-light
+    font-weight: $font_weight_light
 
   +m('weight-normal')
-    font-weight: $font-weight-normal
+    font-weight: $font_weight_normal
 
   +m('weight-bold')
-    font-weight: $font-weight-bold
+    font-weight: $font_weight_bold

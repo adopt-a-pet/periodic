@@ -6,7 +6,7 @@
   @if $h-heading == "h5-heading" {
     font-family: $helvetica;
     color: $color-black;
-    font-weight: $font-weight-normal;
+    font-weight: $font_weight_normal;
     font-size: $font_size_s;
     @include rem-fallback("line-height", 25px);
   }
@@ -18,19 +18,19 @@
   @if $h-heading == "h6-heading" {
     font-family: $font;
     font-weight: $font_weight_bold;
-    font-size: $font-size-xs;
+    font-size: $font_size_xs;
     @include rem-fallback("line-height", 22px);
   }
   @if $h-heading == "h6-museo" {
     font-family: $font;
     font-weight: $font_weight_bold;
-    font-size: $font-size-xs;
+    font-size: $font_size_xs;
   }
   @if $h-heading == "h1-museo" {
     font-family: $font;
     color: $color-black;
     font-weight: $font_weight_bold;
-    font-size: $font-size-xxl;
+    font-size: $font_size_xxl;
     line-height: 1.37;
     @include rem-fallback("letter-spacing", -1px);
   }
@@ -38,14 +38,14 @@
     font-family: $font;
     color: $color-black;
     font-weight: $font_weight_bold;
-    font-size: $font-size-xl;
+    font-size: $font_size_xl;
     line-height: 1.5;
     @include rem-fallback("letter-spacing", -0.5px);
   }
   @if $h-heading == "h4__heading-h4--bold" {
     font-family: $helvetica;
     color: $color-black;
-    font-weight: $font-weight-bold;
+    font-weight: $font_weight_bold;
     font-size: $font_size_m;
     @include rem-fallback("line-height", 32px);
     @include rem-fallback("letter-spacing", -0.25px);
@@ -53,7 +53,7 @@
   @if $h-heading == "h4__heading-h4--bold-h4--compact" {
     font-family: $helvetica;
     color: $color-black;
-    font-weight: $font-weight-bold;
+    font-weight: $font_weight_bold;
     font-size: $font_size_m;
     @include rem-fallback("line-height", 26px);
     @include rem-fallback("letter-spacing", -0.25px);
@@ -61,23 +61,23 @@
   @if $h-heading == "h4__heading-h4--bold-h4--x-compact" {
     font-family: $helvetica;
     color: $color-black;
-    font-weight: $font-weight-bold;
+    font-weight: $font_weight_bold;
     font-size: $font_size_m;
     @include rem-fallback("line-height", 24px);
     @include rem-fallback("letter-spacing", -0.25px);
   }
   @if $h-heading == "h4__heading-h4--light-h4--compact" {
     font-family: $helvetica;
-    color: $color-gray-darker;
-    font-weight: $font-weight-light;
+    color: $color_gray_darker;
+    font-weight: $font_weight_light;
     font-size: $font_size_m;
     @include rem-fallback("line-height", 26px);
     letter-spacing: 0;
   }
   @if $h-heading == "h4__heading-h4--light-h4--x-compact" {
     font-family: $helvetica;
-    color: $color-gray-darker;
-    font-weight: $font-weight-light;
+    color: $color_gray_darker;
+    font-weight: $font_weight_light;
     font-size: $font_size_m;
     @include rem-fallback("line-height", 24px);
     letter-spacing: 0;
@@ -108,16 +108,16 @@
   }
   @if $h-heading == "h5__heading-h5--light-h5--compact" {
     font-family: $helvetica;
-    color: $color-gray-darker;
-    font-weight: $font-weight-light;
+    color: $color_gray_darker;
+    font-weight: $font_weight_light;
     font-size: $font_size_s;
     @include rem-fallback("line-height", $space-s);
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--light" {
     font-family: $helvetica;
-    color: $color-gray-darker;
-    font-weight: $font-weight-light;
+    color: $color_gray_darker;
+    font-weight: $font_weight_light;
     font-size: $font_size_s;
     @include rem-fallback("line-height", 25px);
     letter-spacing: 0;
@@ -125,7 +125,7 @@
   @if $h-heading == "h4__heading-h4--compact" {
     font-family: $helvetica;
     color: $color-black;
-    font-weight: $font-weight-normal;
+    font-weight: $font_weight_normal;
     font-size: $font_size_m;
     @include rem-fallback("line-height", 26px);
     @include rem-fallback("letter-spacing", -0.25px);
@@ -133,7 +133,7 @@
   @if $h-heading == "h4__heading-h4--x-compact" {
     font-family: $helvetica;
     color: $color-black;
-    font-weight: $font-weight-normal;
+    font-weight: $font_weight_normal;
     font-size: $font_size_m;
     @include rem-fallback("line-height", 24px);
     @include rem-fallback("letter-spacing", -0.25px);
@@ -141,7 +141,7 @@
   @if $h-heading == "h5__heading-h5--compact" {
     font-family: $helvetica;
     color: $color-black;
-    font-weight: $font-weight-normal;
+    font-weight: $font_weight_normal;
     font-size: $font_size_s;
     @include rem-fallback("line-height", $space-s);
     letter-spacing: 0;
@@ -166,7 +166,7 @@
     font-family: $font;
     color: $color-black;
     font-weight: $font_weight_bold;
-    font-size: $font-size-xxl;
+    font-size: $font_size_xxl;
     @include rem-fallback("line-height", 62px);
     @include rem-fallback("letter-spacing", -1px);
   }
@@ -174,15 +174,15 @@
     font-family: $font;
     color: $color-black;
     font-weight: $font_weight_bold;
-    font-size: $font-size-xl;
+    font-size: $font_size_xl;
     @include rem-fallback("line-height", 48px);
     @include rem-fallback("letter-spacing", -0.5px);
   }
   @if $h-heading == "h3__heading-h3--museo" {
     font-family: $font;
     color: $color-black;
-    font-weight: $font-weight-normal;
-    font-size: $font-size-l;
+    font-weight: $font_weight_normal;
+    font-size: $font_size_l;
     @include rem-fallback("line-height", 39px);
     @include rem-fallback("letter-spacing", -0.5px);
   }
@@ -190,7 +190,7 @@
     font-family: $helvetica;
     color: $color-black;
     font-weight: $font_weight_bold;
-    font-size: $font-size-l;
+    font-size: $font_size_l;
     @include rem-fallback("line-height", 39px);
     @include rem-fallback("letter-spacing", -0.5px);
   }
@@ -198,7 +198,7 @@
     font-family: $font;
     color: $color-black;
     font-weight: $font_weight_bold;
-    font-size: $font-size-l;
+    font-size: $font_size_l;
     @include rem-fallback("line-height", 30px);
     @include rem-fallback("letter-spacing", -0.5px);
   }
@@ -206,35 +206,35 @@
     font-family: $helvetica;
     color: $color-black;
     font-weight: $font_weight_bold;
-    font-size: $font-size-l;
+    font-size: $font_size_l;
     @include rem-fallback("line-height", 31px);
     @include rem-fallback("letter-spacing", -0.5px);
   }
   @if $h-heading == "h6__heading-h6--light-h6--compact" {
     font-family: $helvetica;
-    color: $color-gray-darker;
-    font-weight: $font-weight-light;
-    font-size: $font-size-xs;
+    color: $color_gray_darker;
+    font-weight: $font_weight_light;
+    font-size: $font_size_xs;
     @include rem-fallback("line-height", 17px);
     letter-spacing: 0;
   }
   @if $h-heading == "h6__heading-h6--compact" {
     font-family: $helvetica;
-    font-weight: $font-weight-normal;
-    font-size: $font-size-xs;
+    font-weight: $font_weight_normal;
+    font-size: $font_size_xs;
     @include rem-fallback("line-height", 17px);
   }
   @if $h-heading == "h6__heading-h6--museo-h6--compact" {
     font-family: $font;
-    font-weight: $font-weight-normal;
-    font-size: $font-size-xs;
+    font-weight: $font_weight_normal;
+    font-size: $font_size_xs;
     @include rem-fallback("line-height", 17px);
   }
   @if $h-heading == "h6__heading-h6--bold" {
     font-family: $helvetica;
     color: $color-black;
     font-weight: $font_weight_bold;
-    font-size: $font-size-xs;
+    font-size: $font_size_xs;
     @include rem-fallback("line-height", 22px);
     letter-spacing: 0;
   }
@@ -242,7 +242,7 @@
     font-family: $helvetica;
     color: $color-black;
     font-weight: $font_weight_bold;
-    font-size: $font-size-xs;
+    font-size: $font_size_xs;
     @include rem-fallback("line-height", 17px);
     letter-spacing: 0;
   }
@@ -250,7 +250,7 @@
     font-family: $helvetica;
     color: $color-black;
     font-weight: $font_weight_normal;
-    font-size: $font-size-xs;
+    font-size: $font_size_xs;
     @include rem-fallback("line-height", 22px);
     letter-spacing: 0;
   }
@@ -347,7 +347,7 @@
 // Mixins For Textarea
 
 @mixin labeltext($labeltext) {
-  color: $color-gray-darker;
+  color: $color_gray_darker;
   position: absolute;
   @include rem-fallback("left", 17px);
   pointer-events: none;

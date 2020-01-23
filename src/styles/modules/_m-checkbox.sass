@@ -10,19 +10,19 @@
     background-color: $color_white
     display: inline-block
     flex: 0 0 auto
-    +rem-fallback('height', $font-size-m)
+    +rem-fallback('height', $font_size_m)
     overflow: hidden
-    +rem-fallback('width', $font-size-m)
+    +rem-fallback('width', $font_size_m)
     vertical-align: middle
 
     +m(size-small)
-      +rem-fallback('height', $font-size-s)
-      +rem-fallback('width', $font-size-s)
+      +rem-fallback('height', $font_size_s)
+      +rem-fallback('width', $font_size_s)
 
     +m(size-tiny)
       +rem-fallback(border-radius, $radius_s)
-      +rem-fallback('height', $font-size-xs)
-      +rem-fallback('width', $font-size-xs)
+      +rem-fallback('height', $font_size_xs)
+      +rem-fallback('width', $font_size_xs)
 
     &:hover
       +border(2px solid $color_primary)
@@ -42,7 +42,7 @@
     justify-content: space-between
 
     +m(size-tiny)
-      +rem-fallback('line-height', $line-height-xs)
+      +rem-fallback('line-height', $line_height_xs)
 
   +e(label)
     cursor: pointer
@@ -50,8 +50,8 @@
     line-height: 1em
 
     +m(size-tiny)
-      +rem-fallback('line-height', $line-height-xxs)
-      +rem-fallback('font-size', $font-size-xxs)
+      +rem-fallback('line-height', $line_height_xxs)
+      +rem-fallback('font-size', $font_size_xxs)
 
   +e(label-right)
     cursor: pointer
@@ -73,6 +73,6 @@
   +rem-fallback('row-gap', $space-s)
 
   +e('label')
-    font-weight: $font-weight-light
-    +rem-fallback('font-size', $font-size-m)
+    font-weight: $font_weight_light
+    +rem-fallback('font-size', $font_size_m)
     line-height: normal

@@ -13,7 +13,7 @@
     margin: 0
     +rem-fallback('margin-top', 10px)
     position: relative
-    border: 1px solid $color-gray-darker
+    border: 1px solid $color_gray_darker
     border-radius: $radius_l
 
     &--selected
@@ -44,7 +44,7 @@
           background: $color_white
 
     &:disabled+.#{$prefix-component}radio-box__label
-      color: $color-gray-dark
+      color: $color_gray_dark
 
     &:disabled ~ .#{$prefix-component}radio-box__outside
       &::before
@@ -64,7 +64,7 @@
 
     &:disabled+.#{$prefix-component}radio-box__label--color-grey,
     &:disabled+.#{$prefix-component}radio-box__label--color-ltgrey
-      color: $color-gray-darker
+      color: $color_gray_darker
 
     &:checked ~ .#{$prefix-component}radio-box__outside
       border: 2px solid $color_primary
@@ -92,11 +92,11 @@
     &:disabled ~ .#{$prefix-component}radio-box__outside--color-grey,
     &:disabled ~ .#{$prefix-component}radio-box__outside--color-ltgrey
       &.#{$prefix-component}radio-box__outside
-        border: 2px solid $color-gray-darker
+        border: 2px solid $color_gray_darker
 
     &:disabled ~ .#{$prefix-component}radio-box__outside--color-white
       &.#{$prefix-component}radio-box__outside
-        border: 2px solid $color-gray-dark
+        border: 2px solid $color_gray_dark
 
     &:checked ~ .#{$prefix-component}radio-box__outside
       &::before
@@ -108,11 +108,11 @@
           background: $color_white
 
   +element('label')
-    +rem-fallback('font-size', $font-size-xs)
+    +rem-fallback('font-size', $font_size_xs)
     +rem-fallback('border-radius', $radius_l)
     +rem-fallback('line-height', $line_height_xs_v2)
     display: inline-block
-    font-weight: $font-weight-light
+    font-weight: $font_weight_light
     text-align: center
     width: 100%
 
@@ -120,12 +120,12 @@
       color: $color-white
 
     .bold
-      font-weight: $font-weight-bold
+      font-weight: $font_weight_bold
 
   +element('outside')
     display: block
     position: absolute
-    border: 2px solid $color-gray-darker
+    border: 2px solid $color_gray_darker
     border-radius: 100%
     +rem-fallback('padding', 8.5px)
     +rem-fallback('top', 10px)
@@ -150,12 +150,12 @@
     background: $color_white
 
     +m('not-selected')
-      border: 1px solid $color-gray-dark
+      border: 1px solid $color_gray_dark
 
       .#{$prefix-component}radio-box__icon
         svg
           path
-            fill: $color-gray-dark
+            fill: $color_gray_dark
 
       .#{$prefix-component}radio-box__button
         &:hover ~ .#{$prefix-component}radio-box__outside
@@ -168,7 +168,7 @@
               background: $color_white
 
       .#{$prefix-component}radio-box__label
-        color: $color-gray-dark
+        color: $color_gray_dark
 
       .#{$prefix-component}radio-box__outside
-        border: 2px solid $color-gray-dark
+        border: 2px solid $color_gray_dark

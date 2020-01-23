@@ -4,8 +4,8 @@
     width: 100%
 
   +e(input)
-    +border(1px solid $color-gray-darker)
-    +rem-fallback('font-size', $font-size-m)
+    +border(1px solid $color_gray_darker)
+    +rem-fallback('font-size', $font_size_m)
     +rem-fallback('height', $height-input)
     +rem-fallback('padding', $space-xs)
     background-color: $color-white
@@ -25,9 +25,9 @@
         +rem-fallback('padding-bottom', $space-xxxxs)
 
     &[disabled]
-      +border(1px solid $color-gray-lighter)
+      +border(1px solid $color_gray_lighter)
       pointer-events: none
-      color: $color-gray-lighter
+      color: $color_gray_lighter
 
     +is(success)
       +border(1px solid $color-primary)
@@ -53,8 +53,8 @@
         +border(1px solid $color-primary)
 
     +m(small)
-      +rem-fallback('font-size', $font-size-s)
-      +rem-fallback('height', $height-input-small)
+      +rem-fallback('font-size', $font_size_s)
+      +rem-fallback('height', $height_input_small)
       +rem-fallback('padding', $space-xs)
       +rem-fallback('padding-bottom', $space-xxxs)
       background-color: $color-white
@@ -64,7 +64,7 @@
 
       & ~ .#{_b(text-field) + _e(label) + _m(main)}
         +rem-fallback('top', $space-xxs)
-        +rem-fallback('font-size', $font-size-s)
+        +rem-fallback('font-size', $font_size_s)
 
       &:focus, &.#{_has(content)}
         +border(1px solid $color-primary)
@@ -72,7 +72,7 @@
         & ~ .#{_b(text-field) + _e(label) + _m(main)}
           +rem-fallback('top', 2px)
           +rem-fallback('left', $space-xs)
-          +rem-fallback('font-size', $font-size-xxs)
+          +rem-fallback('font-size', $font_size_xxs)
           font-weight: $font_weight_bold
 
       & + .valid-tick
@@ -87,7 +87,7 @@
         pointer-events: none
 
   +e(error-msg)
-    +rem-fallback('font-size', $font-size-xs)
+    +rem-fallback('font-size', $font_size_xs)
     +rem-fallback('line-height', $line_height_s_v2)
     +rem-fallback('right', $space-xs)
     +rem-fallback('top', $space-xxxxs)
@@ -105,22 +105,22 @@
       line-height: 1.5
 
       +is(smaller)
-        +rem-fallback('font-size', $font-size-xs)
+        +rem-fallback('font-size', $font_size_xs)
         +rem-fallback('left', $space-xs)
         +rem-fallback('line-height', $line_height_s_v2)
         +rem-fallback('top', $space-xxxxs)
-        font-weight: $font-weight-bold
+        font-weight: $font_weight_bold
 
     +m(right)
-      +rem-fallback('font-size', $font-size-xs)
+      +rem-fallback('font-size', $font_size_xs)
       +rem-fallback('line-height', $line_height_s_v2)
       position: initial
       float: left
-      font-weight: $font-weight-bold
+      font-weight: $font_weight_bold
       left: auto
 
     +is(disabled)
-      color: $color-gray-lighter
+      color: $color_gray_lighter
 
     +m(small)
       +labeltext($labeltext: label-field-small)
@@ -146,12 +146,12 @@
 
   +e(slot)
     +m(right)
-      +rem-fallback('height', $line-height-s)
+      +rem-fallback('height', $line_height_s)
       +rem-fallback('right', $space-xs)
       +rem-fallback('top', $space-s)
       display: flex
       flex-flow: row nowrap
-      font-weight: $font-weight-bold
+      font-weight: $font_weight_bold
       left: auto
       position: absolute
       vertical-align: middle

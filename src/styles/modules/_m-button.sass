@@ -1,11 +1,11 @@
 +b(button)
   display: block
   background-color: $color-white
-  +border(2px solid $color-gray-darker)
+  +border(2px solid $color_gray_darker)
   border-radius: $border-radius
-  color: $color-gray-darker
+  color: $color_gray_darker
   font-family: $font
-  font-weight: $font-weight-bold
+  font-weight: $font_weight_bold
   +rem-fallback('font-size', $space-s)
   cursor: pointer
   line-height: 2.7
@@ -21,8 +21,8 @@
 
   &:hover
     background-color: $color-gray
-    +border(2px solid $color-gray-darker)
-    color: $color-gray-darker
+    +border(2px solid $color_gray_darker)
+    color: $color_gray_darker
 
     .#{$prefix-component}icon
       g
@@ -32,7 +32,7 @@
         fill: $color-white
 
   &:active
-    background-color: $color-gray-light
+    background-color: $color_gray_light
     color: $color-white
 
   +modifier('size')
@@ -49,15 +49,15 @@
 
       &:hover,
       &.hover
-        background-color: $color-primary-dark
+        background-color: $color_primary_dark
         border: 0
-        box-shadow: $btn-shade-hover
+        box-shadow: $btn_shade_hover
         color: $color-white
 
       &:active,
       &.active
         background-color: $color-primary
-        box-shadow: $btn-shade-active
+        box-shadow: $btn_shade_active
 
     &-accent
       background-color: $color-accent
@@ -67,15 +67,15 @@
 
       &:hover,
       &.hover
-        background-color: $color-accent-dark
+        background-color: $color_accent_dark
         border: 0
-        box-shadow: $btn-shade-hover
+        box-shadow: $btn_shade_hover
         color: $color-white
 
       &:active,
       &.active
         background-color: $color-accent
-        box-shadow: $btn-shade-active
+        box-shadow: $btn_shade_active
 
     &-warning
       background-color: $color-warning
@@ -85,14 +85,14 @@
 
       &:hover,
       &.hover
-        box-shadow: $btn-shade-hover
+        box-shadow: $btn_shade_hover
         border: 0
-        background-color: $color-warning-dark
+        background-color: $color_warning_dark
         color: $color-white
 
       &:active,
       &.active
-        box-shadow: $btn-shade-active
+        box-shadow: $btn_shade_active
         background-color: $color-warning
 
   +modifier('text-color')
@@ -117,12 +117,12 @@
         color: $color-white
 
   &[disabled]
-    background-color: $color-gray-lighter
+    background-color: $color_gray_lighter
     border: 0
     line-height: 2.9
     cursor: not-allowed
     pointer-events: none
-    color: $color-gray-darker
+    color: $color_gray_darker
 
   +element('image')
     float: left
