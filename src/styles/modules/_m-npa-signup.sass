@@ -6,11 +6,12 @@
     grid-template-columns: 3fr 2fr
     column-gap: $space-m
 
+    +e(heading)
+      &--payment-terms
+        +rem-fallback('margin-left', 85px)
+
   +e(heading)
     text-align: center
-
-    &--payment-terms
-      +rem-fallback('margin-left', 85px)
 
   +e(content)
     margin: 0 auto
@@ -51,13 +52,8 @@
   &--payment-terms
     grid-template-columns: 1fr
 
-+e(donation-link)
-  font-weight: bold;
-
-+e(heading)
-
-  &--payment-terms
-    +rem-fallback('margin-left', 0px)
+  +e(donation-link)
+    font-weight: bold;
 
 +b(npa-signup-whatisthis)
   +breakpoint(tablet-plus)
