@@ -9,9 +9,15 @@
   +e(heading)
     text-align: center
 
+    &--payment-terms
+      +rem-fallback('margin-left', 85px)
+
   +e(content)
     margin: 0 auto
     max-width: 36rem
+
+    &--payment-terms
+      +rem-fallback('max-width', 757px)
 
   +e(fields)
     display: grid
@@ -33,6 +39,25 @@
 
   +e(offers-form-desktop)
     margin-top: 135px
+
+  +e(terms-paragraph)
+    +rem-fallback('margin', 10px 0px 20px 0px);
+    +rem-fallback('letter-spacing', -0.25px !important)
+
+  +e(terms-heading)
+    +rem-fallback('margin', 10px 0px 20px 0px);
+    +rem-fallback('letter-spacing', -0.25px)
+
+  &--payment-terms
+    grid-template-columns: 1fr
+
++e(donation-link)
+  font-weight: bold;
+
++e(heading)
+
+  &--payment-terms
+    +rem-fallback('margin-left', 0px)
 
 +b(npa-signup-whatisthis)
   +breakpoint(tablet-plus)

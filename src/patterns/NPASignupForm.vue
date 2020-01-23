@@ -1,7 +1,7 @@
 <template>
   <div
-    :class="b().toString()">
-    <div :class="b('content').toString()">
+    :class="b({'payment-terms': paymentTerms}).toString()">
+    <div :class="b('content', {'payment-terms': paymentTerms}).toString()">
       <VSpacer size="xxxs" />
 
       <div v-if="!paymentTerms">
@@ -203,7 +203,7 @@
       <!-- If !paymentTerms end -->
       </div>
       <div v-if="paymentTerms">
-        <div :class="b('heading').toString()">
+        <div :class="b('heading', {'payment-terms': paymentTerms}).toString()">
           <Heading
             level="h4"
             font-weight="light"
@@ -217,15 +217,17 @@
             font-family="museo">
             Payment Terms
           </Heading>
+          <VSpacer size="xl" />
         </div>
 
         <Heading
+          :class="b('terms-heading').toString()"
           level="h4"
           font-weight="bold"
           line-height="compact">
           Subscription Details
         </Heading>
-        <Paragraph>
+        <Paragraph :class="b('terms-paragraph').toString()">
           Premium New Pet Alerts is a monthly
           subscription service that will notify you
           by email instantly when you have a new
@@ -236,12 +238,13 @@
         </Paragraph>
 
         <Heading
+          :class="b('terms-heading').toString()"
           level="h4"
           font-weight="bold"
           line-height="compact">
           Payment
         </Heading>
-        <Paragraph>
+        <Paragraph :class="b('terms-paragraph').toString()">
           We’ll bill you $10 for this premium
           service on the monthly anniversary of
           your sign up and your subscription will
@@ -253,16 +256,21 @@
           you’d like to make an additional one
           time or monthly contribution to our
           charity to help pets in need, please visit
-          our donation page.
+          our <TextLink
+            :class="b('donation-link').toString()"
+            href="https://adoptapet.kindful.com/?campaign=1018795">
+            donation
+          </TextLink> page.
         </Paragraph>
 
         <Heading
+          :class="b('terms-heading').toString()"
           level="h4"
           font-weight="bold"
           line-height="compact">
           Cancellation
         </Heading>
-        <Paragraph>
+        <Paragraph :class="b('terms-paragraph').toString()">
           Cancelling your Premium New Pet
           Alerts is easy. Simply visit your Settings
           page and click the “Cancel Premium Plan” link.
@@ -401,6 +409,10 @@ export default {
       type: String,
       default: '',
     },
+    paymentTerms: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -413,7 +425,6 @@ export default {
       paymentInfo: {},
       showDNCError: false,
       emailValidator,
-      paymentTerms: false,
     };
   },
   blockName: 'npa-signup',

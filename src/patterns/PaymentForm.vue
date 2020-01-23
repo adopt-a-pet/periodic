@@ -116,7 +116,7 @@
     <TextLink
       :class="b('terms-and-conditions').toString()"
       @click="emitTermsClicked">
-      Terms & Conditions >
+      Payment Terms >
     </TextLink>
     <VSpacer size="xl" />
   </div>
@@ -492,6 +492,7 @@ export default {
     },
     emitTermsClicked() {
       this.$emit('paymentTermsClicked');
+      this.dispatchTrackClick('termsAndConditions');
     },
   },
 };

@@ -75,6 +75,9 @@ export default {
     'analytics/track/PaymentForm/quickPay/click': function(_, payload) {
       console.log('event:', 'quickPay');
     },
+    'analytics/track/PaymentForm/termsAndConditions/click': function(_, payload) {
+      console.log('event:', 'termsAndConditions');
+    },
     'analytics/track/PaymentForm/applePayLoads/load': function(_, payload) {
       console.log('event:', 'applePayLoads');
     },
