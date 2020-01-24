@@ -1,7 +1,7 @@
 +b(search-form)
   padding: $space_m
   background: $color_gray
-  border-radius: $radius_l
+  +rem-fallback('border-radius', $radius_l)
   border-top: 10px solid $color_primary
 
   h3
@@ -19,7 +19,7 @@
       font-size: $font_size_s
       font-family: $font
       font-weight: $font_weight_bold
-      color: #b3b3b3
+      color: $color_gray_darker
 
       div.underline
         margin: 0 auto
@@ -35,11 +35,11 @@
           background: $color_primary
 
       &.active
-        color: #008bb8
+        color: $color_primary
 
         div.underline
           width: 100%
-          background: #008bb8
+          background: $color_primary
 
   section
 

@@ -12,7 +12,7 @@ $forty_per_light_grey: rgba(color(agray, light), 0.4);
 $twenty_per_light_grey: rgba(color(agray, light), 0.2);
 $sixty_per_blue_base: #66cbeb;
 $sixty_per_gray_dary: #949494;
-$ablue_light: #6bcbf2;
+$color_primary_light: #6bcbf2;
 $modal_border: #ff8f43;
 $sticky_close_grey: #f2f2f2;
 $twenty_per_lighter_blue: rgba(color(ablue, lighter), 0.2);
@@ -47,12 +47,12 @@ $btn_shade_active: inset 0 3px 4px 0 rgba(0, 0, 0, 0.4);
 $text_field_shade: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
 
 // Pet card shades
-$pet_card_shade: 0 0 4px #b3b3b3;
+$pet_card_shade: 0 0 4px $color_gray_darker;
 $pet_card_bg_shade: inset 0 3px 4px color(agray, light);
 $pet_card_border: inset 0 0 1px color(agray, lighter);
 $video_bg_shade: rgba(36, 36, 36, 0.6);
 $progress_bar_shade: inset 0 12px 13px -15px #ccc;
-$foster_card_shade: 0 2px 4px 0 #b3b3b3;
+$foster_card_shade: 0 2px 4px 0 $color_gray_darker;
 
 //ios scroll-bar shades
 $ios_scroll_bg: rgba(0, 0, 0, 0.5);

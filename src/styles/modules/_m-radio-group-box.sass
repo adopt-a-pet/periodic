@@ -13,11 +13,11 @@
     margin: 0
     +rem-fallback('margin-top', 10px)
     position: relative
-    border: 1px solid $color_gray_darker
+    +rem-fallback('border', 1px solid $color_gray_darker)
     border-radius: $radius_l
 
     &--selected
-      border: 1px solid $color_primary
+      +rem-fallback('border', 1px solid $color_primary)
 
   +element('icon')
     display: block
@@ -35,10 +35,10 @@
     +rem-fallback('right', 10px)
 
     &:hover ~ .#{$prefix_component}radio-box__outside
-      border: 2px solid $color_primary
+      +rem-fallback('border', 2px solid $color_primary)
 
       &.#{$prefix_component}radio-box__outside--color-blue
-        border: 2px solid $color_white
+        +rem-fallback('border', 2px solid $color_white)
 
         &::before
           background: $color_white
@@ -51,7 +51,7 @@
         background: transparent
 
       &:hover
-        border: 2px solid $color_primary
+        +rem-fallback('border', 2px solid $color_primary)
 
       &.#{$prefix_component}radio-box__outside--color-blue,
       &.#{$prefix_component}radio-box__outside--color-grey,
@@ -60,43 +60,43 @@
           background: transparent
 
     &:disabled+.#{$prefix_component}radio-box__label--color-blue
-      color: $ablue_light
+      color: $color_primary_light
 
     &:disabled+.#{$prefix_component}radio-box__label--color-grey,
     &:disabled+.#{$prefix_component}radio-box__label--color-ltgrey
       color: $color_gray_darker
 
     &:checked ~ .#{$prefix_component}radio-box__outside
-      border: 2px solid $color_primary
+      +rem-fallback('border', 2px solid $color_primary)
 
       &::before
         +rem-fallback('height', 13px)
         +rem-fallback('width', 13px)
-        top: 2px
-        left: 2px
+        +rem-fallback('top', 2px)
+        +rem-fallback('left', 2px)
 
     &:checked ~ .#{$prefix_component}radio-box__outside--color-blue
       &.#{$prefix_component}radio-box__outside
-        border: 2px solid $color_white
+        +rem-fallback('border', 2px solid $color_white)
 
         &::before
           +rem-fallback('height', 13px)
           +rem-fallback('width', 13px)
-          top: 2px
-          left: 2px
+          +rem-fallback('top', 2px)
+          +rem-fallback('left', 2px)
 
     &:disabled ~ .#{$prefix_component}radio-box__outside--color-blue
       &.#{$prefix_component}radio-box__outside
-        border: 2px solid $ablue_light
+        +rem-fallback('border', 2px solid $color_primary_light)
 
     &:disabled ~ .#{$prefix_component}radio-box__outside--color-grey,
     &:disabled ~ .#{$prefix_component}radio-box__outside--color-ltgrey
       &.#{$prefix_component}radio-box__outside
-        border: 2px solid $color_gray_darker
+        +rem-fallback('border', 2px solid $color_gray_darker)
 
     &:disabled ~ .#{$prefix_component}radio-box__outside--color-white
       &.#{$prefix_component}radio-box__outside
-        border: 2px solid $color_gray_dark
+        +rem-fallback('border', 2px solid $color_gray_dark)
 
     &:checked ~ .#{$prefix_component}radio-box__outside
       &::before
@@ -125,7 +125,7 @@
   +element('outside')
     display: block
     position: absolute
-    border: 2px solid $color_gray_darker
+    +rem-fallback('border', 2px solid $color_gray_darker)
     border-radius: 100%
     +rem-fallback('padding', 8.5px)
     +rem-fallback('top', 10px)
@@ -144,13 +144,13 @@
 
     &--color-blue
       &.#{$prefix_component}radio-box__outside
-        border: 2px solid $color_white
+        +rem-fallback('border', 2px solid $color_white)
 
   +element('item')
     background: $color_white
 
     +m('not-selected')
-      border: 1px solid $color_gray_dark
+      +rem-fallback('border', 1px solid $color_gray_dark)
 
       .#{$prefix_component}radio-box__icon
         svg
@@ -159,10 +159,10 @@
 
       .#{$prefix_component}radio-box__button
         &:hover ~ .#{$prefix_component}radio-box__outside
-          border: 2px solid $color_primary
+          +rem-fallback('border', 2px solid $color_primary)
 
           &.#{$prefix_component}radio-box__outside--color-blue
-            border: 2px solid $color_white
+            +rem-fallback('border', 2px solid $color_white)
 
             &::before
               background: $color_white
@@ -171,4 +171,4 @@
         color: $color_gray_dark
 
       .#{$prefix_component}radio-box__outside
-        border: 2px solid $color_gray_dark
+        +rem-fallback('border', 2px solid $color_gray_dark)
