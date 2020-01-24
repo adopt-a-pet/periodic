@@ -2,7 +2,7 @@
   background: $color_gray_lighter
   border-radius: $radius_l
   box-shadow: 0 0 4px $color_gray_darker
-  padding: $space_xxs
+  +rem-fallback('padding', $space_xxs)
   display: grid
   grid-template-columns: 124px auto
 

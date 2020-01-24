@@ -46,7 +46,7 @@
     &.is-success-model-box
       +rem-fallback('border', 1px solid $color_primary)
       background-repeat: no-repeat
-      background-position: right 17px center
+      +rem-fallback('background-position', right 17px center)
       background-color: $color_white
 
       &:focus
