@@ -4,7 +4,7 @@
     display: flex
 
   .#{$prefix_component}button
-    height: 58px !important
+    +rem-fallback('height', 58px !important)
 
   > div, > button
     margin-bottom: $space_xxs

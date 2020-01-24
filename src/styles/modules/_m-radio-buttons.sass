@@ -50,8 +50,8 @@
       border: 2px solid $color_primary
 
       &::before
-        height: 13px
-        width: 13px
+        +rem-fallback('height', 13px)
+        +rem-fallback('width', 13px)
         top: 2px
         left: 2px
     &:checked ~ .#{$prefix_component}radio__outside--color-blue
@@ -59,8 +59,8 @@
         border: 2px solid $color_white
 
         &::before
-          height: 13px
-          width: 13px
+          +rem-fallback('height', 13px)
+          +rem-fallback('width', 13px)
           top: 2px
           left: 2px
 
@@ -116,8 +116,8 @@
       position: absolute
       content: ''
       border-radius: 100%
-      height: 17px
-      width: 17px
+      +rem-fallback('height', 17px)
+      +rem-fallback('width', 17px)
       top: 0
       left: 0
       margin: auto

@@ -10,11 +10,11 @@
       margin-top: 3px
 
     .pages
-      width: 186px
+      +rem-fallback('width', 186px)
       position: relative
       font-size: $space_s
       font-weight: $font_weight_light
-      line-height: 26px
+      +rem-fallback('line-height', 26px)
       cursor: pointer
 
     .pet-results-popup
@@ -36,9 +36,9 @@
           a
             font-size: 16px
             font-weight: $font_weight_normal
-            line-height: 24px
+            +rem-fallback('line-height', $line_height_s)
             display: flex
-            width: 88px
+            +rem-fallback('width', 88px)
 
             &.active
               font-weight: $font_weight_bold

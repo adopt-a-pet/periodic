@@ -23,7 +23,7 @@
 
       div.underline
         margin: 0 auto
-        height: 2px
+        +rem-fallback('height', 2px)
         width: 0
         transition: width .25s
 

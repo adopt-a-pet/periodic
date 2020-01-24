@@ -82,8 +82,8 @@
         top: $space_xs
         right: $space_xs
         position: absolute
-        width: 14px
-        height: 11px
+        +rem-fallback('width', 14px)
+        +rem-fallback('height', 11px)
         pointer-events: none
 
   +e(error-msg)
@@ -140,8 +140,8 @@
   +e(valid-tick)
     svg
       +reset
-      width: 14px
-      height: 18px
+      +rem-fallback('width', 14px)
+      +rem-fallback('height', 18px)
       // vertical-align: text-top;
 
   +e(slot)
