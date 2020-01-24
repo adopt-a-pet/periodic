@@ -5,7 +5,7 @@
 
   +e(box)
     +reset
-    +border(2px solid $color_gray_darker)
+    +rem-fallback('border', 2px solid $color_gray_darker)
     +rem-fallback(border-radius, $radius_m)
     background-color: $color_white
     display: inline-block
@@ -25,14 +25,14 @@
       +rem-fallback('width', $font_size_xs)
 
     &:hover
-      +border(2px solid $color_primary)
+      +rem-fallback('border', 2px solid $color_primary)
 
     +is(checked)
       background-color: $color_primary
-      +border(2px solid $color_primary)
+      +rem-fallback('border', 2px solid $color_primary)
 
     +is(disabled)
-      +border(2px solid $color_gray_dark)
+      +rem-fallback('border', 2px solid $color_gray_dark)
       background-color: $color_white
 
   +e(label-container)

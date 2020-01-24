@@ -15,7 +15,7 @@
     display: inline-block
 
     &::after
-      +border(8px solid $color_black)
+      +rem-fallback('border', 8px solid $color_black)
       +rem-fallback('left', $space_xxxxl)
       border-color: transparent transparent $color_white $color_white
       box-shadow: $shadow_callout

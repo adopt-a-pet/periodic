@@ -1,7 +1,7 @@
 +b(button)
   display: block
   background-color: $color_white
-  +border(2px solid $color_gray_darker)
+  +rem-fallback('border', 2px solid $color_gray_darker)
   border-radius: $border_radius
   color: $color_gray_darker
   font-family: $font
@@ -21,7 +21,7 @@
 
   &:hover
     background-color: $color_gray
-    +border(2px solid $color_gray_darker)
+    +rem-fallback('border', 2px solid $color_gray_darker)
     color: $color_gray_darker
 
     .#{$prefix_component}icon

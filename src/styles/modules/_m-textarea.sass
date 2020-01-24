@@ -1,6 +1,6 @@
 +b(textarea)
   +reset
-  +border(1px solid $color_gray_light)
+  +rem-fallback('border', 1px solid $color_gray_light)
   +rem-fallback('border-radius', $radius_l)
   +rem-fallback('font-size', $font_size_m)
   +rem-fallback('height', 240px)
@@ -16,10 +16,10 @@
   width: 100%
 
   &:focus
-    +border(1px solid $color_primary)
+    +rem-fallback('border', 1px solid $color_primary)
 
   +is(error)
-    +border(1px solid $color_warning)
+    +rem-fallback('border', 1px solid $color_warning)
 
   +e(label)
     +labeltext($labeltext: label-textarea)

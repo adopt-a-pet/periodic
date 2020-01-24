@@ -4,7 +4,7 @@
     width: 100%
 
   +e(input)
-    +border(1px solid $color_gray_darker)
+    +rem-fallback('border', 1px solid $color_gray_darker)
     +rem-fallback('font-size', $font_size_m)
     +rem-fallback('height', $height_input)
     +rem-fallback('padding', $space_xs)
@@ -18,39 +18,39 @@
 
     +has(focus-border)
       &:focus
-        +border(1px solid $color_primary)
+        +rem-fallback('border', 1px solid $color_primary)
 
     +has(label)
       &:focus, &.#{_has(content)}
         +rem-fallback('padding-bottom', $space_xxxxs)
 
     &[disabled]
-      +border(1px solid $color_gray_lighter)
+      +rem-fallback('border', 1px solid $color_gray_lighter)
       pointer-events: none
       color: $color_gray_lighter
 
     +is(success)
-      +border(1px solid $color_primary)
+      +rem-fallback('border', 1px solid $color_primary)
       +rem-fallback('padding-right', $space_xl)
       background-color: $color_white
 
       &:focus
-        +border(1px solid $color_primary)
+        +rem-fallback('border', 1px solid $color_primary)
 
     +is(error)
-      +border(1px solid $color_warning)
+      +rem-fallback('border', 1px solid $color_warning)
 
       &:focus
-        +border(1px solid $color_warning)
+        +rem-fallback('border', 1px solid $color_warning)
 
     &.is-success-model-box
-      +border(1px solid $color_primary)
+      +rem-fallback('border', 1px solid $color_primary)
       background-repeat: no-repeat
       background-position: right 17px center
       background-color: $color_white
 
       &:focus
-        +border(1px solid $color_primary)
+        +rem-fallback('border', 1px solid $color_primary)
 
     +m(small)
       +rem-fallback('font-size', $font_size_s)
@@ -67,7 +67,7 @@
         +rem-fallback('font-size', $font_size_s)
 
       &:focus, &.#{_has(content)}
-        +border(1px solid $color_primary)
+        +rem-fallback('border', 1px solid $color_primary)
 
         & ~ .#{_b(text-field) + _e(label) + _m(main)}
           +rem-fallback('top', 2px)
