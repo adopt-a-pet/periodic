@@ -1,11 +1,11 @@
 #
 # FONT TOKENS
-# Use these tokens to set font_weight and font_family.
+# Use these tokens to set font-weight and font-family.
 #
 
 props:
   font:
-    value: "Soleil, Helvetica Neue, Arial, sans_serif"
+    value: "Soleil, Helvetica Neue, Arial, sans-serif"
   font_special:
     value: "Bayu Prahara, Bradley Hand ITC, cursive"
   font_weight_bolder:

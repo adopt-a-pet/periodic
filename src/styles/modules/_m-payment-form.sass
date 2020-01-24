@@ -90,7 +90,7 @@
     grid-area: cardnumber
 
   +element("card-errors")
-    margin-top: -15px
+    +rem-fallback('margin-top', -15px)
     grid-area: errors
     color: color(aorange)
 

@@ -2,7 +2,7 @@
   padding: $space_m
   background: $color_gray
   +rem-fallback('border-radius', $radius_l)
-  border-top: 10px solid $color_primary
+  +rem-fallback('border-top', $space_xxs solid $color_primary)
 
   h3
     margin-bottom: $space_xxxxs
@@ -35,16 +35,16 @@
           background: $color_primary
 
       &.active
-        color: $color_primary
+        color: #008bb8
 
         div.underline
           width: 100%
-          background: $color_primary
+          background: #008bb8
 
   section
 
     .#{$prefix_component}text-field__container, .#{$prefix_component}checkbox
-      margin-bottom: 10px
+    +rem-fallback('margin-bottom', 10px)
 
   button.submit
     margin-top: $space_s

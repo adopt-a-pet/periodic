@@ -1,6 +1,4 @@
 +b('table-of-contents')
-  // display: grid
-  // +rem-fallback('grid-column-gap', 5px)
   list-style-type: none
   padding: 0
   width: 100%
@@ -12,7 +10,7 @@
 
     li
       font-weight: $font_weight_light
-      padding: 15px 0
+      +rem-fallback('padding', $space_xs 0)
 
     .#{$prefix_component}textlink
       color: $color_black

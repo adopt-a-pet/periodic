@@ -4,10 +4,10 @@
   .controls
     display: flex
     justify-content: center
-    margin: 35px 0 28px
+    +rem-fallback('margin', 35px 0 28px)
 
     > .periodic-icon
-      margin-top: 3px
+      +rem-fallback('margin-top', 3px)
 
     .pages
       +rem-fallback('width', 186px)
@@ -19,7 +19,7 @@
 
     .pet-results-popup
       position: absolute
-      margin-left: 15px
+      +rem-fallback('margin-left', $space_xs)
 
       ul
         margin: 0
@@ -27,14 +27,14 @@
         list-style: none
 
         li
-          padding-bottom: 6px
+          +rem-fallback('padding-bottom', 6px)
           display: flex
 
           &:last-child
             padding-bottom: 0
 
           a
-            font-size: 16px
+            +rem-fallback('font-size', 16px)
             font-weight: $font_weight_normal
             +rem-fallback('line-height', $line_height_s)
             display: flex
