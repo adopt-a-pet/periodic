@@ -23,8 +23,8 @@
       bottom: 0
       left: 0
       right: 0
-      border-bottom-left-radius: $radius_l
-      border-bottom-right-radius: $radius_l
+      +rem-fallback('border-bottom-left-radius', $radius_l)
+      +rem-fallback('border-bottom-right-radius', $radius_l)
       color: $color_white
       text-align: center
       font-size: $font_size_xs
