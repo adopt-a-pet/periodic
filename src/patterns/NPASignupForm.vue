@@ -258,6 +258,8 @@
           charity to help pets in need, please visit
           our <TextLink
             :class="b('donation-link').toString()"
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://adoptapet.kindful.com/?campaign=1018795">
             donation
           </TextLink> page.
