@@ -5,7 +5,7 @@
 
   +e(box)
     +reset
-    +border(2px solid $color_gray_darker)
+    +rem-fallback('border', 2px solid $color_gray_darker)
     +rem-fallback(border-radius, $radius_m)
     background-color: $color_white
     display: inline-block
@@ -21,7 +21,7 @@
       +rem-fallback(border-radius, $radius_s)
 
     &:hover
-      +border(2px solid $color_primary)
+      +rem-fallback('border', 2px solid $color_primary)
 
     &.is-inverted
       +border(2px solid $color_white)
@@ -35,7 +35,7 @@
         .#{$prefix-component}icon
 
           path
-            fill: $color-white !important
+            fill: $color_white
 
       &.is-inverted
         background-color: $color_white
@@ -43,7 +43,7 @@
         .#{$prefix-component}icon
 
           path
-            fill: $color-primary !important
+            fill: $color_primary
 
     +is(disabled)
       +border(2px solid $color_gray)
@@ -57,7 +57,7 @@
     margin-top: -3px
 
     +m(size-small)
-      +rem-fallback('line-height', $line-height-xs)
+      +rem-fallback('line-height', $line_height_xs)
       margin-top: 0
 
     &.is-inverted
@@ -78,8 +78,8 @@
     font-weight: $font_weight_light
 
     +m(size-small)
-      +rem-fallback('line-height', $line-height-xxs)
-      +rem-fallback('font-size', $font-size-xxs)
+      +rem-fallback('line-height', $line_height-xxs)
+      +rem-fallback('font-size', $font_size_xxs)
 
   +e(label-right)
     cursor: pointer
@@ -87,15 +87,15 @@
     vertical-align: middle
 
     +m(size-small)
-      +rem-fallback('line-height', $line-height-xxs)
-      +rem-fallback('font-size', $font-size-xxs)
+      +rem-fallback('line-height', $line_height_xxs)
+      +rem-fallback('font-size', $font_size_xxs)
 
   +e(check)
     svg
       +reset
       height: 100%
       width: 100%
-      margin-bottom: $space-xxxs
+      margin-bottom: $space_xxxs
 
 +b(checkbox-group)
   display: grid
@@ -104,31 +104,7 @@
   list-style-type: none
 
   +m(size-large)
-    +rem-fallback('row-gap', $space-s)
+    +rem-fallback('row-gap', $space_s)
 
   +m(size-small)
-    +rem-fallback('row-gap', $space-xs)
-
-  // +(.is-small)
-  //   display: none
-
-  // .#{$prefix-component}checkbox__label
-  //
-  //   +m(size-large)
-  //     +rem-fallback('margin-bottom', $space_m)
-  //
-  //   +m(size-small)
-  //     +rem-fallback('margin-bottom', $space_s)
-  //
-  //   +m(size-large)
-  //     display: none
-  //     font-weight: $font-weight-light
-  //     +rem-fallback('font-size', $font-size-m)
-  //     line-height: normal
-  //
-  //   +m(size-small)
-  //
-  //     +e('label')
-  //       font-weight: $font-weight-light
-  //       +rem-fallback('font-size', $font-size-s)
-  //       line-height: normal
+    +rem-fallback('row-gap', $space_xs)

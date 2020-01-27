@@ -24,7 +24,7 @@
         :level="'h2'"
         :style="{
           'text-align': 'left',
-          'font_weight': $font_weight_bold }">
+          'font-weight': $font_weight_bold }">
         Here's how it works
       </Heading>
 
@@ -73,7 +73,7 @@
         :style="{
           'text-align': 'left',
           'color': $color_gray_darker,
-          'font_weight': $font_weight_normal }">
+          'font-weight': $font_weight_normal }">
         It's that easy! You can save up to 15 New Pet Alerts, and you can cancel or change them at any time.
       </Paragraph>
     </div>

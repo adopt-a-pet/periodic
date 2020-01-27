@@ -1,181 +1,178 @@
 +block('heading')
   +element('h1')
-    +rem-fallback('font-size', $font-size-xl)
+    +rem-fallback('font-size', $font_size_xl)
     font-weight: $font_weight_bolder
     font-family: $font
-    color: $color-black
-    +rem-fallback('line-height', $line-height-xl)
-    +rem-fallback('letter-spacing', $letter-spacing-default)
-    +rem-fallback('margin-bottom', $space-s)
+    color: $color_black
+    +rem-fallback('line-height', $line_height_xl)
+    +rem-fallback('letter-spacing', $letter_spacing_default)
+    +rem-fallback('margin-bottom', $space_s)
     +rem-fallback('margin-top', $space-xl)
 
     &:first-child
       margin-top: 0
 
     +breakpoint(tablet-wide)
-      +rem-fallback('font-size', $font-size-xxl)
-      +rem-fallback('line-height', $line-height-xxl)
+      +rem-fallback('font-size', $font_size_xxl)
+      +rem-fallback('line-height', $line_height_xxl)
 
     &--special
-      font-family: $font-special
+      font-family: $font_special
 
     &--light
-      color: $color-gray-darker
+      color: $color_gray_darker
       font-weight: $font_weight_light
-      letter-spacing: $letter-spacing-default
+      letter-spacing: $letter_spacing_default
 
     &--bold
-      font-weight: $font-weight-bold
+      font-weight: $font_weight_bold
 
   +element('h2')
-    +rem-fallback('font-size', $font-size-l)
+    +rem-fallback('font-size', $font_size_l)
     font-family: $font
-    color: $color-black
+    color: $color_black
     font-weight: $font_weight_bolder
-    +rem-fallback('line-height', $line-height-l)
-    +rem-fallback('letter-spacing', $letter-spacing-default)
-    +rem-fallback('margin-bottom', $space-s)
+    +rem-fallback('line-height', $line_height_l)
+    +rem-fallback('letter-spacing', $letter_spacing_default)
+    +rem-fallback('margin-bottom', $space_s)
     +rem-fallback('margin-top', $space-xl)
 
     &:first-child
       margin-top: 0
 
     @include breakpoint(phone-wide)
-      font-size: $font-size-xl
-      line-height: $line-height-xl
+      font-size: $font_size_xl
+      line-height: $line_height_xl
 
     &--special
-      font-family: $font-special
+      font-family: $font_special
 
     &--light
-      color: $color-gray-darker
-      font-weight: $font-weight-light
-      letter-spacing: $letter-spacing-default
+      color: $color_gray_darker
+      font-weight: $font_weight_light
+      letter-spacing: $letter_spacing_default
 
     &--bold
-      font-weight: $font-weight-bold
+      font-weight: $font_weight_bold
 
   +element('h3')
-    +rem-fallback('font-size', $font-size-m)
+    +rem-fallback('font-size', $font_size_m)
     font-family: $font
-    color: $color-black
+    color: $color_black
     font-weight: $font_weight_bolder
-    +rem-fallback('line-height', $line-height-m)
-    +rem-fallback('letter-spacing', $letter-spacing-default)
-    +rem-fallback('margin-bottom', $space-s)
+    +rem-fallback('line-height', $line_height_m)
+    +rem-fallback('letter-spacing', $letter_spacing_default)
+    +rem-fallback('margin-bottom', $space_s)
     +rem-fallback('margin-top', $space-xl)
 
     &:first-child
       margin-top: 0
 
     @include breakpoint(phone-wide)
-      font-size: $font-size-l
-      line-height: $line-height-l
+      font-size: $font_size_l
+      line-height: $line_height_l
 
     &--compact
-      +rem-fallback('line-height', $line-height-l-v2)
+      +rem-fallback('line-height', $line_height_l_v2)
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-l-v2)
+      +rem-fallback('line-height', $line_height_l_v2)
 
     &--special
-      font-family: $font-special
+      font-family: $font_special
 
     &--light
-      color: $color-gray-darker
-      font-weight: $font-weight-light
-      letter-spacing: $letter-spacing-default
+      color: $color_gray_darker
+      font-weight: $font_weight_light
+      letter-spacing: $letter_spacing_default
 
     &--bold
-      font-weight: $font-weight-bold
+      font-weight: $font_weight_bold
 
     &--adopted
-      color: $color-gray-light
+      color: $color_gray_light
 
     &--adopted-light
-      color: $color-gray
+      color: $color_gray
 
   +element('h4')
-    +rem-fallback('font-size', $font-size-m)
-    font-family: $font
-    color: $color-black
-    font-weight: $font-weight-normal
-    +rem-fallback('line-height', $line-height-m)
-    +rem-fallback('letter-spacing', $letter-spacing-default)
+    +rem-fallback('font-size', $font_size_m)
+    color: $color_black
+    font-weight: $font_weight_normal
+    +rem-fallback('line-height', $line_height_m)
+    +rem-fallback('letter-spacing', $letter_spacing_default)
 
     &--compact
-      +rem-fallback('line-height', $line-height-m-v2)
+      +rem-fallback('line-height', $line_height_m_v2)
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-m-v3)
+      +rem-fallback('line-height', $line_height_m_v3)
 
     &--x-x-compact
-      +rem-fallback('line-height', $line-height-m)
+      +rem-fallback('line-height', $line_height_m)
 
     &--special
-      font-family: $font-special
+      font-family: $font_special
 
     &--light
-      color: $color-gray-darker
-      font-weight: $font-weight-light
-      letter-spacing: $letter-spacing-default
+      color: $color_gray_darker
+      font-weight: $font_weight_light
+      letter-spacing: $letter_spacing_default
 
     &--bold
-      font-weight: $font-weight-bold
+      font-weight: $font_weight_bold
 
     &--adopted
-      color: $color-gray-light
+      color: $color_gray_light
 
     &--adopted-light
-      color: $color-gray
+      color: $color_gray
 
   +element('h5')
-    +rem-fallback('font-size', $font-size-s)
-    font-family: $font
-    color: $color-black
-    font-weight: $font-weight-normal
-    +rem-fallback('line-height', $line-height-s)
+    +rem-fallback('font-size', $font_size_s)
+    color: $color_black
+    font-weight: $font_weight_normal
+    +rem-fallback('line-height', $line_height_s)
 
     &--compact
-      +rem-fallback('line-height', $line-height-s-v2)
+      +rem-fallback('line-height', $line_height_s_v2)
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-s)
+      +rem-fallback('line-height', $line_height_s)
 
     &--special
-      font-family: $font-special
+      font-family: $font_special
 
     &--light
-      color: $color-gray-darker
-      font-weight: $font-weight-light
-      letter-spacing: $letter-spacing-default
+      color: $color_gray_darker
+      font-weight: $font_weight_light
+      letter-spacing: $letter_spacing_default
 
     &--bold
-      font-weight: $font-weight-bold
+      font-weight: $font_weight_bold
 
   +element('h6')
-    +rem-fallback('font-size', $font-size-xs)
-    font-family: $font
-    color: $color-black
-    font-weight: $font-weight-normal
-    +rem-fallback('line-height', $line-height-xs)
+    +rem-fallback('font-size', $font_size_xs)
+    color: $color_black
+    font-weight: $font_weight_normal
+    +rem-fallback('line-height', $line_height_xs)
 
     &--compact
-      +rem-fallback('line-height', $line-height-xs-v2)
+      +rem-fallback('line-height', $line_height_xs_v2)
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-xs)
+      +rem-fallback('line-height', $line_height_xs)
 
     &--tiny
       +font-size(12)
 
     &--special
-      font-family: $font-special
+      font-family: $font_special
 
     &--light
-      color: $color-gray-darker
-      font-weight: $font-weight-light
-      letter-spacing: $letter-spacing-default
+      color: $color_gray_darker
+      font-weight: $font_weight_light
+      letter-spacing: $letter_spacing_default
 
     &--bold
-      font-weight: $font-weight-bold
+      font-weight: $font_weight_bold

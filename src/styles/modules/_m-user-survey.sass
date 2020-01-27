@@ -1,18 +1,18 @@
 +b('user-survey')
   +e('dropdown-group')
-    +rem-fallback('column-gap', $space-xs)
-    +rem-fallback('row-gap', $space-xs)
+    +rem-fallback('column-gap', $space_xs)
+    +rem-fallback('row-gap', $space_xs)
     display: grid
 
     +breakpoint(tablet-wide)
       grid-template-columns: 1fr 1fr
 
   +e('haspets-checkboxes')
-    +rem-fallback('row-gap', $space-xxs)
+    +rem-fallback('row-gap', $space_xxs)
     display: grid
 
     +breakpoint(tablet-wide)
-      +rem-fallback('row-gap', $space-s)
+      +rem-fallback('row-gap', $space_s)
       grid-template-columns: 1fr 1fr
 
   +e('checkbox-label')

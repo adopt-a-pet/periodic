@@ -1,8 +1,8 @@
 +b(pet-card)
-  background: $color-gray-lighter
+  background: $color_gray_lighter
   border-radius: $radius_l
-  box-shadow: 0 0 4px #b3b3b3
-  padding: $space-xxs
+  box-shadow: 0 0 4px $color_gray_darker
+  +rem-fallback('padding', $space_xxs)
   display: grid
   grid-template-columns: 124px auto
 
@@ -18,16 +18,16 @@
       width: 100%
 
     div.border-bottom
-      height: 25px
+      +rem-fallback('height', 25px)
       position: absolute
       bottom: 0
       left: 0
       right: 0
-      border-bottom-left-radius: $radius_l
-      border-bottom-right-radius: $radius_l
-      color: $color-white
+      +rem-fallback('border-bottom-left-radius', $radius_l)
+      +rem-fallback('border-bottom-right-radius', $radius_l)
+      color: $color_white
       text-align: center
-      font-size: $font-size-xs
+      font-size: $font_size_xs
       display: flex
       align-items: center
       justify-content: center
@@ -38,10 +38,10 @@
         background: #FF8F43
 
       &.blue
-        background: $color-primary
+        background: $color_primary
 
   div.content
-    margin-left: $space-xs
+    margin-left: $space_xs
     position: relative
     top: 0
     white-space: nowrap
@@ -52,15 +52,15 @@
       margin-left: 0
 
     h4
-      margin-bottom: 10px
+      +rem-fallback('margin-bottom', 10px)
       word-break: break-all
       white-space: nowrap
       overflow: hidden
       text-overflow: ellipsis
 
     p
-      font-weight: $font-weight-light
-      line-height: $line-height-s
+      font-weight: $font_weight_light
+      line-height: $line_height_s
       margin: 0
       white-space: nowrap
       overflow: hidden
@@ -68,4 +68,4 @@
 
       .orange
         color: #FF8F43
-        font-weight: $font-weight-normal
+        font-weight: $font_weight_normal

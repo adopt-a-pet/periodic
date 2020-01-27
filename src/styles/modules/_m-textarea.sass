@@ -1,13 +1,13 @@
 +b(textarea)
   +reset
-  +border(1px solid $color-gray-light)
+  +rem-fallback('border', 1px solid $color_gray_light)
   +rem-fallback('border-radius', $radius_l)
-  +rem-fallback('font-size', $font-size-m)
+  +rem-fallback('font-size', $font_size_m)
   +rem-fallback('height', 240px)
-  +rem-fallback('padding', $space-s)
-  +rem-fallback('padding-top', $space-l)
+  +rem-fallback('padding', $space_s)
+  +rem-fallback('padding-top', $space_l)
   box-shadow: $color_gray
-  color: $color-black
+  color: $color_black
   display: flex
   height: 100%
   line-height: 1.5
@@ -16,14 +16,14 @@
   width: 100%
 
   &:focus
-    +border(1px solid $color-primary)
+    +rem-fallback('border', 1px solid $color_primary)
 
   +is(error)
-    +border(1px solid $color-warning)
+    +rem-fallback('border', 1px solid $color_warning)
 
   +e(label)
     +labeltext($labeltext: label-textarea)
-    +rem-fallback('padding', $space-s)
+    +rem-fallback('padding', $space_s)
     top: 0
     left: 0
     transition: all .2s ease-in-out
@@ -34,16 +34,16 @@
 
   &:focus, &.#{_has(content)}
     ~ label
-      +rem-fallback('font-size', $font-size-xxs)
+      +rem-fallback('font-size', $font_size_xxs)
       font-weight: $font_weight_bold
       line-height: 1
 
   +e(error-msg)
-    @include rem-fallback('font-size', $font-size-xs)
-    @include rem-fallback('line-height', $line-height-xs-v2)
-    @include rem-fallback('right', $space-xs)
-    @include rem-fallback('top', $space-xxxxs)
-    color: $color-warning
+    @include rem-fallback('font-size', $font_size_xs)
+    @include rem-fallback('line-height', $line_height_xs_v2)
+    @include rem-fallback('right', $space_xs)
+    @include rem-fallback('top', $space_xxxxs)
+    color: $color_warning
     position: absolute
     text-align: right
     transition: all .2s ease-in-out
@@ -53,10 +53,10 @@
       opacity: 0
 
   +e(text-limit)
-    +rem-fallback('font-size', $font-size-xs)
-    +rem-fallback('line-height', $line-height-xs)
-    +rem-fallback('margin-top', $space-xxs)
-    font-weight: $font-weight-light
+    +rem-fallback('font-size', $font_size_xs)
+    +rem-fallback('line-height', $line_height_xs)
+    +rem-fallback('margin-top', $space_xxs)
+    font-weight: $font_weight_light
     letter-spacing: 0
     text-align: right
 

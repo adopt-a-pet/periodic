@@ -1,5 +1,5 @@
 +b(npa-signup)
-  color: $color-gray-darker
+  color: $color_gray_darker
 
 
   +e(heading)
@@ -10,16 +10,16 @@
 
     +breakpoint(tablet-wide)
       grid-template-columns: 3fr 2fr
-      +rem-fallback('column-gap', $space-xxxl)
+      +rem-fallback('column-gap', $space_xxxl)
 
   +e(fields)
     display: grid
-    grid-column-gap: $space-s
-    grid-row-gap: $space-s
+    grid-column-gap: $space_s
+    grid-row-gap: $space_s
 
   +e(skip-continue)
     align-items: center
-    +rem-fallback(column-gap, $space-xxs)
+    +rem-fallback(column-gap, $space_xxs)
     display: grid
     grid-template-columns: 1fr 4fr
     text-align: left
@@ -41,7 +41,7 @@
 
   +e(content)
     margin: 0 auto
-    +rem-fallback('padding', 0 $space-m)
+    +rem-fallback('padding', 0 $space_m)
 
   +e(steps)
     display: grid
@@ -49,10 +49,10 @@
     padding-left: 1.5em
 
     +breakpoint(desktop)
-      +rem-fallback(column-gap, $space-xxl)
+      +rem-fallback(column-gap, $space_xxl)
       grid-template-columns: 1fr 1fr
 
     li
-      font-weight: $font-weight-light
-      font-size: $font-size-m
-      +rem-fallback(margin-bottom, $space-s)
+      font-weight: $font_weight_light
+      font-size: $font_size_m
+      +rem-fallback(margin-bottom, $space_s)

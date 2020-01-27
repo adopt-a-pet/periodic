@@ -4,13 +4,13 @@
     width: 100%
 
   +e(input)
-    +border(1px solid $color-gray-darker)
-    +rem-fallback('font-size', $font-size-m)
-    +rem-fallback('height', $height-input)
-    +rem-fallback('padding', $space-xs)
-    background-color: $color-white
+    +rem-fallback('border', 1px solid $color_gray_darker)
+    +rem-fallback('font-size', $font_size_m)
+    +rem-fallback('height', $height_input)
+    +rem-fallback('padding', $space_xs)
+    background-color: $color_white
     border-radius: $radius_l
-    color: $color-black
+    color: $color_black
     margin: 0
     outline: none
     width: 100%
@@ -18,80 +18,80 @@
 
     +has(focus-border)
       &:focus
-        +border(1px solid $color-primary)
+        +rem-fallback('border', 1px solid $color_primary)
 
     +has(label)
       &:focus, &.#{_has(content)}
-        +rem-fallback('padding-bottom', $space-xxxxs)
+        +rem-fallback('padding-bottom', $space_xxxxs)
 
     &[disabled]
-      +border(1px solid $color-gray-lighter)
+      +rem-fallback('border', 1px solid $color_gray_lighter)
       pointer-events: none
-      color: $color-gray-lighter
+      color: $color_gray_lighter
 
     +is(success)
-      +border(1px solid $color-primary)
-      +rem-fallback('padding-right', $space-xl)
-      background-color: $color-white
+      +rem-fallback('border', 1px solid $color_primary)
+      +rem-fallback('padding-right', $space_xl)
+      background-color: $color_white
 
       &:focus
-        +border(1px solid $color-primary)
+        +rem-fallback('border', 1px solid $color_primary)
 
     +is(error)
-      +border(1px solid $color-warning)
+      +rem-fallback('border', 1px solid $color_warning)
 
       &:focus
-        +border(1px solid $color-warning)
+        +rem-fallback('border', 1px solid $color_warning)
 
     &.is-success-model-box
-      +border(1px solid $color-primary)
+      +rem-fallback('border', 1px solid $color_primary)
       background-repeat: no-repeat
-      background-position: right 17px center
-      background-color: $color-white
+      +rem-fallback('background-position', right 17px center)
+      background-color: $color_white
 
       &:focus
-        +border(1px solid $color-primary)
+        +rem-fallback('border', 1px solid $color_primary)
 
     +m(small)
-      +rem-fallback('font-size', $font-size-s)
-      +rem-fallback('height', $height-input-small)
-      +rem-fallback('padding', $space-xs)
-      +rem-fallback('padding-bottom', $space-xxxs)
-      background-color: $color-white
-      border-radius: $border-radius
+      +rem-fallback('font-size', $font_size_s)
+      +rem-fallback('height', $height_input_small)
+      +rem-fallback('padding', $space_xs)
+      +rem-fallback('padding-bottom', $space_xxxs)
+      background-color: $color_white
+      border-radius: $border_radius
       outline: none
       width: 100%
 
       & ~ .#{_b(text-field) + _e(label) + _m(main)}
-        +rem-fallback('top', $space-xxs)
-        +rem-fallback('font-size', $font-size-s)
+        +rem-fallback('top', $space_xxs)
+        +rem-fallback('font-size', $font_size_s)
 
       &:focus, &.#{_has(content)}
-        +border(1px solid $color-primary)
+        +rem-fallback('border', 1px solid $color_primary)
 
         & ~ .#{_b(text-field) + _e(label) + _m(main)}
           +rem-fallback('top', 2px)
-          +rem-fallback('left', $space-xs)
-          +rem-fallback('font-size', $font-size-xxs)
+          +rem-fallback('left', $space_xs)
+          +rem-fallback('font-size', $font_size_xxs)
           font-weight: $font_weight_bold
 
       & + .valid-tick
         background: url('data:image/svg+xmlutf8,<svg width="14px" height="11px" viewBox="0 0 14 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch --><title>Artboard 3</title><desc>Created with Sketch.</desc><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Artboard-3"><g id="Cell-Elements/Cell-Check-Copy-7"><rect id="Cell-Frame" x="0" y="0" width="14" height="11"></rect><polygon id="Check" fill="%2370cf36" points="1.61538462 5 0 6.5 4.30769231 10.5 14 2 12.3846154 0.5 4.30769231 7.5"></polygon></g></g></g></svg>')
         background-repeat: no-repeat
-        background-color: $color-white
-        top: $space-xs
-        right: $space-xs
+        background-color: $color_white
+        top: $space_xs
+        right: $space_xs
         position: absolute
-        width: 14px
-        height: 11px
+        +rem-fallback('width', 14px)
+        +rem-fallback('height', 11px)
         pointer-events: none
 
   +e(error-msg)
-    +rem-fallback('font-size', $font-size-xs)
-    +rem-fallback('line-height', $line-height-s-v2)
-    +rem-fallback('right', $space-xs)
-    +rem-fallback('top', $space-xxxxs)
-    color: $color-warning
+    +rem-fallback('font-size', $font_size_xs)
+    +rem-fallback('line-height', $line_height_s_v2)
+    +rem-fallback('right', $space_xs)
+    +rem-fallback('top', $space_xxxxs)
+    color: $color_warning
     pointer-events: none
     position: absolute
     text-align: right
@@ -105,22 +105,22 @@
       line-height: 1.5
 
       +is(smaller)
-        +rem-fallback('font-size', $font-size-xs)
-        +rem-fallback('left', $space-xs)
-        +rem-fallback('line-height', $line-height-s-v2)
-        +rem-fallback('top', $space-xxxxs)
-        font-weight: $font-weight-bold
+        +rem-fallback('font-size', $font_size_xs)
+        +rem-fallback('left', $space_xs)
+        +rem-fallback('line-height', $line_height_s_v2)
+        +rem-fallback('top', $space_xxxxs)
+        font-weight: $font_weight_bold
 
     +m(right)
-      +rem-fallback('font-size', $font-size-xs)
-      +rem-fallback('line-height', $line_height_xs)
+      +rem-fallback('font-size', $font_size_xs)
+      +rem-fallback('line-height', $line_height_s_v2)
       position: initial
       float: left
-      font-weight: $font-weight-bold
+      font-weight: $font_weight_bold
       left: auto
 
     +is(disabled)
-      color: $color-gray-lighter
+      color: $color_gray_lighter
 
     +m(small)
       +labeltext($labeltext: label-field-small)
@@ -128,7 +128,7 @@
   +e(eye)
     +reset
     +rem-fallback('height', 15px)
-    +rem-fallback('right', $space-xxs)
+    +rem-fallback('right', $space_xxs)
     +rem-fallback('width', 26px)
     display: inline-block
     opacity: 0.4
@@ -140,21 +140,21 @@
   +e(valid-tick)
     svg
       +reset
-      width: 14px
-      height: 18px
+      +rem-fallback('width', 14px)
+      +rem-fallback('height', 18px)
       // vertical-align: text-top;
 
   +e(slot)
     +m(right)
-      +rem-fallback('height', $line-height-s)
-      +rem-fallback('right', $space-xs)
-      +rem-fallback('top', $space-s)
+      +rem-fallback('height', $line_height_s)
+      +rem-fallback('right', $space_xs)
+      +rem-fallback('top', $space_s)
       display: flex
       flex-flow: row nowrap
-      font-weight: $font-weight-bold
+      font-weight: $font_weight_bold
       left: auto
       position: absolute
       vertical-align: middle
 
       > *
-        +inline-space($space-xxs)
+        +inline-space($space_xxs)

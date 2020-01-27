@@ -2,7 +2,7 @@
     width: 100%
     z-index: 100000
     position: relative
-    height: 95px
+    +rem-fallback('height', 95px)
     padding-top: 25px
     padding-bottom: 25px
 
@@ -11,7 +11,7 @@
             background-color: #ff8f43
 
         &-grey
-            background-color: $color-gray-light
+            background-color: $color_gray_light
 
         &-yellow
             background-color: #ffcc1b
@@ -20,9 +20,9 @@
         cursor: pointer
         z-index: 1100
         position: absolute
-        top: $space-xxs
-        right: $space-xxs
-        padding: $space-xxs
+        top: $space_xxs
+        right: $space_xxs
+        padding: $space_xxs
         transition: all .5s cubic-bezier(.23,1,.32,1)
 
     +e('close-svg')
