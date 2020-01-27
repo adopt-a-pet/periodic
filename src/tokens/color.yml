@@ -9,7 +9,7 @@
 
 # Leaving the previous way of dynamically defining and adjusting colors for
 # reference. If we want the ability to easily change a few colors and have the
-# shades be auto-generated, this would be the way:
+# shades be auto_generated, this would be the way:
 #
 # aliases:
   # blue:
@@ -20,69 +20,69 @@
 #   category: color_group_1
 
 props:
-  color-primary:
+  color_primary:
     value: "rgb(0, 191, 218)"
     category: color_group_1
-  color-primary-dark:
+  color_primary_dark:
     value: "rgb(0, 153, 184)"
     category: color_group_1
-  color-primary-darker:
+  color_primary_darker:
     value: "rgb(0, 53, 60)"
     category: color_group_1
 
-  color-rehome:
+  color_rehome:
     value: "rgb(0, 204, 168)"
     category: color_group_2
-  color-rehome-dark:
+  color_rehome_dark:
     value: "rgb(0, 168, 136)"
     category: color_group_2
-  color-rehome-darker:
+  color_rehome_darker:
     value: "rgb(0, 93, 77)"
     category: color_group_2
 
-  color-warning:
+  color_warning:
     value: "rgb(249, 102, 94)"
     category: color_group_3
-  color-warning-dark:
+  color_warning_dark:
     value: "rgb(204, 86, 61)"
     category: color_group_3
-  color-warning-darker:
+  color_warning_darker:
     value: "rgb(136, 57, 41)"
     category: color_group_3
 
-  color-primary-accent:
+  color_primary_accent:
     value: "rgb(255, 204, 27)"
     category: color_group_4
-  color-primary-accent-dark:
+  color_primary_accent_dark:
     value: "rgb(209, 167, 23)"
     category: color_group_4
-  color-primary-accent-darker:
+  color_primary_accent_darker:
     value: "rgb(158, 127, 17)"
     category: color_group_4
 
-  color-black:
+  color_black:
     value: "rgb(36, 36, 36)"
     category: color_group_5
-  color-gray-darker:
+  color_gray_darker:
     value: "rgb(179,179,179)"
     category: color_group_5
-  color-gray-dark:
+  color_gray_dark:
     value: "rgb(218,218,218)"
     category: color_group_5
-  color-gray:
+  color_gray:
     value: "rgb(236,236,236)"
     category: color_group_5
-  color-gray-light:
+  color_gray_light:
     value: "rgb(242,242,242)"
     category: color_group_5
-  color-gray-lighter:
+  color_gray_lighter:
     value: "rgb(249,249,249)"
     category: color_group_5
 
-  color-facebook:
+  color_facebook:
     value: "rgb(59, 89, 152)"
     category: color_group_6
-  color-google:
+  color_google:
     value: "rgb(219, 67, 54)"
     category: color_group_6
 

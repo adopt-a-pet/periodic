@@ -17,8 +17,10 @@ import syscall from '@/mixins/syscall';
 import validateAsync from '@/mixins/validate-async';
 import validateRequired from '@/mixins/validate-required';
 
-
 import './styles/styles.scss';
+
+// require tokens
+const tokens = require('../src/assets/tokens/tokens.json');
 
 // Define contexts to require
 const contexts = [
@@ -69,6 +71,10 @@ Vue.use(VueScrollTo, {
   onCancel: false,
   x: false,
   y: true,
+});
+
+Object.keys(tokens).forEach(key => {
+  Vue.prototype[`$${key}`] = tokens[key];
 });
 
 // Automatic installation if Vue has been added to the global scope

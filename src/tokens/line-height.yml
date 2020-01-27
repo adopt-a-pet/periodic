@@ -1,35 +1,35 @@
 #
 # LINE HEIGHT
-# Use these tokens to set line-height.
+# Use these tokens to set line_height.
 #
 
 props:
-  line-height-xxxl:
+  line_height_xxxl:
     value: "65px"
-  line-height-xxl:
+  line_height_xxl:
     value: "62px"
-  line-height-xl:
+  line_height_xl:
     value: "48px"
-  line-height-l:
+  line_height_l:
     value: "39px"
-  line-height-l-v2:
+  line_height_l_v2:
     value: "30px"
-  line-height-m:
+  line_height_m:
     value: "32px"
-  line-height-m-v2:
+  line_height_m_v2:
     value: "26px"
-  line-height-m-v3:
+  line_height_m_v3:
     value: "23px"
-  line-height-s:
+  line_height_s:
     value: "25px"
-  line-height-s-v2:
+  line_height_s_v2:
     value: "18px"
-  line-height-xs:
+  line_height_xs:
     value: "22px"
-  line-height-xs-v2:
+  line_height_xs_v2:
     value: "17px"
-  line-height-xxs:
+  line_height_xxs:
     value: "14px"
 global:
   type: number
-  category: line-height
+  category: line_height

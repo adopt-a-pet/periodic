@@ -1,12 +1,12 @@
 #
 # LETTER SPACING TOKENS
-# Use these tokens to adjust letter-spacing.
+# Use these tokens to adjust letter_spacing.
 #
 
 props:
-  letter-spacing-default:
+  letter_spacing_default:
     value: "-0.15px"
 
 global:
   type: number
-  category: letter-spacing
+  category: letter_spacing
