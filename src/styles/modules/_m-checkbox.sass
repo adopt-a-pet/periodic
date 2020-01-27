@@ -86,6 +86,10 @@
     float: right
     vertical-align: middle
 
+    +m(size-small)
+      +rem-fallback('line-height', $line-height-xxs)
+      +rem-fallback('font-size', $font-size-xxs)
+
   +e(check)
     svg
       +reset
@@ -98,9 +102,33 @@
   padding: 0
   width: 100%
   list-style-type: none
-  +rem-fallback('row-gap', $space-s)
 
-  +e('label')
-    font-weight: $font-weight-light
-    +rem-fallback('font-size', $font-size-m)
-    line-height: normal
+  +m(size-large)
+    +rem-fallback('row-gap', $space-s)
+
+  +m(size-small)
+    +rem-fallback('row-gap', $space-xs)
+
+  // +(.is-small)
+  //   display: none
+
+  // .#{$prefix-component}checkbox__label
+  //
+  //   +m(size-large)
+  //     +rem-fallback('margin-bottom', $space_m)
+  //
+  //   +m(size-small)
+  //     +rem-fallback('margin-bottom', $space_s)
+  //
+  //   +m(size-large)
+  //     display: none
+  //     font-weight: $font-weight-light
+  //     +rem-fallback('font-size', $font-size-m)
+  //     line-height: normal
+  //
+  //   +m(size-small)
+  //
+  //     +e('label')
+  //       font-weight: $font-weight-light
+  //       +rem-fallback('font-size', $font-size-s)
+  //       line-height: normal

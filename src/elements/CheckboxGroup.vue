@@ -1,6 +1,6 @@
 <template>
   <ul
-    :class="b().toString()"
+    :class="b({ size }).toString()"
     :style="gridStyles">
     <li
       v-for="(item, index) in renderItems"
@@ -8,6 +8,7 @@
       <Checkbox
         :id="item.id"
         :checked="boxChecked(item)"
+        :inverted="inverted"
         :size="size"
         @change="onCheck(item.value, $event)">
         <span :class="b('label').toString()">{{ item.display }}</span>
@@ -37,6 +38,14 @@ export default {
     prop: 'value',
   },
   props: {
+    /**
+     * Whether or not to invert the colors.
+     */
+    inverted: {
+      type: Boolean,
+      default: false,
+    },
+
     /**
      * Name of the radio group in the form.
      */
@@ -145,9 +154,7 @@ export default {
 ```vue
 <template>
 <div>
-  <Heading
-    font-family="special"
-    level="h4">1 Column (default)</Heading>
+  <Heading level="h3">1 Column (default)</Heading>
 
   <CheckboxGroup
     v-model="radioGroupSelected"
@@ -158,11 +165,7 @@ export default {
       { display: 'Three', value: 3 }
     ]" />
 
-  <VSpacer size="l" />
-
-  <Heading
-    font-family="special"
-    level="h4">3 Columns</Heading>
+  <Heading level="h3">3 Columns</Heading>
 
   <CheckboxGroup
     v-model="radioGroupSelected2"
@@ -173,6 +176,34 @@ export default {
       { display: 'Two', value: 2 },
       { display: 'Three', value: 3 }
     ]" />
+
+    <Heading level="h3">Inverted</Heading>
+
+    <div :style="{ background: $color_primary, padding: $space_xxs }">
+      <CheckboxGroup
+        v-model="radioGroupSelected"
+        inverted
+        name="example"
+        :items="[
+          { display: 'One', value: 1, labelRight: 'This is a right label' },
+          { display: 'Two', value: 2 },
+          { display: 'Three', value: 3 }
+        ]" />
+    </div>
+
+    <Heading level="h3">Small</Heading>
+
+    <div>
+      <CheckboxGroup
+        v-model="radioGroupSelected"
+        size="small"
+        name="example"
+        :items="[
+          { display: 'One', value: 1, labelRight: 'This is a right label' },
+          { display: 'Two', value: 2 },
+          { display: 'Three', value: 3 }
+        ]" />
+    </div>
 </div>
 </template>
 <script>

@@ -7,6 +7,10 @@
     +rem-fallback('line-height', $line-height-xl)
     +rem-fallback('letter-spacing', $letter-spacing-default)
     +rem-fallback('margin-bottom', $space-s)
+    +rem-fallback('margin-top', $space-xl)
+
+    &:first-child
+      margin-top: 0
 
     +breakpoint(tablet-wide)
       +rem-fallback('font-size', $font-size-xxl)
@@ -31,6 +35,10 @@
     +rem-fallback('line-height', $line-height-l)
     +rem-fallback('letter-spacing', $letter-spacing-default)
     +rem-fallback('margin-bottom', $space-s)
+    +rem-fallback('margin-top', $space-xl)
+
+    &:first-child
+      margin-top: 0
 
     @include breakpoint(phone-wide)
       font-size: $font-size-xl
@@ -55,6 +63,10 @@
     +rem-fallback('line-height', $line-height-m)
     +rem-fallback('letter-spacing', $letter-spacing-default)
     +rem-fallback('margin-bottom', $space-s)
+    +rem-fallback('margin-top', $space-xl)
+
+    &:first-child
+      margin-top: 0
 
     @include breakpoint(phone-wide)
       font-size: $font-size-l
