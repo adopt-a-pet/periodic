@@ -226,24 +226,16 @@ export default {
       };
     },
   },
-
-  created() {
-    /**
-     * Get Breed name and Ids from database
-     *
-     * @syscall api/pets/getBreeds
-     * @param {Number}
-     * @returns {{breedId: Number, breedName: String}}
-     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
-     */
-    this.$syscall('api/pets/getBreeds', this.form.clan).then(response => {
-      this.breedIdsDropdown = response.map(({ breedId, breedName }) => ({
-        display: breedName,
-        value: breedId,
-      }));
-    });
+  watch: {
+    'filters.clan': function (clan) {
+      this.getBreeds(clan);
+      this.form.clan = clan;
+    },
   },
 
+  created() {
+    this.getBreeds(this.form.clan);
+  },
   methods: {
     saveAndClose() {
       this.submit();
@@ -294,6 +286,22 @@ export default {
       const vm = this;
       locationValidator(location, vm).then(res => {
         vm.isLocationValid = res;
+      });
+    },
+    /**
+     * Get Breed name and Ids from database
+     *
+     * @syscall api/pets/getBreeds
+     * @param {Number}
+     * @returns {{breedId: Number, breedName: String}}
+     * @returns {{breedId: Number, breedName: String, breedNamePlural: String}}
+     */
+    getBreeds(clan) {
+      this.$syscall('api/pets/getBreeds', clan).then(response => {
+        this.breedIdsDropdown = response.map(({ breedId, breedName }) => ({
+          display: breedName,
+          value: breedId,
+        }));
       });
     },
   },
