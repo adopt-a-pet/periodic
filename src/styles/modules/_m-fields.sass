@@ -25,9 +25,11 @@
         +rem-fallback('padding-bottom', $space_xxxxs)
 
     &[disabled]
-      +rem-fallback('border', 1px solid $color_gray_lighter)
+      +rem-fallback('border', 1px solid $color_gray_dark)
       pointer-events: none
-      color: $color_gray_lighter
+
+      + label
+        color: $color_gray_dark
 
     +is(success)
       +rem-fallback('border', 1px solid $color_primary)
@@ -120,7 +122,7 @@
       left: auto
 
     +is(disabled)
-      color: $color_gray_lighter
+      color: $color_gray_dark
 
     +m(small)
       +labeltext($labeltext: label-field-small)
