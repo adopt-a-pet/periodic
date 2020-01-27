@@ -10,56 +10,74 @@
     background-color: $color_white
     display: inline-block
     flex: 0 0 auto
-    +rem-fallback('height', $font-size-m)
+    +rem-fallback('height', 21px)
     overflow: hidden
-    +rem-fallback('width', $font-size-m)
+    +rem-fallback('width', 21px)
     vertical-align: middle
 
     +m(size-small)
-      +rem-fallback('height', $font-size-s)
-      +rem-fallback('width', $font-size-s)
-
-    +m(size-tiny)
+      +rem-fallback('height', 14px)
+      +rem-fallback('width', 14px)
       +rem-fallback(border-radius, $radius_s)
-      +rem-fallback('height', $font-size-xs)
-      +rem-fallback('width', $font-size-xs)
 
     &:hover
       +border(2px solid $color_primary)
 
+    &.is-inverted
+      +border(2px solid $color_white)
+
     &.is-checked
-      background-color: $color_primary
-      +border(2px solid $color_primary)
+
+      &:not(.is-inverted)
+        background-color: $color_primary
+        +border(2px solid $color_primary)
+
+        .#{$prefix-component}icon
+
+          path
+            fill: $color-white !important
 
       &.is-inverted
         background-color: $color_white
 
         .#{$prefix-component}icon
-          g
-            fill: $color-primary !important
 
-          .svg-path
+          path
             fill: $color-primary !important
 
     +is(disabled)
-      +border(2px solid $color_gray_dark)
+      +border(2px solid $color_gray)
       background-color: $color_white
 
   +e(label-container)
     display: flex
     width: 100%
-    @include rem-fallback('margin-left', 14px)
+    @include rem-fallback('margin-left', $space_s)
     justify-content: space-between
+    margin-top: -3px
 
-    +m(size-tiny)
+    +m(size-small)
       +rem-fallback('line-height', $line-height-xs)
+      margin-top: 0
+
+    &.is-inverted
+
+      label
+        color: $color_white
+
+    +is(disabled)
+
+      label
+        color: $color_gray
 
   +e(label)
     cursor: pointer
     vertical-align: middle
-    line-height: 1em
+    font-size: $font_size_m
+    line-height: $line_height_s
+    font-weight: $font_weight_light
 
-    +m(size-tiny)
+    +m(size-small)
       +rem-fallback('line-height', $line-height-xxs)
       +rem-fallback('font-size', $font-size-xxs)
 
