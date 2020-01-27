@@ -4,22 +4,22 @@
   .controls
     display: flex
     justify-content: center
-    margin: 35px 0 28px
+    +rem-fallback('margin', 35px 0 28px)
 
     > .periodic-icon
-      margin-top: 3px
+      +rem-fallback('margin-top', 3px)
 
     .pages
-      width: 186px
+      +rem-fallback('width', 186px)
       position: relative
-      font-size: 20px
-      font-weight: 200
-      line-height: 26px
+      font-size: $space_s
+      font-weight: $font_weight_light
+      +rem-fallback('line-height', 26px)
       cursor: pointer
 
     .pet-results-popup
       position: absolute
-      margin-left: 15px
+      +rem-fallback('margin-left', $space_xs)
 
       ul
         margin: 0
@@ -27,25 +27,25 @@
         list-style: none
 
         li
-          padding-bottom: 6px
+          +rem-fallback('padding-bottom', 6px)
           display: flex
 
           &:last-child
             padding-bottom: 0
 
           a
-            font-size: 16px
-            font-weight: 400
-            line-height: 24px
+            +rem-fallback('font-size', $font_size_s)
+            font-weight: $font_weight_normal
+            +rem-fallback('line-height', $line_height_s)
             display: flex
-            width: 88px
+            +rem-fallback('width', 88px)
 
             &.active
-              font-weight: bold
+              font-weight: $font_weight_bold
 
           .periodic-icon
-            fill: $color-primary
+            fill: $color_primary
             margin-left: 1em
 
             &.active
-              color: $color-primary
+              color: $color_primary

@@ -1,8 +1,8 @@
 +b('offers-form')
-  font-size: $font-size-xxs
+  font-size: $font_size_xxs
 
   +e('link-blue')
-    color: $color-primary
+    color: $color_primary
     cursor: pointer
     &:hover
       text-decoration: underline
@@ -15,7 +15,7 @@
       transition: all .3s ease-in-out
       width: .6875rem
       height: .6875rem
-      fill: $color-primary
+      fill: $color_primary
 
     +is('expanded')
       svg
@@ -25,13 +25,13 @@
       display: none
 
   +e('all-offers')
-    +rem-fallback(padding, $space-s)
-    font-weight: 200
-    background: $color-gray
+    +rem-fallback(padding, $space_s)
+    font-weight: $font_weight_light
+    background: $color_gray
 
     a
-      font-weight: 400
+      font-weight: $font_weight_normal
 
   +e('footnote')
-    font-weight: 400
-    color: color(agray, light)
+    font-weight: $font_weight_normal
+    color: $color_gray_light

@@ -43,7 +43,7 @@
       <Icon
         v-if="successState && showValidTick"
         :class="b('valid-tick').toString()"
-        name="check-green" />
+        name="check" />
     </div>
 
     <div

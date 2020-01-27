@@ -3,11 +3,11 @@
   +breakpoint(tablet)
     display: flex
 
-  .#{$prefix-component}button
-    height: 58px !important
+  .#{$prefix_component}button
+    +rem-fallback('height', 58px !important)
 
   > div, > button
-    margin-bottom: $space-xxs
+    margin-bottom: $space_xxs
 
     +breakpoint(tablet)
       width: 100%
@@ -15,9 +15,9 @@
       margin-bottom: 0
 
       label
-        top: 15px
+        +rem-fallback('top', $space_xs)
 
-      .#{$prefix-component}text-field__input
+      .#{$prefix_component}text-field__input
         border-radius: 0
 
         &:focus
@@ -28,17 +28,17 @@
         margin-left: -1px
 
       &:first-child
-        border-top-left-radius: $radius-default
-        border-bottom-left-radius: $radius-default
+        +rem-fallback('border-top-left-radius', $radius_l)
+        +rem-fallback('border-bottom-left-radius', $radius_l)
 
-        .#{$prefix-component}text-field__input
-          border-top-left-radius: $radius-default
-          border-bottom-left-radius: $radius-default
+        .#{$prefix_component}text-field__input
+          +rem-fallback('border-top-left-radius', $radius_l)
+          +rem-fallback('border-bottom-left-radius', $radius_l)
 
       &:last-child
-        border-top-right-radius: $radius-default
-        border-bottom-right-radius: $radius-default
+        +rem-fallback('border-top-right-radius', $radius_l)
+        +rem-fallback('border-bottom-right-radius', $radius_l)
 
-        .#{$prefix-component}text-field__input
-          border-top-right-radius: $radius-default
-          border-bottom-right-radius: $radius-default
+        .#{$prefix_component}text-field__input
+          +rem-fallback('border-top-right-radius', $radius_l)
+          +rem-fallback('border-bottom-right-radius', $radius_l)

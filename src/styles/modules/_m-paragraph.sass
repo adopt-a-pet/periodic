@@ -1,34 +1,34 @@
-$sizes: ( xxs: $font-size-xxs, xs: $font-size-xs, s: $font-size-s, m: $font-size-m, l: $font-size-l, xl: $font-size-xl, xxl: $font-size-xxl )
+$sizes: ( xxs: $font_size_xxs, xs: $font_size_xs, s: $font_size_s, m: $font_size_m, l: $font_size_l, xl: $font_size_xl, xxl: $font_size_xxl )
 
 +b('paragraph')
-  letter-spacing: $letter-spacing-default
-  font-weight: normal
-  margin-bottom: 40px
+  letter-spacing: $letter_spacing_default
+  font-weight: $font_weight_normal
+  margin-bottom: $space_s
 
   a
-    font-weight: bold
+    font-weight: $font_weight_bold
 
   @each $size, $token in $sizes
     +m(size-#{$size})
       +rem-fallback('font-size', $token)
 
   +m('color-gray')
-    color: color(agray)
+    color: $color_gray
 
   +m('color-gray-light')
-    color: color(agray, light)
+    color: $color_gray_light
 
   +m('color-blue')
-    color: color(ablue)
+    color: $color_primary
 
   +m('family-special')
-    font-family: $font-special
+    font-family: $font_special
 
   +m('weight-light')
-    font-weight: 200
+    font-weight: $font_weight_light
 
   +m('weight-normal')
-    font-weight: normal
+    font-weight: $font_weight_normal
 
   +m('weight-bold')
-    font-weight: bold
+    font-weight: $font_weight_bold

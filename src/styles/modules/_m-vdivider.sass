@@ -1,6 +1,6 @@
 +b(vdivider)
-  border-top: 1px solid color(agray, light)
-  margin-bottom: 40px
+  +rem-fallback('border-top', 1px solid $color_gray_darker)
+  +rem-fallback('margin-bottom', 40px)
 
   +m(type-dashed)
-    border-top: 1px dashed color(agray, light)
+    +rem-fallback('border-top', 1px dashed $color_gray_darker)

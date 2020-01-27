@@ -86,8 +86,7 @@ export default {
 <docs>
   ```jsx
   <div>
-    <Paragraph
-      :style="{ 'font-size': $font_size_xxl }">
+    <Paragraph>
       Principles are the foundation of the system. They form the basis of a good
       product and help the team with decision making. They are here to guide you
       and your team when working with the myriad parts of the system and help
@@ -98,7 +97,7 @@ export default {
 
     <Paragraph
       font-size="l"
-      font-family="special"
+      font-family="bold"
       font-weight="normal">
       Principles are the foundation of the system. They form the basis of a good
       product and help the team with decision making. They are here to guide you
@@ -111,7 +110,6 @@ export default {
     <Paragraph
       font-size="xs"
       font-family="special"
-      font-weight="bold"
       line-height="2">
       Principles are the foundation of the system. They form the basis of a good
       product and help the team with decision making. They are here to guide you

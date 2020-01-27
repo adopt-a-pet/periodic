@@ -1,5 +1,4 @@
 <template src="./LoginForm.html" />
-<!-- <style src="./loginForm.sass" lang="sass" scoped></style> -->
 <script src="./LoginForm.js"></script>
 <docs>
   ```vue

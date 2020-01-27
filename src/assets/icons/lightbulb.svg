@@ -7,16 +7,16 @@
         <g id="NPA-modal-mobile-comp-Copy-18" transform="translate(-45.000000, -721.000000)">
             <g id="Group-2" transform="translate(46.000000, 721.000000)">
                 <g id="Tips">
-                    <path d="M15.4878527,0.825 L15.4878527,4.74375" id="Shape" stroke="#00A8DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M5.16261755,4.434375 L8.05368339,7.321875" id="Shape" stroke="#00A8DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M25.4000784,4.434375 L22.7155172,7.321875" id="Shape" stroke="#00A8DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M23.6447884,15.88125 C23.6447884,12.9706519 22.0900853,10.2811483 19.5663206,8.82584919 C17.0425559,7.37055011 13.9331495,7.37055011 11.4093848,8.82584919 C8.88562004,10.2811483 7.33091688,12.9706519 7.33091693,15.88125 C7.30747716,18.6395084 8.71340216,21.2138584 11.0480016,22.6875 L11.0480016,27.740625 C11.0648839,30.1826443 13.0428176,32.1581385 15.4878527,32.1751096 C16.6679054,32.18331 17.8020396,31.7187873 18.6364836,30.8853725 C19.4709277,30.0519576 19.9360241,28.9192223 19.9277038,27.740625 L19.9277038,22.6875 C22.1911718,21.1483677 23.5745873,18.6152342 23.6447884,15.88125 Z" id="Shape" fill="#00A8DE"></path>
+                    <path d="M15.4878527,0.825 L15.4878527,4.74375" id="Shape" stroke="#00BFDA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M5.16261755,4.434375 L8.05368339,7.321875" id="Shape" stroke="#00BFDA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M25.4000784,4.434375 L22.7155172,7.321875" id="Shape" stroke="#00BFDA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M23.6447884,15.88125 C23.6447884,12.9706519 22.0900853,10.2811483 19.5663206,8.82584919 C17.0425559,7.37055011 13.9331495,7.37055011 11.4093848,8.82584919 C8.88562004,10.2811483 7.33091688,12.9706519 7.33091693,15.88125 C7.30747716,18.6395084 8.71340216,21.2138584 11.0480016,22.6875 L11.0480016,27.740625 C11.0648839,30.1826443 13.0428176,32.1581385 15.4878527,32.1751096 C16.6679054,32.18331 17.8020396,31.7187873 18.6364836,30.8853725 C19.4709277,30.0519576 19.9360241,28.9192223 19.9277038,27.740625 L19.9277038,22.6875 C22.1911718,21.1483677 23.5745873,18.6152342 23.6447884,15.88125 Z" id="Shape" fill="#00BFDA"></path>
                     <path d="M11.6675157,25.059375 L19.3081897,25.059375" id="Shape" stroke="#ECECEC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                     <path d="M11.8740204,28.153125 L19.7211991,28.153125" id="Shape" stroke="#ECECEC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M0,15.984375 L3.82033699,15.984375" id="Shape" stroke="#00A8DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M27.052116,15.984375 L30.9757053,15.984375" id="Shape" stroke="#00A8DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M24.0577978,23.30625 L26.7423589,26.090625" id="Shape" stroke="#00A8DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M6.91790752,23.30625 L4.02684169,26.090625" id="Shape" stroke="#00A8DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M0,15.984375 L3.82033699,15.984375" id="Shape" stroke="#00BFDA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M27.052116,15.984375 L30.9757053,15.984375" id="Shape" stroke="#00BFDA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M24.0577978,23.30625 L26.7423589,26.090625" id="Shape" stroke="#00BFDA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M6.91790752,23.30625 L4.02684169,26.090625" id="Shape" stroke="#00BFDA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                 </g>
             </g>
         </g>

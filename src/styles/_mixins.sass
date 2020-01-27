@@ -1,0 +1,75 @@
+/* GLOBAL MIXINS
+ *---------------------------------------------
+
+/* AUTO SCALING FOR TYPE WITH MIN/MAX SIZES
+ *
+ *  @param {Number}  $responsive  - Viewport-based size
+ *  @param {Number}  $min         - Minimum font size (px)
+ *  @param {Number}  $max         - Maximum font size (px) (optional)
+ *
+ *  @param {Number}  $fallback    - Fallback for viewport-based units (optional)
+ *
+ *  @example SCSS - 5vw size, 35px min & 150px max size + 50px fallback:
+ *
+ *  @include responsive-font(5vw, 35px, 150px, 50px);
+=responsive-font($responsive, $min, $max: false, $fallback: false)
+  $responsive_unitless: $responsive / ($responsive - $responsive + 1)
+  $dimension: if(unit($responsive) == "vh", "height", "width")
+  $min_breakpoint: $min / $responsive_unitless * 100
+  @media (max-#{$dimension}: #{$min_breakpoint})
+    font-size: $min
+  @if $max
+    $max_breakpoint: $max / $responsive_unitless * 100
+    @media (min-#{$dimension}: #{$max_breakpoint})
+      font-size: $max
+  @if $fallback
+    font-size: $fallback
+  font-size: $responsive
+
+// Reset
+=reset
+  box-sizing: border-box
+  padding: 0
+  margin: 0
+
+// Used to prevent text selection on an element
+=prevent-user-select
+  -webkit-user-select: none
+  -moz-user-select: none
+  user-select: none
+
+/// Used to hide an element visually, but keeping it accessible for
+/// accessibility tools.
+=visually-hidden
+  // Need to make sure we override any existing styles.
+  position: absolute !important
+  top: 0
+  clip: rect(1px, 1px, 1px, 1px) !important
+  overflow: hidden !important
+  height: 1px !important
+  width: 1px !important
+  padding: 0 !important
+  border: 0 !important
+
+/// To be used on flex items. Resolves some common layout issues, such as
+/// text truncation not respecting padding or breaking out of container.
+/// https://css-tricks.com/flexbox-truncated-text/
+=layout-flex-fix
+  min-width: 0
+  max-width: 100%
+
+=block($name)
+  &.#{_b($name)}
+    @content
+
+=b($name)
+  +block($name)
+    @content
+
+=is($state)
+  &.#{_is($state)}
+    @content
+
+=has($name)
+  &.#{_has($name)}
+    @content

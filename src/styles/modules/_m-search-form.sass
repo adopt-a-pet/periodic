@@ -1,11 +1,11 @@
 +b(search-form)
-  padding: $space-m
-  background: $color-gray
-  border-radius: $radius-default
-  border-top: 10px solid $color-primary
+  padding: $space_m
+  background: $color_gray
+  +rem-fallback('border-radius', $radius_l)
+  +rem-fallback('border-top', $space_xxs solid $color_primary)
 
   h3
-    margin-bottom: $space-xxxxs
+    margin-bottom: $space_xxxxs
 
   nav
     display: flex
@@ -15,24 +15,24 @@
       display: inline-block
       text-align: center
       cursor: pointer
-      padding: $space-xxs
-      font-size: $font-size-s
+      padding: $space_xxs
+      font-size: $font_size_s
       font-family: $font
-      font-weight: $font-weight-bold
-      color: #b3b3b3
+      font-weight: $font_weight_bold
+      color: $color_gray_darker
 
       div.underline
         margin: 0 auto
-        height: 2px
+        +rem-fallback('height', 2px)
         width: 0
         transition: width .25s
 
       &:hover
-        color: $color-primary
+        color: $color_primary
 
         div.underline
           width: 100%
-          background: $color-primary
+          background: $color_primary
 
       &.active
         color: #008bb8
@@ -43,8 +43,8 @@
 
   section
 
-    .#{$prefix-component}text-field__container, .#{$prefix-component}checkbox
-      margin-bottom: 10px
+    .#{$prefix_component}text-field__container, .#{$prefix_component}checkbox
+    +rem-fallback('margin-bottom', 10px)
 
   button.submit
-    margin-top: 20px
+    margin-top: $space_s

@@ -5,35 +5,35 @@
 
   +e(box)
     +reset
-    +border(2px solid color(agray, light))
-    +rem-fallback(border-radius, $radius-default)
-    background-color: color(awhite, base)
+    +rem-fallback('border', 2px solid $color_gray_darker)
+    +rem-fallback(border-radius, $radius_m)
+    background-color: $color_white
     display: inline-block
     flex: 0 0 auto
-    height: $font-size-m
+    +rem-fallback('height', $font_size_m)
     overflow: hidden
-    width: $font-size-m
+    +rem-fallback('width', $font_size_m)
     vertical-align: middle
 
     +m(size-small)
-      height: $font-size-s
-      width: $font-size-s
+      +rem-fallback('height', $font_size_s)
+      +rem-fallback('width', $font_size_s)
 
     +m(size-tiny)
-      +rem-fallback(border-radius, $radius-default)
-      height: $font-size-xs
-      width: $font-size-xs
+      +rem-fallback(border-radius, $radius_s)
+      +rem-fallback('height', $font_size_xs)
+      +rem-fallback('width', $font_size_xs)
 
     &:hover
-      +border(2px solid color(ablue, base))
+      +rem-fallback('border', 2px solid $color_primary)
 
     +is(checked)
-      background-color: color(ablue, base)
-      +border(2px solid color(ablue, base))
+      background-color: $color_primary
+      +rem-fallback('border', 2px solid $color_primary)
 
     +is(disabled)
-      +border(2px solid color(agray, lighter))
-      background-color: color(awhite, base)
+      +rem-fallback('border', 2px solid $color_gray_dark)
+      background-color: $color_white
 
   +e(label-container)
     display: flex
@@ -42,7 +42,7 @@
     justify-content: space-between
 
     +m(size-tiny)
-      line-height: 14px
+      +rem-fallback('line-height', $line_height_xs)
 
   +e(label)
     cursor: pointer
@@ -50,8 +50,8 @@
     line-height: 1em
 
     +m(size-tiny)
-      line-height: 14px
-      font-size: 12px
+      +rem-fallback('line-height', $line_height_xxs)
+      +rem-fallback('font-size', $font_size_xxs)
 
   +e(label-right)
     cursor: pointer
@@ -63,16 +63,16 @@
       +reset
       height: 100%
       width: 100%
-      margin-bottom: $space-xxxs
+      margin-bottom: $space_xxxs
 
 +b(checkbox-group)
   display: grid
   padding: 0
   width: 100%
   list-style-type: none
-  +rem-fallback('row-gap', $space-s)
+  +rem-fallback('row-gap', $space_s)
 
   +e('label')
-    font-weight: 200
-    +rem-fallback('font-size', $font-size-m)
+    font-weight: $font_weight_light
+    +rem-fallback('font-size', $font_size_m)
     line-height: normal

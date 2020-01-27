@@ -7,22 +7,22 @@
   .buttons, .inputs
     display: grid
     grid-template-columns: auto
-    grid-gap: 20px 20px
+    +rem-fallback('grid-gap', $space_s $space_s)
 
     @include breakpoint(tablet)
       display: grid
       grid-template-columns: 1fr 1fr
-      grid-gap: 20px 20px
+      +rem-fallback('grid-gap', $space_s $space_s)
 
       .inputs
         display: grid
         grid-template-columns: auto auto
-        grid-gap: $space-m $space-m
+        +rem-fallback('grid-gap', $space_m $space_m)
 
       .confirmation
         display: grid
         grid-template-columns: auto auto
-        grid-gap: $space-m $space-m
+        +rem-fallback('grid-gap', $space_m $space_m)
 
   .or-divider
     position: relative
@@ -30,12 +30,15 @@
     margin-bottom: 0
 
     &::after
-      background-color: #fff
+      background-color: $color_white
       content: attr(data-content)
       display: inline-block
-      font-size: 16px
-      font-size: 22px
-      font-weight: 300
-      padding: 0 .6em
+      +rem-fallback('font-size', $font_size_m)
+      font-weight: $font_weight_light
+      padding: 0 $space_xxs
       position: relative
       top: -.85em
+
+  .login-meta
+    +rem-fallback('max-width', 360px)
+    margin: 0 auto
