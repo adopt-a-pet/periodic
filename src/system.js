@@ -35,6 +35,14 @@ contexts.forEach(context => {
   context.keys().forEach(key => components.push(context(key).default));
 });
 
+
+// build list of icon names
+const req = require.context('@/assets/icons/', true, /^\.\/.*\.svg$/);
+const icons = [];
+req.keys().forEach(key => {
+  icons.push(key.replace(/\.\/(.+)\.svg/, '$1'));
+});
+
 export const mixins = [
   bemNames,
   dropdownItems,
@@ -73,9 +81,13 @@ Vue.use(VueScrollTo, {
   y: true,
 });
 
+// add tokens to Vue object
 Object.keys(tokens).forEach(key => {
   Vue.prototype[`$${key}`] = tokens[key];
 });
+
+// add icon names to Vue object
+Vue.prototype.$icons = icons;
 
 // Automatic installation if Vue has been added to the global scope
 // if (typeof window !== 'undefined' && window.Vue) {
