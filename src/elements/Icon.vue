@@ -10,6 +10,11 @@
 
 <script>
 const req = require.context('@/assets/icons/', true, /^\.\/.*\.svg$/);
+//
+// const fs = require('fs');
+//
+// const icons = fs.readdirSync('@/assets/icons/');
+
 /**
  * Icons are used to visually communicate core parts of the product and
  * available actions. They can act as wayfinding tools to help users more
@@ -90,7 +95,7 @@ export default {
 
 <docs>
   ```jsx
-  <div>
+  <div style="display: grid; grid-template-columns: 60px 60px;">
     <Icon name="ready" aria-label="Component is ready" fill="#7cb518" />
     <Icon name="review" fill="rgb(255,186,10)" />
     <Icon name="deprecated" fill="rgb(235,59,36)" />

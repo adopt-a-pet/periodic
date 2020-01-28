@@ -101,6 +101,11 @@
     font-weight: $font_weight_normal
     +rem-fallback('line-height', $line_height_m)
     +rem-fallback('letter-spacing', $letter_spacing_default)
+    +rem-fallback('margin-bottom', $space_xs)
+    +rem-fallback('margin-top', $space-l)
+
+    &:first-child
+      margin-top: 0
 
     &--compact
       +rem-fallback('line-height', $line_height_m_v2)
@@ -133,6 +138,11 @@
     color: $color_black
     font-weight: $font_weight_normal
     +rem-fallback('line-height', $line_height_s)
+    +rem-fallback('margin-bottom', $space_xxs)
+    +rem-fallback('margin-top', $space-m)
+
+    &:first-child
+      margin-top: 0
 
     &--compact
       +rem-fallback('line-height', $line_height_s_v2)
@@ -156,6 +166,11 @@
     color: $color_black
     font-weight: $font_weight_normal
     +rem-fallback('line-height', $line_height_xs)
+    +rem-fallback('margin-bottom', $space_xxxs)
+    +rem-fallback('margin-top', $space-s)
+
+    &:first-child
+      margin-top: 0
 
     &--compact
       +rem-fallback('line-height', $line_height_xs_v2)
