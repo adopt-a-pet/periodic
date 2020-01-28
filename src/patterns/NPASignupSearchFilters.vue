@@ -229,6 +229,7 @@ export default {
   watch: {
     'filters.clan': function (clan) {
       this.getBreeds(clan);
+      this.form.breeds = [];
       this.form.clan = clan;
     },
   },
