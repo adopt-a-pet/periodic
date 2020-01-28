@@ -49,7 +49,18 @@
     <div
       v-if="errorState"
       :class="b('error-msg').toString()">
-      {{ errorMessage }}
+      {{ error.message }}
+    </div>
+
+    <div
+      v-if="errorState && error.instructions"
+      :style="{
+        'font-size': $font_size_xs,
+        'line-height': $line_height_xs,
+        color: $color_warning,
+        'margin': `${$space_xxxxs} 0 0`
+      }">
+      {{ error.instructions }}
     </div>
   </div>
 </template>
@@ -208,7 +219,7 @@ export default {
       // It can only be considered to pass validation if there *are* validations
       return false;
     },
-    errorMessage() {
+    error() {
       return this.getErrorMessages(this.$v.validatedValue, this.errorMessages)[0];
     },
   },

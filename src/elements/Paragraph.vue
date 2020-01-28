@@ -93,8 +93,6 @@ export default {
       you do better and more informed decisions.
     </Paragraph>
 
-    <br>
-
     <Paragraph
       font-size="l"
       font-family="bold"
@@ -104,8 +102,6 @@ export default {
       and your team when working with the myriad parts of the system and help
       you do better and more informed decisions.
     </Paragraph>
-
-    <br>
 
     <Paragraph
       font-size="xs"
