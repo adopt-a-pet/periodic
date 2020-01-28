@@ -1,6 +1,6 @@
 {
   "name": "@aap/periodic",
-  "version": "0.67.8",
+  "version": "0.67.9",
   "description": "A design system for AAP's Vue components",
   "main": "dist/system/system.js",
   "files": [
