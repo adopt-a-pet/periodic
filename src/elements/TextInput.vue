@@ -40,6 +40,12 @@
 
       <slot name="right" />
 
+      <Tooltip
+        v-if="tooltip"
+        :class="b('tooltip').toString()">
+        {{ tooltip }}
+      </Tooltip>
+
       <Icon
         v-if="successState && showValidTick"
         :class="b('valid-tick').toString()"
@@ -89,6 +95,13 @@ export default {
       type: String,
       default: 'large',
       validator: value => value.match(/(small|large)/),
+    },
+    /**
+     * If a value is passed, show the info bubble
+     */
+    tooltip: {
+      type: String,
+      default: null,
     },
     /**
      * Name input field in the form.

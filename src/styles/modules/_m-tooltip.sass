@@ -5,16 +5,10 @@
   z-index: 1
 
   +e(bubble)
-    margin-left: auto
-    margin-right: 0
-    right: 0
     position: relative
     background: $color_white
     border-radius: $radius_l
     z-index: 200
-
-
-      // z-index: 100
 
   +e(content)
     font-size: $font_size_xs
@@ -31,10 +25,13 @@
     +rem-fallback('bottom', $space_xl)
     box-shadow: $shadow_callout
     position: absolute
+    +rem-fallback('margin-left', -70px)
+    +rem-fallback('margin-bottom', 3px)
+    border-radius: $radius_l
 
     &::after
       +rem-fallback('border', 8px solid $color_black)
-      +rem-fallback('left', $space_xxxxl)
+      +rem-fallback('right', $space_m)
       border-color: transparent transparent $color_white $color_white
       box-shadow: $shadow_callout
       box-sizing: border-box
