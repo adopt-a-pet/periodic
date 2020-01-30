@@ -1,9 +1,9 @@
 +b(value-list)
   +breakpoint(tiny)
-    @include rem-fallback('padding', 30px 0)
+    @include rem-fallback('margin-bottom', $space_l)
 
   +breakpoint(tablet-wide)
-    @include rem-fallback('padding', $space_s 0)
+    @include rem-fallback('margion-bottom', $space_s)
     border-top: 0
 
   +e(content)
@@ -27,14 +27,14 @@
   +e(item)
     word-break: break-word
     display: flex
-    @include rem-fallback('margin-top', 10px)
+    @include rem-fallback('margin-top', $space_xxs)
 
     +breakpoint(tiny)
       flex: 0 0 100%
 
     +breakpoint(tablet)
       flex: 0 0 calc(50% - 12px)
-      @include rem-fallback('margin-top', 15px)
+      @include rem-fallback('margin-top', $space_xs)
 
       &:nth-of-type(1)
         order: 1

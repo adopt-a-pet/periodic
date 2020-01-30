@@ -8,26 +8,13 @@
     margin-left: auto
     margin-right: 0
     right: 0
+    position: relative
     background: $color_white
     border-radius: $radius_l
-    box-shadow: $shadow_callout
-    position: relative
-    display: inline-block
+    z-index: 200
 
-    &::after
-      +rem-fallback('border', 8px solid $color_black)
-      +rem-fallback('left', $space_xxxxl)
-      border-color: transparent transparent $color_white $color_white
-      box-shadow: $shadow_callout
-      box-sizing: border-box
-      content: ''
-      height: 0
-      margin-left: 1.8em
-      position: absolute
-      transform-origin: 0 0
-      transform: rotate(315deg)
-      width: 0
-      z-index: 100
+
+      // z-index: 100
 
   +e(content)
     font-size: $font_size_xs
@@ -42,4 +29,19 @@
     +rem-fallback('width', $width_tooltip)
     +rem-fallback('left', -($width_tooltip / 2))
     +rem-fallback('bottom', $space_xl)
+    box-shadow: $shadow_callout
     position: absolute
+
+    &::after
+      +rem-fallback('border', 8px solid $color_black)
+      +rem-fallback('left', $space_xxxxl)
+      border-color: transparent transparent $color_white $color_white
+      box-shadow: $shadow_callout
+      box-sizing: border-box
+      content: ''
+      height: 0
+      margin-left: 1.8em
+      position: absolute
+      transform-origin: 0 0
+      transform: rotate(315deg)
+      width: 0

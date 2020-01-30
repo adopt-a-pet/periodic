@@ -82,10 +82,10 @@ export default {
     <TextLink>Without an href, the tag is a span</TextLink>
     <br />
     <br />
-    <TextLink color="gray-light">Without href, gray-light</TextLink>
+    <TextLink :style="{ color: $color_gray_darker }">Without href, gray</TextLink>
     <br />
     <br />
-    <TextLink color="gray-light" always-underline>Always underline</TextLink>
+    <TextLink :style="{ color: $color_gray_darker }" always-underline>Always underline</TextLink>
   </Paragraph>
 </template>
 <script>

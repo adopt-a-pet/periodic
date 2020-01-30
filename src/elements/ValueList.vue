@@ -13,13 +13,12 @@
           {{ items.label }}
         </Heading>
 
-        <Heading
+        <span
           :class="[b('text', { 'full-width': fullWidth }).toString()]"
-          level="h5"
-          font-weight="light"
+          :style="{ 'font-weight': $font_weight_light }"
           line-height="compact">
           <span v-html="items.value" />
-        </Heading>
+        </span>
       </div>
     </div>
   </div>
@@ -63,7 +62,6 @@ export default {
 <div>
   <Heading
     level='h3'
-    font-family='special'
     font-weight='bold'
     line-height='compact'>Facts About Me</Heading>
 

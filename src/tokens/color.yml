@@ -64,7 +64,7 @@ props:
     value: "rgb(36, 36, 36)"
     category: color_group_5
   color_gray_darker:
-    value: "rgb(179,179,179)"
+    value: "rgb(179,179,179)" #B3B3B3
     category: color_group_5
   color_gray_dark:
     value: "rgb(218,218,218)" #DADADA
