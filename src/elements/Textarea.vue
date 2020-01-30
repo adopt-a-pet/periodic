@@ -4,7 +4,7 @@
       :name="name"
       :maxlength="max"
       :required="required"
-      :class="b().is({ 'error': errorState }).has({ content: hasContent }).toString()"
+      :class="b().is({ 'error': errorState }).has({ content: hasContent }).is({ disabled }).toString()"
       :disabled="disabled"
       @input="onInput($event.target.value)"
       @focus="focused = true"
@@ -12,7 +12,7 @@
       @scroll.passive="onScroll" />
 
     <label
-      :class="b('label').is({ hidden: hideLabels }).toString()">
+      :class="b('label').is({ hidden: hideLabels, disabled }).toString()">
 
       <span v-if="hasContent || focused">{{ shortLabel || placeholder }}</span>
       <span v-if="!(hasContent || focused)">{{ placeholder }}</span>
@@ -25,7 +25,7 @@
     <div
       v-if="max"
       :class="b('text-limit').toString()">
-      {{ remaining }} Characters Remaining
+      <span :class="{ 'warning': remaining < 1 }">{{ remaining }} Characters Remaining</span>
     </div>
   </div>
 </template>

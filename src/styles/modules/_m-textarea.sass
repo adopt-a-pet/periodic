@@ -1,6 +1,6 @@
 +b(textarea)
   +reset
-  +rem-fallback('border', 1px solid $color_gray_light)
+  +rem-fallback('border', 1px solid $color_gray_darker)
   +rem-fallback('border-radius', $radius_l)
   +rem-fallback('font-size', $font_size_m)
   +rem-fallback('height', 240px)
@@ -14,9 +14,13 @@
   outline: none
   resize: none
   width: 100%
+  font-weight: $font_weight_light
 
   &:focus
     +rem-fallback('border', 1px solid $color_primary)
+
+  +is(disabled)
+    +rem-fallback('border', 1px solid $color_gray_dark)
 
   +is(error)
     +rem-fallback('border', 1px solid $color_warning)
@@ -31,6 +35,9 @@
 
     +is(hidden)
       opacity: 0
+
+    +is(disabled)
+      color: $color_gray_dark
 
   &:focus, &.#{_has(content)}
     ~ label
@@ -59,6 +66,11 @@
     font-weight: $font_weight_light
     letter-spacing: 0
     text-align: right
+    font-size: $font_size_s
+    line-height: $line_height_s
+
+    .warning
+      color: $color_warning
 
   +e(container)
     +column(1, 0)
