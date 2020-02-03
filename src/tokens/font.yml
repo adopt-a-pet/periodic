@@ -7,7 +7,7 @@ props:
   font:
     value: "Soleil, Helvetica Neue, Arial, sans-serif"
   font_special:
-    value: "Bayu Prahara, Bradley Hand ITC, cursive"
+    value: "special, Bradley Hand ITC, cursive"
   font_weight_bolder:
     value: "800"
   font_weight_bold:

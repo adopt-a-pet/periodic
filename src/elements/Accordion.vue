@@ -6,7 +6,7 @@
       @click="toggle">
       <Icon
         name="angle-down"
-        :fill="tokens.color_primary_blue" />
+        :fill="$color_primary" />
       <slot
         v-if="headerPlacement === 'above' || (headerPlacement === 'below' && !open)"
         name="header" />

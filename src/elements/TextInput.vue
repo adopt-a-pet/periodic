@@ -55,7 +55,8 @@
     <div
       v-if="errorState"
       :class="b('error-msg').toString()">
-      {{ error.message }}
+      <span v-if="typeof error === 'object'">{{ error.message }}</span>
+      <span v-else>{{ error }}</span>
     </div>
 
     <div

@@ -1,4 +1,4 @@
-<div :class="b({ searchable: search }).is({ full: full }).toString()">
+<div :class="b({ searchable: search }).is({ full: full }).is({'with-events': focusedEvents}).toString()">
   <TextInput :class="b('text-input').toString()"
     :label="label"
     :name="name"
