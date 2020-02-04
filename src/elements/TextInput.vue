@@ -61,12 +61,7 @@
 
     <div
       v-if="errorState && error.instructions"
-      :style="{
-        'font-size': $font_size_xs,
-        'line-height': $line_height_xs,
-        color: $color_warning,
-        'margin': `${$space_xxxxs} 0 0`
-      }">
+      :class="b('error-instructions').toString()">
       {{ error.instructions }}
     </div>
   </div>

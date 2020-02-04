@@ -101,6 +101,13 @@
     text-align: right
     width: 60%
 
+  +e(error-instructions)
+    position: absolute
+    font-size: $font_size_xs
+    line-height: $line_height_xs
+    color: $color_warning
+    margin: $space_xxxxs 0 0
+
   +e(label)
     +labeltext($labeltext: label-field)
     +rem-fallback('letter-spacing', -0.25px)
