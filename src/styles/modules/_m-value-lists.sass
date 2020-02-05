@@ -6,9 +6,11 @@
     @include rem-fallback('margion-bottom', $space_s)
     border-top: 0
 
-  +e(content)
-    display: flex
-    flex-wrap: wrap
+  .content
+
+    &.table
+      display: flex
+      flex-wrap: wrap
 
     +breakpoint(tiny)
       flex-direction: row
@@ -24,9 +26,12 @@
       height: auto
       justify-content: unset
 
-  +e(item)
-    word-break: break-word
-    display: flex
+  .item
+    // word-break: break-word
+
+    &.table
+      display: flex
+
     @include rem-fallback('margin-top', $space_xxs)
 
     +breakpoint(tiny)
@@ -54,28 +59,31 @@
       &:nth-of-type(6)
         order: 6
 
-    +breakpoint(tablet-wide)
-      flex: 0 0 100%
-
       &:nth-of-type(1n+1)
         order: unset
 
-    +m(full-width)
-      flex-wrap: wrap
+    +breakpoint(tablet-wide)
 
-    +m(section)
-      word-break: break-word
+      &.full-width
+        flex: 0 0 100%
+        flex-wrap: wrap
 
-  +e(label)
+    .section
+      // word-break: break-word
+
+  .label
     flex: 0 0 25%
+    margin-bottom: 0
 
-    +m(full-width)
+    .full-width
       flex: 0 0 100%
-      @include rem-fallback('margin-bottom', 5px)
 
     +breakpoint(tablet)
       flex: 0 0 20%
 
-  +e(text)
-    +m(full-width)
+  .text
+    position: relative
+    +rem-fallback('top', -3px)
+
+    .full-width
       flex: 0 0 100%
