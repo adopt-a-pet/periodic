@@ -52,20 +52,6 @@ export default {
     },
   },
   methods: {
-
-    /**
-     * Check that an object is within the viewport
-     */
-    isInViewport(elem) {
-      const bounding = elem.getBoundingClientRect();
-      return (
-        bounding.top >= 0
-        && bounding.left >= 0
-        && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-        && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-      );
-    },
-
     /**
      * Toggle bubble state and orient it for the screen
      */
@@ -73,8 +59,12 @@ export default {
       this.showBubble = showBubble;
       this.$nextTick(() => {
         const elem = document.getElementById(this.uid);
-        const isInViewport = this.isInViewport(elem);
-        this.orientation = isInViewport ? 'from-right' : 'from-left';
+        const bounding = elem.getBoundingClientRect();
+        if (bounding.left >= window.innerWidth / 2) {
+          this.orientation = 'from-right';
+        } else {
+          this.orientation = 'from-left';
+        }
       });
     },
   },
@@ -83,6 +73,9 @@ export default {
 
 <docs>
   ```jsx
-  <Tooltip>{{ this.$filler.title }}</Tooltip>
+  <div>
+    <Tooltip>{{ this.$filler.title }}</Tooltip>
+    <Tooltip style="float: right">{{ this.$filler.title }}</Tooltip>
+  </div>
   ```
 </docs>
