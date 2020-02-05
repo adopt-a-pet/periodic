@@ -109,7 +109,7 @@ export default {
     errorMessages: {
       type: Object,
       default: () => ({
-        required: 'This is required',
+        required: 'Required',
       }),
     },
   },
@@ -186,6 +186,7 @@ export default {
       v-model="textArea1"
       placeholder="Characters remaining will show at the bottom if `max` is passed"
       shortLabel="This is shortened"
+      required
       :max="30" />
 
     <br />

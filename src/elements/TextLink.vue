@@ -29,8 +29,8 @@ export default {
      */
     color: {
       type: String,
-      default: 'blue',
-      validator: value => value.match(/(blue|gray-light)/),
+      default: 'primary',
+      validator: value => value.match(/(primary|black)/),
     },
     /**
      * Always show the underline.
@@ -82,10 +82,10 @@ export default {
     <TextLink>Without an href, the tag is a span</TextLink>
     <br />
     <br />
-    <TextLink :style="{ color: $color_gray_darker }">Without href, gray</TextLink>
+    <TextLink color="black">Without href, gray</TextLink>
     <br />
     <br />
-    <TextLink :style="{ color: $color_gray_darker }" always-underline>Always underline</TextLink>
+    <TextLink color="black" always-underline>Always underline</TextLink>
   </Paragraph>
 </template>
 <script>

@@ -119,9 +119,9 @@ export default {
     errorMessages: {
       type: Object,
       default: () => ({
-        required: 'Enter Password',
+        required: 'Enter password',
         minLength: {
-          message: 'Invalid Password',
+          message: 'Invalid password',
           instructions: 'Password should be at least 8 characters with 1 number and 1 capital letter.',
         },
       }),

@@ -1,10 +1,13 @@
 <template>
-  <div :class="b().toString()">
+  <div
+    v-show="open"
+    :class="b().toString()">
     <div :class="b('bubble-container').toString()">
       <div :class="b('bubble').toString()">
         <div :class="b('content').toString()">
           <slot />
         </div>
+        <div class="caret" />
       </div>
     </div>
   </div>
@@ -21,11 +24,11 @@ export default {
   },
   props: {
     /**
-     * The icon to use for the popup.
+     * Should the popup be open or closed.
      */
-    icon: {
-      type: String,
-      default: 'info',
+    open: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -33,14 +36,51 @@ export default {
       showBubble: false,
     };
   },
+  methods: {
+    close() {
+      /**
+       * Popup closed
+       *
+       * @event close
+       * @type none
+       */
+      this.$emit('close');
+
+      /**
+       * Same as `@close` but allows components to use `:open.sync=""`
+       *
+       * @event update:open
+       * @type Boolean
+       */
+      this.$emit('update:open', false);
+    },
+  },
 };
 </script>
 
 <docs>
   ```jsx
-  <Popup>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </Popup>
+  <template>
+    <div>
+      <VSpacer size="xxxxxxl" />
+      <Popup :open.sync="open">
+        This bubble could be used for anything.
+        <VSpacer />
+        <Button size="small">Anything at All</Button>
+      </Popup>
+      <Paragraph>
+        <TextLink @click="open = !open">Click to Reveal</TextLink>
+      </Paragraph>
+    </div>
+  </template>
+  <script>
+    export default {
+      data() {
+        return {
+          open: false,
+        }
+      }
+    }
+  </script>
   ```
 </docs>

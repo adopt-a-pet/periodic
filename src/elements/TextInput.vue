@@ -60,7 +60,7 @@
     </div>
 
     <div
-      v-if="errorState && error.instructions"
+      v-if="errorState && error && error.instructions"
       :class="b('error-instructions').toString()">
       {{ error.instructions }}
     </div>
@@ -229,7 +229,11 @@ export default {
       return false;
     },
     error() {
-      return this.getErrorMessages(this.$v.validatedValue, this.errorMessages)[0];
+      const errorMessages = this.errorMessages;
+      if (this.required && !errorMessages.required) {
+        errorMessages.required = 'Required';
+      }
+      return this.getErrorMessages(this.$v.validatedValue, errorMessages)[0];
     },
   },
   watch: {
@@ -319,9 +323,7 @@ export default {
         ...this.validations,
       },
     };
-
     if (this.required) validations.validatedValue.required = required;
-
     return validations;
   },
 };
@@ -332,7 +334,8 @@ export default {
 <template>
   <div>
     <TextInput
-      v-model="textInput1" />
+      v-model="textInput1"
+      required />
 
     <br />
 

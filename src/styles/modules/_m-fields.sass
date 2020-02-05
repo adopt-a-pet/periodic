@@ -94,7 +94,7 @@
     +rem-fallback('font-size', $font_size_xs)
     +rem-fallback('line-height', $line_height_s_v2)
     +rem-fallback('right', $space_xs)
-    +rem-fallback('top', $space_xxxxs)
+    +rem-fallback('top', 3px)
     color: $color_warning
     pointer-events: none
     position: absolute
@@ -157,7 +157,6 @@
 
   +e(slot)
     +m(right)
-      +rem-fallback('height', $line_height_s)
       +rem-fallback('right', $space_xs)
       +rem-fallback('top', $space_s)
       display: flex
@@ -165,7 +164,6 @@
       font-weight: $font_weight_bold
       left: auto
       position: absolute
-      vertical-align: middle
       align-items: center
 
       > *
