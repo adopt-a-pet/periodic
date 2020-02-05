@@ -1,25 +1,24 @@
 <template>
   <div :class="b().toString()">
-    <div :class="b('content').toString()">
+    <div :class="['content', format]">
       <div
         v-for="items in items"
         :key="items.label"
-        :class="[b('item', { 'full-width': fullWidth }).toString()]">
+        :class="['item', format, { 'full-width': fullWidth }]">
         <Heading
-          :class="b('label', { 'full-width': fullWidth }).toString()"
+          :class="['label', format, { 'full-width': fullWidth }]"
           level="h5"
           font-weight="bold"
           line-height="compact">
-          {{ items.label }}
+          {{ items.label }}<span v-if="format === 'list'">:</span>
         </Heading>
 
-        <Heading
-          :class="[b('text', { 'full-width': fullWidth }).toString()]"
-          level="h5"
-          font-weight="light"
+        <span
+          :class="['text', { 'full-width': fullWidth }]"
+          :style="{ 'font-weight': $font_weight_light }"
           line-height="compact">
           <span v-html="items.value" />
-        </Heading>
+        </span>
       </div>
     </div>
   </div>
@@ -36,6 +35,15 @@ export default {
   status: 'review',
   release: '1.0.0',
   props: {
+    /**
+     * Display format (table|list)
+     */
+    format: {
+      type: String,
+      default: 'table',
+      validator: value => value.match(/(table|list)/),
+    },
+
     /**
      * The value to be displayed. Each item must have one label and one value.
      * `[{ label: 'Age', value: 'Adult' }]`
@@ -63,21 +71,22 @@ export default {
 <div>
   <Heading
     level='h3'
-    font-family='special'
     font-weight='bold'
-    line-height='compact'>Facts About Me</Heading>
+    line-height='compact'
+    style="margin-bottom: 0">Facts about me</Heading>
 
   <ValueList
     :items="[
-      { label: 'Breed:', value: 'Greyhound' },
-      { label: 'Color:', value: 'Brindle' },
-      { label: 'Age:', value: 'Adult' },
-      { label: 'Size:', value: '(when grown) Med. 26-60 lbs (12-27 kg)' },
-      { label: 'Weight:', value: '(current weight) 70 lbs' },
-      { label: 'Sex:', value: 'Male' },
-      { label: 'Pet ID:', value: '' },
+      { label: 'Breed', value: 'Greyhound' },
+      { label: 'Color', value: 'Brindle' },
+      { label: 'Age', value: 'Adult' },
+      { label: 'Size', value: '(when grown) Med. 26-60 lbs (12-27 kg)' },
+      { label: 'Weight', value: '(current weight) 70 lbs' },
+      { label: 'Sex', value: 'Male' },
+      { label: 'Pet ID', value: '' },
     ]"
-    :full-width="true">
+    :full-width="true"
+    format="list">
   </ValueList>
 </div>
 ```

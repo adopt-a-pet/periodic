@@ -10,53 +10,86 @@
     background-color: $color_white
     display: inline-block
     flex: 0 0 auto
-    +rem-fallback('height', $font_size_m)
+    +rem-fallback('height', 21px)
     overflow: hidden
-    +rem-fallback('width', $font_size_m)
+    +rem-fallback('width', 21px)
     vertical-align: middle
 
     +m(size-small)
-      +rem-fallback('height', $font_size_s)
-      +rem-fallback('width', $font_size_s)
-
-    +m(size-tiny)
+      +rem-fallback('height', 14px)
+      +rem-fallback('width', 14px)
       +rem-fallback(border-radius, $radius_s)
-      +rem-fallback('height', $font_size_xs)
-      +rem-fallback('width', $font_size_xs)
 
     &:hover
       +rem-fallback('border', 2px solid $color_primary)
 
-    +is(checked)
-      background-color: $color_primary
-      +rem-fallback('border', 2px solid $color_primary)
+    &.is-inverted
+      +border(2px solid $color_white)
+
+    &.is-checked
+
+      &:not(.is-inverted)
+        background-color: $color_primary
+        +border(2px solid $color_primary)
+
+        .#{$prefix-component}icon
+
+          path
+            fill: $color_white
+
+      &.is-inverted
+        background-color: $color_white
+
+        .#{$prefix-component}icon
+
+          path
+            fill: $color_primary
 
     +is(disabled)
-      +rem-fallback('border', 2px solid $color_gray_dark)
+      +border(2px solid $color_gray)
       background-color: $color_white
 
   +e(label-container)
     display: flex
     width: 100%
-    @include rem-fallback('margin-left', 14px)
+    @include rem-fallback('margin-left', $space_s)
     justify-content: space-between
+    margin-top: -3px
 
-    +m(size-tiny)
+    +m(size-small)
       +rem-fallback('line-height', $line_height_xs)
+      +rem-fallback('margin-left', $space_xxs)
+      margin-top: 0
+
+    &.is-inverted
+
+      label
+        color: $color_white
+
+    +is(disabled)
+
+      label
+        color: $color_gray
 
   +e(label)
     cursor: pointer
     vertical-align: middle
-    line-height: 1em
+    font-size: $font_size_m
+    line-height: $line_height_s
+    font-weight: $font_weight_light
 
-    +m(size-tiny)
-      +rem-fallback('line-height', $line_height_xxs)
+    +m(size-small)
+      +rem-fallback('line-height', $line_height-xxs)
       +rem-fallback('font-size', $font_size_xxs)
 
   +e(label-right)
     cursor: pointer
     float: right
     vertical-align: middle
+
+    +m(size-small)
+      +rem-fallback('line-height', $line_height_xxs)
+      +rem-fallback('font-size', $font_size_xxs)
 
   +e(check)
     svg
@@ -70,9 +103,9 @@
   padding: 0
   width: 100%
   list-style-type: none
-  +rem-fallback('row-gap', $space_s)
 
-  +e('label')
-    font-weight: $font_weight_light
-    +rem-fallback('font-size', $font_size_m)
-    line-height: normal
+  +m(size-large)
+    +rem-fallback('row-gap', $space_s)
+
+  +m(size-small)
+    +rem-fallback('row-gap', $space_xs)

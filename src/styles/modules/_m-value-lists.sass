@@ -1,14 +1,16 @@
 +b(value-list)
   +breakpoint(tiny)
-    @include rem-fallback('padding', 30px 0)
+    @include rem-fallback('margin-bottom', $space_l)
 
   +breakpoint(tablet-wide)
-    @include rem-fallback('padding', $space_s 0)
+    @include rem-fallback('margion-bottom', $space_s)
     border-top: 0
 
-  +e(content)
-    display: flex
-    flex-wrap: wrap
+  .content
+
+    &.table
+      display: flex
+      flex-wrap: wrap
 
     +breakpoint(tiny)
       flex-direction: row
@@ -24,17 +26,20 @@
       height: auto
       justify-content: unset
 
-  +e(item)
-    word-break: break-word
-    display: flex
-    @include rem-fallback('margin-top', 10px)
+  .item
+    // word-break: break-word
+
+    &.table
+      display: flex
+
+    @include rem-fallback('margin-top', $space_xxs)
 
     +breakpoint(tiny)
       flex: 0 0 100%
 
     +breakpoint(tablet)
       flex: 0 0 calc(50% - 12px)
-      @include rem-fallback('margin-top', 15px)
+      @include rem-fallback('margin-top', $space_xs)
 
       &:nth-of-type(1)
         order: 1
@@ -54,28 +59,31 @@
       &:nth-of-type(6)
         order: 6
 
-    +breakpoint(tablet-wide)
-      flex: 0 0 100%
-
       &:nth-of-type(1n+1)
         order: unset
 
-    +m(full-width)
-      flex-wrap: wrap
+    +breakpoint(tablet-wide)
 
-    +m(section)
-      word-break: break-word
+      &.full-width
+        flex: 0 0 100%
+        flex-wrap: wrap
 
-  +e(label)
+    .section
+      // word-break: break-word
+
+  .label
     flex: 0 0 25%
+    margin-bottom: 0
 
-    +m(full-width)
+    .full-width
       flex: 0 0 100%
-      @include rem-fallback('margin-bottom', 5px)
 
     +breakpoint(tablet)
       flex: 0 0 20%
 
-  +e(text)
-    +m(full-width)
+  .text
+    position: relative
+    +rem-fallback('top', -3px)
+
+    .full-width
       flex: 0 0 100%

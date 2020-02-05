@@ -1,57 +1,3 @@
-<template>
-  <div
-    :class="b({ searchable: search }).is({ full: full }).toString()">
-    <TextInput
-      :class="b('text-input').toString()"
-      :label="label"
-      :name="name"
-      :readonly="!search"
-      :value="filterOrselectedDisplay"
-      :label-right="labelRight"
-      autocomplete="off"
-      focus-border
-      @blur="onBlur"
-      @click="toggle"
-      @focus="onFocus"
-      @input="setFilter">
-      <template slot="right">
-        <Tooltip v-if="tooltip">
-          {{ tooltip }}
-        </Tooltip>
-
-        <span
-          :class="b('arrow').toString()"
-          @click="toggle" />
-      </template>
-    </TextInput>
-
-    <div
-      :class="b('list').toString()">
-      <ul>
-        <li
-          v-for="option in choices"
-          :key="option.display"
-          :class="b('list-item').is({ selected: isOptionSelected(option) }).toString()"
-          @mousedown.stop.prevent="e => onSelect(option)">
-          <Checkbox
-            :checked="isOptionSelected(option)">
-            <span>
-              {{ option.display | capitalize }}
-            </span>
-
-            <template
-              v-if="option.labelRight"
-              slot="right">
-              <span>{{ option.labelRight }}</span>
-            </template>
-          </Checkbox>
-        </li>
-      </ul>
-    </div>
-  </div>
-</template>
-
-<script>
 import Fuse from 'fuse.js';
 
 const fuseOptions = {
@@ -65,7 +11,6 @@ const fuseOptions = {
     'display',
   ],
 };
-
 export default {
   name: 'DropdownMulti',
   blockName: 'dropdown',
@@ -160,8 +105,22 @@ export default {
       type: String,
       default: null,
     },
+    /**
+     * Issues on iOS when using the searchable dropowns.
+     * Using this to decicde if we need to turn on pointer events.
+     */
+    pointerEvents: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * Autoclose the dropdown
+     */
+    autoClose: {
+      type: Boolean,
+      default: false,
+    },
   },
-
   data() {
     return {
       full: false,
@@ -170,24 +129,20 @@ export default {
       filter: '',
     };
   },
-
   computed: {
     allChoices() { return this.makeChoices(this.items); },
     selectedDisplay() {
       if (!(this.value && this.value.length)) {
         return this.zeroSelectedLabel || '';
       }
-
       if (this.value.length > 1 && this.multiSelectedLabel) return this.multiSelectedLabel;
       if (!(this.items && this.items.length)) return 'Loading...';
-
       return this.value
         .map(selectedValue =>
           this.allChoices.find(choice => choice.value === selectedValue).display,
         )
         .join(', ');
     },
-
     filterOrselectedDisplay() {
       return (
         this.focused
@@ -195,7 +150,6 @@ export default {
           : this.selectedDisplay
       );
     },
-
     choices() {
       return (
         (this.search && this.filter !== '')
@@ -203,8 +157,10 @@ export default {
           : this.allChoices
       );
     },
+    focusedEvents() {
+      return this.pointerEvents === true && this.focused;
+    },
   },
-
   methods: {
     // Design team requires an `Any` option to be at the top of the list.
     // This is a problem because when using Fuse the ordering can't be
@@ -214,7 +170,6 @@ export default {
       const withSpecialChoices = this.specialChoices.concat(items);
       return this.addIndexes(withSpecialChoices);
     },
-
     onSelect({ value: selected }) {
       /**
        * Change event
@@ -227,25 +182,25 @@ export default {
       } else {
         this.$emit('change', this.value.concat(selected));
       }
+      if (this.autoClose) {
+        setTimeout(() => {
+          this.hide();
+        }, 2000);
+      }
     },
-
     onBlur() {
       this.focused = false;
       this.hide();
     },
-
     onFocus() {
       if (!this.search) return;
-
       this.setFilter('');
       this.focused = true;
       this.showFull();
     },
-
     setFilter(value) {
       this.filter = value.trim();
     },
-
     // This is a little ugly but...
     //
     // 1. `makeChoices(this.items)` to add indexes to everything, including
@@ -259,13 +214,10 @@ export default {
       const specialChoicesBeginning = list.slice(0, specialChoicesBeginningSize);
       const filterChoices = list.slice(specialChoicesBeginningSize);
       const fuse = new Fuse(filterChoices, fuseOptions);
-
       return specialChoicesBeginning.concat(fuse.search(filter));
     },
-
     toggle() {
       if (this.search) return;
-
       if (this.full) this.hide();
       else this.showFull();
     },
@@ -274,60 +226,12 @@ export default {
       this.filter = '';
     },
     showFull() { this.full = true; },
-
     focusInput() { this.$refs.input.focus(); },
-
     addIndexes(choices) {
       return choices.map((choice, i) => ({ ...choice, index: i }));
     },
-
     isOptionSelected({ value: optionValue }) {
       return this.value.includes(optionValue);
     },
   },
-
 };
-</script>
-
-<docs>
-```vue
-<template>
-  <div>
-    <DropdownMulti
-      label="Without Search"
-      label-right="Right Label"
-      zero-selected-label="Any"
-      multi-selected-label="Multiple"
-      v-model="dropdown1"
-      :items="[
-        { display: 'One', value: 1, labelRight: '(3)' },
-        { display: 'Two', value: 2, labelRight: '(1)' },
-      ]" />
-
-    <br />
-
-    <DropdownMulti
-      label="With Search"
-      v-model="dropdown2"
-      :items="[
-        { display: 'One', value: 1, labelRight: '(0)' },
-        { display: 'Two', value: 2, labelRight: '(2)' },
-        { display: 'Three', value: 3, labelRight: '(5)' },
-        { display: 'Four', value: 4, labelRight: '(1)' },
-      ]"
-      :search="true"
-      tooltip="This is an info bubble" />
-  </div>
-</template>
-<script>
-export default {
-  data() {
-    return {
-      dropdown1: [],
-      dropdown2: [2,3],
-    }
-  }
-};
-</script>
-```
-</docs>

@@ -1,5 +1,7 @@
 <template>
-  <form @submit.stop.prevent="onSubmit">
+  <form
+    class="validated-form"
+    @submit.stop.prevent="onSubmit">
     <!-- @slot Put all your fields here like a normal form -->
     <slot />
   </form>
@@ -75,20 +77,16 @@ export default {
     @submit="onSubmit">
 
     <Heading level="h3">{{ submitted ? '' : 'Not ' }}Submitted</Heading>
-    <VSpacer size="xs" />
     <Heading v-if="error" level="h4">Error on field: {{ error }}</Heading>
-    <VSpacer size="xs" />
 
     <EmailInput
       v-model="email"
       name="email" />
 
-    <VSpacer size="xs" />
-
     <PasswordInput
       v-model="password"
       name="password" />
-    <VSpacer size="l" />
+
     <Button v-if="!submitted" type="submit">Submit!</Button>
   </ValidatedForm>
 </template>

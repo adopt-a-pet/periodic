@@ -15,11 +15,11 @@
         @change="select($event.target, item.value)">
 
       <label
-        :class="b('label', { color: 'white' }).toString()"
+        :class="b('label', { color: 'white' }).is({ inverted }).toString()"
         :for="item.id">{{ item.display }}</label>
 
       <label
-        :class="b('outside', { color: 'white' }).toString()"
+        :class="b('outside', { color: 'white' }).is({ inverted }).toString()"
         :for="item.id" />
     </li>
   </ul>
@@ -41,6 +41,13 @@ export default {
     prop: 'value',
   },
   props: {
+    /**
+     * Invert the color and background of the check
+     */
+    inverted: {
+      type: Boolean,
+      default: false,
+    },
     /**
      * Name of the radio group in the form.
      */
@@ -122,7 +129,7 @@ export default {
 ```vue
 <template>
 <div>
-  <Heading level="h4">1 Column (default)</Heading>
+  <Heading level="h3">1 Column (default)</Heading>
 
   <RadioGroup
     v-model="radioGroupSelected"
@@ -133,9 +140,7 @@ export default {
       { display: 'Three', value: '3' }
     ]" />
 
-  <VSpacer size="l" />
-
-  <Heading level="h4">3 Columns</Heading>
+  <Heading level="h3">3 Columns</Heading>
 
   <RadioGroup
     v-model="radioGroupSelected2"
@@ -146,6 +151,20 @@ export default {
       { display: 'Two', value: '2' },
       { display: 'Three', value: '3' }
     ]" />
+
+  <Heading level="h3">Inverted</Heading>
+
+  <div :style="{ background: $color_primary, padding: $space_xs }">
+    <RadioGroup
+      v-model="radioGroupSelected3"
+      inverted
+      name="example3"
+      :items="[
+        { display: 'One', value: '1' },
+        { display: 'Two', value: '2' },
+        { display: 'Three', value: '3' }
+      ]" />
+  </div>
 </div>
 </template>
 <script>
@@ -154,6 +173,7 @@ export default {
     return {
       radioGroupSelected: '2',
       radioGroupSelected2: '2',
+      radioGroupSelected3: '3',
     }
   }
 };

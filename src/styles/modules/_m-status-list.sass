@@ -1,30 +1,37 @@
 +b(status-list)
-  display: flex
-  flex-wrap: wrap
   width: 100%
-  justify-content: space-between
 
   +breakpoint(tablet-wide)
     justify-content: unset
 
+    &.columns-2
+      column-count: 2
+
+    &.columns-3
+      column-count: 3
+
+    &.columns-4
+      column-count: 4
+
+    &.columns-5
+      column-count: 5
+
+    &.columns-6
+      column-count: 6
+
   +e(label)
-    width: 100%
     display: flex
     padding-right: 0
     @include rem-fallback('margin-top', 15px)
 
-    @include breakpoint(tablet)
-      width: calc(50% - 12px)
-
-    @include breakpoint(phone-wide)
-      width: 100%
-
+    h4
+      margin: 0
 
   +e(icon)
     display: block
     +rem-fallback('width', 16px)
     +rem-fallback('height', 12px)
-    +rem-fallback('margin-right', 10px)
+    +rem-fallback('margin-right', $space_s)
 
     +m('state-tick')
       +rem-fallback('margin-top', 2px)

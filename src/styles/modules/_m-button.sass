@@ -117,7 +117,7 @@
         color: $color_white
 
   &[disabled]
-    background-color: $color_gray_lighter
+    background-color: $color_gray
     border: 0
     line-height: 2.9
     cursor: not-allowed
@@ -145,3 +145,5 @@
     display: inline-block
     vertical-align: text-bottom
     +rem-fallback('margin-right', $space_xxxxs)
+    position: relative
+    +rem-fallback('top', -$space_xs)

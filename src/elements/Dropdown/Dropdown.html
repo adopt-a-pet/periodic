@@ -1,0 +1,70 @@
+<div v-if="native"
+  :class="b({ native: true, [size]: true }).toString()">
+  <TextInput :label="label"
+    :label-right="labelRight"
+    :size="size"
+    :value="selectedDisplay"
+    autocomplete="off"
+    focus-border
+    readonly>
+    <template slot="right">
+      <Tooltip v-if="tooltip"
+        :class="b('tooltip').toString()">
+        {{ tooltip }}
+      </Tooltip>
+
+      <span :class="b('arrow').toString()"
+        @click="toggle" />
+    </template>
+  </TextInput>
+
+  <select v-model.number="selectedIndex"
+    :class="b('select').toString()"
+    :name="name">
+    <option v-for="option in choices"
+      :key="option.display"
+      :value="option.index">
+      {{ option.display | capitalize }}
+    </option>
+  </select>
+</div>
+
+<div v-else
+  :class="b({ searchable: search, [size]: true }).is({ full: full }).toString()">
+  <TextInput :label="label"
+    :name="name"
+    :readonly="readonly"
+    :value="filterOrselectedDisplay"
+    :label-right="labelRight"
+    :size="size"
+    autocomplete="off"
+    focus-border
+    @blur="onBlur"
+    @click="toggle"
+    @focus="onFocus"
+    @input="setFilter">
+    <template slot="right">
+      <Tooltip v-if="tooltip">
+        {{ tooltip }}
+      </Tooltip>
+
+      <span :class="b('arrow').toString()"
+        @click="toggle" />
+    </template>
+  </TextInput>
+
+  <div :class="b('list').toString()">
+    <ul>
+      <li v-for="option in choices"
+        :key="option.display"
+        :class="b('list-item').is({ selected: isOptionSelected(option) }).toString()"
+        @mousedown="e => onSelect(option.index)">
+        {{ option.display | capitalize }}
+
+        <Icon v-if="isOptionSelected(option)"
+          :class="b('list-check').toString()"
+          name="check-blue" />
+      </li>
+    </ul>
+  </div>
+</div>

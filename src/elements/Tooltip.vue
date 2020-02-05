@@ -1,22 +1,24 @@
 <template>
   <div :class="b().toString()">
     <div
-      v-if="showBubble"
-      :class="b('bubble-container').toString()">
-      <div
-        :class="b('bubble').toString()">
-        <div :class="b('content').toString()">
+      v-show="showBubble"
+      :id="uid"
+      :class="`bubble-container ${orientation}`">
+      <div class="bubble">
+        <div class="content">
           <slot />
         </div>
       </div>
+      <div class="caret" />
     </div>
 
-    <span
-      @mouseleave="showBubble = false"
-      @mouseover="showBubble = true">
-
+    <div
+      class="icon-container"
+      @mouseleave="toggleBubble(false)"
+      @mouseover="toggleBubble(true)">
+      <div class="hover-area" />
       <Icon :name="icon" />
-    </span>
+    </div>
   </div>
 </template>
 
@@ -40,14 +42,40 @@ export default {
   },
   data() {
     return {
+      orientation: 'from-right',
       showBubble: false,
     };
+  },
+  computed: {
+    uid() {
+      return Math.random().toString(36).substr(2, 9);
+    },
+  },
+  methods: {
+    /**
+     * Toggle bubble state and orient it for the screen
+     */
+    toggleBubble(showBubble) {
+      this.showBubble = showBubble;
+      this.$nextTick(() => {
+        const elem = document.getElementById(this.uid);
+        const bounding = elem.getBoundingClientRect();
+        if (bounding.left >= window.innerWidth / 2) {
+          this.orientation = 'from-right';
+        } else {
+          this.orientation = 'from-left';
+        }
+      });
+    },
   },
 };
 </script>
 
 <docs>
   ```jsx
-  <Tooltip>Hi</Tooltip>
+  <div>
+    <Tooltip>{{ this.$filler.title }}</Tooltip>
+    <Tooltip style="float: right">{{ this.$filler.title }}</Tooltip>
+  </div>
   ```
 </docs>

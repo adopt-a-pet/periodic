@@ -1,7 +1,9 @@
 +b(text-field)
+
   +e(container)
     position: relative
     width: 100%
+    margin-bottom: $space_xs
 
   +e(input)
     +rem-fallback('border', 1px solid $color_gray_darker)
@@ -25,9 +27,11 @@
         +rem-fallback('padding-bottom', $space_xxxxs)
 
     &[disabled]
-      +rem-fallback('border', 1px solid $color_gray_lighter)
+      +rem-fallback('border', 1px solid $color_gray_dark)
       pointer-events: none
-      color: $color_gray_lighter
+
+      + label
+        color: $color_gray_dark
 
     +is(success)
       +rem-fallback('border', 1px solid $color_primary)
@@ -90,12 +94,19 @@
     +rem-fallback('font-size', $font_size_xs)
     +rem-fallback('line-height', $line_height_s_v2)
     +rem-fallback('right', $space_xs)
-    +rem-fallback('top', $space_xxxxs)
+    +rem-fallback('top', 3px)
     color: $color_warning
     pointer-events: none
     position: absolute
     text-align: right
     width: 60%
+
+  +e(error-instructions)
+    position: absolute
+    font-size: $font_size_xs
+    line-height: $line_height_xs
+    color: $color_warning
+    margin: $space_xxxxs 0 0
 
   +e(label)
     +labeltext($labeltext: label-field)
@@ -120,7 +131,7 @@
       left: auto
 
     +is(disabled)
-      color: $color_gray_lighter
+      color: $color_gray_dark
 
     +m(small)
       +labeltext($labeltext: label-field-small)
@@ -146,7 +157,6 @@
 
   +e(slot)
     +m(right)
-      +rem-fallback('height', $line_height_s)
       +rem-fallback('right', $space_xs)
       +rem-fallback('top', $space_s)
       display: flex
@@ -154,7 +164,10 @@
       font-weight: $font_weight_bold
       left: auto
       position: absolute
-      vertical-align: middle
+      align-items: center
 
       > *
         +inline-space($space_xxs)
+
+      .#{$prefix_component}text-field__label
+        margin-top: -4px

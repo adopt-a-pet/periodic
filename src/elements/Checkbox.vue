@@ -10,15 +10,15 @@
       type="checkbox">
 
     <span
-      :class="b('box', { size }).is({ checked, disabled }).toString()">
+      :class="b('box', { size }).is({ checked, disabled, inverted }).toString()">
 
       <Icon
         v-if="checked"
         :class="b('check').toString()"
-        name="check-white" />
+        :name="inverted ? 'check' : 'check-white'" />
     </span>
 
-    <div :class="b('label-container', { size }).toString()">
+    <div :class="b('label-container', { size }).is({ disabled, inverted }).toString()">
       <label
         :class="b('label', { size }).toString()">
         <!-- @slot Any label text you want here -->
@@ -49,6 +49,13 @@ export default {
   },
   props: {
     /**
+     * Invert the color and background of the check
+     */
+    inverted: {
+      type: Boolean,
+      default: false,
+    },
+    /**
      * The size of the field.
      *
      * `small, large`
@@ -56,7 +63,7 @@ export default {
     size: {
       type: String,
       default: 'large',
-      validator: value => value.match(/(tiny|small|large)/),
+      validator: value => value.match(/(small|large)/),
     },
     /**
      * Name input field in the form.
@@ -112,9 +119,11 @@ export default {
     <br />
     <Checkbox v-model="checkbox2">Starts checked</Checkbox>
     <br />
-    <Checkbox size="small" v-model="checkbox1">Small, same v-model as the first</Checkbox>
+    <div :style="{ background: $color_primary, padding: $space_xxxs }">
+      <Checkbox v-model="checkbox4" inverted>Inverted</Checkbox>
+    </div>
     <br />
-    <Checkbox size="tiny" v-model="checkbox3">Tiny</Checkbox>
+    <Checkbox size="small" v-model="checkbox3">Small</Checkbox>
     <br />
     <Checkbox disabled>Disabled</Checkbox>
     <br />
@@ -136,6 +145,7 @@ export default {
       checkbox1: false,
       checkbox2: true,
       checkbox3: true,
+      checkbox4: true,
     }
   }
 };

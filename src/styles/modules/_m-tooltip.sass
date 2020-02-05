@@ -2,44 +2,64 @@
   position: relative
   overflow: visible
   pointer-events: auto
-  z-index: 1
+  z-index: 100
+  display: inline-block
 
-  +e(bubble)
-    margin-left: auto
-    margin-right: 0
-    right: 0
+  .icon-container
+    display: inline-block
+    position: relative
+
+    .hover-area
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+
+  .bubble
+    position: relative
     background: $color_white
     border-radius: $radius_l
-    box-shadow: $shadow_callout
-    position: relative
-    display: inline-block
+    z-index: 200
 
-    &::after
-      +rem-fallback('border', 8px solid $color_black)
-      +rem-fallback('left', $space_xxxxl)
-      border-color: transparent transparent $color_white $color_white
-      box-shadow: $shadow_callout
-      box-sizing: border-box
-      content: ''
-      height: 0
-      margin-left: 1.8em
-      position: absolute
-      transform-origin: 0 0
-      transform: rotate(315deg)
-      width: 0
-      z-index: 100
-
-  +e(content)
+  .content
     font-size: $font_size_xs
     +rem-fallback('line-height', 22px)
     +rem-fallback('padding', $space_s)
     font-weight: $font_weight_light
     position: relative
 
-  +e(bubble-container)
+  .bubble-container
     // Set the width on bubble-container acts like max-width normally would
     // (it's different because the bubble is positioned `absolute`)
     +rem-fallback('width', $width_tooltip)
-    +rem-fallback('left', -($width_tooltip / 2))
     +rem-fallback('bottom', $space_xl)
+    +rem-fallback('left', -($width_tooltip / 2))
+    box-shadow: $shadow_callout
     position: absolute
+    +rem-fallback('margin-bottom', 3px)
+    border-radius: $radius_l
+
+    &.from-left
+      +rem-fallback('margin-left', 88px)
+
+      .caret
+        +rem-fallback('left', $space_s)
+
+    &.from-right
+      +rem-fallback('margin-left', -70px)
+
+      .caret
+        +rem-fallback('right', $space_m)
+
+    .caret
+      +rem-fallback('border', 8px solid $color_black)
+      border-color: transparent transparent $color_white $color_white
+      box-shadow: $shadow_callout
+      box-sizing: border-box
+      content: ''
+      height: 0
+      position: absolute
+      transform-origin: 0 0
+      transform: rotate(315deg)
+      width: 0

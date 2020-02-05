@@ -1,0 +1,43 @@
+<div :class="b({ searchable: search }).is({ full: full }).is({'with-events': focusedEvents}).toString()">
+  <TextInput :class="b('text-input').toString()"
+    :label="label"
+    :name="name"
+    :readonly="!search"
+    :value="filterOrselectedDisplay"
+    :label-right="labelRight"
+    autocomplete="off"
+    focus-border
+    @blur="onBlur"
+    @click="toggle"
+    @focus="onFocus"
+    @input="setFilter">
+    <template slot="right">
+      <Tooltip v-if="tooltip">
+        {{ tooltip }}
+      </Tooltip>
+
+      <span :class="b('arrow').toString()"
+        @click="toggle" />
+    </template>
+  </TextInput>
+
+  <div :class="b('list').toString()">
+    <ul>
+      <li v-for="option in choices"
+        :key="option.display"
+        :class="b('list-item').is({ selected: isOptionSelected(option) }).toString()"
+        @mousedown.stop.prevent="e => onSelect(option)">
+        <Checkbox :checked="isOptionSelected(option)">
+          <span>
+            {{ option.display | capitalize }}
+          </span>
+
+          <template v-if="option.labelRight"
+            slot="right">
+            <span>{{ option.labelRight }}</span>
+          </template>
+        </Checkbox>
+      </li>
+    </ul>
+  </div>
+</div>

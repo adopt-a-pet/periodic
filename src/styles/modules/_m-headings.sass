@@ -7,6 +7,10 @@
     +rem-fallback('line-height', $line_height_xl)
     +rem-fallback('letter-spacing', $letter_spacing_default)
     +rem-fallback('margin-bottom', $space_s)
+    +rem-fallback('margin-top', $space-xl)
+
+    &:first-child
+      margin-top: 0
 
     +breakpoint(tablet-wide)
       +rem-fallback('font-size', $font_size_xxl)
@@ -16,12 +20,11 @@
       font-family: $font_special
 
     &--light
-      color: $color_gray_darker
       font-weight: $font_weight_light
       letter-spacing: $letter_spacing_default
 
-    &--bold
-      font-weight: $font_weight_bold
+    &--large
+      font-size: $font_size_xxxl
 
   +element('h2')
     +rem-fallback('font-size', $font_size_l)
@@ -31,6 +34,10 @@
     +rem-fallback('line-height', $line_height_l)
     +rem-fallback('letter-spacing', $letter_spacing_default)
     +rem-fallback('margin-bottom', $space_s)
+    +rem-fallback('margin-top', $space-xl)
+
+    &:first-child
+      margin-top: 0
 
     @include breakpoint(phone-wide)
       font-size: $font_size_xl
@@ -40,7 +47,6 @@
       font-family: $font_special
 
     &--light
-      color: $color_gray_darker
       font-weight: $font_weight_light
       letter-spacing: $letter_spacing_default
 
@@ -55,6 +61,10 @@
     +rem-fallback('line-height', $line_height_m)
     +rem-fallback('letter-spacing', $letter_spacing_default)
     +rem-fallback('margin-bottom', $space_s)
+    +rem-fallback('margin-top', $space-xl)
+
+    &:first-child
+      margin-top: 0
 
     @include breakpoint(phone-wide)
       font-size: $font_size_l
@@ -70,7 +80,6 @@
       font-family: $font_special
 
     &--light
-      color: $color_gray_darker
       font-weight: $font_weight_light
       letter-spacing: $letter_spacing_default
 
@@ -85,11 +94,15 @@
 
   +element('h4')
     +rem-fallback('font-size', $font_size_m)
-    font-family: $helvetica
     color: $color_black
     font-weight: $font_weight_normal
     +rem-fallback('line-height', $line_height_m)
     +rem-fallback('letter-spacing', $letter_spacing_default)
+    +rem-fallback('margin-bottom', $space_xs)
+    +rem-fallback('margin-top', $space-l)
+
+    &:first-child
+      margin-top: 0
 
     &--compact
       +rem-fallback('line-height', $line_height_m_v2)
@@ -104,7 +117,6 @@
       font-family: $font_special
 
     &--light
-      color: $color_gray_darker
       font-weight: $font_weight_light
       letter-spacing: $letter_spacing_default
 
@@ -119,10 +131,14 @@
 
   +element('h5')
     +rem-fallback('font-size', $font_size_s)
-    font-family: $helvetica
     color: $color_black
     font-weight: $font_weight_normal
     +rem-fallback('line-height', $line_height_s)
+    +rem-fallback('margin-bottom', $space_xxs)
+    +rem-fallback('margin-top', $space-m)
+
+    &:first-child
+      margin-top: 0
 
     &--compact
       +rem-fallback('line-height', $line_height_s_v2)
@@ -134,7 +150,6 @@
       font-family: $font_special
 
     &--light
-      color: $color_gray_darker
       font-weight: $font_weight_light
       letter-spacing: $letter_spacing_default
 
@@ -143,10 +158,14 @@
 
   +element('h6')
     +rem-fallback('font-size', $font_size_xs)
-    font-family: $helvetica
     color: $color_black
     font-weight: $font_weight_normal
     +rem-fallback('line-height', $line_height_xs)
+    +rem-fallback('margin-bottom', $space_xxxs)
+    +rem-fallback('margin-top', $space-s)
+
+    &:first-child
+      margin-top: 0
 
     &--compact
       +rem-fallback('line-height', $line_height_xs_v2)
@@ -161,7 +180,6 @@
       font-family: $font_special
 
     &--light
-      color: $color_gray_darker
       font-weight: $font_weight_light
       letter-spacing: $letter_spacing_default
 

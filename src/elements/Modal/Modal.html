@@ -1,0 +1,32 @@
+<div v-show="open"
+  :class="[
+    b({'align': 'top'}).is({ active: open }).toString(),
+  ]"
+  role="dialog"
+  aria-hidden="true"
+  @click="$emit('update:open', false)">
+  <div :class="b('dialog').toString()"
+    :style="{maxWidth: maxWidth}"
+    @click.stop>
+    <div :class="b('content').toString()">
+      <header :class="size">
+        <slot name="header" />
+
+        <span :class="b('close').toString()"
+          @click="close">
+          <img :class="b('close-svg').toString()"
+            src="https://images-ra.adoptapet.com/images/close.svg">
+        </span>
+      </header>
+
+      <main :id="`${id}-main`"
+        :class="size">
+        <slot />
+      </main>
+
+      <footer>
+        <slot name="footer" />
+      </footer>
+    </div>
+  </div>
+</div>

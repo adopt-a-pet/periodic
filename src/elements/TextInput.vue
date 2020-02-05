@@ -40,6 +40,12 @@
 
       <slot name="right" />
 
+      <Tooltip
+        v-if="tooltip"
+        :class="b('tooltip').toString()">
+        {{ tooltip }}
+      </Tooltip>
+
       <Icon
         v-if="successState && showValidTick"
         :class="b('valid-tick').toString()"
@@ -49,7 +55,14 @@
     <div
       v-if="errorState"
       :class="b('error-msg').toString()">
-      {{ errorMessage }}
+      <span v-if="typeof error === 'object'">{{ error.message }}</span>
+      <span v-else>{{ error }}</span>
+    </div>
+
+    <div
+      v-if="errorState && error && error.instructions"
+      :class="b('error-instructions').toString()">
+      {{ error.instructions }}
     </div>
   </div>
 </template>
@@ -78,6 +91,13 @@ export default {
       type: String,
       default: 'large',
       validator: value => value.match(/(small|large)/),
+    },
+    /**
+     * If a value is passed, show the info bubble
+     */
+    tooltip: {
+      type: String,
+      default: null,
     },
     /**
      * Name input field in the form.
@@ -208,8 +228,12 @@ export default {
       // It can only be considered to pass validation if there *are* validations
       return false;
     },
-    errorMessage() {
-      return this.getErrorMessages(this.$v.validatedValue, this.errorMessages)[0];
+    error() {
+      const errorMessages = this.errorMessages;
+      if (this.required && !errorMessages.required) {
+        errorMessages.required = 'Required';
+      }
+      return this.getErrorMessages(this.$v.validatedValue, errorMessages)[0];
     },
   },
   watch: {
@@ -299,9 +323,7 @@ export default {
         ...this.validations,
       },
     };
-
     if (this.required) validations.validatedValue.required = required;
-
     return validations;
   },
 };
@@ -312,7 +334,8 @@ export default {
 <template>
   <div>
     <TextInput
-      v-model="textInput1" />
+      v-model="textInput1"
+      required />
 
     <br />
 

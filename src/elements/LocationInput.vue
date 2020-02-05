@@ -21,8 +21,8 @@
 <script>
 
 /**
- *
- */
+* A text input with built-in location validation
+*/
 export default {
   name: 'LocationInput',
   status: 'under-review',
@@ -97,10 +97,17 @@ export default {
      * Add validations to the field in the form of a Vuelidate object.
      * `{ maxLength: maxLength(20) }`
      */
-    // validations: {
-    //   type: Object,
-    //   default() { return { email }; },
-    // },
+    validations: {
+      type: Object,
+      default() {
+        return {
+          location() {
+            return this.$syscall('api/location/validate', this.value)
+              .then(response => response);
+          },
+        };
+      },
+    },
     /**
      * What error message to show for each validation error
      */
@@ -123,14 +130,14 @@ export default {
     /**
      * Validate location
      */
-    validations() {
-      return {
-        location() {
-          return this.$syscall('api/location/validate', this.value)
-            .then(response => response);
-        },
-      };
-    },
+    // validations() {
+    //   return {
+    //     location() {
+    //       return this.$syscall('api/location/validate', this.value)
+    //         .then(response => response);
+    //     },
+    //   };
+    // },
   },
   methods: {
     onInput(value) {
@@ -180,29 +187,29 @@ export default {
 ```vue
 <template>
   <div>
-    <TextInput
-      v-model="locationInput1" />
-
-    <br />
-
-    <TextInput
-      v-model="locationInput2"
-      label="Required"
-      required />
-
-    <br />
-
-    <TextInput
-      label="Disabled"
-      disabled />
+    <Heading level="h2">Default</Heading>
+    <LocationInput
+      v-model="location1"
+      :required="true"
+      name="location" />
+    <Heading level="h2">Custom Error</Heading>
+    <LocationInput
+      v-model="location2"
+      :error-messages="{
+        location: {
+          message: `Uhh ... this place doesn't exist`,
+          instructions: 'Pitiful creature of darkness, what kind of life have you known?'
+        },
+      }"
+      name="location" />
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      locationInput1: '',
-      locationInput2: '',
+      location1: '',
+      location2: '',
     }
   }
 };

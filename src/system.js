@@ -19,8 +19,9 @@ import validateRequired from '@/mixins/validate-required';
 
 import './styles/styles.scss';
 
-// require tokens
+// require resources
 const tokens = require('../src/assets/tokens/tokens.json');
+const filler = require('../src/assets/filler.json');
 
 // Define contexts to require
 const contexts = [
@@ -33,6 +34,14 @@ const contexts = [
 const components = [];
 contexts.forEach(context => {
   context.keys().forEach(key => components.push(context(key).default));
+});
+
+
+// build list of icon names
+const req = require.context('@/assets/icons/', true, /^\.\/.*\.svg$/);
+const icons = [];
+req.keys().forEach(key => {
+  icons.push(key.replace(/\.\/(.+)\.svg/, '$1'));
 });
 
 export const mixins = [
@@ -73,9 +82,14 @@ Vue.use(VueScrollTo, {
   y: true,
 });
 
+// add tokens to Vue object
 Object.keys(tokens).forEach(key => {
   Vue.prototype[`$${key}`] = tokens[key];
 });
+
+// add other resources to the Vue object
+Vue.prototype.$icons = icons;
+Vue.prototype.$filler = filler;
 
 // Automatic installation if Vue has been added to the global scope
 // if (typeof window !== 'undefined' && window.Vue) {

@@ -40,7 +40,7 @@
           background: transparent
 
     &:disabled+.#{$prefix_component}radio__label--color-blue
-      color: $color_primary_light
+      color: $color_primary
 
     &:disabled+.#{$prefix_component}radio__label--color-grey,
     &:disabled+.#{$prefix_component}radio__label--color-ltgrey
@@ -66,7 +66,7 @@
 
     &:disabled ~ .#{$prefix_component}radio__outside--color-blue
       &.#{$prefix_component}radio__outside
-        +rem-fallback('border', 2px solid $color_primary_light)
+        +rem-fallback('border', 2px solid $color_primary)
 
     &:disabled ~ .#{$prefix_component}radio__outside--color-grey,
     &:disabled ~ .#{$prefix_component}radio__outside--color-ltgrey
@@ -81,6 +81,10 @@
       &::before
         background: $color_primary
 
+      &.is-inverted
+        &::before
+          background: $color_white
+
     &:checked ~ .#{$prefix_component}radio__outside--color-blue
       &.#{$prefix_component}radio__outside
         &::before
@@ -90,7 +94,7 @@
     +rem-fallback('font-size', $font_size_m)
     +rem-fallback('border-radius', $radius_l)
     +rem-fallback('line-height', $line_height_m_v2)
-    +rem-fallback('padding-left', $space_l)
+    +rem-fallback('padding-left', $space_xl)
     +rem-fallback('top', -2px)
     position: relative
     color: $color_black
@@ -98,6 +102,8 @@
     font-weight: $font_weight_light
     width: 100%
 
+    &.is-inverted
+      color: $color_white
 
     +modifier('blue')
       color: $color_white
@@ -121,6 +127,18 @@
       top: 0
       left: 0
       margin: auto
+
+      &.is-inverted
+        fill: red !important
+
+    &.is-inverted
+      +rem-fallback('border', 2px solid $color_white !important)
+
+    &:hover
+      cursor: pointer
+
+      &.is-inverted
+        background: $color_white
 
     &--color-blue
       &.#{$prefix_component}radio__outside

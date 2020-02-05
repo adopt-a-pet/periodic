@@ -1,7 +1,7 @@
 <template>
   <component
     :is="level"
-    :class="b(level, [ fontFamily, fontWeight, lineHeightToken ]).toString()"
+    :class="b(level, [ fontFamily, fontWeight, lineHeightToken, fontSize ]).toString()"
     :style="{ lineHeight: lineHeightNonToken, textAlign }">
     <!-- @slot All content goes here like a normal heading tag -->
     <slot />
@@ -12,9 +12,9 @@
 import lineHeightMixin from '@/mixins/line-height';
 
 /**
- * Headings are used as the titles of each major section of a page in the
- * interface. Use `level` to change the size.
- */
+* Headings are used as the titles of each major section of a page in the
+* interface. Use `level` to change the size.
+*/
 export default {
   name: 'Heading',
   status: 'under-review',
@@ -23,8 +23,8 @@ export default {
   mixins: [lineHeightMixin],
   props: {
     /**
-     * The level of the heading: h1, h2, h3, h4, h5, h6.
-     */
+    * The level of the heading: h1, h2, h3, h4, h5, h6.
+    */
     level: {
       type: String,
       default: null,
@@ -32,32 +32,39 @@ export default {
       validator: value => value.match(/(h1|h2|h3|h4|h5|h6)/),
     },
     /**
-     * The font weight for the heading.
-     */
+    * The font weight for the heading.
+    */
     fontWeight: {
       type: String,
       default: null,
       validator: value => value.match(/(light|bold)/),
     },
     /**
-     * The font family for the heading.
-     */
+    * The font family for the heading.
+    */
     fontFamily: {
       type: String,
       default: null,
       validator: value => value.match(/(special)/),
     },
     /**
-     * The line height for the text.
-     */
+    * The line height for the text.
+    */
     lineHeight: {
       type: String,
       default: null,
     },
     /**
-     * The alignment for the text. Default is null so it inherits.
-     */
+    * The alignment for the text. Default is null so it inherits.
+    */
     textAlign: {
+      type: String,
+      default: null,
+    },
+    /**
+    * The font size for the text.
+    */
+    fontSize: {
       type: String,
       default: null,
     },
@@ -68,131 +75,113 @@ export default {
 <docs>
   ```jsx
   <div>
-    <Heading level='h1'>H1 - The quick brown fox.</Heading>
+    <Heading level="h1">H1 - Sphinx of black quartz</Heading>
     <Heading
-      level='h1'
-      font-family='special'>H1 - The quick brown fox.</Heading>
+    level="h1"
+    font-size="large">H1 Large - Sphinx of black quartz</Heading>
     <Heading
-      level='h2'
-      font-weight='bold'>H2 - The quick brown fox.</Heading>
-    <Heading level='h2'>H2 - The quick brown fox.</Heading>
+    level="h1"
+    font-family="special">H1 Special - Sphinx of black quartz</Heading>
+    <Heading level="h2">H2 - Sphinx of black quartz</Heading>
+    <Heading level="h3">H3 - Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</Heading>
     <Heading
-      level='h2'
-      font-weight='light'>H2 - The quick brown fox.</Heading>
+      level="h3"
+      line-height="compact">H3 Compact - Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua</Heading>
     <Heading
-      level='h2'
-      font-family='special'>H2 - The quick brown fox.</Heading>
+      level="h4"
+      line-height="">H4 - Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.</Heading>
+
     <Heading
-      level='h3'
-      font-weight='bold'>H3 - The quick brown fox.</Heading>
+    level="h4"
+      line-height="compact">H4 Compact - Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+      nisi ut aliquip ex ea commodo consequat.</Heading>
     <Heading
-      level='h3'
-      font-weight='bold'
-      line-height='compact'>H3 - The quick brown fox.</Heading>
-    <Heading level='h3'>H3 - The quick brown fox.</Heading>
+      level="h4"
+      line-height="x-compact">H4 Extra Compact - Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+      ut aliquip ex ea commodo consequat.</Heading>
     <Heading
-      level='h3'
-      line-height='compact'>H3 - The quick brown fox.</Heading>
+      font-weight="light"
+      level="h4"
+      line-height="">H4 Light - Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut
+      enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat.</Heading>
     <Heading
-      level='h3'
-      font-weight='light'>H3 - The quick brown fox.</Heading>
+      font-weight="light"
+      level="h4"
+      line-height="compact">H4 Light Compact - Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat.</Heading>
     <Heading
-      level='h3'
-      font-weight='light'
-      line-height='compact'>H3 - The quick brown fox.</Heading>
+      font-weight="light"
+      level="h4"
+      line-height="x-compact">H4 Light Extra Compact - Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat.</Heading>
     <Heading
-      level='h3'
-      font-family='special'>H3 - The quick brown fox.</Heading>
+      level="h5"
+      line-height="">h5 - Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+      ea commodo consequat.</Heading>
     <Heading
-      level='h4'
-      font-weight='bold'>H4 - The quick brown fox.</Heading>
+      level="h5"
+      line-height="compact">H5 Compact - Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+      nisi ut aliquip ex ea commodo consequat.</Heading>
     <Heading
-      level='h4'
-      font-weight='bold'
-      line-height='compact'>H4 - The quick brown fox.</Heading>
+      font-weight="light"
+      level="h5"
+      line-height="">H5 Light - Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+      enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat.</Heading>
     <Heading
-      level='h4'
-      font-weight='bold'
-      line-height='x-compact'>H4 - The quick brown fox.</Heading>
-    <Heading level='h4'>H4 - The quick brown fox.</Heading>
+      font-weight="light"
+      level="h5"
+      line-height="compact">H5 Light Compact - Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat.</Heading>
     <Heading
-      level='h4'
-      line-height='compact'>H4 - The quick brown fox.</Heading>
+      level="h6"
+      line-height="">H6 - Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+      ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+      ex ea commodo consequat.</Heading>
     <Heading
-      level='h4'
-      line-height='x-compact'>H4 - The quick brown fox.</Heading>
+      level="h6"
+      line-height="compact">H6 Compact - Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+      nisi ut aliquip ex ea commodo consequat.</Heading>
     <Heading
-      level='h4'
-      font-weight='light'>H4 - The quick brown fox.</Heading>
+      font-weight="light"
+      level="h6"
+      line-height="">H6 Light - Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+      enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat.</Heading>
     <Heading
-      level='h4'
-      font-weight='light'
-      line-height='compact'>H4 - The quick brown fox.</Heading>
-    <Heading
-      level='h4'
-      font-weight='light'
-      line-height='x-compact'>H4 - The quick brown fox.</Heading>
-    <Heading
-      level='h4'
-      font-family='special'>H4 - The quick brown fox.</Heading>
-    <Heading
-      level='h4'
-      font-family='special'
-      line-height='compact'>H4 - The quick brown fox.</Heading>
-    <Heading
-      level='h4'
-      font-family='special'
-      line-height='x-compact'>H4 - The quick brown fox.</Heading>
-    <Heading
-      level='h5'
-      font-weight='bold'>H5 - The quick brown fox.</Heading>
-    <Heading
-      level='h5'
-      font-weight='bold'
-      line-height='compact'>H5 - The quick brown fox.</Heading>
-    <Heading level='h5'>H5 - The quick brown fox.</Heading>
-    <Heading
-      level='h5'
-      line-height='compact'>H5 - The quick brown fox.</Heading>
-    <Heading
-      level='h5'
-      font-weight='light'>H5 - The quick brown fox.</Heading>
-    <Heading
-      level='h5'
-      font-weight='light'
-      line-height='compact'>H5 - The quick brown fox.</Heading>
-    <Heading
-      level='h5'
-      font-family='special'>H5 - The quick brown fox.</Heading>
-    <Heading
-      level='h5'
-      font-family='special'
-      line-height='compact'>H5 - The quick brown fox.</Heading>
-    <Heading
-      level='h6'
-      font-weight='bold'>H6 - The quick brown fox.</Heading>
-    <Heading
-      level='h6'
-      font-weight='bold'
-      line-height='compact'>H6 - The quick brown fox.</Heading>
-    <Heading level='h6'>H6 - The quick brown fox.</Heading>
-    <Heading
-      level='h6'
-      line-height='compact'>H6 - The quick brown fox.</Heading>
-    <Heading
-      level='h6'
-      font-weight='light'>H6 - The quick brown fox.</Heading>
-    <Heading
-      level='h6'
-      font-weight='light'
-      line-height='compact'>H6 - The quick brown fox.</Heading>
-    <Heading
-      level='h6'
-      font-family='special'>H6 - The quick brown fox.</Heading>
-    <Heading
-      level='h6'
-      font-family='special'
-      line-height='compact'>H6 - The quick brown fox.</Heading>
+      font-weight="light"
+      level="h6"
+      line-height="compact">H6 Light Compact - Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat.</Heading>
   </div>
   ```
 </docs>

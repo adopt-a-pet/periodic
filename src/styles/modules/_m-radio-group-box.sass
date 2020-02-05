@@ -11,7 +11,7 @@
   +element('item')
     @include rem-fallback('padding', $space_m)
     margin: 0
-    +rem-fallback('margin-top', 10px)
+    +rem-fallback('margin-top', $space_xxs)
     position: relative
     +rem-fallback('border', 1px solid $color_gray_darker)
     border-radius: $radius_l
@@ -31,8 +31,8 @@
   +element('button')
     position: absolute
     visibility: hidden
-    +rem-fallback('top', 10px)
-    +rem-fallback('right', 10px)
+    +rem-fallback('top', $space_xxs)
+    +rem-fallback('right', $space_xxs)
 
     &:hover ~ .#{$prefix_component}radio-box__outside
       +rem-fallback('border', 2px solid $color_primary)
@@ -60,7 +60,7 @@
           background: transparent
 
     &:disabled+.#{$prefix_component}radio-box__label--color-blue
-      color: $color_primary_light
+      color: $color_primary
 
     &:disabled+.#{$prefix_component}radio-box__label--color-grey,
     &:disabled+.#{$prefix_component}radio-box__label--color-ltgrey
@@ -87,7 +87,7 @@
 
     &:disabled ~ .#{$prefix_component}radio-box__outside--color-blue
       &.#{$prefix_component}radio-box__outside
-        +rem-fallback('border', 2px solid $color_primary_light)
+        +rem-fallback('border', 2px solid $color_primary)
 
     &:disabled ~ .#{$prefix_component}radio-box__outside--color-grey,
     &:disabled ~ .#{$prefix_component}radio-box__outside--color-ltgrey
@@ -128,8 +128,8 @@
     +rem-fallback('border', 2px solid $color_gray_darker)
     border-radius: 100%
     +rem-fallback('padding', 8.5px)
-    +rem-fallback('top', 10px)
-    +rem-fallback('right', 10px)
+    +rem-fallback('top', $space_xxs)
+    +rem-fallback('right', $space_xxs)
     z-index: 5
     &::before
       display: block

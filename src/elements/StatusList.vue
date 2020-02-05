@@ -1,6 +1,6 @@
 <template>
-  <div :class="b().toString()">
-    <div
+  <ul :class="`${b().toString()} columns-${columns}`">
+    <li
       v-for="item in items"
       :key="item.value"
       :class="b('label').toString()">
@@ -8,7 +8,7 @@
         v-if="item.state === true"
         :class="[b('icon', { state: 'tick' }).toString()]">
         <Icon
-          name="check-green" />
+          name="check" />
       </span>
       <span
         v-if="item.state === false"
@@ -22,8 +22,8 @@
         line-height="compact">
         {{ item.value }}
       </Heading>
-    </div>
-  </div>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -37,6 +37,13 @@ export default {
   status: 'review',
   release: '1.0.0',
   props: {
+    /**
+     * Column count
+     */
+    columns: {
+      type: Number,
+      default: 1,
+    },
     /**
      * The values to be displayed. Each item must have a checkmark or an exclamation point icon to
      * show the state and a value.
@@ -56,11 +63,11 @@ export default {
 <div>
   <Heading
     level='h3'
-    font-family='special'
     font-weight='bold'
     line-height='compact'>My Info</Heading>
 
   <StatusList
+    columns="3"
     :items="[
       { state: true, value: 'Neutered' },
       { state: true, value: 'Shots Up to Date' },

@@ -22,6 +22,7 @@
         @click="showPassword = !showPassword;">
 
         <Icon
+          v-if="!disabled"
           name="eye" />
       </span>
     </template>
@@ -118,8 +119,11 @@ export default {
     errorMessages: {
       type: Object,
       default: () => ({
-        required: 'Enter Password',
-        minLength: 'Invalid Password',
+        required: 'Enter password',
+        minLength: {
+          message: 'Invalid password',
+          instructions: 'Password should be at least 8 characters with 1 number and 1 capital letter.',
+        },
       }),
     },
     /**

@@ -10,6 +10,7 @@
 
 <script>
 const req = require.context('@/assets/icons/', true, /^\.\/.*\.svg$/);
+
 /**
  * Icons are used to visually communicate core parts of the product and
  * available actions. They can act as wayfinding tools to help users more
@@ -91,11 +92,16 @@ export default {
 <docs>
   ```jsx
   <div>
-    <Icon name="ready" aria-label="Component is ready" fill="#7cb518" />
-    <Icon name="review" fill="rgb(255,186,10)" />
-    <Icon name="deprecated" fill="rgb(235,59,36)" />
-    <Icon name="prototype" fill="rgb(37,138,239)" />
-    <Icon name="service-google" />
+    <div>
+      <div
+        v-for="icon of $icons"
+        style="display: inline-block; margin: 1em .5em; text-align: center; width: 100px;"
+      >
+        <a :href="`/icons/${icon}.svg`">
+          <Icon width="50px" height="50px" :name="icon"/>
+        </a>
+        <div>{{ icon }}</div>
+    </div>
   </div>
   ```
 </docs>
