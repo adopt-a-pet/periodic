@@ -155,7 +155,7 @@ export default {
      */
     premiumPlanId: {
       type: String,
-      default: '',
+      default: 'plan_FmSGrwj2xKEwx5',
     },
   },
 
