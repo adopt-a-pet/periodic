@@ -13,6 +13,14 @@ export default {
     },
 
     /**
+     * What page to start on
+     */
+    page: {
+      type: Number,
+      default: 1,
+    },
+
+    /**
      * The total number of records
      */
     recordCount: {
@@ -25,9 +33,8 @@ export default {
       loading: false,
       newPage: null,
       newStart: null,
-      page: 1,
       popupIsOpen: false,
-      start: 1,
+      start: (this.page * this.limit) - this.limit + 1,
     };
   },
   computed: {

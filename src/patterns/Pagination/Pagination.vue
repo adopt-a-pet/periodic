@@ -5,6 +5,7 @@
   <template>
     <Pagination :limit="limit"
       :record-count="recordCount"
+      :page="page"
       ref="pagination"
       @onPageChange="changePage" />
   </template>
@@ -14,6 +15,7 @@
       return {
         limit: 20,
         loading: false,
+        page: 2,
         recordCount: 50, // this will likely be obtained from an API
       }
     },
