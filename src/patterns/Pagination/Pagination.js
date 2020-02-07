@@ -13,19 +13,19 @@ export default {
     },
 
     /**
-     * What page to start on
-     */
-    page: {
-      type: Number,
-      default: 1,
-    },
-
-    /**
      * The total number of records
      */
     recordCount: {
       type: Number,
       required: true,
+    },
+
+    /**
+     * What page to start on
+     */
+    startingPage: {
+      type: Number,
+      default: 1,
     },
   },
   data() {
@@ -33,8 +33,9 @@ export default {
       loading: false,
       newPage: null,
       newStart: null,
+      page: this.startingPage,
       popupIsOpen: false,
-      start: (this.page * this.limit) - this.limit + 1,
+      start: (this.startingPage * this.limit) - this.limit + 1,
     };
   },
   computed: {
