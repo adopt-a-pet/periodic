@@ -314,6 +314,13 @@ export default {
         vm.isLocationValid = res;
       });
     },
+    manualValidateTrigger() {
+      if (this.form.zipCode === '') {
+        this.validateLocation(this.form.zipCode);
+        return false;
+      }
+      return true;
+    },
     /**
      * Get Breed name and Ids from database
      *
