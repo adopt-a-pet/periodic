@@ -130,7 +130,7 @@ export default {
     getData() {
       this.$syscall('api/pets/getClans')
         .then(response => {
-          this.clans = this.formatList(response, 'clanName', 'clanId');
+          this.clans = this.formatList(response, 'clanNamePluralPretty', 'clanId');
           this.clans.splice(0, 2); // remove 'Dogs' and 'Cats'
 
           // create array of clan ID's
