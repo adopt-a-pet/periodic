@@ -20,6 +20,8 @@ props:
     value: "12px"
   font_size_xxxs:
     value: "11px"
+  font_size_xxxxs:
+    value: "10px"
 global:
   type: number
   category: font-size
