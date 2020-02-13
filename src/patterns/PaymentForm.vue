@@ -488,12 +488,14 @@ export default {
 
 
       // update quick pay window with amount
-      this.paymentRequest.update({
-        total: {
-          label: 'Adopt-a-Pet.com Premium New Pet Alert',
-          amount: this.quickPayAmount,
-        },
-      });
+      if (this.paymentRequest) {
+        this.paymentRequest.update({
+          total: {
+            label: 'Adopt-a-Pet.com Premium New Pet Alert',
+            amount: this.quickPayAmount,
+          },
+        });
+      }
     },
     emitTermsClicked() {
       this.$emit('paymentTermsClicked');
