@@ -104,18 +104,6 @@
         'paymenterror paymenterror';
       grid-column-gap: 10px;
       grid-row-gap: 20px;
-
-      @include element('card-number') {
-        border-color: color(aorange);
-      }
-
-      @include element('card-expiry') {
-        border-color: color(aorange);
-      }
-    
-      @include element('card-cvc') {
-        border-color: color(aorange);
-      }
     }
 
     @include modifier('multiple-errors') {
@@ -159,18 +147,6 @@
           'cardexpiry cardcvc'
           'paymenterror paymenterror';
         grid-column-gap: 20px;
-
-        @include element('card-number') {
-          border-color: color(aorange);
-        }
-
-        @include element('card-expiry') {
-          border-color: color(aorange);
-        }
-      
-        @include element('card-cvc') {
-          border-color: color(aorange);
-        }
       }
 
       @include modifier('multiple-errors') {

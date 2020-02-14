@@ -91,11 +91,7 @@
       <TextInput
         id="card-number"
         ref="cardNumber"
-        :class="b('card-number').toString()"
-        required
-        :error-messages="{
-          required: 'Required'
-        }" />
+        :class="b('card-number').toString()" />
       <div
         id="card-errors"
         style="display:none;"
@@ -104,19 +100,11 @@
       <TextInput
         id="card-expiry"
         ref="cardExpiry"
-        :class="b('card-expiry').toString()"
-        required
-        :error-messages="{
-          required: 'Required'
-        }" />
+        :class="b('card-expiry').toString()" />
       <TextInput
         id="card-cvc"
         ref="cardCvc"
-        :class="b('card-cvc').toString()"
-        required
-        :error-messages="{
-          required: 'Required'
-        }" />
+        :class="b('card-cvc').toString()" />
     </div>
     <div
       v-if="showError"
@@ -205,6 +193,7 @@ export default {
     paymentError(bool) {
       if (bool === true) {
         this.showError = true;
+        // trigger stripe validation
         this.stripe.createToken(this.cardNumber);
       }
     },
