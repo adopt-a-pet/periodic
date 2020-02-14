@@ -110,7 +110,7 @@
         :class="b('text-orange').toString()"
         font-weight="normal"
         font-size="s">
-        There was an error processing your payment, please check your payment information and try again.
+        There was an error processing your payment. Please check your payment information and try again.
       </Paragraph>
     </div>
     <TextLink
