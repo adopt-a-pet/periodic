@@ -247,8 +247,27 @@ export default {
        * @type none
        */
       this.$emit('click:saveAndClose');
+
+      const eventObj = {
+        event: 'save',
+      };
+
+      /**
+       * Check if we're currently on the Premium Landing Page.
+       * Decide which action to fire based off of the URL path.
+       * These events are identical between the NPA Modal and
+       * Premium Landing page aside from the action names.
+       */
+      if (this.$router.history.current.path.includes('/premium-new-pet-alerts')) {
+        eventObj.eventAction = 'Next button – Premium Marketing Landing Page';
+      } else {
+        eventObj.eventAction = 'Save button - premium alert filter';
+      }
+
       const parsedData = this.parseForm(this.form, this.breedIdsDropdown);
-      this.dispatchTrackClick({ event: 'save', eventLabel: JSON.stringify(parsedData) });
+      eventObj.eventLabel = JSON.stringify(parsedData);
+
+      this.dispatchTrackClick(eventObj);
     },
     submit() {
       /**
@@ -266,6 +285,12 @@ export default {
      * use mixins to map ids to names
      */
     dispatchTrackSelect(eventObj) {
+      if (this.$router.history.current.path.includes('/premium-new-pet-alerts')) {
+        eventObj.secondaryAction = 'Premium Marketing Landing Page';
+      } else {
+        eventObj.secondaryAction = 'premium alert filter';
+      }
+
       const eventName = eventObj.event;
       let eventLabel = eventObj.eventLabel;
       if (eventLabel !== '' && eventLabel !== undefined) {
@@ -288,6 +313,13 @@ export default {
       locationValidator(location, vm).then(res => {
         vm.isLocationValid = res;
       });
+    },
+    manualValidateTrigger() {
+      if (this.form.zipCode === '') {
+        this.validateLocation(this.form.zipCode);
+        return false;
+      }
+      return true;
     },
     /**
      * Get Breed name and Ids from database

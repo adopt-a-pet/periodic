@@ -61,7 +61,7 @@
           required: 'Required'
         }"
         @change="removePaymentError"
-        @click="dispatchTrackClick('firstName')" />
+        @click="dispatchTrackClick(`firstName${landingPageTrackingSuffix}`)" />
       <TextInput
         v-model="lastName"
         label="Last Name"
@@ -71,7 +71,7 @@
           required: 'Required'
         }"
         @change="removePaymentError"
-        @click="dispatchTrackClick('lastName')" />
+        @click="dispatchTrackClick(`lastName${landingPageTrackingSuffix}`)" />
       <TextInput
         v-model="zipCode"
         label="Zip Code"
@@ -83,7 +83,7 @@
           required: 'Invalid Location'
         }"
         @change="removePaymentError"
-        @click="dispatchTrackClick('zipCode')" />
+        @click="dispatchTrackClick(`zipCode${landingPageTrackingSuffix}`)" />
       <VSpacer size="xxs" />
       <TextInput
         id="card-number"
@@ -155,7 +155,7 @@ export default {
      */
     premiumPlanId: {
       type: String,
-      default: '',
+      default: 'plan_FmSGrwj2xKEwx5',
     },
   },
 
@@ -171,6 +171,7 @@ export default {
       checkedForQuickPay: false,
       quickPayType: 'apple',
       quickPayAmount: 499,
+      landingPageTrackingSuffix: '',
     };
   },
 
@@ -227,6 +228,10 @@ export default {
   mounted() {
     if (this.premiumPlanId !== '') {
       this.quickPayAmountSwitch(this.premiumPlanId);
+    }
+
+    if (this.$router.history.current.path.includes('/premium-new-pet-alerts')) {
+      this.landingPageTrackingSuffix = 'LandingPage';
     }
   },
 
@@ -308,10 +313,10 @@ export default {
       this.paymentRequest.canMakePayment().then(result => {
         if (result) {
           if (result.applePay !== true) {
-            this.dispatchTrackLoad('googlePayLoads');
+            this.dispatchTrackLoad(`googlePayLoads${this.landingPageTrackingSuffix}`);
             this.quickPayType = 'google';
           } else {
-            this.dispatchTrackLoad('applePayLoads');
+            this.dispatchTrackLoad(`applePayLoads${this.landingPageTrackingSuffix}`);
           }
 
           this.quickPaySelected = true;
@@ -345,15 +350,15 @@ export default {
        * to work either.
        */
       this.cardNumber.addEventListener('blur', () => {
-        this.dispatchTrackClick('cardNumber');
+        this.dispatchTrackClick(`cardNumber${this.landingPageTrackingSuffix}`);
       });
 
       this.cardCvc.addEventListener('blur', () => {
-        this.dispatchTrackClick('cardCVC');
+        this.dispatchTrackClick(`cardCVC${this.landingPageTrackingSuffix}`);
       });
 
       this.cardExpiry.addEventListener('blur', () => {
-        this.dispatchTrackClick('cardExpiration');
+        this.dispatchTrackClick(`cardExpiration${this.landingPageTrackingSuffix}`);
       });
 
       /**
@@ -445,9 +450,9 @@ export default {
     },
     showPaymentRequestWindow() {
       if (this.quickPayType === 'apple') {
-        this.dispatchTrackClick('applePay');
+        this.dispatchTrackClick(`applePay${this.landingPageTrackingSuffix}`);
       } else {
-        this.dispatchTrackClick('googlePay');
+        this.dispatchTrackClick(`googlePay${this.landingPageTrackingSuffix}`);
       }
 
       if (this.email === '' || this.email === undefined) {
@@ -460,10 +465,10 @@ export default {
     },
     handleClickPayOption(option) {
       if (option === 'creditCard') {
-        this.dispatchTrackClick('creditCard');
+        this.dispatchTrackClick(`creditCard${this.landingPageTrackingSuffix}`);
         this.quickPaySelected = false;
       } else {
-        this.dispatchTrackClick('quickPay');
+        this.dispatchTrackClick(`quickPay${this.landingPageTrackingSuffix}`);
         this.quickPaySelected = true;
       }
     },
@@ -487,16 +492,18 @@ export default {
 
 
       // update quick pay window with amount
-      this.paymentRequest.update({
-        total: {
-          label: 'Adopt-a-Pet.com Premium New Pet Alert',
-          amount: this.quickPayAmount,
-        },
-      });
+      if (this.paymentRequest) {
+        this.paymentRequest.update({
+          total: {
+            label: 'Adopt-a-Pet.com Premium New Pet Alert',
+            amount: this.quickPayAmount,
+          },
+        });
+      }
     },
     emitTermsClicked() {
       this.$emit('paymentTermsClicked');
-      this.dispatchTrackClick('termsAndConditions');
+      this.dispatchTrackClick(`termsAndConditions${this.landingPageTrackingSuffix}`);
     },
   },
 };
