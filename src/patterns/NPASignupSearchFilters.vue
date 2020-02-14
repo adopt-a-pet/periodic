@@ -316,10 +316,10 @@ export default {
     },
     manualValidateTrigger() {
       if (this.form.zipCode === '') {
-        this.validateLocation(this.form.zipCode);
         return false;
       }
-      return true;
+      this.validateLocation(this.form.zipCode);
+      return this.isLocationValid;
     },
     /**
      * Get Breed name and Ids from database
