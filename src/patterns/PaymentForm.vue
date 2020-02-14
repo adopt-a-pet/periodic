@@ -53,6 +53,7 @@
                'periodic-payment-form__form-control--multiple-errors periodic-base': cardErrors && paymentError
       }">
       <TextInput
+        ref="firstName"
         v-model="firstName"
         label="First Name"
         :class="b('first-name').toString()"
@@ -63,6 +64,7 @@
         @change="removePaymentError"
         @click="dispatchTrackClick(`firstName${landingPageTrackingSuffix}`)" />
       <TextInput
+        ref="lastName"
         v-model="lastName"
         label="Last Name"
         :class="b('last-name').toString()"
@@ -73,6 +75,7 @@
         @change="removePaymentError"
         @click="dispatchTrackClick(`lastName${landingPageTrackingSuffix}`)" />
       <TextInput
+        ref="zipCode"
         v-model="zipCode"
         label="Zip Code"
         :class="b('zip-code').toString()"
@@ -88,7 +91,11 @@
       <TextInput
         id="card-number"
         ref="cardNumber"
-        :class="b('card-number').toString()" />
+        :class="b('card-number').toString()"
+        required
+        :error-messages="{
+          required: 'Required'
+        }" />
       <div
         id="card-errors"
         style="display:none;"
@@ -97,11 +104,19 @@
       <TextInput
         id="card-expiry"
         ref="cardExpiry"
-        :class="b('card-expiry').toString()" />
+        :class="b('card-expiry').toString()"
+        required
+        :error-messages="{
+          required: 'Required'
+        }" />
       <TextInput
         id="card-cvc"
         ref="cardCvc"
-        :class="b('card-cvc').toString()" />
+        :class="b('card-cvc').toString()"
+        required
+        :error-messages="{
+          required: 'Required'
+        }" />
     </div>
     <div
       v-if="showError"
@@ -188,7 +203,10 @@ export default {
 
   watch: {
     paymentError(bool) {
-      if (bool === true) this.showError = true;
+      if (bool === true) {
+        this.showError = true;
+        this.stripe.createToken(this.cardNumber);
+      }
     },
     premiumPlanId(id) {
       this.quickPayAmountSwitch(id);
@@ -500,6 +518,23 @@ export default {
     emitTermsClicked() {
       this.$emit('paymentTermsClicked');
       this.dispatchTrackClick(`termsAndConditions${this.landingPageTrackingSuffix}`);
+    },
+    validateNamesAndZip() {
+      let returnValue = true;
+      if (!this.$refs.firstName.validate()) {
+        returnValue = false;
+      }
+      if (!this.$refs.lastName.validate()) {
+        returnValue = false;
+      }
+      if (!this.$refs.zipCode.validate()) {
+        returnValue = false;
+      }
+
+      // trigger stripe validation
+      this.stripe.createToken(this.cardNumber);
+
+      return returnValue;
     },
   },
 };

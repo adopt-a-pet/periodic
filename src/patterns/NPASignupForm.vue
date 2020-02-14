@@ -522,12 +522,16 @@ export default {
     },
     submit() {
       const submitButton = document.getElementById('npa-submit-button');
+
       if (!this.$refs.email.validate()) {
         this.emitScrollToEmail();
         return;
       }
       if (!this.$refs.plan.validate()) {
         this.$emit('scrollToPlan');
+        return;
+      }
+      if (this.$refs.paymentForm.validateNamesAndZip() === false) {
         return;
       }
       if (submitButton) {
