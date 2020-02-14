@@ -26,9 +26,8 @@
         line-height="15px">
         Get offers and tips from our sponsors.
       </Paragraph>
-
+      <br>
       <span
-        style="display: inline-block"
         @click.stop="showAllOffers = !showAllOffers">
         <Paragraph
           tag="span"
@@ -36,7 +35,7 @@
           font-size="xxs"
           font-weight="normal"
           line-height="15px">
-          {{ showAllOffers ? 'Close' : 'Learn More' }}
+          {{ showAllOffers ? 'Save and close' : 'Modify your selections below' }}
         </Paragraph>
 
         <Icon
@@ -90,6 +89,47 @@
         </TextLink>
       </Paragraph>
     </div>
+    <Paragraph
+      line-height="14px"
+      font-size="xxxxs">
+      I understand my information is being collected by
+      <Paragraph
+        tag="span"
+        font-weight="normal"
+        font-size="xxxxs">
+        Adopt-a-Pet.com
+      </Paragraph> (and will be used as described in its
+      <TextLink
+        href="https://adoptapet.com/public/privacy_policy/"
+        target="_blank">
+        Privacy Policy
+      </TextLink>) and is being collected by Adopt-a-Pet.com’s sponsors, and will be used as described in
+      their privacy policies (visit
+      <TextLink
+        href="https://www.purina.com/privacy-policy"
+        target="_blank"
+        :class="b('link-blue').toString()">
+        Purina Privacy Policy
+      </TextLink>,
+      <TextLink
+        href="https://www.chewy.com/app/content/privacy"
+        target="_blank"
+        :class="b('link-blue').toString()">
+        Chewy Privacy Policy
+      </TextLink>,
+      <TextLink
+        href="https://www.petcofoundation.org/privacy/"
+        target="_blank"
+        :class="b('link-blue').toString()">
+        Petco Foundation Privacy Policy
+      </TextLink>, and
+      <TextLink
+        href="https://www.petbasics.com/privacy-statement/"
+        target="_blank"
+        :class="b('link-blue').toString()">
+        PetBasics.com by Bayer Privacy Policy
+      </TextLink>).
+    </Paragraph>
   </div>
 </template>
 
