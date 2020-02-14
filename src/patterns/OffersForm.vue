@@ -26,9 +26,8 @@
         line-height="15px">
         Get offers and tips from our sponsors.
       </Paragraph>
-
+      <br>
       <span
-        style="display: inline-block"
         @click.stop="showAllOffers = !showAllOffers">
         <Paragraph
           tag="span"
@@ -36,7 +35,7 @@
           font-size="xxs"
           font-weight="normal"
           line-height="15px">
-          {{ showAllOffers ? 'Close' : 'Learn More' }}
+          {{ showAllOffers ? 'Save and close' : 'Modify your selections below' }}
         </Paragraph>
 
         <Icon
