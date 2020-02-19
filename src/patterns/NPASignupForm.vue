@@ -531,10 +531,8 @@ export default {
         this.$emit('scrollToPlan');
         return;
       }
-      if (this.$refs.paymentForm) {
-        if (this.$refs.paymentForm.validateNamesAndZip() === false) {
-          return;
-        }
+      if (this.$refs.paymentForm && this.$refs.paymentForm.validateNamesAndZip() === false) {
+        return;
       }
       if (submitButton) {
         submitButton.disabled = true;
