@@ -414,7 +414,11 @@ export default {
      * knows to pull all of these in.
      */
     createStripeToken() {
-      this.stripe.createToken(this.cardNumber).then(result => {
+      const customerData = {
+        name: `${this.firstName} ${this.lastName}`,
+        address_zip: this.zipCode,
+      };
+      this.stripe.createToken(this.cardNumber, customerData).then(result => {
         if (result.token) {
           /**
          * paymentInfo event
