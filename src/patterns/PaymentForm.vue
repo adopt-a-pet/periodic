@@ -53,6 +53,7 @@
                'periodic-payment-form__form-control--multiple-errors periodic-base': cardErrors && paymentError
       }">
       <TextInput
+        ref="firstName"
         v-model="firstName"
         label="First Name"
         :class="b('first-name').toString()"
@@ -63,6 +64,7 @@
         @change="removePaymentError"
         @click="dispatchTrackClick(`firstName${landingPageTrackingSuffix}`)" />
       <TextInput
+        ref="lastName"
         v-model="lastName"
         label="Last Name"
         :class="b('last-name').toString()"
@@ -73,6 +75,7 @@
         @change="removePaymentError"
         @click="dispatchTrackClick(`lastName${landingPageTrackingSuffix}`)" />
       <TextInput
+        ref="zipCode"
         v-model="zipCode"
         label="Zip Code"
         :class="b('zip-code').toString()"
@@ -110,7 +113,7 @@
         :class="b('text-orange').toString()"
         font-weight="normal"
         font-size="s">
-        There was an error processing your payment, please check your payment information and try again.
+        There was an error processing your payment. Please check your payment information and try again.
       </Paragraph>
     </div>
     <TextLink
@@ -188,7 +191,11 @@ export default {
 
   watch: {
     paymentError(bool) {
-      if (bool === true) this.showError = true;
+      if (bool === true) {
+        this.showError = true;
+        // trigger stripe validation
+        this.stripe.createToken(this.cardNumber);
+      }
     },
     premiumPlanId(id) {
       this.quickPayAmountSwitch(id);
@@ -407,7 +414,11 @@ export default {
      * knows to pull all of these in.
      */
     createStripeToken() {
-      this.stripe.createToken(this.cardNumber).then(result => {
+      const customerData = {
+        name: `${this.firstName} ${this.lastName}`,
+        address_zip: this.zipCode,
+      };
+      this.stripe.createToken(this.cardNumber, customerData).then(result => {
         if (result.token) {
           /**
          * paymentInfo event
@@ -500,6 +511,23 @@ export default {
     emitTermsClicked() {
       this.$emit('paymentTermsClicked');
       this.dispatchTrackClick(`termsAndConditions${this.landingPageTrackingSuffix}`);
+    },
+    validateNamesAndZip() {
+      let returnValue = true;
+      if (!this.$refs.firstName.validate()) {
+        returnValue = false;
+      }
+      if (!this.$refs.lastName.validate()) {
+        returnValue = false;
+      }
+      if (!this.$refs.zipCode.validate()) {
+        returnValue = false;
+      }
+
+      // trigger stripe validation
+      this.stripe.createToken(this.cardNumber);
+
+      return returnValue;
     },
   },
 };

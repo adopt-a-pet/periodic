@@ -197,6 +197,8 @@
 
   @include element('error-text') {
     grid-area: paymenterror;
+    @include rem-fallback('margin-bottom', 20px);
+    @include rem-fallback('margin-top', -20px);
   }
 
   @include element('text-orange') {
