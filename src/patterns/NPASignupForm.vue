@@ -1,304 +1,305 @@
 <template>
-  <div
-    :class="b({'payment-terms': paymentTerms}).toString()">
-    <div :class="b('content', {'payment-terms': paymentTerms}).toString()">
-      <VSpacer size="xxxs" />
+  <div>
+    <div
+      v-if="!paymentTerms"
+      :class="b('heading').toString()">
+      <Heading
+        level="h4"
+        font-weight="light"
+        line-height="compact">
+        Set Up Your
+      </Heading>
 
-      <div v-if="!paymentTerms">
-        <div :class="b('heading').toString()">
-          <Heading
-            level="h4"
-            font-weight="light"
-            line-height="compact">
-            Set Up Your
-          </Heading>
+      <Heading
+        :level="layout === 'desktop' ? 'h1' : 'h2'"
+        font-weight="bold"
+        font-family="museo">
+        New Pet Alert
+      </Heading>
 
-          <Heading
-            :level="layout === 'desktop' ? 'h1' : 'h2'"
-            font-weight="bold"
-            font-family="museo">
-            New Pet Alert
-          </Heading>
+      <Paragraph
+        tag="span"
+        font-size="s"
+        font-weight="normal">
+        <TextLink @click="whatIsThis">
+          What is this?
+        </TextLink>
+      </Paragraph>
 
+      <VSpacer size="xl" />
+    </div>
+    <div
+      :class="b({'payment-terms': paymentTerms}).toString()">
+      <div :class="b('content', {'payment-terms': paymentTerms}).toString()">
+        <div v-if="!paymentTerms">
           <Paragraph
-            tag="span"
-            font-size="s"
+            text-align="left"
+            color="gray"
             font-weight="normal">
-            <TextLink @click="whatIsThis">
-              What is this?
-            </TextLink>
+            We'll email you when new pets that match your search criteria are added to our site!
           </Paragraph>
 
-          <VSpacer size="xl" />
-        </div>
+          <VSpacer size="l" />
 
-        <Paragraph
-          text-align="left"
-          color="gray"
-          font-weight="normal">
-          We'll email you when new pets that match your search criteria are added to our site!
-        </Paragraph>
+          <SearchQuerySentence
+            :filters="filters"
+            @click:searchFilters="searchFilters" />
 
-        <VSpacer size="l" />
+          <VSpacer size="l" />
 
-        <SearchQuerySentence
-          :filters="filters"
-          @click:searchFilters="searchFilters" />
-
-        <VSpacer size="l" />
-
-        <div :class="b('fields').toString()">
-          <div>
-            <EmailInput
-              ref="email"
-              v-model="form.email"
-              name="email"
-              :validations="{emailDNCValidator, emailValidator}"
-              :error-messages="{
-                required: 'Enter Email',
-                emailValidator: 'Invalid Email',
-                emailDNCValidator: 'Oops!',
-              }"
-              required
-              @change="changeEmail" />
-            <div
-              v-if="showDNCError"
-              :class="b('error-message').toString()">
-              You are currently on our Do Not Contact list.
-              To be removed and get help setting up for New Pet Alerts, email
-              <TextLink href="mailto:info@adoptapet.com">
-                info@adoptapet.com
-              </TextLink>.
+          <div :class="b('fields').toString()">
+            <div>
+              <EmailInput
+                ref="email"
+                v-model="form.email"
+                name="email"
+                :validations="{emailDNCValidator, emailValidator}"
+                :error-messages="{
+                  required: 'Enter Email',
+                  emailValidator: 'Invalid Email',
+                  emailDNCValidator: 'Oops!',
+                }"
+                required
+                @change="changeEmail" />
+              <div
+                v-if="showDNCError"
+                :class="b('error-message').toString()">
+                You are currently on our Do Not Contact list.
+                To be removed and get help setting up for New Pet Alerts, email
+                <TextLink href="mailto:info@adoptapet.com">
+                  info@adoptapet.com
+                </TextLink>.
+              </div>
             </div>
+
+            <RadioGroupBox
+              v-if="filters.clan === 1 || filters.clan === 2"
+              ref="plan"
+              v-model="form.plan"
+              name="npa-plan-selection"
+              :columns="2"
+              :items="npaTypes"
+              :show-display-text="showDisplayText"
+              :error-messages="{required: 'Please select an option.'}"
+              required
+              @change="selectPlan" />
           </div>
 
-          <RadioGroupBox
-            v-if="filters.clan === 1 || filters.clan === 2"
-            ref="plan"
-            v-model="form.plan"
-            name="npa-plan-selection"
-            :columns="2"
-            :items="npaTypes"
-            :show-display-text="showDisplayText"
-            :error-messages="{required: 'Please select an option.'}"
-            required
-            @change="selectPlan" />
+          <div v-if="filters.clan === 1 || filters.clan === 2">
+            <Infobox
+              v-if="form.plan === 1"
+              icon="lightbulb"
+              @click:textLink="searchFilters">
+              <template slot="header">
+                Pro tip
+              </template>
+              <template slot="message">
+                To get the most out of your Premium experience, choose 2 or more filters.
+              </template>
+              <template slot="link">
+                Edit Filters >
+              </template>
+            </Infobox>
+          </div>
+
+          <VSpacer size="xl" />
+
+          <div v-if="form.plan === 1 && !isConfirmedUser">
+            <Heading
+              level="h3"
+              font-weight="bold"
+              font-family="museo">
+              Payment
+            </Heading>
+
+            <VSpacer size="xxs" />
+
+            <Heading
+              level="h5"
+              font-weight="bold">
+              Amount (Billed Monthly)
+            </Heading>
+
+            <Heading
+              level="h4"
+              font-weight="bold"
+              class="premium-price-plan">
+              $10
+            </Heading>
+
+            <VSpacer size="xs" />
+
+            <PaymentForm
+              ref="paymentForm"
+              :email="form.email"
+              :payment-error="paymentError"
+              :premium-plan-id="premiumPlanId"
+              @paymentInfo="createPremiumNPA"
+              @tokenError:creation="emitTokenError"
+              @noEmail="emitScrollToEmail"
+              @paymentTermsClicked="showPaymentTerms" />
+          </div>
+
+
+          <VDivider
+            v-if="layout == 'desktop'"
+            type="dashed" />
+
+          <div v-if="layout !== 'desktop'">
+            <VDivider type="dashed" />
+            <VSpacer size="xl" />
+            <OffersForm
+              v-model="form.optins"
+              :offers="offers"
+              :optins="optins"
+              :all-offers-checked="allOffersChecked"
+              @change:optins="emitOptins"
+              @change:allOffersChecked="emitAllOffersChecked" />
+            <VSpacer size="xl" />
+            <VDivider type="dashed" />
+          </div>
+
+          <VSpacer size="xl" />
+
+          <Checkbox
+            id="gtm-dont-show"
+            v-model="form.dontShowAgain"
+            @change="dontShowAgain">
+            <Paragraph
+              :class="b('checkbox-text').toString()"
+              font-size="xs"
+              font-weight="light"
+              class="gtm-dont-show">
+              Don’t show me this again.
+            </Paragraph>
+          </Checkbox>
+
+          <VSpacer size="xl" />
+
+          <div :class="b('skip-continue').toString()">
+            <TextLink
+              always-underline
+              color="gray-light"
+              @click="skip">
+              <Paragraph
+                tag="span"
+                font-size="m"
+                font-family="museo"
+                font-weight="bold"
+                color="gray-light">
+                Skip
+              </Paragraph>
+            </TextLink>
+
+            <Button
+              id="npa-submit-button"
+              @click="submit">
+              Save & Continue
+            </Button>
+          </div>
+
+          <VSpacer size="xl" />
+
+        <!-- If !paymentTerms end -->
         </div>
+        <div v-if="paymentTerms">
+          <div :class="b('heading', {'payment-terms': paymentTerms}).toString()">
+            <Heading
+              level="h4"
+              font-weight="light"
+              line-height="compact">
+              Premium NPA
+            </Heading>
 
-        <div v-if="filters.clan === 1 || filters.clan === 2">
-          <Infobox
-            v-if="form.plan === 1"
-            icon="lightbulb"
-            @click:textLink="searchFilters">
-            <template slot="header">
-              Pro tip
-            </template>
-            <template slot="message">
-              To get the most out of your Premium experience, choose 2 or more filters.
-            </template>
-            <template slot="link">
-              Edit Filters >
-            </template>
-          </Infobox>
-        </div>
+            <Heading
+              :level="layout === 'desktop' ? 'h1' : 'h2'"
+              font-weight="bold"
+              font-family="museo">
+              Payment Terms
+            </Heading>
+            <VSpacer size="xl" />
+          </div>
 
-        <VSpacer size="xl" />
-
-        <div v-if="form.plan === 1 && !isConfirmedUser">
           <Heading
-            level="h3"
+            :class="b('terms-heading').toString()"
+            level="h4"
             font-weight="bold"
-            font-family="museo">
+            line-height="compact">
+            Subscription Details
+          </Heading>
+          <Paragraph :class="b('terms-paragraph').toString()">
+            Premium New Pet Alerts is a monthly
+            subscription service that will notify you
+            by email instantly when you have a new
+            match for any of your saved searches
+            with Adopt-a-Pet.com, so you’ll be the
+            first to know when an awesome new
+            pet is available for adoption.
+          </Paragraph>
+
+          <Heading
+            :class="b('terms-heading').toString()"
+            level="h4"
+            font-weight="bold"
+            line-height="compact">
             Payment
           </Heading>
-
-          <VSpacer size="xxs" />
-
-          <Heading
-            level="h5"
-            font-weight="bold">
-            Amount (Billed Monthly)
-          </Heading>
-
-          <Heading
-            level="h4"
-            font-weight="bold"
-            class="premium-price-plan">
-            $10
-          </Heading>
-
-          <VSpacer size="xs" />
-
-          <PaymentForm
-            ref="paymentForm"
-            :email="form.email"
-            :payment-error="paymentError"
-            :premium-plan-id="premiumPlanId"
-            @paymentInfo="createPremiumNPA"
-            @tokenError:creation="emitTokenError"
-            @noEmail="emitScrollToEmail"
-            @paymentTermsClicked="showPaymentTerms" />
-        </div>
-
-
-        <VDivider
-          v-if="layout == 'desktop'"
-          type="dashed" />
-
-        <div v-if="layout !== 'desktop'">
-          <VDivider type="dashed" />
-          <VSpacer size="xl" />
-          <OffersForm
-            v-model="form.optins"
-            :offers="offers"
-            :optins="optins"
-            :all-offers-checked="allOffersChecked"
-            @change:optins="emitOptins"
-            @change:allOffersChecked="emitAllOffersChecked" />
-          <VSpacer size="xl" />
-          <VDivider type="dashed" />
-        </div>
-
-        <VSpacer size="xl" />
-
-        <Checkbox
-          id="gtm-dont-show"
-          v-model="form.dontShowAgain"
-          @change="dontShowAgain">
-          <Paragraph
-            :class="b('checkbox-text').toString()"
-            font-size="xs"
-            font-weight="light"
-            class="gtm-dont-show">
-            Don’t show me this again.
+          <Paragraph :class="b('terms-paragraph').toString()">
+            We’ll bill you $10 for this premium
+            service on the monthly anniversary of
+            your sign up and your subscription will
+            auto-renew until you cancel. By
+            subscribing to this service, you’re a
+            hero helping our 501(c)(3) non-profit to
+            financially support the adoption of
+            homeless pets across North America. If
+            you’d like to make an additional one
+            time or monthly contribution to our
+            charity to help pets in need, please visit
+            our <TextLink
+              :class="b('donation-link').toString()"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://adoptapet.kindful.com/?campaign=1018795">
+              donation
+            </TextLink> page.
           </Paragraph>
-        </Checkbox>
 
-        <VSpacer size="xl" />
-
-        <div :class="b('skip-continue').toString()">
-          <TextLink
-            always-underline
-            color="gray-light"
-            @click="skip">
-            <Paragraph
-              tag="span"
-              font-size="m"
-              font-family="museo"
-              font-weight="bold"
-              color="gray-light">
-              Skip
-            </Paragraph>
-          </TextLink>
-
-          <Button
-            id="npa-submit-button"
-            @click="submit">
-            Save & Continue
-          </Button>
-        </div>
-
-        <VSpacer size="xl" />
-
-      <!-- If !paymentTerms end -->
-      </div>
-      <div v-if="paymentTerms">
-        <div :class="b('heading', {'payment-terms': paymentTerms}).toString()">
           <Heading
+            :class="b('terms-heading').toString()"
             level="h4"
-            font-weight="light"
-            line-height="compact">
-            Premium NPA
-          </Heading>
-
-          <Heading
-            :level="layout === 'desktop' ? 'h1' : 'h2'"
             font-weight="bold"
-            font-family="museo">
-            Payment Terms
+            line-height="compact">
+            Cancellation
           </Heading>
-          <VSpacer size="xl" />
+          <Paragraph :class="b('terms-paragraph').toString()">
+            Cancelling your Premium New Pet
+            Alerts is easy. Simply visit your Settings
+            page and click the “Cancel Premium Plan” link.
+            Upon cancellation, you’ll no longer be billed
+            in future months and we’ll deactivate your Premium New Pet Alerts.
+          </Paragraph>
+
+          <Paragraph font-size="s">
+            (You will continue to receive any Free Pet Alerts that are active.)
+          </Paragraph>
+
+        <!-- If paymentTerms end -->
         </div>
-
-        <Heading
-          :class="b('terms-heading').toString()"
-          level="h4"
-          font-weight="bold"
-          line-height="compact">
-          Subscription Details
-        </Heading>
-        <Paragraph :class="b('terms-paragraph').toString()">
-          Premium New Pet Alerts is a monthly
-          subscription service that will notify you
-          by email instantly when you have a new
-          match for any of your saved searches
-          with Adopt-a-Pet.com, so you’ll be the
-          first to know when an awesome new
-          pet is available for adoption.
-        </Paragraph>
-
-        <Heading
-          :class="b('terms-heading').toString()"
-          level="h4"
-          font-weight="bold"
-          line-height="compact">
-          Payment
-        </Heading>
-        <Paragraph :class="b('terms-paragraph').toString()">
-          We’ll bill you $10 for this premium
-          service on the monthly anniversary of
-          your sign up and your subscription will
-          auto-renew until you cancel. By
-          subscribing to this service, you’re a
-          hero helping our 501(c)(3) non-profit to
-          financially support the adoption of
-          homeless pets across North America. If
-          you’d like to make an additional one
-          time or monthly contribution to our
-          charity to help pets in need, please visit
-          our <TextLink
-            :class="b('donation-link').toString()"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://adoptapet.kindful.com/?campaign=1018795">
-            donation
-          </TextLink> page.
-        </Paragraph>
-
-        <Heading
-          :class="b('terms-heading').toString()"
-          level="h4"
-          font-weight="bold"
-          line-height="compact">
-          Cancellation
-        </Heading>
-        <Paragraph :class="b('terms-paragraph').toString()">
-          Cancelling your Premium New Pet
-          Alerts is easy. Simply visit your Settings
-          page and click the “Cancel Premium Plan” link.
-          Upon cancellation, you’ll no longer be billed
-          in future months and we’ll deactivate your Premium New Pet Alerts.
-        </Paragraph>
-
-        <Paragraph font-size="s">
-          (You will continue to receive any Free Pet Alerts that are active.)
-        </Paragraph>
-
-      <!-- If paymentTerms end -->
+      <!-- Content End -->
       </div>
-    <!-- Content End -->
-    </div>
 
-    <OffersForm
-      v-if="layout === 'desktop' && !paymentTerms"
-      v-model="form.optins"
-      :class="b('offers-form-desktop').toString()"
-      :offers="offers"
-      :optins="optins"
-      :all-offers-checked="allOffersChecked"
-      @change:optins="emitOptins"
-      @change:allOffersChecked="emitAllOffersChecked" />
-  <!-- Parent Div end -->
+      <OffersForm
+        v-if="layout === 'desktop' && !paymentTerms"
+        v-model="form.optins"
+        :class="b('offers-form-desktop').toString()"
+        :offers="offers"
+        :optins="optins"
+        :all-offers-checked="allOffersChecked"
+        @change:optins="emitOptins"
+        @change:allOffersChecked="emitAllOffersChecked" />
+    <!-- Parent Div end -->
+    </div>
   </div>
 </template>
 
