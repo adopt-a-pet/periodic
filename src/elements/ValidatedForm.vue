@@ -33,34 +33,35 @@ export default {
         // Find all child components that have a `name` prop AND are in the list
         this.$children.find(component => component.name === name),
       ).filter(component => component && ('validate' in component)); // Ignore components that don't have a `validate` method
-
       // Give all fields a chance to validate before submit
-      Promise.all(fieldComponents.map(ref => ref.validate()))
-        .then(validated => {
-          const allValid = validated.every(valid => valid);
+      setTimeout(() => {
+        Promise.all(fieldComponents.map(ref => ref.validate()))
+          .then(validated => {
+            const allValid = validated.every(valid => valid);
 
-          if (!allValid) {
-            const firstInvalidIndex = validated.findIndex(v => !v); // return `true` for the first invalid field
-            const firstInvalidName = fieldComponents[firstInvalidIndex].name;
+            if (!allValid) {
+              const firstInvalidIndex = validated.findIndex(v => !v); // return `true` for the first invalid field
+              const firstInvalidName = fieldComponents[firstInvalidIndex].name;
+
+              /**
+               * Validation error event. Emits the name of the invalid field.
+               *
+               * @event validate:error
+               * @type String
+               */
+              this.$emit('validate:error', firstInvalidName);
+              return;
+            }
 
             /**
-             * Validation error event. Emits the name of the invalid field.
+             * Submit event
              *
-             * @event validate:error
-             * @type String
+             * @event submit
+             * @type none
              */
-            this.$emit('validate:error', firstInvalidName);
-            return;
-          }
-
-          /**
-           * Submit event
-           *
-           * @event submit
-           * @type none
-           */
-          this.$emit('submit');
-        });
+            this.$emit('validate-form');
+          });
+      }, 500);
     },
   },
 };

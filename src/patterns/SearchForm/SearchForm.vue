@@ -228,7 +228,7 @@ export default {
        * @type Object
        */
       if (this.fields.clanId) {
-        this.$emit('submit', this.fields);
+        this.$emit('submit-form', this.fields);
       }
     },
   },
@@ -238,7 +238,7 @@ export default {
 <docs>
   ```vue
   <template>
-    <SearchForm @submit="submit" />
+    <SearchForm @submit-form="submit" />
   </template>
   <script>
     export default {

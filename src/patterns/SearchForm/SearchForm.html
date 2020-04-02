@@ -14,7 +14,7 @@
       <div class="underline" />
     </a>
   </nav>
-  <ValidatedForm :names="['location']" @submit="submitForm">
+  <ValidatedForm :names="['location']" @validate-form="submitForm">
     <!-- dogs -->
     <section v-if="sections[sectionIndex].display === 'Dogs'">
       <LocationInput
