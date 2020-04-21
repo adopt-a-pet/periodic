@@ -641,7 +641,7 @@ export default {
         {
           newsletterId: 2,
           displayHtml:
-            'Yes, I would like to receive communications from the Petco Foundation'
+            'Yes, I would like to receive communications from Chewy'
         }
       ],
       optins: [1, 2],

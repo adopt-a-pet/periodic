@@ -116,12 +116,6 @@
         target="_blank"
         :class="b('link-blue').toString()">
         Chewy Privacy Policy
-      </TextLink>,
-      <TextLink
-        href="https://www.petcofoundation.org/privacy/"
-        target="_blank"
-        :class="b('link-blue').toString()">
-        Petco Foundation Privacy Policy
       </TextLink>, and
       <TextLink
         href="https://www.petbasics.com/privacy-statement/"
@@ -272,14 +266,14 @@ export default {
       return [
         {
           newsletterId: 1,
-          techName: 'petcof2',
+          techName: 'chewy2',
           displayHtml: "I would like to receive the latest special deals"
         },
         {
           newsletterId: 2,
-          techName: 'petcof2',
+          techName: 'chewy2',
           displayHtml:
-            "Yes, I would like to receive communications from the Petco Foundation"
+            "Yes, I would like to receive communications from Chewy"
         }
       ];
     }
