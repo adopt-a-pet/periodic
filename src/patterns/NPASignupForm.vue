@@ -53,11 +53,12 @@
                 ref="email"
                 v-model="form.email"
                 name="email"
-                :validations="{emailDNCValidator, emailValidator}"
+                :validations="{emailDNCValidator, emailValidator, kickboxValidator}"
                 :error-messages="{
                   required: 'Enter Email',
                   emailValidator: 'Invalid Email',
                   emailDNCValidator: 'Oops!',
+                  kickboxValidator: 'Invalid Email'
                 }"
                 required
                 @change="changeEmail" />
@@ -464,6 +465,11 @@ export default {
           this.showDNCError = false;
           return err;
         });
+    },
+    kickboxValidator(email) {
+      return this.$syscall('api/validation/kickboxValidator', email)
+        .then(res => res)
+        .catch(err => err);
     },
     whatIsThis() {
       /**
