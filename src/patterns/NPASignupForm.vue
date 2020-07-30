@@ -53,11 +53,12 @@
                 ref="email"
                 v-model="form.email"
                 name="email"
-                :validations="{emailDNCValidator, emailValidator}"
+                :validations="{emailDNCValidator, emailValidator, kickboxValidator}"
                 :error-messages="{
                   required: 'Enter Email',
                   emailValidator: 'Invalid Email',
                   emailDNCValidator: 'Oops!',
+                  kickboxValidator: 'Invalid Email'
                 }"
                 required
                 @change="changeEmail" />
@@ -465,6 +466,11 @@ export default {
           return err;
         });
     },
+    kickboxValidator(email) {
+      return this.$syscall('api/validation/kickboxValidator', email)
+        .then(res => res)
+        .catch(err => err);
+    },
     whatIsThis() {
       /**
        * When user clicks "What is this"
@@ -641,7 +647,7 @@ export default {
         {
           newsletterId: 2,
           displayHtml:
-            'Yes, I would like to receive communications from the Petco Foundation'
+            'Yes, I would like to receive communications from Chewy'
         }
       ],
       optins: [1, 2],

@@ -129,5 +129,13 @@ export default {
         return true;
       })
     },
+    'api/validation/kickboxValidator': function (_, payload) {
+      return axios.get(`utilities/validate/${payload}`).then(res => {
+        return true ? res.data.body.emailStatus : false;
+      })
+      .catch(err => {
+        console.error('VML error: ', err);
+      })
+    }
   }
 };
