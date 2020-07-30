@@ -121,7 +121,7 @@
         href="https://www.petbasics.com/privacy-statement/"
         target="_blank"
         :class="b('link-blue').toString()">
-        PetBasics.com by Bayer Privacy Policy
+        PetBasics Privacy Policy
       </TextLink>).
     </Paragraph>
   </div>
