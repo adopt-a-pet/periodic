@@ -94,7 +94,7 @@ props:
     category: color_group_5
 
   color_facebook_blue:
-    value: "#3b5998"
+    value: "#1877f2"
     category: color_group_6
   color_google_red:
     value: "#db4336"

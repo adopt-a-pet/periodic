@@ -1,11 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="12px" height="24px" viewBox="0 0 12 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 57 (83077) - https://sketch.com -->
-    <title>Path</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="facebook-1" fill="#3B5988" fill-rule="nonzero">
-            <path d="M3,8 L0,8 L0,12 L3,12 L3,24 L8,24 L8,12 L11.642,12 L12,8 L8,8 L8,6.333 C8,5.378 8.192,5 9.115,5 L12,5 L12,0 L8.192,0 C4.596,0 3,1.583 3,4.615 L3,8 Z" id="Path"></path>
-        </g>
-    </g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="fb-hover" d="M24 12C24 5.37259 18.6274 1.52588e-05 12 1.52588e-05C5.37258 1.52588e-05 0 5.37259 0 12C0 17.9896 4.38823 22.954 10.125 23.8542V15.4688H7.07813V12H10.125V9.35626C10.125 6.34876 11.9165 4.68752 14.6576 4.68752C15.9705 4.68752 17.3438 4.92189 17.3438 4.92189V7.87501H15.8306C14.3399 7.87501 13.875 8.80002 13.875 9.74901V12H17.2031L16.6711 15.4688H13.875V23.8542C19.6118 22.954 24 17.9896 24 12Z" fill="#1877F2"/>
+<path id="fb-hover-inner" d="M16.6711 15.4688L17.2031 12H13.875V9.74899C13.875 8.80001 14.3399 7.875 15.8306 7.875H17.3438V4.92188C17.3438 4.92188 15.9705 4.6875 14.6576 4.6875C11.9165 4.6875 10.125 6.34875 10.125 9.35625V12H7.07812V15.4688H10.125V23.8542C10.7359 23.9501 11.3621 24 12 24C12.6379 24 13.2641 23.9501 13.875 23.8542V15.4688H16.6711Z" fill="white"/>
 </svg>
