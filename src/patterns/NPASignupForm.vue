@@ -263,7 +263,11 @@
               rel="noopener noreferrer"
               href="https://adoptapet.kindful.com/?campaign=1018795">
               donation
-            </TextLink> page.
+            </TextLink> page. No refunds.
+            You may cancel your
+            Premium NPA subscription
+            at anytime but you will not be issued a
+            refund.
           </Paragraph>
 
           <Heading
