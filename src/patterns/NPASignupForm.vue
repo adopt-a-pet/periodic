@@ -236,6 +236,7 @@
             with Adopt-a-Pet.com, so you’ll be the
             first to know when an awesome new
             pet is available for adoption.
+            This offer is limited to a maximum of 25 unique pets emailed per day.
           </Paragraph>
 
           <Heading
