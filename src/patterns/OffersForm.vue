@@ -68,26 +68,6 @@
 
         <VSpacer size="xxs" />
       </div>
-
-      <Paragraph
-        :class="b('footnote').toString()"
-        font-size="xxs"
-        font-weight="normal"
-        line-height="15px">
-        * I certify I am 18 years of age or older and agree that Purina
-        may use my information as described in the
-        <TextLink
-          href="https://www.purina.com/privacy-policy"
-          target="_blank">
-          Privacy Policy
-        </TextLink>
-        <span>and</span>
-        <TextLink
-          href="https://www.purina.com/about-our-ads"
-          target="_blank">
-          About Our Ads
-        </TextLink>
-      </Paragraph>
     </div>
     <Paragraph
       line-height="14px"
@@ -105,12 +85,6 @@
         Privacy Policy
       </TextLink>) and is being collected by Adopt-a-Pet.com’s sponsors, and will be used as described in
       their privacy policies (visit
-      <TextLink
-        href="https://www.purina.com/privacy-policy"
-        target="_blank"
-        :class="b('link-blue').toString()">
-        Purina Privacy Policy
-      </TextLink>,
       <TextLink
         href="https://www.chewy.com/app/content/privacy"
         target="_blank"
