@@ -248,27 +248,16 @@
           </Heading>
           <Paragraph :class="b('terms-paragraph').toString()">
             We’ll bill you $10 for this premium
-            service on the monthly anniversary of
-            your sign up and your subscription will
-            auto-renew until you cancel. By
-            subscribing to this service, you’re a
-            hero helping our 501(c)(3) non-profit to
-            financially support the adoption of
-            homeless pets across North America. If
-            you’d like to make an additional one
-            time or monthly contribution to our
-            charity to help pets in need, please visit
-            our <TextLink
-              :class="b('donation-link').toString()"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://adoptapet.kindful.com/?campaign=1018795">
-              donation
-            </TextLink> page. No refunds.
-            You may cancel your
-            Premium NPA subscription
-            at anytime but you will not be issued a
-            refund.
+            service on the monthly anniversary
+            of your sign up and your subscription
+            will auto-renew until you cancel. By
+            subscribing to this service, you’re
+            a hero helping to financially support
+            the adoption of homeless pets across
+            North America. No refunds. You may
+            cancel your Premium NPA subscription
+            at anytime but you will not be issued
+            a refund.
           </Paragraph>
 
           <Heading
@@ -445,7 +434,7 @@ export default {
       {
         heading: 'Premium Alert',
         display:
-          'Get real-time, instant emails when you have a new match. Your payment supports our non-profit! Cancel anytime.',
+          'Get real-time, instant emails when you have a new match. Your payment helps us save more pets! Cancel anytime.',
         icon: 'clock',
         value: 1,
       },
