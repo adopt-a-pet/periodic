@@ -73,18 +73,12 @@
       line-height="14px"
       font-size="xxxxs">
       I understand my information is being collected by
-      <Paragraph
-        tag="span"
-        font-weight="normal"
-        font-size="xxxxs">
-        Adopt-a-Pet.com
-      </Paragraph> (and will be used as described in its
       <TextLink
-        href="https://adoptapet.com/public/privacy_policy/"
+        href="https://www.mars.com/privacy"
         target="_blank">
-        Privacy Policy
-      </TextLink>) and is being collected by Adopt-a-Pet.com’s sponsors, and will be used as described in
-      their privacy policies (visit
+        Adopt-a-Pet.com
+      </TextLink> (Privacy Policy) and by Its sponsors.
+      Please view their privacy policies at
       <TextLink
         href="https://www.chewy.com/app/content/privacy"
         target="_blank"
@@ -96,7 +90,8 @@
         target="_blank"
         :class="b('link-blue').toString()">
         PetBasics Privacy Policy
-      </TextLink>).
+      </TextLink> for more information about
+      their privacy practices.
     </Paragraph>
   </div>
 </template>
