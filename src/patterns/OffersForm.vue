@@ -72,12 +72,12 @@
     <Paragraph
       line-height="14px"
       font-size="xxxxs">
-      I understand my information is being collected by
+      I understand my information is being collected by Adopt-a-Pet.com
       <TextLink
         href="https://www.mars.com/privacy"
         target="_blank">
-        Adopt-a-Pet.com
-      </TextLink> (Privacy Policy) and by Its sponsors.
+        (Privacy Policy)
+      </TextLink> and by Its sponsors.
       Please view their privacy policies at
       <TextLink
         href="https://www.chewy.com/app/content/privacy"
