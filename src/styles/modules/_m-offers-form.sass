@@ -36,3 +36,24 @@
   +e('footnote')
     font-weight: 400
     color: color(agray, light)
+
+.wildest-banner
+    display: flex
+    @include rem-fallback('max-width', 445px)
+    @include rem-fallback('margin-top', 30px)
+
+    &__logo
+        @include rem-fallback('height', 90px)
+        @include rem-fallback('width', 90px)
+
+        img
+            @include rem-fallback('width', 90px)
+            height: auto
+
+    &__text
+        display: flex
+        justify-content: center
+        align-items: center
+        @include rem-fallback('height', 90px)
+        @include rem-fallback('padding', 0 17px 0 15px)
+        background-color: $sixty-percent-grey

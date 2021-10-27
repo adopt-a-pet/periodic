@@ -27,15 +27,16 @@
         Get offers and tips from our sponsors.
       </Paragraph>
       <br>
-      <span
-        @click.stop="showAllOffers = !showAllOffers">
+      <span @click.stop="showAllOffers = !showAllOffers">
         <Paragraph
           tag="span"
           :class="b('link-blue').toString()"
           font-size="xxs"
           font-weight="normal"
           line-height="15px">
-          {{ showAllOffers ? 'Save and close' : 'Modify your selections below' }}
+          {{
+            showAllOffers ? "Save and close" : "Modify your selections below"
+          }}
         </Paragraph>
 
         <Icon
@@ -77,8 +78,8 @@
         href="https://www.mars.com/privacy"
         target="_blank">
         (Privacy Policy)
-      </TextLink> and by Its sponsors.
-      Please view their privacy policies at
+      </TextLink>
+      and by Its sponsors. Please view their privacy policies at
       <TextLink
         href="https://www.chewy.com/app/content/privacy"
         target="_blank"
@@ -90,9 +91,31 @@
         target="_blank"
         :class="b('link-blue').toString()">
         PetBasics Privacy Policy
-      </TextLink> for more information about
-      their privacy practices.
+      </TextLink>
+      for more information about their privacy practices.
     </Paragraph>
+    <div class="wildest-banner">
+      <div class="wildest-banner__logo">
+        <img src="../assets/img/theWildestBannerLogoBlock.png">
+      </div>
+      <div class="wildest-banner__text">
+        <Paragraph
+          line-height="14px"
+          font-size="xxxxs"
+          font-weight="normal">
+          <b>BONUS:</b> Navigate the wild world of pet parenting with our sister
+          site
+          <TextLink
+            href="https://www.thewildest.com/signup?utm_source=adoptapetsite&utm_medium=referral&utm_campaign=adopt_a_pet_opt_in&utm_content=asset_tw_logo"
+            target="_blank"
+            class="link-blue">
+            <b>The Wildest</b>
+          </TextLink>! By submitting your info, you’ll also receive pet advice, free
+          training tips, expert advice, and 24/7 access to pet pros from the
+          Wildest.
+        </Paragraph>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -172,7 +195,10 @@ export default {
        * @event change
        * @type Array
        */
-      this.$emit('change', this.offers.map(({ newsletterId }) => newsletterId));
+      this.$emit(
+        'change',
+        this.offers.map(({ newsletterId }) => newsletterId),
+      );
     },
 
     allOffers() {
@@ -180,9 +206,7 @@ export default {
     },
 
     newsletterCheckboxId(offer) {
-      return `${tokens.prefix_component}offersform-checkbox-newsletter-${
-        offer.techName
-      }`;
+      return `${tokens.prefix_component}offersform-checkbox-newsletter-${offer.techName}`;
     },
 
     onOfferChecked(checked, checkedNewsletterId) {
