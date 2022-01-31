@@ -11,7 +11,10 @@
 
     <div class="wildest-banner">
       <div class="wildest-banner__logo">
-        <img src="../assets/img/theWildestBannerLogoBlock.png">
+        <img
+          alt="The Wildest Logo"
+          src="../assets/img/theWildestBannerLogoBlock.png"
+        >
       </div>
       <div class="wildest-banner__text">
         <Paragraph

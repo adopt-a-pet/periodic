@@ -14,6 +14,7 @@
 
             <img
               :class="b('close-svg').toString()"
+              alt="hide banner"
               src="https://images-ra.adoptapet.com/images/close.svg">
           </span>
         </header>
