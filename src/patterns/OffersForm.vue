@@ -9,6 +9,91 @@
 
     <VSpacer size="s" />
 
+    <Icon name="pet-sponsor" />
+
+    <VSpacer size="s" />
+
+    <Checkbox
+      id="allSponsorOffers"
+      v-model="allOffersChecked"
+      size="tiny"
+      @change="allOffers">
+      <Paragraph
+        tag="span"
+        :class="b('checkbox-text').toString()"
+        font-size="xxs"
+        font-weight="normal"
+        line-height="15px">
+        Get offers and tips from our sponsors.
+      </Paragraph>
+      <br>
+      <span @click.stop="showAllOffers = !showAllOffers">
+        <Paragraph
+          tag="span"
+          :class="b('link-blue').toString()"
+          font-size="xxs"
+          font-weight="normal"
+          line-height="15px">
+          {{
+            showAllOffers ? "Save and close" : "Modify your selections below"
+          }}
+        </Paragraph>
+
+        <Icon
+          :class="b('arrow').is({ expanded: showAllOffers }).toString()"
+          name="arrow"
+          fill="link-blue" />
+      </span>
+    </Checkbox>
+    <VSpacer size="s" />
+
+    <div
+      v-if="showAllOffers"
+      :class="b('all-offers').toString()">
+      <div
+        v-for="(offer, i) in offers"
+        :key="i">
+        <Checkbox
+          :id="newsletterCheckboxId(offer)"
+          :name="newsletterCheckboxId(offer)"
+          :checked="optins.includes(offer.newsletterId)"
+          size="tiny"
+          @change="onOfferChecked($event, offer.newsletterId)">
+          <Paragraph
+            tag="span"
+            :class="b('checkbox-text').toString()"
+            font-size="xxs"
+            line-height="15px"
+            v-html="offer.displayHtml" />
+        </Checkbox>
+
+        <VSpacer size="xxs" />
+      </div>
+    </div>
+    <Paragraph
+      line-height="14px"
+      font-size="xxxxs">
+      I understand my information is being collected by Adopt-a-Pet.com
+      <TextLink
+        href="https://www.mars.com/privacy"
+        target="_blank">
+        (Privacy Policy)
+      </TextLink>
+      and by Its sponsors. Please view their privacy policies at
+      <TextLink
+        href="https://www.chewy.com/app/content/privacy"
+        target="_blank"
+        :class="b('link-blue').toString()">
+        Chewy Privacy Policy
+      </TextLink>, and
+      <TextLink
+        href="https://www.petbasics.com/privacy-statement/"
+        target="_blank"
+        :class="b('link-blue').toString()">
+        PetBasics Privacy Policy
+      </TextLink>
+      for more information about their privacy practices.
+    </Paragraph>
     <div class="wildest-banner">
       <div class="wildest-banner__logo">
         <img src="../assets/img/theWildestBannerLogoBlock.png">
