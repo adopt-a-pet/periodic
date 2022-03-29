@@ -7,30 +7,30 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: normal;
-    @include font-size(16);
+    font-size: 1rem;
     line-height: 1.5625rem;
   }
   @if $h-heading == "h5-museo" {
     font-family: $font-museo;
-    @include font-size(16);
+    font-size: 1rem;
     font-weight: 700;
   }
   @if $h-heading == "h6-heading" {
     font-family: $font-museo;
     font-weight: 700;
-    @include font-size(14);
+    font-size: .875rem;
     line-height: 1.375rem;
   }
   @if $h-heading == "h6-museo" {
     font-family: $font-museo;
     font-weight: 700;
-    @include font-size(14);
+    font-size: .875rem;
   }
   @if $h-heading == "h1-museo" {
     font-family: $font-museo;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(45);
+    font-size: 2.8125rem;
     line-height: 1.37;
     @include rem-fallback("letter-spacing", -1px);
   }
@@ -38,7 +38,7 @@
     font-family: $font-museo;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(32);
+    font-size: 2rem;
     line-height: 1.5;
     @include rem-fallback("letter-spacing", -0.5px);
   }
@@ -46,7 +46,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: bold;
-    @include font-size(20);
+    font-size: 1.25rem;
     line-height: 2rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
@@ -54,7 +54,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: bold;
-    @include font-size(20);
+    font-size: 1.25rem;
     line-height: 1.625rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
@@ -62,7 +62,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: bold;
-    @include font-size(20);
+    font-size: 1.25rem;
     line-height: 1.5rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
@@ -70,7 +70,7 @@
     font-family: $helvetica;
     color: color(agray, darker);
     font-weight: 200;
-    @include font-size(20);
+    font-size: 1.25rem;
     line-height: 1.625rem;
     letter-spacing: 0;
   }
@@ -78,7 +78,7 @@
     font-family: $helvetica;
     color: color(agray, darker);
     font-weight: 200;
-    @include font-size(20);
+    font-size: 1.25rem;
     line-height: 1.5rem;
     letter-spacing: 0;
   }
@@ -86,7 +86,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: 400;
-    @include font-size(16);
+    font-size: 1rem;
     line-height: 1.5625rem;
     letter-spacing: 0;
   }
@@ -94,7 +94,7 @@
     font-family: $font-museo;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(16);
+    font-size: 1rem;
     line-height: 1.5625rem;
     letter-spacing: 0;
   }
@@ -102,7 +102,7 @@
     font-family: $font-museo;
     color: color(agray, dark);
     font-weight: 400;
-    @include font-size(16);
+    font-size: 1rem;
     line-height: 1.125rem;
     letter-spacing: 0;
   }
@@ -110,7 +110,7 @@
     font-family: $helvetica;
     color: color(agray, darker);
     font-weight: 200;
-    @include font-size(16);
+    font-size: 1rem;
     line-height: 1.25rem;
     letter-spacing: 0;
   }
@@ -118,7 +118,7 @@
     font-family: $helvetica;
     color: color(agray, darker);
     font-weight: 200;
-    @include font-size(16);
+    font-size: 1rem;
     line-height: 1.5625rem;
     letter-spacing: 0;
   }
@@ -126,7 +126,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: normal;
-    @include font-size(20);
+    font-size: 1.25rem;
     line-height: 1.625rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
@@ -134,7 +134,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: normal;
-    @include font-size(20);
+    font-size: 1.25rem;
     line-height: 1.5rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
@@ -142,7 +142,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: normal;
-    @include font-size(16);
+    font-size: 1rem;
     line-height: 1.25rem;
     letter-spacing: 0;
   }
@@ -150,7 +150,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(16);
+    font-size: 1rem;
     line-height: 1.25rem;
     letter-spacing: 0;
   }
@@ -158,7 +158,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(16);
+    font-size: 1rem;
     line-height: 1.5625rem;
     letter-spacing: 0;
   }
@@ -166,7 +166,7 @@
     font-family: $font-museo;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(45);
+    font-size: 2.8125rem;
     line-height: 3.875rem;
     @include rem-fallback("letter-spacing", -1px);
   }
@@ -174,7 +174,7 @@
     font-family: $font-museo;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(32);
+    font-size: 2rem;
     line-height: 3rem;
     @include rem-fallback("letter-spacing", -0.5px);
   }
@@ -182,7 +182,7 @@
     font-family: $font-museo;
     color: color(agray, dark);
     font-weight: normal;
-    @include font-size(26);
+    font-size: 1.625rem;
     line-height: 2.4375rem;
     @include rem-fallback("letter-spacing", -0.5px);
   }
@@ -190,7 +190,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(26);
+    font-size: 1.625rem;
     line-height: 2.4375rem;
     @include rem-fallback("letter-spacing", -0.5px);
   }
@@ -198,7 +198,7 @@
     font-family: $font-museo;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(26);
+    font-size: 1.625rem;
     line-height: 1.875rem;
     @include rem-fallback("letter-spacing", -0.5px);
   }
@@ -206,7 +206,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(26);
+    font-size: 1.625rem;
     line-height: 1.9375rem;
     @include rem-fallback("letter-spacing", -0.5px);
   }
@@ -214,27 +214,27 @@
     font-family: $helvetica;
     color: color(agray, darker);
     font-weight: 200;
-    @include font-size(14);
+    font-size: .875rem;
     line-height: 1.0625rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h6__heading-h6--compact" {
     font-family: $helvetica;
     font-weight: normal;
-    @include font-size(14);
+    font-size: .875rem;
     line-height: 1.0625rem;
   }
   @if $h-heading == "h6__heading-h6--museo-h6--compact" {
     font-family: $font-museo;
     font-weight: normal;
-    @include font-size(14);
+    font-size: .875rem;
     line-height: 1.0625rem;
   }
   @if $h-heading == "h6__heading-h6--bold" {
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(14);
+    font-size: .875rem;
     line-height: 1.375rem;
     letter-spacing: 0;
   }
@@ -242,7 +242,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(14);
+    font-size: .875rem;
     line-height: 1.0625rem;
     letter-spacing: 0;
   }
@@ -250,7 +250,7 @@
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: 400;
-    @include font-size(14);
+    font-size: .875rem;
     line-height: 1.375rem;
     letter-spacing: 0;
   }
@@ -258,7 +258,7 @@
     font-family: $font-museo;
     color: color(agray, dark);
     font-weight: 700;
-    @include font-size(20);
+    font-size: 1.25rem;
     line-height: 1.625rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
@@ -266,7 +266,7 @@
     font-family: $font-museo;
     color: color(agray, dark);
     font-weight: 400;
-    @include font-size(20);
+    font-size: 1.25rem;
     line-height: 2rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
@@ -353,13 +353,14 @@
   pointer-events: none;
   transition: 0.2s ease;
   @if $labeltext == "label-field" {
-    @include font-size(20);
+    font-size: 1.25rem;
     @include rem-fallback("bottom", 14px);
   } @else if $labeltext == "label-textarea" {
-    @include font-size(20) @include rem-fallback("top", 53px);
+    font-size: 1.25rem;
+    @include rem-fallback("top", 53px);
     @include rem-fallback("left", 20px);
   } @else if $labeltext == "label-field-small" {
-    @include font-size(16);
+    font-size: 1rem;
     @include rem-fallback("top", 14px);
     @include rem-fallback("left", 16px);
   }
