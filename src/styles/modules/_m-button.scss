@@ -6,7 +6,7 @@
   color: color(agray, light);
   font-family: $font_museo;
   font-weight: $weight_bold;
-  @include rem-fallback('font-size', 20px);
+  font-size: 1.25rem;
   cursor: pointer;
   line-height: 2.7;
   width: 100%;
@@ -42,7 +42,7 @@
   @include modifier('size') {
     &-small {
       line-height: 2.5;
-      @include rem-fallback('font-size', 16px);
+      font-size: 1rem;
     }
   }
 
@@ -173,7 +173,7 @@
   //     font-family: $museo700;
   //     color: color(awhite);
   //     @include font-size(20);
-  //     @include rem-fallback('line-height', 26px);
+  //     line-height: 1.625rem;
   //     @include rem-fallback('letter-spacing', -.25px);
   // }
 }

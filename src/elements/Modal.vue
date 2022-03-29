@@ -18,7 +18,8 @@
             @click="close">
             <img
               :class="b('close-svg').toString()"
-              src="https://images-ra.adoptapet.com/images/close.svg">
+              src="https://images-ra.adoptapet.com/images/close.svg"
+              alt="close modal">
           </span>
         </header>
 

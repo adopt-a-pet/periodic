@@ -1,7 +1,8 @@
 <div :class="b().toString()">
   <a :href="href">
     <img v-if="pet.image"
-      :src="pet.image" />
+      :src="pet.image"
+      :alt="'Photo of ' + pet.name" />
     <span v-if="!pet.image">
       <Icon v-if="pet.clanId === 1"
         name="no-photo-dog" />
