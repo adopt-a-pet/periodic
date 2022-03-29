@@ -43,14 +43,14 @@
       <Paragraph
         font-size="s"
         font-weight="bold"
-        line-height="24px">
+        line-height="1.5rem">
         You’re Searching For
       </Paragraph>
 
       <Paragraph
         v-if="hasMoreFiltersThanClan"
         font-weight="bold"
-        line-height="26px">
+        line-height="1.625rem">
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">
@@ -61,7 +61,7 @@
       <Paragraph
         v-else
         font-weight="bold"
-        line-height="26px">
+        line-height="1.625rem">
         <TextLink
           :class="b('search-params').toString()"
           @click="searchFilters">

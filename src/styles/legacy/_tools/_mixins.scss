@@ -8,7 +8,7 @@
     color: color(agray, dark);
     font-weight: normal;
     @include font-size(16);
-    @include rem-fallback("line-height", 25px);
+    line-height: 1.5625rem;
   }
   @if $h-heading == "h5-museo" {
     font-family: $font-museo;
@@ -19,7 +19,7 @@
     font-family: $font-museo;
     font-weight: 700;
     @include font-size(14);
-    @include rem-fallback("line-height", 22px);
+    line-height: 1.375rem;
   }
   @if $h-heading == "h6-museo" {
     font-family: $font-museo;
@@ -47,7 +47,7 @@
     color: color(agray, dark);
     font-weight: bold;
     @include font-size(20);
-    @include rem-fallback("line-height", 32px);
+    line-height: 2rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
   @if $h-heading == "h4__heading-h4--bold-h4--compact" {
@@ -55,7 +55,7 @@
     color: color(agray, dark);
     font-weight: bold;
     @include font-size(20);
-    @include rem-fallback("line-height", 26px);
+    line-height: 1.625rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
   @if $h-heading == "h4__heading-h4--bold-h4--x-compact" {
@@ -63,7 +63,7 @@
     color: color(agray, dark);
     font-weight: bold;
     @include font-size(20);
-    @include rem-fallback("line-height", 24px);
+    line-height: 1.5rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
   @if $h-heading == "h4__heading-h4--light-h4--compact" {
@@ -71,7 +71,7 @@
     color: color(agray, darker);
     font-weight: 200;
     @include font-size(20);
-    @include rem-fallback("line-height", 26px);
+    line-height: 1.625rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h4__heading-h4--light-h4--x-compact" {
@@ -79,7 +79,7 @@
     color: color(agray, darker);
     font-weight: 200;
     @include font-size(20);
-    @include rem-fallback("line-height", 24px);
+    line-height: 1.5rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading" {
@@ -87,7 +87,7 @@
     color: color(agray, dark);
     font-weight: 400;
     @include font-size(16);
-    @include rem-fallback("line-height", 25px);
+    line-height: 1.5625rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--museo" {
@@ -95,7 +95,7 @@
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(16);
-    @include rem-fallback("line-height", 25px);
+    line-height: 1.5625rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--museo-h5--x-compact" {
@@ -103,7 +103,7 @@
     color: color(agray, dark);
     font-weight: 400;
     @include font-size(16);
-    @include rem-fallback("line-height", 18px);
+    line-height: 1.125rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--light-h5--compact" {
@@ -111,7 +111,7 @@
     color: color(agray, darker);
     font-weight: 200;
     @include font-size(16);
-    @include rem-fallback("line-height", 20px);
+    line-height: 1.25rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--light" {
@@ -119,7 +119,7 @@
     color: color(agray, darker);
     font-weight: 200;
     @include font-size(16);
-    @include rem-fallback("line-height", 25px);
+    line-height: 1.5625rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h4__heading-h4--compact" {
@@ -127,7 +127,7 @@
     color: color(agray, dark);
     font-weight: normal;
     @include font-size(20);
-    @include rem-fallback("line-height", 26px);
+    line-height: 1.625rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
   @if $h-heading == "h4__heading-h4--x-compact" {
@@ -135,7 +135,7 @@
     color: color(agray, dark);
     font-weight: normal;
     @include font-size(20);
-    @include rem-fallback("line-height", 24px);
+    line-height: 1.5rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
   @if $h-heading == "h5__heading-h5--compact" {
@@ -143,7 +143,7 @@
     color: color(agray, dark);
     font-weight: normal;
     @include font-size(16);
-    @include rem-fallback("line-height", 20px);
+    line-height: 1.25rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--bold-h5--compact" {
@@ -151,7 +151,7 @@
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(16);
-    @include rem-fallback("line-height", 20px);
+    line-height: 1.25rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h5__heading-h5--bold" {
@@ -159,7 +159,7 @@
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(16);
-    @include rem-fallback("line-height", 25px);
+    line-height: 1.5625rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h1__heading-h1--museo" {
@@ -167,7 +167,7 @@
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(45);
-    @include rem-fallback("line-height", 62px);
+    line-height: 3.875rem;
     @include rem-fallback("letter-spacing", -1px);
   }
   @if $h-heading == "h2__heading-h2--museo" {
@@ -175,7 +175,7 @@
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(32);
-    @include rem-fallback("line-height", 48px);
+    line-height: 3rem;
     @include rem-fallback("letter-spacing", -0.5px);
   }
   @if $h-heading == "h3__heading-h3--museo" {
@@ -183,7 +183,7 @@
     color: color(agray, dark);
     font-weight: normal;
     @include font-size(26);
-    @include rem-fallback("line-height", 39px);
+    line-height: 2.4375rem;
     @include rem-fallback("letter-spacing", -0.5px);
   }
   @if $h-heading == "h3__heading-h3--bold" {
@@ -191,7 +191,7 @@
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(26);
-    @include rem-fallback("line-height", 39px);
+    line-height: 2.4375rem;
     @include rem-fallback("letter-spacing", -0.5px);
   }
   @if $h-heading == "h3__heading-h3--museo-h3--x-compact" {
@@ -199,7 +199,7 @@
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(26);
-    @include rem-fallback("line-height", 30px);
+    line-height: 1.875rem;
     @include rem-fallback("letter-spacing", -0.5px);
   }
   @if $h-heading == "h3__heading-h3--bold-h3--compact" {
@@ -207,7 +207,7 @@
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(26);
-    @include rem-fallback("line-height", 31px);
+    line-height: 1.9375rem;
     @include rem-fallback("letter-spacing", -0.5px);
   }
   @if $h-heading == "h6__heading-h6--light-h6--compact" {
@@ -215,27 +215,27 @@
     color: color(agray, darker);
     font-weight: 200;
     @include font-size(14);
-    @include rem-fallback("line-height", 17px);
+    line-height: 1.0625rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h6__heading-h6--compact" {
     font-family: $helvetica;
     font-weight: normal;
     @include font-size(14);
-    @include rem-fallback("line-height", 17px);
+    line-height: 1.0625rem;
   }
   @if $h-heading == "h6__heading-h6--museo-h6--compact" {
     font-family: $font-museo;
     font-weight: normal;
     @include font-size(14);
-    @include rem-fallback("line-height", 17px);
+    line-height: 1.0625rem;
   }
   @if $h-heading == "h6__heading-h6--bold" {
     font-family: $helvetica;
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(14);
-    @include rem-fallback("line-height", 22px);
+    line-height: 1.375rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h6__heading-h6--bold-h6--compact" {
@@ -243,7 +243,7 @@
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(14);
-    @include rem-fallback("line-height", 17px);
+    line-height: 1.0625rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h6__heading" {
@@ -251,7 +251,7 @@
     color: color(agray, dark);
     font-weight: 400;
     @include font-size(14);
-    @include rem-fallback("line-height", 22px);
+    line-height: 1.375rem;
     letter-spacing: 0;
   }
   @if $h-heading == "h4__heading-h4--museo-h4--compact" {
@@ -259,7 +259,7 @@
     color: color(agray, dark);
     font-weight: 700;
     @include font-size(20);
-    @include rem-fallback("line-height", 26px);
+    line-height: 1.625rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
   @if $h-heading == "h4__heading-h4--museo" {
@@ -267,7 +267,7 @@
     color: color(agray, dark);
     font-weight: 400;
     @include font-size(20);
-    @include rem-fallback("line-height", 32px);
+    line-height: 2rem;
     @include rem-fallback("letter-spacing", -0.25px);
   }
 }

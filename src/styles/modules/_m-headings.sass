@@ -4,13 +4,13 @@
     font-weight: 700
     font-family: $font-helvetica
     color: color(agray, dark)
-    +rem-fallback('line-height', $line-height-h2)
+    line-height: $line-height-h2
     +rem-fallback('letter-spacing', $letter-spacing-xs)
     +rem-fallback('margin-bottom', 20px)
 
     +breakpoint(tablet-wide)
       +rem-fallback('font-size', $font-size-xxl)
-      +rem-fallback('line-height', $line-height-h1)
+      line-height: $line-height-h1
 
     &--museo
       font-family: $font-museo
@@ -28,7 +28,7 @@
     font-family: $font-helvetica
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h3)
+    line-height: $line-height-h3
     +rem-fallback('letter-spacing', $letter-spacing-s)
     +rem-fallback('margin-bottom', 20px)
 
@@ -52,7 +52,7 @@
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h4)
+    line-height: $line-height-h4
     +rem-fallback('letter-spacing', $letter-spacing-s)
     +rem-fallback('margin-bottom', 20px)
 
@@ -61,10 +61,10 @@
       line-height: $line-height-h3
 
     &--compact
-      +rem-fallback('line-height', $line-height-h3v2)
+      line-height: $line-height-h3v2
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-h3v2)
+      line-height: $line-height-h3v2
 
     &--museo
       font-family: $font-museo
@@ -88,17 +88,17 @@
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h4)
+    line-height: $line-height-h4
     +rem-fallback('letter-spacing', $letter-spacing-sm)
 
     &--compact
-      +rem-fallback('line-height', $line-height-h4v2)
+      line-height: $line-height-h4v2
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-h4v3)
+      line-height: $line-height-h4v3
 
     &--x-x-compact
-      +rem-fallback('line-height', $line-height-h4v3museo)
+      line-height: $line-height-h4v3museo
 
     &--museo
       font-family: $font-museo
@@ -122,13 +122,13 @@
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h5)
+    line-height: $line-height-h5
 
     &--compact
-      +rem-fallback('line-height', $line-height-h5v2)
+      line-height: $line-height-h5v2
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-h5v2museo)
+      line-height: $line-height-h5v2museo
 
     &--museo
       font-family: $font-museo
@@ -146,13 +146,13 @@
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
-    +rem-fallback('line-height', $line-height-h6)
+    line-height: $line-height-h6
 
     &--compact
-      +rem-fallback('line-height', $line-height-h6v2)
+      line-height: $line-height-h6v2
 
     &--x-compact
-      +rem-fallback('line-height', $line-height-tiny)
+      line-height: $line-height-tiny
 
     &--tiny
       +font-size(12)

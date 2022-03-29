@@ -173,7 +173,7 @@
   //     font-family: $museo700;
   //     color: color(awhite);
   //     @include font-size(20);
-  //     @include rem-fallback('line-height', 26px);
+  //     line-height: 1.625rem;
   //     @include rem-fallback('letter-spacing', -.25px);
   // }
 }

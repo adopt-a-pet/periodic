@@ -22,7 +22,7 @@
         :class="b('checkbox-text').toString()"
         font-size="xxs"
         font-weight="normal"
-        line-height="15px">
+        line-height="0.9375rem">
         Get offers and tips from our sponsors.
       </Paragraph>
 
@@ -34,7 +34,7 @@
           :class="b('link-blue').toString()"
           font-size="xxs"
           font-weight="normal"
-          line-height="15px">
+          line-height="0.9375rem">
           {{ showAllOffers ? 'Close' : 'Learn More' }}
         </Paragraph>
 
@@ -62,7 +62,7 @@
             tag="span"
             :class="b('checkbox-text').toString()"
             font-size="xxs"
-            line-height="15px"
+            line-height="0.9375rem"
             v-html="offer.displayHtml" />
         </Checkbox>
 
@@ -73,7 +73,7 @@
         :class="b('footnote').toString()"
         font-size="xxs"
         font-weight="normal"
-        line-height="15px">
+        line-height="0.9375rem">
         * I certify I am 18 years of age or older and agree that Purina
         may use my information as described in the
         <TextLink
