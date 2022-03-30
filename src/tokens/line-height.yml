@@ -5,35 +5,35 @@
 
 props:
   line_height_h1:
-    value: "62px"
+    value: "3.875rem"
   line_height_h2:
-    value: "48px"
+    value: "3rem"
   line_height_h3:
-    value: "39px"
+    value: "2.4375rem"
   line_height_h4:
-    value: "32px"
+    value: "2rem"
   line_height_h3v2:
-    value: "31px"
+    value: "1.9375rem"
   line_height_h3v2museo:
-    value: "30px"
+    value: "1.875rem"
   line_height_h4v2:
-    value: "26px"
+    value: "1.625rem"
   line_height_h5:
-    value: "25px"
+    value: "1.5625rem"
   line_height_h4v3:
-    value: "24px"
+    value: "1.5rem"
   line_height_h4v3museo:
-    value: "23px"
+    value: "1.4375rem"
   line_height_h6:
-    value: "22px"
+    value: "1.375rem"
   line_height_h5v2:
-    value: "20px"
+    value: "1.25rem"
   line_height_h5v2museo:
-    value: "18px"
+    value: "1.125rem"
   line_height_h6v2:
-    value: "17px"
+    value: "1.0625rem"
   line_height_tiny:
-    value: "14px"
+    value: ".875rem"
 global:
   type: number
   category: line-height

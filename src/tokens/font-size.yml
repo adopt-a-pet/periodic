@@ -5,21 +5,21 @@
 
 props:
   font_size_xxl:
-    value: "45px"
+    value: "2.8125rem"
   font_size_xl:
-    value: "32px"
+    value: "2rem"
   font_size_l:
-    value: "26px"
+    value: "1.625rem"
   font_size_m:
-    value: "20px"
+    value: "1.25rem"
   font_size_s:
-    value: "16px"
+    value: "1rem"
   font_size_xs:
-    value: "14px"
+    value: ".875rem"
   font_size_xxs:
-    value: "12px"
+    value: ".75rem"
   font_size_xxxs:
-    value: "11px"
+    value: ".6875rem"
 global:
   type: number
   category: font-size
