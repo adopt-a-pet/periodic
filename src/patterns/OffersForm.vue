@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable max-len -->
   <div :class="b().toString()">
     <Heading
       level="h3"
@@ -96,7 +97,9 @@
     </Paragraph>
     <div class="wildest-banner">
       <div class="wildest-banner__logo">
-        <img src="../assets/img/theWildestBannerLogoBlock.png">
+        <img
+          src="../assets/img/theWildestBannerLogoBlock.png"
+          alt="The Wildest">
       </div>
       <div class="wildest-banner__text">
         <Paragraph
