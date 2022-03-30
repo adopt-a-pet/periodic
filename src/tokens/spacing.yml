@@ -5,27 +5,27 @@
 
 props:
   space_xxxxl:
-    value: "80px"
+    value: "5rem"
   space_xxxl:
-    value: "60px"
+    value: "3.75rem"
   space_xxl:
-    value: "50px"
+    value: "3.125rem"
   space_xl:
-    value: "40px"
+    value: "2.5rem"
   space_l:
-    value: "30px"
+    value: "1.875rem"
   space_m:
-    value: "25px"
+    value: "1.5625rem"
   space_s:
-    value: "20px"
+    value: "1.25rem"
   space_xs:
-    value: "15px"
+    value: ".9375rem"
   space_xxs:
-    value: "10px"
+    value: ".625rem"
   space_xxxs:
-    value: "8px"
+    value: ".5rem"
   space_xxxxs:
-    value: "5px"
+    value: ".3125rem"
 global:
   type: number
   category: space
