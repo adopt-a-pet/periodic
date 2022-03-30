@@ -10,7 +10,7 @@ $sizes: ( xxxs: $font-size-xxxs, xxs: $font-size-xxs, xs: $font-size-xs, s: $fon
 
   @each $size, $token in $sizes
     +m(size-#{$size})
-      +rem-fallback('font-size', $token)
+      font-size: $token
 
   +m('color-gray')
     color: color(agray)

@@ -5,9 +5,9 @@
 
   +e(input)
     +border(1px solid color(agray, light))
-    +rem-fallback(font-size, $font-size-m)
+    font-size: $font-size-m
     +rem-fallback(height, $height-input)
-    +rem-fallback(padding, $space-xs)
+    padding: $space-xs
     background-color: color(awhite)
     border-radius: $radius-m
     color: color(agray, dark)
@@ -22,7 +22,7 @@
 
     +has(label)
       &:focus, &.#{_has(content)}
-        +rem-fallback(padding-bottom, $space-xxxxs)
+        padding-bottom: $space-xxxxs
 
     &[disabled]
       +border(1px solid color(agray, lighter))
@@ -31,7 +31,7 @@
 
     +is(success)
       +border(1px solid color(agreen))
-      +rem-fallback(padding-right, $space-xl)
+      padding-right: $space-xl
       background-color: color(awhite)
 
       &:focus
@@ -53,26 +53,26 @@
         +border(1px solid color(agreen))
 
     +m(small)
-      +rem-fallback(font-size, $font-size-s)
+      font-size: $font-size-s
       +rem-fallback(height, $height-input-small)
-      +rem-fallback(padding, $space-xs)
-      +rem-fallback(padding-bottom, $space-xxxs)
+      padding: $space-xs
+      padding-bottom: $space-xxxs
       background-color: color(awhite)
       border-radius: $border-radius
       outline: none
       width: 100%
 
       & ~ .#{_b(text-field) + _e(label) + _m(main)}
-        +rem-fallback(top, $space-xxs)
-        +rem-fallback(font-size, $font-size-s)
+        top: $space-xxs
+        font-size: $font-size-s
 
       &:focus, &.#{_has(content)}
         +border(1px solid color(ablue))
 
         & ~ .#{_b(text-field) + _e(label) + _m(main)}
           +rem-fallback(top, 2px)
-          +rem-fallback(left, $space-xs)
-          +rem-fallback(font-size, $font-size-xxxs)
+          left: $space-xs
+          font-size: $font-size-xxxs
           font-weight: 700
 
       & + .valid-tick
@@ -87,9 +87,9 @@
         pointer-events: none
 
   +e(error-msg)
-    +rem-fallback(font-size, $font-size-xs)
+    font-size: $font-size-xs
     line-height: $line-height-h5v2
-    +rem-fallback(right, $space-xs)
+    right: $space-xs
     top: 0
     color: color(aorange)
     pointer-events: none
@@ -105,14 +105,14 @@
       line-height: 1.5
 
       +is(smaller)
-        +rem-fallback(font-size, $font-size-xs)
-        +rem-fallback(left, $space-xs)
+        font-size: $font-size-xs
+        left: $space-xs
         line-height: $line-height-h5v2
-        +rem-fallback(top, $space-xxxxs)
+        top: $space-xxxxs
         font-weight: $weight-bold
 
     +m(right)
-      +rem-fallback(font-size, $font-size-xs)
+      font-size: $font-size-xs
       line-height: $line-height-h5v2
       position: initial
       float: left
@@ -128,7 +128,7 @@
   +e(eye)
     +reset
     +rem-fallback(height, 15px)
-    +rem-fallback(right, $space-xxs)
+    right: $space-xxs
     +rem-fallback(width, 26px)
     display: inline-block
     opacity: 0.4
@@ -147,8 +147,8 @@
   +e(slot)
     +m(right)
       +rem-fallback(height, $line-height-h5)
-      +rem-fallback(right, $space-xs)
-      +rem-fallback(top, $space-s)
+      right: $space-xs
+      top: $space-s
       display: flex
       flex-flow: row nowrap
       font-weight: $weight-bold

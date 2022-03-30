@@ -1,6 +1,6 @@
 +block('heading')
   +element('h1')
-    +rem-fallback('font-size', $font-size-xl)
+    font-size: $font-size-xl
     font-weight: 700
     font-family: $font-helvetica
     color: color(agray, dark)
@@ -9,7 +9,7 @@
     +rem-fallback('margin-bottom', 20px)
 
     +breakpoint(tablet-wide)
-      +rem-fallback('font-size', $font-size-xxl)
+      font-size: $font-size-xxl
       line-height: $line-height-h1
 
     &--museo
@@ -24,7 +24,7 @@
       font-weight: bold
 
   +element('h2')
-    +rem-fallback('font-size', $font-size-l)
+    font-size: $font-size-l
     font-family: $font-helvetica
     color: color(agray, dark)
     font-weight: normal
@@ -48,7 +48,7 @@
       font-weight: bold
 
   +element('h3')
-    +rem-fallback('font-size', $font-size-m)
+    font-size: $font-size-m
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
@@ -84,7 +84,7 @@
       color: color(agray)
 
   +element('h4')
-    +rem-fallback('font-size', $font-size-m)
+    font-size: $font-size-m
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
@@ -118,7 +118,7 @@
       color: color(agray)
 
   +element('h5')
-    +rem-fallback('font-size', $font-size-s)
+    font-size: $font-size-s
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
@@ -142,7 +142,7 @@
       font-weight: bold
 
   +element('h6')
-    +rem-fallback('font-size', $font-size-xs)
+    font-size: $font-size-xs
     font-family: $helvetica
     color: color(agray, dark)
     font-weight: normal
