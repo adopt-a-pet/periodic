@@ -26,8 +26,8 @@
   +m(native)
     select
       +reset
-      +rem-fallback('padding-left', $space-xs)
-      +rem-fallback('padding-top', $space-xxs)
+      padding-left: $space-xs
+      padding-top: $space-xxs
       appearance: none
       background-color: transparent
       border: 0
@@ -55,7 +55,7 @@
 
   +e(arrow)
     +rem-fallback('height', 7px)
-    +rem-fallback('margin-top', $space-xxxxs)
+    margin-top: $space-xxxxs
     +rem-fallback('width', 13px)
     border: 7px solid transparent
     border-top: 7px solid #4d4d4d
@@ -90,7 +90,7 @@
     cursor: pointer
     font-size: 1.25rem
     font-weight: 200
-    +rem-fallback('padding', $space-xs)
+    padding: $space-xs
     position: relative
 
     &:hover

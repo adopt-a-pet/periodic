@@ -16,7 +16,7 @@
 
     &::after
       +border(8px solid color(ablack))
-      +rem-fallback('left', $space-xxxxl)
+      left: $space-xxxxl
       border-color: transparent transparent color(awhite) color(awhite)
       box-shadow: $shadow-callout
       box-sizing: border-box
@@ -41,5 +41,5 @@
     // (it's different because the bubble is positioned `absolute`)
     +rem-fallback('width', $width-tooltip)
     +rem-fallback('left', -($width-tooltip / 2))
-    +rem-fallback('bottom', $space-xl)
+    bottom: $space-xl
     position: absolute

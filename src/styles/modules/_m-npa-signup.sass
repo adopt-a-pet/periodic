@@ -22,7 +22,7 @@
 
   +e(skip-continue)
     align-items: center
-    +rem-fallback(column-gap, $space-xxs)
+    column-gap: $space-xxs
     display: grid
     grid-template-columns: 1fr 4fr
     text-align: left
@@ -55,11 +55,11 @@
     padding-left: 1.5em
 
     +breakpoint(desktop)
-      +rem-fallback(column-gap, $space-xxl)
+      column-gap: $space-xxl
       //grid-auto-flow: column
       grid-template-columns: 1fr 1fr
 
     li
       font-weight: 200
       font-size: $font-size-m
-      +rem-fallback(margin-bottom, $space-s)
+      margin-bottom: $space-s

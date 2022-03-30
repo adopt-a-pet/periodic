@@ -2,10 +2,10 @@
   +reset
   +border(1px solid color(agray, light))
   +rem-fallback('border-radius', $radius-m)
-  +rem-fallback('font-size', $font-size-m)
+  font-size: $font-size-m
   +rem-fallback('height', 240px)
-  +rem-fallback('padding', $space-s)
-  +rem-fallback('padding-top', $space-l)
+  padding: $space-s
+  padding-top: $space-l
   box-shadow: $text-field-shade
   color: color(agray, dark)
   display: flex
@@ -23,7 +23,7 @@
 
   +e(label)
     +labeltext($labeltext: label-textarea)
-    +rem-fallback('padding', $space-s)
+    padding: $space-s
     top: 0
     left: 0
     transition: all .2s ease-in-out
@@ -34,15 +34,15 @@
 
   &:focus, &.#{_has(content)}
     ~ label
-      +rem-fallback('font-size', $font-size-xxs)
+      font-size: $font-size-xxs
       font-weight: 700
       line-height: 1
 
   +e(error-msg)
-    @include rem-fallback('font-size', $font-size-xs)
+    font-size: $font-size-xs
     line-height: $line-height-h6v2
-    @include rem-fallback('right', $space-xs)
-    @include rem-fallback('top', $space-xxxxs)
+    right: $space-xs
+    top: $space-xxxxs
     color: color(aorange)
     position: absolute
     text-align: right
@@ -53,9 +53,9 @@
       opacity: 0
 
   +e(text-limit)
-    +rem-fallback('font-size', $font-size-xs)
+    font-size: $font-size-xs
     line-height: $line-height-h6
-    +rem-fallback('margin-top', $space-xxs)
+    margin-top: $space-xxs
     font-weight: 200
     letter-spacing: 0
     text-align: right
