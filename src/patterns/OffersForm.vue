@@ -88,7 +88,7 @@
         Chewy Privacy Policy
       </TextLink>, and
       <TextLink
-        href="https://www.petbasics.com/privacy-statement/"
+        href="https://privacy.elanco.com/en-us"
         target="_blank"
         :class="b('link-blue').toString()">
         PetBasics Privacy Policy
