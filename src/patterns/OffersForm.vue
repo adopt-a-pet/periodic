@@ -82,12 +82,6 @@
       </TextLink>
       and by Its sponsors. Please view their privacy policies at
       <TextLink
-        href="https://www.chewy.com/app/content/privacy"
-        target="_blank"
-        :class="b('link-blue').toString()">
-        Chewy Privacy Policy
-      </TextLink>, and
-      <TextLink
         href="https://privacy.elanco.com/en-us"
         target="_blank"
         :class="b('link-blue').toString()">
