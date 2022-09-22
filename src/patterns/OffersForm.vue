@@ -74,13 +74,19 @@
     <Paragraph
       line-height="14px"
       font-size="xxxxs">
-      I understand my information is being collected by Adopt-a-Pet.com
+      I understand my information is being collected by Adopt a Pet
       <TextLink
-        href="https://www.mars.com/privacy"
+        href="https://adoptapet.com/public/privacy_policy/"
         target="_blank">
         (Privacy Policy)
       </TextLink>
-      and by Its sponsors. Please view their privacy policies at
+      and by its sponsors. Please view their privacy policies at
+      <TextLink
+        href="https://www.mars.com/privacy"
+        target="_blank"
+        :class="b('link-blue').toString()">
+        Mars Privacy Policy
+      </TextLink> and
       <TextLink
         href="https://privacy.elanco.com/en-us"
         target="_blank"
